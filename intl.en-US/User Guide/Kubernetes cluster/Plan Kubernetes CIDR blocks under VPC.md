@@ -16,7 +16,7 @@ The CIDR block specified when you create a VSwitch in VPC. The VSwitch CIDR bloc
 
 The VPC CIDR block structure is as follows.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6927/15329326094613_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6927/15331907404613_en-US.png)
 
 **Pod CIDR block**
 
@@ -28,7 +28,7 @@ Service is a concept in Kubernetes. Each service has its own address. The servic
 
 The relationship between Kubernetes CIDR block and VPC CIDR block is as follows.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6927/15329326094617_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6927/15331907404617_en-US.png)
 
 ## How to select CIDR block {#section_hjk_dh4_vdb .section}
 
@@ -48,7 +48,7 @@ In such a situation, parts of the Kubernetes clusters are interconnected. The po
 
 You can configure what messages are to be sent to the opposite VPC by using route tables when two VPCs are interconnected. Take the following scenario as an example: VPC 1 uses the CIDR block 192.168.0.0/16 and VPC 2 uses the CIDR block 172.16.0.0/12. By using route tables, specify to send the messages of 172.16.0.0/12 in VPC 1 to VPC 2.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6927/15329326094614_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6927/15331907404614_en-US.png)
 
 In such a situation, the CIDR block of the Kubernetes cluster created in VPC 1 cannot overlap with VPC 1 CIDR block or the CIDR block to be routed to VPC 2. The same applies to the scenario when you create a Kubernetes cluster in VPC 2. In this example, the pod CIDR block of the Kubernetes cluster can select a sub-segment under 10.0.0.0/8.
 
