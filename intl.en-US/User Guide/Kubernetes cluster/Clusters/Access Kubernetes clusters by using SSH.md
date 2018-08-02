@@ -9,7 +9,7 @@ If you select not to enable SSH access for Internet when creating the Kubernetes
 3.  Click **Manage** at the right of the cluster.
 4.  In **Cluster resource**, click the ID of the Internet SLB. Then, you are redirected to the Instance Details page of your Internet Server Load Balancer instance.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6882/15329313831993_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6882/15331795711993_en-US.png)
 
 5.  Click **Listeners** in the left-side navigation pane and then click **Add Listener** in the upper-right corner.
 6.  Add the SSH listening rule.
@@ -19,10 +19,10 @@ If you select not to enable SSH access for Internet when creating the Kubernetes
     3.  Turn on the **Use Server Group** switch and select **VServer Group**.
     4.  **Server Group ID:** Select **sshVirtualGroup**.
     5.  Click **Next** and then click **Confirm** to create the listener.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6882/15329313831990_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6882/15331795711990_en-US.png)
 
 7.  Then, you can use the Server Load Balancer instance IP address to access your cluster by using SSH.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6882/15329313831991_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6882/15331795711991_en-US.png)
 
 
