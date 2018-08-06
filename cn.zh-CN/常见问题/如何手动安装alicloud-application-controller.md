@@ -2,7 +2,7 @@
 
 在阿里云容器服务中，1.10.4及以上版本默认安装alicloud-application-controller，来提供一种基于 CRD 的分批发布的能力。
 
-**说明：** Kubernetes最新集群已经默认安装alicloud-application-controller，旧版本集群可以通过手动安装的方式部署alicloud-application-controller。
+**说明：** Kubernetes最新集群已经默认安装alicloud-application-controller，旧版本集群可以通过手动安装的方式部署alicloud-application-controller，要求Kubernetes集群版本最低为v1.9.3。
 
 您可通过`kubectl create -f alicloud-application-controller.yml`命令部署alicloud-application-controller，在alicloud-application-controller.yml中输入如下的编排模板。
 
