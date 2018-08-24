@@ -12,7 +12,7 @@ In May 2017, Google, IBM, and Lyft published the open-source service network arc
 
 In Kubernetes, a pod is a collection of close-coupled containers, and these containers share the same network namespace. With the extension mechanism of Initializer in Kubernetes, an Envoy container is automatically created and started for each business pod, without modifying the deployment description of the business pod. The Envoy takes over the inbound and outbound traffic of business containers in the same pod. Therefore, the microservice governance functions, including the traffic management, microservice tracking, security authentication, access control, and strategy implementation, are realized by operating on the Envoy.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15330294131151_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15350778591151_en-US.png)
 
 An Istio service mesh is logically split into a data plane and a control plane.
 
@@ -43,11 +43,11 @@ Alibaba Cloud Container Service has enabled the Initializers plug-in by default 
 3.  Configure the parameters to create a cluster. For how to create a Kubernetes cluster, see [Create a cluster](../../../../intl.en-US/User Guide/Kubernetes cluster.md#).
 4.  After the cluster is created, click **Manage** at the right of the cluster when the cluster status is changed to **Running**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15330294131153_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15350778591153_en-US.png)
 
 5.  On the cluster Basic Information page, you can configure the corresponding connection information based on the page information. You can connect to the cluster either by using [kubectl](../../../../intl.en-US/User Guide/Kubernetes cluster/Clusters/Connect to a Kubernetes cluster by using kubectl.md#) or [SSH](../../../../intl.en-US/User Guide/Kubernetes cluster/Clusters/Access Kubernetes clusters by using SSH.md#).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15330294131154_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15350778591154_en-US.png)
 
 
 **Deploy Istio release version**
@@ -88,7 +88,7 @@ BookInfo is an application similar to an online bookstore, which is composed of 
 
 For more information about BookInfo, see [Bookinfo guide](https://istio.io/docs/guides/bookinfo.html).
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15330294131155_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15350778591155_en-US.png)
 
 Run the following command to deploy and test the application Bookinfo.
 
@@ -118,7 +118,7 @@ curl -o /dev/null -s -w "%{http_code}\n" http://${GATEWAY_URL}/productpage
 
 You can open `http://${GATEWAY_URL}/productpage` in the browser to access the application. GATEWAY\_URL is the IP address of Ingress.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15330294131156_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15350778591156_en-US.png)
 
 **Deploy Jaeger tracking system**
 
@@ -153,15 +153,15 @@ Record the external access IP address and port of jaeger-query and then open the
 
 By accessing the application BookInfo for multiple times and generating the call chain information, we can view the call chain information of services clearly.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15330294131159_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15350778601159_en-US.png)
 
 Click a specific Trace to view the details.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15330294141160_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15350778601160_en-US.png)
 
 You can also view DAG.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15330294141163_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/7252/15350778601163_en-US.png)
 
 ## Implementation principle of Istio distributed tracking {#section_kbc_phd_5db .section}
 
