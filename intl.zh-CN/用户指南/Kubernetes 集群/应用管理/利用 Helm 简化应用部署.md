@@ -28,7 +28,7 @@ Helm 采用客户端/服务器架构，由如下组件组成：
 
 **前提条件**
 
--   通过 Helm 部署应用之前，利用阿里云容器服务来创建 Kubernetes 集群。参见[创建 Kubernetes 集群](intl.zh-CN/用户指南/Kubernetes 集群/集群管理/创建Kubernetes集群.md#)。
+-   通过 Helm 部署应用之前，利用阿里云容器服务来创建 Kubernetes 集群。参见[创建Kubernetes集群](intl.zh-CN/用户指南/Kubernetes 集群/集群管理/创建Kubernetes集群.md#)。
 
     在 Kubernetes 集群创建的同时，Tiller 将会被自动部署到集群之中，并且在所有的 master 节点上自动安装 Helm CLI 以及配置指向阿里云的 Chart 存储库。
 
@@ -43,36 +43,36 @@ Helm 采用客户端/服务器架构，由如下组件组成：
 2.  在 Kubernetes 菜单下，单击左侧导航栏中的**市场** \> **应用目录**，进入应用目录列表页面。
 3.  选择一个 chart（本示例选择 WordPress），单击该 chart，进入 chart 详情页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6898/15330210364410_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153536831410396_zh-CN.png)
 
 4.  在页面右侧，填写部署的基本信息。
 
     -   **集群**：应用要部署到的集群。
     -   **命名空间**：选择命名空间。默认为 default。
     -   **发布名称**：填写应用发布的名称。本例中为 test。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6898/15330210364411_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153536831410397_zh-CN.png)
 
 5.  单击**参数**，对配置进行修改。
 
-    本示例中使用云盘的动态数据卷绑定一个PVC，参见[使用阿里云云盘](intl.zh-CN/用户指南/Kubernetes 集群/存储管理/使用阿里云云盘.md#)。
+    本示例中使用云盘的动态数据卷绑定一个PVC，参见。
 
     **说明：** 您需要预先创建一个云盘存储卷（PV），并且存储卷的容量不能小于PVC定义的数值。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6898/15330210364417_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153536831410398_zh-CN.png)
 
 6.  配置完成后，单击**创建**，部署成功后，默认进入该应用的发布页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6898/15330210364418_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153536831410399_zh-CN.png)
 
 7.  单击左侧导航栏中的**应用** \> **服务**，选择所需的集群和命名空间，找到对应的服务，您可获取 http/https 外部端点的地址。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6898/15330210364419_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153536831410400_zh-CN.png)
 
 8.  单击上面的访问地址，进入 WordPress 博客发布页面。
 
 ## 通过命令行部署应用 {#section_ekv_cwm_vdb .section}
 
-通过命令行部署应用时，您可以 SSH 登录 Kubernetes 集群的 master 节点 （Helm CLI 已自动安装并已配置Repository）进行操作，参见[SSH 访问 Kubernetes 集群](intl.zh-CN/用户指南/Kubernetes 集群/集群管理/SSH访问Kubernetes集群.md#) 。您也可以在本地安装配置 kubectl 和 Helm CLI。
+通过命令行部署应用时，您可以 SSH 登录 Kubernetes 集群的 master 节点 （Helm CLI 已自动安装并已配置Repository）进行操作，参见[SSH访问Kubernetes集群](intl.zh-CN/用户指南/Kubernetes 集群/集群管理/SSH访问Kubernetes集群.md#) 。您也可以在本地安装配置 kubectl 和 Helm CLI。
 
 本示例以在本地安装配置 kubectl 和 Helm CLI 并部署 WordPress 和 Spark 应用为例进行说明。
 
@@ -115,8 +115,8 @@ Helm 采用客户端/服务器架构，由如下组件组成：
 
     ```
     helm search 
-      helm search 存储库名称 #如 stable 或 incubator
-      helm search chart名称 #如 wordpress 或 spark
+    helm search 存储库名称 #如 stable 或 incubator
+    helm search chart名称 #如 wordpress 或 spark
     ```
 
 -   若要更新 charts 列表以获取最新版本，请键入：
