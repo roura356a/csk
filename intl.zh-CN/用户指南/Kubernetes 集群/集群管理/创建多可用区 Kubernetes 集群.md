@@ -7,7 +7,7 @@
     **说明：** 容器服务 Kubernetes 集群部署依赖阿里云资源编排 ROS 的应用部署能力，所以创建 Kubernetes 集群前，您需要开通 ROS。
 
 -   您需要先创建一个 VPC 并在该 VPC 中至少创建三个 VSwitch。为了达到高可用的效果，建议您将 VSwitch 创建在不同的可用区。
--   你需要给VPC下的每个VSwtich都手动配置SNAT，否则VPC内实例不能正常访问公网。
+-   你需要给VPC下的每个vSwtich都收动配置SNAT，否则VPC内实例不能正常访问公网。
 
 您可以通过容器服务管理控制台创建包含不同可用区 ECS 实例的 Kubernetes 集群从而实现高可用。
 
@@ -40,7 +40,7 @@
 2.  在 Kubernetes 菜单下， 单击左侧导航栏中的**集群**，进入 Kubernetes 集群列表页面。单击页面右上角的**创建Kubernetes 集群**。 
 3.  在创建Kubernetes集群页面，选择**多可用区Kubernetes**。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356103698748_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356101808748_zh-CN.png)
 
 4.  填写集群的名称。 
 
@@ -51,7 +51,7 @@
 
     在已有 VPC 列表中选择一个 VPC 并在该 VPC 下选择三个交换机。为了达到高可用的效果，建议您选择位于不同可用区的交换机。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356103698749_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356101808749_zh-CN.png)
 
 7.  设置 Master 节点和 Worker 节点的配置信息。 
 
@@ -62,14 +62,14 @@
     -   目前仅支持 CentOS 操作系统。
     -   目前仅支持创建 3 个 Master 节点。
     -   每个集群最多可包含 37 个 Worker 节点。如果您需要创建更多节点，请提交工单申请。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356103698750_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356101808750_zh-CN.png)
 
 8.  配置登录方式。 
     -   设置密钥。
 
         您需要在创建集群的时候选择密钥对登录方式，单击**新建密钥对**，跳转到ECS云服务器控制台，创建密钥对，参见[创建 SSH 密钥对](../../../../intl.zh-CN/用户指南/密钥对/创建 SSH 密钥对.md#)。密钥对创建完毕后，设置该密钥对作为登录集群的凭据。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356103698751_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356101808751_zh-CN.png)
 
     -   设置密码。
         -   **登录密码**：设置节点的登录密码。
@@ -82,18 +82,18 @@
 
     -   选择开放公网 SSH 登录，您可以 SSH 访问集群。
     -   选择不开放公网 SSH 登录，将无法通过 SSH 访问集群，也无法通过 kubectl 连接 集群。如果您需要通过 SSH 访问集群实例，可以手动为 ECS 实例绑定 EIP，并配置安全组规则，开放 SSH（22）端口，具体操作参见[SSH访问Kubernetes集群](intl.zh-CN/用户指南/Kubernetes 集群/集群管理/SSH访问Kubernetes集群.md#)。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356103698752_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356101818752_zh-CN.png)
 
 11. 设置是否启用云监控插件。 
 
     您可以选择在 ECS 节点上安装云监控插件，从而在云监控控制台查看所创建 ECS 实例的监控信息。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356103698753_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356101818753_zh-CN.png)
 
 12. 设置是否启用高级选项。 
     1.  设置节点 Pod 数量，是指单个节点可运行 Pod 数量的上限。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356103698754_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356101818754_zh-CN.png)
 
     2.  设置是否选择**自定义镜像**。或不选择自定义镜像，则 ECS 实例会安装默认的 CentOS 版本。
 
@@ -101,11 +101,11 @@
 
     3.  设置是否使用**自定义集群CA**。如果勾选自定义集群 CA，可以将 CA 证书添加到 kubernetes 集群中，加强服务端和客户端之间信息交互的安全性。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356103698755_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356101818755_zh-CN.png)
 
 13. 单击**创建集群**，在弹出的配置确认对话框中，确认VPC公网访问，最后单击**确定**，启动部署。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356103698759_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356101818759_zh-CN.png)
 
     **说明：** 一个包含多节点的 Kubernetes 集群的创建时间一般需要十几分钟。
 
@@ -114,9 +114,13 @@
 
 集群创建成功后，您可以在容器服务管理控制台的 Kubernetes 集群列表页面查看所创建的集群。
 
+您可以单击右侧的**查看日志**查看集群的日志信息。
+
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356101818756_zh-CN.png)
+
 您可以单击右侧的**查看日志**查看集群的日志信息，您可单击**资源栈事件**查看更详细的信息。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356103698756_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15356101818756_zh-CN.png)
 
 **其中：**
 
