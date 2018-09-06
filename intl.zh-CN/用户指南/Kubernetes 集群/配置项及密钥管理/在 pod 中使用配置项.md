@@ -43,7 +43,7 @@
 3.  选择所需的集群和命名空间，然后单击右上角的**使用模板创建**。
 4.  输入配置项名称，然后单击**添加**，输入配置项，最后单击**确定**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16702/153553357210753_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16702/153622168710753_zh-CN.png)
 
 
 ## 使用配置项定义 pod 环境变量 {#section_x41_rnn_vdb .section}
