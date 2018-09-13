@@ -4,11 +4,11 @@ Configure a cluster to auto scale according to the cluster load.
 
 ## Prerequisites {#section_grh_5dh_1fb .section}
 
-You have created a Kubernetes cluster successfully. For how to create a Kubernetes cluster, see [EN-US\_TP\_16639.md\#](reseller.en-US/.md#).
+You have created a Kubernetes cluster successfully. For how to create a Kubernetes cluster, see [Create a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/集群管理/Create a Kubernetes cluster.md#).
 
 ## Background {#section_vlh_12h_1fb .section}
 
-Cluster auto scaling is different from [EN-US\_TP\_16647.md\#](reseller.en-US/User Guide/Kubernetes cluster/集群管理/Scale out or in a cluster.md#) that is based on resource thresholds. After auto scaling is configured for a cluster, the cluster automatically scales out or scales in when the cluster load reaches the configured value.
+Cluster auto scaling is different from [Scale out or in a cluster](reseller.en-US/User Guide/Kubernetes cluster/集群管理/Scale out or in a cluster.md#) that is based on resource thresholds. After auto scaling is configured for a cluster, the cluster automatically scales out or scales in when the cluster load reaches the configured value.
 
 ## Procedure {#section_dd4_trg_1fb .section}
 
@@ -18,7 +18,7 @@ Cluster auto scaling is different from [EN-US\_TP\_16647.md\#](reseller.en-US/Us
 2.  Under Kubernetes, click **Clusters** in the left-side navigation pane.
 3.  Select a cluster and click **More** \> **Auto Scaling** in the Action column.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153671958711191_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153681371611191_en-US.png)
 
 
 **Authorization**
@@ -27,27 +27,27 @@ Cluster auto scaling is different from [EN-US\_TP\_16647.md\#](reseller.en-US/Us
 
 1.  Click the first link in the displayed dialog box.****
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153671958711211_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153681371611211_en-US.png)
 
 2.  Click **Activate Auto Scaling service**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153671958711263_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153681371611263_en-US.png)
 
 3.  Select the **I agree with Auto Scaling Service Agreement of Service** check box and click **Enable Now**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153671958711264_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153681371611264_en-US.png)
 
 4.  After the service is activated, click **Console**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153671958711265_en-US.png) 
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153681371611265_en-US.png) 
 
 5.  Click **Authorize**. Configure permissions for accessing cloud resources on the Cloud Resource Access Authorization page.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153671958711266_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153681371611266_en-US.png)
 
 6.  Click **Confirm Authorization Policy**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153671958711267_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153681371611267_en-US.png)
 
     **Expected result**
 
@@ -59,15 +59,15 @@ Cluster auto scaling is different from [EN-US\_TP\_16647.md\#](reseller.en-US/Us
 
     **Note:** Use the primary account to log on to the console.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153671958711261_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153681371611261_en-US.png)
 
 2.  Select the target authorization policy and click **View Permissions** in the Action column.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153671958711193_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153681371611193_en-US.png)
 
 3.  Click **Modify Authorization Policy** in the upper-right corner of the page.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153671958811195_en-US.png) 
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153681371611195_en-US.png) 
 
 4.  In the `Action` field of **Policy content**, enter the following:
 
@@ -101,7 +101,7 @@ Cluster auto scaling is different from [EN-US\_TP\_16647.md\#](reseller.en-US/Us
 
 2.  Select a resource type \(CPU or GPU\) to be scaled, click **Create** in the Action column.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153671958811210_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153681371611210_en-US.png)
 
     On the Scaling Group Config page, configure the following parameters to create a scaling group:
 
@@ -134,10 +134,10 @@ Cluster auto scaling is different from [EN-US\_TP\_16647.md\#](reseller.en-US/Us
 
 -   A scaling group is displayed under CPU on the Auto-scaling page.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153671958811273_en-US.png) 
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153681371711273_en-US.png) 
 
 -   1.  Click **Application** \> **Deployment** in the left-side navigation pane.
 2.  Select the target cluster and the kube-system namespace, you can view the created component named cluster-autoscaler.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153671958811276_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/153681371711276_en-US.png)
 
 
