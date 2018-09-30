@@ -43,30 +43,30 @@ Helm 采用客户端/服务器架构，由如下组件组成：
 2.  在 Kubernetes 菜单下，单击左侧导航栏中的**市场** \> **应用目录**，进入应用目录列表页面。
 3.  选择一个 chart（本示例选择 WordPress），单击该 chart，进入 chart 详情页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153536831410396_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153829180410396_zh-CN.png)
 
 4.  在页面右侧，填写部署的基本信息。
 
     -   **集群**：应用要部署到的集群。
     -   **命名空间**：选择命名空间。默认为 default。
     -   **发布名称**：填写应用发布的名称。本例中为 test。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153536831410397_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153829180410397_zh-CN.png)
 
 5.  单击**参数**，对配置进行修改。
 
-    本示例中使用云盘的动态数据卷绑定一个PVC，参见。
+    本示例中使用云盘的动态数据卷绑定一个PVC，参见[使用阿里云云盘](intl.zh-CN/用户指南/Kubernetes 集群/存储管理/使用阿里云云盘.md#)。
 
     **说明：** 您需要预先创建一个云盘存储卷（PV），并且存储卷的容量不能小于PVC定义的数值。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153536831410398_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153829180410398_zh-CN.png)
 
 6.  配置完成后，单击**创建**，部署成功后，默认进入该应用的发布页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153536831410399_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153829180410399_zh-CN.png)
 
 7.  单击左侧导航栏中的**应用** \> **服务**，选择所需的集群和命名空间，找到对应的服务，您可获取 http/https 外部端点的地址。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153536831410400_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/153829180410400_zh-CN.png)
 
 8.  单击上面的访问地址，进入 WordPress 博客发布页面。
 
