@@ -14,7 +14,7 @@
 
     您可看到该集群下通过 helm 包管理工具发布的应用及服务等。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15354274844575_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15389855874575_zh-CN.png)
 
 3.  以 tf-model 为例，您可查看发布的详情信息，单击右侧的**详情**，进入该发布的详情页面。
 
@@ -22,11 +22,11 @@
 
     **Note:** 单击资源名称，可进入 Kubernetes Dashboard 页面，查看对应资源的详细运行状态。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15354274844576_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15389855874576_zh-CN.png)
 
 4.  单击**参数**，你可查看该 helm 包安装的参数配置。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15354274844577_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15389855874577_zh-CN.png)
 
 
 ## 更新发布的版本 {#section_qmz_gc4_vdb .section}
@@ -36,19 +36,19 @@
 
     您可看到该集群下通过 helm 包管理工具发布的应用及服务等。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15354274844575_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15389855874575_zh-CN.png)
 
 3.  以 tf-model 为例，您可更新该发布，单击右侧的**更新**，弹出更新发布对话框。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15354274854579_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15389855874579_zh-CN.png)
 
 4.  在对话框中修改相关参数，随后单击**更新**，可对该发布进行更新。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15354274854580_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15389855874580_zh-CN.png)
 
     在发布列表页面，您可以看到当前版本变为 2，您可以在历史版本菜单下找到版本1，单击 **回滚到该版本**，可进行回滚。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15354274854582_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15389855874582_zh-CN.png)
 
 
 ## 删除发布 {#section_nsk_fc4_vdb .section}
@@ -58,11 +58,11 @@
 
     您可看到该集群下通过 helm 包管理工具发布的应用及服务等。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15354274844575_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15389855874575_zh-CN.png)
 
 3.  以 tf-model 为例，您可删除该发布，单击右侧的**删除**，弹出删除对话框。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15354274854583_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6918/15389855874583_zh-CN.png)
 
 4.  勾选是否**清除发布记录**，然后单击**确定**，您可以删除 tf-model 应用，其包含的 service、deployment 等资源都会一并删除。
 
