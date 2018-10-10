@@ -13,7 +13,7 @@ This document is a quick start guide for deploying the blockchain network from t
 1.  Log on to the [Container Service console](https://cs.console.aliyun.com/).
 2.  Under Kubernetes, click **Clusters** in the left-side navigation pane. Click **Create Kubernetes Cluster** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169803_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689803_en-US.png)
 
 3.  Configure the basic information for the cluster. In this example, complete the configurations as follows:
     -   Enter the Cluster Name. For example, k8s-blockchain.
@@ -26,15 +26,15 @@ This document is a quick start guide for deploying the blockchain network from t
     -   Click **Create Cluster**. Wait a few minutes until the cluster is successfully created.
 4.  On the Cluster List page, click **Manage** at the right of the created cluster \(k8s-blockchain\).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169804_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689804_en-US.png)
 
 5.  On the Basic Information page of the cluster, record the Master node SSH IP address, which is an Internet address.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169805_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689805_en-US.png)
 
 6.  On the Node List page, record the IP addresses \(intranet addresses\) of the cluster nodes \(both master nodes and worker nodes\).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169806_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689806_en-US.png)
 
 
 ## Step 2. Bind an EIP to a worker node {#section_ppn_s5t_vdb .section}
@@ -44,7 +44,7 @@ This document is a quick start guide for deploying the blockchain network from t
 3.  Select the Region in which the cluster k8s-blockchain resides. Complete the other configurations as per your needs. Click **Buy Now**.
 4.  After activating the EIP, wait until the purchased EIP is displayed in the list and then click **Bind** at the right of the EIP.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169807_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689807_en-US.png)
 
 5.  Select ECS Instance from the Instance Type drop-down list and select a worker node \(the instance name begins with node\). Then, click **OK**.
 6.  After binding the EIP to the worker node, record the IP address of the purchased EIP on the Elastic IP Addresses page.
@@ -54,11 +54,11 @@ This document is a quick start guide for deploying the blockchain network from t
 1.  Log on to the [NAS console](https://nas.console.aliyun.com/).
 2.  Select **China East 1 \(Hangzhou\)** in the region list and click **Create File System**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169808_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689808_en-US.png)
 
 3.  Complete the configurations in the displayed Create File System dialog box.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169809_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689809_en-US.png)
 
     -   **Region**: Select **China East 1 \(Hangzhou\)**. Select the region in which the container cluster resides.
     -   **Storage Type**: In this example, select **Capacity-type**.
@@ -67,22 +67,22 @@ This document is a quick start guide for deploying the blockchain network from t
     -   Click **OK**.
 4.  Click **Click to go** in the displayed dialog box.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169810_en-US.jpg)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689810_en-US.jpg)
 
 5.  Configure the NAS storage package.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169811_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689811_en-US.png)
 
     -   **Storage Type**: Select **Capacity-Type**.
     -   **Order Duration**: In this example, select one month. Select the duration as per your needs.
     -   Click **Buy Now**.
 6.  If **Use Existing** is selected in the VPC field when you create the Kubernetes cluster, skip this step. If **Auto Create** is selected in the VPC field when you create the Kubernetes cluster, go to the [VPC console](https://vpcnext.console.aliyun.com/vpc/). Change the VPC instance name to one that is easy to identify, for example, blockchain\_huadong1.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169812_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689812_en-US.png)
 
 7.  Click **Add Mount Point** at the right of the created file system. Complete the configurations in the displayed Add Mount Point dialog box.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169813_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689813_en-US.png)
 
     -   **Mount Point Type**: Select **VPC**.
     -   **VPC:** Select the VPC used when creating the container cluster.
@@ -91,25 +91,25 @@ This document is a quick start guide for deploying the blockchain network from t
     -   Click **OK**.
 8.  On the File System List page, click **Manage** at the right of the file system. Record the Mount Address on the File System Details page.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169814_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689814_en-US.png)
 
 
 ## Step 4. Configure and deploy blockchain network {#section_lc1_zqt_vdb .section}
 
 1.  Under Kubernetes, click **Store** \> **App Catalog** in the left-side navigation pane. Click **ack-hyperledger-fabric** , and select the region.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169815_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689815_en-US.png)
 
 2.  Select the **cluster** in which the blockchain network is to be deployed from the Clusters drop-down list and enter the **Release Name**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169816_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378689816_en-US.png)
 
 3.  Click the **Values** tab. View or modify the corresponding deployment parameters.
 
     -   sharedStorage: Create a file system and add a NAS file system mount address recorded in the mount point \(required, otherwise the deployment fails\).
     -   dockerImageRegistry: Enter the container image repository address in the annotations as the value according to the region in which the blockchain network is to be deployed \(inside or outside China\).
     -   externalAddress: Enter the EIP bound to the worker node to generate the connection profile.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169817_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378699817_en-US.png)
 
 4.  Click **Deploy**.
 
@@ -117,7 +117,7 @@ This document is a quick start guide for deploying the blockchain network from t
 
 5.  Enter the cluster dashboard. Check the status of the pods related to the blockchain network. Wait until the statuses of all the pods become Running.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525169818_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378699818_en-US.png)
 
 
 The Kubernetes service of the container dashboard also supports deploying the blockchain network by using Helm. For more information, see [Configure and deploy blockchain network](intl.en-US/solution/Blockchain solution/Configure and deploy blockchain network.md#).
@@ -153,22 +153,22 @@ The Kubernetes service of the container dashboard also supports deploying the bl
 
     You can also run the kubectl get svc command on the master node of the Kubernetes cluster, or log on to the Container Service console. Then, go to the Kubernetes clusters, and click **Services** in the left-side navigation pane. Then view the EXTERNAL-IP \(external endpoint\) of the <Network name\>-explorer service.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525179819_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378699819_en-US.png)
 
 3.  Access the external endpoint in the browser.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525179820_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378699820_en-US.png)
 
 
 ## Step 7.  Delete blockchain network {#section_yc1_zqt_vdb .section}
 
 1.  Under the Kubernetes, click **Application** \> **Helm** in the left-side navigation pane. Select the cluster from the Clusters drop-down list. Click **Delete** at the right of the release name of the blockchain network.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525179821_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378699821_en-US.png)
 
 2.  Click **OK** in the displayed dialog box.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15371525179822_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16616/15391378699822_en-US.png)
 
 
 Then, the environment preparations, configuration and deployment, test, and deletion of the blockchain network are complete. For further development and testing, you can repeat the steps of blockchain configuration and deployment, blockchain testing, and blockchain deletion. You can also customize the network environment according to product instructions as needed.
