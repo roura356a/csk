@@ -12,7 +12,7 @@ Create a Kubernetes cluster. For more information, see [Create a Kubernetes clus
 
     If you do not configure **Namespace**, the system uses the default namespace by default.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603710973_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010210973_en-US.png)
 
 4.  Configure containers. 
 
@@ -29,7 +29,7 @@ Create a Kubernetes cluster. For more information, see [Create a Kubernetes clus
         -   **Resource Limit**: Specify the upper limit for the resources \(CPU and memory\) that can be used by this application to avoid occupying excessive resources. CPU is measured in millicores, that is, one thousandth of one core. Memory is measured in bytes, which can be Gi, Mi, or Ki.
         -   **Resource Request**: Specify how many resources \(CPU and memory\) are reserved for the application, that is, these resources are exclusive to the container. Other services or processes will compete for resources when the resources are insufficient. By specifying the Resource Request, the application will not become unavailable because of insufficient resources.
         -   **Init Container**: Selecting this check box creates an Init Container which contains useful tools. For more information, see [https://kubernetes.io/docs/concepts/workloads/pods/init-containers/](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603710974_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010210974_en-US.png)
 
     2.  Configure data volumes. 
 
@@ -39,7 +39,7 @@ Create a Kubernetes cluster. For more information, see [Create a Kubernetes clus
         -   **Cloud storage**: Supports three types of cloud storage: cloud disks, Network Attached Storage \(NAS\), and Object Storage Service \(OSS\).
         In this example, configure a cloud disk as the data volume and mount the cloud disk to the /tmp container path. Then container data generated in this path are stored to the cloud disk.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603710976_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010210976_en-US.png)
 
     3.  Configure **Log Service**. You can configure collection methods and customize tags for this service. 
 
@@ -53,7 +53,7 @@ Create a Kubernetes cluster. For more information, see [Create a Kubernetes clus
             -   **text log**: Collects logs in the specified path in the container. In this example, collect text logs in the path of /var/log/nginx. Wildcards are also supported.
         You can also configured custom tags. The customized tags are collected to the container output logs. A custom tag can help you tag container logs, providing convenience to log analysis such as log statistics and filter.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603711364_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010211364_en-US.png)
 
     4.  Configure environment variables. 
 
@@ -67,13 +67,13 @@ Create a Kubernetes cluster. For more information, see [Create a Kubernetes clus
         -   **Start**: Configure a pre-start command and parameter for the container.
         -   **Post Start**: Configure a post-start command for the container.
         -   **Pre Stop**: Configure a pre-end command for the container.
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603711371_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010211371_en-US.png)
 
     6.  Configure **Health Check** 
 
         The health check function includes liveness probes and readiness probes. Liveness probes are used to detect when to restart the container. Readiness probes determine if the container is ready for receiving traffic. For more information about health check, see [https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes).
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603710977_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010210977_en-US.png)
 
         |Request method|Configuration description|
         |--------------|-------------------------|
@@ -114,11 +114,11 @@ Create a Kubernetes cluster. For more information, see [Create a Kubernetes clus
         -   External applications: For applications that need to be exposed to Internet, you can configure access control by using one of the following methods:
             -   Create a service of Server Load Balancer: Use the Server Load Balancer \(SLB\) service provided by Alibaba Cloud, which provides Internet accessibility for the application.
             -   Create a service of ClusterIP or NodePort, and create Ingress: This method provides Internet accessibility through ingress. For more information, see [https://kubernetes.io/docs/concepts/services-networking/ingress/](https://kubernetes.io/docs/concepts/services-networking/ingress/).
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603710979_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010210979_en-US.png)
 
         1.  Click **Create** at right of Service. Configure a service in the displayed dialog box, and then click **Create**.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603710980_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010210980_en-US.png)
 
             -   **Name**: You can enter your custom name. The default is `applicationname-svc`.
             -   **Type**: Select one from the following three service types.
@@ -136,17 +136,17 @@ Create a Kubernetes cluster. For more information, see [Create a Kubernetes clus
             101.37.224.146   foo.bar.com    #the IP address of ingress
             ```
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603710981_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010210981_en-US.png)
 
         3.  The created service and ingress are displayed in the access control section. You can reconfigure the service and ingress by clicking **Update** and **Delete**.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603710982_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010210982_en-US.png)
 
     2.  Configure **Horizontal Pod Autoscaling \(HPA\)**. 
 
         You can choose whether to enable **HPA**. To meet the demands of applications under different loads, Container Service supports the container auto scaling, which automatically adjusts the number of containers according to the container CPU and memory usage.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603810978_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010210978_en-US.png)
 
         **Note:** To enable auto scaling, you must configure required resources for the deployment. Otherwise, the container auto scaling cannot take effect. See the basic configuration of containers.
 
@@ -162,7 +162,7 @@ Create a Kubernetes cluster. For more information, see [Create a Kubernetes clus
 
         1.  Set **Node Affinity** by configuring node tags.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603811137_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010211137_en-US.png)
 
             Node scheduling supports both required and preferred rules, and various operators such as In, NotIn, Exists, DoesNotExist, GT, and LT.
 
@@ -170,7 +170,7 @@ Create a Kubernetes cluster. For more information, see [Create a Kubernetes clus
             -   **Preferred** rules are not necessary satisfied and correspond to preferredDuringSchedulingIgnoredDuringExecution. In this example, the schedule tries not to schedule the pod to the node with the corresponding tag. You can also set weights for preferred rules. If multiple nodes that match the criteria exist, the node with the highest weight is scheduled as a priority. You can define multiple preferred rules, but all rules must be satisfied before scheduling.
         2.  Configure **Pod Affinity** to deploy the pod of the application in a topology domain together with other pods. For example, services that communicate with each other can be deployed to the same topology domain \(such as a host\) by configuring pod affinity scheduling to reduce network latency between them.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603811222_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010211222_en-US.png)
 
             Schedule pods according to tags of pods running on nodes. Available expressions are `In, NotIn, Exists, DoesNotExist`.
 
@@ -192,20 +192,20 @@ Create a Kubernetes cluster. For more information, see [Create a Kubernetes clus
             **Note:** Configuration methods of pod anti affinity scheduling are the same as that of pod affinity. But the same scheduling rules have different meanings for pod anti affinity scheduling. Select an appropriate scheduling rule based on scenarios.
 
 7.  Click **Create**. 
-8.  After you complete the configurations, objects contained in the application are listed The Done step indicating the successful creation appears. The objects contained in the application are displayed. You can click **View** to view the deployment list. 
+8.  After you create the application, the create success page is displayed and objects contained in the application are listed by default. You can click **View detail** to view the deployment details. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603810983_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010310983_en-US.png)
 
     The nginx-deployment page is displayed by default.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603810984_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010310984_en-US.png)
 
 9.  Click **Application** \> **Ingress** in the left-side navigation pane, a rule is displayed under the Ingress list. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603810985_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010310985_en-US.png)
 
 10. Access the Ingress testing domain in a browser and you can see that the Nginx welcome page is displayed. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153922603810986_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/153923010310986_en-US.png)
 
 
