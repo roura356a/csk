@@ -15,11 +15,11 @@
 2.  在Kubernetes菜单下，单击左侧导航栏中的**集群** \> **授权管理**，进入授权管理页面。
 3.  在子账号列表中选择需要授权的子账号，单击**授权**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/153924519110587_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/153933442710587_zh-CN.png)
 
 4.  进入资源授权页面，您可以通过单击表格左上角的加号添加集群或命名空间级别的权限配置，并选择相应的预置角色；也可以单击配置行首的减号删除目标角色。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/153924519110618_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/153933442710618_zh-CN.png)
 
     集群和命名空间的预置角色定义可查看下面的角色权限说明：
 
