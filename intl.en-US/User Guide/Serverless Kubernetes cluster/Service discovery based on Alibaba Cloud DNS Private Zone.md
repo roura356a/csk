@@ -1,6 +1,6 @@
 # Service discovery based on Alibaba Cloud DNS Private Zone {#concept_efk_nsq_b2b .concept}
 
-Alibaba Cloud Serverless Kubernetes supports service discovery. Currently,  service discovery for intranet SLB and headless service is supported.
+Alibaba Cloud Serverless Kubernetes supports service discovery. Currently, service discovery for intranet SLB and headless service is supported.
 
 ## Alibaba Cloud DNS Private Zone {#section_q15_qsq_b2b .section}
 
@@ -9,8 +9,8 @@ Alibaba Cloud DNS Private Zone is a private domain name resolution and managemen
 ## Prerequisites {#section_cd5_h5q_b2b .section}
 
 1.  You have activated Alibaba Cloud DNS Private Zone in the Alibaba Cloud DNS console.
-2.  You have successfully created a Serverless Kubernetes cluster, see [Create a Serverless Kubernetes cluster](intl.en-US/User Guide/Serverless Kubernetes cluster/Cluster management/Create a Serverless Kubernetes cluster.md#).
-3.  You have successfully connected to the Kubernetes cluster, see [Connect to a Kubernetes cluster by using kubectl](intl.en-US/User Guide/Kubernetes cluster/Clusters/Connect to a Kubernetes cluster by using kubectl.md#).
+2.  You have successfully created a Serverless Kubernetes cluster, see [Create a Serverless Kubernetes cluster](reseller.en-US/User Guide/Serverless Kubernetes cluster/Cluster management/Create a Serverless Kubernetes cluster.md#).
+3.  You have connected to a Serverless Kubernetes cluster, see [Connect to a Kubernetes cluster by using kubectl](reseller.en-US/User Guide/Serverless Kubernetes cluster/Cluster management/Connect to a Kubernetes cluster by using kubectl.md#).
 
 ## Procedure {#section_u15_qsq_b2b .section}
 
@@ -21,9 +21,9 @@ Alibaba Cloud DNS Private Zone is a private domain name resolution and managemen
      Kubernetes master is running at https://xxxxxx.serverless-1.kubernetes.cn-shanghai.aliyuncs.com:6443
     ```
 
-2.  Deploy and create a service.  Currently, only intranet service and headless service are supported.
+2.  Deploy and create a service. Currently, only intranet service and headless service are supported.
 
-    Take the intranet service as an example. Create a sample nginx-deployment-basic.yaml file.
+    Take the intranet service as an example. Create a sample file: nginx-deployment-basic.yaml.
 
     ```
     vim nginx-deployment-basic.yaml
@@ -50,15 +50,15 @@ Alibaba Cloud DNS Private Zone is a private domain name resolution and managemen
          spec:
            containers:
            - name: nginx
-             image: nginx:1.7.9 # replace it with your exactly <image_name:tags>
+             image: nginx:1.7.9               # replace it with your exactly <image_name:tags>
              ports:
              - containerPort: 80
      ---
      apiVersion: v1
      kind: Service
      metadata:
-       name: nginx-service-intranet # Access by service name as short domain name
-       annotations: ## Add annotation
+       name: nginx-service-intranet           #Access by service name as short domain name
+       annotations:                           ##Add annotation
          service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
      spec:
        ports:
@@ -85,16 +85,16 @@ Alibaba Cloud DNS Private Zone is a private domain name resolution and managemen
       clusterIP: None
     ```
 
-3.  Run the following command to view the health status of the application.
+3.  Execute the following command to view the health status of the application.
 
     ```
     kubectl get svc,pod,deployment
     ```
 
-4.  Log on to the [Alibaba Cloud DNS console](https://dns.console.aliyun.com/).
+4.  Log on to the [Alibaba Cloud DNS console](https://partners-intl.console.aliyun.com/#/dns).
 5.  Click **Private Zone** \> **Zone List** in the left-side navigation pane to see that the record is automatically generated under this list.
 
-    ![](images/6171_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16507/153959088010241_en-US.png)
 
     You can access Service \(long domain or short domain \) by the private domain name in VPC network environment.
 
@@ -108,7 +108,7 @@ Alibaba Cloud DNS Private Zone is a private domain name resolution and managemen
                      fieldPath: metadata.namespace
         ```
 
-    -   Short domain access: nginx-service-intranet or nginx-service-headless, the name of the service defined in the yaml template. 
+    -   Short domain access: nginx-service-intranet or nginx-service-headless, the name of the service defined in the yaml template.
 
 For more information, see [serverless-k8s-examples](https://github.com/AliyunContainerService/serverless-k8s-examples).
 
