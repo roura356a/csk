@@ -1,9 +1,9 @@
 # Scale out or in a cluster {#task_glw_vmg_vdb .task}
 
-On the Container Service console, you can scale out or scale in the worker nodes of a Kubernetes cluster according to your actual business requirements.
+In the Container Service console, you can scale out or scale in the worker nodes of a Kubernetes cluster according to your actual business requirements.
 
--   Currently, Container Service does not support scaling in and out the master nodes in a cluster.
--   Container Service only supports scaling in the worker nodes that are created when you create the cluster or added after you scale out the cluster. The worker nodes that are added as existing [Add an existing ECS instance](intl.en-US/User Guide/Kubernetes cluster/Nodes/Add an existing ECS instance.md#) when you create the cluster cannot be scaled in.
+-   Currently, Container Service does not support scaling in or out master nodes in a cluster.
+-   Container Service only supports scaling in worker nodes that are added when you create or scale out the cluster. These worker nodes cannot be removed either by using the kubectl delete command or through the console. Worker nodes that are added to the cluster through [Add an existing ECS instance](intl.en-US/User Guide/Kubernetes cluster/Nodes/Add an existing ECS instance.md#) cannot be scaled in.
 -   When you scale in a cluster, the worker nodes are removed from the cluster in the order that they are added after you scale out the cluster.
 -   You must have more than 1 node that is not manually added to perform scaling in.
 
@@ -11,13 +11,13 @@ On the Container Service console, you can scale out or scale in the worker nodes
 2.  Under Kubernetes, click **Clusters** in the left-side navigation pane. 
 3.  Click **Scale Cluster** at the right of the cluster. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16647/153913634410904_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16647/153956732710904_en-US.png)
 
 4.  Select **Scale out** or **Scale in** in the Scale field and then configure the number of worker nodes. 
 
     In this example, scale out the cluster to change the number of worker nodes from one to four.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16647/153913634410905_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16647/153956732710905_en-US.png)
 
 5.  Enter the logon password of the node. 
 
