@@ -2,12 +2,12 @@
 
 ## Advantages of Alibaba Cloud Kubernetes {#section_otw_3pf_vdb .section}
 
-**Convenient**
+**Easy to use**
 
--   Create a kubernetes cluster with a single click of the Web interface.
+-   Supports creating a Kubernetes cluster with one click in the Container Service console.
 -   Supports upgrading Kubernetes clusters with one click in the Container Service console.
 
-    You may have to deal with self-built Kubernetes clusters of different versions at the same time, including version 1.8.6, 1.9.4, 1.10, and later. Upgrading clusters each time brings you great adjustments and Operation & Maintenance \(O&M\) costs. Container Service upgrade solution performs rolling update by using images and uses the backup policy of complete metadata, which allows you to conveniently roll back to the previous version.
+    You may have to deal with self-built Kubernetes clusters of different versions at the same time, including version 1.8.6, 1.9.4, and 1.10 in the future. Upgrading clusters each time brings you great adjustments and Operation & Maintenance \(O&M\) costs. Container Service upgrade solution performs rolling update by using images and uses the backup policy of complete metadata, which allows you to conveniently roll back to the previous version.
 
 -   Supports expanding or contracting Kubernetes clusters conveniently in the Container Service console.
 
@@ -24,12 +24,12 @@
  Container Service provides you with continuous network integration and the best network optimization.
 
  |
-|**Server Load Balancer **| Supports creating Internet or intranet Server Load Balancer instances.
+|**Server Load Balancer**| Supports creating Internet or intranet Server Load Balancer instances.
 
  If your self-built Kubernetes clusters are implemented by using the self-built Ingress, releasing the business frequently may cause pressure on Ingress configuration and higher error probabilities. The Server Load Balancer solution of Container Service supports Alibaba Cloud native high-availability Server Load Balancer, and can automatically modify and update the network configurations. This solution has been used by a large number of users for a long time, which is more stable and reliable than self-built Kubernetes.
 
  |
-|**Storage**| Container Service integrates with Alibaba Cloud cloud disk, NAS, and EBS, and provides the standard FlexVolume drive.
+|**Storage**| Container Service integrates with Alibaba Cloud cloud disk, Network Attached Storage \(NAS\), and block storage, and provides the standard FlexVolume drive.
 
  Self-built Kubernetes clusters cannot use the storage resources on the cloud. Alibaba Cloud Container Service provides the best seamless integration.
 
