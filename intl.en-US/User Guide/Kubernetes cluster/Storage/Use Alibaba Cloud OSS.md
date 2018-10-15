@@ -22,7 +22,7 @@ You must create a bucket in the OSS console before using the OSS static storage 
 
 ## Note {#section_gyz_ybt_vdb .section}
 
-If your Kubernetes cluster is created before Feb 6th, 2018, [Install the plug-in](intl.en-US/User Guide/Kubernetes cluster/Storage/Install the plug-in.md#) before using the data volumes. To use OSS data volumes, you must create the secret and enter the AccessKey information when deploying the flexvolume service.
+If your Kubernetes cluster is created before Feb 6th, 2018, [EN-US\_TP\_6935.md\#](reseller.en-US/User Guide/Kubernetes cluster/Storage/Install the plug-in.md#) before using the data volumes. To use OSS data volumes, you must create the secret and enter the AccessKey information when deploying the flexvolume service.
 
 ## Use OSS static storage volumes {#section_d13_bct_vdb .section}
 
@@ -93,11 +93,11 @@ spec:
 
 **Create OSS data volumes in Container Service console**
 
-1.  Log on to the [Container Service console](https://cs.console.aliyun.com).
+1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
 2.  Click Kubernetes \>**Clusters \>** \> **Storage**in the left-side navigation pane.
 3.  Select the cluster from the Clusters drop-down list and then click **Create** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6938/15330263154683_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6938/15395854684683_en-US.png)
 
 4.  The Create Data Volume dialog box appears. Configure the data volume parameters.
 
@@ -109,7 +109,7 @@ spec:
     -   **Bucket ID**: Select the OSS bucket name you want to use. Click **Select Bucket**. Select the bucket in the displayed dialog box and click **Select**.
     -   **Access Domain Name**: If the bucket and Elastic Compute Service \(ECS\) instance are in different regions, select **Internet**. If the bucket and ECS instance are in the same region, select Intranet or VPC according to the cluster network type. Select **VPC** if the network type is Virtual Private Cloud \(VPC\) or select **Intranet** if the network type is classic network.
     -   **Tag**: Click Add Tag to add tags for this data volume.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6938/15330263154684_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6938/15395854684684_en-US.png)
 
 5.  Click **Create** after completing the configurations.
 
