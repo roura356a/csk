@@ -41,7 +41,7 @@ In this document, deploy a log-pilot on each machine and collect all the Docker 
 
 Compared with deploying a logging container on each pod, the most obvious advantage of this solution is less occupied resources. The larger the cluster scale is, the more obvious the advantage is. This solution is also recommended in the community.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6945/15382919154695_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6945/15395858064695_en-US.png)
 
 ## Prerequisites {#section_kys_gkb_wdb .section}
 
@@ -49,7 +49,7 @@ You have activated Container Service and created a Kubernetes cluster.  In this
 
 ## Step 1 Deploy Elasticsearch {#section_xml_n11_12b .section}
 
-1.  Connect to your Kubernetes cluster.  For more information, see [EN-US\_TP\_6880.md\#](intl.en-US/User Guide/Kubernetes cluster/Clusters/Create a cluster.md#) or [EN-US\_TP\_6882.md\#](intl.en-US/User Guide/Kubernetes cluster/Clusters/Access Kubernetes clusters by using SSH.md#).
+1.  Connect to your Kubernetes cluster.  For more information, see [EN-US\_TP\_6880.md\#](reseller.en-US/User Guide/Kubernetes cluster/Clusters/Create a cluster.md#) or [EN-US\_TP\_6882.md\#](reseller.en-US/User Guide/Kubernetes cluster/Clusters/Access Kubernetes clusters by using SSH.md#).
 2.  Deploy the resource object related to Elasticsearch first. Then, enter the following orchestration template. This orchestration template includes an elasticsearch-api service, an elasticsearch-discovery service, and a status set of Elasticsearch. All of these objects are deployed under the namespace kube-system.
 
     ```
@@ -126,7 +126,7 @@ In the Elasticsearch scenario of this solution, the `$name` in the environment v
 
 The Kibana service deployed in the preceding section is of the NodePort type, which cannot be accessed from the Internet by default. Therefore, create an Ingress in this document to access the Kibana service from Internet and test whether or not logs are successfully indexed and displayed.
 
-1.  Create an Ingress to access the Kibana service from Internet.  In this example, use the simple routing service to create an Ingress. For more information, see [EN-US\_TP\_6932.md\#](intl.en-US/User Guide/Kubernetes cluster/Server Load Balancer/Support for Ingress.md#).  The orchestration template of the Ingress is as follows:
+1.  Create an Ingress to access the Kibana service from Internet.  In this example, use the simple routing service to create an Ingress. For more information, see [EN-US\_TP\_6932.md\#](reseller.en-US/User Guide/Kubernetes cluster/Server Load Balancer/Support for Ingress.md#).  The orchestration template of the Ingress is as follows:
 
     ```
     apiVersion: extensions/v1beta1
@@ -154,7 +154,7 @@ The Kibana service deployed in the preceding section is of the NodePort type, wh
 
 3.  Access the address in the browser as follows.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6945/15382919154696_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6945/15395858064696_en-US.png)
 
 4.  Click **Management** in the left-side navigation pane. Then, click **Index Patterns** \> **Create Index Pattern**.  The detailed index name is the `$name` variable suffixed with a time string. You can create an index pattern by using the wildcard `*`.   In this example, use `$name*` to create an index pattern.
 
@@ -174,7 +174,7 @@ The Kibana service deployed in the preceding section is of the NodePort type, wh
 
 5.  After successfully creating the indexes, click **Discover** in the left-side navigation pane, select the created index and the corresponding time range, and then enter the related field in the search box to query logs.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6945/15382919154697_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6945/15395858064697_en-US.png)
 
 
 Then, you have successfully tested the solution to log collection problems of Alibaba Cloud Kubernetes clusters based on log-pilot, Elasticsearch, and Kibana. By using this solution, you can deal with requirements for logs of distributed Kubernetes clusters effectively, improve the Operation and Maintenance and operational efficiencies, and guarantee the continuous and stable running of the system.
