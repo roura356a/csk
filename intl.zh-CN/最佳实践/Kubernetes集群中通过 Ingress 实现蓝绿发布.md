@@ -4,8 +4,8 @@
 
 ## 前提条件 {#section_cbh_53z_zdb .section}
 
--   您已成功创建一个 Kubernetes 集群，参见[创建Kubernetes集群](../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/创建Kubernetes集群.md#)。
--   SSH 连接到 Master 节点，参见[SSH访问Kubernetes集群](../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/SSH访问Kubernetes集群.md#)。
+-   您已成功创建一个 Kubernetes 集群，参见[创建Kubernetes集群](../../../../cn.zh-CN/用户指南/Kubernetes 集群/集群管理/创建Kubernetes集群.md#)。
+-   SSH 连接到 Master 节点，参见[SSH访问Kubernetes集群](../../../../cn.zh-CN/用户指南/Kubernetes 集群/集群管理/SSH访问Kubernetes集群.md#)。
 
 ## 步骤1 创建应用 {#section_oz4_v3z_zdb .section}
 
@@ -13,11 +13,11 @@
 2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **部署**，进入部署列表页面。
 3.  单击页面右上角的**使用模板创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15349323099950_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15395726819950_zh-CN.png)
 
 4.  选择所需的集群，命名空间，选择样例模板或自定义，然后单击**创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15349323099951_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15395726819951_zh-CN.png)
 
     本例是一个 nginx 应用，包含一个 deployment、 service 以及 ingress。deployment 通过 NodePort 对外暴露端口，并且有一个 ingress 正在对外提供服务。编排模板如下。
 
@@ -85,7 +85,7 @@
 
     您可看到虚拟主机名称指向 old-nginx。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15349323099956_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15395726819956_zh-CN.png)
 
 6.  登录 Master 节点，执行 curl 命令，查看路由的访问情况。
 
@@ -101,7 +101,7 @@
 2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **部署**，进入部署列表页面。
 3.  单击页面右上角的**使用模板创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15349323099957_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15395726819957_zh-CN.png)
 
 4.  选择所需的集群，命名空间，选择样例模板或自定义，然后单击**创建**。
 
@@ -157,17 +157,17 @@
 2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **路由**，进入路由列表页面。
 3.  选择所需的集群和命名空间，选择前面创建的路由，并单击右侧的**更新**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15349323099958_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15395726819958_zh-CN.png)
 
 4.  在弹出的对话框中，对 Ingress 进行修改，最后单击**确定**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15349323099959_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15395726829959_zh-CN.png)
 
     -   **添加注解（annotations）**： `/`后面为新服务的服务名 new-nginx；50 是一个流量值，代表 50%。标签`ingress.aliyun.weight/new-nginx: "50"`完整含义是将流量的百分之 50 引入到新服务的 pod 里面。
     -   **配置新的 serviceName**：这里是和上面旧版本服务并列，即在相同的 path 下，挂两个不同的 service，分别对应于两个新老应用。
     返回路由列表页面，您可看到该路由新增了一条路由规则，指向新版本的 new-nginx 服务。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15349323099960_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15821/15395726829960_zh-CN.png)
 
 5.  登录 Master 节点，执行 curl 命令，查看路由的访问情况。
 
