@@ -21,15 +21,19 @@ Jaeger 是[CNCF](https://www.cncf.io/)下的一款开源分布式追踪系统，
 
     **说明：** 本例中Isito的版本是1.0，更多关于部署Istio的信息，请参见[部署Istio](../../../../intl.zh-CN/用户指南/Kubernetes 集群/Istio管理/部署Istio.md#)。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/153966919110115_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/153975922710115_zh-CN.png)
 
 3.  在部署 Istio 页面中，选择**启用阿里云日志服务 SLS 及 Jaeger**。阿里云容器服务支持通过Web界面一键部署Jaeger追踪系统。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/153966919113746_zh-CN.png)
+    **说明：** 
+
+    -   如果用户输入的项目名称（Project）不存在，Istio部署过程中会自动创建，用户无需手工构建日志服务的配置。
+    -   如果用户输入的项目名称（Project）存在，会检查用户输入的日志库名称（Logstore）是否存在于该项目下，如果不存在，Istio部署中会自动创建，用户无需手工构建日志服务的配置；如果日志库名称（Logstore）存在于该项目下，Istio部署中会创建该日志服务所需的索引\(注意：会覆盖已有的索引\)。
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/153975922813746_zh-CN.png)
 
 4.  部署完成后，在左侧菜单栏中单击**应用** \> **服务**，选择所需集群和命名空间，找到tracing-on-sls-query服务。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/153966919110117_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/153975922810117_zh-CN.png)
 
 5.  单击tracing-on-sls-query服务的外部地址，即可进入Jaeger UI页面。
 
@@ -82,11 +86,11 @@ Jaeger 是[CNCF](https://www.cncf.io/)下的一款开源分布式追踪系统，
 
     您也可通过容器服务管理控制台，在左侧导航栏单击**应用** \> **服务**，选择集群和Istio-system命名空间，查看`istio-ingressgateway`服务的IP地址。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/153966919110116_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/153975922810116_zh-CN.png)
 
 6.  访问BookInfo首页，地址是`http://{EXTERNAL-IP}/productpage`。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/153966919113776_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/153975922813776_zh-CN.png)
 
     多次刷新浏览器，将在 productpage 中看到评论的不同的版本，它们会按照 round robin（红星、黑星、没有星星）的方式展现，因为目前为止还没有使用 Istio 来控制版本的路由。
 
@@ -100,11 +104,11 @@ Jaeger UI显示了分布式服务追踪信息的结果。
 
     **说明：** 本例中以BookInfo示例应用为例，查看productpage服务的调用情况。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/153966919110119_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/153975922810119_zh-CN.png)
 
 3.  用户可以选择用多种不同视图对追踪结果进行可视化，例如追踪时段内的直方图，或服务在追踪过程中的累积时间。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/153966919210120_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/153975922810120_zh-CN.png)
 
 
 ## Istio 分布式追踪实现原理 {#section_kbc_phd_5db .section}
