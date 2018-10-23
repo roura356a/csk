@@ -4,7 +4,7 @@
 
 **Optimal continuous delivery process**
 
-Working with Jenkins, Container Service automatically finishes the complete process of DevOps from code submitting to application deployment, makes sure that only codes passed the automated test can be delivered and deployed, and efficiently replaces the traditional method of complicated deployment and slow iteration in the industry.
+Working with Jenkins, Container Service encompasses the complete process of DevOps from code submission to application deployment in an automated fashion. It makes sure that only codes passing the automated test can be delivered and deployed, and efficiently replaces the traditional method of complicated deployment and slow iteration in the industry.
 
 **Container Service can implement:**
 
@@ -14,7 +14,7 @@ Working with Jenkins, Container Service automatically finishes the complete proc
 
 -   Consistency of environment.
 
-    Container Service allows you to deliver not only code but also a running environment based on the unchangeable architecture.
+    Container Service allows you to deliver not only code but also a running environment based on the immutable architecture.
 
 -   Continuous feedback
 
@@ -25,7 +25,7 @@ Working with Jenkins, Container Service automatically finishes the complete proc
 
 Elastic Compute Service \(ECS\) and Container Service together.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16052/15362222617271_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16052/15402794237271_en-US.png)
 
 ## Microservice architecture {#section_x24_g3w_tdb .section}
 
@@ -52,11 +52,11 @@ In the production environment of enterprises, microservices are divided reasonab
 
 ECS, Relational Database Service \(RDS\), Object Storage Service \(OSS\), and Container Service together.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16052/15362222617273_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16052/15402794237273_en-US.png)
 
 ## Hybrid cloud architecture {#section_af4_g3w_tdb .section}
 
-**United Operation and Maintenance of multiple cloud resources**
+****Unified** Operation and Maintenance of multiple cloud resources**
 
 Manage resources on and off the cloud at the same time in the Container Service console, without switching between multiple cloud consoles.  Deploy applications on and off the cloud at the same time by using the same image and orchestration based on the characteristics unrelated to the container infrastructure.
 
@@ -79,7 +79,7 @@ Manage resources on and off the cloud at the same time in the Container Service 
 
 ECS, Virtual Private Cloud \(VPC\), and Express Connect together.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16052/15362222617274_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16052/15402794237274_en-US.png)
 
 ## Auto scaling architecture {#section_df4_g3w_tdb .section}
 
@@ -106,5 +106,5 @@ Container Service can automatically expand or contract the business according to
 
 ECS and CloudMonitor together.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16052/15362222617275_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16052/15402794237275_en-US.png)
 
