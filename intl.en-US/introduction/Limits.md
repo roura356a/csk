@@ -14,7 +14,7 @@ Limits for Alibaba Cloud Container Service Kubernetes clusters are as follows.
 -   Only support the CentOS operating system.
 -   Limits for adding an existing node:
     -   The ECS instance to be added must be in the same region as the cluster and use VPC.
-    -   When adding an existing ECS instance, make sure that your ECS instance has an Elastic IP \(EIP\) for the network type VPC. Otherwise, the ECS instance fails to be added.
+    -   When adding an existing ECS instance, make sure that your ECS instance has an Elastic IP \(EIP\) for the network type VPC. Otherwise, the ECS instance will fail to be added.
     -   The ECS instance to be added must be under the same account as the cluster.
 
 ## Cluster expansion and contraction {#section_cnt_pfb_5db .section}
