@@ -59,7 +59,7 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 2.  登录[容器服务管理控制台](https://cs.console.aliyun.com)，单击目标集群右侧的**控制台**，进入 Kubernetes Dashboard 页面。
 3.  单击**创建**，开始创建应用。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15371547049066_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15407968059066_zh-CN.png)
 
 4.  单击**使用文件创建**。选择刚才保存的nginx-svc.yml 文件
 5.  单击**上传**。
@@ -70,7 +70,7 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 
     可以看到刚刚创建的 `http-svc` 的 Nginx 服务和机器的负载均衡地址 `http://114.55.79.24:80`。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15371547049067_zh-CN.png) 
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15407968069067_zh-CN.png) 
 
 7.  将该地址拷贝到浏览器中即可访问该服务。
 
@@ -152,12 +152,12 @@ spec:
 |service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth|负载均衡的带宽|50|
 |service.beta.kubernetes.io/alicloud-loadbalancer-cert-id|阿里云上的认证 ID。您需要先上传证书|“”|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-flag|取值是 on 或者 off|默认为 off。TCP 不需要改参数。因为 TCP 默认打开健康检查，用户不可设置。|
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-type|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/监听/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-uri|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/监听/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-port|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/监听/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
-|service.beta.kubernetes.io/alicloud-loadbalancer-healthy-threshold|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/监听/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
-|service.beta.kubernetes.io/alicloud-loadbalancer-unhealthy-threshold|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/监听/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/监听/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-timeout|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/监听/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-timeout|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/监听/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-type|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-uri|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-port|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
+|service.beta.kubernetes.io/alicloud-loadbalancer-healthy-threshold|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
+|service.beta.kubernetes.io/alicloud-loadbalancer-unhealthy-threshold|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-timeout|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-timeout|参见[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)|无|
 
