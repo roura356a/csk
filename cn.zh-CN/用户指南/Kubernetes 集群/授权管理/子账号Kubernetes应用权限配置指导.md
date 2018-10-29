@@ -15,11 +15,11 @@
 2.  在Kubernetes菜单下，单击左侧导航栏中的**集群** \> **授权管理**，进入授权管理页面。
 3.  在子账号列表中选择需要授权的子账号，单击**授权**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/153933442710587_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/154080484310587_zh-CN.png)
 
 4.  进入资源授权页面，您可以通过单击表格左上角的加号添加集群或命名空间级别的权限配置，并选择相应的预置角色；也可以单击配置行首的减号删除目标角色。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/153933442710618_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/154080484310618_zh-CN.png)
 
     集群和命名空间的预置角色定义可查看下面的角色权限说明：
 
@@ -46,4 +46,70 @@
 |存量子账号创建集群|提示权限管理升级公告，提供一键升级链接，子账号可通过点击升级链接完成应用授权|
 |存量RAM授权访问集群|提示权限管理升级公告，请及时联系主账号完成应用授权|
 |新建RAM授权访问集群|提示权限管理升级公告，请及时联系主账号完成应用授权|
+
+## 自定义权限说明 {#section_yrt_rxb_pfb .section}
+
+阿里云容器服务预置了管理员、运维人员、开发人员和受限人员4种标准的访问权限，可满足大部分用户在容器服务控制台上的使用需求。如果您想自由定义集群的访问权限，可使用自定义权限功能。
+
+阿里云容器服务内置了一些自定义权限。
+
+**说明：** 其中cluster-admin权限值得关注，属于集群超级管理员权限，对所有资源都默认拥有权限。
+
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/154080484314375_zh-CN.png)
+
+您可登录到集群Master节点，执行以下命令，查看自定义权限的详情。
+
+**说明：** 只有部分clusterrole会在自定义下拉框显示。
+
+```
+# kubectl get clusterrole
+NAME                                                                   AGE
+admin                                                                  13d
+alibaba-log-controller                                                 13d
+alicloud-disk-controller-runner                                        13d
+cluster-admin                                                          13d
+cs:admin                                                               13d
+edit                                                                   13d
+flannel                                                                13d
+kube-state-metrics                                                     22h
+node-exporter                                                          22h
+prometheus-k8s                                                         22h
+prometheus-operator                                                    22h
+system:aggregate-to-admin                                              13d
+....  
+system:volume-scheduler                                                13d
+view                                                                   13d
+
+```
+
+以超级管理员cluster-admin为例，执行以下命令，查看其权限详情。
+
+**说明：** 子账号被授予该集群角色后，在该集群内，可视为与主账号有相同权限的超级账号，拥有操作集群内所有资源的任意权限，建议谨慎授予。
+
+```
+# kubectl get clusterrole cluster-admin  -o yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: 2018-10-12T08:31:15Z
+  labels:
+    kubernetes.io/bootstrapping: rbac-defaults
+  name: cluster-admin
+  resourceVersion: "57"
+  selfLink: /apis/rbac.authorization.k8s.io/v1/clusterroles/cluster-admin
+  uid: 2f29f9c5-cdf9-11e8-84bf-00163e0b2f97
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - '*'
+- nonResourceURLs:
+  - '*'
+  verbs:
+  - '*'
+```
 
