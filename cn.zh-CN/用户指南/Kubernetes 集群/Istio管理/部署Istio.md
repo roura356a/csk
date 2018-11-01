@@ -21,7 +21,7 @@
 2.  单击左侧导航栏中的**集群**，进入集群列表页面。
 3.  选择所需的集群并单击操作列**更多** \> **部署Istio**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/153801519811255_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511255_zh-CN.png)
 
 4.  根据如下信息，部署Istio：
 
@@ -32,8 +32,10 @@
     |发布名称|发布的Istio名称。|
     |启用 Prometheus 度量日志收集|是否启用Prometheus 收集度量日志。默认情况下启用。|
     |启用 Grafana 度量展示|是否启用Grafana 展示指标的度量数据。默认情况下启用。|
-    |启用 ServiceGraph 可视化部署|是否启用ServiceGraph 进行可视化部署。默认情况下启用。|
     |启用 Sidecar 自动注入|是否启用 Sidecar 进行容器的自动注入。默认情况下启用。|
+    |启用 Kiali 可视化服务网格|是否启用 Kiali 可视化服务网格。默认情况下不启用。    -   用户名：指定用户名称。默认情况下是admin。
+    -   密码：指定密码。默认情况下是admin。
+|
     |启用阿里云日志服务 SLS 及 Jaeger| 是否启用阿里云的日志服务SLS 及 Jaeger。默认情况下不启用。
 
  服务入口地址（Endpoint）：根据配置的日志服务所在region选择对应的地址。具体请参见[服务入口](../../../../intl.zh-CN/API 参考/服务入口.md#section_nv4_h2r_12b)
@@ -49,12 +51,22 @@
  AccessKeySecret：访问日志服务时，所使用的访问秘钥Secret。
 
  |
+    |Pilot设置|跟踪采样百分比（0-100）：默认取值为1。|
+    |控制Egress流量|     -   直接放行对外访问的地址范围：Istio 服务网格内的服务可以直接对外访问的地址范围。默认情况下为空，使用英文半角逗号分隔。
+    -   拦截对外访问的地址范围：拦截直接对外访问的地址范围。默认情况下，已包含集群 Pod CIDR 与 Service CIDR，使用英文半角逗号分隔。
+ **说明：** 
+
+直接放行对外访问的地址范围的优先级高于拦截对外访问的地址范围。
+
+例如您将同一个IP地址同时配置在直接放行对外访问的地址与拦截对外访问的地址时，您仍可以直接访问此地址，即直接放行对外访问的地址范围生效。
+
+ |
 
 5.  单击**部署 Istio**，启动部署。
 
     在部署页面下方，可实时查看部署进展及状态。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/153801519811256_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511256_zh-CN.png)
 
 
 **预期结果**
@@ -63,17 +75,17 @@
 
 -   在部署 Istio页面下方，**部署 Istio**变为**已部署**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/153801519811257_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511257_zh-CN.png)
 
 -   -   单击左侧导航栏**应用** \> **容器组**，进入容器组页面。
 -   选择部署Istio的集群及命名空间，可查看到已经部署Istio的相关容器组。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/153801519811258_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511258_zh-CN.png)
 
 -   -   单击左侧导航栏**应用** \> **服务**，进入服务列表页面。
 -   选择部署Istio的集群及命名空间，可查看到已经部署Istio相关服务所提供的访问地址。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/153801519811259_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511259_zh-CN.png)
 
 
 **通过应用目录部署Istio**
@@ -81,12 +93,12 @@
 1.  登录 [容器服务管理控制台](https://cs.console.aliyun.com)。
 2.  单击左侧导航栏中的**市场** \> **应用目录**，进入应用目录页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/153801519911260_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511260_zh-CN.png)
 
 3.  单击**ack-istio**，进入应用目录 - ack-istio页面。
 4.  单击参数页签，进行参数配置。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/153801519912560_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205512560_zh-CN.png)
 
     **说明：** 
 
@@ -154,11 +166,11 @@
 -   -   单击左侧导航栏**应用** \> **容器组**，进入容器组页面。
 -   选择部署Istio的集群及命名空间，可查看到已经部署Istio的相关容器组。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/153801519811258_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511258_zh-CN.png)
 
 -   -   单击左侧导航栏**应用** \> **服务**，进入服务列表页面。
 -   选择部署Istio的集群及命名空间，可查看到已经部署Istio相关服务所提供的访问地址。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/153801519811259_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511259_zh-CN.png)
 
 
