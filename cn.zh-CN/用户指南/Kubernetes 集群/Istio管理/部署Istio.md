@@ -4,7 +4,8 @@
 
 ## 前提条件 {#section_ymx_4kh_1fb .section}
 
-您已经成功创建一个 Kubernetes 集群，参见[创建Kubernetes集群](intl.zh-CN/用户指南/Kubernetes 集群/集群管理/创建Kubernetes集群.md#)。
+-   您已经成功创建一个 Kubernetes 集群，参见[创建Kubernetes集群](intl.zh-CN/用户指南/Kubernetes 集群/集群管理/创建Kubernetes集群.md#)。
+-   请以主账号登录，或赋予子账号足够的权限，如自定义角色中的cluster-admin，参考[子账号Kubernetes应用权限配置指导](intl.zh-CN/用户指南/Kubernetes 集群/授权管理/子账号Kubernetes应用权限配置指导.md#)。
 
 ## 背景信息 {#section_f1c_rkh_1fb .section}
 
@@ -21,7 +22,7 @@
 2.  单击左侧导航栏中的**集群**，进入集群列表页面。
 3.  选择所需的集群并单击操作列**更多** \> **部署Istio**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511255_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154174941211255_zh-CN.png)
 
 4.  根据如下信息，部署Istio：
 
@@ -66,7 +67,7 @@
 
     在部署页面下方，可实时查看部署进展及状态。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511256_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154174941211256_zh-CN.png)
 
 
 **预期结果**
@@ -75,17 +76,17 @@
 
 -   在部署 Istio页面下方，**部署 Istio**变为**已部署**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511257_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154174941211257_zh-CN.png)
 
 -   -   单击左侧导航栏**应用** \> **容器组**，进入容器组页面。
 -   选择部署Istio的集群及命名空间，可查看到已经部署Istio的相关容器组。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511258_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154174941211258_zh-CN.png)
 
 -   -   单击左侧导航栏**应用** \> **服务**，进入服务列表页面。
 -   选择部署Istio的集群及命名空间，可查看到已经部署Istio相关服务所提供的访问地址。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511259_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154174941211259_zh-CN.png)
 
 
 **通过应用目录部署Istio**
@@ -93,12 +94,12 @@
 1.  登录 [容器服务管理控制台](https://cs.console.aliyun.com)。
 2.  单击左侧导航栏中的**市场** \> **应用目录**，进入应用目录页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511260_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154174941211260_zh-CN.png)
 
 3.  单击**ack-istio**，进入应用目录 - ack-istio页面。
 4.  单击参数页签，进行参数配置。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205512560_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154174941212560_zh-CN.png)
 
     **说明：** 
 
@@ -166,11 +167,11 @@
 -   -   单击左侧导航栏**应用** \> **容器组**，进入容器组页面。
 -   选择部署Istio的集群及命名空间，可查看到已经部署Istio的相关容器组。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511258_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154174941211258_zh-CN.png)
 
 -   -   单击左侧导航栏**应用** \> **服务**，进入服务列表页面。
 -   选择部署Istio的集群及命名空间，可查看到已经部署Istio相关服务所提供的访问地址。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154104205511259_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154174941211259_zh-CN.png)
 
 
