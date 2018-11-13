@@ -25,7 +25,6 @@
 
 **使用限制**
 
--   用户账户需有 100 元的余额并通过实名认证，否则无法创建按量付费的 ECS 实例和负载均衡。
 -   随集群一同创建的负载均衡实例只支持按量付费的方式。
 -   Kubernetes 集群仅支持专有网络 VPC。
 -   每个账号默认可以创建的云资源有一定的配额，如果超过配额创建集群会失败。请在创建集群前确认您的配额。如果您需要提高您的配额，请提交工单申请。
@@ -48,7 +47,7 @@
 
     在已有 VPC 列表中选择一个 VPC 并在该 VPC 下选择三个交换机。为了达到高可用的效果，建议您选择位于不同可用区的交换机。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15381208818749_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15420937968749_zh-CN.png)
 
 7.  设置 Master 节点和 Worker 节点的配置信息。 
 
@@ -62,53 +61,53 @@
         -   每个集群最多可包含 37 个 Worker 节点。如果您需要创建更多节点，请提交工单申请。
         -   Master和Worker节点会默认挂载系统盘，支持高效云盘和SSD云盘。
         -   您可为Worker节点挂载数据盘，支持高效云盘和SSD云盘。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15381208828750_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15420937968750_zh-CN.png)
 
 8.  配置登录方式。 
     -   设置密钥。
 
-        您需要在创建集群的时候选择密钥对登录方式，单击**新建密钥对**，跳转到ECS云服务器控制台，创建密钥对，参见[创建 SSH 密钥对](../../../../cn.zh-CN/用户指南/密钥对/创建 SSH 密钥对.md#)。密钥对创建完毕后，设置该密钥对作为登录集群的凭据。
+        您需要在创建集群的时候选择密钥对登录方式，单击**新建密钥对**，跳转到ECS云服务器控制台，创建密钥对，参见[创建 SSH 密钥对](../../../../intl.zh-CN/用户指南/密钥对/创建 SSH 密钥对.md#)。密钥对创建完毕后，设置该密钥对作为登录集群的凭据。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15381208828751_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15420937968751_zh-CN.png)
 
     -   设置密码。
         -   **登录密码**：设置节点的登录密码。
         -   **确认密码**：确认设置的节点登录密码。
 9.  指定**Pod 网络 CIDR** 和**Service CIDR**。 
 
-    两者都不能与 VPC 及 VPC 内已有 Kubernetes 集群使用的网段重复，创建成功后不能修改。而且 Service 地址段也不能和 Pod 地址段重复，有关 kubernetes 网络地址段规划的信息，请参考[VPC下 Kubernetes 的网络地址段规划](cn.zh-CN/用户指南/Kubernetes 集群/集群管理/VPC下 Kubernetes 的网络地址段规划.md#)。
+    两者都不能与 VPC 及 VPC 内已有 Kubernetes 集群使用的网段重复，创建成功后不能修改。而且 Service 地址段也不能和 Pod 地址段重复，有关 kubernetes 网络地址段规划的信息，请参考[VPC下 Kubernetes 的网络地址段规划](intl.zh-CN/用户指南/Kubernetes 集群/集群管理/VPC下 Kubernetes 的网络地址段规划.md#)。
 
 10. 设置是否开放**用公网SLB暴露API SERVER** API Server提供了各类资源对象（Pod，Service等）的增删改查及watch等HTTP Rest接口。
 
     1.  如果选择开放，会创建一个公网SLB，同时把Master节点的6443端口（对应API Server）暴露出来，用户可以在外网通过kubeconfig连接/操作集群。
     2.  若选择不开放，不会创建公网SLB，用户只能在VPC内部用kubeconfig连接/操作集群。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/153812088212073_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/154209379712073_zh-CN.png)
 
 11. 设置是否开放公网 SSH 登录。 
 
     **说明：** 您需要开放**公网SLB暴露API SERVER**，才能设置公网SSH登录。
 
     -   选择开放公网 SSH 登录，您可以 SSH 访问集群。
-    -   选择不开放公网 SSH 登录，将无法通过 SSH 访问集群，也无法通过 kubectl 连接 集群。如果您需要通过 SSH 访问集群实例，可以手动为 ECS 实例绑定 EIP，并配置安全组规则，开放 SSH（22）端口，具体操作参见[SSH访问Kubernetes集群](cn.zh-CN/用户指南/Kubernetes 集群/集群管理/SSH访问Kubernetes集群.md#)。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15381208828752_zh-CN.png)
+    -   选择不开放公网 SSH 登录，将无法通过 SSH 访问集群，也无法通过 kubectl 连接 集群。如果您需要通过 SSH 访问集群实例，可以手动为 ECS 实例绑定 EIP，并配置安全组规则，开放 SSH（22）端口，具体操作参见[SSH访问Kubernetes集群](intl.zh-CN/用户指南/Kubernetes 集群/集群管理/SSH访问Kubernetes集群.md#)。
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15420937978752_zh-CN.png)
 
 12. 设置是否启用云监控插件。 
 
     您可以选择在 ECS 节点上安装云监控插件，从而在云监控控制台查看所创建 ECS 实例的监控信息。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15381208828753_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15420937978753_zh-CN.png)
 
-13. 设置是否启用日志服务，您可使用已有Project或新建一个Project。 勾选**使用SLS**，会在集群中自动配置日志服务插件。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[Kubernetes与日志服务集成与使用](cn.zh-CN/用户指南/Kubernetes 集群/日志管理/Kubernetes与日志服务集成与使用.md#)。
+13. 设置是否启用日志服务，您可使用已有Project或新建一个Project。 勾选**使用SLS**，会在集群中自动配置日志服务插件。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[使用日志服务进行Kubernetes日志采集](intl.zh-CN/用户指南/Kubernetes 集群/日志管理/使用日志服务进行Kubernetes日志采集.md#)。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/153812088212754_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/154209379712754_zh-CN.png)
 
 14. 设置是否启用高级选项。 
-    1.  设置启用的网络插件，支持Flannel和Terway网络插件。
-        -   Flannel：简单稳定的社区的Flannel cni插件。
-        -   Terway：阿里云容器服务自研的网络插件，支持将阿里云的弹性网卡分配给容器，支持Kubernetes的NetworkPolicy来定义容器间的访问策略，支持对单个容器做带宽的限流，目前处于公测阶段。
+    1.  设置启用的网络插件，支持Flannel和Terway网络插件，具体可参考[如何选择Kubernetes集群网络插件：Terway和Flannel](../../../../intl.zh-CN/常见问题/如何选择Kubernetes集群网络插件：Terway和Flannel.md#)。
+        -   Flannel：简单稳定的社区的Flannel CNI插件。但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
+        -   Terway：阿里云容器服务自研的网络插件，支持将阿里云的弹性网卡分配给容器，支持Kubernetes的NetworkPolicy来定义容器间的访问策略，支持对单个容器做带宽的限流。
     2.  设置节点 Pod 数量，是指单个节点可运行 Pod 数量的上限。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15381208828754_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15420937978754_zh-CN.png)
 
     3.  设置是否选择**自定义镜像**。或不选择自定义镜像，则 ECS 实例会安装默认的 CentOS 版本。
 
@@ -116,11 +115,11 @@
 
     4.  设置是否使用**自定义集群CA**。如果勾选自定义集群 CA，可以将 CA 证书添加到 kubernetes 集群中，加强服务端和客户端之间信息交互的安全性。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15381208828755_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15420937978755_zh-CN.png)
 
 15. 单击**创建集群**，在弹出的配置确认对话框中，确认VPC公网访问，最后单击**确定**，启动部署。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15381208828759_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15420937978759_zh-CN.png)
 
     **说明：** 一个包含多节点的 Kubernetes 集群的创建时间一般需要十几分钟。
 
@@ -129,15 +128,15 @@
 
 集群创建成功后，您可以在容器服务管理控制台的 Kubernetes 集群列表页面查看所创建的集群。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/153812088212902_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/154209379712902_zh-CN.png)
 
 -   在集群列表中，您可以单击操作列的**查看日志**，进入集群日志信息页面，查看集群的日志信息。您也可以在集群日志信息页面中，单击**资源栈事件**查看更详细的信息。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15381208828756_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/15420937978756_zh-CN.png)
 
 -   在集群列表中，找到刚创建的集群，单击操作列中的**管理**，查看集群的基本信息和连接信息。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/153812088212915_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/154209379712915_zh-CN.png)
 
     **其中：**
 
