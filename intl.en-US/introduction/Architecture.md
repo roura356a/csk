@@ -1,6 +1,6 @@
 # Architecture {#concept_axy_dzc_l2b .concept}
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15498/15344773497457_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15498/15422835797457_en-US.png)
 
 **Description**
 
