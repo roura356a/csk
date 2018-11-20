@@ -22,7 +22,7 @@
 
     -   使用NetworkPolicy：
 
-        参见[https://kubernetes.io/docs/concepts/services-networking/network-policies/](https://kubernetes.io/docs/concepts/services-networking/network-policies/)。
+        参见[Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)。
 
         Terway的Network Policy是通过集成Calico的Felix组件实现的，因此Network Policy的能力和Calico完全一致。对于最初为了使用Calico而自建集群的客户，目前可以通过Terway转换到容器服务Kubernetes上来。
 
