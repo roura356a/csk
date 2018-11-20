@@ -22,7 +22,7 @@ When you create a Kubernetes cluster, Alibaba Cloud Container Service provides t
 
     -   Use a Network Policy.
 
-        For details, see [https://kubernetes.io/docs/concepts/services-networking/network-policies/](https://kubernetes.io/docs/concepts/services-networking/network-policies/).
+        For details, see [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/).
 
         The Network Policy of Terway is implemented by integrating Calico Felix. Therefore, the Network Policy and Calico have the same functions. Users who built their own clusters to use Calico can turn to Container Service Kubernetes through Terway.
 
