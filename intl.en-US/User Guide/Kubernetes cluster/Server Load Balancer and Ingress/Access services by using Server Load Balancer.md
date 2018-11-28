@@ -56,10 +56,10 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
       type: LoadBalancer
     ```
 
-2.  Log on to the [Container Service console](https://cs.console.aliyun.com). Click **Dashboard** at the right of a cluster.
+2.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs). Click **Dashboard** at the right of a cluster.
 3.  Click **CREATE** in the upper-right corner to create an application.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15390744289066_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15433981569066_en-US.png)
 
 4.  Click the **CREATE FROM FILE** tab. and then upload the nginx-svc.yml file you saved.
 5.  Click **UPLOAD**.
@@ -70,13 +70,13 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 
     You can view the created Nginx service `http-svc` and the Server Load Balancer address `http://114.55.79.24:80`.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15390744289067_en-US.png) 
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15433981569067_en-US.png) 
 
 7.  Copy the address to the browser to access the service.
 
 ## More information {#section_a31_43s_vdb .section}
 
-Alibaba Cloud Server Load Balancer also supports parameter configurations such as health check, billing method, and load balancing. For more information, see [Server Load Balancer configuration parameters](intl.en-US/User Guide/Kubernetes cluster/Server Load Balancer/Access services by using Server Load Balancer.md#table_s31_43s_vdb).
+Alibaba Cloud Server Load Balancer also supports parameter configurations such as health check, billing method, and load balancing. For more information, see [Server Load Balancer configuration parameters](reseller.en-US/User Guide/Kubernetes cluster/Server Load Balancer/Access services by using Server Load Balancer.md#table_s31_43s_vdb).
 
 ## Annotations {#section_b31_43s_vdb .section}
 
@@ -150,14 +150,14 @@ spec:
 |service.beta.kubernetes.io/alicloud-loadbalancer-backend-label|Use label to specify which nodes are mounted to the Server Load Balancer backend.|None.|
 |service.beta.kubernetes.io/alicloud-loadbalancer-region|The region in which Server Load Balancer resides.|None.|
 |service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth|Server Load Balancer bandwidth.|50|
-|service.beta.kubernetes.io/alicloud-loadbalancer-cert-id|Authentication ID on Alibaba Cloud. Upload the certificate first.|""|
+|service.beta.kubernetes.io/alicloud-loadbalancer-cert-id|ID of a certificate on Alibaba Cloud. You must have uploaded a certificate first.|""|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-flag|The value is on or off.|The default value is off. No need to modify the TCP parameters because TCP enables health check by default, which cannot be configured.|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-type|See [HealthCheck](https://help.aliyun.com/document_detail/27594.html).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-uri|See [HealthCheck](https://www.alibabacloud.com/help/zh/doc-detail/27594.htm).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-port|See [HealthCheck](https://www.alibabacloud.com/help/zh/doc-detail/27594.htm).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-healthy-threshold|See [HealthCheck](https://www.alibabacloud.com/help/zh/doc-detail/27594.htm).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-unhealthy-threshold|See [HealthCheck](https://www.alibabacloud.com/help/zh/doc-detail/27594.htm).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval|See [HealthCheck](https://www.alibabacloud.com/help/zh/doc-detail/27594.htm).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-timeout|See [HealthCheck](https://www.alibabacloud.com/help/zh/doc-detail/27594.htm).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-timeout|See [HealthCheck](https://www.alibabacloud.com/help/zh/doc-detail/27594.htm).| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-uri|See .| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-port|See .| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-healthy-threshold|See .| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-unhealthy-threshold|See .| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval|See .| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-timeout|See .| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-timeout|See .| |
 
