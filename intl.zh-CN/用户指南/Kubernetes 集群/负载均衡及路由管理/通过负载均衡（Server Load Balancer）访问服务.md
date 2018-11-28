@@ -96,7 +96,7 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 2.  登录[容器服务管理控制台](https://cs.console.aliyun.com)，单击目标集群右侧的**控制台**，进入 Kubernetes Dashboard 页面。
 3.  单击**创建**，开始创建应用。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15407968929066_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15433721429066_zh-CN.png)
 
 4.  单击**使用文件创建**。选择刚才保存的nginx-svc.yml 文件
 5.  单击**上传**。
@@ -107,7 +107,7 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 
     可以看到刚刚创建的 `http-svc` 的 Nginx 服务和机器的负载均衡地址 `http://114.55.79.24:80`。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15407968929067_zh-CN.png) 
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15433721429067_zh-CN.png) 
 
 7.  将该地址拷贝到浏览器中即可访问该服务。
 
@@ -117,7 +117,7 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 2.  在Kubernetes菜单下，单击左侧导航栏**应用** \> **部署**，进入部署列表页面。
 3.  选择目标集群和命名空间，单击右上角**使用模板创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154079689213797_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154337214213797_zh-CN.png)
 
 4.  **示例模板**选为自定义，将以下内容复制到**模板**中。
 
@@ -142,11 +142,11 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 5.  单击**创建**。
 6.  创建成功，单击**Kubernetes 控制台**前往控制台查看创建进度。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154079689213798_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154337214313798_zh-CN.png)
 
     或单击左侧导航栏**应用** \> **服务**，选择目标集群和命名空间，查看已部署的服务。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154079689213800_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154337214313800_zh-CN.png)
 
 
 ## 更多信息 {#section_a31_43s_vdb .section}
@@ -471,7 +471,7 @@ spec:
 |service.beta.kubernetes.io/alicloud-loadbalancer-charge-type|取值可以是paybytraffic或者paybybandwidth|paybytraffic|
 |service.beta.kubernetes.io/alicloud-loadbalancer-id|负载均衡实例的 ID。通过 service.beta.kubernetes.io/alicloud-loadbalancer-id指定您已有的SLB，已有监听会被覆盖， 删除 service 时该 SLB 不会被删除。|无|
 |service.beta.kubernetes.io/alicloud-loadbalancer-backend-label|通过 label 指定 SLB 后端挂载哪些worker节点。|无|
-|service.beta.kubernetes.io/alicloud-loadbalancer-spec|负载均衡实例的规格。可参考：[CreateLoadBalancer](../../../../intl.zh-CN/API参考/负载均衡实例/CreateLoadBalancer.md#)|无|
+|service.beta.kubernetes.io/alicloud-loadbalancer-spec|负载均衡实例的规格。可参考：[../../../../dita-oss-bucket/SP\_23/DNSLB11870158/ZH-CN\_TP\_4182.md\#](../../../../intl.zh-CN/API参考/负载均衡实例/CreateLoadBalancer.md#)|无|
 |service.beta.kubernetes.io/alicloud-loadbalancer-persistence-timeout|会话保持时间。仅针对TCP协议的监听，取值：0-3600（秒）
 
 默认情况下，取值为0，会话保持关闭。
@@ -520,7 +520,7 @@ spec:
 |service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners|绑定已有负载均衡时，是否强制覆盖该SLB的监听。|false：不覆盖|
 |service.beta.kubernetes.io/alicloud-loadbalancer-region|负载均衡所在的地域|无|
 |service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth|负载均衡的带宽|50|
-|service.beta.kubernetes.io/alicloud-loadbalancer-cert-id|阿里云上的认证 ID。您需要先上传证书|无|
+|service.beta.kubernetes.io/alicloud-loadbalancer-cert-id|阿里云上的证书 ID。您需要先上传证书|无|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-flag|取值是on | off|默认为off。TCP 不需要改参数。因为 TCP 默认打开健康检查，用户不可设置。|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-type|健康检查类型，取值：tcp | http。可参考：[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
 
