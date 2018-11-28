@@ -4,13 +4,13 @@ You can upgrade the Kubernetes version of your cluster in the Container Service 
 
 View the Kubernetes version of your cluster in the Kubernetes cluster list.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6886/15433959704329_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6886/15433960824329_en-US.png)
 
 ## Instructions {#section_udz_43w_ydb .section}
 
 -   To upgrade the cluster, make sure your machine can access the Internet to download the necessary software packages.
 -   The upgrade may fail. We recommend that you back up snapshots before upgrading the cluster to guarantee your data security. For how to create a snapshot, see [Create a snapshot](../../../../reseller.en-US/User Guide/Snapshots/Create a snapshot.md#).
--   During the cluster upgrade process, any services that are not yet fully deployed will generally remain unaffected. However, if a cluster application is highly dependent on the API server, the application may be temporarily affected by the upgrade.
+-   During the cluster upgrade process, any services that are not yet fully deployed will remain unaffected. However, if a cluster application is highly dependent on the API server, the application may be temporarily affected by the upgrade.
 
 ## Prerequisites {#section_ylf_vng_vdb .section}
 
@@ -51,7 +51,7 @@ If nodes are abnormal, you can fix them by yourself or open a ticket to ask Alib
 2.  Under Kubernetes, click **Clusters** in the left-side navigation pane.
 3.  Click **More** \> **Upgrade Cluster** at the right of the cluster.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6886/15433959714332_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6886/15433960834332_en-US.png)
 
 4.  Click **Upgrade** in the displayed dialog box.
 
