@@ -4,7 +4,7 @@ You can upgrade the Kubernetes version of your cluster in the Container Service 
 
 View the Kubernetes version of your cluster in the Kubernetes cluster list.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6886/15433960824329_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6886/15433964214329_en-US.png)
 
 ## Instructions {#section_udz_43w_ydb .section}
 
@@ -16,7 +16,7 @@ View the Kubernetes version of your cluster in the Kubernetes cluster list.
 
 Check the health status of the cluster before upgrading the cluster. Make sure the cluster is healthy.
 
-Log on to the master node. For more information, see [EN-US\_TP\_6882.md\#](reseller.en-US/User Guide/Kubernetes cluster/Clusters/Access Kubernetes clusters by using SSH.md#) and [EN-US\_TP\_6883.md\#](reseller.en-US/User Guide/Kubernetes cluster/Clusters/Connect to a Kubernetes cluster by using kubectl.md#).
+Log on to the master node. For more information, see [Access Kubernetes clusters by using SSH](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Access Kubernetes clusters by using SSH.md#) and [Connect to a Kubernetes cluster by using kubectl](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Connect to a Kubernetes cluster by using kubectl.md#).
 
 1.  Run the command `kubectl get cs`. Make sure all the modules are healthy.
 
@@ -51,7 +51,7 @@ If nodes are abnormal, you can fix them by yourself or open a ticket to ask Alib
 2.  Under Kubernetes, click **Clusters** in the left-side navigation pane.
 3.  Click **More** \> **Upgrade Cluster** at the right of the cluster.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6886/15433960834332_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6886/15433964214332_en-US.png)
 
 4.  Click **Upgrade** in the displayed dialog box.
 
