@@ -42,13 +42,13 @@ Tiller 版本较低，需要升级。
 升级到v2.11.0版本：
 
 ```
-$ helm init --tiller-image registry.cn-hangzhou.aliyuncs.com/acs/tiller:v2.11.0 --upgrade
+helm init --tiller-image registry.cn-hangzhou.aliyuncs.com/acs/tiller:v2.11.0 --upgrade
 ```
 
 升级到v2.10.0版本：
 
 ```
-$ helm init --tiller-image registry.cn-hangzhou.aliyuncs.com/acs/tiller:v2.10.0 --upgrade
+helm init --tiller-image registry.cn-hangzhou.aliyuncs.com/acs/tiller:v2.10.0 --upgrade
 ```
 
 **说明：** Tiller版本升级后，建议将客户端也升级到相应版本，客户端下载地址，请参考[https://github.com/helm/helm/releases](https://github.com/helm/helm/releases)。
@@ -75,13 +75,13 @@ CRD 不存在或版本较低，需要安装最新版本的 CRD。
 2.  执行以下命令，安装最新版本的 CRD。
 
     ```
-    $ kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml -n istio-system
+    kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml -n istio-system
     ```
 
 3.  如果启用了`certmanager`，需要执行以下命令安装相关的 CRD。
 
     ```
-    $ kubectl apply -f install/kubernetes/helm/istio/charts/certmanager/templates/crds.yaml
+    kubectl apply -f install/kubernetes/helm/istio/charts/certmanager/templates/crds.yaml
     ```
 
 
@@ -120,13 +120,13 @@ Resource: "apiextensions.k8s.io/v1beta1, Resource=customresourcedefinitions", Gr
 1.  Helm为2.9.0及之前版本，需要执行以下命令，删除 Job 资源。
 
     ```
-    $ kubectl -n istio-system delete job --all
+    kubectl -n istio-system delete job --all
     ```
 
 2.  执行以下命令，删除 CRD。
 
     ```
-    $ kubectl delete crd `kubectl get crd | grep -E 'istio.io|certmanager.k8s.io' | awk '{print $1}'
+    kubectl delete crd `kubectl get crd | grep -E 'istio.io|certmanager.k8s.io' | awk '{print $1}'`
     ```
 
 
