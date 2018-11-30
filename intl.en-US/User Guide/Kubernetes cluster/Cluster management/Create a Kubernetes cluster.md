@@ -17,9 +17,9 @@ During cluster creation, Container Service performs the following operations:
 
 ## Prerequisites {#section_ugh_hvv_ydb .section}
 
-Activate the following services: Container Service, Resource Orchestration Service \(ROS\), and Resource Access Management \(RAM\).
+You have activated the following services: Container Service, Resource Orchestration Service \(ROS\), Resource Access Management \(RAM\), and Auto Scaling service.
 
-Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs), [ROS console](https://partners-intl.console.aliyun.com/#/ros), and [RAM console](https://partners-intl.console.aliyun.com/#/ram) to activate the corresponding services.
+Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs), [ROS console](https://partners-intl.console.aliyun.com/#/ros), [RAM console](https://partners-intl.console.aliyun.com/#/ram), and [Auto Scaling console](https://partners-intl.console.aliyun.com/#/essnew) to activate the corresponding services.
 
 **Note:** The deployment of Container Service Kubernetes clusters depends on the application deployment capabilities of Alibaba Cloud ROS. Therefore, activate ROS before creating a Kubernetes cluster.
 
@@ -45,11 +45,11 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 2.  Under Kubernetes, click **Clusters** in the left-side navigation pane.
 3.  Click **Create Kubernetes Cluster** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612899035_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695209035_en-US.png)
 
     By default, the **Create Kubernetes Cluster** page is displayed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/154026128910858_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/154356952010858_en-US.png)
 
 4.  Enter the cluster name.
 
@@ -57,7 +57,7 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
 5.  Select the region and zone where the cluster resides.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612899036_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695209036_en-US.png)
 
 6.  Set the cluster network type. Kubernetes clusters support only the VPC network type.
 
@@ -68,7 +68,7 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
         **Note:** If you select to not automatically create a NAT gateway, configure the NAT gateway on your own to implement the VPC public network environment with secure access, or manually configure the SNAT. Otherwise, instances in the VPC cannot access public network normally, which leads to cluster creation failure.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612899037_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695209037_en-US.png)
 
 7.  Configure the node type, Pay-As-You-Go and Subscription types are supported.
 8.  Configure the master nodes.
@@ -80,7 +80,7 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
     -   Currently, master nodes support only the CentOS operating system.
     -   Currently, you can create only three master nodes.
     -   System disks are attached to the master node by default. Available system disks are SSD Cloud Disks and Ultra Cloud Disks.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612899038_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695219038_en-US.png)
 
 9.  Configure the worker nodes. Select to create a worker node or add existing ECS instances.
 
@@ -92,18 +92,18 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
     -   You can also choose to manually attach a disk to the worker node, which can be an SSD Cloud Disk, Ultra Cloud Disk, or Basic Disk.
     1.  To create worker nodes, select the instance type and set the number worker nodes. In this example, create one worker node.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612899039_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695219039_en-US.png)
 
     2.  To add existing ECS instances, you must create ECS instances in the current region in advance.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612899040_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695219040_en-US.png)
 
 10. Configure the logon mode.
     -   Configure the key pair.
 
         Select the key pair logon mode when creating the cluster and click **Create a new key pair**. In the ECS console, create a key pair, see [Create an SSH key pair](../../../../reseller.en-US/User Guide/Key pairs/Create an SSH key pair.md#). After the key pair is created, set the key pair as the credentials for logging on to the cluster.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612899041_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695219041_en-US.png)
 
     -   Configure the password.
         -   **Logon Password**: Configure the node logon password.
@@ -116,13 +116,13 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
 12. Available Docker versions and Kubernetes versions are displayed. You can view the versions and select a version according to your needs.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/154026128912780_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/154356952112780_en-US.png)
 
 13. Set whether to configure a SNAT gateway for VPC.
 
     **Note:** SNAT must be configured if you select **Auto Create** VPC. If you select to **Use Existing** VPC, you can select whether to automatically configure SNAT gateway. If you choose not to automatically configure SNAT, you can configure the NAT gateway to implement VPC security access to the public network or you can configure SNAT manually. Otherwise, instances in the VPC cannot access the public network, which causes cluster creation failure.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612899042_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695219042_en-US.png)
 
 14. Set whether to enable **Expose API SERVER with public SLB**.
 
@@ -130,7 +130,7 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
     1.  If you choose to enable this option, the Internet SLB is created and the port 6443 of master nodes is exposed. The port corresponds to API Server. Then you can use kubeconfig to connect to and operate the cluster in the network outside the VPC.
     2.  If you choose not to enable the option, the Internet SLB is not created. You use kubeconfig to connect to and operate the cluster inside the VPC.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/154026128912073_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16644/154356952112073_en-US.png)
 
 15. Select whether to enable SSH access for Internet.
 
@@ -138,19 +138,19 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
     -   With this check box selected, you can access the cluster by using SSH.
     -   If this check box is not selected, you cannot access the cluster by using SSH or connect to the cluster by using kubectl. To access a cluster instance by using SSH, manually bind EIP to the ECS instance, configure security group rules, and open the SSH port \(22\). For more information, see [Access Kubernetes clusters by using SSH](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Access Kubernetes clusters by using SSH.md#).
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/154026128912075_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/154356952112075_en-US.png)
 
 16. Select whether to install the cloud monitoring plug-in.
 
     Installing a cloud monitoring plug-in on the node allows you to view the monitoring information of the created ECS instance in the CloudMonitor console
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612909044_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695219044_en-US.png)
 
 17. Sets whether to enable Log Service. You can use an existing project or create a new project.
 
-    If you select the **Using SLS** check box, the Log Service plug-in is automatically configured in the cluster. When creating an application later, you can use Log Service quickly with simple configuration. For more information, see [Use Log Service in a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Logs/Use Log Service in a Kubernetes cluster.md#).
+    If you select the **Using SLS** check box, the Log Service plug-in is automatically configured in the cluster. When creating an application later, you can use Log Service quickly with simple configuration. For more information, see [Use Log Service to collect Kubernetes cluster logs](reseller.en-US/User Guide/Kubernetes cluster/Logs/Use Log Service to collect Kubernetes cluster logs.md#).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612909244_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695219244_en-US.png)
 
 18. Select whether to enable advanced configurations.
     1.  Select a network plug-in. Available network plug-ins are Flannel and Terway.
@@ -158,11 +158,11 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
         -   Terway: Alibaba Cloud Container Service self-developed network plug-in, which supports Alibaba Cloud flexible network card to be distributed to the container, and supports Kubernetes NetworkPolicy to define the inter-container access policy. Supports bandwidth limiting for the separate containers. Currently it is in the public beta.
     2.  Set the number of pods for one node, that is, the maximum number of pods that can be run by a single node. We recommend that you maintain the default value.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612909045_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695219045_en-US.png)
 
     3.  Sets whether to use **Custom Cluster CA**. With this check box selected, the CA certificate can be added to the Kubernetes cluster, which enhances the security of information exchange between the server and client.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612909046_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695219046_en-US.png)
 
 19. Click **Create** in the upper-right corner.
 
@@ -172,15 +172,15 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
 After the cluster is successfully created, you can view the cluster in the Kubernetes cluster list of the Container Service console.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612909047_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695219047_en-US.png)
 
 -   Click **View Logs** at the right of the cluster to view the cluster logs. To view more detailed information, click **Stack Events**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612909048_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695219048_en-US.png)
 
 -   You can also click **Manage** at the right of the cluster to view the basic information and connection information of this cluster.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612909049_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695219049_en-US.png)
 
     **In the Connection Information section:**
 
@@ -190,7 +190,7 @@ After the cluster is successfully created, you can view the cluster in the Kuber
     -   **Service Access Domain**: Provides the service in the cluster with access domain name for testing. The service access domain name suffix is `<cluster_id>.<region_id>.alicontainer.com`.
     For example, you can log on to the master nodes by using SSH, and run the `kubectl get node` to view the node information of the cluster.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15402612909050_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15435695219050_en-US.png)
 
     As shown in the preceding figure, the cluster has four nodes, including three master nodes and one worker node configured when creating the cluster.
 
