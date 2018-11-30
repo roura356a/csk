@@ -94,7 +94,7 @@ spec:
     2.  在 Kubernetes 菜单下，单击左侧导航栏中的**集群** \> **存储**，进入数据卷列表页面。
     3.  选择所需的集群，单击页面右上角的**创建**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/154159139610390_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/154357163710390_zh-CN.png)
 
     4.  在创建数据卷对话框中，配置数据卷的相关参数。
 
@@ -110,7 +110,7 @@ spec:
             -   只有挂载到 NAS 子目录时才能设置权限，挂载到根目录时不能设置。
             -   您可以不填此项，默认权限为 NAS 文件原来的权限。
         -   **标签**：为该数据卷添加标签。
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/154159139610391_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/154357163710391_zh-CN.png)
 
     5.  完成配置后，单击**创建**。
 
@@ -156,6 +156,8 @@ spec:
 
 **通过 Kubernetes 的 NFS 驱动使用**
 
+**说明：** 阿里云 NAS 服务最高支持NFS 4.0版本，创建存储卷的时候注意指定使用版本号。
+
 **步骤 1 创建 NAS 文件系统**
 
 登录 [文件存储管理控制台](https://nas.console.aliyun.com/)，创建一个 NAS 文件系统。
@@ -179,16 +181,19 @@ spec:
     apiVersion: v1
     kind: PersistentVolume
     metadata:
-       name: nas
+      name: nas
     spec:
-       capacity:
-         storage: 8Gi
-       accessModes:
-         - ReadWriteMany
-       persistentVolumeReclaimPolicy: Retain
-       nfs:
-         path: /
-         server: 055f84ad83-ixxxx.cn-hangzhou.nas.aliyuncs.com
+      capacity:
+        storage: 8Gi
+      accessModes:
+        - ReadWriteMany
+      mountOptions:
+        - noresvport
+        - nfsvers=4.0
+      persistentVolumeReclaimPolicy: Retain
+      nfs:
+        path: /
+        server: 0cd8b4a576-***.cn-hangzhou.nas.aliyuncs.com
     EOF
     ```
 
@@ -298,11 +303,14 @@ spec:
               value: 0cd8b4a576-mmi32.cn-hangzhou.nas.aliyuncs.com
             - name: NFS_PATH
               value: /
-      volumes:
-        - name: nfs-client-root
-          nfs:
-            server: 0cd8b4a576-mmi32.cn-hangzhou.nas.aliyuncs.com
-            path: /
+    volumes:
+     - name: nfs-client-root
+       flexVolume:
+         driver: alicloud/nas
+         options:
+           path: /
+           server: 0cd8b4a576-mmi32.cn-hangzhou.nas.aliyuncs.com
+           vers: "4.0"
 ```
 
 **使用动态存储卷**
