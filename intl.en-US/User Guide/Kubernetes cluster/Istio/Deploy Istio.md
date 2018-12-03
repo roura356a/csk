@@ -22,7 +22,7 @@ The distributed application architecture composed of microservices has disadvant
 2.  In the left-side navigation pane, click **Clusters**.
 3.  Select a cluster and then click **More** \> **Deploy Istio** in the action column at the right of a cluster.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381532711255_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111255_en-US.png)
 
 4.  Deploy Istio according to the following information.
 
@@ -33,11 +33,11 @@ The distributed application architecture composed of microservices has disadvant
     |Release Name|Name of Istio to be released.|
     |Enable Prometheus for metrics/logs collection|Whether to enable Prometheus for metrics/logs collection. Enabled by default.|
     |Enable Grafana for metrics display|Whether to enable Grafana for metrics display. Enabled by default.|
-    |Enable automatic Istio Sidecar injection|Whether to enable automatic Istio Sidecar injection Enabled by default.|
-    |Enable the Kiali Visualization Service Grid|Whether to enable the Kiali Visualization Service Grid Disabled by default.    -   Username: Set a user name. The default is admin.
+    |Enable automatic Istio Sidecar injection|Whether to enable automatic Istio Sidecar injection. Enabled by default.|
+    |Enable the Kiali Visualization Service Grid|Whether to enable the Kiali Visualization Service Grid. Disabled by default.    -   Username: Set a user name. The default is admin.
     -   Password: Set a password. The default is admin.
 |
-    |Enable Log Service\(SLS\) and Jaeger| Whether to enable Log Service\(SLS\) and Jaeger Disabled by default.
+    |Enable Log Service\(SLS\) and Jaeger| Whether to enable Log Service\(SLS\) and Jaeger. Disabled by default.
 
  Endpoint: Select an address according to the region in which the configured Log Service exists. For more information, see [Service endpoint](../../../../reseller.en-US/API Reference/Service endpoint.md#section_nv4_h2r_12b).
 
@@ -67,7 +67,7 @@ For example, if you set an IP address as both the released IP address for extern
 
     At the bottom of the deployment page, you can view the deployment progress and status in real time.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381532711256_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111256_en-US.png)
 
 
 **Expected results:**
@@ -76,17 +76,17 @@ You can view your deployment results in the following ways:
 
 -   At the bottom of the Deploy Istio page, **Deploy Istio** is changed to **Deployed**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381532711257_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111257_en-US.png)
 
 -   -   In the left-side navigation pane, click **Application** \> **Pods**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the relevant pods in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381532711258_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111258_en-US.png)
 
 -   -   In the left-side navigation pane, click **Application** \> **Service**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the access addresses provided by the relevant services in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381532811259_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111259_en-US.png)
 
 
 **Use the application catalog to deploy Istio**
@@ -94,12 +94,12 @@ You can view your deployment results in the following ways:
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
 2.  In the left-side navigation pane, click **Store** \> **App Catalog**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381532811260_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111260_en-US.png)
 
 3.  Click **ack-istio**.
 4.  Click the Values tab to configure parameters.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381532812560_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553112560_en-US.png)
 
     **Note:** 
 
@@ -167,11 +167,11 @@ You can view your deployment results in the following ways:
 -   -   In the left-side navigation pane, click **Application** \> **Pods**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the relevant pods in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381532711258_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111258_en-US.png)
 
 -   -   In the left-side navigation pane, click **Application** \> **Service**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the access addresses provided by the relevant services in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381532811259_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111259_en-US.png)
 
 
