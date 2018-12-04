@@ -62,7 +62,13 @@
 |新功能|容器服务Kubernetes 资源监控增强，支持通过云监控提供节点监控。|[通过资源分组进行监控与告警](../../../../cn.zh-CN/用户指南/Kubernetes 集群/监控管理/通过资源分组进行监控与告警.md#)|
 |2018年1月|新地域|容器服务Kubernetes 和容器镜像服务 国际站上线。|N/A|
 |新功能|容器服务Kubernetes支持1.8.4版本，并提供额外安全增强、弹性伸缩等功能。|[自动伸缩集群](../../../../cn.zh-CN/用户指南/Kubernetes 集群/集群管理/自动伸缩集群.md#)|
-|新功能|容器服务Kubernetes FlexVolume数据卷发布，支持云盘、NAS和OSS。|[使用阿里云云盘](../../../../cn.zh-CN/用户指南/Kubernetes 集群/存储管理/使用阿里云云盘.md#)[使用阿里云 NAS](../../../../cn.zh-CN/用户指南/Kubernetes 集群/存储管理/使用阿里云 NAS.md#)[使用阿里云 OSS](../../../../cn.zh-CN/用户指南/Kubernetes 集群/存储管理/使用阿里云 OSS.md#)|
+|新功能|容器服务Kubernetes FlexVolume数据卷发布，支持云盘、NAS和OSS。| [使用阿里云云盘](../../../../cn.zh-CN/用户指南/Kubernetes 集群/存储管理/使用阿里云云盘.md#)
+
+ [使用阿里云 NAS](../../../../cn.zh-CN/用户指南/Kubernetes 集群/存储管理/使用阿里云 NAS.md#)
+
+ [使用阿里云 OSS](../../../../cn.zh-CN/用户指南/Kubernetes 集群/存储管理/使用阿里云 OSS.md#)
+
+ |
 |新功能|容器服务Kubernetes 网络功能增强，支持Network Policy和带宽限制。|[通过负载均衡（Server Load Balancer）访问服务](../../../../cn.zh-CN/用户指南/Kubernetes 集群/负载均衡及路由管理/通过负载均衡（Server Load Balancer）访问服务.md#)|
 |新功能|容器服务Kubernetes 支持弹性裸金属服务器。|N/A|
 |2017年10月|新功能| 原生Kubernetes新版本上线。
