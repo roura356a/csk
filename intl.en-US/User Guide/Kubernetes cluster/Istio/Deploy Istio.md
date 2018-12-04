@@ -22,7 +22,7 @@ The distributed application architecture composed of microservices has disadvant
 2.  In the left-side navigation pane, click **Clusters**.
 3.  Select a cluster and then click **More** \> **Deploy Istio** in the action column at the right of a cluster.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111255_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011255_en-US.png)
 
 4.  Deploy Istio according to the following information.
 
@@ -34,7 +34,7 @@ The distributed application architecture composed of microservices has disadvant
     |Enable Prometheus for metrics/logs collection|Whether to enable Prometheus for metrics/logs collection. Enabled by default.|
     |Enable Grafana for metrics display|Whether to enable Grafana for metrics display. Enabled by default.|
     |Enable automatic Istio Sidecar injection|Whether to enable automatic Istio Sidecar injection. Enabled by default.|
-    |Enable the Kiali Visualization Service Grid|Whether to enable the Kiali Visualization Service Grid. Disabled by default.    -   Username: Set a user name. The default is admin.
+    |Enable the Kiali Visualization Service Mesh|Whether to enable the Kiali Visualization Service Mesh. Disabled by default.    -   Username: Set a user name. The default is admin.
     -   Password: Set a password. The default is admin.
 |
     |Enable Log Service\(SLS\) and Jaeger| Whether to enable Log Service\(SLS\) and Jaeger. Disabled by default.
@@ -53,13 +53,13 @@ The distributed application architecture composed of microservices has disadvant
 
  |
     |Pilot settings|Set the trace sampling percentage in the range of 0 to 100. The default is 1.|
-    |Control Egress traffic|     -   Directly release the address range of external access: Range of external IP addresses that can be directly accessed by the services in the Istio Service Grid. By default, the address range is null, and IP addresses must be separated by commas in English.
-    -   Intercept the range of addresses for external access: Range of intercepted IP addresses. If the IP addresses are not intercepted, they can be used for external access. By default, the cluster Pod CIDR and Service CIDR are included in the address range, and IP addresses must be separated by commas in English.
+    |Control Egress Traffic|     -   Permitted Addresses for External Access: range of IP addresses that can be directly accessed by services in the Istio service mesh. By default, this parameter is empty. Use commas \(,\) to separate multiple IP address ranges.
+    -   Blocked Addresses for External Access: range of IP addresses that are blocked for external accesses. By default, this IP address range contains the cluster pod CIDR block and service CIDR block. Use commas \(,\) to separate multiple IP address ranges.
  **Note:** 
 
-The released IP address range for external access takes precedence over the intercepted IP address range for external access.
+If these two IP address ranges conflict with each other, the Permitted Addresses for External Access prevails.
 
-For example, if you set an IP address as both the released IP address for external access and the intercepted IP address for external, you can still access the IP address. That is, only the released IP address takes effect.
+For example, if you set an IP address for both these two IP address ranges, you can still access this IP address directly. That is, the setting of Permitted Addresses for External Access prevails.
 
  |
 
@@ -67,7 +67,7 @@ For example, if you set an IP address as both the released IP address for extern
 
     At the bottom of the deployment page, you can view the deployment progress and status in real time.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111256_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011256_en-US.png)
 
 
 **Expected results:**
@@ -76,17 +76,17 @@ You can view your deployment results in the following ways:
 
 -   At the bottom of the Deploy Istio page, **Deploy Istio** is changed to **Deployed**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111257_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011257_en-US.png)
 
 -   -   In the left-side navigation pane, click **Application** \> **Pods**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the relevant pods in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111258_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011258_en-US.png)
 
 -   -   In the left-side navigation pane, click **Application** \> **Service**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the access addresses provided by the relevant services in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111259_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011259_en-US.png)
 
 
 **Use the application catalog to deploy Istio**
@@ -94,12 +94,12 @@ You can view your deployment results in the following ways:
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
 2.  In the left-side navigation pane, click **Store** \> **App Catalog**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111260_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011260_en-US.png)
 
 3.  Click **ack-istio**.
 4.  Click the Values tab to configure parameters.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553112560_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415012560_en-US.png)
 
     **Note:** 
 
@@ -167,11 +167,11 @@ You can view your deployment results in the following ways:
 -   -   In the left-side navigation pane, click **Application** \> **Pods**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the relevant pods in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111258_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011258_en-US.png)
 
 -   -   In the left-side navigation pane, click **Application** \> **Service**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the access addresses provided by the relevant services in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154381553111259_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011259_en-US.png)
 
 
