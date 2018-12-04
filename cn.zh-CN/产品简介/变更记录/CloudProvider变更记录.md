@@ -12,7 +12,7 @@
 -   在指定已有SLB时，支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners覆盖式处理原有SLB上的监听。
 -   支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth为创建的按带宽付费的SLB指定带宽值。其中多个Listener共享该带宽。
 
- |[通过负载均衡（Server Load Balancer）访问服务](../../../../intl.zh-CN/用户指南/Kubernetes 集群/负载均衡及路由管理/通过负载均衡（Server Load Balancer）访问服务.md#)|
+ |[通过负载均衡（Server Load Balancer）访问服务](../../../../cn.zh-CN/用户指南/Kubernetes 集群/负载均衡及路由管理/通过负载均衡（Server Load Balancer）访问服务.md#)|
 |2018.6.25|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3| -   支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-backend-label让用户能够使用指定label的worker节点作为后端服务器。
 -   支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-spec 指定SLB的类型，如性能共享型还是独占型。
 -   支持service的externalTrafic: Local 模式。仅添加Pod所在的节点作为SLB的后端。
@@ -21,5 +21,5 @@
 -   支持Session Sticky。
 -   通过指定已有SLB创建的Service不再处理监听，需要用户自行添加SLB监听。
 
- |[通过负载均衡（Server Load Balancer）访问服务](../../../../intl.zh-CN/用户指南/Kubernetes 集群/负载均衡及路由管理/通过负载均衡（Server Load Balancer）访问服务.md#)|
+ |[通过负载均衡（Server Load Balancer）访问服务](../../../../cn.zh-CN/用户指南/Kubernetes 集群/负载均衡及路由管理/通过负载均衡（Server Load Balancer）访问服务.md#)|
 
