@@ -22,7 +22,7 @@ The distributed application architecture composed of microservices has disadvant
 2.  In the left-side navigation pane, click **Clusters**.
 3.  Select a cluster and then click **More** \> **Deploy Istio** in the action column at the right of a cluster.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011255_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154391775611255_en-US.png)
 
 4.  Deploy Istio according to the following information.
 
@@ -52,14 +52,14 @@ The distributed application architecture composed of microservices has disadvant
  AccessKeySecret: Set the AccessKeySecret used to access Log Service.
 
  |
-    |Pilot settings|Set the trace sampling percentage in the range of 0 to 100. The default is 1.|
-    |Control Egress Traffic|     -   Permitted Addresses for External Access: range of IP addresses that can be directly accessed by services in the Istio service mesh. By default, this parameter is empty. Use commas \(,\) to separate multiple IP address ranges.
-    -   Blocked Addresses for External Access: range of IP addresses that are blocked for external accesses. By default, this IP address range contains the cluster pod CIDR block and service CIDR block. Use commas \(,\) to separate multiple IP address ranges.
+    |Pilot Settings|Set the trace sampling percentage in the range of 0 to 100. The default is 1.|
+    |Control Egress Traffic|     -   Permitted Addresses for External Access: range of IP addresses that can be directly accessed by services in the Istio service mesh. By default, this field is left blank. Use commas \(,\) to separate multiple IP address ranges.
+    -   Blocked Addresses for External Access: range of IP addresses that are blocked against external accesses. By default, this IP address range contains the cluster pod CIDR block and service CIDR block. Use commas \(,\) to separate multiple IP address ranges.
  **Note:** 
 
-If these two IP address ranges conflict with each other, the Permitted Addresses for External Access prevails.
+If the settings of these two parameters conflict with each other, the Permitted Addresses for External Access prevails.
 
-For example, if you set an IP address for both these two IP address ranges, you can still access this IP address directly. That is, the setting of Permitted Addresses for External Access prevails.
+For example, if an IP address belongs to both the IP address ranges that you set for these two parameters, the IP address can be still accessed. That is, the setting of Permitted Addresses for External Access prevails.
 
  |
 
@@ -67,7 +67,7 @@ For example, if you set an IP address for both these two IP address ranges, you 
 
     At the bottom of the deployment page, you can view the deployment progress and status in real time.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011256_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154391775611256_en-US.png)
 
 
 **Expected results:**
@@ -76,17 +76,17 @@ You can view your deployment results in the following ways:
 
 -   At the bottom of the Deploy Istio page, **Deploy Istio** is changed to **Deployed**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011257_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154391775611257_en-US.png)
 
 -   -   In the left-side navigation pane, click **Application** \> **Pods**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the relevant pods in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011258_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154391775611258_en-US.png)
 
 -   -   In the left-side navigation pane, click **Application** \> **Service**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the access addresses provided by the relevant services in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011259_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154391775611259_en-US.png)
 
 
 **Use the application catalog to deploy Istio**
@@ -94,12 +94,12 @@ You can view your deployment results in the following ways:
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
 2.  In the left-side navigation pane, click **Store** \> **App Catalog**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011260_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154391775611260_en-US.png)
 
 3.  Click **ack-istio**.
 4.  Click the Values tab to configure parameters.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415012560_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154391775712560_en-US.png)
 
     **Note:** 
 
@@ -167,11 +167,11 @@ You can view your deployment results in the following ways:
 -   -   In the left-side navigation pane, click **Application** \> **Pods**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the relevant pods in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011258_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154391775611258_en-US.png)
 
 -   -   In the left-side navigation pane, click **Application** \> **Service**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the access addresses provided by the relevant services in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154389415011259_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/154391775611259_en-US.png)
 
 
