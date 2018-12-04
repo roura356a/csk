@@ -11,7 +11,7 @@ This topic describes how to use a ServiceAccount token to access a managed Kuber
     $ kubectl get endpoints kubernetes
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/62640/154390724331625_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/62640/154392631431625_en-US.png)
 
 2.  Create a file named kubernetes-public-service.yaml and set the ip parameter to the intranet endpoint obtained in step 1. 
 
@@ -35,7 +35,7 @@ This topic describes how to use a ServiceAccount token to access a managed Kuber
       namespace: default
     subsets:
     - addresses:
-      - ip: <API Service address>  #set this parameter to the intranet endpoint obtained in step 1.
+      - ip: <API Service address>  #Set this parameter to the intranet endpoint obtained in step 1.
       ports:
       - name: https
         port: 6443
@@ -56,7 +56,7 @@ This topic describes how to use a ServiceAccount token to access a managed Kuber
 
     **Note:** The name parameter in the command and the name parameter in the kubernetes-public-service.yaml file of step 2 must be set to the same value. In this example, this parameter is set to kubernetes-public.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/62640/154390724331800_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/62640/154392631431800_en-US.png)
 
 5.  Run the following command to view the corresponding secret of the ServiceAccount \(in this example, the namespace parameter is set to default\): 
 
@@ -64,7 +64,7 @@ This topic describes how to use a ServiceAccount token to access a managed Kuber
     $ kubectl get secret --namespace=namespace
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/62640/154390724331814_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/62640/154392631431814_en-US.png)
 
 6.  Run the following command to obtain a token value: 
 
@@ -87,5 +87,5 @@ This topic describes how to use a ServiceAccount token to access a managed Kuber
 
 After you run the command, the following message is displayed, indicating that you have connected to the cluster.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/62640/154390724332026_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/62640/154392631432026_en-US.png)
 
