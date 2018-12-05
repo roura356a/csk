@@ -22,13 +22,35 @@
 
 ## 注意事项 {#section_gyz_ybt_vdb .section}
 
-如果您的 Kubernetes 集群是在 2018 年 2 月 6 日之前创建的，那么您使用数据卷之间需要先安装[安装插件](intl.zh-CN/用户指南/Kubernetes 集群/存储管理/安装插件.md#)。使用 OSS 数据卷必须在部署 flexvolume 服务的时候创建 Secret，并输入 AK 信息。
+-   如果您的 Kubernetes 集群是在 2018 年 2 月 6 日之前创建的，那么您使用数据卷之间需要先安装[安装插件](intl.zh-CN/用户指南/Kubernetes 集群/存储管理/安装插件.md#)。使用 OSS 数据卷必须在部署 flexvolume 服务的时候创建 Secret，并输入 AK 信息。
+
+-   容器服务Kubernetes集群升级、kubelet重启过程中会有网络重置，OSS存储卷会重新挂载，使用OSS存储卷的Pod在升级后需要重建，可在yaml文件中增加健康检查的配置，实现Pod的自动重启。
 
 ## 使用 OSS 静态卷 {#section_d13_bct_vdb .section}
 
 **直接使用 volume 方式**
 
 使用oss-deploy.yaml 文件创建 Pod。
+
+**说明：** 
+
+容器服务Kubernetes集群升级、kubelet重启过程中会有网络重置，配置健康检查`livenessProbe`能保证容器内OSS目录不可用时自动重启容器。
+
+`livenessProbe`参数说明：
+
+-   `command`：健康检查命令。格式为：
+
+    ```
+    command: 
+    - h
+    -c 
+    - cd /data
+    ```
+
+    其中`- cd /data`为容器内部的OSS对应目录，多个目录时写一个即可。
+
+-   `initialDelaySeconds`：容器启动后，开始健康检查的时间。
+-   `periodSeconds`：健康检查的时间周期。
 
 ```
 apiVersion: extensions/v1beta1
@@ -48,6 +70,14 @@ spec:
         volumeMounts:
           - name: "oss1"
             mountPath: "/data"
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - cd /data
+          initialDelaySeconds: 30
+          periodSeconds: 30
       volumes:
         - name: "oss1"
           flexVolume:
@@ -97,7 +127,7 @@ spec:
 2.  在 Kubernetes 菜单下，单击左侧导航栏中的**集群** \> **存储**，进入数据卷列表页面。
 3.  选择所需的集群，单击页面右上角的**创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/153622449610740_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/154399195210740_zh-CN.png)
 
 4.  在创建数据卷对话框中，配置数据卷的相关参数。
 
@@ -109,7 +139,7 @@ spec:
     -   **Bucket ID**：您要使用的 OSS bucket 的名称。单击**选择Bucket**，在弹出的对话框中选择所需的 bucket 并单击**选择**。
     -   **访问域名**：如果 Bucket 和 ECS 实例位于不同地域（Region），请选择**外网域名**；如果位于相同地域，需要根据集群网络类型进行选择，若是 VPC 网络，请选择**VPC域名**，若是经典网络，请选择**内网域名**。
     -   **标签**：为该数据卷添加标签。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/153622449610741_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/154399195210741_zh-CN.png)
 
 5.  完成配置后，单击**创建**。
 
@@ -135,6 +165,10 @@ spec:
 
 使用oss-pod.yaml创建 Pod。
 
+**说明：** 
+
+容器服务Kubernetes集群升级、kubelet重启过程中会有网络重置，配置健康检查`livenessProbe`能保证容器内OSS目录不可用时自动重启容器。
+
 ```
 apiVersion: v1
 kind: Pod
@@ -147,6 +181,14 @@ spec:
       volumeMounts:
           - name: pvc-oss
             mountPath: "/data"
+      livenessProbe:
+        exec:
+          command:
+          - sh
+          - -c
+          - cd /data
+        initialDelaySeconds: 30
+        periodSeconds: 30
   volumes:
   - name: pvc-oss
     persistentVolumeClaim:
