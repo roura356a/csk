@@ -34,7 +34,7 @@ Log on to the Container Service console to upgrade your cluster. For more inform
 -   If your cluster is V1.10.4, upgrade it to V1.10.11 or V1.11.5.
 -   If your cluster is V1.9 or earlier, upgrade it to V1.10.11 or V1.11.5. When you upgrade the cluster from V1.9 to V1.10 or V1.11, upgrade the flexvolume plugin through the console if your cluster uses cloud disk volumes.
 
-    **Note:** In the Container Service console, select the target cluster and choose **More** \> **Addon Upgrade**. On the Addon Upgrade dialog box, select **flexvolume** and click **Upgrade**.
+    **Note:** In the Container Service console, select the target cluster and choose **More** \> **Addon Upgrade**. In the Addon Upgrade dialog box, select **flexvolume** and click **Upgrade**.
 
 
 This vulnerability does not affect Serverless Kubernetes clusters. Serverless Kubernetes was upgraded before the vulnerability occurred.
