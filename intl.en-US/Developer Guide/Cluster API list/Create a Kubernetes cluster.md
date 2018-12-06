@@ -12,7 +12,7 @@ POST /clusters HTTP/1.1
 
 **Special request header requesthead**
 
-None. See .
+None. See [Common parameters](reseller.en-US/Developer Guide/Cluster API call method/Common parameters.md#).
 
 **Request body \(RequestBody\)**
 
@@ -56,7 +56,7 @@ None. See .
 |vswitchid|string|No |The VSwitch ID, which can be empty. If left empty, the system automatically creates a VSwitch. The CIDR block of the automatically created VSwitch is 192.168.0.0/16.|
 |container\_cidr|string|No |The pod CIDR block, which cannot conflict with the VPC CIDR block. If you select to allow the system to automatically create a VPC, use the CIDR block 172.16.0.0/16 by default.|
 |service\_cidr|string|No |A service segment cannot conflict with a VPC segment and a container segment. If you select to allow the system to automatically create a VPC, use the 172.19.0.0/20 CIDR block by default.|
-|master\_instance\_type|string|Yes|The Elastic Compute Service \(ECS\) instance type code of the master nodes. For more information, see [Instance type families](../../../../intl.en-US/Product Introduction/Instance type families.md#).|
+|master\_instance\_type|string|Yes|The Elastic Compute Service \(ECS\) instance type code of the master nodes. For more information, see [Instance type families](../../../../reseller.en-US/Product Introduction/Instance type families.md#).|
 |master\_system\_disk\_category|string|Yes|The system disk type of the master nodes.|
 |master\_system\_disk\_size|integer|No| The system disk size of the master nodes.|
 |worker\_instance\_type|string|Yes|The Elastic Compute Service \(ECS\) instance type code of the worker nodes. For more details, see.|
@@ -79,7 +79,7 @@ HTTP/1.1 202 accepted
 
 **Special return head responsehead**
 
-None. See [EN-US\_TP\_7274.md\#section\_zr5\_lf1\_wdb](intl.en-US/Developer Guide/Kubernetes API reference/Cluster API call method/Common parameters.md#section_zr5_lf1_wdb).
+None. See [EN-US\_TP\_7274.md\#section\_zr5\_lf1\_wdb](reseller.en-US/Developer Guide/Kubernetes API reference/Cluster API call method/Common parameters.md#section_zr5_lf1_wdb).
 
 **Response body \(ResponseBody\)**
 
