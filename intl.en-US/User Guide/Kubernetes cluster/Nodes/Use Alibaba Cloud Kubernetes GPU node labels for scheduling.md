@@ -10,16 +10,16 @@ When deploying NVIDIA GPU nodes, Kubernetes that runs on Alibaba Cloud discovers
 1.  Node labels help you filter GPU nodes.
 2.  Node labels can be used as the scheduling conditions for application deployment.
 
-1.  登录[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。 
+1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs). 
 2.  In the left-side navigation pane under Kubernetes, choose **Clusters** \> **Nodes**. 
 
     **Note:** In this example, the cluster has three Worker nodes of which two Worker nodes are mounted with GPU devices. You need to view the node IP addresses for verification.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154451960121050_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154452190621050_en-US.png)
 
 3.  Select a GPU node, and choose **More** \> **Details** in the action column. Then, you can view the GPU node label on the Kubernetes dashboard. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154451960121059_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154452190621059_en-US.png)
 
     You can also log on to a Master node and run the following command to view the GPU node label:
 
@@ -74,7 +74,7 @@ When deploying NVIDIA GPU nodes, Kubernetes that runs on Alibaba Cloud discovers
 4.  Return to the Container Service console home page, choose **Application** \> **Deployment** in the left-side navigation pane, and click **Create by Template** in the upper-right corner. 
     1.  Create a TensorFlow application and schedule this application to the GPU node. 
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154451960221074_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154452190621074_en-US.png)
 
         In this example, the YAML template is orchestrated as follows:
 
@@ -137,7 +137,7 @@ When deploying NVIDIA GPU nodes, Kubernetes that runs on Alibaba Cloud discovers
 
 5.  In the left-side navigation pane, choose **Application** \> **Pods**, and select the target cluster and namespace. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154451960221094_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154452190621094_en-US.png)
 
 
 In the pod list, you can see that the two example pods have been scheduled to the target nodes, indicating you have implemented flexible scheduling by using GPU node labels.
