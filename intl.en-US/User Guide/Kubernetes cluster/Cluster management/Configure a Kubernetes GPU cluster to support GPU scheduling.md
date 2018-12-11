@@ -27,7 +27,6 @@ You have logged on to the [Container Service console](https://partners-intl.cons
 
 ## Limits {#section_kqj_pvv_ydb .section}
 
--   Your account must have a balance of 100 RMB and pass the real name authentication. Otherwise, Pay-As-You-Go ECS instances or SLB instances cannot be created.
 -   The SLB instance created with the cluster only supports the Pay-As-You-Go billing method.
 -   The Kubernetes cluster supports only Virtual Private Cloud \(VPC\).
 -   By default, each account has a specified quota of the number of cloud resources that it can create. If the number of cloud resources has reached the quota limit, the account cannot create a cluster. Make sure you have sufficient resource quota to create a cluster. You can open a ticket to increase your quota.
@@ -48,18 +47,18 @@ You have logged on to the [Container Service console](https://partners-intl.cons
 2.  In the left-side navigation pane under Kubernetes, click **Clusters**.
 3.  Click **Create Kubernetes Cluster** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16641/154451916110863_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16641/154451947010863_en-US.png)
 
     By default, the **Create Kubernetes Cluster** page is displayed.
 
     **Note:** Worker nodes are set to use GPU ECS instances to create a GPU cluster. For information about other parameter settings, see [Create a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16641/154451916110864_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16641/154451947010864_en-US.png)
 
 4.  Set the Worker nodes. In this example, the gn5 GPU instance type is selected to set Worker nodes as GPU working nodes.
     1.  If you choose to create Worker instances, you must select the instance type and the number of Worker nodes. In this example, two GPU nodes are created.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16641/154451916110865_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16641/154451947010865_en-US.png)
 
     2.  If you choose to add existing instances, you need to have already created GPU cloud servers in the same region where the cluster is to be created.
 5.  After you have completed all required settings, click **Create** to start cluster deployment.
@@ -75,7 +74,7 @@ Jupyter is a popular tool used by data scientists for the experimental environme
 3.  Click **Create by Template** in the upper-right corner.
 4.  Select the target cluster and namespace and then select a sample template or the custom template from the resource type drop-down list. After you orchestrate your template, click **DEPLOY**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16641/154451916110866_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16641/154451947010866_en-US.png)
 
     In this example, a Jupyter application template is orchestrated. The template includes a deployment and a service.
 
@@ -143,7 +142,7 @@ Jupyter is a popular tool used by data scientists for the experimental environme
 
 5.  In the left-side navigation pane, choose **Application** \> **Service**, select the target cluster and namespace, and then view the external endpoint of the tf-notebook service.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16641/154451916110867_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16641/154451947010867_en-US.png)
 
 6.  Access the Jupyter application in a browser. The access address is `http://EXTERNAL-IP`. You need to enter the password set in the template.
 7.  By running the following program, you can verify that this Jupyter application can use GPU, and the program is able to list all devices that can be used by Tensorflow:
@@ -158,6 +157,6 @@ Jupyter is a popular tool used by data scientists for the experimental environme
     print(get_available_devices())
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16641/154451916110868_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16641/154451947010868_en-US.png)
 
 
