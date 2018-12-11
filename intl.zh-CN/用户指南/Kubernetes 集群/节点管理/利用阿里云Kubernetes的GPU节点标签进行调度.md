@@ -15,11 +15,11 @@
 
     **说明：** 本例中，该集群中拥有3个Worker节点，其中有两个Worker节点挂载了GPU设备，请查看节点IP，方便进行验证。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154451217421050_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154451351821050_zh-CN.png)
 
 3.  选择GPU节点，单击操作列的**更多** \> **详情**，进入Kubernetes Dashboard页面，查看GPU节点提供的节点标签。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154451217421059_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154451351821059_zh-CN.png)
 
     您也可登录到Master节点，执行以下命令，查看GPU节点的标签。
 
@@ -74,7 +74,7 @@
 4.  返回容器服务控制台主页，单击左侧导航栏**应用** \> **部署**，单击右上角**使用模板创建**。 
     1.  创建一个tensorflow的Deployment，将该应用调度到GPU节点上。 
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154451217421074_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154451351821074_zh-CN.png)
 
         本例的yaml编排如下所示。
 
@@ -110,8 +110,7 @@
                   hostPort: 8888
                 env:
                   - name: PASSWORD
-                    value: mypassw0rdv:
-           
+                    value: mypassw0rdv
         ```
 
     2.  您也可避免将某些应用部署到GPU节点。下面部署一个nginx的Pod，利用节点亲和性的特性进行调度，具体参见[使用镜像创建无状态Deployment应用](intl.zh-CN/用户指南/Kubernetes 集群/应用管理/使用镜像创建无状态Deployment应用.md#)中关于节点亲和性的说明。 
@@ -138,7 +137,7 @@
 
 5.  单击左侧导航栏**应用** \> **容器组**，选择所需的集群和命名空间，进入容器组列表。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154451217421094_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/154451351821094_zh-CN.png)
 
 
 在容器组列表中，您可看到两个示例的Pod（容器组）成功调度到对应的节点上，从而实现基于GPU节点标签的灵活调度。
