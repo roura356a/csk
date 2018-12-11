@@ -96,7 +96,7 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 2.  登录[容器服务管理控制台](https://cs.console.aliyun.com)，单击目标集群右侧的**控制台**，进入 Kubernetes Dashboard 页面。
 3.  单击**创建**，开始创建应用。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15445081009066_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15445083829066_zh-CN.png)
 
 4.  单击**使用文件创建**。选择刚才保存的nginx-svc.yml 文件
 5.  单击**上传**。
@@ -107,17 +107,17 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 
     可以看到刚刚创建的 `http-svc` 的 Nginx 服务和机器的负载均衡地址 `http://114.55.79.24:80`。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15445081009067_zh-CN.png) 
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15445083829067_zh-CN.png) 
 
 7.  将该地址拷贝到浏览器中即可访问该服务。
 
 ## 通过控制台操作 {#section_bpm_jth_mfb .section}
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)，单击目标集群右侧的**控制台**。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 2.  在Kubernetes菜单下，单击左侧导航栏**应用** \> **部署**，进入部署列表页面。
 3.  选择目标集群和命名空间，单击右上角**使用模板创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154450810013797_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154450838213797_zh-CN.png)
 
 4.  **示例模板**选为自定义，将以下内容复制到**模板**中。
 
@@ -142,11 +142,11 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 5.  单击**创建**。
 6.  创建成功，单击**Kubernetes 控制台**前往控制台查看创建进度。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154450810013798_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154450838213798_zh-CN.png)
 
     或单击左侧导航栏**应用** \> **服务**，选择目标集群和命名空间，查看已部署的服务。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154450810013800_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154450838213800_zh-CN.png)
 
 
 ## 更多信息 {#section_a31_43s_vdb .section}
