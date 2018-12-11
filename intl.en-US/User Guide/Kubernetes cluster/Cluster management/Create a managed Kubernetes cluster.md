@@ -8,7 +8,6 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
 **Note:** The deployment of Container Service managed Kubernetes clusters depends on the application deployment capabilities of Alibaba Cloud ROS. Therefore, you need to activate ROS before creating a managed Kubernetes cluster.
 
--   Your account must have a balance of 100 RMB and pass the real name authorization. Otherwise, you cannot create Pay-As-You-Go Elastic Compute Service \(ECS\) instances and Server Load Balancer \(SLB\) instances.
 -   The SLB instances created with the cluster support only the Pay-As-You-Go billing method.
 -   Kubernetes clusters support only the Virtual Private Cloud \(VPC\) network type.
 -   By default, each account has a specified quota for the cloud resources it can create. If the number of cloud resources exceeds the quota, the account cannot create a cluster. Make sure you have enough quota before creating a cluster. To increase your quota, open a ticket.
@@ -23,11 +22,11 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
     The cluster name can be 1–63 characters long and contain numbers, Chinese characters, English letters, and hyphens \(-\).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213121257_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521257_en-US.png)
 
 5.  Select the region and zone where the cluster is located. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221258_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521258_en-US.png)
 
 6.  Set the cluster network type. 
 
@@ -40,13 +39,13 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
         **Note:** If you deselect the check box, configure the NAT Gateway on your own to implement the VPC Internet environment with secure access, or manually configure the SNAT. Otherwise, instances in the VPC cannot access the Internet normally, which leads to cluster creation failure.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221259_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521259_en-US.png)
 
 7.  Set the node type. 
 
     **Note:** **Pay-As-You-Go** and **Subscription** types are supported.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221260_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521260_en-US.png)
 
 8.  Configure the instance. 
 
@@ -57,7 +56,7 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
     -   Each cluster contains up to 48 nodes. To create more nodes, open a ticket.
     -   System disks are attached to the instances by default. Available system disks are Ultra Disks and SSD Disks.
     -   You can attach a data disk to the instances. The data disk can be an Ultra Disk or an SSD Disk.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221261_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521261_en-US.png)
 
 9.  Set the logon mode. 
 
@@ -68,15 +67,15 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
     -   Set the password.
         -   **Logon Password**: Set the node logon password.
         -   **Confirm Password**: Confirm your node logon password.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221262_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521262_en-US.png)
 
 10. Set the **Pod Network CIDR** and **Service CIDR** parameters. 
 
     **Note:** 
 
     -   These two parameters are available only when you select to **Use Existing** VPC.
-    -   Both **Pod Network CIDR** and **Service CIDR** cannot overlap with the Classless Inter-Domain Routing \(CIDR\) block used by the VPC and the existing Kubernetes clusters in the VPC. The values cannot be modified after the cluster is created. In addition, service CIDR cannot overlap with pod network CIDR. For more information about how to plan Kubernetes CIDR blocks, see [Plan Kubernetes CIDR blocks under VPC](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Plan Kubernetes CIDR blocks under VPC.md#).
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221265_en-US.png)
+    -   Both **Pod Network CIDR** and **Service CIDR** cannot overlap with the Classless Inter-Domain Routing \(CIDR\) block used by the VPC and the existing Kubernetes clusters in the VPC. The values cannot be modified after the cluster is created. In addition, service CIDR cannot overlap with pod network CIDR. For more information about how to plan Kubernetes CIDR blocks, see [Plan Kubernetes CIDR blocks under VPC](reseller.en-US/Best Practices/Cluster/Plan Kubernetes CIDR blocks under VPC.md#).
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521265_en-US.png)
 
 11. Select whether to configure a SNAT Gateway for the VPC. 
 
@@ -84,17 +83,17 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
     -   If you select **Auto Create**, you must configure a SNAT Gateway.
     -   If you select **Use Existing**, you can select whether to automatically configure a SNAT Gateway. If you select not to automatically configure a SNAT Gateway, you can configure a NAT Gateway for VPC instances to securely access the Internet, or you can configure a SNAT Gateway manually. Otherwise, the instances in the VPC cannot access the Internet, and the cluster fails to be created.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221267_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521267_en-US.png)
 
 12. Select whether to install a cloud monitoring plug-in on your ECS. You can install a cloud monitoring plug-in on the ECS node to view the monitoring information of the created ECS instances in the CloudMonitor console.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221268_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521268_en-US.png)
 
 13. Select a network plug-in. Available network plug-ins are Flannel and Terway. For details, see [Do I select the Terway or Flannel plug-in for my Kubernetes cluster network?](../../../../reseller.en-US/FAQ/Do I select the Terway or Flannel plug-in for my Kubernetes cluster network?.md#). 
 
     -   Flannel: a simple and stable community Flannel plug-in. It provides only a few simple features. For example, it does not support the Kubernetes Network Policy.
     -   Terway: a network plug-in developed by Alibaba Cloud Container service. It can allocate Alibaba Cloud Elastic Network Interfaces \(ENIs\) to containers. It can also define the access policies between containers according to the Kubernetes Network Policy. In addition, it supports bandwidth limiting for individual containers.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221269_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521269_en-US.png)
 
 14. Set the RDS whitelist. 
 
@@ -102,7 +101,7 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
     **Note:** This option is available only when you select to **Use Existing** VPC.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221270_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521270_en-US.png)
 
 15. Click **Create** in the upper-right corner. 
 
@@ -111,15 +110,15 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
 After the cluster is successfully created, you can view the cluster on the Cluster List page of the Container Service console.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221425_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521425_en-US.png)
 
 Click **View Logs** on the right of the cluster to view the cluster logs on the Cluster Logs page. To view more information, click **Stack Events**.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221426_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521426_en-US.png)
 
 On the Cluster List page, find the created cluster and click **Manage** to view the basic information and connection information about this cluster.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221427_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513521427_en-US.png)
 
 **In the Cluster Info section:**
 
@@ -128,5 +127,5 @@ On the Cluster List page, find the created cluster and click **Manage** to view 
 
 You can see [Connect to a Kubernetes cluster by using kubectl](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Connect to a Kubernetes cluster by using kubectl.md#) and run `kubectl get node` to view the node information of the cluster.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154357213221438_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/154451513621438_en-US.png)
 
