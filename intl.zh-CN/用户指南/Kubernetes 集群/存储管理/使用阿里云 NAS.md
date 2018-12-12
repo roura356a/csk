@@ -10,7 +10,7 @@
 
     -   通过 flexvolume 插件使用
         -   通过 volume 方式使用
-        -   使用 PV/PV
+        -   使用 PV/PVC
     -   通过 Kubernetes 的 NFS 驱动使用
 -   [动态存储卷](#section_iz3_gzs_vdb)
 
@@ -94,7 +94,7 @@ spec:
     2.  在 Kubernetes 菜单下，单击左侧导航栏中的**集群** \> **存储**，进入数据卷列表页面。
     3.  选择所需的集群，单击页面右上角的**创建**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/154400397610390_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/154460816410390_zh-CN.png)
 
     4.  在创建数据卷对话框中，配置数据卷的相关参数。
 
@@ -110,7 +110,7 @@ spec:
             -   只有挂载到 NAS 子目录时才能设置权限，挂载到根目录时不能设置。
             -   您可以不填此项，默认权限为 NAS 文件原来的权限。
         -   **标签**：为该数据卷添加标签。
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/154400397610391_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/154460816410391_zh-CN.png)
 
     5.  完成配置后，单击**创建**。
 
@@ -193,7 +193,7 @@ spec:
       persistentVolumeReclaimPolicy: Retain
       nfs:
         path: /
-        server: 0cd8b4a576-***.cn-hangzhou.nas.aliyuncs.com
+        server: 055f84ad83-ixxxx.cn-hangzhou.nas.aliyuncs.com
     EOF
     ```
 
