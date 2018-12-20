@@ -36,15 +36,15 @@ Before you restart or release an ECS instance in a Kubernetes cluster, you need 
     For more information, see [Set node scheduling](reseller.en-US/User Guide/Kubernetes cluster/Nodes/Set node scheduling.md#).
 
 3.  In the left-side navigation pane under Kubernetes, choose **Clusters** \> **Nodes**. 
-4.   Under the target cluster, select the target node, and choose **More** \> **Remove** in the Action column.![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79987/154528754734358_en-US.png)
+4.   Under the target cluster, select the target node, and choose **More** \> **Remove** in the Action column.![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79987/154528808434358_en-US.png)
 
  
 
     **Note:** If you want to remove multiple nodes at a time, you can select the target cluster on the Node List page, select all the nodes to be removed, and then click **Remove**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79987/154528754734360_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79987/154528808434360_en-US.png)
 
-5.   Select the **Release ECS at the Same Time** check box to permanently release the ECS instance where the node resides.![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79987/154528754734359_en-US.png)
+5.   Select the **Release ECS at the Same Time** check box to permanently release the ECS instance where the node resides.![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79987/154528808434359_en-US.png)
 
  
 
@@ -52,9 +52,6 @@ Before you restart or release an ECS instance in a Kubernetes cluster, you need 
 
     -   Only Pay-As-You-Go ECS instances can be released.
     -   A Subscription ECS instance will be released automatically when it expires.
-    -   Before an ECS instance expires, you can:
-        -   Release the ECS instance and apply for a refund.
-        -   Change its billing method to Pay-As-You-Go and then release the ECS instance.
     -   If you do not select the **Release ECS at the Same Time** check box, the ECS instance in which the node resides will continue to be charged.
 6.  Click **OK**. 
 
