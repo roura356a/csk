@@ -21,9 +21,7 @@
 ## 前提条件 {#section_urt_fht_cgb .section}
 
 -   您已成功创建一个Kubernetes集群，参见[创建Kubernetes集群](../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/创建Kubernetes集群.md#)。
--   您已成功创建一个云盘存储卷声明，参见[创建持久化存储卷声明](../../../../intl.zh-CN/用户指南/Kubernetes 集群/存储管理/创建持久化存储卷声明.md#)。
 -   您已连接到Kubernetes集群的Master节点，参见[通过 kubectl 连接 Kubernetes 集群](../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/通过 kubectl 连接 Kubernetes 集群.md#)。
--   使用云盘数据卷之前，您需要先在 ECS 管理控制台上创建云盘，参见[创建云盘](../../../../intl.zh-CN/用户指南/云盘/创建云盘.md#)。
 
 ## 部署StatefulSet服务 {#section_j1q_b3t_cgb .section}
 
