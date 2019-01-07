@@ -70,9 +70,9 @@ Manually create a Persistent Volume \(PV\) and a Persistent Volume Claim \(PVC\)
 
 **Result**
 
-In the left-side navigation pane under Kubernetes, choose **Clusters** \> **Volumes**, and select the target cluster and namespace to see the created PV.
+In the left-side navigation pane under Kubernetes, choose **Clusters** \> **Volumes**, and select the target cluster to see the created PV.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79961/154684593134459_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79961/154684661234459_en-US.png)
 
 ## Create a PVC {#section_hww_rfr_dgb .section}
 
@@ -107,7 +107,7 @@ Create a PVC for the cloud disk. Specifically, you need to set the`selector` fie
 
 In the left-side navigation pane under Kubernetes, choose **Application** \> **Volumes Claim**, and select the target cluster and namespace to see the created PVC.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79961/154684593134462_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79961/154684661234462_en-US.png)
 
 ## Create an application {#section_by4_wbs_dgb .section}
 
@@ -150,9 +150,9 @@ In the left-side navigation pane under Kubernetes, choose **Application** \> **V
 
 **Result**
 
-In the left-side navigation pane under Kubernetes, choose **Clusters** \> **Deployment**, and select the target cluster and namespace to see the created deployment.
+In the left-side navigation pane under Kubernetes, choose **Application** \> **Deployment**, and select the target cluster and namespace to see the created deployment.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79961/154684593134465_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/79961/154684661234465_en-US.png)
 
 ## Persistent data storage on the static cloud disk {#section_wm4_cyx_dgb .section}
 
