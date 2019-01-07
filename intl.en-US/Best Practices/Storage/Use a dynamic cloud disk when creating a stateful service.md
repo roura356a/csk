@@ -105,7 +105,7 @@ By default, Alibaba Cloud Container Service for Kubernetes creates four StorageC
 
 In the left-side navigation pane under Kubernetes, choose **Application** \> **Volumes Claim**, and select the target cluster and namespace to see that the storage class name associated to the PVC is alicloud-disk-ssd-hangzhou-b specified in the `StorageClass`, and the PVC is associated with the volume.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80612/154684594534507_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80612/154684690234507_en-US.png)
 
 ## Create an application {#section_fbc_wgz_dgb .section}
 
@@ -150,7 +150,7 @@ In the left-side navigation pane under Kubernetes, choose **Application** \> **V
 
 In the left-side navigation pane under Kubernetes, choose **Application** \> **Deployment**, and select the target cluster and namespace to see the created deployment.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80612/154684594534563_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/80612/154684690234563_en-US.png)
 
 ## Persistent storage for a dynamic cloud disk {#section_ow1_chz_dgb .section}
 
