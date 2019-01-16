@@ -123,9 +123,6 @@ rules:
       - group: "settings.k8s.io"
       - group: "storage.k8s.io"
   # Default level for all other requests.
-  - level: Metadatak8s.io"
-      - group: "storage.k8s.io"
-  # Default level for all other requests.
   - level: Metadata
 ```
 
@@ -144,21 +141,21 @@ rules:
 1.  登录 [日志服务管理控制台](https://sls.console.aliyun.com/)。
 2.  单击左侧导航栏中**Project管理**，选择创建集群时设置的日志Project，单击名称进入日志Project页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/154077825912111_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/154762674812111_zh-CN.png)
 
 3.  在Project详情页中，默认进入日志库页面，查看名为audit-$\{clustered\}的日志库（logstore），单击右侧的**查询**，集群对应的审计日志会收集在该日志库中。
 
     **说明：** 在您创建过程中，指定的日志Project中会自动添加一个名称为audit-$\{clustereid\}的日志库。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/154077825912114_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/154762674812114_zh-CN.png)
 
 4.  当集群管理员需要关注某一子账号的行为时，可以输入相应子账号id，追溯其操作。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/154077825912118_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/154762674812118_zh-CN.png)
 
 5.  当集群管理员关注某一具体资源对象时，可以输入相应的资源名称，检索时间段内的指定操作。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/154077825912119_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/154762674812119_zh-CN.png)
 
 
 ## 支持第三方日志解决 {#section_nf2_lsf_2fb .section}
