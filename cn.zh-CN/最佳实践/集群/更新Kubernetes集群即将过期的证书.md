@@ -1,13 +1,17 @@
 # 更新Kubernetes集群即将过期的证书 {#concept_jnx_v3b_rfb .concept}
 
-本文介绍如何更新Kubernetes集群即将过期的证书。您可以自动化一键式更新所有节点证书，也可以手动更新master和worker节点证书。
+本文介绍如何更新Kubernetes集群即将过期的证书。您可以通过控制台操作，也可以通过命令行自动化一键式更新所有节点证书，也可以手动更新master和worker节点证书。
 
 ## 前提条件 {#section_d1t_x3b_rfb .section}
 
--   您已经成功创建一个Kubernetes集群，参见[创建Kubernetes集群](../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/创建Kubernetes集群.md#)。
--   您可以通过kubectl连接集群，参见[通过 kubectl 连接 Kubernetes 集群](../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/通过 kubectl 连接 Kubernetes 集群.md#)。
+-   您已经成功创建一个Kubernetes集群，参见[创建Kubernetes集群](../../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/创建Kubernetes集群.md#)。
+-   您可以通过kubectl连接集群，参见[通过 kubectl 连接 Kubernetes 集群](../../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/通过 kubectl 连接 Kubernetes 集群.md#)。
 
-## 自动更新所有节点证书 {#section_sz4_lyh_rfb .section}
+## 控制台更新所有节点证书 {#section_ywp_1qg_mgb .section}
+
+在容器服务管理控制台，单击目标集群的**更新证书**更新即将过期的证书，请参考[更新即将过期证书](../../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/更新即将过期证书.md#)。
+
+## 命令行自动更新所有节点证书 {#section_sz4_lyh_rfb .section}
 
 登录集群任意master节点，执行以下命令完成集群所有节点的证书更新。
 
@@ -23,7 +27,7 @@ $ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-up
     $ kubectl get nodes
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154280246221600_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154769630121600_zh-CN.png)
 
 2.  执行以下命令，当master节点对应的SUCCESSFUL均为1，worker节点对应的SUCCESSFUL为集群worker节点数时，所有证书完成更新。
 
@@ -31,7 +35,7 @@ $ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-up
     $ kubectl get job –nkube-system
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154280246221601_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154769630121601_zh-CN.png)
 
 
 ## 手动更新master节点证书 {#section_pdw_cjb_rfb .section}
@@ -97,18 +101,18 @@ $ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-up
         $ kubectl get nodes
         ```
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154280246221548_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154769630121548_zh-CN.png)
 
     -   方法二：
 
         1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
         2.  在Kubernetes菜单下，单击左侧导航栏的**集群**，进入集群列表页面。
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154280246221549_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154769630121549_zh-CN.png)
 
         3.  选择目标集群，点击集群名称，查看集群详细信息，点击左侧导航栏的**节点列表**获取master个数和hostname。
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154280246221550_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154769630121550_zh-CN.png)
 
 3.  执行以下命令替换job-master.yml文件中指定的变量$\{jobname\}和$\{hostname\}。
 
@@ -134,7 +138,7 @@ $ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-up
 
 6.  重复执行步骤3~5，完成所有master节点的证书更新。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154280246221551_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154769630121551_zh-CN.png)
 
 
 ## 手动更新worker节点证书 {#section_k4z_skb_rfb .section}
@@ -224,7 +228,7 @@ $ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-up
         $ kubectl get nodes -o go-template-file="taint.tml"
         ```
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154280246221570_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154769630121570_zh-CN.png)
 
 2.  执行以下命令，获取集群的CAKey。
 
@@ -255,6 +259,6 @@ $ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-up
     $ kubectl get job –nkube-system
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154280246221565_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154769630121565_zh-CN.png)
 
 
