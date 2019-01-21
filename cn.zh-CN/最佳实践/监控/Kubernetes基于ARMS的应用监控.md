@@ -12,14 +12,14 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
 
 -   自动发现应用拓扑
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154769470337130_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154806354637130_zh-CN.png)
 
 -   自动发现并监控接口
 -   捕获异常事务和SQL分析、慢事务
 -   Java异常报表
 -   查询基于调用链的事务快照
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154769470337131_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154806354637131_zh-CN.png)
 
 -   即席多维排查（多维度调用链搜索，异常调用链搜索）
 -   PaaS平台集成
@@ -35,12 +35,12 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
 2.  单击左侧导航栏**市场** \> **应用目录**，在应用目录页面选择**ack-arms-pilot**。
 3.  在应用目录-ack-arms-pilot页面，单击右侧的**创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154769470337035_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154806354737035_zh-CN.png)
 
 
 单击左侧导航栏**应用** \> **无状态**，选择目标集群和命名空间，可以看到名称为ack-arms-pilot-default-ack-arms-pilot的应用已成功创建。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154769470337071_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154806354737071_zh-CN.png)
 
 ## 授权 {#section_q5g_fgq_kgb .section}
 
@@ -51,7 +51,7 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
 2.  单击目标集群的名称，查看集群的详细信息。
 3.  单击集群资源区域的**Worker RAM角色**，进入RAM访问控制台的权限策略管理页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154769470337044_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154806354737044_zh-CN.png)
 
     **说明：** 
 
@@ -63,21 +63,21 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
 
     1.  单击左侧导航栏**角色管理**，在**角色名**中输入**Worker RAM角色**的名称进行搜索。单击**角色名称**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154769470337085_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154806354737085_zh-CN.png)
 
-    2.  单击左侧导航栏**角色授权策略**，单击页面右上角的**编辑授权策略**。
+    2.  在**基本信息**区域，单击页面右上角的**编辑基本信息**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154769470337088_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154806354737088_zh-CN.png)
 
     **方法二**
 
     单击页面右下角**体验新版**，切换到新版RAM访问控制台。在容器服务管理控制台单击**Worker RAM 角色**重新登录RAM访问控制台。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154769470437079_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154806354737079_zh-CN.png)
 
 4.  单击策略内容区域的**修改策略内容**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154769470437053_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154806354737053_zh-CN.png)
 
 5.  在策略内容区域增加以下字段后，单击**确定**。
 
@@ -89,7 +89,7 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
     }
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154769470437054_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154806354737054_zh-CN.png)
 
 
 ## 部署ARMS应用监控 {#section_nmg_xlq_kgb .section}
@@ -111,7 +111,7 @@ annotations:
 2.  单击页面右上角**使用模板创建**。
 3.  选择目标集群和命名空间，创建Deployment。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154769470437055_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154806354737055_zh-CN.png)
 
     ```
     apiVersion: apps/v1beta2 
@@ -148,6 +148,6 @@ annotations:
 
     **说明：** 若**操作列**无**ARMS控制台**，请检查您是否授权容器服务调用ARMS，可参考[授权](#section_q5g_fgq_kgb)。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154769470437099_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154806354737099_zh-CN.png)
 
 
