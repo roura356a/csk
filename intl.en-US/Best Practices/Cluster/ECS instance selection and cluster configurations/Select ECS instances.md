@@ -32,11 +32,11 @@ To select the Master node specification of a cluster of the standard size, see t
 
 ## Select the Worker node specification {#section_nrx_q5p_1gb .section}
 
--   Determine the number of cores required by the cluster and the allowed core failure ratio
+-   Determine the number of cores required by the cluster and the allowed core failure ratio.
 
     For example, assume a cluster has 160 cores in total. If the allowed core failure ratio is 10%, you must select at least ten 16-core ECS instances and ensure that the upper limit of the cluster load is 160\*90%=144 cores. If the allowed core failure ratio is 20%, you must select at least five 32-core ECS instances and ensure that the upper limit of the cluster load is 160\*80%=128 cores. In either of these two cases, if one ECS instance fails, the remaining ECS instances can still support the cluster services.
 
--   Determine the CPU:memory ratio If you run applications that consume large amount of memory resource, for example, Java applications, we recommend that you select an ECS instance with a CPU:memory ratio of 1:8.
+-   Determine the CPU:memory ratio. If you run applications that consume large amount of memory resource, for example, Java applications, we recommend that you select an ECS instance with a CPU:memory ratio of 1:8.
 
 ## Select the ECS Bare Metal Instance {#section_qyd_lwp_1gb .section}
 
