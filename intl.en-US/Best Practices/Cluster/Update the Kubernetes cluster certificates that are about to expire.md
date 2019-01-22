@@ -1,6 +1,6 @@
 # Update the Kubernetes cluster certificates that are about to expire {#concept_jnx_v3b_rfb .concept}
 
-This topic describes how to update the Kubernetes cluster certificates that are about to expire. You can update the cluster certificates in the Container Service console. In addition, you can update all the certificates by running a single command, or update Master node certificates and Worker node certificates separately by running different commands.
+This topic describes how to update the Kubernetes cluster certificates that are about to expire. You can use one of three methods to update the cluster certificates. You can update the cluster certificates in the Container Service console, update all the certificates by running a single command, or update Master and Worker node certificates separately by running different commands.
 
 ## Prerequisites {#section_d1t_x3b_rfb .section}
 
@@ -27,7 +27,7 @@ $ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-up
     $ kubectl get nodes
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812274021600_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812342821600_en-US.png)
 
 2.  Run the following command. When the value of the SUCCESSFUL parameter of each Master node is 1, and the value of the SUCCESSFUL parameter of each Worker node meets the number of cluster Worker nodes, all certificates are updated.
 
@@ -35,7 +35,7 @@ $ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-up
     $ kubectl get job –nkube-system
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812274021601_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812342821601_en-US.png)
 
 
 ## Manually update the certificates of each Master node {#section_pdw_cjb_rfb .section}
@@ -101,18 +101,18 @@ $ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-up
         $ kubectl get nodes
         ```
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812274021548_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812342821548_en-US.png)
 
     -   Method 2
 
         1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
         2.  In the left-side navigation pane under Kubernetes, click **Clusters**.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812274021549_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812342821549_en-US.png)
 
         3.  Click the target cluster name, and then click **Node List** in the left-side navigation pane to view the number of Master nodes and the hostname of each Master node.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812274021550_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812342821550_en-US.png)
 
 3.  Run the following command to specify the $\{jobname\} and $\{hostname\} variables in the job-master.yml file:
 
@@ -138,7 +138,7 @@ $ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-up
 
 6.  Repeat step 3 to step 5 to update the certificates of the remaining Master nodes in the cluster.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812274021551_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812342821551_en-US.png)
 
 
 ## Manually update Worker node certificates {#section_k4z_skb_rfb .section}
@@ -228,7 +228,7 @@ $ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-up
         $ kubectl get nodes -o go-template-file="taint.tml"
         ```
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812274021570_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812342821570_en-US.png)
 
 2.  Run the following command to obtain the cluster CAKey:
 
@@ -259,6 +259,6 @@ $ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-up
     $ kubectl get job –nkube-system
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812274021565_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/41643/154812342821565_en-US.png)
 
 
