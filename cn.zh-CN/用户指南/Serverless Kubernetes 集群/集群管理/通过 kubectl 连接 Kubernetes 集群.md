@@ -16,7 +16,7 @@
     3.  选择所需的集群并单击右侧的**管理**。 
     4.  您可以在**连接信息**处查看集群的连接地址。 
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16482/153510570210242_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16482/154821643310242_zh-CN.png)
 
     5.  拷贝集群凭据到本地文件中，您可创建并将集群凭据保存到 $HOME/.kube/config（kubectl 预期凭据所在的位置）。或者命名一个新的文件，如 /tmp/kubeconfig，并执行命令 `export KUBECONFIG=/tmp/kubeconfig`。 
     6.  执行上述操作后，您可执行以下命令，确认集群连接情况。 
