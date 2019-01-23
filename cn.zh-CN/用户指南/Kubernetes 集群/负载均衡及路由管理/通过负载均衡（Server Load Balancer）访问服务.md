@@ -96,7 +96,7 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 2.  登录[容器服务管理控制台](https://cs.console.aliyun.com)，单击目标集群右侧的**控制台**，进入 Kubernetes Dashboard 页面。
 3.  单击**创建**，开始创建应用。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15470917159066_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15482141979066_zh-CN.png)
 
 4.  单击**使用文件创建**。选择刚才保存的nginx-svc.yml 文件
 5.  单击**上传**。
@@ -107,7 +107,7 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 
     可以看到刚刚创建的 `http-svc` 的 Nginx 服务和机器的负载均衡地址 `http://114.55.79.24:80`。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15470917159067_zh-CN.png) 
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15482141979067_zh-CN.png) 
 
 7.  将该地址拷贝到浏览器中即可访问该服务。
 
@@ -117,7 +117,7 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 2.  在Kubernetes菜单下，单击左侧导航栏**应用** \> **部署**，进入部署列表页面。
 3.  选择目标集群和命名空间，单击右上角**使用模板创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154709171513797_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154821419713797_zh-CN.png)
 
 4.  **示例模板**选为自定义，将以下内容复制到**模板**中。
 
@@ -142,11 +142,11 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 5.  单击**创建**。
 6.  创建成功，单击**Kubernetes 控制台**前往控制台查看创建进度。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154709171513798_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154821419713798_zh-CN.png)
 
     或单击左侧导航栏**应用** \> **服务**，选择目标集群和命名空间，查看已部署的服务。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154709171513800_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/154821419713800_zh-CN.png)
 
 
 ## 更多信息 {#section_a31_43s_vdb .section}
@@ -285,6 +285,16 @@ spec:
 
 默认情况下，使用已有的负载均衡实例，不会覆盖监听，如要强制覆盖已有监听，请配置service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners为true。
 
+**说明：** 
+
+支持多个Kubernetes Service复用同一个SLB。
+
+-   Kubernetes通过Service创建的SLB不能复用（会导致SLB被意外删除）。只能复用您手动在控制台（或调用OpenAPI）创建的SLB。
+-   复用同一个SLB的多个Service不能有相同的前端监听端口，否则会造成端口冲突。
+-   复用SLB时，请使用监听的名字和虚拟服务器组的名字作为标识符。请勿修改监听和虚拟服务器组的名字。
+-   SLB的名字可以修改。
+-   不支持跨集群复用SLB。
+
 ```
 apiVersion: v1
 kind: Service
@@ -306,6 +316,16 @@ spec:
 ****使用已有的负载均衡，并强制覆盖已有监听****
 
 强制覆盖已有监听，会删除已有负载均衡实例上的已有监听。
+
+**说明：** 
+
+支持多个Kubernetes Service复用同一个SLB。
+
+-   Kubernetes通过Service创建的SLB不能复用（会导致SLB被意外删除）。只能复用您手动在控制台（或调用OpenAPI）创建的SLB。
+-   复用同一个SLB的多个Service不能有相同的前端监听端口，否则会造成端口冲突。
+-   复用SLB时，请使用监听的名字和虚拟服务器组的名字作为标识符。请勿修改监听和虚拟服务器组的名字。
+-   SLB的名字可以修改。
+-   不支持跨集群复用SLB。
 
 ```
 apiVersion: v1
