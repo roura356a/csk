@@ -5,7 +5,7 @@
 ## 前提条件 {#section_e5m_bgn_j2b .section}
 
 -   您已创建一个serverless集群，集群的VPC需要配置NAT网关，从而访问外网，下载容器镜像。
--   您已通过kubectl连接到集群，参见[通过 kubectl 连接 Kubernetes 集群](intl.zh-CN/用户指南/Serverless Kubernetes 集群/集群管理/通过 kubectl 连接 Kubernetes 集群.md#)。
+-   您已通过kubectl连接到集群，参见[通过 kubectl 连接 Kubernetes 集群](cn.zh-CN/用户指南/Serverless Kubernetes 集群/集群管理/通过 kubectl 连接 Kubernetes 集群.md#)。
 
 ## 使用说明 {#section_and_jfn_j2b .section}
 
@@ -166,7 +166,7 @@ cafe-ingress   foo.bar.com   139.224.76.211   80        1m
 
 通过浏览器测试访问coffee服务。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/153535898510319_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/154821594110319_zh-CN.png)
 
 通过命令行方式测试访问coffee服务。
 
@@ -176,7 +176,7 @@ curl -H "Host: foo.bar.com" http://139.224.76.211/coffee
 
 通过浏览器测试访问tea服务。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/153535898510320_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/154821594110320_zh-CN.png)
 
 通过命令行方式测试访问tea服务。
 
@@ -251,7 +251,7 @@ deploy/tomcat   1         1         1            1           1m
 
 您需要在集群同Region下自行申请一个**性能保障型**SLB实例（如slb.s2.small），可以是私网也可以是公网（依据具体需求）。本例中申请一个公网SLB实例，记录SLB实例的ID。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/153535898510321_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/154821594110321_zh-CN.png)
 
 **3、配置TLS证书**
 
@@ -325,7 +325,7 @@ tomcat-ingress   bar.foo.com   47.101.20.67   80, 443   1m
 
 通过浏览器测试访问tomcat服务：
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/153535898510322_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/154821594110322_zh-CN.png)
 
 通过命令行方式测试访问tomcat服务：
 
