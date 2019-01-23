@@ -33,6 +33,6 @@
 
         您可以在**连接信息**处查看集群的连接地址。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16645/15382910609791_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16645/15482160539791_zh-CN.png)
 
 
