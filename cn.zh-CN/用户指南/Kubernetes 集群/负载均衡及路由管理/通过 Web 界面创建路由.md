@@ -13,13 +13,13 @@
 2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **部署**，进入部署列表页面。
 3.  单击页面右上角**使用模板创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186010771_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310771_zh-CN.png)
 
 4.  选择所需的集群和命名空间，选择样例模板或自定义，然后单击**创建**。
 
     本例中，示例中创建3个nginx应用，一个代表旧的应用old-nginx，一个代表新的应用 new-nginx，此外创建一个domain-nginx应用，用于测试集群访问域名。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186010772_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310772_zh-CN.png)
 
     old-nginx的编排模板如下所示：
 
@@ -148,7 +148,7 @@
 
     等待服务创建完成后，在服务列表，您可看到本示例创建的服务。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186010773_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310773_zh-CN.png)
 
 
 ## 步骤2 创建路由 {#section_gwv_tyn_vdb .section}
@@ -157,11 +157,11 @@
 2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **路由**，进入路由页面。
 3.  选择所需的集群和命名空间，单击页面右上角的**创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186010774_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310774_zh-CN.png)
 
 4.  在弹出的路由创建对话框中，首先配置路由名称，本例为 nginx-ingress。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186010775_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310775_zh-CN.png)
 
 5.  对路由规则进行配置。
 
@@ -169,7 +169,7 @@
 
     本例中配置添加一条复杂的路由规则，配置集群默认的测试域名和虚拟主机名称，展示基于域名的路由服务。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186010776_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310776_zh-CN.png)
 
     -   基于默认域名的简单路由，即使用集群的默认域名对外提供访问服务。
         -   **域名配置**：使用集群的默认域名，本例中是 `test.[cluster-id].[region-id].alicontainer.com`。
@@ -206,7 +206,7 @@
 
     在本例中，设置Header请求头带有`foo=^bar$`的灰度发布规则，仅带有该请求头的客户端请求才能访问到new-nginx 服务。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186010777_zh-CN.png) 
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310777_zh-CN.png) 
 
     -   **服务**：路由规则配置的服务。
     -   **类型**：支持Header（请求头）、Cookie和Query（请求参数）的匹配规则。
@@ -220,12 +220,12 @@
 
     您也可单击**添加**按钮，输入注解名称和值，即Ingress的annotation键值对，Ingress的注解参见[https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186010778_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310778_zh-CN.png)
 
 8.  配置 TLS。勾选**开启** TLS，配置安全的路由服务。具体可参见[配置安全的路由服务](cn.zh-CN/用户指南/Kubernetes 集群/负载均衡及路由管理/Ingress 支持.md#section_j4d_jrs_vdb)。
     -   您可选择使用已有密钥。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186010779_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310779_zh-CN.png)
 
         1.  登录 master 节点，创建tls.key和 tls.crt。
 
@@ -242,7 +242,7 @@
         3.  执行命令 `kubectl get secret`，您可看到该 secret 已经成功创建。在 Web 界面可选择创建的foo.bar这个 secret。
     -   您可选择在 TLS 界面上利用已创建的 TLS 私钥和证书，一键创建 secret。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186010781_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310781_zh-CN.png)
 
         1.  登录 master 节点，创建 tls.key和tls.crt。
 
@@ -256,23 +256,23 @@
 
     标签的作用是为Ingress添加对应的标签，标示该Ingress的特点。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186010783_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310783_zh-CN.png)
 
 10. 最后单击**创建**，返回路由列表。
 
     等待一段时间，可以看到一条路由。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186010784_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310784_zh-CN.png)
 
 11. 单击路由中的访问域名 `test.[cluster-id].[region-id].alicontainer.com`，以及 `foo.bar.com` ，可访问 nginx 的欢迎页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186110786_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310786_zh-CN.png)
 
     单击指向new-nginx服务的路由地址，发现指向了old-nginx应用的页面。
 
     **说明：** 在浏览器中访问路由地址，默认情况下，请求头（Header）中没有前面步骤中定义的`foo=^bar$`，因此流量会导向old-nginx应用。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/153829186110791_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/154821732310791_zh-CN.png)
 
 12. SSH登录到Master节点，执行以下命令，模拟带有特定请求头的访问结果。
 
