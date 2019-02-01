@@ -12,14 +12,14 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
 
 -   自动发现应用拓扑
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154812420537130_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154900551837130_zh-CN.png)
 
 -   自动发现并监控接口
 -   捕获异常事务和SQL分析、慢事务
 -   Java异常报表
 -   查询基于调用链的事务快照
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154812420537131_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154900551937131_zh-CN.png)
 
 -   即席多维排查（多维度调用链搜索，异常调用链搜索）
 -   PaaS平台集成
@@ -35,12 +35,12 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
 2.  单击左侧导航栏**市场** \> **应用目录**，在应用目录页面选择**ack-arms-pilot**。
 3.  在应用目录-ack-arms-pilot页面，单击右侧的**创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154812420537035_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154900551937035_zh-CN.png)
 
 
 单击左侧导航栏**应用** \> **无状态**，选择目标集群和命名空间，可以看到名称为ack-arms-pilot-default-ack-arms-pilot的应用已成功创建。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154812420537071_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154900551937071_zh-CN.png)
 
 ## 授权 {#section_q5g_fgq_kgb .section}
 
@@ -51,7 +51,7 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
 2.  单击目标集群的名称，查看集群的详细信息。
 3.  单击集群资源区域的**Worker RAM角色**，进入RAM访问控制台的RAM角色管理页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154812420537044_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154900551937044_zh-CN.png)
 
     **说明：** 
 
@@ -63,22 +63,22 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
 
     1.  单击左侧导航栏**角色管理**，在**角色名**中输入**Worker RAM角色**的名称进行搜索。单击**角色名称**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154812420537085_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154900551937085_zh-CN.png)
 
     2.  在**基本信息**区域，单击页面右上角的**编辑基本信息**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154812420537088_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154900551937088_zh-CN.png)
 
     **方法二**
 
     单击页面右下角**体验新版**，切换到新版RAM访问控制台。在容器服务管理控制台单击**Worker RAM 角色**重新登录RAM访问控制台。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154812420537079_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154900551937079_zh-CN.png)
 
 4.  在RAM角色管理页面，单击权限管理区域的权限策略名称，查看具体的权限策略。
 5.  在权限策略管理页面，单击策略内容区域的**修改策略内容**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154812420537053_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154900551937053_zh-CN.png)
 
 6.  在策略内容区域增加以下字段后，单击**确定**。
 
@@ -90,7 +90,7 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
     }
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154812420537054_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154900551937054_zh-CN.png)
 
 
 ## 部署ARMS应用监控 {#section_nmg_xlq_kgb .section}
@@ -112,33 +112,83 @@ annotations:
 2.  单击页面右上角**使用模板创建**。
 3.  选择目标集群和命名空间，创建Deployment。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154812420537055_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154900551938486_zh-CN.png)
 
     ```
-    apiVersion: apps/v1beta2 
+    apiVersion: apps/v1beta1 # for versions before 1.8.0 use apps/v1beta1
     kind: Deployment
     metadata:
-      name: nginx-deployment-basic
+      name: arms-springboot-demo
       labels:
-        app: nginx
+        app: arms-springboot-demo
     spec:
       replicas: 2
       selector:
         matchLabels:
-          app: nginx
+          app: arms-springboot-demo
       template:
         metadata:
           annotations:
             armsPilotAutoEnable: "on"
-            armsPilotCreateAppName: "nginx-deployment-basic"
+            armsPilotCreateAppName: "arms-k8s-demo"
           labels:
-            app: nginx
+            app: arms-springboot-demo
         spec:
           containers:
-          - name: nginx
-            image: nginx:1.7.9 
-            ports:
-            - containerPort: 80
+            - resources:
+                limits:
+                  cpu: 0.5
+              image: registry.cn-hangzhou.aliyuncs.com/arms-docker-repo/arms-springboot-demo:v0.1
+              imagePullPolicy: Always
+              name: arms-springboot-demo
+              env:
+                - name: MYSQL_SERVICE_HOST
+                  value: "arms-demo-mysql"
+                - name: MYSQL_SERVICE_PORT
+                  value: "3306"
+    ---
+    apiVersion: apps/v1beta1 # for versions before 1.8.0 use apps/v1beta1
+    kind: Deployment
+    metadata:
+      name: arms-demo-mysql
+      labels:
+        app: mysql
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: mysql
+      template:
+        metadata:
+          labels:
+            app: mysql
+        spec:
+          containers:
+            - resources:
+                limits:
+                  cpu: 0.5
+              image: registry.cn-hangzhou.aliyuncs.com/arms-docker-repo/arms-demo-mysql:v0.1
+              name: mysql
+              ports:
+                - containerPort: 3306
+                  name: mysql
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        name: mysql
+      name: arms-demo-mysql
+    spec:
+      ports:
+        # the port that this service should serve on
+        - name: arms-mysql-svc
+          port: 3306
+          targetPort: 3306
+      # label keys and values that must match in order to receive traffic for this service
+      selector:
+        app: mysql
+    ---
     ```
 
 
@@ -149,6 +199,6 @@ annotations:
 
     **说明：** 若**操作列**无**ARMS控制台**，请检查您是否授权容器服务调用ARMS，可参考[授权](#section_q5g_fgq_kgb)。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154812420537099_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/154900551937099_zh-CN.png)
 
 
