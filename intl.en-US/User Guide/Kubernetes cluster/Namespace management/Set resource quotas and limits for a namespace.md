@@ -15,7 +15,7 @@ For a namespace, you can set the quotas of resources, such as CPU, memory, and n
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs). 
 2.  In the left-side navigation pane under Kubernetes, choose **Clusters** \> **Namespace**. Select the target cluster and click **ResourceQuota and LimitRange** on the right of the **test** namespace. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18855/154996471810706_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18855/154996481310706_en-US.png)
 
 3.  In the displayed dialog box, set resource quotas and default resource limits. 
 
@@ -23,11 +23,11 @@ For a namespace, you can set the quotas of resources, such as CPU, memory, and n
 
     1.  Set resource quotas for the namespace. 
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18855/154996471810707_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18855/154996481310707_en-US.png)
 
     2.  To control the amount of resources consumed by containers, set resource limits and resource requests for containers in this namespace. For more information, see [https://kubernetes.io//memory-default-namespace/](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/). 
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18855/154996471811268_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18855/154996481411268_en-US.png)
 
 4.  Connect to the Master node and then run the following commands to view the resources of the **test** namespace: 
 
