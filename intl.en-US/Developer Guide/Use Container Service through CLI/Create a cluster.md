@@ -1,6 +1,6 @@
 # Create a cluster {#reference_rls_pwb_wdb .reference}
 
-This topic describes how to create a cluster and the specified number of nodes. For API descriptions, see [Create a Kubernetes cluster](reseller.en-US/Developer Guide/Cluster API list/Create a Kubernetes cluster.md#),[Create a multi-zone Kubernetes cluster](reseller.en-US/Developer Guide/Cluster API list/Create a multi-zone Kubernetes cluster.md#), and [Create a multi-zone Kubernetes cluster](reseller.en-US/Developer Guide/Cluster API list/Create a multi-zone Kubernetes cluster.md#).
+This topic describes how to create a cluster and the specified number of nodes. For API descriptions, see [Create a Kubernetes cluster](reseller.en-US/Developer Guide/Cluster API list/Create a Kubernetes cluster.md#), [Create a multi-zone Kubernetes cluster](reseller.en-US/Developer Guide/Cluster API list/Create a multi-zone Kubernetes cluster.md#), and [Create a multi-zone Kubernetes cluster](reseller.en-US/Developer Guide/Cluster API list/Create a multi-zone Kubernetes cluster.md#).
 
 ## API request and response {#section_ctn_swb_wdb .section}
 
