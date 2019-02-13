@@ -11,7 +11,7 @@ This topic describes the changes to Alibaba Cloud Container Service for Kubernet
  |N/A|
 |New feature|The managed Kubernetes is released.|N/A|
 |New feature|Application management is optimized. You can manage deployment versions of applications. For example, you can roll back to an earlier version.|N/A|
-|New feature|Istio can be integrated with Alibaba Cloud Container Service for Kubernetes.|For more information, see[Overview](../../../../../reseller.en-US/User Guide/Kubernetes cluster/Istio management/Overview.md#)|
+|New feature|Istio can be integrated with Alibaba Cloud Container Service for Kubernetes.|For more information, see [Overview](../../../../../reseller.en-US/User Guide/Kubernetes cluster/Istio management/Overview.md#).|
 |September 2018|New feature|Alibaba Cloud Container Service for Kubernetes 1.11 is available.-   New feature includes CRD upgrade, CoreDNS GA, pod priority setting, and preemptive scheduling.
 -   You can select v1.10 or v1.11 as needed.
 -   You can configure multiple containers and create StatefulSet applications in the Container Service console.
@@ -23,7 +23,7 @@ This topic describes the changes to Alibaba Cloud Container Service for Kubernet
 |August 2018|New feature|The managed Kubernetes is released for beta.|[Create a managed Kubernetes cluster](../../../../../reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a managed Kubernetes cluster.md#)|
 |New feature|The Istio addon plugin is available.|N/A|
 |July 2018|New region|The Australia region is available for Alibaba Cloud Container Service for Kubernetes.|N/A|
-|New feature|Gray releases and batch releases are available.|For more information, see [Gray releases and blue/green deployment](../../../../../reseller.en-US/Best Practices/Release/Implement a gray release and a blue__green deployment through Ingress in a Kubernetes cluster/Gray releases and blue__green deployment.md#) and[Use batch release on Alibaba Cloud Container Service for Kubernetes](../../../../../reseller.en-US/User Guide/Kubernetes cluster/Release management/Use batch release on Alibaba Cloud Container Service for Kubernetes.md#)|
+|New feature|Gray releases and batch releases are available.|For more information, see [Gray releases and blue/green deployment](../../../../../reseller.en-US/Best Practices/Release/Implement a gray release and a blue__green deployment through Ingress in a Kubernetes cluster/Gray releases and blue__green deployment.md#) and [Use batch release on Alibaba Cloud Container Service for Kubernetes](../../../../../reseller.en-US/User Guide/Kubernetes cluster/Release management/Use batch release on Alibaba Cloud Container Service for Kubernetes.md#).|
 |June 2018|New region|Asia Pacific NE 1 \(Tokyo\) and China North 5 \(Hohhot\) are available.|N/A|
 |New feature|Alibaba Cloud Container Service for Kubernetes 1.10 supports FPGA and HugePages.|N/A|
 |New feature|The monitoring function is upgraded. Specifically, application monitoring and alarm notifications can be configured.|[Integration and usage with CloudMonitor](../../../../../reseller.en-US/User Guide/Kubernetes cluster/Monitoring management/Integration and usage with CloudMonitor.md#)|
@@ -35,7 +35,7 @@ This topic describes the changes to Alibaba Cloud Container Service for Kubernet
 
  |N/A|
 |New feature|Serverless Kubernetes is released in Alibaba Cloud Container Service for Kubernetes.|[Serverless Kubernetes cluster](reseller.en-US/Product Introduction/Serverless Kubernetes cluster.md#)|
-|New feature|Blue/green deployment, gray releases, and A/B testing are available.|For more information, see[Gray releases and blue/green deployment](../../../../../reseller.en-US/Best Practices/Release/Implement a gray release and a blue__green deployment through Ingress in a Kubernetes cluster/Gray releases and blue__green deployment.md#)|
+|New feature|Blue/green deployment, gray releases, and A/B testing are available.|For more information, see [Gray releases and blue/green deployment](../../../../../reseller.en-US/Best Practices/Release/Implement a gray release and a blue__green deployment through Ingress in a Kubernetes cluster/Gray releases and blue__green deployment.md#).|
 |April 2018|New region| India \(Mumbai\), Indonesia \(Jakarta\), and Dubai are available.
 
  Five new regions covering the Southeast Asia, the Middle East, and India are available, and can use v1.9 that is the latest and stable version.
