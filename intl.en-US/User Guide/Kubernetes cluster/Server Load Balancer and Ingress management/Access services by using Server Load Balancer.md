@@ -96,7 +96,7 @@ Method 2
 2.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs) and click **Dashboard** on the right of the target cluster.
 3.  Click **CREATE** in the upper-right corner to create an application.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15500754189066_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15500756159066_en-US.png)
 
 4.  Click the **CREATE FROM FILE** tab. Select the nginx-svc.yml file you saved.
 5.  Click **UPLOAD**.
@@ -107,7 +107,7 @@ Method 2
 
     You can view the created Nginx service `http-svc` and the SLB address `http://114.55.79.24:80`.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15500754189067_en-US.png) 
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15500756159067_en-US.png) 
 
 7.  Open this address in your browser to access the service.
 
@@ -117,7 +117,7 @@ Method 2
 2.  In the left-side navigation pane under Kubernetes, choose **Application** \> **Deployment**.
 3.  Select the target cluster and namespace, and then click **Create by Template** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/155007541813797_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/155007561513797_en-US.png)
 
 4.  Select the custom **Resource Type** and then copy the following code to the **Template**.
 
@@ -142,11 +142,11 @@ Method 2
 5.  Click **DEPLOY**.
 6.  Click **Kubernetes Dashboard** to check the deployment progress on the dashboard page.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/155007541813798_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/155007561513798_en-US.png)
 
     Alternatively, choose **Application** \> **Service** in the left-side navigation pane, and select the target cluster and namespace to view the deployed service.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/155007541813800_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/155007561513800_en-US.png)
 
 
 ## More information {#section_a31_43s_vdb .section}
@@ -502,17 +502,17 @@ spec:
 |service.beta.kubernetes.io/alicloud-loadbalancer-charge-type|Valid values: paybytraffic or paybybandwidth.|paybytraffic|
 |service.beta.kubernetes.io/alicloud-loadbalancer-id|SLB instance ID. You can specify an existing SLB instance by using service.beta.kubernetes.io/alicloud-loadbalancer-id, and existing listeners will be overridden. Note that the SLB instance will not be deleted if you delete the service.|None|
 |service.beta.kubernetes.io/alicloud-loadbalancer-backend-label|Use labels to specify the Worker nodes to be mounted to the backend of the SLB instance.|None|
-|service.beta.kubernetes.io/alicloud-loadbalancer-spec|SLB instance specification. For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4182.md\#](../../../../../reseller.en-US/Developer Guide/Server Load Balancer instances/CreateLoadBalancer.md#)|None|
+|service.beta.kubernetes.io/alicloud-loadbalancer-spec|SLB instance specification. For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4182.md\#](../../../../../reseller.en-US/Developer Guide/Server Load Balancer instances/CreateLoadBalancer.md#).|None|
 |service.beta.kubernetes.io/alicloud-loadbalancer-persistence-timeout|Session persistence timeout \(in seconds\).This parameter setting applies only to TCP listeners and the value can be 0 to 3600.
 
 The default value is 0, indicating that the session remains disabled.
 
-For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#)
+For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#).
 
 |0|
 |service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session|Whether to enable session persistence. Valid value: on | off.**Note:** It applies only to HTTP and HTTPS listeners.
 
-For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4203.md\#](../../../../../reseller.en-US/Developer Guide/HTTP listeners/CreateLoadBalancerHTTPListener.md#) and [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4204.md\#](../../../../../reseller.en-US/Developer Guide/HTTPS listeners/CreateLoadBalancerHTTPSListener.md#)
+For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4203.md\#](../../../../../reseller.en-US/Developer Guide/HTTP listeners/CreateLoadBalancerHTTPListener.md#) and [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4204.md\#](../../../../../reseller.en-US/Developer Guide/HTTPS listeners/CreateLoadBalancerHTTPSListener.md#).
 
 |off|
 |service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session-type|Method used to handle the cookie. Valid values:-   insert: Insert the cookie.
@@ -523,12 +523,12 @@ For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/E
 -   It applies only to HTTP and HTTPS listeners.
 -   If you set the value of the parameter service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session to on, you must specify this parameter.
 
-For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4203.md\#](../../../../../reseller.en-US/Developer Guide/HTTP listeners/CreateLoadBalancerHTTPListener.md#) and [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4204.md\#](../../../../../reseller.en-US/Developer Guide/HTTPS listeners/CreateLoadBalancerHTTPSListener.md#)
+For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4203.md\#](../../../../../reseller.en-US/Developer Guide/HTTP listeners/CreateLoadBalancerHTTPListener.md#) and [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4204.md\#](../../../../../reseller.en-US/Developer Guide/HTTPS listeners/CreateLoadBalancerHTTPSListener.md#).
 
 |None|
 |service.beta.kubernetes.io/alicloud-loadbalancer-cookie-timeout|Cookie timeout period \(in seconds\). Value range: 1 to 86400.**Note:** If the service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session parameter is set to on and the service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session-type parameter is set to insert, this parameter is mandatory.
 
-For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4203.md\#](../../../../../reseller.en-US/Developer Guide/HTTP listeners/CreateLoadBalancerHTTPListener.md#) and [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4204.md\#](../../../../../reseller.en-US/Developer Guide/HTTPS listeners/CreateLoadBalancerHTTPSListener.md#)
+For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4203.md\#](../../../../../reseller.en-US/Developer Guide/HTTP listeners/CreateLoadBalancerHTTPListener.md#) and [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4204.md\#](../../../../../reseller.en-US/Developer Guide/HTTPS listeners/CreateLoadBalancerHTTPSListener.md#).
 
 |None|
 |service.beta.kubernetes.io/alicloud-loadbalancer-cookie|Cookie configured on the server.The cookie must be a string of 1 to 200 characters and can only contain ASCII letters and numeric characters. It cannot contain commas \(,\), semicolons \(;\), or spaces, and it cannot start with a dollar sign \($\).
@@ -537,7 +537,7 @@ For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/E
 
 If the service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session parameter is set to on and the service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session-type parameter is set to server, this parameter is mandatory.
 
-For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4203.md\#](../../../../../reseller.en-US/Developer Guide/HTTP listeners/CreateLoadBalancerHTTPListener.md#) and [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4204.md\#](../../../../../reseller.en-US/Developer Guide/HTTPS listeners/CreateLoadBalancerHTTPSListener.md#)
+For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4203.md\#](../../../../../reseller.en-US/Developer Guide/HTTP listeners/CreateLoadBalancerHTTPListener.md#) and [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4204.md\#](../../../../../reseller.en-US/Developer Guide/HTTPS listeners/CreateLoadBalancerHTTPSListener.md#).
 
 |None|
 |service.beta.kubernetes.io/alicloud-loadbalancer-master-zoneid|Zone ID of the primary backend server.|None|
@@ -553,33 +553,33 @@ For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/E
 |service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth|SLB instance bandwidth.|50|
 |service.beta.kubernetes.io/alicloud-loadbalancer-cert-id|ID of a certificate on Alibaba Cloud. You must upload a certificate first.|None|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-flag|Valid values: on | off.|The default value is off. Modifying this parameter is not required for TCP, because the health check function is enabled for TCP by default and this parameter cannot be set.|
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-type|Health check type. Valid values: tcp | http.For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#)
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-type|Health check type. Valid values: tcp | http.For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#).
 
 |tcp|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-uri|URI used for health checks.**Note:** If the health check type is TCP, you do not need to set this parameter.
 
-For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#)
+For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#).
 
 |None|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-port|Port used for health checks. Valid values:-   -520: The backend port configured for the listener is used by default.
 -   1-65535: The port opened on the backend server for health checks is used.
 
-For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#)
+For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#).
 
 |None|
-|service.beta.kubernetes.io/alicloud-loadbalancer-healthy-threshold| For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#)
+|service.beta.kubernetes.io/alicloud-loadbalancer-healthy-threshold| For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#).
 
  |None|
 |service.beta.kubernetes.io/alicloud-loadbalancer-unhealthy-threshold|The number of consecutive health check successes before the backend server is determined healthy \(from failure to success\). Value range:2 to 10
 
-For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#)
+For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#).
 
 |None|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval| Time interval between two consecutive health checks \(seconds\).
 
  Value range: 1 to 50.
 
- For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#)
+ For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#).
 
  |None|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-timeout| Time period required by waiting for a health check response \(in seconds\). If the backend ECS instance does not send a valid response within a specified period of time, the system determines that the health check has failed.
@@ -588,14 +588,14 @@ For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/E
 
  **Note:** If the value of the parameter service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-timeout is less than the value of the parameter service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval, service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-timeout is invalid and the timeout period equals the value of service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval.
 
- For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#)
+ For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4205.md\#](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#).
 
  |None|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-timeout|Time period required by waiting for a health check response \(in seconds\). If the backend ECS instance does not send a valid response within a specified period of time, the system determines that the health check has failed.Value range: 1 to 300.
 
 **Note:** If the value of the parameter service.beta.kubernetes.io/alicloud-loadbalancer-health-check-timeout is less than that of the parameter service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval, service.beta.kubernetes.io/alicloud-loadbalancer-health-check-timeout is invalid, and the timeout period equals the value of the parameter service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval.
 
-For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4203.md\#](../../../../../reseller.en-US/Developer Guide/HTTP listeners/CreateLoadBalancerHTTPListener.md#)
+For more information, see [../../../../../dita-oss-bucket/SP\_23/DNSLB11870158/EN-US\_TP\_4203.md\#](../../../../../reseller.en-US/Developer Guide/HTTP listeners/CreateLoadBalancerHTTPListener.md#).
 
 |None|
 
