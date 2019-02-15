@@ -31,11 +31,11 @@ Docker的数据通过联合文件系统的方式存储到磁盘上。Docker默�
     1.  执行ls -l /dev/xvd\*或者ls -l /dev/vd\*命令，验证是否和上述步骤中记录的挂载点一致。
     2.  通过fdisk命令对磁盘进行分区，然后使用mkfs.ext4命令格式化磁盘。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/119956/155014244738212_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/119956/155019642338212_zh-CN.png)
 
 3.  移动Docker数据到新的磁盘。
 
-    如果不希望中断节点上正在运行的应用，您需要对应用进行迁移。迁移swarm集群，请参考[指定多节点调度](../../../../../intl.zh-CN/用户指南/应用管理/指定多节点调度.md#)。迁移Kubernetes集群，请参考[Safely Drain a Node while Respecting Application SLOs](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/)。
+    如果不希望中断节点上正在运行的应用，您需要对应用进行迁移。迁移swarm集群，请参见[指定多节点调度](../../../../../intl.zh-CN/用户指南/应用管理/指定多节点调度.md#)。迁移Kubernetes集群，请参见[Safely Drain a Node while Respecting Application SLOs](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/)。
 
     1.  首先停止Docker Daemon和kubelet，保证迁移时的数据完整。可以使用service kubelet stop和service docker stop 命令进行停止。
     2.  先移动Docker的目录到一个备份的目录。例如：mv /var/lib/docker /var/lib/docker\_data。
@@ -57,11 +57,11 @@ Docker的数据通过联合文件系统的方式存储到磁盘上。Docker默�
     1.  启动Docker Daemon和kubelet，命令分别是service docker start和service kubelet start。
     2.  执行df命令，可看到/var/lib/docker挂载到了新的磁盘上。如果需要启动Kubernetes集群，请跳过此步骤。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/119956/155014244738133_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/119956/155019642438133_zh-CN.png)
 
     3.  执行 docker ps命令，查看容器是否丢失。根据需要，重启相关容器。如没有设置`restart:always`标签的容器。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/119956/155014244738134_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/119956/155019642438134_zh-CN.png)
 
 5.  您可以通过调度的方式使被迁移走的容器回归到这个节点上来。
 
