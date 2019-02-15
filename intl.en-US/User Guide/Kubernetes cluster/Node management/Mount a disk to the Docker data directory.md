@@ -20,7 +20,7 @@ Generally, a Docker image occupies a large amount of disk space. If you want to 
 To mount a disk to the Docker data directory, follow these steps:
 
 1.  Create a disk and mount it to the target ECS instance for which you want to expand the disk capacity.
-    1.  Log on to the [ECS console](https://partners-intl.console.aliyun.com/#/ecs) to create a disk.
+    1.  Log on to the [ECS console](https://ecs.console.aliyun.com/) to create a disk.
     2.  In the left-side navigation pane, click **Instances**.
     3.  Click the target ECS instance ID.
     4.  In the left-side navigation pane, click **Disks**.
@@ -31,11 +31,11 @@ To mount a disk to the Docker data directory, follow these steps:
     1.  Run the ls -l /dev/xvd\* or ls -l /dev/vd\* command to verify whether a disk that has the recorded mounting point has been mounted to the ECS instance.
     2.  Run the fdisk command to partition the new disk, and then run the mkfs.ext4 command to format the new disk.
 
-        ![](images/38212_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/119956/155019728838212_en-US.png)
 
 3.  Migrate the Docker data to the new disk.
 
-    If you do not want to suspend the applications that run on the target ECS instance, you must migrate the applications. For how to migrate applications on a Swarm cluster, see [Schedule an application to specified nodes](../../../../../reseller.en-US/User Guide/Applications/Schedule an application to specified nodes.md#). For how to migrate applications on a Kubernetes cluster, see [Safely drain a node while respecting application SLOs](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/).
+    If you do not want to suspend the applications that run on the target ECS instance, you must migrate the applications. For how to migrate applications on a Swarm cluster, see [Schedule an application to specified nodes](../../../../../intl.en-US/User Guide/Applications/Schedule an application to specified nodes.md#). For how to migrate applications on a Kubernetes cluster, see [Safely drain a node while respecting application SLOs](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/).
 
     1.  To ensure that data can be migrated, run the service docker stop command to stop Docker daemon, and run the service kubelet stop command to stop kubelet.
     2.  Migrate the Docker directory data to a backup directory. For example, mv /var/lib/docker /var/lib/docker\_data.
@@ -57,11 +57,11 @@ To mount a disk to the Docker data directory, follow these steps:
     1.  Run the service docker start command to start the Docker daemon, and run the service kubelet start command to start kubelet.
     2.  Run the df command to verify whether /var/lib/docker has been mounted to the new disk. If you need to start the Kubernetes cluster, skip this step.
 
-        ![](images/38133_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/119956/155019728838133_en-US.png)
 
     3.  Run the docker ps command to check whether containers are lost. Restart containers as needed. For example, you can restart a container that has not been set the `restart:always` label.
 
-        ![](images/38134_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/119956/155019728838134_en-US.png)
 
 5.  If a container has been migrated to other nodes, you can schedule it back to the target node to which you mounted the new disk.
 
