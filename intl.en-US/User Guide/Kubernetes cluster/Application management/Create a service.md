@@ -15,11 +15,11 @@ You have created a Kubernetes cluster successfully. For how to create a Kubernet
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
 2.  Under Kubernetes, click **Application \>** \> **Deployment in the left-side navigation pane.**Click **Create by Template** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030268911022_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030341111022_en-US.png)
 
 3.  Select the cluster and namespace to create the deployment. In the Resource Type drop-down list, select Custom to customize the template or a sample template. Then, click **DEPLOY**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030268911023_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030341111023_en-US.png)
 
     In this example, the sample template is an Nginx deployment.
 
@@ -49,20 +49,20 @@ You have created a Kubernetes cluster successfully. For how to create a Kubernet
 
 4.  Go to the Kubernetes dashboard to view the running status of this deployment.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6899/15503026894455_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6899/15503034114455_en-US.png)
 
 
 ## Step 2 Create a service {#section_efy_x1n_vdb .section}
 
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-2.  Under Kubernetes, click **Application \>** \> **Service **in the left-side navigation pane.
+2.  In the left-side navigation pane, choose **Discovery and Load Balancing** \> **Service **.
 3.  Select the cluster and namespace from the Clusters and Namespace drop-down lists. Click **Create** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6899/15503026894456_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030341111025_en-US.png)
 
 4.  Complete the configurations in the displayed Create Service dialog box.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030268911026_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030341111026_en-US.png)
 
     -   **Name:** Enter the service name. In this example, enter nginx-svc.
     -   **Type:** Select the service type, namely, the access method of the service.
@@ -71,13 +71,15 @@ You have created a Kubernetes cluster successfully. For how to create a Kubernet
         -   Server Load Balancer: Exposes the service by using Server Load Balancer, which is provided by Alibaba Cloud. Select public or inner to access the service by using the Internet or intranet. Alibaba Cloud Server Load Balancer can route to the NodePort and ClusterIP services.
     -   **Related deployment:** Select the backend object to bind with this service. In this example, select nginx-deployment-basic, the deployment created in the preceding step. The corresponding Endpoints object is not created if no deployment is selected here. You can manually map the service to your own endpoints. For more information, see [Services without selectors](https://kubernetes.io/docs/concepts/services-networking/service/#services-without-selectors).
     -   **Port Mapping:** Add the service port and container port. The container port must be the same as the one exposed in the backend pod.
+    -   **annotation**: Add an annotation to the service. You can set SLB parameters. For example, to set the peak bandwidth of the service to 20 Mbit/s, you can set this parameter as `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20`. For more information, see [Access services by using Server Load Balancer](reseller.en-US/User Guide/Kubernetes cluster/Server Load Balancer and Ingress management/Access services by using Server Load Balancer.md#).
+    -   **Tag**: Add a tag to the service to identify the service.
 5.  Click **Create**. The nginx-svc service is displayed on the Service List page.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030268911027_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030341111027_en-US.png)
 
 6.  View the basic information of the service. Access the external endpoint of the nginx-svc service in the browser.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6899/15503026894461_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6899/15503034114461_en-US.png)
 
 
 Then, you have created a service that is related to a backend deployment and accessed the Nginx welcome page successfully.
