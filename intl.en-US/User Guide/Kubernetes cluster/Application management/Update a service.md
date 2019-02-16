@@ -8,15 +8,15 @@ You can update a service in the Container Service console or Kubernetes dashboar
 2.  Under Kubernetes, click **Application \>** \> **Service **in the left-side navigation pane.
 3.  Select the cluster and namespace from the Clusters and Namespace drop-down lists. Click **Update** at the right of the service \(nginx-svc in this example\).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6903/15503119854487_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6903/15503123664487_en-US.png)
 
-4.  The Update dialog box appears. Modify the template. In this example, change the nodePort to **31000**. Then, click **OK**.
+4.  The Update dialog box appears. Modify the template. Then, click **OK**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16666/155031198511041_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16666/155031236611041_en-US.png)
 
-5.  On the Service List page, view the changes of the service. In this example, the nodePort is changed as follows.
+5.  Select the target service from the service list, and then click **Details** on the right to view the changes of the service. In this example, the service tag is changed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16666/155031198511042_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16666/155031236711042_en-US.png)
 
 
 ## Update a service in Kubernetes dashboard {#section_rzd_x2n_vdb .section}
@@ -25,15 +25,15 @@ You can update a service in the Container Service console or Kubernetes dashboar
 2.  Under Kubernetes, click **Clusters** in the left-side navigation pane.
 3.  Click **Dashboard** at the right of the cluster to go to the Kubernetes dashboard.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6903/15503119854490_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6903/15503123674490_en-US.png)
 
 4.  In the Kubernetes dashboard, select the corresponding namespace and click **Services** in the left-side navigation pane.
 5.  Click the icon at the right of the service and then select **View/edit YAML** from the drop-down list.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6903/15503119864491_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6903/15503123674491_en-US.png)
 
 6.  The Edit a Service dialog box appears. Modify the configurations. In this example, change the nodePort to **31000**. Then, click **UPDATE**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6903/15503119864492_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6903/15503123674492_en-US.png)
 
 
