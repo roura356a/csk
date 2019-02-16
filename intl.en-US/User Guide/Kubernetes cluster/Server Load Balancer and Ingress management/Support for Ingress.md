@@ -11,7 +11,7 @@ root@master # kubectl run nginx --image=registry.cn-hangzhou.aliyuncs.com/acs/ne
 
 root@master # kubectl expose deploy nginx --name=http-svc --port=80 --target-port=80
 root@master # kubectl expose deploy nginx --name=http-svc1 --port=80 --target-port=80
-root@master # kubectl expose deploy nginx --name=http-svc2 --port=80 --target-port80
+root@master # kubectl expose deploy nginx --name=http-svc2 --port=80 --target-port=80
 root@master # kubectl expose deploy nginx --name=http-svc3 --port=80 --target-port=80
 ```
 
@@ -37,8 +37,8 @@ spec:
           servicePort: 80
 EOF
 root@master # kubectl get ing
-NAME HOSTS ADDRESS PORTS AGE
-simple * 101.37.192.211 80 11s
+NAME            HOSTS         ADDRESS          PORTS     AGE
+simple          *             101.37.192.211   80        11s
 ```
 
 Now visit `http://101.37.192.211/svc` to access the Nginx service.
@@ -48,7 +48,7 @@ Now visit `http://101.37.192.211/svc` to access the Nginx service.
 If you have multiple domain names providing different external services, you can generate the following configuration to implement a simple fanout effect based on domain names:
 
 ```
-root@master #cat <<EOF | kubectl create -f - 
+root@master # cat <<EOF | kubectl create -f - 
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -75,8 +75,8 @@ spec:
           servicePort: 80    
 EOF
 root@master # kubectl get ing
-NAME HOSTS ADDRESS PORTS AGE
-simple-fanout * 101.37.192.211 80 11s
+NAME            HOSTS         ADDRESS          PORTS     AGE
+simple-fanout   *             101.37.192.211   80        11s
 ```
 
 Then, you can access the `http-svc1` service by using `http://foo.bar.com/foo`, access the `http-svc2` service by using `http://foo.bar.com/bar`, and access the `http-svc3` service by using`http://foo.example.com/film`.
@@ -106,14 +106,14 @@ metadata:
   name: shared-dns
 spec:
   rules:
-  - host: foo.[cluster-id].[region-id].alicontainer.com ##Replace with the default service access domain name of your cluster.
+  - host: foo.[cluster-id].[region-id].alicontainer.com  ##Replace with the default service access domain name of your cluster.
     http:
       paths:
       - path: /
         backend:
           serviceName: http-svc1
           servicePort: 80
-  - host: bar.[cluster-id].[region-id].alicontainer.com ##Replace with the default service access domain name of your cluster.
+  - host: bar.[cluster-id].[region-id].alicontainer.com  ##Replace with the default service access domain name of your cluster.
     http:
       paths:
       - path: /
@@ -122,8 +122,8 @@ spec:
           servicePort: 80    
 EOF
 root@master # kubectl get ing
-NAME HOSTS ADDRESS PORTS AGE
-shared-dns foo.[cluster-id].[region-id].alicontainer.com,bar.[cluster-id].[region-id].alicontainer.com 47.95.160.171 80 40m
+NAME            HOSTS         ADDRESS          PORTS     AGE
+shared-dns   foo.[cluster-id].[region-id].alicontainer.com,bar.[cluster-id].[region-id].alicontainer.com             47.95.160.171   80        40m
 ```
 
 Then, you can access the `http-svc1` service by using `http://foo.[cluster-id].[region-id].alicontainer.com/`and access the `http-svc2` service by using `http://bar.[cluster-id].[region-id].alicontainer.com`.
@@ -150,7 +150,7 @@ Management of multiple certificates is supported to provide security protection 
     root@master # kubectl create secret tls foo.bar --key tls.key --cert tls.crt
     ```
 
-2.  1. Create a safe Ingress service.
+2.  Create a safe Ingress service.
 
     ```
     root@master # cat <<EOF | kubectl create -f - 
@@ -177,8 +177,8 @@ Management of multiple certificates is supported to provide security protection 
               servicePort: 80
     EOF
     root@master # kubectl get ing
-    NAME HOSTS ADDRESS PORTS AGE
-    tls-fanout * 101.37.192.211 80 11s
+    NAME            HOSTS         ADDRESS          PORTS     AGE
+    tls-fanout      *             101.37.192.211   80        11s
     ```
 
 3.  Follow the notes in **Simple fanout routing based on domain names** to configure the `hosts` file or set the domain name to access the TLS service.
@@ -207,10 +207,10 @@ Management of multiple certificates is supported to provide security protection 
               servicePort: 80
     ```
 
-2.  Log on to the [容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs). Under Kubernetes, click Clusters in the left-side navigation pane. Click **Dashboard**at the right of the cluster to enter the Kubernetes dashboard.
+2.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs). In the left-side navigation pane under Kubernetes, click **Clusters**. Then click **Dashboard**on the right of the target cluster.
 3.  Click **CREATE** in the upper-right corner to create an application.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16679/155032247910659_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16679/155032317310659_en-US.png)
 
 4.  Click the **CREATE FROM FILE** tab. Select the `nginx-ingress.yml` file you saved.
 5.  Click **UPLOAD**.
@@ -221,7 +221,7 @@ Management of multiple certificates is supported to provide security protection 
 
     You can view the created Ingress resource and its access address `http://118.178.174.161/svc`.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16679/155032247910660_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16679/155032317310660_en-US.png)
 
 7.  Enter the address in the browser to access the created `http-svc` service.
 
