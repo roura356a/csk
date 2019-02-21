@@ -11,7 +11,7 @@
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 2.  在左侧导航栏中，选择**容器服务 - Kubernetes** \> **市场** \> **应用目录**。选择**jenkins**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737738448_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785538448_zh-CN.png)
 
 3.  选择**参数**页签。
 4.  修改`AdminPassword`字段。
@@ -26,7 +26,7 @@
 
 5.  选择Kubernetes**集群**以及**命名空间**，填写**发布名称**，并单击**创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737738449_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785538449_zh-CN.png)
 
     **说明：** 建议选择自定义命名空间或default命名空间。本示例中选择自定义命名空间ci。
 
@@ -34,7 +34,7 @@
 7.  选择部署了Jenkins的集群以及相应的命名空间。
 8.  单击Jenkins服务的外部端点，访问并登录Jenkins。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737738450_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785538450_zh-CN.png)
 
 
 ## 创建集群证书和镜像仓库证书，构建和部署示例应用 {#section_zjq_gg2_qgb .section}
@@ -44,15 +44,15 @@
     2.  在右侧的Manage Jenkins页面，单击**系统设置**。
     3.  在**Cloud**区域中，单击**Credentials**右侧的**Add**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737738458_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785538458_zh-CN.png)
 
         在添加凭据前，先在Kubernetes集群的基本信息页面，找到**配置集群凭据**中提供的**KubeConfig**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737738453_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785538453_zh-CN.png)
 
     4.  在弹出的添加凭据对话框中，完成以下配置：
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737738526_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785538526_zh-CN.png)
 
         -   **类型**：选择**Docker Host Certificate Authentication**。
         -   **Client Key**: 填写KubeConfig中client-key-data对应的内容。
@@ -64,11 +64,11 @@
 
         从**Credentials**下拉框中选择上一步添加的凭据，单击**Test Connection**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737738459_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785538459_zh-CN.png)
 
     7.  Kubernetes集群动态分配构建pod，其配置如下图所示。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737738460_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785538460_zh-CN.png)
 
     8.  配置Kubernetes Pod Template。
 
@@ -76,7 +76,7 @@
 
         -   Container jnlp的配置如下图所示。
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737738461_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785538461_zh-CN.png)
 
             使用jenkins-slave-jnlp作为Docker镜像。jenkins-slave-jnlp用于构建节点jnlp连接master。
 
@@ -86,7 +86,7 @@
 
         -   Container kaniko的配置如下图所示。
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737838462_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785638462_zh-CN.png)
 
             使用jenkins-slave-kaniko作为Docker镜像。jenkins-slave-kaniko用于构建和推送应用的镜像。
 
@@ -96,7 +96,7 @@
 
         -   Container kubectl的配置如下图所示。
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737838463_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785638463_zh-CN.png)
 
             使用jenkins-slave-kubectl作为Dokcer镜像。jenkins-slave-kubectl 用于kubectl部署应用。
 
@@ -106,7 +106,7 @@
 
         -   Container maven的配置如下图所示。
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737838465_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785638465_zh-CN.png)
 
             使用jenkins-slave-maven作为Docker镜像。jenkins-slave-maven用于mvn打包构建。
 
@@ -116,7 +116,7 @@
 
     9.  kaniko需要配置镜像仓库权限。具体配置如下图所示。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737838466_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785638466_zh-CN.png)
 
     10. 单击**Save**保存配置。
 2.  通过kubectl在Kubernetes集群中创建jenkins-docker-cfg secret，用于设置镜像仓库权限。
@@ -132,17 +132,17 @@
 3.  构建demo-pipeline并访问应用服务。
     1.  在Jenkins首页，单击**demo-pipeline**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737838467_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785638467_zh-CN.png)
 
     2.  在左侧导航栏中，选择**Build with Parameters**。
     3.  根据自己的镜像仓库信息修改构建参数。本示例中源码仓库分支为master，镜像为registry.cn-beijing.aliyuncs.com/haoshuwei:stable。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737838468_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785638468_zh-CN.png)
 
     4.  单击**Build**。
     5.  查看Build History。下图表示构建成功。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072737838469_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/122864/155072785638469_zh-CN.png)
 
     6.  构建成功后，登录[容器服务管理控制台](https://cs.console.aliyun.com)，查看应用的服务地址。
 
