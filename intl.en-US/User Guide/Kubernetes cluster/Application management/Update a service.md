@@ -1,39 +1,39 @@
 # Update a service {#concept_dk3_q2n_vdb .concept}
 
-You can update a service in the Container Service console or Kubernetes dashboard.
+This topic describes how to update a service in the Container Service console or the Kubernetes dashboard.
 
-## Update a service in Container Service console {#section_vr1_v2n_vdb .section}
-
-1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-2.  Under Kubernetes, click **Application \>** \> **Service **in the left-side navigation pane.
-3.  Select the cluster and namespace from the Clusters and Namespace drop-down lists. Click **Update** at the right of the service \(nginx-svc in this example\).
-
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6903/15503123664487_en-US.png)
-
-4.  The Update dialog box appears. Modify the template. Then, click **OK**.
-
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16666/155031236611041_en-US.png)
-
-5.  Select the target service from the service list, and then click **Details** on the right to view the changes of the service. In this example, the service tag is changed.
-
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16666/155031236711042_en-US.png)
-
-
-## Update a service in Kubernetes dashboard {#section_rzd_x2n_vdb .section}
+## Update a service in the Container Service console {#section_vr1_v2n_vdb .section}
 
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-2.  Under Kubernetes, click **Clusters** in the left-side navigation pane.
-3.  Click **Dashboard** at the right of the cluster to go to the Kubernetes dashboard.
+2.  In the left-side navigation pane under Kubernetes, choose **Discovery and Load Balancing** \> **Service**.
+3.  Select the target cluster and namespace. Then click **Update** on the right of the target service \(nginx-svc in this example\).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6903/15503123674490_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16666/155109759211039_en-US.png)
 
-4.  In the Kubernetes dashboard, select the corresponding namespace and click **Services** in the left-side navigation pane.
-5.  Click the icon at the right of the service and then select **View/edit YAML** from the drop-down list.
+4.  In the displayed dialog box, modify service parameters. Then, click **Update**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6903/15503123674491_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16666/155109759211041_en-US.png)
 
-6.  The Edit a Service dialog box appears. Modify the configurations. In this example, change the nodePort to **31000**. Then, click **UPDATE**.
+5.  In the service list, click **Details** on the right of the target service to view the changes. In this example, the service tag is changed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6903/15503123674492_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16666/155109759211042_en-US.png)
+
+
+## Update a service in the Kubernetes dashboard {#section_rzd_x2n_vdb .section}
+
+1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
+2.  In the left-side navigation pane under Kubernetes, click **Clusters**.
+3.  Click **Dashboard** on the right of the target cluster.
+
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16666/155109759211043_en-US.png)
+
+4.  In the Kubernetes dashboard, select the target namespace and then click **Services** in the left-side navigation pane.
+5.  Click the icon on the right of the target service and then click **View/edit YAML**.
+
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16666/155109759211044_en-US.png)
+
+6.  In the displayed dialog box, modify service settings. Then, click **UPDATE**. In this example, the nodePort is changed to **31000**.
+
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16666/155109759211045_en-US.png)
 
 
