@@ -17,11 +17,11 @@ You have created a Kubernetes cluster. For more information, see [Create a Kuber
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
 2.  In the left-side navigation pane under Kubernetes, choose **Application \>** \> **Deployment.**. Then click **Create by Template** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108608111022_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108613811022_en-US.png)
 
 3.  Select the target cluster and namespace, and select a custom template or a sample template from the **Resource Type** drop-down list. Then, click **DEPLOY**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108608111023_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108613811023_en-US.png)
 
     In this example, the sample template specifies an Nginx deployment.
 
@@ -51,7 +51,7 @@ You have created a Kubernetes cluster. For more information, see [Create a Kuber
 
 4.  Click **Kubernetes Dashboard** to view the running status of this deployment.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108608111024_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108613911024_en-US.png)
 
 
 ## Step 2: Create a service {#section_efy_x1n_vdb .section}
@@ -60,11 +60,11 @@ You have created a Kubernetes cluster. For more information, see [Create a Kuber
 2.  In the left-side navigation pane, choose **Discovery and Load Balancing** \> **Service **.
 3.  Select the target cluster and namespace. Then click **Create** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108608111025_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108613911025_en-US.png)
 
 4.  In the displayed dialog box, set service parameters.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108608111026_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108613911026_en-US.png)
 
     -   **Name:** Enter the service name. In this example, the service name is set to nginx-svc.
     -   **Type:** Select the service type, namely, the service access method.
@@ -77,7 +77,7 @@ You have created a Kubernetes cluster. For more information, see [Create a Kuber
     -   **Tag**: Add a tag to the service to identify the service.
 5.  Click **Create**. The nginx-svc service is then displayed in the service list.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108608211027_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108613911027_en-US.png)
 
 6.  View the basic information of the service. Access the external endpoint of the nginx-svc service in your browser.
 
