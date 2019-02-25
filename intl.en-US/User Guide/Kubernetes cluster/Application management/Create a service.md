@@ -1,5 +1,7 @@
 # Create a service {#concept_vgg_n1n_vdb .concept}
 
+This topic describes how to create a service.
+
 A Kubernetes service, which is generally called a microservice, is an abstraction which defines a logical set of pods and a policy by which to access them. The set of pods accessed by a Kubernetes service is usually determined by a Label Selector.
 
 Kubernetes pods are created and deleted in a short time even if they have their own IP addresses. Therefore, using pods directly to provide services externally is not a solution of high availability. The service abstraction decouples the relationship between the frontend and the backend. Therefore, the loose-coupling microservice allows the frontend to not care about the implementations of the backend.
@@ -8,29 +10,29 @@ For more information, see [Kubernetes service](https://kubernetes.io/docs/concep
 
 ## Prerequisite {#section_s2y_x1n_vdb .section}
 
-You have created a Kubernetes cluster successfully. For how to create a Kubernetes cluster, see [EN-US\_TP\_6880.md\#](reseller.en-US/User Guide/Kubernetes cluster/Clusters/Create a cluster.md#).
+You have created a Kubernetes cluster. For more information, see [Create a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
 
-## Step 1 Create a deployment {#section_ahh_z1n_vdb .section}
+## Step 1: Create a deployment {#section_ahh_z1n_vdb .section}
 
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-2.  Under Kubernetes, click **Application \>** \> **Deployment in the left-side navigation pane.**Click **Create by Template** in the upper-right corner.
+2.  In the left-side navigation pane under Kubernetes, choose **Application \>** \> **Deployment.**. Then click **Create by Template** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030341111022_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108608111022_en-US.png)
 
-3.  Select the cluster and namespace to create the deployment. In the Resource Type drop-down list, select Custom to customize the template or a sample template. Then, click **DEPLOY**.
+3.  Select the target cluster and namespace, and select a custom template or a sample template from the **Resource Type** drop-down list. Then, click **DEPLOY**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030341111023_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108608111023_en-US.png)
 
-    In this example, the sample template is an Nginx deployment.
+    In this example, the sample template specifies an Nginx deployment.
 
     ```
     apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
-     kind: Deployment
-     metadata:
+    kind: Deployment
+    metadata:
        name: nginx-deployment-basic
        labels:
          app: nginx
-     spec:
+    spec:
        replicas: 2
        selector:
          matchLabels:
@@ -42,45 +44,43 @@ You have created a Kubernetes cluster successfully. For how to create a Kubernet
          spec:
            containers:
            - name: nginx
-             image: nginx:1.7.9 # replace it with your exactly <image_name:tags>
+             image: nginx:1.7.9                # replace it with your exactly <image_name:tags>
              ports:
-             - containerPort: 80 ##You must expose this port in the service.
+             - containerPort: 80                                          ##This port must be exposed in a service.
     ```
 
-4.  Go to the Kubernetes dashboard to view the running status of this deployment.
+4.  Click **Kubernetes Dashboard** to view the running status of this deployment.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6899/15503034114455_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108608111024_en-US.png)
 
 
-## Step 2 Create a service {#section_efy_x1n_vdb .section}
+## Step 2: Create a service {#section_efy_x1n_vdb .section}
 
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
 2.  In the left-side navigation pane, choose **Discovery and Load Balancing** \> **Service **.
-3.  Select the cluster and namespace from the Clusters and Namespace drop-down lists. Click **Create** in the upper-right corner.
+3.  Select the target cluster and namespace. Then click **Create** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030341111025_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108608111025_en-US.png)
 
-4.  Complete the configurations in the displayed Create Service dialog box.
+4.  In the displayed dialog box, set service parameters.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030341111026_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108608111026_en-US.png)
 
-    -   **Name:** Enter the service name. In this example, enter nginx-svc.
-    -   **Type:** Select the service type, namely, the access method of the service.
-        -   ClusterIP: Exposes the service by using the internal IP address of your cluster. With this type selected, the service is only accessible from within the cluster. This type is the default service type.
-        -   NodePort: Exposes the service by using the IP address and static port \(NodePort\) on each node. A ClusterIP service, to which the NodePort service is routed, is automatically created. You can access the NodePort service from outside the cluster by requesting `<NodeIP>:<NodePort>` .
-        -   Server Load Balancer: Exposes the service by using Server Load Balancer, which is provided by Alibaba Cloud. Select public or inner to access the service by using the Internet or intranet. Alibaba Cloud Server Load Balancer can route to the NodePort and ClusterIP services.
-    -   **Related deployment:** Select the backend object to bind with this service. In this example, select nginx-deployment-basic, the deployment created in the preceding step. The corresponding Endpoints object is not created if no deployment is selected here. You can manually map the service to your own endpoints. For more information, see [Services without selectors](https://kubernetes.io/docs/concepts/services-networking/service/#services-without-selectors).
-    -   **Port Mapping:** Add the service port and container port. The container port must be the same as the one exposed in the backend pod.
-    -   **annotation**: Add an annotation to the service. You can set SLB parameters. For example, to set the peak bandwidth of the service to 20 Mbit/s, you can set this parameter as `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20`. For more information, see [Access services by using Server Load Balancer](reseller.en-US/User Guide/Kubernetes cluster/Server Load Balancer and Ingress management/Access services by using Server Load Balancer.md#).
+    -   **Name:** Enter the service name. In this example, the service name is set to nginx-svc.
+    -   **Type:** Select the service type, namely, the service access method.
+        -   **Cluster IP**: Exposes the service by using the internal IP address of your cluster. If you select this service type, the service is accessible only within the cluster. This is the default service type.
+        -   **Node port**: Exposes the service by using the IP address and the static port \(NodePort\) of each node. A node port service routes to a cluster IP service that is automatically created. You can access the node port service from outside the cluster by requesting `<NodeIP>:<NodePort>`.
+        -   **Server Load Balancer**: Alibaba Cloud Server Load Balancer service. With this type of service, you can set an Internet or intranet access method for your application. SLB can route to a node port service and a cluster IP service.
+    -   **Related**: Select the backend object to associate with the service. In this example, the nginx-deployment-basic deployment created in the preceding step is associated with the service. If you do not associate the service with any objects, the system does not create any corresponding endpoint objects. In this case, you can manually associate the service with your own specific endpoints. For more information, see [Services without selectors](https://kubernetes.io/docs/concepts/services-networking/service/#services-without-selectors).
+    -   **Port Mapping**: Add a service port number and a container port number. The container port number that you set must be the same as the port number of the container exposed by the pod.
+    -   **annotation**: Add an annotation to the service. You can set SLB parameters. For example, to control the service traffic, you can set the peak bandwidth of the service to 20 Mbit/s by setting this parameter as `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20`. For more information, see [Access services by using Server Load Balancer](reseller.en-US/User Guide/Kubernetes cluster/Server Load Balancer and Ingress management/Access services by using Server Load Balancer.md#).
     -   **Tag**: Add a tag to the service to identify the service.
-5.  Click **Create**. The nginx-svc service is displayed on the Service List page.
+5.  Click **Create**. The nginx-svc service is then displayed in the service list.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155030341111027_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108608211027_en-US.png)
 
-6.  View the basic information of the service. Access the external endpoint of the nginx-svc service in the browser.
+6.  View the basic information of the service. Access the external endpoint of the nginx-svc service in your browser.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6899/15503034114461_en-US.png)
+    ![](images/11028_en-US.png)
 
-
-Then, you have created a service that is related to a backend deployment and accessed the Nginx welcome page successfully.
 
