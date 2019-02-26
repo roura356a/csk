@@ -4,12 +4,12 @@ You can upgrade the version of your Kubernetes cluster in the Container Service 
 
 On the cluster list page, you can view the version of your Kubernetes cluster.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16648/154409483310891_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16648/155117351010891_en-US.png)
 
 ## Prerequisites {#section_udz_43w_ydb .section}
 
 -   Make sure that your host can access the Internet so that the system can download the required software package.
--   A cluster upgrade may fail. We recommend that you create a snapshot for your cluster to guarantee your data security before upgrading the cluster. For more information, see [Create a snapshot](../../../../reseller.en-US/User Guide/Snapshots/Create a snapshot.md#).
+-   A cluster upgrade may fail. We recommend that you create a snapshot for your cluster to guarantee your data security before upgrading the cluster. For more information, see [Create a snapshot](../../../../../reseller.en-US/Snapshots/Use snapshots/Create a snapshot.md#).
 -   If you are upgrading a Kubernetes cluster of version number V1.8.1 or V1.8.4 to V1.9.3, all cluster pods will be restarted. This means that applications running on the cluster will be affected. If you are upgrading a Kubernetes cluster version of a different number, cluster applications will not be affected. However, if a cluster application is highly dependent on the API server, the application may be temporarily affected by the upgrade.
 -   OSS volumes will be re-mounted to the cluster because the network is reset during the cluster upgrade. Therefore, you need to re-create the pods that use the OSS volumes after the upgrade.
 
@@ -54,7 +54,7 @@ If a node is abnormal, you can fix it on your own or you can submit a ticket to 
 2.  In the left-side navigation pane under Kubernetes, click **Clusters**.
 3.  Select the target cluster and choose **More** \> **Upgrade Cluster**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16648/154409483410892_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16648/155117351039655_en-US.png)
 
 4.  In the displayed dialog box, click **Upgrade**.
 
