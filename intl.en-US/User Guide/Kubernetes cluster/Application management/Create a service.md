@@ -1,27 +1,27 @@
 # Create a service {#concept_vgg_n1n_vdb .concept}
 
-This topic describes how to create a service.
+This topic describes how to create a Kubernetes service in Alibaba Cloud Container Service for Kubernetes.
 
-A Kubernetes service, which is generally called a microservice, is an abstraction which defines a logical set of pods and a policy by which to access them. The set of pods accessed by a Kubernetes service is usually determined by a Label Selector.
+A Kubernetes service, known as a service in this and related topics of Alibaba Cloud Container Service for Kubernetes, is an abstract object that defines a logical set of pods and a policy through which to access the pods. Usually, a label selector determines which set of pods are targeted by a service.
 
-Kubernetes pods are created and deleted in a short time even if they have their own IP addresses. Therefore, using pods directly to provide services externally is not a solution of high availability. The service abstraction decouples the relationship between the frontend and the backend. Therefore, the loose-coupling microservice allows the frontend to not care about the implementations of the backend.
+In a Kubernetes cluster, each pod has its own IP address, and the pods of a deployment can be removed at any time. However, this action changes the IP addresses of the pods. As a result, directly using IP addresses of pods is ineffective as the scenario does not provide high availability. By comparison, a Kubernetes service decouples the relationship between the frontend and the backend. Specifically, a Kubernetes service is a loose coupling service solution where the operations of the backend do not impact the frontend.
 
 For more information, see [Kubernetes service](https://kubernetes.io/docs/concepts/services-networking/service).
 
 ## Prerequisite {#section_s2y_x1n_vdb .section}
 
-You have created a Kubernetes cluster. For more information, see [Create a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
+A Kubernetes cluster is created. For more information, see [Create a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
 
 ## Step 1: Create a deployment {#section_ahh_z1n_vdb .section}
 
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
 2.  In the left-side navigation pane under Kubernetes, choose **Application** \> **Deployment**. Then click **Create by Template** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108645911022_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155176526511022_en-US.png)
 
 3.  Select the target cluster and namespace, and select a custom template or a sample template from the **Resource Type** drop-down list. Then, click **DEPLOY**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108645911023_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155176526611023_en-US.png)
 
     In this example, the sample template specifies an Nginx deployment.
 
@@ -51,7 +51,7 @@ You have created a Kubernetes cluster. For more information, see [Create a Kuber
 
 4.  Click **Kubernetes Dashboard** to view the running status of this deployment.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108645911024_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155176526611024_en-US.png)
 
 
 ## Step 2: Create a service {#section_efy_x1n_vdb .section}
@@ -60,11 +60,11 @@ You have created a Kubernetes cluster. For more information, see [Create a Kuber
 2.  In the left-side navigation pane, choose **Discovery and Load Balancing** \> **Service **.
 3.  Select the target cluster and namespace. Then click **Create** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108645911025_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155176526611025_en-US.png)
 
 4.  In the displayed dialog box, set service parameters.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108645911026_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155176526611026_en-US.png)
 
     -   **Name:** Enter the service name. In this example, the service name is set to nginx-svc.
     -   **Type:** Select the service type, namely, the service access method.
@@ -77,10 +77,10 @@ You have created a Kubernetes cluster. For more information, see [Create a Kuber
     -   **Tag**: Add a tag to the service to identify the service.
 5.  Click **Create**. The nginx-svc service is then displayed in the service list.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108645911027_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155176526611027_en-US.png)
 
-6.  View the basic information of the service. Access the external endpoint of the nginx-svc service in your browser.
+6.  Enter the external endpoint of the nginx-svc service in your browser to access the service.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155108645911028_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16662/155176526611028_en-US.png)
 
 
