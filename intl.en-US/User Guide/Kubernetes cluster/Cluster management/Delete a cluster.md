@@ -6,7 +6,7 @@ In the Container Service console, you can delete clusters that are no longer in 
 2.   Under Container Service Kubernetes, click **Clusters** in the left-side navigation pane. 
 3.   Click **More** \> **Delete **and select the target cluster. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16650/155151457610860_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16650/155202844310860_en-US.png)
 
 
 **Failed to delete a cluster**
@@ -17,11 +17,11 @@ Container Service allows you to force delete the cluster. You can force delete t
 
 The cluster status is Failed if the cluster fails to be deleted.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6887/15515145764339_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6887/15520284434339_en-US.png)
 
 Click**More** \> **Delete **in the displayed dialog box, you can see the resource that failed to delete, check force delete, and click **OK**. The cluster and ROS resource can be deleted.
 
-**Note:** You must manually release the resources that failed to be deleted. For information on how to troubleshoot the problem with resources that cannot be released, see [EN-US\_TP\_6954.md\#](reseller.en-US/User Guide/Kubernetes cluster/FAQ/Failed to delete Kubernetes clusters: ROS stack cannot be deleted.md#).
+**Note:** You must manually release the resources that failed to be deleted. For information on how to troubleshoot the problem with resources that cannot be released, see [Failed to delete Kubernetes clusters: ROS stack cannot be deleted](../../../../../reseller.en-US/FAQ/Failed to delete Kubernetes clusters: ROS stack cannot be deleted.md#).
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6887/15515145764340_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6887/15520284434340_en-US.png)
 
