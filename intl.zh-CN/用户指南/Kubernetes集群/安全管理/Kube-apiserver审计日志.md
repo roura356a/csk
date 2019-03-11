@@ -153,11 +153,11 @@ rules:
 
 -   登录[容器服务管理控制台](https://cs.console.aliyun.com)。在集群列表的操作列表中，单击**更多** \> **集群审计**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141199937908_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155228696737908_zh-CN.png)
 
 -   登录[容器服务管理控制台](https://cs.console.aliyun.com)。在集群列表中单击集群名称，进入到集群信息页面。在左侧导航栏列表中单击**集群审计**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141199937910_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155228696737910_zh-CN.png)
 
 
 ## 审计报表说明 {#section_hkj_bcy_ngb .section}
@@ -168,7 +168,7 @@ apiserver审计共3个报表。分别是：审计中心概览、资源操作概�
 
     审计中心概览展示Kubernetes集群中的事件整体概览以及重要事件（公网访问、命令执行、删除资源、访问保密字典等）的详细信息。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141199937911_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155228696737911_zh-CN.png)
 
     **说明：** 在该报表中，默认显示一周的统计信息。您可以自定义选择统计时间范围。此外，该报表支持指定Namespace、子账号ID、状态码进行筛选。您可以选择任一一项或多项组合筛选指定范围的事件。
 
@@ -179,7 +179,7 @@ apiserver审计共3个报表。分别是：审计中心概览、资源操作概�
     -   计算资源包括：Deployment、StatefulSet、CronJob、DaemonSet、Job、Pod。
     -   网络资源包括：Service、Ingress。
     -   存储资源包括：ConfigMap、Secret、PersistentVolumeClaim。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141199937915_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155228696837915_zh-CN.png)
 
     **说明：** 
 
@@ -189,7 +189,7 @@ apiserver审计共3个报表。分别是：审计中心概览、资源操作概�
 
     该报表用于展示Kubernetes集群中某类资源的详细操作列表。您需要选择或输入指定的资源类型进行实时查询。该报表会显示：资源操作各类事件的总数、Namespace分布、成功率、时序趋势以及详细操作列表等。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141199937918_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155228696837918_zh-CN.png)
 
     **说明：** 
 
@@ -203,11 +203,11 @@ apiserver审计共3个报表。分别是：审计中心概览、资源操作概�
 1.  登录 [日志服务管理控制台](https://sls.console.aliyun.com/)。
 2.  单击左侧导航栏中的**Project管理**。选择创建集群时设置的日志Project，单击名称进入日志Project页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141200012111_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155228696812111_zh-CN.png)
 
 3.  在Project详情页中，默认进入日志库页面。查看名为audit-$\{clustered\}的日志库（logstore），单击右侧的**查询**，集群对应的审计日志会收集在该日志库中。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141200012114_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155228696812114_zh-CN.png)
 
     **说明：** 
 
@@ -270,7 +270,7 @@ apiserver审计共3个报表。分别是：审计中心概览、资源操作概�
 
 1.  开启apiserver审计日志。
 
-    查看apiserver的POD配置，即查看启动参数和环境变量是否配置了审计日志相关的内容：
+    分别在三个master节点上，查看apiserver的POD配置，即查看启动参数、策略文件、环境变量和挂载目录是否配置了审计日志相关的内容：
 
     -   启动参数
 
@@ -285,13 +285,47 @@ apiserver审计共3个报表。分别是：审计中心概览、资源操作概�
             - --audit-policy-file=/etc/kubernetes/audit-policy.yml
         ```
 
+    -   策略文件/etc/kubernetes/audit-policy.yml。
+
+        策略文件的内容请参见**配置介绍**中的[配置策略文件](#)。
+
+        **说明：** 如果/etc/kubernetes/目录下没有此文件，可以执行vi audit-policy.yml命令，新建一个文本，将配置策略文件中的内容拷贝并到该目录下即可。
+
     -   环境变量
 
         ```
         env:
             - name: aliyun_logs_audit-c12ba20***************9f0b
               value: /var/log/kubernetes/kubernetes.audit
+            - name: aliyun_logs_audit-c12ba20***************9f0b_tags
+              value: audit=apiserver
+            - name: aliyun_logs_audit-c12ba20***************9f0b_product
+              value: k8s-audit
+            - name: aliyun_logs_audit-c12ba20***************9f0b_jsonfile
+              value: "true"
         ```
+
+    -   挂载目录
+
+        ```
+        volumeMounts:
+            - mountPath: /var/log/kubernetes
+              name: k8s-audit
+            - mountPath: /etc/kubernetes/audit-policy.yml
+              name: audit-policy
+              readOnly: true
+        volumes:
+            - hostPath:
+              path: /var/log/kubernetes
+              type: DirectoryOrCreate
+              name: k8s-audit
+            - hostPath:
+              path: /etc/kubernetes/audit-policy.yml
+              type: FileOrCreate
+              name: audit-policy
+        ```
+
+    重启apiserver服务，可通过覆盖/etc/kubernetes/manifests/kube-apiserver.yaml执行，覆盖前请做好原yaml的备份工作。
 
     若未包含上述内容，请将集群升级到最新版本。升级方式请参考[升级集群](intl.zh-CN/用户指南/Kubernetes集群/集群管理/升级集群.md#)。
 
@@ -303,10 +337,13 @@ apiserver审计共3个报表。分别是：审计中心概览、资源操作概�
     2.  单击左侧导航栏中的**Project管理**。选择创建集群时设置的日志Project，单击名称进入日志Project页面。
     3.  在Project详情页中，默认进入日志库页面。查看名为audit-$\{clustered\}的日志库（Logstore），单击该日志库上的**管理**按钮。单击配置名称进入**指定采集模式**步骤。确认日志模式方式是否为**JSON模式**，若非JSON模式则修改为**JSON模式**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141200037960_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155228696837960_zh-CN.png)
 
 
 ## 支持第三方日志解决 {#section_nf2_lsf_2fb .section}
 
 您可以在集群Master各节点，在/var/log/kubernetes/kubernetes.audit路径下找到审计日志的源文件。该文件是标准的json格式，您可以在部署集群时选择不使用阿里云的日志服务，根据需要对接其他的日志解决方案，完成相关审计日志的采集和检索。
+
+  
+
 
