@@ -4,7 +4,7 @@ This topic describes how to upgrade the Heapster components to the metrics-serve
 
 ## Prerequisites {#section_y3f_r2f_xgb .section}
 
--   You have created a Kubernetes cluster. For more information, see [Create a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
+-   A Kubernetes cluster is created. For more information, see [Create a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
 -   The Kubernetes cluster version is earlier than v1.12.
 
 ## Procedure {#section_pzr_r2f_xgb .section}
@@ -16,13 +16,13 @@ You must reset the data collection component, reset the monitoring data link, an
     To change the data collection component from Heapster to metrics-server, follow these steps:
 
     1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-    2.  In the left-side navigation pane under Kubernetes, choose **Application** \> **Deployment**.
+    2.  In the left-side navigation pane under Container Service-Kubernetes, choose **Application** \> **Deployment**.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155134723539478_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155228746039478_en-US.png)
 
     3.  In the upper-right corner, click **Create by Template**.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155134723539496_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155228746039496_en-US.png)
 
     4.  Select the target cluster from the **Clusters** drop-down list, and then select **kube-system** from the **Namespace** drop-down list.
     5.  Select **Custom** from the **Resource Type**, copy the following code and paste it to the **Template** area, then click **DEPLOY**.
@@ -129,7 +129,7 @@ You must reset the data collection component, reset the monitoring data link, an
     2.  Select the target **Cluster**.
     3.  Click the instance ID of one Master node. In this step, the master-01 node is used.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155134723539497_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155228746139497_en-US.png)
 
     4.  Click **Connect**. On the displayed page, enter the remote connection password and click **OK**. After you log on to the ECS instance, run the following command:
 
@@ -138,7 +138,7 @@ You must reset the data collection component, reset the monitoring data link, an
         
         ```
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155134723539498_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155228746139498_en-US.png)
 
     5.  Repeat step [c](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Upgrade the Heapster components to the metrics-server component.md#li_03) to step [d](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Upgrade the Heapster components to the metrics-server component.md#li_04) on the master-02 and master-03 nodes.
 
@@ -148,22 +148,22 @@ You must reset the data collection component, reset the monitoring data link, an
     1.  In the left-side navigation pane, choose **Discovery and Load Balancing** \> **Service**.
     2.  Select the target **Cluster** and the **kube-system** namespace. Then click **View YAML** on the right of **heapster**.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155134723639499_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155228746139499_en-US.png)
 
     3.  In the displayed dialog box, reset the k8s-app parameter of the selector field to metrics-server. Then click **Update**.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155134723639500_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155228746139500_en-US.png)
 
     4.  In the left-side navigation pane, choose **Application** \> **Deployment**.
     5.  Select the target **Cluster** and the kube-system **Namespace**.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155134723639506_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155228746139506_en-US.png)
 
     6.  Delete the components related to Heapster. In this example, you need to delete the heapster and monitoring-influxdb components.
 
         -   On the right of the heapster component, choose **More** \> **Delete**. In the displayed dialog box, click **OK**.
         -   On the right of the monitoring-influxdb component, choose **More** \> **Delete**. In the displayed dialog box, select the **Delete associated services monitoring-influxdb** check box, and then click **OK**.
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155134723639501_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155228746139501_en-US.png)
 
     7.  Check the new data link status.
 
@@ -173,6 +173,6 @@ You must reset the data collection component, reset the monitoring data link, an
 
         **Note:** If both the displayed CPU and memory columns of each component are 0, it indicates an exception.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155134723639502_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155228746139502_en-US.png)
 
 
