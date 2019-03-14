@@ -53,7 +53,7 @@ spec:
             Keys:
             - client_ip
             - x_forward_for
-            - remote-user
+            - remote_user
             - time
             - method
             - url
@@ -110,31 +110,31 @@ Ingress概览报表主要展示当前Ingress的整体状态，主要包括以下
 -   用户请求类信息（1天），包括1天/7天访问PV对比、访问地域分布、TOP访问省份/城市、移动端占比和Android/IOS占比等。
 -   TOPURL统计（1小时），包括访问TOP10、延迟TOP10、5XX错误TOP10和404错误TOP10。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155247167340696_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155255381940696_zh-CN.png)
 
 ## Ingress访问中心 {#section_e2b_1pq_bhb .section}
 
 Ingress访问中心主要侧重于用于访问请求相关的统计信息，一般用于运营分析，包括当日UV/PV、UV/PV分布、UV/PV趋势、TOP访问省份/城市、TOP访问浏览器、TOP访问IP、移动端占比和Android/IOS占比等。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155247167340704_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155255381940704_zh-CN.png)
 
 ## Ingress监控中心 {#section_bl3_2pq_bhb .section}
 
 Ingress监控中心主要侧重于网站实时监控数据，一般用于完整实时监控与告警，包括请求成功率、错误比例、5XX比例、请求未转发比例、平均延迟、P95/P99/P9999延迟、状态码分布、Ingress压力分布、Service访问TOP10、Service错误TOP10、Service延迟TOP10和Service流量TOP10等。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155247167440705_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155255381940705_zh-CN.png)
 
 ## Ingress蓝绿发布监控中心 {#section_ny3_hpq_bhb .section}
 
 Ingress蓝绿发布监控中心主要用于版本发布时的实时监控与对比（版本前后对比以及蓝绿版本当前对比），以便您在服务发布时快速检测异常并进行回滚。在该报表中您需要选择进行对比的蓝绿版本（ServiceA和ServiceB），报表将根据您的选择动态显示蓝绿版本相关指标，包括PV、5XX比例、成功率、平均延迟、P95/P99/P9999延迟和流量等。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155247167440706_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155255381940706_zh-CN.png)
 
 ## Ingress异常检测中心 {#section_rst_jpq_bhb .section}
 
 Ingress异常检测中心基于日志服务提供的机器学习算法，通过多种时序分析算法从Ingress的指标中自动检测异常点，提高问题发现的效率。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155247167440707_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155255381940707_zh-CN.png)
 
 ## 配置告警 {#section_ozp_mpq_bhb .section}
 
@@ -146,15 +146,15 @@ Ingress异常检测中心基于日志服务提供的机器学习算法，通过�
 
 1.  进入Ingress监控中心报表，鼠标滑动到图表**5XX比例**的右上角，在弹出的提示框中单击**新建告警**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155247167440708_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155255382040708_zh-CN.png)
 
 2.  在告警页面中，填入**告警名称**、**查询区间**和**执行间隔**，查询语句中的`total`为5XX的百分比，因此触发条件填入：`total > 1`。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155247167440709_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155255382040709_zh-CN.png)
 
 3.  在下一步的**通知**选项中，根据您的需求选择对应的通知方式，并填入对应参数即可完成告警创建。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155247167440710_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/155255382040710_zh-CN.png)
 
 
 ## 订阅定时报告 {#section_hn2_2rq_bhb .section}
