@@ -20,6 +20,9 @@
  |N/A
 
 |
+|新功能|智能运维集群检查功能在中国站全区域开放。集群检查可以深度检查集群资源、组件、配置等，帮助用户快速定位集群使用问题。
+
+|N/A|
 |2019年1月|新功能|Windows容器内测上线。ACK支持Windows容器，Windows下的应用也可以容器化运行在Kubernetes上，享受Kubernetes弹性调度管理所带来的优势。
 
 用户可以在ACK的Kubernetes集群以及托管版Kubernetes集群中通过添加节点的方式来添加Windows节点。
