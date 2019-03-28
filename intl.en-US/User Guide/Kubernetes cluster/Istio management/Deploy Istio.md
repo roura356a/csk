@@ -6,6 +6,7 @@ The distributed application architecture composed of microservices has disadvant
 
 -   -   You have created a Kubernetes cluster. For more information, see [Create a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
 -   [Create a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
+-   [Create a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#)
 -   You have logged on to the Container Service console by using the primary account or by using a sub-account that has been granted sufficient permissions. For example, if the cluster-admin permission is granted to a sub-account then Istio can be deployed. Other combinations of permissions are also sufficient. For more information, see [Kubernetes permission configuration guide for RAM users](reseller.en-US/User Guide/Kubernetes cluster/Authorization management/Kubernetes permission configuration guide for RAM users.md#).
 
 ## Background information {#section_f1c_rkh_1fb .section}
@@ -23,7 +24,7 @@ The distributed application architecture composed of microservices has disadvant
 2.  In the left-side navigation pane, click **Clusters**.
 3.  Select a cluster and then click **More** \> **Deploy Istio** in the action column at the right of a cluster.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374277011255_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374302011255_en-US.png)
 
 4.  Deploy Istio according to the following information.
 
@@ -68,7 +69,7 @@ For example, if an IP address is listed in both IP address ranges that you set f
 
     At the bottom of the deployment page, you can view the deployment progress and status in real time.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374277011256_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374302011256_en-US.png)
 
 
 **Expected results:**
@@ -77,17 +78,17 @@ You can view your deployment results in the following ways:
 
 -   At the bottom of the Deploy Istio page, **Deploy Istio** is changed to **Deployed**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374277011257_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374302011257_en-US.png)
 
 -   -   In the left-side navigation pane, click **Application** \> **Pods**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the relevant pods in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374277011258_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374302011258_en-US.png)
 
 -   -   In the left-side navigation pane, click **Application** \> **Service**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the access addresses provided by the relevant services in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374277011259_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374302011259_en-US.png)
 
 
 **Use the application catalog to deploy Istio**
@@ -95,12 +96,12 @@ You can view your deployment results in the following ways:
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
 2.  In the left-side navigation pane, click **Store** \> **App Catalog**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374277011260_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374302011260_en-US.png)
 
 3.  Click **ack-istio**.
 4.  Click the Values tab to configure parameters.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374277012560_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374302012560_en-US.png)
 
     **Note:** 
 
@@ -168,11 +169,11 @@ You can view your deployment results in the following ways:
 -   -   In the left-side navigation pane, click **Application** \> **Pods**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the relevant pods in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374277011258_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374302011258_en-US.png)
 
 -   -   In the left-side navigation pane, click **Application** \> **Service**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the access addresses provided by the relevant services in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374277011259_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374302011259_en-US.png)
 
 
