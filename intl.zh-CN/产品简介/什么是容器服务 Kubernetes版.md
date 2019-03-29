@@ -1,17 +1,18 @@
 # 什么是容器服务 Kubernetes版 {#concept_cbm_1zc_l2b .concept}
 
-容器服务Kubernetes版（Container Service for Kubernetes）提供高性能可伸缩的容器应用管理服务，支持企业级Kubernetes容器化应用的生命周期管理。容器服务 Kubernetes 版简化集群的搭建和扩容等运维工作，整合阿里云虚拟化、存储、网络和安全能力，打造云端最佳的 Kubernetes 容器化应用运行环境。容器服务是Kubernetes认证服务供应商，全球首批通过Kubernetes一致性认证的平台服务，为您提供专业的支持和服务。
+容器服务Kubernetes版（Container Service for Kubernetes）提供高性能可伸缩的容器应用管理服务，支持企业级Kubernetes容器化应用的生命周期管理。容器服务 Kubernetes 版简化集群的搭建和扩容等运维工作，整合阿里云虚拟化、存储、网络和安全能力，打造云端最佳的 Kubernetes 容器化应用运行环境。阿里云容器服务是全球首批通过Kubernetes一致性认证的云平台服务，也是Kubernetes认证服务供应商，可以为您提供专业的容器支持和服务。
 
-容器服务Kubernetes版包含了经典Dedicated Kubernetes以及Serverless两种形态，方便您按需选择。
+容器服务Kubernetes版包含了专有版Kubernetes（Dedicated Kubernetes）、托管版Kubernetes（Managed Kubernetes）、Serverless Kubernetes三种形态，方便您按需选择。
 
--   经典Dedicated Kubernetes模式：您可以对集群基础设施和容器应用进行更细粒度的控制，比如选择宿主机实例规格和操作系统，指定Kubernetes 版本、自定义 Kubernetes 特性开关设置等。阿里云 Kubernetes 服务负责为集群创建底层云资源，升级等自动化运维操作。而您需要规划、维护、升级服务器集群，手动或自动在集群中添加或删除服务器。
--   Serverless 模式：您无需创建底层虚拟化资源，可以利用 Kubernetes 命令指明应用容器镜像、CPU 和内存要求以及对外服务方式，直接启动应用程序。
+-   专有版Kubernetes：需要创建3个Master（高可用）节点及若干Worker节点，可对集群基础设施进行更细粒度的控制，需要自行规划、维护、升级服务器集群。
+-   托管版Kubernetes：只需创建Worker节点，Master节点由容器服务创建并托管。具备简单、低成本、高可用、无需运维管理Kubernetes集群Master节点的特点，您可以更多关注业务本身。
+-   Serverless Kubernetes：无需创建和管理Master节点及Worker节点，即可通过控制台或者命令配置容器实例的资源、指明应用容器镜像以及对外服务的方式，直接启动应用程序。
 
 ## 产品功能 {#section_ts5_5jb_n2b .section}
 
 **集群管理**
 
--   通过控制台10分钟一键创建经典Dedicated Kubernetes集群，支持GPU实例和裸金属服务器，支持创建跨可用区高可用的集群。
+-   通过控制台一键创建专有版Kubernetes集群、托管版Kubernetes集群、Serverless Kubernetes集群，支持GPU实例和裸金属服务器，支持创建跨可用区高可用的集群。
 -   提供容器优化的OS镜像，提供**稳定测试和安全加固**的Kuberntes和Docker版本。
 -   支持多集群管理，支持跨可用区高可用集群，支持集群联邦管理。
 
