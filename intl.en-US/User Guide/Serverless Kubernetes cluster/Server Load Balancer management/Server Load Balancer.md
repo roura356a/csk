@@ -9,8 +9,8 @@ You can access services by using Alibaba Cloud Server Load Balancer.
     ```
     root@master # kubectl run nginx --image=registry.aliyuncs.com/acs/netdia:latest
     root@master # kubectl get po 
-    NAME READY STATUS RESTARTS AGE
-    nginx-2721357637-dvwq3 1/1 Running 1 6s
+    NAME                                   READY     STATUS    RESTARTS   AGE
+    nginx-2721357637-d****                 1/1       Running   1          6s
     ```
 
 2.  Create Alibaba Cloud Server Load Balancer service for the Nginx application and specify `type=LoadBalancer`  to expose the Nginx service to the Internet.
@@ -18,11 +18,11 @@ You can access services by using Alibaba Cloud Server Load Balancer.
     ```
     root@master # kubectl expose deployment nginx --port=80 --target-port=80 --type=LoadBalancer
     root@master # kubectl get svc
-    NAME CLUSTER-IP EXTERNAL-IP PORT(S) AGE
-    nginx 172.19.10.209 101.37.192.20 80:31891/TCP 4s
+    NAME                  CLUSTER-IP      EXTERNAL-IP      PORT(S)                        AGE
+    nginx                 172.**.**.***   101.**.***.**   80:3****/TCP                   4s
     ```
 
-3.  Visit `http://101.37.192.20` in the browser to access your Nginx service.
+3.  Visit `http://101.**.***.**` in the browser to access your Nginx service.
 
 ## More information {#section_krn_1j1_ydb .section}
 
@@ -102,12 +102,12 @@ spec:
 |service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth|Server Load Balancer bandwidth.|50|
 |service.beta.kubernetes.io/alicloud-loadbalancer-cert-id|ID of a certificate on Alibaba Cloud. You must have uploaded a certificate first.|“”|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-flag|The value is on or off.|The default value is off. No need to modify the TCP parameters because TCP enables health check by default and you cannot configure it.|
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-type|See [HealthCheck](../../../../reseller.en-US/Developer Guide/TCP listener/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-uri|See [HealthCheck](../../../../reseller.en-US/Developer Guide/TCP listener/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-port|See [HealthCheck](../../../../reseller.en-US/Developer Guide/TCP listener/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-healthy-threshold|See [HealthCheck](../../../../reseller.en-US/Developer Guide/TCP listener/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-unhealthy-threshold|See [HealthCheck](../../../../reseller.en-US/Developer Guide/TCP listener/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval|See [HealthCheck](../../../../reseller.en-US/Developer Guide/TCP listener/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-timeout|See [HealthCheck](../../../../reseller.en-US/Developer Guide/TCP listener/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-timeout|See [HealthCheck](../../../../reseller.en-US/Developer Guide/TCP listener/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-type|See [HealthCheck](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-uri|See [HealthCheck](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-port|See [HealthCheck](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-healthy-threshold|See [HealthCheck](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-unhealthy-threshold|See [HealthCheck](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval|See [HealthCheck](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-timeout|See [HealthCheck](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-timeout|See [HealthCheck](../../../../../reseller.en-US/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md#table_u2n_zrk_cz).| |
 
