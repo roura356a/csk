@@ -151,7 +151,7 @@ ingress "cafe-ingress" created
 
 $ kubectl get ing
 NAME           HOSTS         ADDRESS          PORTS     AGE
-cafe-ingress   foo.bar.com   139.224.76.211   80        1m
+cafe-ingress   foo.bar.com   139.***.**.***   80        1m
 ```
 
 **3、测试服务访问**
@@ -166,22 +166,22 @@ cafe-ingress   foo.bar.com   139.224.76.211   80        1m
 
 通过浏览器测试访问coffee服务。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/154821594110319_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155411779110319_zh-CN.png)
 
 通过命令行方式测试访问coffee服务。
 
 ```
-curl -H "Host: foo.bar.com" http://139.224.76.211/coffee
+curl -H "Host: foo.bar.com" http://139.***.**.***/coffee
 ```
 
 通过浏览器测试访问tea服务。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/154821594110320_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155411779110320_zh-CN.png)
 
 通过命令行方式测试访问tea服务。
 
 ```
-curl -H "Host: foo.bar.com" http://139.224.76.211/tea
+curl -H "Host: foo.bar.com" http://139.***.**.***/tea
 ```
 
 ## 使用指定的SLB实例 {#section_n5s_3fn_j2b .section}
@@ -251,7 +251,7 @@ deploy/tomcat   1         1         1            1           1m
 
 您需要在集群同Region下自行申请一个**性能保障型**SLB实例（如slb.s2.small），可以是私网也可以是公网（依据具体需求）。本例中申请一个公网SLB实例，记录SLB实例的ID。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/154821594110321_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155411779110321_zh-CN.png)
 
 **3、配置TLS证书**
 
@@ -310,10 +310,10 @@ ingress "tomcat-ingress" created
 
 $ kubectl get ing tomcat-ingress
 NAME             HOSTS         ADDRESS        PORTS     AGE
-tomcat-ingress   bar.foo.com   47.101.20.67   80, 443   1m
+tomcat-ingress   bar.foo.com   47.***.**.**   80, 443   1m
 ```
 
-**5、测试服务访问**
+**5、测试服务访问** 
 
 **说明：** 目前我们需要自行将域名解析到SLB实例IP上。
 
@@ -325,9 +325,9 @@ tomcat-ingress   bar.foo.com   47.101.20.67   80, 443   1m
 
 通过浏览器测试访问tomcat服务：
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/154821594110322_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155411779110322_zh-CN.png)
 
 通过命令行方式测试访问tomcat服务：
 
-`curl -k -H "Host: bar.foo.com" https://47.101.20.67`
+ `curl -k -H "Host: bar.foo.com" https://47.***.**.**`
 
