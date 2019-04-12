@@ -1,9 +1,81 @@
 # Changes to Alibaba Cloud Container Service for Kubernetes {#concept_qrb_znb_yfb .concept}
 
-This topic describes the changes to Alibaba Cloud Container Service for Kubernetes.
+This topic describes the changes to Alibaba Cloud Container Service for Kubernetes \(ACK\).
 
 |Date|Type|Change|Relevant topic|
 |----|----|------|--------------|
+|February 2019|New region|For Alibaba Cloud users based in Mainland China and outside Mainland China, the cluster type of managed Kubernetes is released in the China South 1 \(Shenzhen\) region.This cluster type offers the following advantages:
+
+-   Resources are reserved by default. Specifically, each managed Kubernetes cluster reserves you three Master nodes.
+-   Cluster O&M is easy. Alibaba Cloud Container Service for Kubernetes \(ACK\) creates and manages Master nodes for each cluster.
+-   Highly secure clusters. ACK secures your clusters according to your requirements.
+
+|N/A|
+|New feature| ACK released a Knative add-on to help you quickly build a Knative Serving environment in an ACK supported Kubernetes cluster.
+
+ Knative provides a request-driven computing model in which workloads can be scaled back to zero. Based on Kubernetes and Istio, it provides deployment and service features for serverless applications and functions.
+
+ |N/A|
+|New feature|For Alibaba Cloud users based in Mainland China, the intelligent cluster O&M feature is released across all regions..With this feature, you can check your cluster resources, components, configurations, and other information to quickly troubleshoot your cluster problems.
+
+|N/A|
+|January 2019|New feature|Containerized applications in Windows is released \(beta version\).To use this feature, you need to add Windows nodes to your dedicated Kubernetes clusters or managed Kubernetes clusters, which run in ACK.
+
+To request access to this feature, open a ticket.
+
+ |N/A|
+|New feature|Container Registry \(Enterprise edition\) is released \(beta version\).This edition allows you to:
+
+-   Deploy a container image repository that is built on exclusive resources.
+-   Build, distribute, and host your images in a fully secure environment with ease.
+
+We recommend that you use Container Registry \(Enterprise edition\) if you have a large number of cluster nodes and require a higher level of security.
+
+To request access to this feature, open a ticket.
+
+|N/A|
+|New feature|The intelligent cluster O&M function is released in the China East 1 \(Hangzhou\) region.This feature provides the best solutions for container cluster users in different scenarios.
+
+With this feature, you can check your cluster resources, components, configurations, and other information to quickly find out your cluster problems.
+
+|N/A|
+|New feature|ACK is interoperable with Application Real-Time Monitoring Service \(ARMS\).After you install the ARMS plugin in your cluster, you can easily monitor the performance of the applications deployed in the cluster.
+
+ARMS is a Java application performance management \(APM\) monitoring product developed by Alibaba Cloud. If you use ARMS to monitor a Java application, you only need to mount a probe in the application startup script without modifying any code. By comprehensively monitoring the application, the probe helps you quickly locate faulty and slow interfaces, reproduce parameter calling, detect memory leaks, and discover system bottlenecks, more efficiently diagnosing problems online.
+
+|N/A|
+|Commercialized product|Charges for Elastic Container Instance \(ECI\) used by serverless Kubernetes is introduced.From January 22, 2019 on, you will be charged if you use a serverless Kubernetes cluster to create container instances. However, serverless Kubernetes can be still used free of charge.
+
+|For more information, see [Billing method](https://www.alibabacloud.com/help/zh/doc-detail/89142.html).|
+|New regions|For Alibaba Cloud users in Mainland China, the cluster type of serverless Kubernetes is released for the following regions: China North 2 \(Beijing\) and China South 1 \(Shenzhen\).|N/A|
+|December 2018|New region|The UK \(London\) region is added as a region for ACK services for Alibaba Cloud users in Mainland China and outside Mainland China.|N/A|
+|New region|The cluster type of managed Kubernetes is released for the following regions: China East 2 \(Shanghai\), Asia Pacific SE 3 \(Kuala Lumpur\), and Asia Pacific SOU 1 \(Mumbai\).|N/A|
+|New feature|Nodes can be removed from a Kubernetes cluster.Furthermore, you can determine whether to release the ECS instance used by the node when you remove a node.
+
+|[Remove a node](../../../../../reseller.en-US/User Guide/Kubernetes cluster/Node management/Remove a node.md#).|
+|New feature|Creating an application of the DaemonSet type is supported. DaemonSet \(a type of daemon\) guarantees that each node of a cluster has only one pod.
+
+|N/A|
+|New feature|Support for customizing Istio gateway parameters is added.You can set different parameters to customize Istio ingress and egress gateways.
+
+| N/A
+
+ |
+|New feature|Istio CoreDNS is supported.| N/A
+
+ |
+|New feature|Support for using existing ECS instances to create a managed Kubernetes cluster is added.|[Create a managed Kubernetes cluster](../../../../../reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a managed Kubernetes cluster.md#).|
+|November 2018|New region|The cluster type of managed Kubernetes is released for the Asia Pacific SE 5 \(Jakarta\) region.|N/A|
+|Commercialized product|The Terway network plugin is released.This type of network plugin has higher performance than the Flannel network plugin. If you select Terway as your cluster network plugin, containers within the cluster can directly communicate with each other through the Elastic Network Interface \(ENI\).
+
+|[Terway network plugin](../../../../../reseller.en-US/User Guide/Kubernetes cluster/Network management/Terway network plugin.md#).|
+|New feature|Added a performance metric thumbnail of each Worker node to easily check the node status.|N/A|
+|New feature| Support for multiple existing nodes to be added to a cluster at one time is provided.
+
+ |N/A|
+|New feature| Support for updating Kubernetes cluster certificates that are about to expire is provided.
+
+ |N/A|
 |October 2018|New region| The Shenzhen Financial Cloud region is released.
 
  Alibaba Cloud Container Service for Kubernetes is available in Shenzhen Financial Cloud and is guaranteed by the security and compliance of the Financial Cloud.
