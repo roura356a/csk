@@ -1,10 +1,10 @@
 # Kube-apiserver audit logs {#concept_svk_cgf_2fb .concept}
 
-In a Kubernetes cluster, apiserver audit logs are important for cluster Operation & Maintenance \(O&M\) because they record daily operations of different users. This topic describes the apiserver audit log configurations of an Alibaba Cloud Kubernetes cluster, and how to collect and analyze audit logs through Log Service, and how to customize audit log alarm rules.
+In a Kubernetes cluster, apiserver audit logs are important for cluster Operation & Maintenance \(O&M\) because they record daily operations of different users. This topic describes how to configure the apiserver audit logs of an Alibaba Cloud Kubernetes cluster, and how to collect and analyze audit logs through Log Service, and how to customize audit log alarm rules.
 
 ## Configurations of apiserver audit logs {#section_edv_5gf_2fb .section}
 
-Currently, the apiserver audit function is enabled by default when you create a Kubernetes cluster. Relevant parameters and description are as follows:
+The apiserver audit function is enabled by default when you create a Kubernetes cluster. Relevant parameters and description are as follows:
 
 **Note:** Log on to the Master node, and the directory of the apiserver configuration files is /etc/kubernetes/manifests/kube-apiserver.yaml.
 
@@ -153,11 +153,11 @@ You can access audit log reports by using either of the following two methods:
 
 -   Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs). In the action column of the target cluster, choose **More** \> **Cluster Audit**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141875337908_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654437908_en-US.png)
 
 -   Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).Click the target cluster name, and then click **Cluster Audit** in the left-side navigation pane.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141875337910_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654437910_en-US.png)
 
 
 ## Audit log report overview {#section_hkj_bcy_ngb .section}
@@ -168,7 +168,7 @@ The following three apiserver audit log reports are available: Audit Center Over
 
     This report displays an overview of the Kubernetes cluster events and the detailed information about important events, such as public network visits, command execution, resource removal, and secret visits.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141875337911_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654537911_en-US.png)
 
     **Note:** By default, this report displays statistics for one week. You can customize a statistics time range. In addition, you can filter events by specifying one or multiple factors, such as a namespace, a sub-account ID, and a status code.
 
@@ -179,7 +179,7 @@ The following three apiserver audit log reports are available: Audit Center Over
     -   Computing resources include deployment, StatefulSet, CronJob, DaemonSet, Job, and pod.
     -   Network resources include service and Ingress.
     -   Storage resources include ConfigMap, secret, and Persistent Volume Claim.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141875337915_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654537915_en-US.png)
 
     **Note:** 
 
@@ -189,7 +189,7 @@ The following three apiserver audit log reports are available: Audit Center Over
 
     This report displays detailed operation information of a Kubernetes cluster resource. You must select or enter a resource type to view detailed operation information in time. This report displays the total number of operation events, namespace distribution, success rate, timing trend, and specific operation charts.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141875337918_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654537918_en-US.png)
 
     **Note:** 
 
@@ -203,11 +203,11 @@ If you want to customize a log query or analyze audit logs, you can log on to Lo
 1.  Log on to the [Log Service console](https://partners-intl.console.aliyun.com/#/sls).
 2.  In the left-side navigation pane, click **Project Management**, select the Project configured when you create the cluster, and then click the Project name.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141875312111_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654512111_en-US.png)
 
 3.  On the Logstores page, find the Logstore named audit-$\{clusterid\} and click **Search** at the right side of the Logstore. The audit logs of the cluster are stored in this Logstore.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141875312114_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654512114_en-US.png)
 
     **Note:** 
 
@@ -268,9 +268,9 @@ To prevent malicious attacks on a Kubernetes cluster for which Internet access i
 
 You can manually enable audit log report functions.
 
-1.  Enable apiserver audit log.
+1.  Enable API server audit log.
 
-    View apiserver pod settings. That is, check whether audit log settings are configured for the startup parameters and environment variable.
+    View the API server pod settings of the three Master nodes. That is, check whether audit log settings are configured for the startup parameters, the policy file, the environment variable, and the mounting directory.
 
     -   Startup parameters
 
@@ -285,6 +285,12 @@ You can manually enable audit log report functions.
             - --audit-policy-file=/etc/kubernetes/audit-policy.yml
         ```
 
+    -   Policy file \( stored in the /etc/kubernetes/audit-policy.yml directory\)
+
+        For more information, see [Configure a policy file](#).
+
+        **Note:** If the /etc/kubernetes/ directory does not have any policy file, you need to run the vi audit-policy.yml command to create a file, and then copy the content of the policy file and paste the content to the created file.
+
     -   Environment variable
 
         ```
@@ -293,7 +299,29 @@ You can manually enable audit log report functions.
               value: /var/log/kubernetes/kubernetes.audit
         ```
 
-    If the apiserver pod settings does not contain the preceding settings, you must upgrade the Kubernete cluster to the latest version. For more information, see [Upgrade a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Upgrade a Kubernetes cluster.md#).
+    -   Mounting directory
+
+        ```
+        volumeMounts:
+            - mountPath: /var/log/kubernetes
+              name: k8s-audit
+            - mountPath: /etc/kubernetes/audit-policy.yml
+              name: audit-policy
+              readOnly: true
+        volumes:
+            - hostPath:
+              path: /var/log/kubernetes
+              type: DirectoryOrCreate
+              name: k8s-audit
+            - hostPath:
+              path: /etc/kubernetes/audit-policy.yml
+              type: FileOrCreate
+              name: audit-policy
+        ```
+
+    Backup the original YAML file and then restart the API server by using a new kube-apiserver.yaml YAML file. This action will overwrite the original YAML file stored in the /etc/kubernetes/manifests/kube-apiserver.yaml directory.
+
+    If the API server pod settings does not contain the preceding settings, you must upgrade the Kubernete cluster to the latest version. For more information, see [Upgrade a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Upgrade a Kubernetes cluster.md#).
 
 2.  Use the latest version of the Log Service component.
     -   For how to install the Log Service component, see [Manually install the Log Service component](reseller.en-US/User Guide/Kubernetes cluster/Log management/Use Log Service to collect Kubernetes cluster logs.md#section_shf_y5r_gfb).
@@ -303,7 +331,7 @@ You can manually enable audit log report functions.
     2.  In the left-side navigation pane, click **Project Management**, and then click the name of the Project specified when creating your Kubernetes cluster.
     3.  The Logstores page is displayed by default. Click **Manage** on the right of the Logstore named audit-$\{clustered\}, and then click the configuration name. On the Specify Collection Mode tab page, select the **JSON Mode**.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155141875337960_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654537960_en-US.png)
 
 
 ## Use a thirty-party log solution {#section_nf2_lsf_2fb .section}
