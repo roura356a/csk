@@ -4,18 +4,28 @@
 
 |变更时间|变更分类|变更内容|产品文档|
 |----|----|----|----|
+|2019年3月|新地域|Kubernetes托管版新增张家口、呼和浩特、美西、法兰克福四个区域，用户可以在以上区域使用Kubernetes托管版。|N/A|
+|新地域|容器镜像服务-企业版新增上海区域；容器镜像服务-共享版国际站全区域开放。容器镜像服务-企业版在3月21日阿里云峰会上正式亮相，企业版具备更强的安全及镜像分发能力。目前该功能在上海处于公测状态，想要体验的用户可通过提交工单申请。此外，共享版已在国际站全区域开放。
+
+|[什么是容器镜像服务](https://www.alibabacloud.com/help/zh/doc-detail/60945.html)|
+|新功能|容器服务ACK的Kubernetes版本全面升级到1.12.6，用户可以通过控制台创建1.12版本的Kubernetes集群。|N/A|
+|新功能|Kubernetes托管版集群支持日志服务的插件，和专有Kubernetes集群一样，用户可以在创建集群时选择使用日志服务，享受日志服务对Kubernetes日志的强大管理能力。|[创建Kubernetes 托管版集群](../../../../../intl.zh-CN/用户指南/Kubernetes集群/集群管理/创建Kubernetes 托管版集群.md#)|
+|新功能|Kubernetes托管版已支持Windows Kubernetes集群的创建，用户可通过控制台或Open API快速创建集群并部署Windows容器，让传统的Windows应用享受云原生带来的敏捷和弹性能力。|[创建Windows Kubernetes 集群](../../../../../intl.zh-CN/用户指南/Kubernetes集群/集群管理/创建Windows Kubernetes 集群.md#)|
+|新功能|容器服务ACK已开放IPVS的代理模式，IPVS不同于传统的Iptables模式，在大规模集群中会显著提高负载均衡的性能，用户可以在所有集群所有区域中使用该功能。|N/A|
+|新功能|容器服务ACK控制台上线集群模板新功能。用户可以通过集群模板按照业务场景选择不同种类的Kubernetes集群，例如托管集群、神龙集群、GPU集群、Windows集群等。集群模板将帮助用户更加快速便捷地创建适合自己的Kubernetes集群。|N/A|
+|新功能|Serverless Kubernetes集群新扩大规格ECI实例（从8vCPU扩大到64vCPU），支持基因计算等场景，其规格最大为64vCPU 256GiB，最小为0.25vCPU 0.5GiB，丰富的实例规格种类让用户在部署业务时有更多的选择，达到最佳的能效比。|[使用限制](https://www.alibabacloud.com/help/zh/doc-detail/89138.html)|
 |2019年2月|新地域|Kubernetes托管版深圳上线。用户可以在中国站和国际站的深圳区域使用Kubernetes托管版。
 
 使用Kubernetes托管版的核心优势有：
 
 -   节省资源，每个集群节省3个master节点。
--   运维简单，ACK负责帮助托管master集群。
--   安全，ACK护航满足用户安全需求。
+-   运维简单，容器服务 Kubernetes版负责帮助托管master节点。
+-   安全，容器服务 Kubernetes版护航满足用户安全需求。
 
 |N/A|
 |新功能| Knative是一种可缩放至零、请求驱动的计算运行环境，构建在 Kubernetes 和 Istio 之上，支持为 serverless 应用、函数提供部署与服务。
 
- ACK推出Knative Addon插件，帮助用户能够基于ACK集群快速搭建Knative Serving环境。
+ 容器服务 Kubernetes版推出Knative Addon插件，帮助用户能够基于容器服务 Kubernetes版集群快速搭建Knative Serving环境。
 
  |N/A
 
@@ -23,9 +33,9 @@
 |新功能|智能运维集群检查功能在中国站全区域开放。集群检查可以深度检查集群资源、组件、配置等，帮助用户快速定位集群使用问题。
 
 |N/A|
-|2019年1月|新功能|Windows容器内测上线。ACK支持Windows容器，Windows下的应用也可以容器化运行在Kubernetes上，享受Kubernetes弹性调度管理所带来的优势。
+|2019年1月|新功能|Windows容器内测上线。容器服务 Kubernetes版支持Windows容器，Windows下的应用也可以容器化运行在Kubernetes上，享受Kubernetes弹性调度管理所带来的优势。
 
-用户可以在ACK的Kubernetes集群以及托管版Kubernetes集群中通过添加节点的方式来添加Windows节点。
+用户可以在容器服务 Kubernetes版的Kubernetes集群以及托管版Kubernetes集群中通过添加节点的方式来添加Windows节点。
 
 目前该功能处于内测状态，想要体验的用户可通过提交工单申请。
 
@@ -35,7 +45,7 @@
 目前该功能处于内测状态，想要体验的用户可通过提交工单申请。
 
 |N/A|
-|新功能|集群智能运维上线。智能运维的目的是用户提供不同场景下的容器集群使用的最优解决方案，该功能在杭州地区已上线。
+|新功能|集群智能运维上线。智能运维的目的是用户提供不同场景下的容器集群使用的最优解决方案，该功能在杭州区域已上线。
 
 用户可以进行深度检查集群资源、组件、配置等信息，帮助用户快速定位集群使用问题。
 
@@ -51,7 +61,7 @@ ARMS是一款针对 Java 应用的性能管理（APM）软件。无需修改任�
 |新地域|Serverless Kubernetes在中国站的北京、深圳上线。Serverless Kubernetes可以在北京、深圳区域可以部署，享受无服务器容器带来的极致体验。
 
 |N/A|
-|2018年12月|新地域|容器服务英国（伦敦）上线。用户可以在中国站和国际站的伦敦区域使用ACK，享受Kubernetes容器带来的云原生能力。
+|2018年12月|新地域|容器服务英国（伦敦）上线。用户可以在中国站和国际站的伦敦区域使用容器服务 Kubernetes版，享受Kubernetes容器带来的云原生能力。
 
 |N/A|
 |新地域|Kubernetes托管版上海、马来西亚、印度上线|N/A|
@@ -74,7 +84,7 @@ ARMS是一款针对 Java 应用的性能管理（APM）软件。无需修改任�
 |新功能|托管版Kubernetes集群功能增强，创建集群时支持使用已有ECS。用户可以在创建托管版Kubernetes集群时直接选择已有的ECS节点，而不必新建节点。
 
 |[创建Kubernetes 托管版集群](../../../../../intl.zh-CN/用户指南/Kubernetes集群/集群管理/创建Kubernetes 托管版集群.md#)|
-|2018年11月|新地域|Kubernetes托管版国际站印尼区上线。用户可以在国际站的印尼区域使用ACK，享受Kubernetes容器带来的云原生能力。
+|2018年11月|新地域|Kubernetes托管版国际站印尼区上线。用户可以在国际站的印尼区域使用容器服务 Kubernetes版，享受Kubernetes容器带来的云原生能力。
 
 |N/A|
 |商用|网络插件Terway上线。阿里云容器服务推出高性能网络插件Terway，支持容器直接通过ENI通信，性能比VPC Flannel更高。
