@@ -8,7 +8,7 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 2.  Under Kubernetes, click **Clusters** in the left-side navigation pane to enter the Cluster List page. 
 3.  Click **Create a Serverless Kubernetes cluster** in the upper-right corner. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6960/15395899745636_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6960/15553272745636_en-US.png)
 
 4.  Enter the cluster name. 
 
@@ -18,7 +18,7 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
     **Note:** Serverless Kubernetes cluster is currently in beta stage, and only East China 2 \(Shanghai\) region is available.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6960/15395899745637_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6960/15553272755637_en-US.png)
 
 6.  Set the cluster network type. 
 
@@ -29,11 +29,11 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
         -   **Auto Create**: System automatically creates VPC, NAT gateway and configures SNAT rules in VPC when the cluster is created. 
         -   **Use existing**: Select the target VPC and VSwitch from the list of existing VPCs. To access the public network, for example, to download container images, configure the NAT gateway. We recommend that container images be uploaded to the Alibaba Cloud image service in the region where the cluster resides, and pull the image by the VPC address. 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6960/15395899745638_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6960/15553272755638_en-US.png)
 
 7.  Check whether to enable the PrivateZone-based service discovery feature, which allows you to access the service by the domain name within the cluster VPC. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6960/15395899745994_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6960/15553272765994_en-US.png)
 
     **Note:** Before using this feature, confirm that you have enabled the PrivateZone service, see [EN-US\_TP\_14696.md\#](reseller.en-US/User Guide/Serverless Kubernetes cluster/Service discovery based on Alibaba Cloud DNS Private Zone.md#).
 
@@ -42,9 +42,9 @@ Log on to the [Container Service console](https://partners-intl.console.aliyun.c
 
 After the cluster is created, you can view the cluster in the Kubernetes cluster list in the Container Service console.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6960/15395899745639_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6960/15553272765639_en-US.png)
 
 You can also click **Manage** at the right of the cluster to view the basic and connection information of this cluster.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6960/15395899745640_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/6960/15553272765640_en-US.png)
 
