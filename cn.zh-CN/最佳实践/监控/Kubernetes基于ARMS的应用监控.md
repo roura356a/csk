@@ -12,21 +12,21 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
 
 -   自动发现应用拓扑
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155315630637130_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155558235837130_zh-CN.png)
 
 -   自动发现并监控接口
 -   捕获异常事务和SQL分析、慢事务
 -   Java异常报表
 -   查询基于调用链的事务快照
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155315630637131_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155558235837131_zh-CN.png)
 
 -   即席多维排查（多维度调用链搜索，异常调用链搜索）
 -   PaaS平台集成
 
 ## 前提条件 {#section_bqm_3wp_kgb .section}
 
--   您已成功创建一个Kubernetes集群，参见[创建Kubernetes集群](../../../../../intl.zh-CN/用户指南/Kubernetes集群/集群管理/创建Kubernetes集群.md#)。
+-   您已成功创建一个Kubernetes集群，参见[创建Kubernetes集群](../../../../intl.zh-CN/用户指南/Kubernetes集群/集群管理/创建Kubernetes集群.md#)。
 -   您已开通ARMS应用监控服务，参见[开通 ARMS 服务](https://www.alibabacloud.com/help/zh/doc-detail/65257.html)。
 
 ## 安装组件 {#section_f32_vwp_kgb .section}
@@ -35,12 +35,12 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
 2.  单击左侧导航栏**市场** \> **应用目录**，在应用目录页面选择**ack-arms-pilot**。
 3.  在应用目录-ack-arms-pilot页面，单击右侧的**创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155315630637035_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155558235837035_zh-CN.png)
 
 
 单击左侧导航栏**应用** \> **无状态**，选择目标集群和命名空间，可以看到名称为ack-arms-pilot-default-ack-arms-pilot的应用已成功创建。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155315630637071_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155558235837071_zh-CN.png)
 
 ## 授权 {#section_q5g_fgq_kgb .section}
 
@@ -51,7 +51,7 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
 2.  单击目标集群的名称，查看集群的详细信息。
 3.  单击集群资源区域的**Worker RAM角色**，进入RAM访问控制台的RAM角色管理页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155315630637044_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155558235937044_zh-CN.png)
 
     **说明：** 
 
@@ -63,22 +63,22 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
 
     1.  单击左侧导航栏**角色管理**，在**角色名**中输入**Worker RAM角色**的名称进行搜索。单击**角色名称**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155315630637085_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155558235937085_zh-CN.png)
 
     2.  在**基本信息**区域，单击页面右上角的**编辑基本信息**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155315630637088_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155558235937088_zh-CN.png)
 
     **方法二**
 
     单击页面右下角**体验新版**，切换到新版RAM访问控制台。在容器服务管理控制台单击**Worker RAM 角色**重新登录RAM访问控制台。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155315630637079_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155558235937079_zh-CN.png)
 
 4.  在RAM角色管理页面，单击权限管理区域的权限策略名称，查看具体的权限策略。
 5.  在权限策略管理页面，单击策略内容区域的**修改策略内容**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155315630637053_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155558236137053_zh-CN.png)
 
 6.  在策略内容区域增加以下字段后，单击**确定**。
 
@@ -90,7 +90,7 @@ ARMS应用监控是一款针对 Java 应用的性能管理（Application Perform
     }
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155315630637054_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155558236237054_zh-CN.png)
 
 
 ## 部署ARMS应用监控 {#section_nmg_xlq_kgb .section}
@@ -112,7 +112,7 @@ annotations:
 2.  单击页面右上角**使用模板创建**。
 3.  选择目标集群和命名空间，创建Deployment。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155315630638486_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155558236338486_zh-CN.png)
 
     ```
     apiVersion: apps/v1beta1 # for versions before 1.8.0 use apps/v1beta1
@@ -199,6 +199,6 @@ annotations:
 
     **说明：** 若**操作列**无**ARMS控制台**，请检查您是否授权容器服务调用ARMS，可参考[授权](#section_q5g_fgq_kgb)。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155315630637099_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/92331/155558236337099_zh-CN.png)
 
 
