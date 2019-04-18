@@ -90,7 +90,7 @@ POST /clusters HTTP/1.1
 |
 |worker\_data\_disk\_category|int|否|数据盘类型|
 |worker\_data\_disk\_size|string|否|数据盘大小|
-|worker\_instance\_type|string|是|Worker 节点 ECS 规格类型代码。更多详细信息，参见[../../../../../dita-oss-bucket/SP\_2/DNA0011858383/ZH-CN\_TP\_9548.md\#](../../../../../intl.zh-CN/实例/实例规格族/实例规格族汇总.md#)|
+|worker\_instance\_type|string|是|Worker 节点 ECS 规格类型代码。更多详细信息，参见[../../../../dita-oss-bucket/SP\_2/DNA0011858383/ZH-CN\_TP\_9548.md\#](../../../../intl.zh-CN/实例/实例规格族.md#)|
 |worker\_system\_disk\_category|string|是|Worker节点系统盘类型|
 |worker\_system\_disk\_size|int|是|Worker节点系统盘大小|
 |login\_password|string|是|SSH登录密码。密码规则为8 - 30 个字符，且同时包含三项（大、小写字母，数字和特殊符号）。和key\_pair 二选一|
