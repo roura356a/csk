@@ -5,7 +5,7 @@
 ## 前提条件 {#section_e5m_bgn_j2b .section}
 
 -   您已创建一个serverless集群，集群的VPC需要配置NAT网关，从而访问外网，下载容器镜像。
--   您已通过kubectl连接到集群，参见[通过 kubectl 连接 Kubernetes 集群](cn.zh-CN/用户指南/Serverless Kubernetes 集群/集群管理/通过 kubectl 连接 Kubernetes 集群.md#)。
+-   您已通过kubectl连接到集群，参见[通过 kubectl 连接 Kubernetes 集群](intl.zh-CN/用户指南/Serverless Kubernetes 集群/集群管理/通过 kubectl 连接 Kubernetes 集群.md#)。
 
 ## 使用说明 {#section_and_jfn_j2b .section}
 
@@ -144,6 +144,29 @@ spec:
 ```
 
 ```
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cafe-ingress
+spec:
+  rules:
+  # 配置七层域名
+  - host: foo.bar.com
+    http:
+      paths:
+      # 配置Context Path
+      - path: /tea
+        backend:
+          serviceName: tea-svc
+          servicePort: 80
+      # 配置Context Path
+      - path: /coffee
+        backend:
+          serviceName: coffee-svc
+          servicePort: 80
+```
+
+```
 $ kubectl apply -f cafe-ingress.yaml
 ingress "cafe-ingress" created
   
@@ -161,12 +184,12 @@ cafe-ingress   foo.bar.com   139.***.**.***   80        1m
 本例中在hosts中添加一条DNS域名解析规则，用于测试服务访问。建议您在工作环境中对域名进行备案。
 
 ```
-139.224.76.211    foo.bar.com
+139.***.**.***    foo.bar.com
 ```
 
 通过浏览器测试访问coffee服务。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155411779110319_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155559437110319_zh-CN.png)
 
 通过命令行方式测试访问coffee服务。
 
@@ -176,7 +199,7 @@ curl -H "Host: foo.bar.com" http://139.***.**.***/coffee
 
 通过浏览器测试访问tea服务。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155411779110320_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155559437110320_zh-CN.png)
 
 通过命令行方式测试访问tea服务。
 
@@ -251,7 +274,7 @@ deploy/tomcat   1         1         1            1           1m
 
 您需要在集群同Region下自行申请一个**性能保障型**SLB实例（如slb.s2.small），可以是私网也可以是公网（依据具体需求）。本例中申请一个公网SLB实例，记录SLB实例的ID。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155411779110321_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155559437110321_zh-CN.png)
 
 **3、配置TLS证书**
 
@@ -275,6 +298,33 @@ cert-example   kubernetes.io/tls   2         12s
 **4、配置 Ingress**
 
 通过Ingress配置tomcat service对外暴露的域名和Path路径，编排模板如下：
+
+```
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tomcat-ingress
+  annotations:
+    # 配置使用指定的SLB实例（SLB ID）
+    service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-xxxxxxxxxx            ##替换为你的SLB ID
+    service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: "true"
+spec:
+  tls:
+  - hosts:
+    - bar.foo.com
+    # 配置TLS证书
+    secretName: cert-example
+  rules:
+  # 配置七层域名
+  - host: bar.foo.com
+    http:
+      paths:
+      # 配置Context Path
+      - path: /
+        backend:
+          serviceName: tomcat
+          servicePort: 8080
+```
 
 ```
 apiVersion: extensions/v1beta1
@@ -320,12 +370,12 @@ tomcat-ingress   bar.foo.com   47.***.**.**   80, 443   1m
 本例中在hosts中添加一条DNS域名解析规则，用于测试服务访问。建议您在工作环境中对域名进行备案。
 
 ```
-47.101.20.67   bar.foo.com
+47.***.**.**   bar.foo.com
 ```
 
 通过浏览器测试访问tomcat服务：
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155411779110322_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155559437110322_zh-CN.png)
 
 通过命令行方式测试访问tomcat服务：
 
