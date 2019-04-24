@@ -11,13 +11,13 @@ To rename the SLB instance, you must manually add a specific tag to the SLB inst
 
     -   You must replace $\{namespace\} and $\{service\} with the target namespace and service names.
     -   The service type is displayed as `LoadBalancer`.
-    ![](images/44550_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/158824/155607662444550_en-US.png)
 
 3.  Run the following command to generate the tag required by the target SLB instance:
 
     `# kubectl get svc -n ${namespace} ${service} -o jsonpath="{.metadata.uid}"|awk -F "-" '{print "kubernetes.do.not.delete: "substr("a"$1$2$3$4$5,1,32)}'`
 
-    ![](images/44551_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/158824/155607662644551_en-US.png)
 
 4.  Log on to the [SLB console](https://slb.console.aliyun.com)[SLB console](https://partners-intl.console.aliyun.com/#/sls). Then, select the corresponding region to which the target SLB instance belongs, and use the IP addressed obtained in step 2 to search for the SLB instance.
 5.  Add a tag for the target SLB instance according to the obtained key and its value shown in the preceding figure \(in step 3\). For more information, see [Manage tags](../../../../intl.en-US/User Guide/Server Load Balancer instance/Manage tags.md#).
