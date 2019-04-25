@@ -8,22 +8,22 @@
 
 1.  登录 [容器服务管理控制台](https://cs.console.aliyun.com)。
 2.  单击左侧导航栏中**集群**，单击右上角**创建Kubernetes集群**。
-3.  进入创建页面后，参见[创建Kubernetes集群](../../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/创建Kubernetes集群.md#)进行配置。
+3.  进入创建页面后，参见[创建Kubernetes集群](../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/创建Kubernetes集群.md#)进行配置。
 4.  拖动到页面底部，勾选**日志服务**配置项，表示在新建的 Kubernetes 集群中安装日志插件。
-5.  当勾选了使用日志服务后，会出现创建 Project（日志服务管理日志的组织结构，具体可见[项目](../../../../../intl.zh-CN/产品简介/基本概念/项目.md#)）的提示，目前有两种方式可选：
+5.  当勾选了使用日志服务后，会出现创建 Project（日志服务管理日志的组织结构，具体可见[项目](../../../../intl.zh-CN/产品简介/基本概念/项目.md#)）的提示，目前有两种方式可选：
     -   选择一个现有的 Project 来管理采集的日志。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15531548969250_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634469250_zh-CN.png)
 
     -   自动创建一个新的 Project 来管理采集的日志，Project 会自动命名为 `k8s-log-{ClusterID}`，ClusterID 表示您新建的 Kubernetes 集群的唯一标识。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15531548979251_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634469251_zh-CN.png)
 
 6.  配置完成后，单击右上角**创建集群**，在弹出的窗口中单击**确定**，完成创建。
 
     完成创建后，您可在集群列表页面看到创建的Kubernetes集群。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15531548979449_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634479449_zh-CN.png)
 
 
 ## 已创建 Kubernetes 集群，手动安装日志服务组件 {#section_shf_y5r_gfb .section}
@@ -225,11 +225,11 @@ tolerations:
 2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **部署**，然后单击页面右上角的**使用镜像创建**。
 3.  设置**应用名称**、**部署集群**、**命名空间**、**副本数量**和**类型**，单击**下一步**，进入容器配置页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15531548979451_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634479451_zh-CN.png)
 
 4.  进入容器配置页面中，本例中选择nginx镜像，对容器采集进行配置。
 
-    以下仅介绍日志服务相关的配置，其他的应用配置可参见[使用镜像创建无状态Deployment应用](intl.zh-CN/用户指南/Kubernetes集群/应用管理/使用镜像创建无状态Deployment应用.md#)。
+    以下仅介绍日志服务相关的配置，其他的应用配置可参见[镜像创建无状态Deployment应用](intl.zh-CN/用户指南/Kubernetes集群/应用管理/镜像创建无状态Deployment应用.md#)。
 
 5.  进行**日志配置**。单击**+**号创建新的采集配置，每个采集配置由 **Logstore 名称**和**日志采集路径**两项构成。
 
@@ -243,13 +243,13 @@ tolerations:
 
         每一项采集配置都会被自动创建为对应 Logstore 的一个采集配置，默认采用极简模式（按行）进行采集，如果您需要更丰富的采集方式，可以前往日志服务控制台，进入相应的 Project（默认是 k8s-log 前缀）和 Logstore 对配置进行修改。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15531548979460_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634479460_zh-CN.png)
 
 6.  自定义 Tag。单击**+**号创建新的自定义 Tag，每一个自定义 Tag 都是一个键值对，会拼接到所采集到的日志中，您可以使用它来为容器的日志数据进行标记，比如版本号。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15531548979473_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634479473_zh-CN.png)
 
-7.  当完成所有配置后，可单击右上角的**下一步**进入后续流程，后续操作可见[使用镜像创建无状态Deployment应用](intl.zh-CN/用户指南/Kubernetes集群/应用管理/使用镜像创建无状态Deployment应用.md#)。
+7.  当完成所有配置后，可单击右上角的**下一步**进入后续流程，后续操作可见[镜像创建无状态Deployment应用](intl.zh-CN/用户指南/Kubernetes集群/应用管理/镜像创建无状态Deployment应用.md#)。
 
 **使用 YAML 模板创建**
 
@@ -323,18 +323,18 @@ tolerations:
 2.  在进入控制台后，选择 Kubernetes 集群对应的 Project（默认为 k8s-log-\{Kubernetes 集群 ID\}），进入 Logstore 列表页面。
 3.  在列表中找到相应的 Logstore（采集配置中指定），单击**查询**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15531548979474_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634479474_zh-CN.png)
 
 4.  本例中，在日志查询页面，您可查看tomcat应用的标准输出日志和容器内文本日志，并可发现自定义tag附加到日志字段中。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15531548979541_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634479541_zh-CN.png)
 
 
 ## 更多信息 {#section_rg2_tdh_hfb .section}
 
 1.  默认情况下，我们会使用极简模式来采集您的数据（按行采集、不解析），如果您需要更复杂的配置，可以参考以下日志服务文档并前往日志服务控制台进行配置修改：
-    -   [容器文本日志](../../../../../intl.zh-CN/用户指南/Logtail采集/容器日志采集/容器文本日志.md#)
-    -   [容器标准输出](../../../../../intl.zh-CN/用户指南/Logtail采集/容器日志采集/容器标准输出.md#)
+    -   [容器文本日志](../../../../intl.zh-CN/用户指南/Logtail采集/容器日志采集/容器文本日志.md#)
+    -   [容器标准输出](../../../../intl.zh-CN/用户指南/Logtail采集/容器日志采集/容器标准输出.md#)
 2.  除了通过控制台配置采集以外，您还可以直接通过 CRD 配置来对 Kubernetes 集群进行日志采集。
-3.  对于异常的排查，可以参考[排查日志采集异常](../../../../../intl.zh-CN/常见问题/日志采集/Logtail排查简介.md#)。
+3.  对于异常的排查，可以参考[排查日志采集异常](../../../../intl.zh-CN/常见问题/日志采集/Logtail排查简介.md#)。
 
