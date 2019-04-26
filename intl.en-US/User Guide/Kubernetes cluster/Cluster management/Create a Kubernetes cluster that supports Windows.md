@@ -6,7 +6,7 @@ This topic describes how to use the Container Service console to create a Kubern
 
 The following services are activated: Container Service, Resource Orchestration Service \(ROS\), Resource Access Management \(RAM\), and Auto Scaling service.
 
-Log on to the [Container Service console](https://cs.console.aliyun.com/), [ROS console](https://ros.console.aliyun.com/), [RAM console](https://ram.console.aliyun.com/), and [Auto Scaling console](https://essnew.console.aliyun.com) to activate the corresponding services.
+Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs), [ROS console](https://partners-intl.console.aliyun.com/#/ros), [RAM console](https://partners-intl.console.aliyun.com/#/ram), and [Auto Scaling console](https://partners-intl.console.aliyun.com/#/essnew) to activate the corresponding services.
 
 **Note:** The deployment of Kubernetes clusters that support Windows in Container Service is dependent on the application deployment capabilities of Alibaba Cloud ROS. Therefore, you must activate ROS before you create a Kubernetes cluster that supports Windows.
 
@@ -25,19 +25,20 @@ Log on to the [Container Service console](https://cs.console.aliyun.com/), [ROS 
 ## Procedure {#section_br3_nzh_mhb .section}
 
 1.  Log on to the [Container Service console](https://cs.console.aliyun.com/).
-2.  In the left-side navigation pane under Container Service-Kubernetes, choose **Clusters** \> **Clusters**. Then click **Create Kubernetes Cluster** in the upper-right corner.
-3.  On the displayed page, find **Windows Cluster**, and then click **Create**.
-4.  Enter the cluster name.
+2.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
+3.  In the left-side navigation pane under Container Service-Kubernetes, choose **Clusters** \> **Clusters**. Then click **Create Kubernetes Cluster** in the upper-right corner.
+4.  On the displayed page, find **Windows Cluster**, and then click **Create**.
+5.  Enter the cluster name.
 
     **Note:** The cluster name must be 1 to 63 characters in length, and can contain letters, numbers, Chinese characters, and hyphens \(-\).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775341558_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272041558_en-US.png)
 
-5.  Select the region and zone where you want to locate the cluster.
+6.  Select the region and zone where you want to locate the cluster.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775341560_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272041560_en-US.png)
 
-6.  Select a VPC.
+7.  Select a VPC.
 
     **Note:** Kubernetes clusters support only the VPC network type.
 
@@ -48,15 +49,15 @@ Log on to the [Container Service console](https://cs.console.aliyun.com/), [ROS 
 
         **Note:** If you set the system not to create a NAT gateway automatically, then you need to manually set a NAT gateway, or set an SNAT entry to ensure that your selected VPC is accessible to the Internet. Otherwise, instances in the VPC cannot access the Internet, which results in a cluster creation failure.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775345005_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272045005_en-US.png)
 
-7.  Set the node type by selecting a node billing method.
+8.  Set the node type by selecting a node billing method.
 
     **Note:** Pay-As-You-Go and Subscription are supported.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775345006_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272045006_en-US.png)
 
-8.  Set the Worker instance.
+9.  Set the Worker instance.
 
     **Note:** 
 
@@ -64,33 +65,33 @@ Log on to the [Container Service console](https://cs.console.aliyun.com/), [ROS 
     -   Each cluster can contain up to 48 Worker nodes. To create more Worker nodes, open a ticket.
     -   By default, a system disk is attached to Worker nodes. For the system disk, available system disk types are SSD disks and Ultra disks.
     -   You can manually attach a data disk to Worker nodes. For data disks, available data types are SSD disks and Ultra disks.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775345007_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272145007_en-US.png)
 
-9.  Select the Kubernetes version that supports the Windows operating system. By default, the Kubernetes version with this support is selected.
+10. Select the Kubernetes version that supports the Windows operating system. By default, the Kubernetes version with this support is selected.
 
     **Note:** The system does not display the **Operating Stem** option if you select the Kubernetes version that does not support the Windows operating system.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775345008_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272145008_en-US.png)
 
-10. Select the Windows operating system.
+11. Select the Windows operating system.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775445009_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272145009_en-US.png)
 
-11. Set the logon password.
+12. Set the logon password.
 
     -   **Logon Password**: Set the node logon password.
     -   **Confirm Password**: Confirm your node logon password.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775445010_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272145010_en-US.png)
 
-12. Set the **Pod Network CIDR** and **Service CIDR**.
+13. Set the **Pod Network CIDR** and **Service CIDR**.
 
     **Note:** 
 
     -   If you choose to use an existing VPC, we recommend that you set these two parameters.
-    -   The two Classless Inter-Domain Routing \(CIDR\) blocks cannot overlap with each other, or with your selected VPC, or with the CIDR blocks used by any other existing Kubernetes clusters in the selected VPC. Furthermore, they cannot be modified after the cluster is created. For more information, see [Plan Kubernetes CIDR blocks under VPC](intl.en-US/Best Practices/Cluster/Plan Kubernetes CIDR blocks under a VPC.md#).
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775445011_en-US.png)
+    -   The two Classless Inter-Domain Routing \(CIDR\) blocks cannot overlap with each other, or with your selected VPC, or with the CIDR blocks used by any other existing Kubernetes clusters in the selected VPC. Furthermore, they cannot be modified after the cluster is created. For more information, see [Plan Kubernetes CIDR blocks under VPC](reseller.en-US/Best Practices/Cluster/Plan Kubernetes CIDR blocks under a VPC.md#).
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272145011_en-US.png)
 
-13. Configure an SNAT gateway for the VPC.
+14. Configure an SNAT gateway for the VPC.
 
     **Note:** We recommend that you configure this setting. Otherwise, instances in the VPC cannot access the Internet, which will result in a cluster creation failure.
 
@@ -98,9 +99,9 @@ Log on to the [Container Service console](https://cs.console.aliyun.com/), [ROS 
     -   If you set the system to use an existing VPC, you can perform one of the following two operations:
         -   Set the system to automatically configure an SNAT gateway.
         -   Manually configure a NAT gateway or SNAT gateway for the VPC.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775445012_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272145012_en-US.png)
 
-14. Enable the **Use Public SLB to Expose API Server** function.
+15. Enable the **Use Public SLB to Expose API Server** function.
 
     The Kubernetes API supports such RESTful API actions as retrieving, creating, querying, updating, and deleting resources, such as pods and services.
 
@@ -109,31 +110,31 @@ Log on to the [Container Service console](https://cs.console.aliyun.com/), [ROS 
         **Note:** The API server uses the Master node port.
 
     -   If you do not enable this function, no Internet SLB instance is created. In this case, you can only use kubeconfig to connect to and operate the cluster within the VPC.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775445013_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272145013_en-US.png)
 
-15. Enable Log Service.
+16. Enable Log Service.
 
     You can select an existing project or create a new project.
 
-    If you select the **Using Log Service** check box, a Log Service plugin is automatically installed in the cluster. Then, when you create an application in the cluster, you can immediately use Log Service with only a few configurations required. For more information, see [Use Log Service to collect Kubernetes cluster logs](intl.en-US/User Guide/Kubernetes cluster/Log management/Use Log Service to collect Kubernetes cluster logs.md#).
+    If you select the **Using Log Service** check box, a Log Service plugin is automatically installed in the cluster. Then, when you create an application in the cluster, you can immediately use Log Service with only a few configurations required. For more information, see [Use Log Service to collect Kubernetes cluster logs](reseller.en-US/User Guide/Kubernetes cluster/Log management/Use Log Service to collect Kubernetes cluster logs.md#).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775445014_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272145014_en-US.png)
 
-16. Set the RDS instance whitelist.
+17. Set the RDS instance whitelist.
 
     Add the IP address of the node to the RDS instance whitelist.
 
     **Note:** If you choose to use an existing VPC, we recommend that you set this parameter.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775445015_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272145015_en-US.png)
 
-17. Set advanced configurations.
+18. Set advanced configurations.
 
     Set the number of pods for a node. This parameter specifies the maximum number of pods that can be run by a single node. We recommend that you retain the default setting.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775445016_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272145016_en-US.png)
 
-18. Click **Create**, and then click **Create** in the displayed dialog box.
+19. Click **Create**, and then click **Create** in the displayed dialog box.
 
     **Note:** A Kubernetes cluster that contains multiple nodes typically takes ten minutes to be created.
 
@@ -142,15 +143,15 @@ Log on to the [Container Service console](https://cs.console.aliyun.com/), [ROS 
 
 After the cluster is created, you can view the cluster in the cluster list of the Container Service console.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775445043_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272245043_en-US.png)
 
 -   To view the cluster logs, click **View Logs** on the right of the cluster. To view more details, click**Stack Events**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775445045_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272245045_en-US.png)
 
 -   To view the basic information, the connection information, and other information, return to the cluster list page and click Manage in the action column of the cluster.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775645046_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272245046_en-US.png)
 
 
 **Cluster information** 
@@ -160,7 +161,7 @@ After the cluster is created, you can view the cluster in the cluster list of th
 -   **Pod Network CIDR**: the CIDR block where the pods of a Kubernetes cluster are located.
 -   **Service CIDR**: the CIDR block where the services of a Kubernetes cluster are located.
 
-For example, you can log on to the Master node by using SSH \(for more information, see [Connect to a Kubernetes cluster by using kubectl](intl.en-US/User Guide/Kubernetes cluster/Cluster management/Connect to a Kubernetes cluster by using kubectl.md#)\), and run the `kubectl get node`command to view the cluster nodes.
+For example, you can log on to the Master node by using SSH \(for more information, see [Connect to a Kubernetes cluster by using kubectl](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Connect to a Kubernetes cluster by using kubectl.md#)\), and run the `kubectl get node`command to view the cluster nodes.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155619775641601_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/155624272241601_en-US.png)
 
