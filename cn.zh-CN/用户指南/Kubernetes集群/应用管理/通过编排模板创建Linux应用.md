@@ -6,11 +6,11 @@
 
 本例演示如何通过一个编排模板创建 nginx 应用，包含一个 Deployment 和 Service，后端 Deployment会创建Pod 资源对象， Service 会绑定到后端 Pod 上，形成一个完整的 nginx 应用。
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。 
-2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **部署**，进入部署列表页面。 
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **无状态**，进入无状态（Deployment）页面。
 3.  单击页面右上角的**使用模板创建**。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16659/155411096211072_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16659/155687019711072_zh-CN.png)
 
 4.  对模板进行相关配置，完成配置后单击**创建**。 
 
@@ -19,7 +19,7 @@
     -   **示例模板**：阿里云容器服务提供了多种资源类型的 Kubernetes yaml 示例模板，让您快速部署资源对象。您可以根据 Kubernetes Yaml 编排的格式要求自主编写，来描述您想定义的资源类型。
     -   **添加部署**：您可通过此功能快速定义一个Yaml模板。
     -   **使用已有模板**：您可将已有编排模板导入到模板配置页面。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16659/155411096211074_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16659/155687019711074_zh-CN.png)
 
     下面是一个 nginx 应用的示例编排，基于容器服务内置的编排模板。通过该编排模板，即可快速创建一个属于 nginx 应用的 deployment 。
 
@@ -69,16 +69,16 @@
 
 5.  单击**创建**后。会提示部署状态信息。成功后，单击**Kubernetes 控制台**前往Kubernetes Dashboard 查看部署进度。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16659/155411096211075_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16659/155687019711075_zh-CN.png)
 
 6.  在 Kubernetes Dashboard 里，您可以看到 my-service1 服务已成功部署，并暴露了外部入口。单击**外部入口**的访问地址。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16659/155411096211084_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16659/155687019711084_zh-CN.png)
 
 7.  您可以在浏览器中访问 nginx 服务欢迎页面。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16659/155411096211086_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16659/155687019811086_zh-CN.png)
 
 
-您也可返回容器服务首页，单击左侧导航栏中的**应用** \> **服务**，查看该nginx的服务。
+您也可返回容器服务首页，单击左侧导航栏中的**路由与负载均衡** \> **服务**，查看该nginx的服务。
 
