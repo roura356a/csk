@@ -5,7 +5,7 @@ The distributed application architecture composed of microservices has disadvant
 ## Prerequisites {#section_ymx_4kh_1fb .section}
 
 -   A Kubernetes cluster is created. For more information, see [Create a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
--   You have logged on to the Container Service console by using the primary account or by using a sub-account that has been granted sufficient permissions. For example, if the cluster-admin permission is granted to a sub-account then Istio can be deployed. Other combinations of permissions are also sufficient. For more information, see [Kubernetes permission configuration guide for RAM users](reseller.en-US/User Guide/Kubernetes cluster/Authorization management/Kubernetes permission configuration guide for RAM users.md#).
+-   You have logged on to the Container Service console by using the primary account or by using a sub-account that has been granted sufficient permissions. For example, if the cluster-admin permission is granted to a sub-account then Istio can be deployed. Other combinations of permissions are also sufficient. For more information, see [Grant Kubernetes permissions to a RAM user](reseller.en-US/User Guide/Kubernetes cluster/Authorization management/Grant Kubernetes permissions to a RAM user.md#).
 
 ## Background information {#section_f1c_rkh_1fb .section}
 
@@ -16,45 +16,46 @@ The distributed application architecture composed of microservices has disadvant
 
 ## Procedure {#section_spk_skh_1fb .section}
 
-**Deploy Istio through a cluster interface**
+You can deploy Istio through the Clusters page or through the App Catalog page.
 
-1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-2.  In the left-side navigation pane, click **Clusters**.
-3.  Select a cluster and then click **More** \> **Deploy Istio** in the action column at the right of a cluster.
+-   **Deploy Istio through the Clusters page**
+    1.  Deploy Istio.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374385711255_en-US.png)
+        1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
+        2.  In the left-side navigation pane, choose **Clusters** \> **Clusters**.
+        3.  On the right of the target cluster, choose **More** \> **Deploy Istio**.
 
-4.  Deploy Istio according to the following information.
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045911255_en-US.png)
 
-    |Configuration|Description|
-    |-------------|-----------|
-    |Clusters|Target cluster in which Istio is deployed.|
-    |Namespace|Namespace in which Istio is deployed.|
-    |Release Name|Name of Istio to be released.|
-    |Enable Prometheus for metrics/logs collection|Whether to enable Prometheus for metrics/logs collection. Enabled by default.|
-    |Enable Grafana for metrics display|Whether to enable Grafana for metrics display. Enabled by default.|
-    |Enable automatic Istio Sidecar injection|Whether to enable automatic Istio Sidecar injection. Enabled by default.|
-    |Enable the Kiali Visualization Service Mesh|Whether to enable the Kiali Visualization Service Mesh. Disabled by default.    -   Username: Set a user name. The default is admin.
-    -   Password: Set a password. The default is admin.
+        4.  Set the following Istio parameters.
+
+            |Configuration|Description|
+            |-------------|-----------|
+            |Clusters|Target cluster in which Istio is deployed.|
+            |Namespace|Namespace in which Istio is deployed.|
+            |Release Name|Name of Istio to be released.|
+            |Enable Prometheus for metrics/logs collection|Whether to enable Prometheus for metrics/logs collection. Enabled by default.|
+            |Enable Grafana for metrics display|Whether to enable Grafana for metrics display. Enabled by default.|
+            |Enable automatic Istio Sidecar injection|Whether to enable automatic Istio Sidecar injection. Enabled by default.|
+            |Enable the Kiali Visualization Service Mesh|Whether to enable the Kiali Visualization Service Mesh. Disabled by default.            -   Username: Set a user name. The default is admin.
+            -   Password: Set a password. The default is admin.
 |
-    |Enable Log Service\(SLS\) and Jaeger| Whether to enable Log Service\(SLS\) and Jaeger. Disabled by default.
+            |Tracing Analysis Settings|             -   **Enable Distributed Tracing with Jaeger**: indicates whether to enable Jaeger \(the distributed tracing system\). To use Jaeger, select this radio button, and activate Alibaba Cloud Log Service.
 
- Endpoint: Select an address according to the region in which the configured Log Service exists. For more information, see [Service endpoint](../../../../../reseller.en-US/API Reference/Service endpoint.md#section_nv4_h2r_12b).
+**Note:** If you select this radio button, Log Service will automatically create a project named istio-tracing-\{ClusterID\} that is used to store the tracking data.
 
- Project: Set the name of the project in which you collect logs.
+            -   **Activate Tracing Analysis**: inditcates whether to activate the Tracing Analysis service. To activate this service, select this radio button, and then click **Activate now**. Additionally, you need to enter an endpoint address in the format of http://tracing-analysis-dc-hz.aliyuncs.com/.../api/v1/spans.
 
- Logstore: Set the name of the Logstore in which you collect logs.
+**Note:** 
 
- AccessKeyID: Set the ID of the AccessKey used to access Log Service.
+                -   An address of this format indicates an Internet or intranet endpoint used by a Zipkin client to transmit collected data in a region to the Tracing Analysis service that uses the API from v1 release.
 
-**Note:** Select the AccessKeyID that has permission to access Log Service.
-
- AccessKeySecret: Set the AccessKeySecret used to access Log Service.
-
+                -   If you use an intranet endpoint, you must ensure that your Kubernetes cluster and the [Tracing Analysis](https://tracing-analysis.console.aliyun.com/) instance are in the same region to maintain stable network performance.
  |
-    |Pilot Settings|Set the trace sampling percentage in the range of 0 to 100. The default is 1.|
-    |Control Egress Traffic|     -   Permitted Addresses for External Access: range of IP addresses that can be used to directly access services in the Istio service mesh. By default, this field is left blank. Use commas \(,\) to separate multiple IP address ranges.
-    -   Blocked Addresses for External Access: range of IP addresses that are blocked against external accesses. By default, this IP address range contains the cluster pod CIDR block and service CIDR block. Use commas \(,\) to separate multiple IP address ranges.
+            |Pilot Settings|Set the trace sampling percentage in the range of 0 to 100. The default value is 1.|
+            |Control Egress Traffic|             -   **Permitted Addresses for External Access**: range of IP addresses that can be used to directly access services in the Istio service mesh. By default, this field is left blank. Use commas \(,\) to separate multiple IP address ranges.
+            -   **Blocked Addresses for External Access**: range of IP addresses that are blocked against external accesses. By default, this IP address range contains the cluster pod CIDR block and service CIDR block. Use commas \(,\) to separate multiple IP address ranges.
+            -   **ALL**: Select this check box to block all the IP addresses used to access the Internet.
  **Note:** 
 
 If the settings of these two parameters conflict with each other, the Permitted Addresses for External Access prevails.
@@ -63,115 +64,143 @@ For example, if an IP address is listed in both IP address ranges that you set f
 
  |
 
-5.  Click **Deploy Istio** to start deployment.
+        5.  Click **Deploy Istio**.
 
-    At the bottom of the deployment page, you can view the deployment progress and status in real time.
+            At the bottom of the deployment page, you can view the deployment progress and status in real time.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374385711256_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045911256_en-US.png)
 
+        **Verify the result**
 
-**Expected results:**
+        You can view your deployment results in the following ways:
 
-You can view your deployment results in the following ways:
+        -   At the bottom of the Deploy Istio page, **Deploy Istio** is changed to **Deployed**.
 
--   At the bottom of the Deploy Istio page, **Deploy Istio** is changed to **Deployed**.
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045911257_en-US.png)
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374385711257_en-US.png)
-
--   -   In the left-side navigation pane, click **Application** \> **Pods**.
+        -   -   In the left-side navigation pane, choose **Application** \> **Pods**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the relevant pods in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374385711258_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045911258_en-US.png)
 
--   -   In the left-side navigation pane, click **Application** \> **Service**.
+        -   -   In the left-side navigation pane, choose **Application** \> **Service**.
 -   Select the cluster and namespace in which Istio is deployed, and you can see the access addresses provided by the relevant services in which Istio is deployed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374385811259_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045911259_en-US.png)
 
+    2.  Create the Istio Ingress gateway.
 
-**Use the application catalog to deploy Istio**
+        **Note:** By default, the system does not create the Istio Ingress gateway after you have deployed Istio.
 
-1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-2.  In the left-side navigation pane, click **Store** \> **App Catalog**.
+        1.  In the left-side navigation pane, choose **Store** \> **App Catalog**.
+        2.  Click **ack-istio-ingressgateway**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374385811260_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045941685_en-US.png)
 
-3.  Click **ack-istio**.
-4.  Click the Values tab to configure parameters.
+        3.  Click the **Values** tab, and then set the parameters.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374385812560_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045941686_en-US.png)
 
-    **Note:** 
+            **Note:** 
 
-    -   For information about the description, values, and defaults of general parameters, see the **Configuration** section on the Readme tab page.
-    -   You can also customize parameters. For example, whether to start grafana, prometheus, tracing, weave-scope, and kiali. See the following:
+            -   For more information about the description, the values, and the default parameters, see the **Configuration** section on the **Readme** tab page.
+            -   You can set customized parameters, including indicating whether to enable a specific port, or whether to use the intranet SLB or the Internet SLB by setting the serviceAnnotations parameter.
+        4.  In the Deploy area on the right, select the target **Cluster** from the drop-down list, and then click DEPLOY.
 
-        ```
-        #
-        # addons configuration
-        #
-        grafana:
-        enabled: true
-        replicaCount: 1
-        image: istio-grafana
-        service:
-        name: http
-        type: ClusterIP
-        externalPort: 3000
-        internalPort: 3000
-        ....
-        prometheus:
-        enabled: true
-        replicaCount: 1
-        image:
-        repository: registry.cn-hangzhou.aliyuncs.com/aliacs-app-catalog/istio-prometheus
-        tag: latest
-        ....
-        tracing:
-        enabled: true
-        jaeger:
-        enabled: true
-        ....
-        weave-scope:
-        enabled: true
-        global:
-        # global.image: the image that will be used for this release
-        image:
-        repository: weaveworks/scope
-        tag: "1.9.0"
-        # global.image.pullPolicy: must be Always, IfNotPresent, or Never
-        pullPolicy: "IfNotPresent"
-        ....
-        kiali:
-        enabled: true
-        replicaCount: 1
-        image:
-        repository: registry.cn-hangzhou.aliyuncs.com/aliacs-app-catalog/istio-kiali
-        tag: dev
-        
-        
-        ```
+            **Note:** **Namespace** is fixed as istio-system, and **Release Name** is fixed as istio-ingressgateway.
 
-5.  In the Deploy section on the right, configure the following.
+        Verify the result.
 
-    |Configuration|Description|
-    |-------------|-----------|
-    |Clusters|Target cluster in which Istio is deployed.|
-    |Namespace|Namespace in which Istio is deployed. The default namespace is default.|
-    |Release Name|Name of Istio to be released.|
+        1.  In the left-side navigation pane, choose **Application** \> **Pod**.
+        2.  Select the target cluster and the **istio-system** namespace to view the pod to which the Istio Ingress gateway has been deployed.
 
-6.  Click **DEPLOY** to start deployment.
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045941687_en-US.png)
 
-**Expected results:**
+-   **Deploy Istio through the App Catalog page**
+    1.  Deploy the CRD of Istio.
 
--   -   In the left-side navigation pane, click **Application** \> **Pods**.
--   Select the cluster and namespace in which Istio is deployed, and you can see the relevant pods in which Istio is deployed.
+        1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
+        2.  In the left-side navigation pane, choose **Store** \> **App Catalog**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374385711258_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045941697_en-US.png)
 
--   -   In the left-side navigation pane, click **Application** \> **Service**.
--   Select the cluster and namespace in which Istio is deployed, and you can see the access addresses provided by the relevant services in which Istio is deployed.
+        3.  Click **ack-istio-init**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155374385811259_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045941698_en-US.png)
+
+        4.  In the Deploy area on the right, select the target **Cluster** from the drop-down list, and then click DEPLOY.
+
+            **Note:** **Namespace** is fixed as istio-system, and **Release Name** is fixed as istio-init.
+
+        Verify the result.
+
+        1.  In the left-side navigation pane, choose **Application** \> **Pods**.
+        2.  Select the target cluster and the **istio-system** namespace to view the pod to which the Istio CRD has been deployed.
+
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045911258_en-US.png)
+
+    2.  Deploy Istio.
+
+        1.  In the left-side navigation pane, choose **Store** \> **App Catalog**.
+        2.  Click **ack-istio**.
+
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704046041679_en-US.png)
+
+        3.  Click the Values tab, and then set the parameters.
+
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704046041681_en-US.png)
+
+            **Note:** 
+
+            -   For more information about the description, the values, and the default parameters, see the **Configuration** section on the **Readme** tab page.
+            -   You can set customized values for parameters, including the grafana, prometheus, tracing, kiali, and other parameters, to better meet your requirements.
+        4.  In the Deploy area on the right, select the target **Cluster** from the drop-down list, and then click DEPLOY.
+
+            **Note:** **Namespace** is fixed as istio-system, and **Release Name** is fixed as istio.
+
+        5.  Click **DEPLOY**.
+        Verify the result.
+
+        -   Verify that Istio has been deployed to a pod.
+
+1.  In the left-side navigation pane, choose **Application** \> **Pods**.
+2.  Select the target cluster and namespace to view the pod to which Istio has been deployed.
+
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045911258_en-US.png)
+
+        -   Verify that Istio has been deployed to a service.
+
+1.  In the left-side navigation pane, choose **Application** \> **Service**.
+2.  Select the cluster and namespace in which Istio is deployed to view the IP addresses provided by the services to which Istio has been deployed.
+
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045911259_en-US.png)
+
+    3.  Create the Istio Ingress gateway.
+
+        **Note:** By default, the system does not create the Istio Ingress gateway after you have deployed Istio.
+
+        1.  In the left-side navigation pane, choose **Store** \> **App Catalog**.
+        2.  Click **ack-istio-ingressgateway**.
+
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045941685_en-US.png)
+
+        3.  Click the **Values** tab, and then set the parameters.
+
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045941686_en-US.png)
+
+            **Note:** 
+
+            -   For more information about the description, the values, and the default of the parameters, see the **Configuration** section on the **Readme** tab page.
+            -   You can set customized parameters. For example, you can enable a specific port, or use the intranet SLB or the Internet SLB by set the serviceAnnotations parameter.
+        4.  In the Deploy area on the right, select the target **Cluster** from the drop-down list, and then click DEPLOY.
+
+            **Note:** **Namespace** is fixed as istio-system, and **Release Name** is fixed as istio-ingressgateway.
+
+        Verify the result.
+
+        1.  In the left-side navigation pane, choose **Application** \> **Pod**.
+        2.  Select the target cluster and the **istio-system** namespace to view the pod to which the Istio Ingress gateway has been deployed.
+
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045941687_en-US.png)
 
 
