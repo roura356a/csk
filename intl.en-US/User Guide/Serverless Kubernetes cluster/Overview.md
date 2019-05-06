@@ -8,15 +8,17 @@ Currently, Serverless Kubernetes clusters of Alibaba Cloud Container Service are
 
 ## Limits {#section_qjp_rc1_12b .section}
 
--   Only one Serverless Kubernetes cluster can be created.
--   Only 2C4G pods can be used.
--   Up to five pods can be created.
+Pods in a serverless Kubernetes cluster are created based on Elastic Container Instance \(ECI\). For more information about the pod specifications and pod usage limits, see [Limits](https://www.alibabacloud.com/help/zh/doc-detail/89138.html).
 
-## Pricing {#section_uzy_gzz_xdb .section}
+## Pricing {#section_np1_7pb_qqv .section}
 
-Serverless Kubernetes clusters are free to use during the beta period. The 2C4G specification is used by default.
+Serverless Kubernetes clusters are free of charge.
+
+For more information about ECI pricing, see [Pricing](https://www.alibabacloud.com/help/zh/doc-detail/89142.html).
+
+Each type of resource \(such as an SLB instance and a private zone\) used in a serverless Kubernetes cluster are charged according to the price specified by the corresponding product.
 
 ## Comparison with Container Service {#section_vzy_gzz_xdb .section}
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16462/153959765410232_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16462/155713531910232_en-US.png)
 
