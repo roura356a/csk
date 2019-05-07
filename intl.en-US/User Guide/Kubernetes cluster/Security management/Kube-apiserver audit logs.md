@@ -146,18 +146,18 @@ A Kubernetes cluster that runs on Alibaba Cloud Container Service has three audi
 
 **Note:** 
 
--   For Kubernetes clusters created after January 13, 2019, if you active Log Service for the clusters, the system automatically enables audit log report functions. If audit log report functions are disabled for a Kubernetes cluster, see [Manually enable audit log report functions](#).
--   We recommend that you do not modify audit log reports. If you want to customize audit log reports, you can create new reports in the [Log Service console](https://partners-intl.console.aliyun.com/#/sls).
+-   For Kubernetes clusters created after January 13, 2019, if you active Log Service for the clusters, the system automatically enables audit log report functions. If audit log report functions are disabled for a Kubernetes cluster, see[Manually enable audit log report functions](#).
+-   We recommend that you do not modify audit log reports. If you want to customize audit log reports, you can create new reports in the[Log Service console](https://partners-intl.console.aliyun.com/#/sls).
 
 You can access audit log reports by using either of the following two methods:
 
--   Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs). In the action column of the target cluster, choose **More** \> **Cluster Audit**.
+-   Log on to the[Container Service console](https://partners-intl.console.aliyun.com/#/cs). In the action column of the target cluster, choose**More** \> **Cluster Audit**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654437908_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155719462037908_en-US.png)
 
--   Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).Click the target cluster name, and then click **Cluster Audit** in the left-side navigation pane.
+-   Log on to the[Container Service console](https://partners-intl.console.aliyun.com/#/cs).Click the target cluster name, and then click**Cluster Audit**in the left-side navigation pane.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654437910_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155719462037910_en-US.png)
 
 
 ## Audit log report overview {#section_hkj_bcy_ngb .section}
@@ -168,7 +168,7 @@ The following three apiserver audit log reports are available: Audit Center Over
 
     This report displays an overview of the Kubernetes cluster events and the detailed information about important events, such as public network visits, command execution, resource removal, and secret visits.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654537911_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155719462037911_en-US.png)
 
     **Note:** By default, this report displays statistics for one week. You can customize a statistics time range. In addition, you can filter events by specifying one or multiple factors, such as a namespace, a sub-account ID, and a status code.
 
@@ -179,7 +179,7 @@ The following three apiserver audit log reports are available: Audit Center Over
     -   Computing resources include deployment, StatefulSet, CronJob, DaemonSet, Job, and pod.
     -   Network resources include service and Ingress.
     -   Storage resources include ConfigMap, secret, and Persistent Volume Claim.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654537915_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155719462037915_en-US.png)
 
     **Note:** 
 
@@ -189,44 +189,42 @@ The following three apiserver audit log reports are available: Audit Center Over
 
     This report displays detailed operation information of a Kubernetes cluster resource. You must select or enter a resource type to view detailed operation information in time. This report displays the total number of operation events, namespace distribution, success rate, timing trend, and specific operation charts.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654537918_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155719462137918_en-US.png)
 
     **Note:** 
 
     -   If you want to view a CRD resource registered in Kubernetes or any other resources not listed in the report, you can enter the plural form of the target resource. For example, to view a CRD resource named AliyunLogConfig, you can enter AliyunLogConfigs.
     -   By default, this report displays statistics for one week. You can customize a statistics time range. In addition, you can filter events by specifying one or multiple factors, such as a namespace, a sub-account ID, and a status code.
 
-## View detailed log records {#section_s4g_dhf_2fb .section}
-
-If you want to customize a log query or analyze audit logs, you can log on to Log Service to view detailed log records.
+logs, you can log on to Log Service to view detailed log records.
 
 1.  Log on to the [Log Service console](https://partners-intl.console.aliyun.com/#/sls).
 2.  In the left-side navigation pane, click **Project Management**, select the Project configured when you create the cluster, and then click the Project name.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654512111_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155719462112111_en-US.png)
 
 3.  On the Logstores page, find the Logstore named audit-$\{clusterid\} and click **Search** at the right side of the Logstore. The audit logs of the cluster are stored in this Logstore.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654512114_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155719462112114_en-US.png)
 
     **Note:** 
 
     -   When you create a Kubernetes cluster, your specified log Project automatically creates a Logstore named audit-$\{clusterid\}.
     -   The audit log Logstore index is set by default. We recommend that you do not modify the index. Otherwise, the audit log reports become invalid.
 
-To search for an audit log, you can use one of the following methods:
+To searchfor an audit log, you can use one of the following methods:
 
--   To query a sub-account operation record, enter the sub-account ID and then click **Search & Analysis**.
--   To query operations on a resource, enter the resource name and click **Search & Analysis**.
--   To filter out operations performed by system components, enter `NOT user.username: node NOT user.username: serviceaccount NOT user.username: apiserver NOT user.username: kube-scheduler NOT user.username: kube-controller-manager`, and then click **Search & Analysis**.
+-   To querya sub-account operation record, enter the sub-account ID and then click**Search & Analysis**.
+-   To query operations on a resource, enter the resource name and click**Search & Analysis**.
+-   To filter out operations performed by system components, enter`NOT user.username: node NOT user.username: serviceaccount NOT user.username: apiserver NOT user.username: kube-scheduler NOT user.username: kube-controller-manager`, and then click**Search & Analysis**.
 
-For more information, see [Log Service search and analysis methods](../../../../../reseller.en-US/User Guide/Index and query/Overview.md#).
+For more information, see [Log Service search and analysis methods](../../../../reseller.en-US/User Guide/Index and query/Overview.md#).
 
 ## Set resource alarms {#section_av1_lly_ngb .section}
 
 You can use the alarm function of Log Service to set resource alarms. Alarm notifications can be sent through a DingTalk group robot, a customized Webhook, and the Message Center.
 
-**Note:** Audit log reports provide multiple query statements. On the Logstores page, click **Dashboard** in the left-side navigation pane and then click a dashboard \(namely, an audit log report\) to display all charts, Click the menu in the upper-right corner of a chart, and then click **View Details**.
+**Note:** Audit log reports provide multiple query statements. On the Logstores page, click**Dashboard**in the left-side navigation pane and then click a dashboard \(namely, an audit log report\) to display all charts, Click the menu in the upper-right corner of a chart, and then click**View Details**.
 
 Example 1: Set an alarm notification for running a command on a container
 
@@ -235,6 +233,7 @@ To prevent Kubernetes cluster users from logging on to any container to run a co
 -   The query statement is as follows:
 
     ```
+    
     verb : create and objectRef.subresource:exec and stage:  ResponseStarted | SELECT auditID as "event ID", date_format(from_unixtime(__time__), '%Y-%m-%d %T' ) as "operation time",  regexp_extract("requestURI", '([^\?]*)/exec\?.*', 1)as "resource",  regexp_extract("requestURI", '\?(.*)', 1)as "command" ,"responseStatus.code" as "status code",
      CASE 
      WHEN "user.username" != 'kubernetes-admin' then "user.username"
@@ -245,15 +244,16 @@ To prevent Kubernetes cluster users from logging on to any container to run a co
     as "source IP address" limit 100
     ```
 
--   The condition expression is `operation event =~ ".*"`.
+-   The condition expression is`operation event =~ ".*"`.
 
 Example 2: Set an alarm notification for failed Internet access to apiserver
 
-To prevent malicious attacks on a Kubernetes cluster for which Internet access is enabled, you need to monitor the number of Internet access times and the failed access rate. Specifically, an alarm notification must be sent, when the number of Internet access times reaches a specified threshold and the failed access rate exceeds a specified threshold. Furthermore, the alarm notification must include detailed information such as the area to which the user IP address belongs, the user IP address, and the high risk IP address. For example, to receive an alarm notification when the number of Internet access times reaches 10 and the failed access rate exceeds 50%, configure the following settings:
+To prevent malicious attacks on a Kubernetes cluster for which Internet access is enabled, you need to monitor the number of Internet access times and the failed access rate. Specifically, an alarm notification must be sent, when the number of Internet access times reaches a specified threshold and the failed access rate exceeds a specified threshold. Furthermore, the alarm notification must include detailed information such asto which the user IP address belongs, the user IP address, and the high risk IP address. For example, to receive an alarm notification when the number of Internet access times reaches 10 and the failed access rate exceeds 50%, configure the following settings:
 
 -   Query statement.
 
     ```
+    
     * | select ip as "source IP address", total as "number of access times", round(rate * 100, 2) as "failed access rate%", failCount as "number of illegal access times", CASE when security_check_ip(ip) = 1 then 'yes' else 'no' end  as "high risk IP address",  ip_to_country(ip) as "country", ip_to_province(ip) as "province", ip_to_city(ip) as "city", ip_to_provider(ip) as "network operator" from (select CASE WHEN json_array_length(sourceIPs) = 1 then json_format(json_array_get(sourceIPs, 0)) ELSE  sourceIPs END
     as ip, count(1) as total,
     sum(CASE WHEN "responseStatus.code" < 400 then 0 
@@ -262,7 +262,7 @@ To prevent malicious attacks on a Kubernetes cluster for which Internet access i
     from log  group by ip limit 10000) where ip_to_domain(ip) != 'intranet'  having "number of access times" > 10 and "failed access rate%" > 50 ORDER by "number of access times" desc limit 100
     ```
 
--   Condition expression is `source IP address =~ ".*"`.
+-   Condition expression is`source IP address =~ ".*"`.
 
 ## Manually enable audit log report functions {#section_rgl_hvy_ngb .section}
 
@@ -293,15 +293,21 @@ You can manually enable audit log report functions.
 
     -   Environment variable
 
-        ```
+        ``` {#codeblock_sj6_gcn_c0d}
         env:
             - name: aliyun_logs_audit-c12ba20***************9f0b
               value: /var/log/kubernetes/kubernetes.audit
+            - name: aliyun_logs_audit-c12ba20***************9f0b_tags
+              value: audit=apiserver
+            - name: aliyun_logs_audit-c12ba20***************9f0b_product
+              value: k8s-audit
+            - name: aliyun_logs_audit-c12ba20***************9f0b_jsonfile
+              value: "true"
         ```
 
     -   Mounting directory
 
-        ```
+        ``` {#codeblock_d2u_uiw_5sg}
         volumeMounts:
             - mountPath: /var/log/kubernetes
               name: k8s-audit
@@ -331,7 +337,7 @@ You can manually enable audit log report functions.
     2.  In the left-side navigation pane, click **Project Management**, and then click the name of the Project specified when creating your Kubernetes cluster.
     3.  The Logstores page is displayed by default. Click **Manage** on the right of the Logstore named audit-$\{clustered\}, and then click the configuration name. On the Specify Collection Mode tab page, select the **JSON Mode**.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155516654537960_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21467/155719462137960_en-US.png)
 
 
 ## Use a thirty-party log solution {#section_nf2_lsf_2fb .section}
