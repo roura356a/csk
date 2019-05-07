@@ -4,7 +4,7 @@ This topic describes which Kubernetes versions are supported, the release cycle 
 
 ## Supported Kubernetes versions {#section_j78_nmh_0li .section}
 
-Alibaba Cloud Container Service for Kubernetes \(ACK\) supports the following four Kubernetes versions: V1.12, V1.11, V1.10, and V1.9. With Kubernetes V1.12 or V1.11, you can create resources in the ACK console, and perform corresponding O&M operations. However, with Kubernetes V1.10 and V1.9, you can only perform O&M operations for the resources created before these versions. No resources can be created with Kubernetes V1.10 and V1.9.
+Alibaba Cloud Container Service for Kubernetes \(ACK\) supports four Kubernetes versions: V1.12, V1.11, V1.10, and V1.9. With Kubernetes V1.12 or V1.11, you can create clusters in the ACK console, and perform the corresponding O&M operations. However, with Kubernetes V1.10 and V1.9, you can only perform O&M operations for the clusters that were created in these two versions, and no new clusters can be created in these two versions.
 
 ## Release cycle {#section_96e_ia8_bo0 .section}
 
