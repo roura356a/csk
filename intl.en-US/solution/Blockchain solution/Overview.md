@@ -6,7 +6,7 @@ This solution provides developers with a graphical blockchain network configurat
 
 Alibaba Cloud Container Service blockchain solution has the following characteristics:
 
--   Standard: Supports major functions of the open-source blockchain technology Hyperledger Fabric V1.1 in the Linux foundation, including standard blockchain node types such as Peer, CouchDB, Orderer, Kafka, ZooKeeper, and CA.
+-   Standard: Supports major functions of the open-source blockchain technology Hyperledger Fabric V1.4 in the Linux foundation, including standard blockchain node types such as Peer, CouchDB, Orderer, Kafka, ZooKeeper, and CA.
 -   Simple: A graphical wizard that simplifies blockchain configuration, masks complicated underlying procedures such as parameter settings, tool invocation, and configuration distribution, significantly reduces the error probability, and supports the built-in deployment of Hyperledger Blockchain Explorer.
 -   Mature: Multiple years of enterprise level large-scale production and application have proved the stability and reliability of underlying Alibaba Cloud Container Service clusters. In addition, Alibaba Cloud Container Service clusters integrate with best practices of cloud applications and expertise of Docker technology development.
 -   Versatile: Seamlessly integrates with powerful and rich enterprise level application service capabilities of Alibaba Cloud, such as storage, network, routing, security, image, log, and monitoring, and provides all-round support for blockchain upper-layer applications. In the future, the blockchain solution will support multiple deployment modes such as public could, private cloud, and hybrid cloud.
