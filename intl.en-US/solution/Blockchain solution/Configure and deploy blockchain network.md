@@ -10,7 +10,7 @@ After completing the environment preparations, you must configure and deploy the
 
 For more information, see [Hyperledger Fabric official documentation](https://hyperledger-fabric.readthedocs.io/en/latest/).
 
-To satisfy requirements of enterprise level applications, the blockchain solution provides master nodes with persistent data storage by using the shared file system created in [Environment preparations](intl.en-US/solution/Blockchain solution/Environment preparations.md#).
+To satisfy requirements of enterprise level applications, the blockchain solution provides master nodes with persistent data storage by using the shared file system created in [Environment preparations](reseller.en-US/solution/Blockchain solution/Environment preparations.md#).
 
 The blockchain network is deployed and run on an Alibaba Cloud Container Service Kubernetes cluster. You can deploy multiple blockchain networks \(separated by namespaces\) in the same Kubernetes cluster or deploy one blockchain network in each Kubernetes cluster.
 
@@ -20,53 +20,52 @@ The blockchain network can be configured and deployed on the graphical interface
 
 ## Configuration parameter description {#section_ydv_gbv_vdb .section}
 
-The blockchain solution provides default values for most parameters to simplify your configuration process.  To customize a blockchain, you can set parameters by referring to the following parameter description.
+The blockchain solution provides default values for most parameters to simplify your configuration process. To customize a blockchain, you can set parameters by referring to the following parameter description.
 
-|Parameter |Description|
-|:---------|:----------|
+|Parameter|Description|
+|:--------|:----------|
 |sharedStorage|The mount address of the NAS file system. Parameters that must be provided to create a blockchain network, otherwise the creation fails.|
 |storageCapacity|The initial size of the Persistent Volume Claim \(PVC\) of the NAS in Kubernetes. NAS supports dynamic scaling. The default size is 1G.|
-|dockerImageRegistry|The Docker image repository URL: The image repository of the blockchain solution. Select an image repository based on the region in which the Kubernetes cluster resides.-   Inside China: registry.cn-hangzhou.aliyuncs.com/cos-solution
+|dockerImageRegistry|The Docker image repository URL: The image repository of the blockchain solution. Select an image repository based on the region in which the Kubernetes cluster resides. -   Inside China: registry.cn-hangzhou.aliyuncs.com/cos-solution
 -   Outside China: registry.ap-southeast-1.aliyuncs.com/cos-solution
 
-|
+ |
 |fabricNetwork|Blockchain network name \(required\): The blockchain network is deployed as an application of Container Service. Therefore, the blockchain network name is an application name. Avoid using the name of a deployed application. The blockchain network name is also used as the name of the root directory for storing configurations and data in the shared file system.|
 |fabricChannel|Blockchain network channel name: The channel name of Hyperledger Fabric. The blockchain solution automatically creates the channel with the specified name when the blockchain network is deployed.|
-|externalAddress|External access address \(mandatory\). To use an application or a management and monitoring tool outside the container cluster to access the blockchain network, the public IP address of a node in the Kubernetes cluster or the public IP address of the Server Load Balancer instance of the Kubernetes cluster must be used as the external access address. For more information about the configuration method, see [Bind an EIP to a worker node](intl.en-US/solution/Blockchain solution/Environment preparations.md#section_ph2_355_vdb).|
+|externalAddress|External access address \(mandatory\). To use an application or a management and monitoring tool outside the container cluster to access the blockchain network, the public IP address of a node in the Kubernetes cluster or the public IP address of the Server Load Balancer instance of the Kubernetes cluster must be used as the external access address. For more information about the configuration method, see [Bind an EIP to a worker node](reseller.en-US/solution/Blockchain solution/Environment preparations.md#section_ph2_355_vdb).|
 |ordererDomain|Orderer domain: The Orderer domain in Hyperledger Fabric. Set this parameter based on actual requirements.|
 |ordererNum|Number of Orderer nodes: This parameter applies to the Orderer services of the Kafka type, not the Solo type. Set this parameter to the number of Orderer nodes to be deployed. To modify the parameter value, you must modify the value of ordererExternalPortList at the same time to make sure the number of nodes and the number of external ports are the same. Otherwise, the blockchain network fails to be deployed.|
 |peerDomain|Peer domain: The peer domain in Hyperledger Fabric. Set this parameter based on actual requirements.|
-|orgNum|Number of organizations: The number of organizations in Hyperledger Fabric. The blockchain solution creates two peer nodes for each organization to guarantee the high availability and meet the requirements of business expansion. Specify the number of organizations according to your actual requirements. The number of actually deployed peer nodes is twice the number of organizations. To modify the parameter value, you must modify the values of peerExternalGrpcPortList, peerExternalEventPortList, and caExternalPortList at the same time to make sure the number of nodes and the number of external ports are the same. Otherwise, the blockchain network fails to be deployed.|
-|ordererExternalPortList|Orderer external port list: To access the Orderer services by using an application outside the cluster, you must specify the external ports used by Orderer nodes or use the default port. Different blockchain networks must use different ports and make sure the number of ports in the list must be the same as the value of  ordererNum. Otherwise, the blockchain network fails to be deployed.|
+|orgNum|Number of organizations: The number of organizations in Hyperledger Fabric. The blockchain solution creates two peer nodes for each organization to guarantee the high availability and meet the requirements of business expansion. Specify the number of organizations according to your actual requirements. The number of actually deployed peer nodes is twice the number of organizations. To modify the parameter value, you must modify the values of peerExternalGrpcPortList and caExternalPortList at the same time to make sure the number of nodes and the number of external ports are the same. Otherwise, the blockchain network fails to be deployed.|
+|ordererExternalPortList|Orderer external port list: To access the Orderer services by using an application outside the cluster, you must specify the external ports used by Orderer nodes or use the default port. Different blockchain networks must use different ports and make sure the number of ports in the list must be the same as the value of ordererNum. Otherwise, the blockchain network fails to be deployed.|
 |caExternalPortList|CA external port list: To access the CA services by using an application outside the cluster, you must specify the external ports used by CA nodes or use the default port. Different blockchain networks must use different ports and make sure the number of ports in the list must be the same as the value of orgNum. Otherwise, the blockchain network fails to be deployed.|
 |peerExternalGrpcPortList|Peer gRPC external port list: To access the Peer services by using an application outside the cluster, which is based on the gRPC protocol by default, you must specify the external ports used by peer nodes or use the default port. Different blockchain networks must use different ports and make sure the number of ports in the list must be twice the value of orgNum. Otherwise, the blockchain network fails to be deployed.|
-|peerExternalEventPortList|Peer event external port list: To access the Peer event services by using an application outside the cluster, you must specify the external ports used by peer nodes or use the default port. Different blockchain networks must use different ports and make sure the number of ports in the list must be twice the value of orgNum. Otherwise, the blockchain network fails to be deployed.|
 |imagePullPolicy|Image pull policy: This is a Kubernetes parameter and is generally used for development and test.|
-|hyperledgerFabricVersion|Hyperledger Fabric version: Currently, 1.1.0 is supported, and no configuration is required.|
-|thirdPartyImageVersion|The image version of the third-party softwares \(such as CouchDB, Kafka, and ZooKeeper\) included in Hyperledger Fabric: Currently, 0.4.6 is supported, which corresponds to the Hyperledger Fabric 1.1.0, and no configuration is required.|
+|hyperledgerFabricVersion|Hyperledger Fabric version: Currently, 1.4.0 is supported, and no configuration is required.|
+|thirdPartyImageVersion|The image version of the third-party softwares \(such as CouchDB, Kafka, and ZooKeeper\) included in Hyperledger Fabric: Currently, 0.4.14 is supported, which corresponds to the Hyperledger Fabric 1.4.0, and no configuration is required.|
 |explorer.enabled|Whether to automatically deploy the Hyperledger Explorer. During the deployment, the Server Load Balancer instance is created, and the blockchain explorer function based on Web UI is provided by using port 80. The default value is true.|
-|logService.enabled|Whether to enable the support for Alibaba Cloud Log Service. The default value is false.  For more information about Alibaba Cloud Log Service, see Collect Kubernetes cluster logs by using Alibaba Cloud Log Service.|
-|logService.region|Specify the region in which the Log Service project resides if logService.enabled is set to true. Set the parameter value as per your needs. For more information about Alibaba Cloud Log Service, see[../../../../dita-oss-bucket/SP\_235/DNcsk1877477/EN-US\_TP\_16696.md\#](../../../../intl.en-US/User Guide/Kubernetes cluster/Logs/Collect Kubernetes logs.md#)|
-|logService.userID|Specify the user ID of the Alibaba Cloud primary account if logService.enabled is set to true. For more information about Alibaba Cloud Log Service, see[../../../../dita-oss-bucket/SP\_235/DNcsk1877477/EN-US\_TP\_16696.md\#](../../../../intl.en-US/User Guide/Kubernetes cluster/Logs/Collect Kubernetes logs.md#)|
-|logService.machineGroup|Specify the machine group of the Log Service project if logService.enabled is set to true. For more information about Alibaba Cloud Log Service, see [../../../../dita-oss-bucket/SP\_235/DNcsk1877477/EN-US\_TP\_16696.md\#](../../../../intl.en-US/User Guide/Kubernetes cluster/Logs/Collect Kubernetes logs.md#)|
-|logLevel|Hyperledger Fabric log levels for different types of nodes \(peer, orderer, couchdb\).. Optional values are: CRITICAL | ERROR | WARNING | NOTICE | INFO | DEBUG, the default value is INFO. |
+|logService.enabled|Whether to enable the support for Alibaba Cloud Log Service. The default value is false. For more information about Alibaba Cloud Log Service, see [Use Log Service to collect Kubernetes cluster logs](../../../../reseller.en-US/User Guide/Kubernetes cluster/Log management/Use Log Service to collect Kubernetes cluster logs.md#).|
+|logService.region|Specify the region in which the Log Service project resides if logService.enabled is set to true. Set the parameter value as per your needs. For more information about Alibaba Cloud Log Service, see [Use Log Service to collect Kubernetes cluster logs](../../../../reseller.en-US/User Guide/Kubernetes cluster/Log management/Use Log Service to collect Kubernetes cluster logs.md#).|
+|logService.userID|Specify the user ID of the Alibaba Cloud primary account if logService.enabled is set to true. For more information about Alibaba Cloud Log Service, see [Use Log Service to collect Kubernetes cluster logs](../../../../reseller.en-US/User Guide/Kubernetes cluster/Log management/Use Log Service to collect Kubernetes cluster logs.md#).|
+|logService.machineGroup|Specify the machine group of the Log Service project if logService.enabled is set to true. For more information about Alibaba Cloud Log Service, see [Use Log Service to collect Kubernetes cluster logs](../../../../reseller.en-US/User Guide/Kubernetes cluster/Log management/Use Log Service to collect Kubernetes cluster logs.md#).|
+|logLevel|Hyperledger Fabric log levels for different types of nodes \(peer, orderer, couchdb\).. Optional values are: CRITICAL | ERROR | WARNING | NOTICE | INFO | DEBUG, the default value is INFO.|
 
 ## Deploy blockchain network in Container Service console {#section_iby_r2v_vdb .section}
 
-1.  Log on to the Container Service console. Under Kubernetes, click Store \> **App Catalog** in the left-side navigation pane. Click **ack-hyperledger-fabric** on the App Catalog page.
+1.  Log on to the Container Service console. In the left-side navigation pane under Kubernetes, choose **Store** \> **App Catalog**. Then, click **ack-hyperledger-fabric** 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16619/15362008259841_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16619/15572292859841_en-US.png)
 
-2.  Select the cluster in which the blockchain network is to be deployed from the **Clusters** drop-down list and enter the  **Release Name**.
+2.  Select the cluster in which the blockchain network is to be deployed from the **Clusters** drop-down list and enter the **Release Name**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16619/15362008259842_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16619/15572292859842_en-US.png)
 
 3.  Click the **Values** tab. View or modify the corresponding deployment parameters.
 
     -   sharedStorage: Enter the NAS file system mount address during the environment preparation \(required, otherwise the deployment fails\).
     -   dockerImageRegistry: Enter the container image repository address in the annotations as the value according to the region in which the blockchain network is to be deployed \(inside or outside China\).
     -   externalAddress: Enter the EIP bound to the worker node to generate the connection profile.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16619/15362008269843_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16619/15572292869843_en-US.png)
 
 4.  Click **Deploy**.
 
@@ -74,12 +73,12 @@ The blockchain solution provides default values for most parameters to simplify 
 
 5.  Enter the cluster dashboard. Check the status of the pods related to the blockchain network. Wait until the status of all the pods becomes Running.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16619/15362008269844_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16619/15572292869844_en-US.png)
 
 
 ## Deploy blockchain network by using Helm commands {#section_p2v_gbv_vdb .section}
 
-For more information about how to use Helm to deploy applications in Container Service Kubernetes clusters, see [../../../../dita-oss-bucket/SP\_235/DNcsk1877477/EN-US\_TP\_16661.md\#](../../../../intl.en-US/User Guide/Kubernetes cluster/Applications/Simplify Kubernetes application deployment by using Helm.md#).
+For more information about how to use Helm to deploy applications in Container Service Kubernetes clusters, see [Simplify Kubernetes application deployment by using Helm](../../../../reseller.en-US/User Guide/Kubernetes cluster/Application management/Simplify Kubernetes application deployment by using Helm.md#).
 
 1.  Use SSH to log on to the master node in a Kubernetes cluster with the root account. Enter the password configured when the Kubernetes cluster is created.
 2.  Run Helm commands to deploy the blockchain network.
@@ -113,7 +112,7 @@ For more information about how to use Helm to deploy applications in Container S
 
         Wherein, `--values` indicates the YAML file for customizing configuration parameters. You can set the parameter values as per your needs. See the following example:
 
-        ```
+        ``` {#codeblock_505_hfh_9nb}
         # sample values yaml
         sharedStorage: 987a6543bc-abc12.cn-hangzhou.nas.aliyuncs.com
         fabricNetwork: network01
@@ -126,10 +125,9 @@ For more information about how to use Helm to deploy applications in Container S
         caExternalPortList: ["31054", "31064", "31074"]
         ordererExternalPortList: ["31050", "31060", "31070", "31080"]
         peerExternalGrpcPortList: ["31051", "31061", "31071", "31081", "31091", "31101"]
-        peerExternalEventPortList: ["31053", "31063", "31073", "31083", "31093", "31103"]
         ```
 
-        Check if the Helm release of the blockchain network is successfully deployed.  Run the following command to make sure the release status of the blockchain network is Deployed.
+        Check if the Helm release of the blockchain network is successfully deployed. Run the following command to make sure the release status of the blockchain network is Deployed.
 
 3.  Run the following command to check if all the node pods of the blockchain network are successfully running and make sure the status of all the pods in the blockchain network is Running.
 
@@ -149,7 +147,7 @@ For more information about how to use Helm to deploy applications in Container S
         kubectl get pod -w
         ```
 
-4.  Run the following command to check the blockchain network deployment status. If the status is  If the status is `DEPLOYED`, the blockchain network is successfully deployed.
+4.  Run the following command to check the blockchain network deployment status. If the status is If the status is `DEPLOYED`, the blockchain network is successfully deployed.
 
     ```
     helm list
@@ -177,13 +175,13 @@ network01-ca1
 
 Although blockchain networks can be differentiated by namespaces in a Kubernetes cluster, the preceding service naming rule still uses a blockchain network name as the prefix to keep consistent with the blockchain solution of swarm clusters.
 
-A service name must be consistent with the node name in the blockchain certificate and key.  This type of service name \(together with the service port\) can be used to directly access blockchain applications or CLI deployed in the same Kubernetes cluster. The external address is not required.
+A service name must be consistent with the node name in the blockchain certificate and key. This type of service name \(together with the service port\) can be used to directly access blockchain applications or CLI deployed in the same Kubernetes cluster. The external address is not required.
 
 ## Problem diagnosis {#section_hfv_gbv_vdb .section}
 
 This section introduces some common approaches, methods, and tools for diagnosing problems and errors that may occur during blockchain configuration, deployment, and access.
 
-First, check if all preparations described in [Environment preparations](intl.en-US/solution/Blockchain solution/Environment preparations.md#) have been completed correctly.
+First, check if all preparations described in [Environment preparations](reseller.en-US/solution/Blockchain solution/Environment preparations.md#) have been completed correctly.
 
 Then, use Kubernetes-related commands, such as kubectl describe pod, kubectl logs, and kubectl get pod -o yaml, to view the deployment events and output logs.
 
