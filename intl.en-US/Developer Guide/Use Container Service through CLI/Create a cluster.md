@@ -15,7 +15,7 @@ Parameter descriptions:
 -   `--header`: Specify Content-Type as application/json.
 -   `--body`: This is the body content to be sent to the server. The content can be read from a local file and must be in JSON format. The content of `create.json` is as follows:
 
-**Kubernetes cluster with a single zone**
+**Kubernetes cluster with a single zone** 
 
 ```
 {
@@ -61,7 +61,7 @@ Parameter descriptions:
 } 
 ```
 
-**Kubernetes cluster with multiple zones**
+**Kubernetes cluster with multiple zones** 
 
 ```
 {
@@ -113,7 +113,7 @@ Parameter descriptions:
 }
 ```
 
-**Managed Kubernetes cluster**
+**Managed Kubernetes cluster** 
 
 ```
 {
@@ -145,6 +145,21 @@ Parameter descriptions:
 "snat_entry": "whether to set an SNAT entry"
 }ntry": whether to set an SNAT entry
 			}
+```
+
+**Serverless Kubernetes cluster**
+
+```
+
+{
+"cluster_type": "Ask", 
+"name": "indicates the name of a serverless Kubernetes cluster",
+"region_id": "indicates a region",
+"nat_gateway": indicates whether to create a NAT gateway. Valid value: true | false.
+"private_zone": indicates whether to enable PrivatreZone for service discovery in a VPC. Valid value: true | false.
+"vpc_id": "indicates the ID of a VPC". If you do not set this parameter, then the system automatically creates a VPC.
+"vswitch_id": "indicates a Vswitch ID"
+}
 ```
 
 **Response result**
