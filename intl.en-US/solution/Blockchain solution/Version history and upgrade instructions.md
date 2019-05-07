@@ -4,6 +4,11 @@ This document lists the version history and the corresponding functional changes
 
 ## Version history {#section_kmc_5pt_vdb .section}
 
+**Version 0.2.3**
+
+-   Hyperledger Fabric is upgraded to V1.4.0.
+-   Explorer is upgraded to V0.3.8.
+
 **Version 0.2.2**
 
 -   Improves availability of NAS file system mount.
