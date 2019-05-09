@@ -13,21 +13,9 @@ Kubernetes集群组件的升级过程分为以下三个部分：切换数据采�
 
 -   切换数据采集组件。
 
-    完成以下步骤将数据采集组件从Heapster切换到metrics-server。
+    1.  创建并拷贝内容到metrics-server.yaml文件中，并执行`$ kubectl apply -f metrics-server.yaml`命令，将数据采集组件从Heapster切换到metrics-server。
 
-    1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
-    2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **无状态**，进入无状态页面。
-
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155720787739478_zh-CN.png)
-
-    3.  单击右上角的**使用模板创建**，进入使用模板创建页面。
-
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155720787739496_zh-CN.png)
-
-    4.  选择需要升级组件的**集群**，并选择**kube-system**作为**命名空间**。
-    5.  **示例模板**选择**自定义**，并将以下内容复制到**模板**中，单击**创建**。
-
-        ```
+        ``` {#codeblock_a5x_uxf_gxq}
         apiVersion: v1
         kind: ServiceAccount
         metadata:
@@ -122,46 +110,46 @@ Kubernetes集群组件的升级过程分为以下三个部分：切换数据采�
                 - '--sink=socket:tcp://monitor.csk.##REGION##.aliyuncs.com:8093?clusterId=##CLUSTER_ID##&public=true'
         ```
 
-    **说明：** 您需要将`##REGION##`与`##CLUSTER_ID##`替换为所选集群的地域名称（例如，华东1：cn-hangzhou）与集群ID。
+        **说明：** 与`##CLUSTER_ID##`替换为所选集群的地域名称（例如，华东1：cn-hangzhou）与集群ID。
 
 -   切换监控数据链路
     1.  单击左侧导航栏中的**集群** \> **节点**，进入节点列表页面。
     2.  选择目标**集群**。
     3.  找到集群的三个master节点。单击master节点的实例ID，进入实例详情页面（本文档以master-01为例）。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155720787739497_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155739094639497_zh-CN.png)
 
     4.  单击**远程连接**。进入 ECS 实例远程连接界面，根据页面指导，输入远程连接密码并单击**确定**。登录成功后，输入以下命令：
 
         ```
         sed -i 's/--horizontal-pod-autoscaler-use-rest-clients=false/--horizontal-pod-autoscaler-use-rest-clients=true/' /etc/kubernetes/manifests/kube-controller-manager.yaml
-        
+        							
         ```
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155720787739498_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155739094639498_zh-CN.png)
 
     5.  重复步骤[3](intl.zh-CN/用户指南/Kubernetes集群/集群管理/升级安装Kubernetes集群的metrics-server组件.md#li_03)-[4](intl.zh-CN/用户指南/Kubernetes集群/集群管理/升级安装Kubernetes集群的metrics-server组件.md#li_04)，在master-02和master-03节点上执行该命令。
 
         执行完毕后，kube-controller-manager组件会被kubelet自动拉起更新。
 
 -   组件兼容适配变更
-    1.  单击左侧导航栏中的**路由与负载均衡** \> **服务**，进入服务页面。 
+    1.  单击左侧导航栏中的**路由与负载均衡** \> **服务**，进入服务页面。
     2.  选择目标**集群**和命名空间**kube-system**。单击服务**heapster**右侧的**查看YAML**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155720787739499_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155739094639499_zh-CN.png)
 
     3.  在弹出的对话框中，修改selector中k8s-app的值为metrics-server。单击**更新**，完成修改。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155720787739500_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155739094739500_zh-CN.png)
 
     4.  单击左侧导航栏中的**应用** \> **无状态**，进入无状态页面。
     5.  选择目标**集群**和**命名空间**kube-system。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155720787739506_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155739094739506_zh-CN.png)
 
     6.  选择Heapster相关组件（heapster和monitoring-influxdb），单击**更多** \> **删除**，在弹出的对话框中，单击**确定**，完成链路切换。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155720787739501_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155739094739501_zh-CN.png)
 
         **说明：** 删除monitoring-influxdb 组件时，在弹出的删除monitoring-influxdb提示框中，勾选**移除关联的服务（Server）monitoring-influxdb**，单击**确定**。
 
@@ -169,10 +157,10 @@ Kubernetes集群组件的升级过程分为以下三个部分：切换数据采�
 
         等待3分钟左右，数据链路会完成初始化。
 
-         单击左侧导航栏中的**应用** \> **容器组**。在容器组页面。如果CPU（核）与内存（字节）显示正常，则表示链路切换成功。
+        单击左侧导航栏中的**应用** \> **容器组**。在容器组页面。如果CPU（核）与内存（字节）显示正常，则表示链路切换成功。
 
         **说明：** 所有组件的CPU和内存值均为0则表示异常。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155720788539502_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/155739094739502_zh-CN.png)
 
 
