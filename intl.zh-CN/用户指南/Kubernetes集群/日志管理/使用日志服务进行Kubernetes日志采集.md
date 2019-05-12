@@ -1,6 +1,6 @@
 # 使用日志服务进行Kubernetes日志采集 {#concept_nsj_sxm_t2b .concept}
 
-阿里云容器服务Kubernetes集群集成了日志服务（SLS），您可在创建集群时启用日志服务，快速采集Kubernetes 集群的容器日志，包括容器的标准输出以及容器内的文本文件。
+阿里云容器服务Kubernetes集群集成了日志服务，您可在创建集群时启用日志服务，快速采集Kubernetes 集群的容器日志，包括容器的标准输出以及容器内的文本文件。
 
 ## 新建 Kubernetes 集群 {#section_ohf_y5r_gfb .section}
 
@@ -13,17 +13,17 @@
 5.  当勾选了使用日志服务后，会出现创建 Project（日志服务管理日志的组织结构，具体可见[项目](../../../../intl.zh-CN/产品简介/基本概念/项目.md#)）的提示，目前有两种方式可选：
     -   选择一个现有的 Project 来管理采集的日志。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634469250_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15576339739250_zh-CN.png)
 
     -   自动创建一个新的 Project 来管理采集的日志，Project 会自动命名为 `k8s-log-{ClusterID}`，ClusterID 表示您新建的 Kubernetes 集群的唯一标识。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634469251_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15576339739251_zh-CN.png)
 
 6.  配置完成后，单击右上角**创建集群**，在弹出的窗口中单击**确定**，完成创建。
 
     完成创建后，您可在集群列表页面看到创建的Kubernetes集群。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634479449_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15576339739449_zh-CN.png)
 
 
 ## 已创建 Kubernetes 集群，手动安装日志服务组件 {#section_shf_y5r_gfb .section}
@@ -43,7 +43,7 @@
 
     ```
     $ kubectl describe daemonsets -n kube-system logtail-ds | grep ALICLOUD_LOG_DOCKER_ENV_CONFIG
-    
+    					
     ```
 
     -   如果输出结果为 `ALICLOUD_LOG_DOCKER_ENV_CONFIG: true`，表示您可正常使用，不需要进行升级或迁移。
@@ -53,7 +53,7 @@
     ```
     $ helm get alibaba-log-controller | grep CHART
     CHART: alibaba-cloud-log-0.1.1
-    
+    					
     ```
 
     -   输出内容中的 0.1.1 表示日志服务组件的版本，请使用 0.1.1 及以上版本的组件，如果版本过低，请参照[升级日志服务组件](#section_b3f_y5r_gfb)进行升级。如果您已采用 helm 安装且版本正确，可以跳过后续步骤。
@@ -62,7 +62,7 @@
 
     ```
     $ kubectl get daemonsets -n kube-system logtail
-    
+    					
     ```
 
     -   如果无输出结果或内容是 `No resources found.`，则表明未安装日志服务组件，请参照操作[手动安装日志服务组件](#section_zhf_y5r_gfb)。
@@ -81,7 +81,7 @@
     wget https://acs-logging.oss-cn-hangzhou.aliyuncs.com/alicloud-k8s-log-installer.sh -O alicloud-k8s-log-installer.sh; chmod 744 ./alicloud-k8s-log-installer.sh; ./alicloud-k8s-log-installer.sh --cluster-id ${your_k8s_cluster_id} --ali-uid ${your_ali_uid} --region-id ${your_k8s_cluster_region_id}
     ```
 
-    **参数说明：**
+    **参数说明：** 
 
     -   your\_k8s\_cluster\_id：您的Kubernetes集群ID。
     -   your\_ali\_uid：您在步骤[2](#)中获取的aliuid。
@@ -151,7 +151,7 @@ alibaba-log-controller  1        0s
 
 
 [SUCCESS] install helm package : alibaba-log-controller success.
-
+			
 ```
 
 ## 升级日志服务组件 {#section_b3f_y5r_gfb .section}
@@ -168,14 +168,14 @@ Helm 升级（推荐）
 
     ```
     wget http://logtail-release-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/kubernetes/alibaba-cloud-log.tgz -O alibaba-cloud-log.tgz
-    
+    					
     ```
 
 2.  使用 helm upgrade 进行升级，命令如下：
 
     ```
     helm get values alibaba-log-controller --all > values.yaml && helm upgrade alibaba-log-controller alibaba-cloud-log.tgz --recreate-pods -f values.yaml
-    
+    					
     ```
 
 
@@ -205,7 +205,7 @@ tolerations:
 
     ```
     wget https://acs-logging.oss-cn-hangzhou.aliyuncs.com/alicloud-k8s-log-installer.sh -O alicloud-k8s-log-installer.sh; chmod 744 ./alicloud-k8s-log-installer.sh; ./alicloud-k8s-log-installer.sh --cluster-id c12ba2028cxxxxxxxxxx6939f0b --ali-uid 19*********19 --region-id cn-hangzhou --log-project k8s-log-demo
-    
+    						
     ```
 
 2.  安装成功后，进入[日志服务控制台](https://sls.console.aliyun.com)。
@@ -222,10 +222,10 @@ tolerations:
 **控制台向导创建**
 
 1.  登录 [容器服务管理控制台](https://cs.console.aliyun.com)。
-2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **部署**，然后单击页面右上角的**使用镜像创建**。
+2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **无状态**，然后单击页面右上角的**使用镜像创建**。
 3.  设置**应用名称**、**部署集群**、**命名空间**、**副本数量**和**类型**，单击**下一步**，进入容器配置页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634479451_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15576339739451_zh-CN.png)
 
 4.  进入容器配置页面中，本例中选择nginx镜像，对容器采集进行配置。
 
@@ -243,18 +243,18 @@ tolerations:
 
         每一项采集配置都会被自动创建为对应 Logstore 的一个采集配置，默认采用极简模式（按行）进行采集，如果您需要更丰富的采集方式，可以前往日志服务控制台，进入相应的 Project（默认是 k8s-log 前缀）和 Logstore 对配置进行修改。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634479460_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15576339739460_zh-CN.png)
 
 6.  自定义 Tag。单击**+**号创建新的自定义 Tag，每一个自定义 Tag 都是一个键值对，会拼接到所采集到的日志中，您可以使用它来为容器的日志数据进行标记，比如版本号。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634479473_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15576339739473_zh-CN.png)
 
 7.  当完成所有配置后，可单击右上角的**下一步**进入后续流程，后续操作可见[镜像创建无状态Deployment应用](intl.zh-CN/用户指南/Kubernetes集群/应用管理/镜像创建无状态Deployment应用.md#)。
 
 **使用 YAML 模板创建**
 
 1.  登录 [容器服务管理控制台](https://cs.console.aliyun.com)。
-2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **部署**，然后单击页面右上角的**使用模板创建**。
+2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **无状态**，然后单击页面右上角的**使用模板创建**。
 3.  YAML 模板的语法同 Kubernetes 语法，但是为了给容器指定采集配置，需要使用 env 来为 container 增加**采集配置**和**自定义 Tag**，并根据采集配置，创建对应的 volumeMounts 和 volumns。以下是一个简单的 Pod 示例：
 
     ```
@@ -292,7 +292,7 @@ tolerations:
         ```
         - name: aliyun_logs_{Logstore 名称}
           value: {日志采集路径}
-        
+        							
         ```
 
         示例中创建了两个采集配置，其中 `aliyun_logs_log-stdout` 这个 env 表示创建一个 Logstore 名字为 log-stdout，日志采集路径为 stdout 的配置，从而将容器的标准输出采集到 log-stdout 这个 Logstore 中。
@@ -304,7 +304,7 @@ tolerations:
         ```
         - name: aliyun_logs_{任意不包含'_'的名称}_tags
           value: {Tag 名}={Tag 值}
-        
+        							
         ```
 
         配置 Tag 后，当采集到该容器的日志时，会自动附加对应的字段到日志服务。
@@ -323,11 +323,11 @@ tolerations:
 2.  在进入控制台后，选择 Kubernetes 集群对应的 Project（默认为 k8s-log-\{Kubernetes 集群 ID\}），进入 Logstore 列表页面。
 3.  在列表中找到相应的 Logstore（采集配置中指定），单击**查询**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634479474_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15576339739474_zh-CN.png)
 
 4.  本例中，在日志查询页面，您可查看tomcat应用的标准输出日志和容器内文本日志，并可发现自定义tag附加到日志字段中。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15561634479541_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17400/15576339739541_zh-CN.png)
 
 
 ## 更多信息 {#section_rg2_tdh_hfb .section}
