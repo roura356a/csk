@@ -39,7 +39,7 @@ POST /clusters/{cluster_id}/attach HTTP/1.1
 |:-|:-|:---|:-|
 |password|String|是|ECS 实例密码。密码规则为8 - 30 个字符，且同时包含三项（大、小写字母，数字和特殊符号）|
 |instances|Array|是|已有实例的数组。|
-|format\_disk|bool|否|需要格式化的数据盘。|
+|format\_disk|bool|否|是否格式化数据盘。|
 |key\_pair|string|否| 密钥对名称。
 
 -   Windows实例，忽略该参数。默认为空。即使填写了该参数，仍旧只执行 Password 的内容。
