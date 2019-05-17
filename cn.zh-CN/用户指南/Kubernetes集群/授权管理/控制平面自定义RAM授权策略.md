@@ -2,9 +2,9 @@
 
 本文档介绍控制平面如何创建自定义授权策略。下面以授予子账号查询、扩容和删除集群的权限为例进行说明。
 
-## 背景信息 {#section_0wy_z1x_pql .section}
+## 背景信息 {#section_f6k_k07_6tr .section}
 
-容器服务提供的系统授权策略的授权粒度比较粗，如果这种粗粒度授权策略不能满足您的需要，那么您可以创建自定义授权策略。比如，您想控制对某个具体的集群的操作权限，您必须使用自定义授权策略才能满足这种细粒度要求。
+容器服务提供的系统授权策略的授权粒度比较粗，如果这种粗粒度授权策略不能满足您的需要，那么您可以创建自定义授权策略。例如，您想控制对某个具体的集群的操作权限，您必须使用自定义授权策略才能满足这种细粒度要求。
 
 ## 前提条件 {#section_azw_5s2_xdb .section}
 
@@ -12,12 +12,12 @@
 
 ## 操作步骤 {#section_s13_3jm_43b .section}
 
-1.  使用主账号登录[RAM管理控制台](https://ram.console.aliyun.com/)。
+1.  使用具有RAM权限的账号登录[RAM管理控制台](https://ram.console.aliyun.com/)。
 2.  单击左侧导航栏的**权限管理** \> **权限策略管理**，进入权限策略管理页面。
 3.  单击**新建授权策略**，进入新建自定义权限策略页面。
 4.  填写策略名称，配置模式选择脚本配置，并在策略内容中编写您的授权策略内容。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16637/155798531310480_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16637/155805767110480_zh-CN.png)
 
     ``` {#codeblock_i0a_ajh_b1u}
     {
@@ -106,5 +106,5 @@
 
 返回权限策略管理页面，在搜索框中搜索策略名或备注，可以看到您授权的自定义的策略。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16637/155798531347367_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16637/155805767147367_zh-CN.png)
 
