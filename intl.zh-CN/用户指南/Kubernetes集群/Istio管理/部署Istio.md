@@ -10,13 +10,11 @@
 ## 背景信息 {#section_f1c_rkh_1fb .section}
 
 -   阿里云容器服务Kubernetes 1.10.4及之后版本支持部署Istio，如果是1.10.4之前的版本，请先升级到1.10.4或之后版本。
-
 -   一个集群中，worker节点数量需要大于等于3个，保证资源充足可用。
-
 
 ## 操作步骤 {#section_spk_skh_1fb .section}
 
-**通过集群界面部署Istio**
+**通过集群界面部署Istio** 
 
 1.  部署istio
 
@@ -24,7 +22,7 @@
     2.  单击左侧导航栏中的**集群**，进入集群列表页面。
     3.  选择所需的集群并单击操作列**更多** \> **部署Istio**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045111255_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155851065411255_zh-CN.png)
 
     4.  根据如下信息，部署Istio：
 
@@ -36,9 +34,9 @@
         |启用 Prometheus 度量日志收集|是否启用Prometheus 收集度量日志。默认情况下启用。|
         |启用 Grafana 度量展示|是否启用Grafana 展示指标的度量数据。默认情况下启用。|
         |启用 Sidecar 自动注入|是否启用 Sidecar 进行容器的自动注入。默认情况下启用。|
-        |启用 Kiali 可视化服务网格|是否启用 Kiali 可视化服务网格。默认情况下不启用。        -   用户名：指定用户名称。默认情况下是admin。
+        |启用 Kiali 可视化服务网格|是否启用 Kiali 可视化服务网格。默认情况下不启用。         -   用户名：指定用户名称。默认情况下是admin。
         -   密码：指定密码。默认情况下是admin。
-|
+ |
         |链路追踪设置|         -   **启用分布式追踪 Jaeger**：启用该选项，则需要开通阿里云日志服务。在日志服务中将自动创建名称为istio-tracing-\{ClusterID\}的项目。追踪数据会存储到该项目中。
         -   **启用链路追踪**：启用该选项，则需要开通阿里云链路追踪服务。同时需要指定对应的接入点地址。例如，**接入点地址**为http://tracing-analysis-dc-hz.aliyuncs.com/.../api/v1/spans，表示启用该选项后，zipkin客户端根据v1版本的 API的公网（或者内网）接入点地址把采集数据传输到链路跟踪。
 
@@ -61,7 +59,7 @@
 
         在部署页面下方，可实时查看部署进展及状态。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045111256_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155851065411256_zh-CN.png)
 
     **预期结果**
 
@@ -69,119 +67,57 @@
 
     -   在部署 Istio页面下方，**部署 Istio**变为**已部署**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045111257_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155851065411257_zh-CN.png)
 
     -   -   单击左侧导航栏**应用** \> **容器组**，进入容器组页面。
 -   选择部署Istio的集群及命名空间，可查看到已经部署Istio的相关容器组。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045111258_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155851065411258_zh-CN.png)
 
-    -   -   单击左侧导航栏**应用** \> **服务**，进入服务列表页面。
+    -   -   单击左侧导航栏**路由与负载均衡** \> **服务**，进入服务（Service）页面。
 -   选择部署Istio的集群及命名空间，可查看到已经部署Istio相关服务所提供的访问地址。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045211259_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155851065411259_zh-CN.png)
 
-2.  部署Istio Ingress Gateway。
+2.  管理Istio Ingress Gateway。
+    1.  上述部署 Istio之后，Istio 1.1.4之后默认会创建一个Ingress Gateway。对于已有旧版本，建议升级到当前最新版本。如果需要对Ingress Gateway的配置进行调整，可以按照如下步骤进行更新。
+    2.  在左侧导航栏选择**应用** \> **发布**，单击**Helm**页签。
+    3.  单击**Istio**右侧的更新，在弹出的更新发布页面中，可以看到如下示例参数定义：
 
-    1.  上述部署Istio之后，默认不会创建Ingress Gateway。单击左侧导航栏中的**市场** \> **应用目录**，进入应用目录页面。
-    2.  单击**ack-istio-ingressgateway**，进入应用目录 - ack-istio- ingressgateway页面。
+        ``` {#codeblock_zs0_w1i_tlw}
+        gateways:
+          enabled: true
+          ingress:
+            - enabled: true
+              gatewayName: ingressgateway
+              maxReplicas: 5
+              minReplicas: 1
+              ports:
+                - name: status-port
+                  port: 15020
+                  targetPort: 15020
+                - name: http2
+                  nodePort: 31380
+                  port: 80
+                  targetPort: 80
+                - name: https
+                  nodePort: 31390
+                  port: 443
+                  targetPort: 0
+                - name: tls
+                  port: 15443
+                  targetPort: 15443
+              replicaCount: 1
+              serviceType: LoadBalancer
+          k8singress: {}
+        ```
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045241685_zh-CN.png)
-
-    3.  单击**参数**页签，进行参数配置。
-
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045241686_zh-CN.png)
-
-        **说明：** 
-
-        -   通用参数的含义、取值及默认情况，可参考**说明**页签Configuration字段。
-        -   针对特定参数进行定制化配置，例如：启用端口、指定负载均衡（当服务类型为设置LoadBalancer时，通过设置serviceAnnotations参数指定使用内网还是公网负载均衡）等。
-    4.  在右侧创建区域，**集群**为**istio1**，**空间命名**istio-system，**发布名称**istio-ingressgateway，单击**创建**，启动部署。
-    **预期结果**
-
-    -   单击左侧导航栏**应用** \> **容器组**，进入容器组页面。
-    -   选择部署Istio的集群**istio1**及命名空间**istio-system**，可查看到已经部署Istio Ingress Gateway的相关容器组。
-
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045241687_zh-CN.png)
-
-
-**通过应用目录部署Istio**
-
-1.  部署Istio的自定义资源CRD。
-
-    1.  登录 [容器服务管理控制台](https://cs.console.aliyun.com)。
-    2.  单击左侧导航栏中的**市场** \> **应用目录**，进入应用目录页面。
-
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045241697_zh-CN.png)
-
-    3.  单击**ack-istio-init**，进入应用目录 ack-istio-init页面。
-
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045241698_zh-CN.png)
-
-    4.  在右侧创建区域，**集群**为**istio1**，**空间命名**istio-system，**发布名称**istio-init，单击**创建**，启动部署Istio的自定义资源CRD（Custom Resource Definition）。
-    **预期结果**
-
-    -   单击左侧导航栏**应用** \> **容器组**，进入**容器组**页面。
-    -   选择部署Istio的集群**istio1**及命名空间**istio-system**，可查看到已经部署Istio的自定义资源CRD的相关容器组。
-    -   ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045241677_zh-CN.png)
-
-2.  部署Istio。
-
-    1.  单击左侧导航栏的**市场** \> **应用目录**，进入应用目录页面。
-    2.  单击**ack-istio**，进入应用目录 - ack-istio页面。
-
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045241679_zh-CN.png)
-
-    3.  单击参数页签，进行参数配置。
-
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045241681_zh-CN.png)
+    4.  修改相应的参数后，单击**更新**。
 
         **说明：** 
 
-        -   通用参数的含义、取值及默认情况，可参考说明页签**Configuration**字段。
-        -   也可以针对特定参数进行定制化配置，例如：是否启用grafana、prometheus、tracing以及kiali等。
-    4.  在右侧创建区域，填写以下基本信息：
-
-        |配置|说明|
-        |--|--|
-        |集群|部署Istio的目标集群。|
-        |命名空间|部署Istio的命名空间，指定为istio-system。|
-        |发布名称|发布的Istio名称，指定为istio。|
-
-    5.  单击**创建**，启动部署。
-    **预期结果**
-
-    -   -   单击左侧导航栏**应用** \> **容器组**，进入容器组页面。
--   选择部署Istio的集群及命名空间，可查看到已经部署Istio的相关容器组。
-
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045341683_zh-CN.png)
-
-    -   -   单击左侧导航栏**应用** \> **服务**，进入服务列表页面。
--   选择部署Istio的集群及命名空间，可查看到已经部署Istio相关服务所提供的访问地址。
-
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045341684_zh-CN.png)
-
-3.  部署Istio Ingress Gateway。
-
-    1.  上述部署Istio之后，默认不会创建Ingress Gateway。单击左侧导航栏中的**市场** \> **应用目录**，进入应用目录页面。
-    2.  单击**ack-istio-ingressgateway**，进入应用目录 - ack-istio- ingressgateway页面。
-
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045241685_zh-CN.png)
-
-    3.  单击**参数**页签，进行参数配置。
-
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045241686_zh-CN.png)
-
-        **说明：** 
-
-        -   通用参数的含义、取值及默认情况，可参考**说明**页签Configuration字段。
-        -   针对特定参数进行定制化配置，例如：启用端口、指定负载均衡（当服务类型为设置LoadBalancer时，通过设置serviceAnnotations参数指定使用内网还是公网负载均衡）等。
-    4.  在右侧创建区域，**集群**为**istio1**，**空间命名**istio-system，**发布名称**istio-ingressgateway，单击**创建**，启动部署。
-    **预期结果**
-
-    -   单击左侧导航栏**应用** \> **容器组**，进入容器组页面。
-    -   选择部署Istio的集群**istio1**及命名空间**istio-system**，可查看到已经部署Istio Ingress Gateway的相关容器组。
-
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/155704045241687_zh-CN.png)
-
+        -   replicaCount：指定副本数。
+        -   ports：设置启用的端口。
+        -   serviceType：指定服务类型，可以设置为LoadBalancer、ClusterIP或者NodePort。
+        -   serviceAnnotations：当服务类型为设置LoadBalancer时，通过设置serviceAnnotations参数指定使用内网还是公网负载均衡、使用已有的SLB等；其他参数具体参见[负载均衡](https://help.aliyun.com/document_detail/86397.html)。
 
