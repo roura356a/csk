@@ -96,7 +96,7 @@ Method 2
 2.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs) and click **Dashboard** on the right of the target cluster.
 3.  Click **CREATE** in the upper-right corner to create an application.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15562446329066_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15585817589066_en-US.png)
 
 4.  Click the **CREATE FROM FILE** tab. Select the nginx-svc.yml file you saved.
 5.  Click **UPLOAD**.
@@ -107,17 +107,17 @@ Method 2
 
     You can view the created Nginx service `http-svc` and the SLB address `http://114.55.79.24:80`.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15562446339067_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15585817589067_en-US.png)
 
 7.  Open this address in your browser to access the service.
 
 ## Use the Container Service console {#section_bpm_jth_mfb .section}
 
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-2.  In the left-side navigation pane under Kubernetes, choose **Application** \> **Deployment**.
+2.  In the left-side navigation pane under Kubernetes, choose **Applications** \> **Deployments**.
 3.  Select the target cluster and namespace, and then click **Create by Template** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/155624463313797_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/155858175813797_en-US.png)
 
 4.  Select the custom **Resource Type** and then copy the following code to the **Template**.
 
@@ -142,11 +142,11 @@ Method 2
 5.  Click **DEPLOY**.
 6.  Click **Kubernetes Dashboard** to check the deployment progress on the dashboard page.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/155624463313798_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/155858175813798_en-US.png)
 
-    Alternatively, choose **Application** \> **Service** in the left-side navigation pane, and select the target cluster and namespace to view the deployed service.
+    Alternatively, choose **Discovery and Load Balancing** \> **Services** in the left-side navigation pane, and select the target cluster and namespace to view the deployed service.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/155624463313800_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/155858175813800_en-US.png)
 
 
 ## More information {#section_a31_43s_vdb .section}
