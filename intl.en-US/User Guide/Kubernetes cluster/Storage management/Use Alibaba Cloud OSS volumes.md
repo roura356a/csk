@@ -24,33 +24,16 @@ You have created a bucket in the OSS console.
 
 -   If your Kubernetes cluster is created before February 6th, 2018, [Install the plug-in](reseller.en-US/User Guide/Kubernetes cluster/Storage management/Install the plug-in.md#) before using a volume. Before you can use the OSS volume, you must first create a secret and then enter your Access Key information into the secret when you deploy the flexvolume service.
 
--   If you upgrade a Kubernetes cluster of Container Service or restart a kubelet, the Kubernetes cluster network is reset and the mounted OSS volumes will be remounted to the cluster. In this case, you need to recreate the pod that use the OSS volumes. To solve this problem more efficiently, you can configure a health check in the YAML file of the pod so that the pod can automatically restart when the OSS volumes are remounted.
+-   If you use the flexvolume component of an earlier version, we recommend that you upgrade it to the latest version.
+
+    **Note:** When you upgrade a Kubernetes cluster or restart a kubelet, an OSS volume mounted by the flexvolume component of an earlier version will cause the OSSFS driver to restart. To solve the exception caused by this event, you must recreate the pod that used the OSS volume to remount the OSS volume to the cluster. However, you can solve this issue more easily by upgrading the flexvolume component to the latest version.
+
 
 ## Use a static OSS volume {#section_d13_bct_vdb .section}
 
 **Use an OSS bucket through a volume**
 
 Use a oss-deploy.yaml file to create a pod.
-
-**Note:** 
-
-If you upgrade a Kubernetes cluster of Container Service or restart a kubelet, the Kubernetes cluster network is reset. To guarantee that the system automatically restarts the container when the OSS directory within the container becomes unavailable, configure the `livenessProbe` health check for the container.
-
-The parameter description of `livenessProbe` is as follows:
-
--   `command`, health check command. The format is,
-
-    ```
-    command: 
-    - h
-    -c 
-    - cd /data
-    ```
-
-    where, `- cd /data` is the OSS directory within the container. You only need to one directory even if multiple directories exist within the container.
-
--   `initialDelaySeconds` indicates the number of seconds for which the first probe must wait after the container is started.
--   `periodSeconds` indicates the interval at which probes are performed.
 
 ```
 apiVersion: extensions/v1beta1
@@ -127,7 +110,7 @@ spec:
 2.  In the left-side navigation pane under Kubernetes, choose **Clusters** \> **Volumes**.
 3.  Select the target cluster from the cluster drop-down list and then click **Create** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/155081952810740_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/155859175810740_en-US.png)
 
 4.  In the displayed dialog box, set the volume parameters.
 
@@ -139,7 +122,7 @@ spec:
     -   **Bucket ID**: Select an OSS bucket name. Click **Select Bucket**. In the displayed dialog box, select the target bucket and click**Select**.
     -   **Access Domain Name**. If the selected bucket and the cluster ECS instances are in different regions, you need to select**Internet**. If they are in the same region, your choice is dependent on your cluster network type. If your cluster uses a VPC, you need to select **VPC**; if your cluster uses a classic network, you need to select **Intranet**.
     -   **Tag**: Add tags to the volume.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/155081952810741_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/155859175810741_en-US.png)
 
 5.  Click **Create**.
 
@@ -164,10 +147,6 @@ spec:
 **Step 3: Create a pod**
 
 Use a oss-pod.yaml file to create a pod.
-
-**Note:** 
-
-If you upgrade a Kubernetes cluster of Container Service or restart a kubelet, the Kubernetes cluster network is reset. To guarantee that the system automatically restarts the container when the OSS directory within the container becomes unavailable, configure the `livenessProbe` health check for the container.
 
 ```
 apiVersion: v1
@@ -194,8 +173,4 @@ spec:
     persistentVolumeClaim:
         claimName: pvc-oss
 ```
-
-## Use a dynamic OSS volume {#section_ozz_ybt_vdb .section}
-
-Dynamic OSS volumes are not supported.
 
