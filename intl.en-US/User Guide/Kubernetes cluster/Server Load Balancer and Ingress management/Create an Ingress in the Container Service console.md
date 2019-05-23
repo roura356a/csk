@@ -5,21 +5,21 @@ Alibaba Cloud Container Service console integrates with the Ingress service, whi
 ## Prerequisites {#section_kj5_nyn_vdb .section}
 
 -   You have successfully created a Kubernetes cluster and Ingress controller is running normally in the cluster. For how to create a Kubernetes cluster, see [Create a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
--   Log on to the master node by using SSH. For more information, see [Access Kubernetes clusters by using SSH](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Access Kubernetes clusters by using SSH.md#).
+-   Log on to the master node by using SSH. For more information, see [Access Kubernetes clusters by using SSH](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Access a Kubernetes cluster by using SSH.md#).
 
 ## Step 1. Create a deployment and a service {#section_c1p_ryn_vdb .section}
 
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-2.  Under Kubernetes, click **Application** \> **Deployment** in the left-side navigation pane to enter the Deployment List page.
-3.  Click **Create by template** in the upper-right corner. 
+2.  In the left-side navigation pane under Container Service-Kubernetes, choose **Applications** \> **Deployments**.
+3.  Click **Create by template** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155410771_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234110771_en-US.png)
 
 4.  Select the cluster and namespace from the Clusters and Namespace drop-down lists. Select a sample template or Custom from the Resource Type drop-down list. Click **DEPLOY**.
 
-    In this example, three nginx applications are created. One for the old application \(old-nginx\), one for the new \(new-nginx\), and an application for testing the cluster access domain name \(domain-nginx\). 
+    In this example, three nginx applications are created. One for the old application \(old-nginx\), one for the new \(new-nginx\), and an application for testing the cluster access domain name \(domain-nginx\).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155410772_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234110772_en-US.png)
 
     The orchestration template for old-nginx is as follows:
 
@@ -103,7 +103,7 @@ Alibaba Cloud Container Service console integrates with the Ingress service, whi
       type: NodePort
     ```
 
-    The orchestration template for domain-nginx is as follows:  
+    The orchestration template for domain-nginx is as follows:
 
     ```
     apiVersion: apps/v1beta2 # For versions before 1.8.0 use apps/v1beta1
@@ -127,7 +127,7 @@ Alibaba Cloud Container Service console integrates with the Ingress service, whi
             image: nginx:1.7.9 # replace it with your exactly <image_name:tags>
             ports:
             - containerPort: 80
-            
+    
     ---
     apiVersion: v1
     kind: Service
@@ -144,32 +144,32 @@ Alibaba Cloud Container Service console integrates with the Ingress service, whi
       type: NodePort
     ```
 
-5.  Click **Application** \> **Service** in the left-side navigation pane to enter the Services List page.
+5.  In the left-side navigation pane under Container Service-Kubernetes, choose **Discovery and Load Balancing** \> **Services**.
 
     After the service is created, you can see it on the Service List page.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155410773_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234110773_en-US.png)
 
 
 ## Step 2. Create an Ingress {#section_gwv_tyn_vdb .section}
 
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-2.  Under Kubernetes, click **Application** \> **Ingress** in the left-side navigation pane.
+2.  In the left-side navigation pane under Container Service-Kubernetes, choose **Discovery and Load Balancing** \> **Ingresses**.
 3.  Select the cluster and namespace from the Clusters and Namespace drop-down lists. Then click **Create** in the upper-right corner.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155510774_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234110774_en-US.png)
 
 4.  In the displayed dialog box, enter the Ingress name. In this example, enter nginx-ingress.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155510775_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234110775_en-US.png)
 
 5.  Configure the rules.
 
-    The Ingress rules are the rules that authorize the inbound access to the cluster and are generally the HTTP rules. Configure the domain name \(virtual hostname\), URL path, service name, and port.  For more information, see [Ingress configurations](reseller.en-US/User Guide/Kubernetes cluster/Server Load Balancer and Ingress management/Ingress configurations.md#).
+    The Ingress rules are the rules that authorize the inbound access to the cluster and are generally the HTTP rules. Configure the domain name \(virtual hostname\), URL path, service name, and port. For more information, see [Ingress configurations](reseller.en-US/User Guide/Kubernetes cluster/Server Load Balancer and Ingress management/Ingress configurations.md#).
 
     In this example, add a complicated Ingress rule. Configure the default test domain name and virtual hostname of the cluster to display the Ingress service based on the domain names.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155510776_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234210776_en-US.png)
 
     -   The simple Ingress based on the default domain name, that is, provide the access service externally by using the default domain name of the cluster.
         -   **Domain**: Enter the default domain name of the cluster. In this example, use `test.[cluster-id].[region-id].alicontainer.com`.
@@ -178,7 +178,7 @@ Alibaba Cloud Container Service console integrates with the Ingress service, whi
 
         -   **Service**: Configure the access path, name, and port of the service.
             -   Path: Specify the URL path of the service access. The default is the root path /, which is not configured in this example. Each path is associated with a backend service. Before Alibaba Cloud Server Load Balancer forwards the traffic to the backend, all inbound requests must match with the domain name and path.
-            -   Service configuration: The backend configuration, which is a combination of service name, port,  and service weight. The configuration of multiple services in the same access path is supported, and Ingress traffic is split and is forwarded to the matched backend services.
+            -   Service configuration: The backend configuration, which is a combination of service name, port, and service weight. The configuration of multiple services in the same access path is supported, and Ingress traffic is split and is forwarded to the matched backend services.
     -   The simple fanout Ingress based on the domain name. In this example, use a virtual hostname as the testing domain name to provide the access service externally. You can use the recorded domain name in the production environment to provide the access service. You can use the recorded domain name in the production environment to provide the access service.
         -   **Domain**: In this example, use the testing domain name `foo.bar.com`.
 
@@ -206,7 +206,7 @@ Alibaba Cloud Container Service console integrates with the Ingress service, whi
 
     In this case, set the request header to meet a grayscale publish rule of `foo=^bar$`, only requests with the request header can access the new-nginx service.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155510777_en-US.png) 
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234210777_en-US.png)
 
     -   **Service**: Routing rule configuration service.
     -   **Type**: matching request header, cookie, and query \(request\) parameters are supported.
@@ -220,12 +220,12 @@ Alibaba Cloud Container Service console integrates with the Ingress service, whi
 
     You can also click **Add** to enter the annotation name and value, which is the annotation key-value pair for Ingress. For more information, see [https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155510778_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234210778_en-US.png)
 
 8.  Configure TLS. Select **Enable** and configure the secure Ingress service. For more information, see [Configure a safe routing service](reseller.en-US/User Guide/Kubernetes cluster/Server Load Balancer and Ingress management/Support for Ingress.md#section_j4d_jrs_vdb).
     -   You can select to use an existing secret.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155510779_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234210779_en-US.png)
 
         1.  Log on to the master node and create tls.key and tls.crt.
 
@@ -242,7 +242,7 @@ Alibaba Cloud Container Service console integrates with the Ingress service, whi
         3.  Run the `kubectl get secret` command to see that secret has been successfully created. You can use the secret that you have created in the Web interface, foo.bar.
     -   You can create the secret with one click by using the created TLS private key and certificate.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155510781_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234210781_en-US.png)
 
         1.  Log on to the master node and create tls.key and tls.crt.
 
@@ -250,29 +250,29 @@ Alibaba Cloud Container Service console integrates with the Ingress service, whi
             openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=foo.bar.com/O=foo.bar.com"
             ```
 
-        2.  Run the  `vim tls.key` and `vim tls.crt` to get the generated private key and certificate.
+        2.  Run the `vim tls.key` and `vim tls.crt` to get the generated private key and certificate.
         3.  Copy the generated certificate and private key to the Cert and Key fields.
 9.  Adding the tags.
 
     Add the corresponding tags for Ingress to indicate the characteristics of the Ingress.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155510783_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234210783_en-US.png)
 
 10. Click **Create**.
 
     The Ingress nginx-ingress is displayed on the Ingress page.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155510784_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234210784_en-US.png)
 
 11. Click on the access domain name `test.[cluster-id].[region-id].alicontainer.com` in the route, and `foo.bar.com` to access the welcome page of nginx.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155510786_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234210786_en-US.png)
 
     Click on the route address pointing the new-nginx service and find the page that points the old-nginx application.
 
     **Note:** Access the route address in the browser. By default, the request header does not have the `foo=^bar$`, so the traffic is directed to the old-nginx application.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155037155510791_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16682/155858234210791_en-US.png)
 
 12. Log on to the master node by using SSH. Run the following command to simulate the access result with a specific request header.
 
