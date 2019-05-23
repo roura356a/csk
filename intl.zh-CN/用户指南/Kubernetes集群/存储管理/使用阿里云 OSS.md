@@ -107,7 +107,7 @@ spec:
 2.  在 Kubernetes 菜单下，单击左侧导航栏中的**集群** \> **存储**，进入数据卷列表页面。
 3.  选择所需的集群，单击页面右上角的**创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/155788442710740_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/155860792510740_zh-CN.png)
 
 4.  在创建数据卷对话框中，配置数据卷的相关参数。
 
@@ -119,7 +119,7 @@ spec:
     -   **Bucket ID**：您要使用的 OSS bucket 的名称。单击**选择Bucket**，在弹出的对话框中选择所需的 bucket 并单击**选择**。
     -   **访问域名**：如果 Bucket 和 ECS 实例位于不同地域（Region），请选择**外网域名**；如果位于相同地域，需要根据集群网络类型进行选择，若是 VPC 网络，请选择**VPC域名**，若是经典网络，请选择**内网域名**。
     -   **标签**：为该数据卷添加标签。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/155788442710741_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/155860792510741_zh-CN.png)
 
 5.  完成配置后，单击**创建**。
 
@@ -170,8 +170,4 @@ spec:
     persistentVolumeClaim:
         claimName: pvc-oss
 ```
-
-## 使用 OSS 动态卷 {#section_ozz_ybt_vdb .section}
-
-目前暂不支持。
 
