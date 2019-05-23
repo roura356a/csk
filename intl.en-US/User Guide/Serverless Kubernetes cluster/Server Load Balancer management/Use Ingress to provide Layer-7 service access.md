@@ -4,7 +4,7 @@ In the Alibaba Cloud Serverless Kubernetes cluster, Server Load Balancer provide
 
 ## Prerequisites {#section_e5m_bgn_j2b .section}
 
--   You have created a Serverless cluster. VPC cluster must be configured with a NAT gateway to access the external network and download the container image. 
+-   You have created a Serverless cluster. VPC cluster must be configured with a NAT gateway to access the external network and download the container image.
 -   You have connected to the cluster by using kubectl, see [Connect to a Kubernetes cluster by using kubectl](reseller.en-US/User Guide/Serverless Kubernetes cluster/Cluster management/Connect to a Kubernetes cluster by using kubectl.md#).
 
 ## Instructions {#section_and_jfn_j2b .section}
@@ -12,7 +12,7 @@ In the Alibaba Cloud Serverless Kubernetes cluster, Server Load Balancer provide
 1.  If Server Load Balancer is not specified, system automatically generates a public network Server Load Balancer instance.
 2.  The default front-end listening ports for SLB instances are 80 \(HTTP Protocol\) and 443 \(HTTPS protocol \).
 3.  By default, the HTTPS certificate of the SLB instance is initialized for the first created Ingress-configured TLS certificate. Otherwise, the system default certificate is initialized. You can modify it in the SLB console as needed.
-4.  When you specify to use an existing SLB instance, SLB instance specification must be of performance guarantee type \(supports ENI\). Also, make sure that ports 80 and 443 are not currently used by other services. 
+4.  When you specify to use an existing SLB instance, SLB instance specification must be of performance guarantee type \(supports ENI\). Also, make sure that ports 80 and 443 are not currently used by other services.
 
 ## Annotations {#section_htp_kfn_j2b .section}
 
@@ -143,11 +143,34 @@ spec:
           servicePort: 80
 ```
 
+``` {#codeblock_jta_h1o_5dq}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cafe-ingress
+spec:
+  rules:
+  # Configure Layer-7 domain name
+  - host: foo.bar.com
+    http:
+      paths:
+      # Configure context path
+      - path: /tea
+        backend:
+          serviceName: tea-svc
+          servicePort: 80
+      # Configure context path
+      - path: /coffee
+        backend:
+          serviceName: coffee-svc
+          servicePort: 80
+```
+
 ```
 $ kubectl apply -f cafe-ingress.yaml
 ingress "cafe-ingress" created
-  
-# The address is the IP address of the automatically generated SLB instance.
+
+# Address is automatically generated for SLB instance IP after deployment is complete
 
 $ kubectl get ing
 NAME           HOSTS         ADDRESS          PORTS     AGE
@@ -160,27 +183,27 @@ cafe-ingress   foo.bar.com   139.***.**.***   80        1m
 
 In this example, a DNS domain name resolution rule is added to hosts for testing service access. We recommend that you enter the domain name in your work environment.
 
-```
-139.224.76.211    foo.bar.com
+``` {#codeblock_zxe_aoh_0k3}
+139.***.**.***    foo.bar.com
 ```
 
 Test access to the coffee service by using browser.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155412486610319_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155859114710319_en-US.png)
 
 Test access to the coffee service by using command line.
 
-```
+``` {#codeblock_g2s_v6v_8yk}
 curl -H "Host: foo.bar.com" http://139.***.**.***/coffee
 ```
 
 Test access to the tea service by using browser.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155412486710320_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155859114710320_en-US.png)
 
 Test access to the tea service by using command line.
 
-```
+``` {#codeblock_4g9_p9h_5kh}
 curl -H "Host: foo.bar.com" http://139.***.**.***/tea
 ```
 
@@ -188,7 +211,7 @@ curl -H "Host: foo.bar.com" http://139.***.**.***/tea
 
 You can specify to use of an existing SLB instance by using the `service.beta.kubernetes.io/alicloud-loadbalancer-id` annotation, but the SLB instance specification must be of performance guarantee type \(supports ENI\).
 
-**Note:** System automatically initializes ports 80 and 443 of the SLB instance, make sure that ports are not currently used by other services. 
+**Note:** System automatically initializes ports 80 and 443 of the SLB instance, make sure that ports are not currently used by other services.
 
 **1. Deploy test services**
 
@@ -249,9 +272,9 @@ deploy/tomcat   1         1         1            1           1m
 
 **2. Apply for SLB instance**
 
-You must apply for a **performance guarantee type** SLB instance \(such as slb.s2.small\) under the cluster and region. According to the specific needs, private or public network can be used.  In this example, apply for a public network SLB instance and record the ID of the SLB instance.
+You must apply for a **performance guarantee type** SLB instance \(such as slb.s2.small\) under the cluster and region. According to the specific needs, private or public network can be used. In this example, apply for a public network SLB instance and record the ID of the SLB instance.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155412486710321_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155859114710321_en-US.png)
 
 **3. Configure the TLS certificate**
 
@@ -274,9 +297,36 @@ cert-example   kubernetes.io/tls   2         12s
 
 **4. Configure Ingress**
 
-Configure the domain name and path exposed by Tomcat service by using Ingress. The layout template is as follows: 
+Configure the domain name and path exposed by Tomcat service by using Ingress. The layout template is as follows:
 
+``` {#codeblock_6w6_iak_rv6}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tomcat-ingress
+  annotations:
+    # Configure to use the specified SLB instance (SLB ID)
+    service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-xxxxxxxxxx            ##Replace with your SLB ID
+    service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: "true"
+spec:
+  tls:
+  - hosts:
+    - bar.foo.com
+    # Configure the TLS certificate
+    secretName: cert-example
+  rules:
+  # Configure Layer-7 domain name
+  - host: bar.foo.com
+    http:
+      paths:
+      # Configure context path
+      - path: /
+        backend:
+          serviceName: tomcat
+          servicePort: 8080
 ```
+
+``` {#codeblock_902_4gc_kvo}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -310,35 +360,24 @@ ingress "tomcat-ingress" created
 
 $ kubectl get ing tomcat-ingress
 NAME             HOSTS         ADDRESS        PORTS     AGE
-tomcat-ingress   bar.foo.com   47.101.20.67   80, 443   1m
-```
-
-```
-$ kubectl apply -f tomcat-ingress.yml                       #In the tomcat-ingress.yaml file, enter the template above in tomcat-ingress.yaml.
-ingress "tomcat-ingress" created
-
-# After the deployment,the address is the specified SLB instance IP address.
-
-$ kubectl get ing tomcat-ingress
-NAME             HOSTS         ADDRESS        PORTS     AGE
 tomcat-ingress   bar.foo.com   47.***.**.**   80, 443   1m
 ```
 
-**5. Test service access**
+**5. Test service access** 
 
 **Note:** Currently, the domain name of the SLB instance IP must be resolved manually.
 
 In this example, a DNS domain name resolution rule is added to hosts for testing service access. We recommend that you enter the domain name in your work environment.
 
-```
-47.101.20.67   bar.foo.com
+``` {#codeblock_2f5_8o1_ah6}
+47.***.**.**   bar.foo.com
 ```
 
 Test access to Tomcat service by using browser:
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155412486710322_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16502/155859114710322_en-US.png)
 
 Test access to Tomcat service by using command line:
 
-`curl -k -H "Host: bar.foo.com" https://47.***.**.**`
+ `curl -k -H "Host: bar.foo.com" https://47.***.**.**`
 
