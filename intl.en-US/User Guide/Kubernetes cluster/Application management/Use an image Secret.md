@@ -15,7 +15,7 @@ When you use a private image to create an application, you have to configure a s
 
     If you do not configure **Namespace**, the system uses the default namespace by default.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/23476/155879651113581_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/23476/155879701213581_en-US.png)
 
 4.  Configure containers. 
 
@@ -27,7 +27,7 @@ When you use a private image to create an application, you have to configure a s
 
 6.  In the image version box, enter the private image address version. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/23476/155879651113583_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/23476/155879701213583_en-US.png)
 
 7.  Click **Image pull secret**. 
     -   Select **Create secret**.
@@ -37,22 +37,22 @@ When you use a private image to create an application, you have to configure a s
         -   Username: Specifies the user name of the Docker repository. If you use Alibaba Cloud Container Registry, the username is your Alibaba Cloud account name.
         -   Password: Specifies the logon password of the Docker repository. If you use Alibaba Cloud Container Registry, the password is the independent logon password for Container Registry.
         -   Email: Specifies an email address. This is optional.
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/23476/155879651113584_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/23476/155879701213584_en-US.png)
 
         Click **OK**. The created secrete is displayed on the page.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/23476/155879651113585_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/23476/155879701213585_en-US.png)
 
     -   You can also click **Exist secret**. You can pre-create a container image secret by using command lines or a YAML file. For information, see [How to use private images in Kubernetes clusters](../reseller.en-US/FAQ/How to use private images in Kubernetes clusters.md#) and [Use a private image repository to create an application](../reseller.en-US/Quick Start /Advanced operations/Use a private image repository to create an application.md#).
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/23476/155879651113586_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/23476/155879701213586_en-US.png)
 
 8.  After you complete the container configuration, click **Next**.
 9.  Follow the page guide to complete other configurations, and then click **Create**.
-10. Click **Application** \> **Deployment** in the left-side navigation pane, and select the cluster and namespace in which the application is created to view the status of the tomcat application. 
+10. Click **Applications** \> **Deployments** in the left-side navigation pane, and select the cluster and namespace in which the application is created to view the status of the tomcat application. 
 
     **Note:** The system shows that the tomcat application runs properly, which indicates that you have used the tomcat private image through the secret.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/23476/155879651113587_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/23476/155879701213587_en-US.png)
 
 
