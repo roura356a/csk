@@ -27,7 +27,7 @@ For example, if you set a low threshold value for the number of nodes in an auto
 2.  In the left-side navigation pane under Container Service-Kubernetes, choose **Clusters** \> **Clusters**.
 3.  Find the target cluster. Then, in the **Action** column, choose **More** \> **Auto Scaling**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155866344111191_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155892413111191_en-US.png)
 
 
 ## **Grant required permissions for the Auto Scaling service and the cluster** {#section_y5u_sec_5il .section}
@@ -36,27 +36,27 @@ For example, if you set a low threshold value for the number of nodes in an auto
 
 1.  Click **ESS** in the displayed dialog box.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155866344111211_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155892413111211_en-US.png)
 
 2.  Click **Activate Auto Scaling service**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155866344111263_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155892413111263_en-US.png)
 
 3.  Read and confirm that you agree to the conditions by selecting the **I agree with Auto Scaling Service Agreement of Service** check box, and then click **Enable Now**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155866344111264_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155892413111264_en-US.png)
 
 4.  Click **Console**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155866344111265_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155892413111265_en-US.png)
 
 5.  Click **Authorize**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155866344111266_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155892413111266_en-US.png)
 
 6.  Click **Confirm Authorization Policy** to grant ESS the permission to access your cloud resources.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155866344111267_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155892413111267_en-US.png)
 
     **Verify the result**
 
@@ -68,15 +68,15 @@ For example, if you set a low threshold value for the number of nodes in an auto
 
     **Note:** You need to use the primary account to log on to the console before perform this operation.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155866344111261_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155892413111261_en-US.png)
 
 2.  Click **View Permissions** on the right of the target authorization policy.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155866344111193_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155892413111193_en-US.png)
 
 3.  In the upper-right corner of the page, click **Modify Authorization Policy**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155866344111195_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155892413111195_en-US.png)
 
 4.  In the `Action` field of the **Policy Document** area, add the following policies:
 
@@ -110,7 +110,7 @@ For example, if you set a low threshold value for the number of nodes in an auto
 
 2.  Click **Create** on the right of the target type of resource \(which can be CPU or GPU\) that you want to autoscale.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155866344111210_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155892413111210_en-US.png)
 
     On the Scaling Group Configuration page, set the following parameters to create a scaling group:
 
@@ -143,13 +143,13 @@ For example, if you set a low threshold value for the number of nodes in an auto
 
 -   You can directly verify that a scaling group under CPU is displayed on the Auto Scaling page.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155866344211273_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155892413111273_en-US.png)
 
 -   To verify the created autoscaling component, follow these steps:
 
     1.  In the left-side navigation pane, choose **Application** \> **Deployment**.
     2.  Select the target cluster and the kube-system namespace to view the created component named cluster-autoscaler.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155866344211276_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/19071/155892413111276_en-US.png)
 
 
 ## Troubleshooting {#section_dd4_trg_1fb .section}
