@@ -4,13 +4,11 @@
 
 You can check the cause of cluster creation failure by viewing the cluster creation events.
 
-Log on to the [Resource Orchestration Service \(ROS\) console](https://parnters-intl.console.aliyun.com/#/ros).
+Log on to the [Resource Orchestration Service \(ROS\) console](https://ros.console.aliyun.com/).
 
 Select the region where the cluster resides. Then, click **Manage** at the right of the cluster. In the left-side navigation pane, click **Event**. Rest the pointer on the failed event to view the specific error message of the failure.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15844/15440798029797_en-US.png)
-
-If the error message in the figure is displayed, it means that the cluster creation failed because the number of Virtual Private Cloud \(VPC\) instances has reached the quota.
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15844/15590944079797_en-US.png)
 
 ## Failure codes and solutions {#section_dtt_1wb_wdb .section}
 
@@ -51,6 +49,8 @@ If the error message in the figure is displayed, it means that the cluster creat
     **Solution:** Failed to create an order. Open a ticket for consultation.
 
 -   Resource CREATE failed: ResponseException: resources.k8s\_master\_1: This operation is forbidden by Aliyun RiskControl system. Code: Forbidden.RiskControl
+
+    **Solution:** An exception occurs to your account. For more information, see [What do I do if I get a security notification?](https://www.alibabacloud.com/help/zh/faq-detail/69598.htm).
 
 -   Resource CREATE failed: WaitConditionFailure: resources.k8s\_node\_cloudinit\_wait\_cond: See output value for more details.
 
