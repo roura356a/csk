@@ -9,10 +9,10 @@ This topic describes how to delete a Kubernetes service in the Alibaba Cloud Con
 2.  In the left-side navigation pane under Kubernetes, choose **Discovery and Load Balancing** \> **Service**. 
 3.  Select the target cluster and namespace, and then click **Delete** on the right of the target service. In this example, the target service is named nginx-svc. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16667/155175815111020_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16667/156035918211020_en-US.png)
 
 4.  In the displayed dialog box, click **Confirm**. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16667/155175815111021_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16667/156035918211021_en-US.png)
 
 
