@@ -96,7 +96,7 @@ The upgrade process does not impact the calls between services within the cluste
 
 Calls between services within the cluster.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/83226/155833217035273_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/83226/156074240035273_en-US.png)
 
 **Impacts caused by the control plane upgrade**
 
@@ -104,7 +104,7 @@ If HA is enabled, that is, the replicas of Pilot is 2, the HPA setting of `istio
 
 If you have changed the Istio version multiple times by upgrading or rolling back the component version, testing results will indicate that the QPS of calls between services remains unchanged and the calls proceed normally.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/83226/155833217035274_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/83226/156074240035274_en-US.png)
 
 **Impacts caused by the control plane sidecar upgrade**
 

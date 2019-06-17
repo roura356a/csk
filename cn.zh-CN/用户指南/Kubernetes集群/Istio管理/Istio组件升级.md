@@ -12,31 +12,18 @@
 
 ## 升级步骤 {#section_dxz_1zj_ggb .section}
 
-升级过程可以分为3个部分：CRD升级、控制平面升级、数据平面Sidecar升级。
+升级过程可以分为3个部分：CRD升级及控制平面升级、数据平面Sidecar升级。
 
-**CRD升级**
+**说明：** 升级过程中可能会导致服务不可用，为了最大限度地减少宕机时间，请使用多副本以保证 Istio 控制平面组件和应用程序具有高可用性，包括控制平面和数据平面。
+
+**CRD升级及控制平面升级**
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
-2.  单击左侧导航栏中的**应用** \> **发布**，进入Helm页面。如果存在**istio-init**并且版本较低， 点击删除并按照如下步骤安装更新版本。
+2.  单击左侧导航栏中的**应用** \> **发布**，进入Helm页面。如果存在**istio-init**并且Chart版本低于1.1.4， 点击**删除**并按照如下步骤安装更新版本。如果存在**istio-init**并且Chart版本不低于1.1.4，点击**更新**，在弹出的窗口下方点击**更新**按钮。
 3.  单击左侧导航栏中的**市场** \> **应用目录**，进入应用目录页面。单击**ack-istio-init**，进入应用目录 ack-istio-init页面。
-4.  在右侧创建区域，选定**集群**，**空间命名**istio-system，**发布名称**istio-init，单击**创建**，更新Istio的自定义资源CRD。
-
-**控制平面升级**
-
-包括 Citadel、Pilot、Policy、Telemetry及Sidecar injector的升级。
-
-1.  在容器服务管理控制台，单击左侧导航栏**应用** \> **发布**，进入发布页面。
-2.  选择目标集群，选择目标**发布名称**，单击**操作**列的**更新**，进入更新发布页面。
-3.  查看当前部署的 Istio发布的参数配置， 指定新版本的值，例如：
-
-    ``` {#codeblock_rva_o80_m41}
-    global:
-      tag: <最新版本>
-    ```
-
-    如果需要修改其他参数，也可以在该界面中进行相应的修改。
-
-4.  单击**更新**。
+4.  在右侧创建区域，选定**集群**，**空间命名**istio-system，**发布名称**istio-init，单击**创建**，更新Istio的自定义资源CRD及相应的组件。
+5.  单击左侧导航栏中的**应用** \> **容器组**，进入容器组页面。单击**istio-init-operator-xxxxxxx-xxxxx**，进入容器组详细页面，点击**日志**页签，根据日志内容是否更新判断该容器组的执行程序是否在执行更新。如果日志内容没有刷新，返回到容器组列表页面，在右侧选择**更多**-\>**删除**，此时会重新拉起该容器组。
+6.  执行更新成功后，单击左侧导航栏中的**应用** \> **发布**，进入Helm页面，可以看到Istio组件已经同步更新。
 
 **数据平面Sidecar升级**
 
@@ -48,7 +35,7 @@
 
 可以使用如下脚本通过 patch 优雅结束时长来触发滚动更新：
 
-```
+``` {#codeblock_o8y_n8a_d2a}
 NAMESPACE=$1
 DEPLOYMENT_LIST=$(kubectl -n $NAMESPACE get deployment -o jsonpath='{.items[*].metadata.name}')
 echo "Refreshing pods in all Deployments: $DEPLOYMENT_LIST"
@@ -71,13 +58,13 @@ echo "done."
 
 执行以下命令，手动升级 sidecar。
 
-```
+``` {#codeblock_j0u_dt9_0fy}
 kubectl apply -f <(istioctl kube-inject -f $ORIGINAL_DEPLOYMENT_YAML)
 ```
 
 如果 Sidecar 以前被注入了一些定制的注入配置文件，请执行以下命令，手动升级 Sidecar：
 
-```
+``` {#codeblock_lec_u4q_u6s}
 kubectl apply -f <(istioctl kube-inject --injectConfigFile inject-config.yaml --filename $ORIGINAL_DEPLOYMENT_YAML)
 ```
 
@@ -89,7 +76,7 @@ kubectl apply -f <(istioctl kube-inject --injectConfigFile inject-config.yaml --
 
 集群内服务间的调用：
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/83226/155807133435273_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/83226/156074239035273_zh-CN.png)
 
 **控制平面升级**
 
@@ -97,7 +84,7 @@ kubectl apply -f <(istioctl kube-inject --injectConfigFile inject-config.yaml --
 
 此时，在多次变更版本（升级、回滚）的情况下，测试结果显示为：服务之间的调用QPS基本不变，没有出现断连。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/83226/155807133435274_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/83226/156074239035274_zh-CN.png)
 
 **数据平面Sidecar升级**
 
