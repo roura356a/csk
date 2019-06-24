@@ -33,7 +33,7 @@ This section introduces the prerequisite for the access to the blockchain networ
 2.  Click **Elastic IP Addresses** in the left-side navigation pane.
 3.  Click **Create EIP**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16617/15613634529833_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16617/15613636349833_en-US.png)
 
 4.  Select the region in which the Kubernetes cluster resides. Complete the other configurations as per your needs. Click **Buy Now**.
 5.  After activating the EIP, wait until the purchased EIP is displayed in the list and then click **Bind** at the right of the EIP.
@@ -46,21 +46,21 @@ In the blockchain solution, a file system is mainly used to store and distribute
 
 **Note:** The usage of a file system only applies to the development and test phases of blockchain applications and solutions. For deployment in the production environment, contact us to further discuss specific business and technical needs and determine the most suitable method.
 
-For how to create a file system, see [../../SP\_111/DNnas1858274/EN-US\_TP\_18690.dita\#concept\_27526\_zh](../../SP_111/DNnas1858274/EN-US_TP_18690.dita#concept_27526_zh) . When creating a file system, you must complete the following key configurations to make sure the blockchain solution can be deployed successfully.
+For how to create a file system, see [Create a file system](../../../../reseller.en-US/Quick Start/Create a file system.md#). When creating a file system, you must complete the following key configurations to make sure the blockchain solution can be deployed successfully.
 
 -   Region: Select the region in which the container cluster resides.
 -   Protocol Type: Select NFS.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16617/15613634529835_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16617/15613636349835_en-US.png)
 
 
 For more information, see [../../SP\_111/DNnas1858274/EN-US\_TP\_18691.dita\#concept\_60431\_zh](../../SP_111/DNnas1858274/EN-US_TP_18691.dita#concept_60431_zh).
 
 After adding a mount point, click **Manage** at the right of the file system.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16617/15613634529836_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16617/15613636349836_en-US.png)
 
 Record the Mount Address of the mount point.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16617/15613634529837_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16617/15613636359837_en-US.png)
 
