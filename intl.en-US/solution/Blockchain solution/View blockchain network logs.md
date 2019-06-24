@@ -11,19 +11,19 @@ The Container Service console allows you to conveniently view logs on GUI. After
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
 2.  Under **Kubernetess**, click **Clusters** in the left-side navigation pane. Click **Dashboard** at the right of the cluster.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824689850_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684889850_en-US.png)
 
 3.  Click **Pods** in the left-side navigation pane and then click the **Logs** icon.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824699851_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684889851_en-US.png)
 
 4.  View the log details.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824699852_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684899852_en-US.png)
 
 5.  You can also click the name of a pod and click **LOGS**. Then, view the log details.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824699853_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684899853_en-US.png)
 
 
 ## View logs by using Kubernetes commands {#section_jjh_kpv_vdb .section}
@@ -52,23 +52,23 @@ You may be charged by using Alibaba Cloud Log Service. For more information, see
 2.  Click **Project Management** in the left-side navigation pane, and click **Create Project**in the upper-right corner.
 3.  Enter the Project Name, and select the Region in which the blockchain network resides. Then, click **Confirm**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824699854_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684899854_en-US.png)
 
 4.  Click **Create** in the displayed dialog box to create the Logstore.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824699855_en-US.jpg)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684899855_en-US.jpg)
 
 5.  The Create Logstore dialog box appears. Enter the Logstore name. Complete the other configurations as per your needs. Then, click **Confirm**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824709856_en-US.jpg)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684899856_en-US.jpg)
 
 6.  Click **Data Import Wizard** in the displayed dialog box.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824709857_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684899857_en-US.png)
 
 7.  Select Docker Stdout under Third-Party Software. Then, click **Next**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824709858_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684909858_en-US.png)
 
 8.  In the Plug-In Configuration field, enter the following example configuration. For more information about the configurations, see [Container standard output](../../../../reseller.en-US/User Guide/Logtail collection/Container log collection/Container stdout.md#). Then, click **Next**.
 
@@ -90,26 +90,26 @@ You may be charged by using Alibaba Cloud Log Service. For more information, see
      }
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824709859_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684909859_en-US.png)
 
 9.  Click **Create Machine Group**.
 
     The Create Machine Group dialog box appears.Enter the custom machine group name in the Group Name field. Select **User-defined Identity** from the Machine Group Identification drop-down list. In the User-defined Identity field, enter the same content as that in the Group Name field. Then, click **Confirm**. The example is as follows:
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824709860_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684909860_en-US.png)
 
 10. Select the created machine group and then click **Apply to Machine Group**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824709861_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684909861_en-US.png)
 
 11. Add the key \(for example, \_pod\_name\_\) for creating the index as per your needs. After completing the configurations, click **Next**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824709862_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684909862_en-US.png)
 
 12. Click **Confirm**. Then, the creation and initial configuration of Alibaba Cloud Log Service are complete. Deploy a new blockchain network by using the blockchain solution
 13. and configure the parameters integrated with Log Service on the Values page of the blockchain solution.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824719863_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684909863_en-US.png)
 
     Set the parameter enabled to true, which indicates to enable Log Service. Set the parameter machineGroup to the user-defined identity configured in the machine group. In this example, it is blockchain-network01.
 
@@ -117,18 +117,18 @@ You may be charged by using Alibaba Cloud Log Service. For more information, see
 
     To set the parameter userID, see the following figure.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824719864_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684919864_en-US.png)
 
 14. Log on to the Log Service console. Click the project name and then click **Search** at the right of the Logstore.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824719865_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684919865_en-US.png)
 
     The blockchain network log example is as follows:
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824719866_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684919866_en-US.png)
 
 15. Log Service supports complex queries. For more information about the query syntax and other advanced functions of Log Service, see [../../SP\_7/DNSLS11850791/EN-US\_TP\_13099.dita\#concept\_tnd\_1jq\_zdb](../../SP_7/DNSLS11850791/EN-US_TP_13099.dita#concept_tnd_1jq_zdb).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15610824719867_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16620/15613684919867_en-US.png)
 
 
