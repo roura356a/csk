@@ -4,7 +4,7 @@ This topic describes how to use Bamboo to deploy a remote agent in a Kubernetes 
 
 ## Prerequisites {#section_1el_o3y_ubr .section}
 
--   A Kubernetes cluster is created by using ACK. For more information, see [Create a Kubernetes cluster](../../../../intl.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
+-   A Kubernetes cluster is created by using ACK. For more information, see [Create a Kubernetes cluster](../../../../reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
 -   A Bamboo server is created.
 
 ## Source code of the application to be deployed {#section_dyl_992_k20 .section}
@@ -29,7 +29,7 @@ After you access the corresponding GitHub page, you can find the source code in 
         docker login registry.cn-hangzhou.aliyuncs.com
         ```
 
-    2.  Use [Cloud Shell](../../../../intl.en-US/User Guide/Kubernetes cluster/Cluster management/Use kubectl commands in Cloud Shell to manage a Kubernetes cluster.md#) to connect to the target Kubernetes cluster, and then run the following command to create a kaniko-docker-cfg secret:
+    2.  Use [Cloud Shell](../../../../reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Use kubectl commands in Cloud Shell to manage a Kubernetes cluster.md#) to connect to the target Kubernetes cluster, and then run the following command to create a kaniko-docker-cfg secret:
 
         ``` {#codeblock_2rk_ykt_4aq}
         kubectl -n bamboo create secret generic kaniko-docker-cfg  --from-file=/root/.docker/config.json
@@ -37,7 +37,7 @@ After you access the corresponding GitHub page, you can find the source code in 
 
 2.  Create a Bamboo agent in the target Kubernetes cluster.
 
-    `ServiceAccount` and `ClusterRoleBinding` are created to set the permissions required for kubectl to deploy an application to the target Kubernetes cluster.
+     `ServiceAccount` and `ClusterRoleBinding` are created to set the permissions required for kubectl to deploy an application to the target Kubernetes cluster.
 
     1.  Create a file bamboo-agent.yaml and copy the following code to the file:
 
@@ -103,9 +103,9 @@ After you access the corresponding GitHub page, you can find the source code in 
 
         **Note:** You must replace `<bamboo agent pod name>` with the file name that you use.
 
-    4.  Log on to the Bamboo server you created. Then, in the upper-right corner, click ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079148938_en-US.png), and select **Agent** to view the deployed agent.
+    4.  Log on to the Bamboo server you created. Then, in the upper-right corner, click ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204348938_en-US.png), and select **Agent** to view the deployed agent.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079249070_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204449070_en-US.png)
 
 
 ## Configure a build plan {#section_eh6_dnv_a2g .section}
@@ -114,7 +114,7 @@ After you access the corresponding GitHub page, you can find the source code in 
     1.  Log on to the Bamboo server you created, and choose **Create** \> **Create plan**.
     2.  Select bamboo-ack-demo from the **Project** drop-down list, set **Plan name**, **Plan key**, and **Plan description**, select java-demo from the **Repository host** drop-down list, and then click **Configure plan**.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079249094_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204449094_en-US.png)
 
 2.  Configure a job that contains four required tasks for the build plan.
     1.  Confirm and save the setting of the source code repository.
@@ -123,28 +123,28 @@ After you access the corresponding GitHub page, you can find the source code in 
 
         1.  In the **Create tasks** area, click **Source Code Checkout**.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079249095_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204449095_en-US.png)
 
         2.  On the Source Code Checkout configuration page, select a new repository from the **Repository** drop-down list, and then click **Save**.
     2.  Add the command type of mvn to use the mvn tool.
         1.  In the **Create tasks** area, click **Add task**. Then, on the displayed Task types page, click **Command**.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079249096_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204449096_en-US.png)
 
         2.  On the Command configuration page, set **Task description**, **Executable**, and **Argument**, and then click **Save**.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079349097_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204449097_en-US.png)
 
     3.  Use kaniko to package and push the required container image to the target image repository.
         1.  In the **Create tasks** area, click **Add task**. Then, on the displayed Task types page, click **Script**.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079349098_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204549098_en-US.png)
 
         2.  On the Script configuration page, set **Task description**, and **Script location**, then click **Save**.
 
             **Note:** For the remaining parameters of the script, you can retain the default settings.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079349099_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204549099_en-US.png)
 
             In this example, the **Script location** is set as follows:
 
@@ -155,13 +155,13 @@ After you access the corresponding GitHub page, you can find the source code in 
     4.  Use kubectl to deploy the application on the target Kubernetes cluster.
         1.  In the **Create tasks** area, click **Add task**. Then, on the displayed Task types page, click **Script**.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079349098_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204549098_en-US.png)
 
         2.  On the Script configuration page, set **Task description** and **Script location**, then click **Save**.
 
             **Note:** For the remaining parameters of the script, you can retain the default settings.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079449100_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204549100_en-US.png)
 
             In this example, the **Script location** is set as follows:
 
@@ -173,15 +173,15 @@ After you access the corresponding GitHub page, you can find the source code in 
 3.  Run the build plan.
     1.  On the Configure Job page, click **Create**.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079449101_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204549101_en-US.png)
 
     2.  In the upper-right corner of the page, choose **Run** \> **Run plan**.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079449102_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204549102_en-US.png)
 
         You can click the **Logs** tab to view the logs.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079549103_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204649103_en-US.png)
 
 4.  Access the deployed application.
     1.  Run the kubectl -n bamboo get svc command to view the Internet IP address of the application.
@@ -194,7 +194,7 @@ After you access the corresponding GitHub page, you can find the source code in 
 
     2.  In your browser, enter http://EXTERNAL-IP to access the application.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156041079549104_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/475357/156144204649104_en-US.png)
 
 
 ## Reference {#section_5sh_fsy_h58 .section}
