@@ -11,15 +11,15 @@
 2.  部署时刻可以作为调度条件使用
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。 
-2.  在Kubernetes菜单下，单击左侧导航栏中的**集群** \> **节点**，查看该集群的节点。 
+2.   在Kubernetes菜单下，单击左侧导航栏中的**集群** \> **节点**，查看该集群的节点。 
 
     **说明：** 本例中，该集群中拥有3个Worker节点，其中有两个Worker节点挂载了GPU设备，请查看节点IP，方便进行验证。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/155720791221050_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/156154303921050_zh-CN.png)
 
-3.  选择GPU节点，单击操作列的**更多** \> **详情**，进入Kubernetes Dashboard页面，查看GPU节点提供的节点标签。 
+3.   选择GPU节点，单击操作列的**更多** \> **详情**，进入Kubernetes Dashboard页面，查看GPU节点提供的节点标签。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/155720791221059_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/156154303921059_zh-CN.png)
 
     您也可登录到Master节点，执行以下命令，查看GPU节点的标签。
 
@@ -57,9 +57,9 @@
 
     |key|value|
     |---|-----|
-    |`aliyun.accelerator/nvidia_count`|GPU核心数量|
-    |`aliyun.accelerator/nvidia_mem`|GPU显存，单位为MiB|
-    |`aliyun.accelerator/nvidia_name`|nvida设备的GPU计算卡名称|
+    | `aliyun.accelerator/nvidia_count` |GPU核心数量|
+    | `aliyun.accelerator/nvidia_mem` |GPU显存，单位为MiB|
+    | `aliyun.accelerator/nvidia_name` |nvida设备的GPU计算卡名称|
 
     同一类型的GPU云服务器的GPU计算卡名称相同，因此，您可通过该标签筛选节点。
 
@@ -71,10 +71,10 @@
     					
     ```
 
-4.  返回容器服务控制台主页，单击左侧导航栏**应用** \> **无状态**，单击右上角**使用模板创建**。 
-    1.  创建一个tensorflow的Deployment，将该应用调度到GPU节点上。 
+4.   返回容器服务控制台主页，单击左侧导航栏**应用** \> **无状态**，单击右上角**使用模板创建**。 
+    1.   创建一个tensorflow的Deployment，将该应用调度到GPU节点上。 
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/155720791221074_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/156154303921074_zh-CN.png)
 
         本例的yaml编排如下所示。
 
@@ -113,7 +113,7 @@
                     value: mypassw0rdv
         ```
 
-    2.  您也可避免将某些应用部署到GPU节点。下面部署一个nginx的Pod，利用节点亲和性的特性进行调度，具体参见[镜像创建无状态Deployment应用](intl.zh-CN/用户指南/Kubernetes集群/应用管理/镜像创建无状态Deployment应用.md#)中关于节点亲和性的说明。 
+    2.   您也可避免将某些应用部署到GPU节点。下面部署一个nginx的Pod，利用节点亲和性的特性进行调度，具体参见[镜像创建无状态Deployment应用](intl.zh-CN/用户指南/Kubernetes集群/应用管理/镜像创建无状态Deployment应用.md#)中关于节点亲和性的说明。 
 
         该示例的yaml编排如下所示：
 
@@ -135,9 +135,9 @@
             image: nginx
         ```
 
-5.  单击左侧导航栏**应用** \> **容器组**，选择所需的集群和命名空间，进入容器组列表。 
+5.   单击左侧导航栏**应用** \> **容器组**，选择所需的集群和命名空间，进入容器组列表。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/155720791221094_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40309/156154304021094_zh-CN.png)
 
 
 在容器组列表中，您可看到两个示例的Pod（容器组）成功调度到对应的节点上，从而实现基于GPU节点标签的灵活调度。
