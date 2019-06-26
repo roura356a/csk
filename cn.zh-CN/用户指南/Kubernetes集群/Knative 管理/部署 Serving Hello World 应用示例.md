@@ -10,7 +10,7 @@
 
 ## 操作步骤 {#section_zag_dev_oq9 .section}
 
-1.  [通过 kubectl 连接 Kubernetes 集群](intl.zh-CN/用户指南/Kubernetes集群/集群管理/通过 kubectl 连接 Kubernetes 集群.md#)。
+1.   [通过 kubectl 连接 Kubernetes 集群](intl.zh-CN/用户指南/Kubernetes集群/集群管理/通过 kubectl 连接 Kubernetes 集群.md#)。
 2.  创建并拷贝以下内容到helloworld-go.yaml，并执行`kubectl apply -f helloworld-go.yaml`命令，部署一个应用。
 
     ``` {#codeblock_0lj_zg6_q6l}
@@ -26,14 +26,14 @@
           - image: registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go:160e4db7
             env:
             - name: TARGET
-              value: "Knative
+              value: "Knative"
     ```
 
 3.  登录[容器服务管理控制台](https://cs.console.aliyun.com/)。
 4.  在 Kubernetes 菜单下，选择**路由与负载均衡** \> **服务**，进入服务列表页面。
 5.  选择目标集群和命名空间istio-system，可以看到在 istio-ingressgateway 服务的外部端点。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/474495/156102812348926_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/474495/156154267348926_zh-CN.png)
 
 6.  执行如下命令，获取Domain信息。
 
