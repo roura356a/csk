@@ -34,7 +34,7 @@ Alibaba Cloud supports a lot of Server Load Balancer features by using annotatio
 
 ## Use existing intranet Server Load Balancer instance {#section_mrn_1j1_ydb .section}
 
-You must specify two annotations. Replace with your own Server Load Balancer instance ID.
+You must specify three annotations. Replace with your own Server Load Balancer instance ID.
 
 ``` {#codeblock_5q0_qbe_ix4}
 apiVersion: v1
