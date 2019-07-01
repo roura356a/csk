@@ -1,20 +1,27 @@
 # Workflow {#concept_vdx_ck4_m2b .concept}
 
-The complete workflow for Container Service is as follows.
+This topic describes the workflow of how to create an application in the Container Service console. This workflow involves the steps required to create an application.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15912/15536691647633_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15912/15619672657633_en-US.png)
 
-**Step 1: Create a cluster.**
+To create an application, follow these steps:
 
-You can select the network environment of the cluster, and set the number of nodes and configurations for the cluster.
+1.  **Use a RAM role to grant the corresponding permissions to a user account** 
 
-If you use a sub-account, grant an appropriate role to the sub-account. For more information, see [Role authorization](../../../../../intl.en-US/User Guide/Kubernetes cluster/Authorization management/Role authorization.md#).
+    For more information, see [Role authorization](../../../../intl.en-US/User Guide/Kubernetes cluster/Authorization management/Role authorization.md#).
 
-**Step 2: Create an application by using an image or orchestration template.**
+2.  **Create a Kubernetes cluster** 
 
-Select an existing image or orchestration template, or create a new image or orchestration template.
+    Select a cluster type based on your needs. For more information, see [Create a Kubernetes cluster](../../../../intl.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#), [Create a managed Kubernetes cluster](../../../../intl.en-US/User Guide/Kubernetes cluster/Cluster management/Create a managed Kubernetes cluster.md#), and [Create a serverless Kubernetes cluster](../../../../intl.en-US/User Guide/Serverless Kubernetes cluster/Cluster management/Create a serverless Kubernetes cluster.md#).
 
-If your application is composed of services supported by multiple images, create the application by using an orchestration template.
+3.  **Use an image or orchestration template to create an application** 
 
-**Step 3: Check the application status and the information of relevant services and containers after the deployment.**
+    Use an existing image or orchestration template, or create an image or orchestration template to create an application. For more information, see [Create a deployment application by using an image](../../../../intl.en-US/User Guide/Kubernetes cluster/Application management/Create a deployment application by using an image.md#) and [Create a Linux application by using an orchestration template](../../../../intl.en-US/User Guide/Kubernetes cluster/Application management/Create a Linux application by using an orchestration template.md#).
+
+    **Note:** If you want to create an application that contains services supported by multiple images, we recommend that you use an orchestration template to create the application.
+
+4.  **View the application status, and the services and pods of the application** 
+
+    For more information, see [View a service](../../../../intl.en-US/User Guide/Kubernetes cluster/Application management/View a service.md#) and [View pods](../../../../intl.en-US/User Guide/Kubernetes cluster/Application management/View pods.md#).
+
 
