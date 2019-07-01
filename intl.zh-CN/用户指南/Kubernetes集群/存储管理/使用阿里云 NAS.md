@@ -38,7 +38,7 @@
 
 使用 `nas-deploy.yaml` 文件创建 Pod。
 
-```
+``` {#codeblock_9s3_cwl_pzs}
 apiVersion: v1
 kind: Pod
 metadata:
@@ -70,7 +70,7 @@ spec:
 
     使用 `nas-pv.yaml` 文件创建 PV。
 
-    ```
+    ``` {#codeblock_ihg_mjz_16v}
     apiVersion: v1
     kind: PersistentVolume
     metadata:
@@ -91,16 +91,18 @@ spec:
 
 -   通过控制台界面创建 NAS 数据卷
     1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
-    2.  在 Kubernetes 菜单下，单击左侧导航栏中的**集群** \> **存储**，进入数据卷列表页面。
-    3.  选择所需的集群，单击页面右上角的**创建**。
+    2.  在 Kubernetes 菜单下，单击左侧导航栏中的**集群** \> **存储卷**，进入存储与存储声明页面。
+    3.  在**存储卷**页签，选择所需的集群，单击**创建**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/155549515910390_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/156195109610390_zh-CN.png)
 
-    4.  在创建数据卷对话框中，配置数据卷的相关参数。
+    4.  在创建存储卷对话框中，配置存储卷的相关参数。
 
-        -   **数据卷类型**：本示例中为NAS。
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/156195109610391_zh-CN.png)
+
+        -   **存储卷类型**：本示例中为NAS。
         -   **数据卷名**：创建的数据卷的名称。数据卷名在集群内必须唯一。本例为 pv-nas。
-        -   **数据卷总量**：所创建数据卷的容量。注意不能超过磁盘容量。
+        -   **总量**：所创建存储卷的容量。注意不能超过磁盘容量。
         -   **访问模式**：默认为 ReadWriteMany。
         -   **挂载点域名**：集群在 NAS 文件系统中挂载点的挂载地址。
         -   **子目录**：NAS 路径下的子目录，以/开头，设定后数据卷将挂载到指定的子目录。
@@ -109,16 +111,15 @@ spec:
         -   **权限**：设置挂载目录的访问权限，例如：755、644、777 等。
             -   只有挂载到 NAS 子目录时才能设置权限，挂载到根目录时不能设置。
             -   您可以不填此项，默认权限为 NAS 文件原来的权限。
-        -   **标签**：为该数据卷添加标签。
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/155549515910391_zh-CN.png)
-
+        -   **版本**：所创建存储卷的版本。
+        -   **标签**：为该存储卷添加标签。
     5.  完成配置后，单击**创建**。
 
 **步骤 2 创建 PVC**
 
 使用 nas-pvc.yaml 文件创建 PVC。
 
-```
+``` {#codeblock_os8_gtn_m5e}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -136,7 +137,7 @@ spec:
 
 使用nas-pod.yaml文件创建 pod。
 
-```
+``` {#codeblock_tfa_pu6_8he}
 apiVersion: v1
 kind: Pod
 metadata:
@@ -176,7 +177,7 @@ spec:
 
     执行以下命令创建一个类型为 NAS 的 PesistentVolume。
 
-    ```
+    ``` {#codeblock_aum_pof_pp7}
     root@master # cat << EOF |kubectl apply -f -
     apiVersion: v1
     kind: PersistentVolume
@@ -206,7 +207,7 @@ spec:
 
 创建一个 PersistentVolumeClaim 来请求绑定该 PersistentVolume。
 
-```
+``` {#codeblock_r5z_ovy_6l9}
 root@master # cat << EOF | kubectl apply -f -
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -225,7 +226,7 @@ EOF
 
 创建一个应用来申明挂载使用该数据卷。
 
-```
+``` {#codeblock_ys1_md6_ra0}
 root@master # cat << EOF |kubectl apply -f -
 apiVersion: v1
 kind: Pod
@@ -255,12 +256,13 @@ EOF
 
 **安装插件** 
 
-```
+``` {#codeblock_3cc_xy8_rg6}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: alicloud-nas
 mountOptions:
+- nolock,tcp,noresvport
 - vers=3
 provisioner: alicloud/nas
 reclaimPolicy: Retain
@@ -315,7 +317,7 @@ spec:
 
 **使用动态存储卷**
 
-```
+``` {#codeblock_zzf_977_i0d}
 apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
