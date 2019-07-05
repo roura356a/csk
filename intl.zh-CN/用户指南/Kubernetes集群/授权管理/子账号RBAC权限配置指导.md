@@ -30,13 +30,13 @@
 
     **说明：** 如果您使用子账号授权，请先确保该子账号已完成集群RBAC配置[控制平面自定义RAM授权策略](intl.zh-CN/用户指南/Kubernetes集群/授权管理/自定义RAM授权策略.md#)文档中的RAM授权，同时已被授予集群内RBAC管理员权限或cluster-admin角色。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/155860802310587_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/156231058010587_zh-CN.png)
 
 4.  单击**集群RBAC配置**页面的加号，添加集群或命名空间级别的权限配置，并选择相应的预置角色；也可以单击配置行首的减号删除目标角色，完成后单击**下一步**。
 
     **说明：** 当前针对子账号的授权，支持在一个目标集群或命名空间上授予一个预置角色和多个自定义角色。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/155860802310618_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/156231058010618_zh-CN.png)
 
     集群和命名空间的预置角色定义可查看下面的角色权限说明：
 
@@ -51,27 +51,27 @@
 5.  在**授权提交**页签，如果出现**授权成功**，表示该子账号之前已被授予RAM权限，此时也已完成RBAC授权，操作结束。如果弹出错误提示对话框，表示该子账号未被授予RAM权限，请按照页面提示，通过RAM控制台对子账号授予指定集群的只读权限。更多的权限请参见[容器服务RAM Action](intl.zh-CN/用户指南/Kubernetes集群/授权管理/自定义RAM授权策略.md#section_5ya_j6r_fh7)。
     1.  请单击**确定**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/155860802347570_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/156231058047570_zh-CN.png)
 
     2.  在授权提交页面，单击**复制**后，再单击**策略管理**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/155860802444121_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/156231058044121_zh-CN.png)
 
     3.  跳转到RAM控制台页面，选择**权限管理** \> **权限策略管理**，单击**新建权限策略**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/155860802444133_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/156231058044133_zh-CN.png)
 
     4.  进入新建自定义权限策略页面，自定义**策略名称**，配置模式选择**脚本配置**，使用**Ctrl+V**，将步骤6.b复制的内容粘贴到**策略内容**中，单击**确定**。详细的操作请参见[自定义RAM授权策略](intl.zh-CN/用户指南/Kubernetes集群/授权管理/自定义RAM授权策略.md#)。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/155860802444122_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/156231058144122_zh-CN.png)
 
     5.  选择**人员管理** \> **用户**，在需要授权的用户的右侧，单击**添加权限**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/155860802444124_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/156231058144124_zh-CN.png)
 
     6.  在弹出的添加权限页面，权限选择**自定义添加权限**，搜索或者在下表中找到自定义的策略名称，单击移动到右侧**已选择**区域。单击**确定**，完成对子账号在指定集群的只读能力的授权。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/155860802444125_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/156231058144125_zh-CN.png)
 
     7.  此时，返回容器服务控制台，在授权提交页面，单击**授权提交**，完成子账号RBAC的授权。
 6.  配置完成后，您可以使用目标子账号登录容器服务控制台，并进行相关操作。
@@ -84,7 +84,7 @@
 
 **说明：** 其中cluster-admin权限值得关注，属于集群超级管理员权限，对所有资源都默认拥有权限。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/155860802414375_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17456/156231058114375_zh-CN.png)
 
 您可登录到集群Master节点，执行以下命令，查看自定义权限的详情。
 
