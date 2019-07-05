@@ -10,17 +10,17 @@
 2.  在 Kubernetes 菜单下，单击左侧导航栏的**集群** \> **集群**，进入集群列表页面。
 3.  单击页面右上角的**创建Kubernetes 集群**，在弹出的选择集群模板中，选择**标准专有集群**页面，单击**创建**。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15619663479035_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15623202539035_zh-CN.png)
 
 4.  配置集群参数。 
 
-    本例中大多数配置保留默认值，具体的配置如下图所示：
+    本例中大多数配置保留默认值，具体的配置如下图所示。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/15619663477352_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/15623202537352_zh-CN.png)
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/15619663477353_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/15623202547353_zh-CN.png)
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/156196634749735_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/156232025449735_zh-CN.png)
 
     |配置项|配置说明|
     |---|----|
@@ -37,14 +37,12 @@
  |
     |虚拟交换机|集群的虚拟交换机。您可以在已有 vswitch 列表中选择所需的 vswitch 。 您可以根据需要，选择1~3个 vswitch。推荐您选择3个 vswitch。
 
- **说明：** 如果您创建了6个 worker 节点，3个vswitch，此时，worker节点分别在三个vswitch 的分布为2，2，2。如果您创建了5个worker节点。3个 vswitch，则分布为2，2，1。
-
  |
     |节点类型|支持按量付费和包年包月。|
-    |购买时长和自动续费（可选项）|您可以选择购买的时长及自动续费的时长。 **说明：** 选择**包年包月**节点类型时可配置
+    |购买时长和自动续费（可选项）|您可以选择购买的时长及自动续费的时长。 **说明：** 选择**包年包月**节点类型时可配置。
 
  |
-    |Master节点配置|选择实例数量、实例规格和系统盘：     -   **Master 实例数量**：选择3个或5个实例
+    |Master节点配置|选择实例数量、实例规格和系统盘。     -   **Master 实例数量**：选择3个或5个实例
     -   **实例规格**：参见[../../../../dita-oss-bucket/SP\_2/DNA0011858383/ZH-CN\_TP\_9548.md\#](../../../../intl.zh-CN/实例/实例规格族.md#)
     -   **系统盘**：支持SSD云盘和高效云盘
  |
@@ -52,10 +50,10 @@
     -   **系统盘**：支持SSD云盘和高效云盘。
     -   **挂载数据盘**：支持SSD云盘、高效云盘和普通云盘。
  |
-    |Docker 版本和Kubernetes 版本（可选项）|显示当前支持的Docker版本和Kubernetes版本，您可查看对应版本，并根据需要进行选择。 **说明：** 选择添加已有 Worker 实例时可配置
+    |Docker 版本和Kubernetes 版本（可选项）|显示当前支持的Docker版本和Kubernetes版本，您可查看对应版本，并根据需要进行选择。 **说明：** 选择添加已有 Worker 实例时可配置。
 
  |
-    |登录方式|支持设置密钥和密码，关于使用密钥登录的信息，参见[SSH密钥对访问Kubernetes集群](../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/SSH密钥对访问Kubernetes集群.md#)|
+    |登录方式|支持设置密钥和密码，关于使用密钥登录的信息，参见[SSH密钥对访问Kubernetes集群](../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/SSH密钥对访问Kubernetes集群.md#)。|
     |网络插件|支持Flannel和Terway，默认启用Flannel。具体可参考[如何选择Kubernetes集群网络插件：Terway和Flannel](../../../../intl.zh-CN/常见问题/如何选择Kubernetes集群网络插件：Terway和Flannel.md#)。|
     |Pod网络CIDR和Service CIDR|具体如何规划可参见[VPC下 Kubernetes 的网络地址段规划](../../../../intl.zh-CN/用户指南/Kubernetes 集群/VPC下 Kubernetes 的网络地址段规划.md#)。|
     |配置SNAT|可选，若不选择，需要自行配置NAT网关，或手动配置SNAT。|
@@ -64,7 +62,7 @@
  |
     |SSH登录（可选项）|     -   选择开放公网 SSH 登录，您可以 SSH 访问集群。
     -   选择不开放公网 SSH 登录，将无法通过 SSH 访问集群，也无法通过 kubectl 连接 集群。您可手动进行配置，具体操作参见[SSH访问Kubernetes集群](../../../../intl.zh-CN/用户指南/Kubernetes 集群/集群管理/SSH访问Kubernetes集群.md#) 。
- **说明：** 勾选**公网访问**时可配置
+ **说明：** 勾选**公网访问**时可配置。
 
  |
     |云监控插件|在节点上安装云监控插件，可以在云监控控制台查看所创建ECS实例的监控信息。|
@@ -81,21 +79,24 @@
     -   同一个资源，标签键不能重复，相同标签键（Key）的标签会被覆盖。
     -   如果一个资源已经绑定了 20 个标签，已有标签和新建标签会失效，您需要解绑部分标签后才能再绑定新的标签。
  |
-    |高级选项|     -   节点Pod数量：单节点可运行 Pod 数量的上限
+    |高级选项|     -   节点Pod数量：单节点可运行 Pod 数量的上限。
     -   kube-proxy代理模式：支持 iptables 和 IPVS 两种模式。
         -   iptables：成熟稳定的kube-proxy代理模式，Kubernetes service的服务发现和负载均衡使用iptables规则配置，但性能一般，受规模影响较大，适用于集群存在少量的service。
         -   IPVS：高性能的kube-proxy代理模式，Kubernetes service的服务发现和负载均衡使用Linux ipvs模块进行配置，适用于集群存在大量的service，对负载均衡有高性能要求的场景。
-    -   节点服务端口范围：可选端口范围为30000~65535
-    -   自定义镜像：设置是否安装自定义镜像。否则会使用默认CentOS镜像。
+    -   CPU Policy：设置CPU Policy。
+        -   none：默认策略，表示启用现有的默认 CPU 亲和方案。
+        -   static：允许为节点上具有某些资源特征的 Pod 赋予增强的 CPU 亲和性和独占性。
     -   集群 CA：设置是否开启集群CA。
-    -   工作流 AGS：设置是否开始工作流引擎。
+
+如果勾选自定义集群 CA，可以将 CA 证书添加到 Kubernetes 集群中，加强服务端和客户端之间信息交互的安全性。
+
+    -   工作流引擎：设置是否使用AGS。
+        -   如果勾选 AGS，则创建集群时系统自动安装 AGS 工作流插件。
+        -   如果不勾选，则需要手动安装 AGS 工作流插件，请参见[ZH-CN\_TP\_422672\_V1.md\#](intl.zh-CN/用户指南/Kubernetes集群/工作流/AGS命令行帮助.md#)。
  |
 
-5.  单击**创建集群**，启动部署。
+5.  单击**创建集群**，启动部署。 集群创建成功后，您可以在容器服务管理控制台的 Kubernetes 集群列表页面查看所创建的集群。
 
-集群创建成功后，您可以在 Kubernetes 集群列表页面查看所创建的集群。
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/15623202547356_zh-CN.png)
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/15619663477356_zh-CN.png)
-
-至此，您已经快速创建一个Kubernetes集群。
 
