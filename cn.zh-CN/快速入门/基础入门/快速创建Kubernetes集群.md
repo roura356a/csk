@@ -8,19 +8,18 @@
 
 1.  登录 [容器服务管理控制台](https://cs.console.aliyun.com)。
 2.  在 Kubernetes 菜单下，单击左侧导航栏的**集群** \> **集群**，进入集群列表页面。
-3.  单击页面右上角的**创建Kubernetes 集群**，在弹出的选择集群模板中，选择**标准专有集群**页面，单击**创建**。 
-
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15623202539035_zh-CN.png)
-
+3.  单击页面右上角的**创建Kubernetes 集群**，在弹出的选择集群模板中，选择**标准专有集群**页面，单击**创建**。
 4.  配置集群参数。 
 
     本例中大多数配置保留默认值，具体的配置如下图所示。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/15623202537352_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/156275762451229_zh-CN.png)
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/15623202547353_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/156275762551230_zh-CN.png)
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/156232025449735_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/156275762551231_zh-CN.png)
+
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/156275762551232_zh-CN.png)
 
     |配置项|配置说明|
     |---|----|
@@ -43,10 +42,10 @@
 
  |
     |Master节点配置|选择实例数量、实例规格和系统盘。     -   **Master 实例数量**：选择3个或5个实例
-    -   **实例规格**：参见[../../../../dita-oss-bucket/SP\_2/DNA0011858383/ZH-CN\_TP\_9548.md\#](../../../../intl.zh-CN/实例/实例规格族.md#)
+    -   **实例规格**：参见[实例规格族](../../../../intl.zh-CN/实例/实例规格族.md#)
     -   **系统盘**：支持SSD云盘和高效云盘
  |
-    |Worker节点配置|您可选择新增实例或添加已有实例。若选择新增实例，可进行如下配置。     -   **实例规格**：支持选择配置1~10个实例规格。参见[../../../../dita-oss-bucket/SP\_2/DNA0011858383/ZH-CN\_TP\_9548.md\#](../../../../intl.zh-CN/实例/实例规格族.md#)
+    |Worker节点配置|您可选择新增实例或添加已有实例。若选择新增实例，可进行如下配置。     -   **实例规格**：支持选择配置1~10个实例规格。参见[实例规格族](../../../../intl.zh-CN/实例/实例规格族.md#)。
     -   **系统盘**：支持SSD云盘和高效云盘。
     -   **挂载数据盘**：支持SSD云盘、高效云盘和普通云盘。
  |
@@ -66,7 +65,7 @@
 
  |
     |云监控插件|在节点上安装云监控插件，可以在云监控控制台查看所创建ECS实例的监控信息。|
-    |日志服务|您可使用已有Project或新建一个Project。 勾选**使用日志服务**，会在集群中自动配置日志服务插件。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[ZH-CN\_TP\_17400.md\#](intl.zh-CN/用户指南/Kubernetes集群/日志管理/使用日志服务进行Kubernetes日志采集.md#)。
+    |日志服务|您可使用已有Project或新建一个Project。 勾选**使用日志服务**，会在集群中自动配置日志服务插件。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[使用日志服务进行Kubernetes日志采集](../../../../intl.zh-CN/用户指南/Kubernetes集群/日志管理/使用日志服务进行Kubernetes日志采集.md#)。
 
  |
     |RDS白名单|将节点 IP 添加到 RDS 实例的白名单。|
@@ -86,17 +85,18 @@
     -   CPU Policy：设置CPU Policy。
         -   none：默认策略，表示启用现有的默认 CPU 亲和方案。
         -   static：允许为节点上具有某些资源特征的 Pod 赋予增强的 CPU 亲和性和独占性。
+    -   设置节点服务端口范围。默认端口范围为30000~32767。
     -   集群 CA：设置是否开启集群CA。
 
 如果勾选自定义集群 CA，可以将 CA 证书添加到 Kubernetes 集群中，加强服务端和客户端之间信息交互的安全性。
 
     -   工作流引擎：设置是否使用AGS。
         -   如果勾选 AGS，则创建集群时系统自动安装 AGS 工作流插件。
-        -   如果不勾选，则需要手动安装 AGS 工作流插件，请参见[ZH-CN\_TP\_422672\_V1.md\#](intl.zh-CN/用户指南/Kubernetes集群/工作流/AGS命令行帮助.md#)。
+        -   如果不勾选，则需要手动安装 AGS 工作流插件，请参见[AGS命令行帮助](../../../../intl.zh-CN/用户指南/Kubernetes集群/工作流/AGS命令行帮助.md#)。
  |
 
 5.  单击**创建集群**，启动部署。 集群创建成功后，您可以在容器服务管理控制台的 Kubernetes 集群列表页面查看所创建的集群。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/15623202547356_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16128/15627576257356_zh-CN.png)
 
 
