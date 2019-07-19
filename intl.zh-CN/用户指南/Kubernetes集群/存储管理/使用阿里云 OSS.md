@@ -15,15 +15,14 @@
 
 -   OSS 为共享存储，可以同时为多个 Pod 提供共享存储服务。
 -   bucket：目前只支持挂载 Bucket，不支持挂载 Bucket 下面的子目录或文件。
--   url: OSS endpoint，挂载 OSS 的接入域名。
--   akId: 用户的 access id 值。
+-   url：OSS endpoint，挂载 OSS 的接入域名。
+-   akId：用户的 access id 值。
 -   akSecret：用户的 access secret 值。
--   otherOpts: 挂载 OSS 时支持定制化参数输入，格式为: `-o *** -o ***`。
+-   otherOpts：挂载 OSS 时支持定制化参数输入，格式为: `-o *** -o ***`。
 
 ## 注意事项 {#section_gyz_ybt_vdb .section}
 
 -   如果您的 Kubernetes 集群是在 2018 年 2 月 6 日之前创建的，那么您使用数据卷之间需要先安装[安装插件](intl.zh-CN/用户指南/Kubernetes集群/存储管理/安装插件.md#)。使用 OSS 数据卷必须在部署 flexvolume 服务的时候创建 Secret，并输入 AK 信息。
-
 -   早期的flexvolume版本挂载的oss卷，在容器服务Kubernetes集群升级、kubelet重启过程中会有ossfs重启操作，OSS存储卷会重新挂载，使用OSS存储卷的Pod在升级后需要重建，可以通过升级flexvolume解决。
 
 ## 使用 OSS 静态卷 {#section_d13_bct_vdb .section}
@@ -32,7 +31,7 @@
 
 使用oss-deploy.yaml 文件创建 Pod。
 
-```
+``` {#codeblock_zxq_7nq_b7q}
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -80,7 +79,7 @@ spec:
 
 使用oss-pv.yaml文件创建 PV。
 
-```
+``` {#codeblock_q9t_ngj_ury}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -101,33 +100,34 @@ spec:
       otherOpts: "-o max_stat_cache_size=0 -o allow_other"
 ```
 
-**通过控制台界面创建 OSS 数据卷**
+**通过控制台界面创建 OSS 存储卷**
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
-2.  在 Kubernetes 菜单下，单击左侧导航栏中的**集群** \> **存储**，进入数据卷列表页面。
-3.  选择所需的集群，单击页面右上角的**创建**。
+2.  在 Kubernetes 菜单下，单击左侧导航栏中的**集群** \> **存储卷**，进入存储与存储声明页面。
+3.  在**存储卷**页签，选择所需的集群，单击**创建**。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/155860792510740_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/156350851910740_zh-CN.png)
 
 4.  在创建数据卷对话框中，配置数据卷的相关参数。
 
-    -   **数据卷类型**：本示例中为 OSS。
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/156350851910741_zh-CN.png)
+
+    -   **存储卷类型**：本示例中为 OSS。
     -   **数据卷名**：创建的数据卷的名称。数据卷名在集群内必须唯一。本例为 pv-oss。
-    -   **数据卷总量**：所创建数据卷的容量。
+    -   **总量**：所创建存储卷的容量。
     -   **访问模式**：默认为 ReadWriteMany。
     -   **AccessKey ID**、**AccessKey Secret**：访问 OSS 所需的 AccessKey。
+    -   **可选参数**：您可以为OSS存储卷输入定制化参数，格式为：`-o *** -o ***`。
     -   **Bucket ID**：您要使用的 OSS bucket 的名称。单击**选择Bucket**，在弹出的对话框中选择所需的 bucket 并单击**选择**。
     -   **访问域名**：如果 Bucket 和 ECS 实例位于不同地域（Region），请选择**外网域名**；如果位于相同地域，需要根据集群网络类型进行选择，若是 VPC 网络，请选择**VPC域名**，若是经典网络，请选择**内网域名**。
-    -   **标签**：为该数据卷添加标签。
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16689/155860792510741_zh-CN.png)
-
+    -   **标签**：为该存储卷添加标签。
 5.  完成配置后，单击**创建**。
 
 **步骤 2 创建 PVC**
 
 使用oss-pvc.yaml文件创建 PVC。
 
-```
+``` {#codeblock_3ja_2qw_ifn}
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -145,7 +145,7 @@ spec:
 
 使用oss-pod.yaml创建 Pod。
 
-```
+``` {#codeblock_brq_b9m_lm4}
 apiVersion: v1
 kind: Pod
 metadata:
