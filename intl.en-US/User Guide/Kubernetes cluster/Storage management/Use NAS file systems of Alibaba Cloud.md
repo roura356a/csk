@@ -38,7 +38,7 @@ With a flexvolume plugin, you can use an Alibaba Cloud NAS volume directly or th
 
 Use a `nas-deploy.yaml` file to create a pod as follows:
 
-```
+``` {#codeblock_j0w_g6t_9ux}
 apiVersion: v1
 kind: Pod
 metadata:
@@ -70,7 +70,7 @@ You can create a NAS volume by using a YAML file or create a NAS volume in the A
 
     Use a `nas-pv.yaml` file to create a PV as follows:
 
-    ```
+    ``` {#codeblock_15w_pf5_zly}
     apiVersion: v1
     kind: PersistentVolume
     metadata:
@@ -91,34 +91,35 @@ You can create a NAS volume by using a YAML file or create a NAS volume in the A
 
 -   Create a NAS volume in the Container Service console.
     1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-    2.  In the left-side navigation pane under Kubernetes, choose **Clusters** \> **Volumes**.
-    3.  Select the target cluster from the cluster drop-down list and then click **Create** in the upper-right corner.
+    2.  In the left-side navigation pane under Container Service-Kubernetes, choose **Clusters** \> **Persistent Volumes**.
+    3.  On the Persistent Volumes page, select the target cluster, and click **Create**.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/155859180810390_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/156350872410390_en-US.png)
 
-    4.  In the displayed dialog box, set the volume parameters.
+    4.  In the displayed dialog box, set parameters of the persistent volume.
 
-        -   **Storage type**: NAS is selected in this example.
-        -   **Name**: Customize a volume name. The volume name must be unique in the cluster. In this example, pv-nas is set as the volume name.
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/156350872410391_en-US.png)
+
+        -   **PV Type**: NAS is selected in this example.
+        -   **Volume Name**: Customize a volume name. The volume name must be unique in the cluster. In this example, pv-nas is set as the volume name.
         -   **Capacity**: Set the volume capacity. Make sure that the volume capacity does not exceed the NAS file system capacity.
         -   **Access Mode**: By default, it is set to ReadWriteOnce.
         -   **Mount Point Domain Name**: Enter the mount address of the mount point that is used to mount the NAS file system to the Kubernetes cluster.
-        -   **Path**: sub-directory under the NAS path, which starts with a forward slash \(/\). If you specify a sub-directory, your volume will be mounted to the sub-directory.
+        -   **Subpath**: sub-directory under the NAS path, which starts with a forward slash \(/\). If you specify a sub-directory, your volume will be mounted to the sub-directory.
             -   If no sub-directory exists in the root directory of a NAS file system, the system automatically creates a sub-directory by default.
             -   This parameter is optional. A NAS volume is mounted to the root directory of a NAS file system by default.
-        -   **Privilege**: Set the access permission to the mount directory. For example, you can set this parameter to 755, 644, or 777.
+        -   **Permissions**: Set the access permission to the mount directory. For example, you can set this parameter to 755, 644, or 777.
             -   You can set this parameter only if you mount a NAS volume to the NAS sub-directory. This parameter cannot be set if you mount a NAS volume to the NAS root directory.
             -   This parameter is optional. By default, the original access permission to a NAS file system is used.
+        -   **Vision**: Set the version of the volume.
         -   **Tag**: Add tags to the volume.
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/155859180810391_en-US.png)
-
     5.  Click **Create**.
 
 **Step 2: Create a PVC**
 
 Use a nas-pvc.yaml file to create a PVC as follows:
 
-```
+``` {#codeblock_t72_zwm_f5z}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -136,7 +137,7 @@ spec:
 
 Use a nas-pod.yaml file to create a pod as follows:
 
-```
+``` {#codeblock_oax_cgk_x0i}
 apiVersion: v1
 kind: Pod
 metadata:
@@ -206,7 +207,7 @@ You can create a NAS volume by using an orchestration template or the Alibaba Cl
 
 Create a PVC to request to bind the PV.
 
-```
+``` {#codeblock_h27_f36_rxw}
 root@master # cat << EOF | kubectl apply -f -
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -225,7 +226,7 @@ EOF
 
 Create an application to declare to mount and use the volume.
 
-```
+``` {#codeblock_k0o_2s2_iwn}
 root@master # cat << EOF |kubectl apply -f -
 apiVersion: v1
 kind: Pod
@@ -255,12 +256,13 @@ To use a dynamic NAS volume, you need to manually install a driver plugin and co
 
 **Install a plugin** 
 
-``` {#codeblock_4tg_7jz_mnz}
+``` {#codeblock_jlg_1cf_osg}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: alicloud-nas
 mountOptions:
+- nolock,tcp,noresvport
 - vers=3
 provisioner: alicloud/nas
 reclaimPolicy: Retain
@@ -315,7 +317,7 @@ spec:
 
 **Use the dynamic volume**
 
-```
+``` {#codeblock_v2j_lda_nz6}
 apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
