@@ -14,7 +14,7 @@ This topic describes how to enable Ingress to collect logs, how to analyze log r
 
     The log component `alibaba-log-controller` is a deployment application located in the kube-system namespace of the target Kubernetes cluster. To upgrade it, you must modify the following two parameters:
 
-    -   Image name: Replace `{region-id}` in the image name registry-vpc.\{region-id\}.aliyuncs.com/log-service/alibabacloud-log-controller with the ID of the region to which the target Kubernetes cluster belongs. For example, `{region-id}` can be replaced with cn-hangzhou, cn-beijing, or ap-southeast-1.
+    -   Image name: Replace `{region-id}` in the image name registry-vpc.\{region-id\}.aliyuncs.com/acs/log-controller with the ID of the region to which the target Kubernetes cluster belongs. For example, `{region-id}` can be replaced with cn-hangzhou, cn-beijing, or ap-southeast-1.
     -   Image version: It must be the version `0.2.0.0-76648ee-aliyun` or later.
     You can choose one of the following two upgrade methods:
 
@@ -129,7 +129,7 @@ An Ingress Overview report displays the overall status of the Ingress with the f
 -   Statistics of users requests \(each day\): PVs of today and seven days, visit distribution by area, the top 10 province and cities by requests, shares of mobile terminals, and shares of Android and IOS terminals.
 -   Statistics of Top URLs \(each hour\): Top 10 URLs by request, Top10 URLs by latency, Top 10 5XX URLs and Top 10 404 URLs.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156102736740696_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156350893740696_en-US.png)
 
 ## Ingress Access Center {#section_e2b_1pq_bhb .section}
 
@@ -144,7 +144,7 @@ Ingress Access Center provides the statistics of access requests that can be use
 -   Shares of mobile terminals
 -   Shares of Android and IOS
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156102736740704_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156350893840704_en-US.png)
 
 ## Ingress Monitoring Center {#section_bl3_2pq_bhb .section}
 
@@ -161,19 +161,19 @@ Ingress Monitoring Center provides the real-time monitoring statistics for a web
 -   Top 10 services by latency
 -   Top 10 services by traffic
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156102736740705_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156350893840705_en-US.png)
 
 ## Ingress Monitoring Center for Blue/Green Deployment {#section_ny3_hpq_bhb .section}
 
 This report is used to monitor version releases and compare the blue and green versions. This helps you quickly find release exceptions and then roll back the the original version. In this report, you need to select the blue and green versions \(for example, Service A and Service B\). The report dynamically displays the statistics about the two versions, including PV, the ratio of 5XX errors to all errors, rate of success, average latency, traffic, and latency of P5, P99, and P9999.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156102736840706_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156350893840706_en-US.png)
 
 ## Ingress Exceptions Center {#section_rst_jpq_bhb .section}
 
 Ingress Exceptions Center operates on the basis of the algorithm of machine learning provided by Log Service. It automatically detects exceptions from the Ingress metrics by using multiple timing analysis algorithms.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156102736840707_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156350893840707_en-US.png)
 
 ## Configure an alarm {#section_ozp_mpq_bhb .section}
 
@@ -183,15 +183,15 @@ The following shows how to configure an alarm for the statistics of the porporti
 
 1.  Open the Ingress Monitoring Center report, move your pointer to the upper-right corner of the **5XX Proportion** chart, and then, in the displayed box, click **Create Alarm**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156102736840708_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156350893840708_en-US.png)
 
 2.  Set the alarm name, search interval, and enter a trigger condition `total > 1`.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156102736840709_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156350893940709_en-US.png)
 
 3.  Set a notification method as needed.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156102736940710_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16678/156350893940710_en-US.png)
 
 
 ## Subscribe to a scheduled report {#section_hn2_2rq_bhb .section}
