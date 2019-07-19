@@ -13,7 +13,7 @@ This topic describes how to use Knative to deploy an application. In this topic,
 1.  Connect to the target Kubernetes cluster by using kubectl. For more information, see [kubectl](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Connect to a Kubernetes cluster by using kubectl.md#).
 2.  Create the file helloworld-go.yaml, and copy the following code into the file:
 
-    ``` {#codeblock_tez_w80_ehb}
+    ``` {#codeblock_7r5_5h9_6qz}
     apiVersion: serving.knative.dev/v1alpha1
     kind: Service
     metadata:
@@ -23,10 +23,10 @@ This topic describes how to use Knative to deploy an application. In this topic,
       template:
         spec:
           containers:
-            - image: registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go:0529
-              env:
-                - name: TARGET
-                  value: "Go Sample v1"
+          - image: registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go:160e4db7
+            env:
+            - name: TARGET
+              value: "Knative"
     ```
 
 3.  Run the `kubectl apply -f helloworld-go.yaml` command to deploy an application.
@@ -35,7 +35,7 @@ This topic describes how to use Knative to deploy an application. In this topic,
 6.  In the left-side navigation pane under Container Service-Kubernetes, choose **Discovery and Load Balancing** \> **Services**.
 7.  Select the target cluster and the istio-system namespace, and record the external endpoint of the istio-ingressgateway service.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/474495/156143093348926_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/474495/156350899148926_en-US.png)
 
 8.  Run the following command to obtain the domain name:
 
@@ -49,9 +49,9 @@ This topic describes how to use Knative to deploy an application. In this topic,
 
     **Note:** You must replace 112.124.XX.XX with the IP address of the istio-ingressgateway service obtained in step 6.
 
-    ``` {#codeblock_lt9_o8j_7e5}
+    ``` {#codeblock_pj8_1l5_uyo}
     $ curl -H "Host: helloworld-go.default.example.com" http://112.124.XX.XX
-    Hello Go Sample v1!
+    Hello Knative!
     ```
 
 
