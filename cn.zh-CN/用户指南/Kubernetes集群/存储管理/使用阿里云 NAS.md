@@ -94,11 +94,11 @@ spec:
     2.  在 Kubernetes 菜单下，单击左侧导航栏中的**集群** \> **存储卷**，进入存储与存储声明页面。
     3.  在**存储卷**页签，选择所需的集群，单击**创建**。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/156195109610390_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/156350535510390_zh-CN.png)
 
     4.  在创建存储卷对话框中，配置存储卷的相关参数。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/156195109610391_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/18764/156350535510391_zh-CN.png)
 
         -   **存储卷类型**：本示例中为NAS。
         -   **数据卷名**：创建的数据卷的名称。数据卷名在集群内必须唯一。本例为 pv-nas。
@@ -189,7 +189,7 @@ spec:
       accessModes:
         - ReadWriteMany
       mountOptions:
-        - noresvport
+        - nolock,tcp,noresvport
         - nfsvers=3
       persistentVolumeReclaimPolicy: Retain
       nfs:
