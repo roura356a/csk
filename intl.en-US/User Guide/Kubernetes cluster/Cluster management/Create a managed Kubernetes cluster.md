@@ -19,23 +19,23 @@ This topic describes how to use the Container Service console to create a manage
 4.  On the Select Cluster Template page, click **Standard Managed Cluster**.
 5.  Select the resource group for the cluster. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351971749901_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351982949901_en-US.png)
 
 6.  Enter the cluster name. 
 
     The cluster name can be 1–63 characters long and contain numbers, Chinese characters, English letters, and hyphens \(-\).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351971721257_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351982921257_en-US.png)
 
 7.  Select the region where you want to locate the cluster. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351971821258_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351982921258_en-US.png)
 
 8.  Select a VPC for the cluster. 
 
     **Note:** Kubernetes clusters support only the VPC network type.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15635197189037_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15635198299037_en-US.png)
 
     -   If a NAT gateway has been created for the selected VPC, ACK then uses the NAT gateway.
     -   If no NAT gateway has been created for the selected VPC, ACK automatically creates a NAT gateway.undefined
@@ -49,7 +49,7 @@ This topic describes how to use the Container Service console to create a manage
         **Note:** To ensure that the cluster is highly available, we recommend that you select two or three VSwitches that are located in different zones.
 
     -   If any of the existing VSwitches cannot meet your requirements, click **Create VSwitch** . For more information, see [Manage VSwitches](../../../../reseller.en-US/User Guide/VPC and subnets/Manage VSwitches.md#).
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351971849904_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351982949904_en-US.png)
 
 10. Set Worker nodes. 
 
@@ -63,19 +63,19 @@ This topic describes how to use the Container Service console to create a manage
         -   **Quantity**: Indicates the number of Worker nodes to be created.
         -   **System Disk**: Indicates the type and capacity of the system disk. Available system disks are SSD disks and Ultra disks.
         -   **Attach Data Disk**: Indicates the type and capacity of the data disk. Available data disks are SSD disks, Ultra disks, and basic disks.
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15635197189039_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15635198309039_en-US.png)
 
     -   To add existing Worker node instances to the cluster, click **Add Existing Instance**.
 
         **Note:** If no ECS instance is created in the region where you create the cluster, you must first create one or more ECS instances in this region.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15635197189040_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15635198309040_en-US.png)
 
     **Note:** 
 
     -   At least 2 Worker nodes must be set for a Kubernetes cluster.
     -   Up to 48 Worker nodes can be set for a Kubernetes cluster. To set more nodes, open a ticket.
-11. Select the Kubernetes version, and the operating system to run the cluster.![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351971841590_en-US.png)
+11. Select the Kubernetes version, and the operating system to run the cluster.![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983041590_en-US.png)
 
  
 
@@ -85,7 +85,7 @@ This topic describes how to use the Container Service console to create a manage
     -   In this topic, the Linux operating system is selected. You can also select the Windows operating system. For more information, see [Create a Kubernetes cluster that supports Windows](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster that supports Windows.md#).
 12. Set the logon type for the Worker nodes. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351971921262_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983021262_en-US.png)
 
     -   Set the key pair.
         1.  Click **Create a new key pair**.
@@ -98,7 +98,7 @@ This topic describes how to use the Container Service console to create a manage
         -   **Confirm Password**: Confirm your node logon password.
 13. Select the network plugin. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351971921269_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983021269_en-US.png)
 
     Available network plugins are Flannel and Terway. For more information, see [Do I select the Terway or Flannel plugin for my Kubernetes cluster network?](../../../../reseller.en-US/FAQ/Do I select the Terway or Flannel plugin for my Kubernetes cluster network?.md#).
 
@@ -108,11 +108,11 @@ This topic describes how to use the Container Service console to create a manage
 
     -   The two Classless Inter-Domain Routing \(CIDR\) blocks cannot overlap with each other, or with your selected VPC, or with the CIDR blocks used by any other existing Kubernetes clusters in the selected VPC. For more information, see [Plan Kubernetes CIDR blocks under VPC](reseller.en-US/Best Practices/Cluster/Plan Kubernetes CIDR blocks under a VPC.md#).
     -   These two CIDR blocks cannot be modified after the cluster is created.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351971921265_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983021265_en-US.png)
 
 15. Set an SNAT gateway for your selected VPC. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351971921267_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983121267_en-US.png)
 
     **Note:** 
 
@@ -120,7 +120,7 @@ This topic describes how to use the Container Service console to create a manage
     -   We recommend that you select this check box. Otherwise, instances in the VPC cannot access the Internet, which will results in a cluster creation failure.
 16. Set the cluster to be accessible through the Internet by selecting **Expose API Server with EIP**. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351971949921_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983149921_en-US.png)
 
     The API server provides add, delete, edit, check, watch, and other HTTP REST interfaces for resource objects, such as pods and services.
 
@@ -133,11 +133,11 @@ This topic describes how to use the Container Service console to create a manage
 
     **Note:** If you install the CloudMonitor plugin on the ECS instances, you can use the CloudMonitor console to monitor the ECS instances.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351971921268_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983121268_en-US.png)
 
 18. Install the Log Service plugin on the cluster. Select **Enable Log Service**, and click **Select Project** or **Create Project**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351971949924_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983149924_en-US.png)
 
     **Note:** 
 
@@ -145,22 +145,22 @@ This topic describes how to use the Container Service console to create a manage
     -   If you select the check box, ACK then automatically installs the Log Service plugin for the cluster. This plugin allows you to collect logs of applications that run in the cluster and store the logs in the project that you set. For more information, see [Use Log Service to collect Kubernetes cluster logs](reseller.en-US/User Guide/Kubernetes cluster/Log management/Use Log Service to collect Kubernetes cluster logs.md#).
 19. Add an RDS instance to the RDS whitelist. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351972021270_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983121270_en-US.png)
 
 20. Attach tags to the cluster. Enter a key and its value, and click **Add**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351972049925_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983149925_en-US.png)
 
 21. Set advanced parameters. 
     -   Set the maximum number of pods that run on a single node.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15635197209045_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16639/15635198319045_en-US.png)
 
         **Note:** We recommend that you retain the default setting.
 
     -   Set the proxy mode for kube-proxy.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/156351972041576_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/149635/156351983241576_en-US.png)
 
         You can set the `iptables` or `IPVS` proxy mode.
 
@@ -174,15 +174,15 @@ This topic describes how to use the Container Service console to create a manage
 
 -   On the Cluster List page, you can view the managed Kubernetes cluster that you created.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351972021425_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983221425_en-US.png)
 
 -   In the **Action** column, click **View Logs** to view the cluster logs. To view more detailed logs, click **Stack Events**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351972021426_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983221426_en-US.png)
 
 -   On the Cluster List page, find the created cluster. Then, in the **Action** column, click **Manage** to view details about this cluster and its resources.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351972021427_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983221427_en-US.png)
 
     -   **API Server Internet endpoint**: the IP address and the port through which the Kubernetes API server provides services to the Internet. It enables you to manage the cluster by using kubectl or other tools on your terminal.
     -   **API Server Intranet endpoint**: the IP address and the port through which the Kubernetes API server provides services within the cluster. This IP address is the SLB instance IP address.
@@ -193,6 +193,6 @@ This topic describes how to use the Container Service console to create a manage
     -   **Pod Number for Node**: the maximum number of pods that run on a single node. The default value is 128.
 -   Use [kubectl](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Connect to a Kubernetes cluster by using kubectl.md#) to access the created cluster, and then run the kubectl get node command to view the nodes that you set for the cluster.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351972121438_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/40726/156351983221438_en-US.png)
 
 
