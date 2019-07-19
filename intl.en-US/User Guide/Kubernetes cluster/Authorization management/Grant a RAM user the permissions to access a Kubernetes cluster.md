@@ -6,37 +6,7 @@ This topic describes the RAM and RBAC permissions required by a RAM user to acce
 
 Alibaba Cloud Container Service for Kubernetes \(ACK\) provides the RAM permissions required to control the access to the management interface of a Kubernetes cluster. If you want to use a RAM user to scale in or scale out a Kubernetes cluster, or add nodes to the cluster, you must grant the corresponding RAM permissions to the user account. For more information, see [Create custom authorization policies](reseller.en-US/User Guide/Kubernetes cluster/Authorization management/Create custom authorization policies.md#).
 
-The following table lists the RAM permissions that can be granted to a RAM user to access a Kubernetes cluster.
-
-|Action|Permission|
-|------|----------|
-|CreateCluster|Create a cluster.|
-|AttachInstances|Add existing ECS instances to a cluster.|
-|ScaleCluster|Scale out a cluster.|
-|GetClusters|View clusters.|
-|GetClusterById|View cluster details.|
-|ModifyClusterName|Modify a cluster name.|
-|DeleteCluster|Delete a cluster.|
-|UpgradeClusterAgent|Upgrade the cluster agent.|
-|GetClusterLogs|View cluster logs.|
-|GetClusterEndpoint|View the endpoint of a cluster.|
-|GetClusterCerts|Download the cluster certificate.|
-|RevokeClusterCerts|Revoke the cluster certificate.|
-|BindSLB|Associate a cluster with an SLB instance.|
-|UnBindSLB|Remove the SLB instance associated with a cluster.|
-|ReBindSecurityGroup|Reassociate a security group with a cluster.|
-|CheckSecurityGroup|Check the security group rules set for the cluster.|
-|FixSecurityGroup|Fix the security group rules of the cluster.|
-|ResetClusterNode|Reset a cluster node.|
-|DeleteClusterNode|Delete a cluster node.|
-|CreateAutoScale|Create the auto scaling rule for cluster nodes.|
-|UpdateAutoScale|Update the auto scaling rule for cluster nodes.|
-|DeleteAutoScale|Delete the auto scaling rule for cluster nodes.|
-|GetClusterProjects|View applications that runs in the cluster.|
-|CreateTriggerHook|Create a trigger for the application.|
-|GetTriggerHook|View the trigger list of the application.|
-|RevokeTriggerHook|Delete the application trigger.|
-|CreateClusterToken|Create a token.|
+For information about the RAM permissions that can be granted to a RAM user, see [EN-US\_TP\_16637.md\#table\_kla\_5hy\_yys](reseller.en-US/User Guide/Kubernetes cluster/Authorization management/Create custom authorization policies.md#table_kla_5hy_yys).
 
 ## RBAC permissions {#section_j5k_rqk_6va .section}
 
@@ -79,5 +49,5 @@ The following table lists the RBAC permissions that can be granted to a RAM user
 
     For information about the specific steps in the procedure, see [Create custom authorization policies](reseller.en-US/User Guide/Kubernetes cluster/Authorization management/Create custom authorization policies.md#).
 
-2.  Grant the RBAC permissions to a RAM user to access Kubernetes resources. For information about the specific steps, see [Grant Kubernetes permissions to a RAM user](reseller.en-US/User Guide/Kubernetes cluster/Authorization management/Grant Kubernetes permissions to a RAM user.md#).
+2.  Grant the RBAC permissions to a RAM user to access Kubernetes resources. For information about the specific steps, see [Grant RBAC permissions to a RAM user](reseller.en-US/User Guide/Kubernetes cluster/Authorization management/Grant RBAC permissions to a RAM user.md#).
 
