@@ -7,6 +7,7 @@
 -   升级过程可能涉及新的二进制文件以及配置和 API Schemas 等其他更改。
 -   升级过程可能导致一些服务宕机 。
 -   为了最大限度地减少宕机时间，请使用多副本以保证 Istio 控制平面组件和应用程序具有高可用性。
+-   升级过程中可能会因为配置参数的变化对服务的SLB重新创建，建议通过设置SLB删除保护来保留已有SLB。
 
 **说明：** 假设 Istio 组件在 istio-system namespace 中安装和升级。
 
@@ -16,13 +17,13 @@
 
 **说明：** 升级过程中可能会导致服务不可用，为了最大限度地减少宕机时间，请使用多副本以保证 Istio 控制平面组件和应用程序具有高可用性，包括控制平面和数据平面。
 
-**CRD升级及控制平面升级**
+CRD升级及控制平面升级
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
-2.  单击左侧导航栏中的**应用** \> **发布**，进入Helm页面。如果存在**istio-init**并且Chart版本低于1.1.4， 点击**删除**并按照如下步骤安装更新版本。如果存在**istio-init**并且Chart版本不低于1.1.4，点击**更新**，在弹出的窗口下方点击**更新**按钮。
+2.  单击左侧导航栏中的**应用** \> **发布**，进入Helm页面。如果存在**istio-init**并且Chart版本低于1.1.4， 单击**删除**并按照如下步骤安装更新版本。如果存在**istio-init**并且Chart版本不低于1.1.4，单击**更新**，在弹出的窗口下方单击**更新**按钮。
 3.  单击左侧导航栏中的**市场** \> **应用目录**，进入应用目录页面。单击**ack-istio-init**，进入应用目录 ack-istio-init页面。
 4.  在右侧创建区域，选定**集群**，**空间命名**istio-system，**发布名称**istio-init，单击**创建**，更新Istio的自定义资源CRD及相应的组件。
-5.  单击左侧导航栏中的**应用** \> **容器组**，进入容器组页面。单击**istio-init-operator-xxxxxxx-xxxxx**，进入容器组详细页面，点击**日志**页签，根据日志内容是否更新判断该容器组的执行程序是否在执行更新。如果日志内容没有刷新，返回到容器组列表页面，在右侧选择**更多**-\>**删除**，此时会重新拉起该容器组。
+5.  单击左侧导航栏中的**应用** \> **容器组**，进入容器组页面。单击**istio-init-operator-xxxxxxx-xxxxx**，进入容器组详细页面，单击**日志**页签，根据日志内容是否更新判断该容器组的执行程序是否在执行更新。如果日志内容没有刷新，返回到容器组列表页面，在右侧选择**更多** \> **删除**，此时会重新拉起该容器组。
 6.  执行更新成功后，单击左侧导航栏中的**应用** \> **发布**，进入Helm页面，可以看到Istio组件已经同步更新。
 
 **数据平面Sidecar升级**
@@ -76,7 +77,7 @@ kubectl apply -f <(istioctl kube-inject --injectConfigFile inject-config.yaml --
 
 集群内服务间的调用：
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/83226/156074239035273_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/83226/156393049735273_zh-CN.png)
 
 **控制平面升级**
 
@@ -84,7 +85,7 @@ kubectl apply -f <(istioctl kube-inject --injectConfigFile inject-config.yaml --
 
 此时，在多次变更版本（升级、回滚）的情况下，测试结果显示为：服务之间的调用QPS基本不变，没有出现断连。
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/83226/156074239035274_zh-CN.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/83226/156393049735274_zh-CN.png)
 
 **数据平面Sidecar升级**
 
