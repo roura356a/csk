@@ -14,16 +14,16 @@ This topic describes how to deploy a Knative component by deploying the componen
 3.  In the left-side navigation pane under Container Service-Kubernetes, choose **Knative** \> **Components**.
 4.  Find the target component. Then, in the **Actions** column, click **Deploy**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/474492/156143083948920_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/474492/156411038048920_en-US.png)
 
 5.  In the displayed dialog box, click **Confirm**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/474492/156143084048921_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/474492/156411038148921_en-US.png)
 
 
 ## Verify the result {#section_tz4_npu_1cp .section}
 
 On the Knative Components page, verify that the status of the target component is Deployed.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/474492/156143084048922_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/474492/156411038148922_en-US.png)
 
