@@ -233,7 +233,7 @@ POST /clusters HTTP/1.1
 "node_cidr_mask":"25",
 "proxy_mode":"iptables",
 "tags":[],
-"addons":[{"name":"flannel"}],
+"addons":[{"name":"flannel"}, {"name":"nginx-ingress-controller"}],
 "node_port_range":"30000-32767",
 "login_password":"test****",
 "cpu_policy":"none",
