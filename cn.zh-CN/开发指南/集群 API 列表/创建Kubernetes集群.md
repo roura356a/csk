@@ -97,7 +97,6 @@ POST /clusters HTTP/1.1
 |worker\_system\_disk\_category|string|是|Worker节点系统盘类型。|
 |worker\_system\_disk\_size|int|是|Worker节点系统盘大小，单位为GiB。|
 |worker\_vswitch\_ids|list|是|worker节点的虚拟交换机 ID。|
-|zoneid|string|是|所属地域的可用区。|
 |addons|list|否|Kubernetes集群的addon插件的组合。 -   addons的参数：
     -   name：必填，addon插件的名称
     -   version：可选，取值为空时默认取最新版本
@@ -248,8 +247,8 @@ POST /clusters HTTP/1.1
 "worker_system_disk_size":120,
 "vpcid":"vpc-2zegvl5etah5requ0****",
 "worker_vswitch_ids":["vsw-2ze48rkq464rsdts****"],
-"container_cidr":"172.20.0.0/16",
-"service_cidr":"172.21.0.0/20"
+"container_cidr":"172.20.XX.XX/16",
+"service_cidr":"172.21.XX.XX/20"
 }
 ```
 
