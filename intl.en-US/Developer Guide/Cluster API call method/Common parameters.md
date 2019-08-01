@@ -6,7 +6,7 @@ Public request parameters are the request parameters that each interface must us
 
 |Parameter|Description|Options|
 |:--------|:----------|:------|
-|Authorization |The authentication information used to verify the validity of a request. Format: `AccessKeyId:Signature`.|Required|
+|Authorization|The authentication information used to verify the validity of a request. Format: `AccessKeyId:Signature`.|Required|
 |Content-Length|The content length of an HTTP request, which is defined in RFC 2616.|Required|
 |Content-Type|The content type of an HTTP request, which is defined in RFC 2616.|Required|
 |Content-MD5|The Base64-encoded results converted from 128-bit MD5 hash value of the HTTP message body. We recommend that you add this message to all requests to prevent requests from being tampered.|Required|
@@ -20,7 +20,7 @@ Public request parameters are the request parameters that each interface must us
 
 **Examples**
 
-```
+``` {#codeblock_fqm_bx8_qf4}
 GET /clusters HTTP/1.1
 Host: cs.aliyuncs.com
 Accept: application/json
@@ -43,7 +43,7 @@ Each time you send a request to call an interface, the system returns a unique i
 
 XML example:
 
-```
+``` {#codeblock_ycj_daj_v9t}
 <? xml version="1.0" encoding="UTF-8"? >
 <!—Result Root Node-->
 <Interface name+Response>
@@ -55,7 +55,7 @@ XML example:
 
 JSON example:
 
-```
+``` {#codeblock_5t7_jur_eyl}
 {
     "RequestId": "4C467B38-3910-447D-87BC-AC049166F216"
     /* Response data */
