@@ -2,7 +2,7 @@
 
 您可以使用镜像创建一个可公网访问的nginx应用。
 
-创建一个 Kubernetes 集群。详情请参见[创建Kubernetes集群](intl.zh-CN/用户指南/Kubernetes集群/集群管理/创建Kubernetes集群.md#)。
+创建一个 Kubernetes 集群。详情请参见[ZH-CN\_TP\_16639.md\#](intl.zh-CN//创建Kubernetes 集群.md#)。
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 2.  在Kubernetes菜单下，单击左侧导航栏中的**应用** \> **无状态**，然后单击页面右上角的**使用镜像创建**。
@@ -12,7 +12,7 @@
 
     如果您不设置**命名空间**，系统会默认使用 default 命名空间。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628610973_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794210973_zh-CN.png)
 
 4.  设置容器配置。 
 
@@ -26,11 +26,11 @@
 
         -   **镜像版本**：您可以单击**选择镜像版本** 选择镜像的版本。若不指定，默认为 latest。
         -   **总是拉取镜像**：为了提高效率，容器服务会对镜像进行缓存。部署时，如果发现镜像 Tag 与本地缓存的一致，则会直接复用而不重新拉取。所以，如果您基于上层业务便利性等因素考虑，在做代码和镜像变更时没有同步修改 Tag ，就会导致部署时还是使用本地缓存内旧版本镜像。而勾选该选项后，会忽略缓存，每次部署时重新拉取镜像，确保使用的始终是最新的镜像和代码。
-        -   **镜像密钥**：单击**设置镜像密钥**设置镜像的密钥。对于私有仓库访问时，需要设置密钥，具体可以参见[使用镜像密钥](intl.zh-CN/用户指南/Kubernetes集群/应用管理/使用镜像密钥.md#)
+        -   **镜像密钥**：单击**设置镜像密钥**设置镜像的密钥。对于私有仓库访问时，需要设置密钥，具体可以参见[使用镜像密钥](intl.zh-CN/Kubernetes集群用户指南/应用管理/使用镜像密钥.md#)
         -   **资源限制**：可指定该应用所能使用的资源上限，包括 CPU 和 内存两种资源，防止占用过多资源。其中，CPU 资源的单位为 cores，即一个核；内存的单位为 Bytes，可以为 Mi 。
         -   **所需资源**：即为该应用预留资源额度，包括 CPU 和 内存两种资源，即容器独占该资源，防止因资源不足而被其他服务或进程争抢资源，导致应用不可用。
         -   **Init Container**：勾选该项，表示创建一个Init Container，Init Container包含一些实用的工具，具体参见[https://kubernetes.io/docs/concepts/workloads/pods/init-containers/](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)。
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628610974_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794210974_zh-CN.png)
 
     2.  配置环境变量。 
 
@@ -40,7 +40,7 @@
 
         支持存活检查（liveness）和就绪检查（Readiness）。存活检查用于检测何时重启容器；就绪检查确定容器是否已经就绪，且可以接受流量。关于健康检查的更多信息，请参见[https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes)。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628610977_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794210977_zh-CN.png)
 
         |请求类型|配置说明|
         |----|----|
@@ -76,7 +76,7 @@
         -   **启动执行**：为容器设置预启动命令和参数。
         -   **启动后处理**：为容器设置启动后的命令。
         -   **停止前处理**：为容器设置预结束命令。
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628611371_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794211371_zh-CN.png)
 
     5.  配置数据卷信息。 
 
@@ -86,7 +86,7 @@
         -   **云存储**：支持云盘/NAS/OSS三种云存储类型。
         本例中配置了一个云盘类型的数据卷，将该云盘挂载到容器中/tmp 路径下，在该路径下生成的容器数据会存储到云盘中。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628610976_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794210976_zh-CN.png)
 
     6.  配置**日志服务**，您可进行采集配置和自定义Tag设置。 
 
@@ -100,7 +100,7 @@
             -   **文本日志**：表示收集容器内指定路径的日志，本例中表示收集/var/log/nginx下所有的文本日志，也支持通配符的方式。
         您还可设置自定义 tag，设置tag后，会将该tag一起采集到容器的日志输出中。自定义 tag 可帮助您给容器日志打上tag，方便进行日志统计和过滤等分析操作。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628711364_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794211364_zh-CN.png)
 
 5.  完成容器配置后，单击 **下一步**。
 6.  进行高级设置。 
@@ -114,11 +114,11 @@
         -   外部应用：对于需要暴露到公网的应用，您可以采用两种方式进行访问设置：
             -   创建LoadBalancer类型的服务：使用阿里云提供的负载均衡服务（Server Load Balancer，SLB），该服务提供公网访问能力。
             -   创建ClusterIP、NodePort类型的服务，以及路由（Ingress）：通过路由提供公网访问能力，详情参见[https://kubernetes.io/docs/concepts/services-networking/ingress/](https://kubernetes.io/docs/concepts/services-networking/ingress/)。
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628710979_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794210979_zh-CN.png)
 
         1.  在服务栏单击**创建**，在弹出的对话框中进行配置，最后单击**创建**。
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628710980_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794210980_zh-CN.png)
 
             -   **名称**：您可自主设置，默认为`applicationname-svc`。
             -   **类型**：您可以从下面 3 种服务类型中进行选择。
@@ -126,9 +126,9 @@
                 -   节点端口：即 NodePort，通过每个 Node 上的 IP 和静态端口（NodePort）暴露服务。NodePort 服务会路由到 ClusterIP 服务，这个 ClusterIP 服务会自动创建。通过请求 `<NodeIP>:<NodePort>`，可以从集群的外部访问一个 NodePort 服务。
                 -   负载均衡：即 LoadBalancer，是阿里云提供的负载均衡服务，可选择公网访问或内网访问。负载均衡可以路由到 NodePort 服务和 ClusterIP 服务。
             -   **端口映射**：您需要添加服务端口和容器端口，若**类型**选择为节点端口，还需要自己设置节点端口，防止端口出现冲突。支持 TCP/UDP 协议。
-            -   **注解**：为该服务添加一个注解（annotation），支持负载均衡配置参数，参见[通过负载均衡（Server Load Balancer）访问服务](intl.zh-CN/用户指南/Kubernetes集群/网络管理/通过负载均衡（Server Load Balancer）访问服务.md#)。
+            -   **注解**：为该服务添加一个注解（annotation），支持负载均衡配置参数，参见[ZH-CN\_TP\_16677.md\#](intl.zh-CN/Kubernetes集群用户指南/网络管理/通过负载均衡（Server Load Balancer）访问服务.md#)。
             -   **标签**：您可为该服务添加一个标签，标识该服务。
-        2.  在路由栏单击**创建**，在弹出的对话框中，为后端Pod配置路由规则，最后单击**创建**。更多详细的路由配置信息，请参见[路由配置说明](intl.zh-CN/用户指南/Kubernetes集群/网络管理/路由配置说明.md#)。
+        2.  在路由栏单击**创建**，在弹出的对话框中，为后端Pod配置路由规则，最后单击**创建**。更多详细的路由配置信息，请参见[路由配置说明](intl.zh-CN/Kubernetes集群用户指南/网络管理/路由配置说明.md#)。
 
             **说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在hosts中添加一条记录。在实际工作场景中，请使用备案域名。
 
@@ -136,17 +136,17 @@
             101.37.224.146   foo.bar.com    #即ingress的IP
             ```
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628710981_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794210981_zh-CN.png)
 
         3.  在访问设置栏中，您可看到创建完毕的服务和路由，您可单击**变更**和**删除**进行二次配置。
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628810982_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794310982_zh-CN.png)
 
     2.  **容器组水平伸缩**。 
 
         您可勾选是否开启**容器组水平伸缩**，为了满足应用在不同负载下的需求，容器服务支持服容器组（Pod）的弹性伸缩，即根据容器 CPU 和内存资源占用情况自动调整容器组数量。
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628810978_zh-CN.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794310978_zh-CN.png)
 
         **说明：** 若要启用自动伸缩，您必须为容器设置所需资源，否则容器自动伸缩无法生效。参见容器基本配置环节。
 
@@ -166,7 +166,7 @@
 
         2.  设置**节点亲和性**，通过Node节点的Label标签进行设置。
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628811137_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794311137_zh-CN.png)
 
             节点调度支持硬约束和软约束（Required/Preferred），以及丰富的匹配表达式（In, NotIn, Exists, DoesNotExist. Gt, and Lt）：
 
@@ -174,7 +174,7 @@
             -   **尽量满足**，即软约束，不一定满足，对应preferredDuringSchedulingIgnoredDuringExecution。本例中，调度会尽量不调度Pod到具有对应标签的Node节点。您还可为软约束规则设定权重，具体调度时，若存在多个符合条件的节点，权重最高的节点会被优先调度。您可定义多条软约束规则，但必须满足全部约束，才会进行调度。
         3.  设置**应用亲和性调度**。决定应用的Pod可以和哪些Pod部署在同一拓扑域。例如，对于相互通信的服务，可通过应用亲和性调度，将其部署到同一拓扑域（如同一个主机）中，减少它们之间的网络延迟。
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628811222_zh-CN.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794311222_zh-CN.png)
 
             根据节点上运行的Pod的标签（Label）来进行调度，支持硬约束和软约束，匹配的表达式有：`In, NotIn, Exists, DoesNotExist`。
 
@@ -198,18 +198,22 @@
 7.  最后单击**创建**。
 8.  创建成功后，默认进入创建完成页面，会列出应用包含的对象，您可以单击**查看应用详情**进行查看。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628810983_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794310983_zh-CN.png)
 
     默认进入新建的nginx-deployment的详情页面。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628910984_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794351759_zh-CN.png)
 
+    **说明：** 您也可以通过以下操作创建路由与服务。如上图所示，在**访问方式**页签。
+
+    -   单击服务右侧的**创建**，也可以进行服务创建，操作步骤同6.i.a。
+    -   您单击路由右侧的**创建**，进行路由的创建，操作同6.i.b。
 9.  单击左侧导航栏的**路由与负载均衡** \> **路由**，可以看到路由列表下出现一条规则。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628910985_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794310985_zh-CN.png)
 
 10. 在浏览器中访问路由测试域名，您可访问 nginx 欢迎页。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196628910986_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465794310986_zh-CN.png)
 
 
