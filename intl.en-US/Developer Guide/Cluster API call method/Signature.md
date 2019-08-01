@@ -60,7 +60,7 @@ In the example, the Access Key ID and Access Key Secret are `access_key_id` and 
 
 The request example is as follows:
 
-```
+``` {#codeblock_sor_n1h_nst}
 POST http://cs.aliyuncs.com/clusters?param1=value1&param2=value2 HTTP/1.1
 Accept-Encoding: identity
 Content-Length: 210
@@ -86,7 +86,7 @@ Calculate `Content-Length` and `Content-MD5`
 
 **Note:** No space or line break is at the beginning of the example body.
 
-```
+``` {#codeblock_90f_1ke_8hi}
 body: {"password": "Just$****","instance_type": "ecs.m2.medium","name": "my-test-cluster-9708****","size": 1,"network_mode": "vpc","data_disk_category": "cloud","data_disk_size": 10,"ecs_image_id": "m-253ll****"}
 Content-Length: 210
 ```
