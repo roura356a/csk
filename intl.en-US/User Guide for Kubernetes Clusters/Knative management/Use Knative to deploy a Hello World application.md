@@ -1,6 +1,6 @@
 # Use Knative to deploy a Hello World application {#concept_525886 .concept}
 
-This topic describes how to use Knative to deploy an application. In this topic, an example application named Hello World is deployed by using Knative.
+This topic describes how to use Knative to deploy an application.
 
 ## Prerequisites {#section_klu_a1g_mjo .section}
 
@@ -10,48 +10,42 @@ This topic describes how to use Knative to deploy an application. In this topic,
 
 ## Procedure {#section_zag_dev_oq9 .section}
 
-1.  Connect to the target Kubernetes cluster by using kubectl. For more information, see [kubectl](reseller.en-US//Connect to a Kubernetes cluster by using kubectl.md#).
-2.  Create the file helloworld-go.yaml, and copy the following code into the file:
+1.  Log on to the [Container Service console](https://cs.console.aliyun.com/).
+2.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
+3.  In the left-side navigation pane under Container Service-Kubernetes, choose **Knative** \> **Services**.
+4.  In the upper-righter corner, click **Create Service**.
+5.  Set the following parameters:
+    -   **Service Name**: Set the service name. In this example, the service name is set as helloworld-go.
+    -   **Image Name**: Select an image by clicking **Select Image**, or in the box, enter a private registry that must be in the format of domainname/namespace/imagename:tag.
 
-    ``` {#codeblock_7r5_5h9_6qz}
-    apiVersion: serving.knative.dev/v1alpha1
-    kind: Service
-    metadata:
-      name: helloworld-go
-      namespace: default
-    spec:
-      template:
-        spec:
-          containers:
-          - image: registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go:160e4db7
-            env:
-            - name: TARGET
-              value: "Knative"
+        **Note:** In this example, the registry registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go is used.
+
+    -   **Image Version**: Select an image by clicking **Select Image Version**, or in the box, enter an image version. By default, if you do not set this parameter, the latest image version is used. In this example, the image version is set as 73fbdd56.
+    -   **Environment Variables**: Set an environment variable by entering a key-value pair. In this example, the environment variable is set as `TARGET=Knative`.
+6.  Click **Create**.
+
+    On the Knative Service Manage page, the created service is then displayed.
+
+
+## Verify the result {#section_h2i_6p5_hnm .section}
+
+To access the created Knative service through its URL, follow these steps:
+
+1.  In the left-side navigation pane under Container Service-Kubernetes, choose **Knative** \> **Component** to view the IP address of the gateway of the Knative service.
+2.  In the host file of your local host, associate the IP address of the gateway and the domain name of the Knative service with your local host by adding the following information:
+
+    ``` {#codeblock_d5g_bzc_1u3}
+    the IP address of the gateway + the domain name
     ```
 
-3.  Run the `kubectl apply -f helloworld-go.yaml` command to deploy an application.
-4.  Log on to the [Container Service console](https://cs.console.aliyun.com/).
-5.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-6.  In the left-side navigation pane under Container Service-Kubernetes, choose **Discovery and Load Balancing** \> **Services**.
-7.  Select the target cluster and the istio-system namespace, and record the external endpoint of the istio-ingressgateway service.
+    The following is a sample:
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/474495/156464516648926_en-US.png)
-
-8.  Run the following command to obtain the domain name:
-
-    ``` {#codeblock_x5b_xal_t36}
-    $ kubectl get ksvc helloworld-go  --output=custom-columns=NAME:.metadata.name,DOMAIN:.status.domain
-    NAME            DOMAIN
-    helloworld-go   helloworld-go.default.example.com
+    ``` {#codeblock_tpb_of9_d8p}
+    47.95.XX.XX helloworld-go.default.example.com
     ```
 
-9.  Run the following command to verify that the deployed application is accessible:
+3.  In your browser, enter the URL http://helloworld-go.default.example.com to access the Knative service.
 
-    **Note:** You must replace 112.124.XX.XX with the IP address of the istio-ingressgateway service obtained in step 6.
-
-    ``` {#codeblock_pj8_1l5_uyo}
-    $ curl -H "Host: helloworld-go.default.example.com" http://112.124.XX.XX
-    Hello Knative!
-    ```
+    ![Access the service](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/1040500/156465951152568_en-US.png)
 
 
