@@ -22,7 +22,7 @@ You have created a Kubernetes cluster. For more information, see [Create a Kuber
 3.  Click the target cluster name to view the cluster details.
 4.  In the Cluster Resources area, click **Worker RAM Role**. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/115357/156464864737782_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/115357/156466002237782_en-US.png)
 
     **Note:** 
 
@@ -34,22 +34,22 @@ You have created a Kubernetes cluster. For more information, see [Create a Kuber
 
     1.  In the left-side navigation pane, click **Roles**, and then enter the **Worker RAM Role** name in the **Role Name** box. Click the target **Role Name**.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/115357/156464864737792_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/115357/156466002237792_en-US.png)
 
     2.  In the **Basic Information** area, click **Edit Basic Information** in the upper-right corner.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/115357/156464864737793_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/115357/156466002237793_en-US.png)
 
     **Method 2**
 
     In the lower-right corner of the RAM dashboard page, click **New Version** to switch to the latest version of the RAM console. In the Container Service console, click **Worker RAM Role** to log on to the RAM console.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/115357/156464864737796_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/115357/156466002237796_en-US.png)
 
 5.  On the RAM Roles page, click the policy name in the Permission area to view the policy details.
 6.  On the Policies page, click **Modify Policy Document** in the Policy Document area. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/115357/156464864737815_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/115357/156466002237815_en-US.png)
 
 7.  In the Policy Document area, add the following fields and then click **OK**. 
 
@@ -65,7 +65,7 @@ You have created a Kubernetes cluster. For more information, see [Create a Kuber
              }
     ```
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/115357/156464864837816_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/115357/156466002237816_en-US.png)
 
 8.  Create the aliyun-acr-credential-helper service to refresh a temporary token of Container Registry. 
 
