@@ -10,28 +10,22 @@ Jaeger is an open source distributed tracing system released by [CNCF](https://w
 
 ## Prerequisites {#section_llz_ljq_kfb .section}
 
--   You have created a Kubernetes cluster. For more information, see [Create a Kubernetes cluster](../../../../reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
--   You have a local Linux environment in which you have configured the kubectl tool and used the too to connected to the cluster. For more information, see [Connect to a Kubernetes cluster by using kubectl](../../../../reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Connect to a Kubernetes cluster by using kubectl.md#).
--   You have downloaded the project code of an Istio version and run the relevant commands in the Istio file directory. See [https://github.com/istio/istio/releases](https://github.com/istio/istio/releases).
+-   You have created a Kubernetes cluster. For more information, see [Create a Kubernetes cluster](../../../../reseller.en-US//Create a Kubernetes cluster.md#).
+-   You have a local Linux environment in which you have configured the kubectl tool and used the too to connected to the cluster. For more information, see [Connect to a Kubernetes cluster by using kubectl](../../../../reseller.en-US//Connect to a Kubernetes cluster by using kubectl.md#).
+-   You have downloaded the project code of an Istio version and run the relevant commands in the Istio file directory. See [Istio releases](https://github.com/istio/istio/releases).
 
 ## Step 1: Deploy the Jaeger tracing system in one click {#section_njx_szf_mfb .section}
 
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
 2.  In the left-side navigation pane, choose **Clusters**. Select a cluster and choose **More** \> **Deploy Istio**.
 
-    **Note:** This examples uses Istio V 1.0. For more information, see [Deploy Istio on a Kubernetes cluster](../../../../reseller.en-US/User Guide/Kubernetes cluster/Istio management/Deploy Istio on a Kubernetes cluster.md#).
+    **Note:** This examples uses Istio V1.1. For more information, see [Deploy Istio on a Kubernetes cluster](../../../../reseller.en-US/User Guide for Kubernetes Clusters/Istio management/Deploy Istio on a Kubernetes cluster.md#).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/156404693310115_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/156466033810115_en-US.png)
 
-3.  On the Istio deployment page, select **Enable Log Service\(SLS\) and Jaeger**. With Alibaba Cloud Container Service, you can deploy the Jaeger tracing system in one click in the Web interface.
-
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/156404693413746_en-US.png)
-
-4.  After you complete the deployment, choose **Application** \> **Service** in the left-side navigation tree, and select the target cluster and namespace to find the tracing-on-sls-query service.
-
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/156404693410117_en-US.png)
-
-5.  Click the external endpoint of the tracing-on-sls-query service to display the Jaeger UI page.
+3.  On the Istio deployment page, select **Activate Tracing Analysis**. With Alibaba Cloud Container Service, you can deploy the Jaeger tracing system in one click in the Web interface.
+4.  After you complete the deployment, choose **Ingresses and Load Balancing** \> **Service** in the left-side navigation tree, and select the target cluster and namespace to find the tracing service.
+5.  If the service type of tracing service is set as LoadBalancer, click the external endpoint of the tracing service to display the Jaeger UI page. If the service type of tracing service is set as ClusterIP, you can access the service through port-forward or Ingress.
 
     You can use Jaeger to observe the traces between services, diagnose performance, and analyze system faults.
 
@@ -80,13 +74,13 @@ Jaeger is an open source distributed tracing system released by [CNCF](https://w
     $ kubectl get svc istio-ingressgateway -n istio-system
     ```
 
-    You can also view the IP address of`istio-ingressgateway` through the Container Service console. In the left-side navigation pane, choose **Application** \> **Service**, and select the cluster and the Istio-system namespace.
+    You can also view the IP address of`istio-ingressgateway` through the Container Service console. In the left-side navigation pane, choose **Ingresses and Load Balancing** \> **Service**, and select the cluster and the Istio-system namespace.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/156404693410116_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/156466033810116_en-US.png)
 
 6.  Access the Bookinfo home page. The access address is `http://{EXTERNAL-IP}/productpage`.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/156404693413776_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/156466033913776_en-US.png)
 
     If you refresh the browser, different versions of the reviews are displayed on the productpage in a round-robin manner \(starting with a red star, to a black star, to no star\). This indicates that Istio is currently not being used to control the version routing.
 
@@ -100,11 +94,11 @@ The Jaeger UI displays the results of the distributed service tracing.
 
     **Note:** In this example, the Bookinfo sample application is used to view the productpage service calling.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/156404693410119_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/156466033910119_en-US.png)
 
 3.  You can select multiple views to visualize the tracing results, for example, a histogram within a tracing period, or the service duration within the tracing process.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/156404693510120_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/15820/156466033910120_en-US.png)
 
 
 ## Istio distributed tracing mechanism {#section_kbc_phd_5db .section}
@@ -151,7 +145,7 @@ defgetForwardHeaders(request):
 
 When you call other services in your application, these headers are propagated to form a trace.
 
-For information about the code, see the Istio document [https://istio.io/docs/tasks/telemetry/distributed-tracing.html](https://istio.io/docs/tasks/telemetry/distributed-tracing.html).
+For information about the code, see the Istio document [Distributed tracing](https://istio.io/docs/tasks/telemetry/distributed-tracing.html).
 
 ## Conclusion {#section_qbc_phd_5db .section}
 
