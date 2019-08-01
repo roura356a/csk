@@ -2,9 +2,9 @@
 
 Kubernetes clusters of Alibaba Cloud Container Service allows you to quickly create applications of the StatefultSet type through the web interface. In this example, create a StatefultSet Nginx application and show features of a StatefultSet application.
 
--   You have created a Kubernetes cluster. For more information, see [Create a Kubernetes cluster](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
--   You have successfully created a cloud disk storage volume claim. For more information, see [Create a persistent volume claim](reseller.en-US/User Guide/Kubernetes cluster/Storage management/Create a Persistent Volume Claim.md#).
--   You have successfully connected to the master node of the Kubernetes cluster. For more information, see [Connect to a Kubernetes cluster by using kubectl](reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Connect to a Kubernetes cluster by using kubectl.md#).
+-   You have created a Kubernetes cluster. For more information, see [Create a Kubernetes cluster](reseller.en-US//Create a Kubernetes cluster.md#).
+-   You have successfully created a cloud disk storage volume claim. For more information, see [Create a persistent volume claim](reseller.en-US//Create a Persistent Volume Claim.md#).
+-   You have successfully connected to the master node of the Kubernetes cluster. For more information, see [Connect to a Kubernetes cluster by using kubectl](reseller.en-US//Connect to a Kubernetes cluster by using kubectl.md#).
 
 StatefulSet features are as follows:
 
@@ -16,7 +16,7 @@ StatefulSet features are as follows:
 |Stable order|For StatefulSet of N replicas, each pod is assigned a unique order number within the range of 0 to N.|
 
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-2.  Under Kubernetes, click **Application** \> **Deployment** in the left-side navigation pane, and then click **Create by image** in the upper-right corner.
+2.  In the left-side navigation pane under Container Service-Kubernetes, choose **Application** \> **StatefulSet**. Then, click **Create from Image** in the upper-right corner.
 3.  Configure the basic parameters and then click **Next**. 
 
     -   **Name**: Enter the application name.
@@ -27,7 +27,9 @@ StatefulSet features are as follows:
 
         **Note:** In this example, select the **StatefulSet** type.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156196861712304_en-US.png)
+    -   **Label**: Add a label to the application.
+    -   **Annotations**: Add a annotation to the application.
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156465799912304_en-US.png)
 
 4.  Configure containers. 
 
@@ -44,7 +46,7 @@ StatefulSet features are as follows:
         -   **Resource Limit**: Specify the upper limit for the resources \(CPU and memory\) that can be used by this application to avoid occupying excessive resources. CPU is measured in millicores, that is, one thousandth of one core. Memory is measured in bytes, which can be Gi, Mi, or Ki.
         -   **Resource Request**: Specify how many resources \(CPU and memory\) are reserved for the application, that is, these resources are exclusive to the container. Other services or processes will compete for resources when the resources are insufficient. By specifying the Resource Request, the application will not become unavailable because of insufficient resources.
         -   **Init Container**: Selecting this check box creates an Init Container which contains useful tools. For more information, see [https://kubernetes.io/docs/concepts/workloads/pods/init-containers/](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156196861712305_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156465799912305_en-US.png)
 
     2.  Configure **Environment**. 
 
@@ -54,7 +56,7 @@ StatefulSet features are as follows:
 
         The health check function includes liveness probes and readiness probes. Liveness probes are used to detect when to restart the container. Readiness probes determine if the container is ready for receiving traffic. For more information about health check, see [https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes).
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196861710977_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465799910977_en-US.png)
 
         |Request method|Description|
         |--------------|-----------|
@@ -85,13 +87,12 @@ StatefulSet features are as follows:
 
     4.  Configure the lifecycle rule. 
 
-        You can configure the following parameters for the container lifecycle: container config start, post start, and pre-stop. For more information, see [https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/](https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/).
+        You can configure the following parameters for the container lifecycle: start, post start, and pre-stop. For more information, see [https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/](https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/).
 
-        -   **Container Config**: Select the stdin check box to enable standard input for the container. Select the tty check box to assign an virtual terminal to for the container to send signals to the container. These two options are usually used together, which indicates to bind the terminal \(tty\) to the container standard input \(stdin\). For example, an interactive program obtains standard input from you and then displays the obtained standard input in the terminal.
         -   **Start**: Configure a pre-start command and parameter for the container.
         -   **Post Start**: Configure a post-start command for the container.
         -   **Pre Stop**: Configure a pre-end command for the container.
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196861711371_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465799911371_en-US.png)
 
     5.  Configure data volumes. 
 
@@ -101,7 +102,7 @@ StatefulSet features are as follows:
         -   **Cloud storage**: Supports three types of cloud storage: cloud disks, Network Attached Storage \(NAS\), and Object Storage Service \(OSS\).
         In this example, configure a data volume claim named disk-ssd of cloud disk type and mount it to the /data path.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156196861812307_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156465799912307_en-US.png)
 
     6.  Configure **Log Service**. You can configure collection methods and customize tags for this service. 
 
@@ -115,7 +116,7 @@ StatefulSet features are as follows:
             -   **text log**: Collects logs in the specified path in the container. In this example, collect text logs in the path of /var/log/nginx. Wildcards are also supported.
         You can also set custom tags. The customized tags are collected to the container output logs. A custom tag can help you tag container logs, providing convenience to log analysis such as log statistics and filter.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196861811364_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465799911364_en-US.png)
 
 5.  Click **Next** after completing the configurations.
 6.  Configure advanced settings. In this example, configure only access settings. 
@@ -129,11 +130,11 @@ StatefulSet features are as follows:
         -   External application: an application that needs to be exposed to the Internet. You can set how the application is accessed by using either of the following two methods:
             -   Create a Server Load Balancer service. This method uses Alibaba Cloud Server Load Balancer \(SLB\) to provide Internet accessibility for the application.
             -   Create a cluster IP service or a node port service, and create an Ingress. This method provides Internet accessibility through the Ingress. For more information, see [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196861810979_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465799910979_en-US.png)
 
         1.  Click **Create** on the right of **Service**. Configure a service in the displayed dialog box, and then click **Create**.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196861810980_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465799910980_en-US.png)
 
             -   **Name**: Enter the service name. The default is `applicationname-svc`.
             -   **Type**: Select one service type.
@@ -141,34 +142,34 @@ StatefulSet features are as follows:
                 -   **Node port**: Exposes the service by using the IP address and the static port \(NodePort\) of each node. A node port service routes to a cluster IP service that is automatically created. You can access the node port service from outside the cluster by requesting `<NodeIP>:<NodePort>`.
                 -   **Server Load Balancer**: Alibaba Cloud Server Load Balancer service. With this type of service, you can set an Internet or intranet access method for your application. SLB can route to a node port service and a cluster IP service.
             -   **Port Mapping**: Add a service port and a container port, and select the TCP or UDP protocol. If you select the node port **Type**, you must add a node port to avoid port conflict.
-            -   **annotation**: Add an annotation to the service. You can set SLB parameters. For more information, see [Access services by using Server Load Balancer](reseller.en-US/User Guide/Kubernetes cluster/Network management/Access services by using Server Load Balancer.md#).
+            -   **annotation**: Add an annotation to the service. You can set SLB parameters. For more information, see [Access services by using Server Load Balancer](reseller.en-US/User Guide for Kubernetes Clusters/Network management/Access services by using Server Load Balancer.md#).
             -   **Tag**: Add a tag to the service to identify the service.
-        2.  Click **Create** on the right of **Ingress**. In the displayed dialog box, configure an Ingress rule for the application pod, and then click **Create**. For more information, see [Ingress configurations](reseller.en-US/User Guide/Kubernetes cluster/Network management/Ingress configurations.md#).
+        2.  Click **Create** on the right of **Ingress**. In the displayed dialog box, configure an Ingress rule for the application pod, and then click **Create**. For more information, see [Ingress configurations](reseller.en-US/User Guide for Kubernetes Clusters/Network management/Ingress configurations.md#).
 
             **Note:** When you create an application by using an image, you can create an Ingress rule for only one service. In this example, a virtual host name is used as the test domain name. You need to add a record to the host. You must use a filing domain name when you create your application.
 
-            ```
+            ``` {#codeblock_9li_cbv_zq0}
             101.37.224.146   foo.bar.com    #This is the IP address of the Ingress.
             ```
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196861810981_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465799910981_en-US.png)
 
         3.  In the access control area, the created service and Ingress are displayed. You can perform further configurations by clicking **Update** or **Delete**.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196861810982_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465799910982_en-US.png)
 
     2.  Set **Horizontal Pod Autoscaling \(HPA\)**. 
 
         You enable HPA by selecting the **Enable** check box. Alibaba Cloud Container Service for Kubernetes provides pod auto scaling to deal with different application workloads. That is, you can change the number of pods according to the container CPU and memory usage.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196861910978_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465799910978_en-US.png)
 
         **Note:** To use this function, you must set required resources for the pod. Otherwise, pod auto scaling cannot take effect. For more information, see general container settings.
 
         -   **Metric**: resource type. CPU or memory is available. This parameter must be specified with a resource type that is the same as the required resource type.
         -   **Condition**: the percentage value of resource usage. The number of containers increases when the resource usage exceeds this value.
-        -   **Maximum Replicas**: the maximum number of the containers that the deployment can include.
-        -   **Minimum Replicas**: the minimum number of the containers that the deployment can include.
+        -   **Maximum Replicas**: the maximum number of the containers that the StatefulSet application can contain.
+        -   **Minimum Replicas**: the minimum number of the containers that the StatefulSet application can contain.
     3.  Set **Scheduling**. 
 
         You can set an update method, node affinity, pod affinity, and pod anti affinity. For more information, see [Affinity and anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity).
@@ -181,7 +182,7 @@ StatefulSet features are as follows:
 
         2.  Set **Node Affinity** by using node tags.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196861911137_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465799911137_en-US.png)
 
             Required rules and preferred rules are supported, and available operators include `In, NotIn, Exists, DoesNotExist, Gt, and Lt` .
 
@@ -197,7 +198,7 @@ StatefulSet features are as follows:
 
         3.  Set **Pod Affinity** to deploy the application pod in a topology domain together with other pods. For example, to reduce network latency between the services that communicate with each other, you can deploy their pods to a topology domain \(for example, a host\).
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156196861911222_en-US.png)
+            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156465800011222_en-US.png)
 
             You can schedule pods according to tags of pods running on nodes. Required rules and preferred rules are supported, and available operators include `In, NotIn, Exists, DoesNotExist`.
 
@@ -221,24 +222,24 @@ StatefulSet features are as follows:
 7.  Click **Create**.
 8.  After you create the application, the create success page is displayed by default and objects contained in the application are listed. You can click **View detail** to view the deployment details. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156196861912341_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156465800012341_en-US.png)
 
     The StatefulSet page is displayed by default.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156196861912343_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156465800012343_en-US.png)
 
 9.  Then click **Back to list** in the upper-left corner to view the created StatefulSet application in the StatefulSet list page. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156196862012431_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156465800012431_en-US.png)
 
 10. To verify service scalability, click **Scale** at the right of a target nginx application. 
     1.  In the displayed dialog box, set the number of pod to 3. You can see that when you expand pods, the pods are in the increment order; when you contract pods, the pods are in the descending order. This shows the order stability of pods in StatefulSet. 
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156196862012438_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156465800012438_en-US.png)
 
     2.  Click **Application** \> **Volumes Claim** in the left-side navigation pane, you can see that as the application expands, new cloud disk volumes are created with pods; if the application contracts, created PV/PVC will not be deleted. 
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156196862012450_en-US.png)
+        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156465800012450_en-US.png)
 
 
 Connect to the master node and run following commands to verify the persistent storage feature.
