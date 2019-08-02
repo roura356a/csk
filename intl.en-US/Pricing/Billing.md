@@ -1,9 +1,7 @@
 # Billing {#concept_kjv_shc_5db .concept}
 
-Container Service for Kubernetes includes Dedicated Kubernetes and Serverless Kubernetes.
+When you use Alibaba Cloud Container Service for Kubernetes \(ACK\), you are only charged for the cloud resources that you create.
 
--   Dedicated Kubernetes is the classic mode.
-    1.  Currently, Container Service is free of charge. However, you have to pay for the resources you used, such as Elastic Compute Service \(ECS\) instances and Server Load Balancer instances.
-    2.  In Container Service, the automatically created or manually added ECS instances and Server Load Balancer instances are billed according to the ECS and Server Load Balancer prices respectively. For more information, see [ECS billing method](../../../../reseller.en-US/Pricing/Pricing overview.md#) and [Pay-As-You-Go](../../../../reseller.en-US/Pricing/Pay-As-You-Go.md#).
--   Serverless Kubernetes is currently in the public test phase and is available for free.
+-   If you use a dedicated Kubernetes cluster or a managed Kubernetes cluster, you are charged for the resources that are automatically created by ACK or you manually create. For example, ECS instances, SLB instances, and NAT gateways. For more information about charges for ECS instances, see [Pricing overview](../../../../reseller.en-US/Pricing/Pricing overview.md#). For more information about charges for SLB instances, see [Billing method](../../../../reseller.en-US/Pricing/Billing method.md#).
+-   If you use a serverless Kubernetes cluster, you are charged for the resources, such as the ECI instances, SLB instances, and NAT gateways that you create. For more information about the charges for ECI instances, see [Pricing overview](https://www.alibabacloud.com/help/doc-detail/89142.html).
 
