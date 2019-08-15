@@ -43,7 +43,7 @@ POST /clusters HTTP/1.1
 "worker_data_disk_size":"数据盘大小",
 "num_of_nodes": "Worker节点数",
 "snat_entry": 是否配置SNATEntry,
-"public_slb":"是否为内网SLB挂载EIP",
+"endpoint_public_access":"是否公网暴露集群endpoint",
 "proxy_mode": "网络模式, 可选值iptables|ipvs",
 "addons": "选装addon, 数组格式对象", 
 "tags": "给集群打tag标签, 数组格式对象",
@@ -79,7 +79,7 @@ POST /clusters HTTP/1.1
 
  如果选择失败回滚，则会释放创建过程中所生产的资源，不推荐使用false|
 |proxy\_mode|string|否|kube-proxy代理模式，支持iptables和IPVS两种模式。 默认为iptables。|
-|public\_slb|bool|否|是否开启公网API Server： -   true：默认为True，表示开放公网API Server
+|endpoint\_public\_access|bool|否|是否开启公网API Server： -   true：默认为True，表示开放公网API Server
 -   false：若设置为false， 则不会创建公网的API Server，仅创建私网的API Server
 
  |
@@ -155,7 +155,7 @@ POST /clusters HTTP/1.1
 "region_id":"cn-beijing",
 "snat_entry":true,
 "cloud_monitor_flags":false,
-"public_slb":false,
+"endpoint_public_access":false,
 "node_cidr_mask":"25",
 "proxy_mode":"ipvs",
 "tags":[],
