@@ -57,7 +57,7 @@ POST /clusters HTTP/1.1
     "worker_data_disk_size":"Worker节点数据盘大小",
     "num_of_nodes": "Worker节点数",
     "snat_entry": 是否配置SNATEntry,
-    "public_slb":"是否为内网SLB挂载EIP",
+    "endpoint_public_access":"是否公网暴露集群endpoint",
     "cpu_policy": "static|none",
     "node_port_range": "节点端口范围,默认30000-65535",
     "proxy_mode": "网络模式, 可选值iptables|ipvs",
@@ -144,7 +144,7 @@ POST /clusters HTTP/1.1
  |
 |node\_port\_range|string|否|节点服务端口。取值范围为\[30000,65535\]|
 |proxy\_mode|string|否|kube-proxy 代理模式，支持 iptables 和 IPVS两种模式。 默认为 iptables 。|
-|public\_slb|bool|否|是否开启公网API Server： -   true：默认为True，表示开放公网API Server
+|endpoint\_public\_access|bool|否|是否开启公网API Server： -   true：默认为True，表示开放公网API Server
 -   false：若设置为false， 则不会创建公网的API Server，仅创建私网的API Server
 
  |
@@ -227,7 +227,7 @@ POST /clusters HTTP/1.1
 "timeout_mins":60,
 "kubernetes_version":"1.12.6-aliyun.1",
 "snat_entry":true,
-"public_slb":false,
+"endpoint_public_access":false,
 "cloud_monitor_flags":false,
 "node_cidr_mask":"25",
 "proxy_mode":"iptables",
