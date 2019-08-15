@@ -123,13 +123,13 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 2.  登录[容器服务管理控制台](https://cs.console.aliyun.com)，单击目标集群右侧的**控制台**，进入 Kubernetes Dashboard 页面。
 3.  单击**创建**，开始创建应用。 
 
-    ![创建应用](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15656032909066_zh-CN.png)
+    ![创建应用](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15658346789066_zh-CN.png)
 
 4.  单击**使用文件创建**。选择刚才保存的nginx-svc.yml 文件。
 5.  单击**上传**。 此时，会创建一个阿里云负载均衡实例指向创建的 Nginx 应用，服务的名称为 `http-svc`。
 6.  在 Kubernetes Dashboard 上定位到 default 命名空间，选择服务。 可以看到刚刚创建的 `http-svc` 的 Nginx 服务和机器的负载均衡地址 `http://114.55.XX.XX:80`。
 
-    ![访问服务](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15656032909067_zh-CN.png)
+    ![访问服务](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15658346789067_zh-CN.png)
 
 7.  将该地址拷贝到浏览器中即可访问该服务。
 
@@ -139,7 +139,7 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 2.  在Kubernetes菜单下，单击左侧导航栏**应用** \> **无状态**，进入无状态（Deployment）页面。
 3.  选择目标集群和命名空间，单击右上角**使用模板创建**。 
 
-    ![创建应用](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/156560329013797_zh-CN.png)
+    ![创建应用](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/156583467913797_zh-CN.png)
 
 4.  **示例模板**选为自定义，将以下内容复制到**模板**中。 
 
@@ -164,11 +164,11 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 5.  单击**创建**。
 6.  创建成功，单击**Kubernetes 控制台**前往控制台查看创建进度。 
 
-    ![Kubernetes 控制台](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/156560329013798_zh-CN.png)
+    ![Kubernetes 控制台](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/156583467913798_zh-CN.png)
 
 7.  或单击左侧导航栏**路由与负载均衡** \> **服务**，选择目标集群和命名空间，查看已部署的服务。 
 
-    ![部署服务](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/156560329013800_zh-CN.png)
+    ![部署服务](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/156583467913800_zh-CN.png)
 
 
 ## 更多信息 {#section_jnq_v5w_nla .section}
@@ -305,7 +305,14 @@ root@master # kubectl get po -n kube-system -o yaml|grep image:|grep cloud-con|u
 
 -   使用已有的负载均衡
 
-    -   默认情况下，使用已有的负载均衡实例，不会覆盖监听，如要强制覆盖已有监听，请配置`service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners`为ture
+    -   默认情况下，使用已有的负载均衡实例，不会覆盖监听，如要强制覆盖已有监听，请配置`service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners`为ture 
+
+        **说明：** 复用已有的负载均衡默认不覆盖已有监听，出于以下两点原因：
+
+        -   如果已有负载均衡的监听上绑定了业务，强制覆盖会引发业务中断
+        -   由于CCM目前支持的后端配置有限，无法处理一些复杂配置。如果有复杂的后端配置需求，可以通过手动方式自行配置。
+        如存在以上两种情况不建议强制覆盖监听，如果已有负载均衡的监听端口不再使用，则可以强制覆盖。
+
     -   使用已有的负载均衡暂不支持添加额外标签（`annotation: service.beta.kubernetes.io/alibaba-cloud-loadbalancer-additional-resource-tags`）
     ``` {#codeblock_03f_moe_yx1}
     apiVersion: v1
