@@ -22,19 +22,19 @@ POST /clusters/{cluster_id}/attachscript HTTP/1.1
 
 **请求体 RequestBody**
 
-``` {#codeblock_a13_bcd_2a6}
+``` {#codeblock_v4n_uez_lv2}
 {
   "options": "{
-    "flannelIface": "flannel绑定网卡",
-    "enableIptables": 是否启用iptables,
-    "manageRuntime": 是否使用接入工具管理runtime,
-    "nodeNameStrategy": "节点的命名机制",
-    "nodeName": "节点名称"，
-    "nodeNamePrefix": "节点名称前缀",
-    "enabledAddons": [
-            "kube-proxy",
-            "flannel",
-            "coredns"
+    \"flannelIface\": "flannel绑定网卡",
+    \"enableIptables\": 是否启用iptables,
+    \"manageRuntime\": 是否使用接入工具管理runtime,
+    \"nodeNameStrategy\": "节点的命名机制",
+    \"nodeName\": "节点名称"，
+    \"nodeNamePrefix\": "节点名称前缀",
+    \"enabledAddons\": [
+            \"kube-proxy\",
+            \"flannel\",
+            \"coredns\"
     ]
      }"
 }
@@ -82,9 +82,7 @@ HTTP/1.1 202 OK
 **返回体 ResponseBody**
 
 ``` {#codeblock_xkw_0fo_bsp}
-{
-   "wget http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/pkg/run/attach/1.12.6-aliyunedge.1/edgeadm -O edgeadm; chmod u+x edgeadm; ./edgeadm join --openapi-token=XXX --node-spec="{\"flannelIface\":\"eth0\",\"enableIptables\":true,\"assumeYes\":true,\"manageRuntime\":true,\"nodeNameStrategy\":\"hostname\",\"enabledAddons\":[\"kube-proxy\",\"flannel\",\"coredns\"]}""
-}
+ "wget http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/pkg/run/attach/1.12.6-aliyunedge.1/edgeadm -O edgeadm; chmod u+x edgeadm; ./edgeadm join --openapi-token=XXX --node-spec="{\"flannelIface\":\"eth0\",\"enableIptables\":true,\"assumeYes\":true,\"manageRuntime\":true,\"nodeNameStrategy\":\"hostname\",\"enabledAddons\":[\"kube-proxy\",\"flannel\",\"coredns\"]}""
 ```
 
 ## 示例 {#section_t2q_rlb_wdb .section}
@@ -96,14 +94,14 @@ POST /clusters/Cccfd68c47445466XXXX/attachscript HTTP/1.1
 <公共请求头>
 {
      "options": "{
-      "flannelIface": "eth0",
-      "enableIptables": true,
-      "manageRuntime": true,
-      "nodeNameStrategy": "hostname",
-      "enabledAddons": [
-            "kube-proxy",
-            "flannel",
-            "coredns"
+      \"flannelIface\": \"eth0\",
+      \"enableIptables\": true,
+      \"manageRuntime\": true,
+      \"nodeNameStrategy\": \"hostname\",
+      \"enabledAddons\": [
+            \"kube-proxy\",
+            \"flannel\",
+            \"coredns\"
       ]
      }"
 }
@@ -114,8 +112,6 @@ POST /clusters/Cccfd68c47445466XXXX/attachscript HTTP/1.1
 ``` {#codeblock_o0c_rcz_gr0}
 HTTP/1.1 202 Accepted
 <公共响应头>
-{
-   "wget http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/pkg/run/attach/1.12.6-aliyunedge.1/edgeadm -O edgeadm; chmod u+x edgeadm; ./edgeadm join --openapi-token=XXX --node-spec="{\"flannelIface\":\"eth0\",\"enableIptables\":true,\"assumeYes\":true,\"manageRuntime\":true,\"nodeNameStrategy\":\"hostname\",\"enabledAddons\":[\"kube-proxy\",\"flannel\",\"coredns\"]}""
-}
+ "wget http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/pkg/run/attach/1.12.6-aliyunedge.1/edgeadm -O edgeadm; chmod u+x edgeadm; ./edgeadm join --openapi-token=XXX --node-spec="{\"flannelIface\":\"eth0\",\"enableIptables\":true,\"assumeYes\":true,\"manageRuntime\":true,\"nodeNameStrategy\":\"hostname\",\"enabledAddons\":[\"kube-proxy\",\"flannel\",\"coredns\"]}""
 ```
 
