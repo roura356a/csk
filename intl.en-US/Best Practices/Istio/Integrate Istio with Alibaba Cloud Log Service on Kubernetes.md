@@ -6,8 +6,8 @@ With Alibaba Cloud Container Service for Kubernetes, you can integrate Istio wit
 
 ## Prerequisites {#section_llz_ljq_kfb .section}
 
--   You have created a Kubernetes cluster. For more information, see [Create a Kubernetes cluster](../../../../reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
--   You have a local Linux environment in which you have configured the kubectl tool and connected to the cluster with kubectl. For more information, see [Connect to a Kubernetes cluster by using kubectl](../../../../reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Connect to a Kubernetes cluster by using kubectl.md#).
+-   You have created a Kubernetes cluster. For more information, see [Create a Kubernetes cluster](../../../../reseller.en-US//Create a Kubernetes cluster.md#).
+-   You have a local Linux environment in which you have configured the kubectl tool and connected to the cluster with kubectl. For more information, see [Connect to a Kubernetes cluster by using kubectl](../../../../reseller.en-US//Connect to a Kubernetes cluster by using kubectl.md#).
 -   You have downloaded the project codes of an Istio version and run the relevant commands in the Istio file directory. For more information, see [https://github.com/istio/istio/releases](https://github.com/istio/istio/releases).
 -   You have deployed the test application, BookInfo. For more information, see[Install the Istio official sample application](reseller.en-US/Best Practices/Istio/Use Istio to implement intelligent routing in Kubernetes.md#section_csj_jln_cfb) or [Bookinfo Application](https://istio.io/docs/examples/bookinfo/).
 
@@ -25,7 +25,7 @@ Jaeger is an open source distributed tracing system released by Uber for microse
 
 Jaeger on Aliyun Log Service is a distributed tracing system developed on Jaeger. With this system, you can store the collected tracing data to Alibaba Cloud Log Service permanently, and query and present the data through the native interfaces of Jaeger.
 
-![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/155860185112607_en-US.png)
+![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/156620350612607_en-US.png)
 
 |Component|Description|
 |---------|-----------|
@@ -40,15 +40,15 @@ Jaeger on Aliyun Log Service is a distributed tracing system developed on Jaeger
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
 2.  In the left-side navigation pane, choose **Clusters**, select a cluster, and click **More** \> **Deploy Istio**.
 
-    **Note:** In this example, you need to enable Log Service \(SLS\) and Jaeger. For more information, see [Deploy Istio](../../../../reseller.en-US/User Guide/Kubernetes cluster/Istio management/Deploy Istio.md#). This example uses Istio V1.0.
+    **Note:** In this example, you need to enable Log Service \(SLS\) and Jaeger. For more information, see [Deploy Istio on a Kubernetes cluster](../../../../reseller.en-US/User Guide for Kubernetes Clusters/Istio management/Deploy Istio on a Kubernetes cluster.md#). This example uses Istio V1.0.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/155860185112608_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/156620350612608_en-US.png)
 
 3.  On the Istio deployment page, select **Log Service\(SLS\) and Jaeger**.
 
     Container Service for Kubernetes is integrated with Log Service. Its distributed tracing data is saved to the Logstore of Log Service.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/155860185113746_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/156620350613746_en-US.png)
 
     The descriptions of Log Service parameters are as follows.
 
@@ -63,27 +63,27 @@ Jaeger on Aliyun Log Service is a distributed tracing system developed on Jaeger
     **Note:** If you specify a Project that does not exist, the system automatically creates and initializes a new Project.
 
 4.  Click **Deploy Istio**. After a few minutes, the Istio integrated with Alibaba Cloud Log Service is created.
-5.  In the left-side navigation pane, when you choose **Application** \> **Service**, the Istio services, including the integrated Log Service, are displayed on the right.
+5.  In the left-side navigation pane, when you choose **Ingresses and Load Balancing** \> **Service**, the Istio services, including the integrated Log Service, are displayed on the right.
 
-    ![](images/12692_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/156620350712692_en-US.png)
 
 
 ## Step 2: View Jaeger on Aliyun Log Service {#section_ewt_4fg_mfb .section}
 
 1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-2.  In the left-side navigation pane, click **Application** \> **Service**, click a cluster and the istio-system namespace, and then click the external endpoint of the tracing-on-sls-query service.
+2.  In the left-side navigation pane, click **Ingresses and Load Balancing** \> **Service**, click a cluster and the istio-system namespace, and then click the external endpoint of the tracing-on-sls-query service.
 
-    ![](images/12696_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/156620350712696_en-US.png)
 
 3.  On the left side, select a service from the **Service** drop-down list, set other parameters, and click **Find Traces**. The scatter diagram of time and duration displayed in the upper-right corner displays the results and provides drill-down capability.
 
     **Note:** In this example, the Bookinfo sample application is used to view the productpage service calling.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/155860185112697_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/156620350712697_en-US.png)
 
 4.  You can select from multiple views that display trace results in different ways. For example, you can select a histogram within a tracing period, or the service duration time of the tracing process.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/155860185212698_en-US.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21299/156620350812698_en-US.png)
 
 
 ## Step 3: View Log Service {#section_etj_vct_cfb .section}
