@@ -12,7 +12,7 @@ POST /clusters HTTP/1.1
 
 **特有请求头 RequestHead**
 
-无，请参考[公共请求头部](cn.zh-CN/开发指南/集群 API 调用方式/公共参数.md#section_mr5_lf1_wdb)。
+无，请参考[公共请求头部](intl.zh-CN/开发指南/集群 API 调用方式/公共参数.md#section_mr5_lf1_wdb)。
 
 **请求体 RequestBody**
 
@@ -77,7 +77,7 @@ POST /clusters HTTP/1.1
 -   PostPaid：按量付费
 
  默认为按量付费。|
-|master\_instance\_types|list|是|Master节点 ECS 规格类型代码。更多详细信息，参见[../../../../dita-oss-bucket/SP\_2/DNA0011858383/ZH-CN\_TP\_9548.md\#](../../../../cn.zh-CN/实例/实例规格族.md#)。|
+|master\_instance\_types|list|是|Master节点 ECS 规格类型代码。更多详细信息，参见[实例规格族](../../../../intl.zh-CN/实例/实例规格族.md#)。|
 |master\_system\_disk\_category|string|是|Master节点系统盘类型，取值范围是： -   cloud\_efficiency：高效云盘
 -   cloud\_ssd：SSD云盘
 
@@ -93,7 +93,7 @@ POST /clusters HTTP/1.1
     -   设置为false，表示不配置SNAT，此时不能访问公网环境。
 
  |
-|worker\_instance\_types|list|是|Worker 节点 ECS 规格类型代码。更多详细信息，参见[实例规格族](../../../../cn.zh-CN/实例/实例规格族.md#)。|
+|worker\_instance\_types|list|是|Worker 节点 ECS 规格类型代码。更多详细信息，参见[实例规格族](../../../../intl.zh-CN/实例/实例规格族.md#)。|
 |worker\_system\_disk\_category|string|是|Worker节点系统盘类型。|
 |worker\_system\_disk\_size|int|是|Worker节点系统盘大小，单位为GiB。|
 |worker\_vswitch\_ids|list|是|worker节点的虚拟交换机 ID。|
@@ -202,7 +202,7 @@ HTTP/1.1 202 Accepted
 
 **特有返回头 ResponseHead**
 
-无，请参考[公共返回头部](cn.zh-CN/开发指南/集群 API 调用方式/公共参数.md#section_zr5_lf1_wdb)。
+无，请参考[公共返回头部](intl.zh-CN/开发指南/集群 API 调用方式/公共参数.md#section_zr5_lf1_wdb)。
 
 **返回体 ResponseBody**
 
