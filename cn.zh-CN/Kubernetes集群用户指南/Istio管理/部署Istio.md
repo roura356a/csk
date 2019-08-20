@@ -11,10 +11,8 @@
 1.  部署istio 。 
 
     1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
-    2.  单击左侧导航栏中的**集群**，进入集群列表页面。
-    3.  选择所需的集群并单击操作列**更多** \> **部署Istio**。![部署istio](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156516854011255_zh-CN.png)
-
-
+    2.  单击左侧导航栏中的**服务网格**，进入Istio管理页面。
+    3.  选择所需的集群并设置相应的配置参数。
     4.  根据如下信息，部署Istio。 
 
         |配置|说明|
@@ -45,23 +43,23 @@
 
     5.  单击**部署 Istio**，启动部署。 在部署页面下方，可实时查看部署进展及状态。
 
-        ![查看部署结果](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156516854011256_zh-CN.png)
+        ![查看部署结果](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156629542811256_zh-CN.png)
 
     可通过以下方法查看部署是否成功：
 
     -   在部署 Istio页面下方，**部署 Istio**变为**已部署**。
 
-        ![部署完成](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156516854011257_zh-CN.png)
+        ![部署完成](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156629542811257_zh-CN.png)
 
     -   -   单击左侧导航栏**应用** \> **容器组**，进入容器组页面。
 -   选择部署Istio的集群及命名空间，可查看到已经部署Istio的相关容器组。
 
-    ![容器组查看](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156516854111258_zh-CN.png)
+    ![容器组查看](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156629542911258_zh-CN.png)
 
     -   -   单击左侧导航栏**路由与负载均衡** \> **服务**，进入服务（Service）页面。
 -   选择部署Istio的集群及命名空间，可查看到已经部署Istio相关服务所提供的访问地址。
 
-    ![部署istio的访问地址](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156516854111259_zh-CN.png)
+    ![部署istio的访问地址](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156629542911259_zh-CN.png)
 
 2.  管理Istio Ingress Gateway。 上述部署 Istio之后，Istio 1.1.4之后默认会创建一个Ingress Gateway。对于已有旧版本，建议升级到当前最新版本。如果需要对Ingress Gateway的配置进行调整，可以按照如下步骤进行更新。
     1.  在左侧导航栏选择**应用** \> **发布**，单击**Helm**页签。
