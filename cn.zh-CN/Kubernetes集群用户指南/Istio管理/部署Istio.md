@@ -43,23 +43,21 @@
 
     5.  单击**部署 Istio**，启动部署。 在部署页面下方，可实时查看部署进展及状态。
 
-        ![查看部署结果](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156629542811256_zh-CN.png)
+        ![查看部署结果](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156635100511256_zh-CN.png)
 
     可通过以下方法查看部署是否成功：
 
     -   在部署 Istio页面下方，**部署 Istio**变为**已部署**。
 
-        ![部署完成](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156629542811257_zh-CN.png)
+        ![部署完成](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156635100611257_zh-CN.png)
 
-    -   -   单击左侧导航栏**应用** \> **容器组**，进入容器组页面。
--   选择部署Istio的集群及命名空间，可查看到已经部署Istio的相关容器组。
+    -   单击左侧导航栏**应用** \> **容器组**，选择部署Istio的集群及命名空间，可查看到已经部署Istio的相关容器组。
 
-    ![容器组查看](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156629542911258_zh-CN.png)
+        ![容器组查看](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156635100611258_zh-CN.png)
 
-    -   -   单击左侧导航栏**路由与负载均衡** \> **服务**，进入服务（Service）页面。
--   选择部署Istio的集群及命名空间，可查看到已经部署Istio相关服务所提供的访问地址。
+    -   单击左侧导航栏**路由与负载均衡** \> **服务**，选择部署Istio的集群及命名空间，可查看到已经部署Istio相关服务所提供的访问地址。
 
-    ![部署istio的访问地址](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156629542911259_zh-CN.png)
+        ![部署istio的访问地址](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/20172/156635100611259_zh-CN.png)
 
 2.  管理Istio Ingress Gateway。 上述部署 Istio之后，Istio 1.1.4之后默认会创建一个Ingress Gateway。对于已有旧版本，建议升级到当前最新版本。如果需要对Ingress Gateway的配置进行调整，可以按照如下步骤进行更新。
     1.  在左侧导航栏选择**应用** \> **发布**，单击**Helm**页签。
@@ -101,4 +99,10 @@
         -   ports：设置启用的端口。
         -   serviceType：指定服务类型，可以设置为LoadBalancer、ClusterIP或者NodePort。
         -   serviceAnnotations：当服务类型为设置LoadBalancer时，通过设置serviceAnnotations参数指定使用内网还是公网负载均衡、使用已有的SLB等；其他参数具体参见[通过负载均衡访问服务](../../../../intl.zh-CN/Serverless Kubernetes集群用户指南/负载均衡管理/通过负载均衡访问服务.md#)。
+3.  添加网关。 作为Istio on ACK安装的一部分，提供了一个Istio入口网关。升级时，Istio和包括默认入口网关在内的所有默认资源都会自动升级。
+
+    如果添加入口或出口网关，则它们在您的控制之下，并且在自动升级期间不会对其进行修改。请注意，在1.1及更高版本中，默认情况下不安装Istio egress网关。
+
+    默认入口网关适用于已安装资源（RBAC、服务、部署），除了添加字段之外不需要自定义的部署。请勿更改默认入口网关配置中的任何值，因为在自动升级期间更改将恢复为默认值。对于需要自定义的更复杂方案，您需要创建新的入口网关。
+
 
