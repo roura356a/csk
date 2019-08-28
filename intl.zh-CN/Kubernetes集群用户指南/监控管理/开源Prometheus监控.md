@@ -2,8 +2,8 @@
 
 Prometheus是一款面向云原生应用程序的开源监控工具，本文介绍如何基于阿里云容器Kubernetes版本部署Prometheus监控方案。
 
--   您已经成功创建一个 Kubernetes 集群，参见[创建Kubernetes 集群](intl.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes 集群.md#)。
--   您已连接到Master节点，方便快速查看节点标签等信息，参见[通过 kubectl 连接 Kubernetes 集群](intl.zh-CN/Kubernetes集群用户指南/集群管理/管理与访问集群/通过 kubectl 连接 Kubernetes 集群.md#)。
+-   您已经成功创建一个 Kubernetes 集群，参见[创建Kubernetes 集群](cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes 集群.md#)。
+-   您已连接到Master节点，方便快速查看节点标签等信息，参见[通过 kubectl 连接 Kubernetes 集群](cn.zh-CN/Kubernetes集群用户指南/集群管理/管理与访问集群/通过 kubectl 连接 Kubernetes 集群.md#)。
 
 对于监控系统而言，监控对象通常分为以下两类：
 
@@ -26,7 +26,7 @@ Prometheus是一款面向云原生应用程序的开源监控工具，本文介�
 1.  部署Prometheus监控方案。 
     1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
     2.  在 Kubernetes 菜单下，在左侧导航栏选择**市场** \> **应用目录**，在右侧选中**ack-prometheus-operator**。
-    3.  在应用目录-ack-prometheus-operator页面右侧的**创建**区域，选择目标集群后，单击**创建**，添加 Prometheus-operator。![Prometheus-operator](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395652531_zh-CN.png)
+    3.  在应用目录-ack-prometheus-operator页面右侧的**创建**区域，选择目标集群后，单击**创建**，添加 Prometheus-operator。![Prometheus-operator](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898152531_zh-CN.png)
 
  查看部署结果：
         1.  执行以下命令，将集群中的Prometheus 映射到本地9090端口。
@@ -38,11 +38,11 @@ Prometheus是一款面向云原生应用程序的开源监控工具，本文介�
         2.  在浏览器中访问localhost:9090，即可查看Prometheus。
         3.  选择菜单栏**Status** \> **Targets**，查看所有采集任务。
 
-            ![采集任务](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395621082_zh-CN.png)
+            ![采集任务](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898121082_zh-CN.png)
 
             如果所有任务的状态为**UP**，表示所有采集任务均已正常运行。
 
-            ![Targets](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395621084_zh-CN.png)
+            ![Targets](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898121084_zh-CN.png)
 
 2.  查看与展示数据聚合。 
     1.  执行以下命令，将集群中的Grafana映射到本地3000端口。 
@@ -53,7 +53,7 @@ Prometheus是一款面向云原生应用程序的开源监控工具，本文介�
 
     2.  在浏览器中访问localhost:3000，选择相应的Dashboard，即可查看相应的聚合内容。 
 
-        ![Dashboard](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395721092_zh-CN.png)
+        ![Dashboard](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898121092_zh-CN.png)
 
 3.  查看告警规则与设置告警压制。 
     -   查看告警规则
@@ -62,7 +62,7 @@ Prometheus是一款面向云原生应用程序的开源监控工具，本文介�
 
         -   红色：正在触发告警。
         -   绿色：正常状态。
-        ![Alerts](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395721097_zh-CN.png)
+        ![Alerts](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898121097_zh-CN.png)
 
     -   设置告警压制
 
@@ -72,7 +72,7 @@ Prometheus是一款面向云原生应用程序的开源监控工具，本文介�
         kubectl --namespace monitoring port-forward svc/alertmanager-operated 9093
         ```
 
-        ![Silence](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395721100_zh-CN.png)
+        ![Silence](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898121100_zh-CN.png)
 
 
 上述步骤为您简单的介绍了如何部署Prometheus监控方案，下面将为您详细介绍一些不同场景下的配置。
@@ -105,7 +105,7 @@ Prometheus是一款面向云原生应用程序的开源监控工具，本文介�
 
             将url中的值替换成实际的dingtalk的值，本例中为dingtalk1和dingtalk2。
 
-            ![webhook配置](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395756908_zh-CN.png)
+            ![webhook配置](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898156908_zh-CN.png)
 
         **说明：** 如果需要添加多个钉钉机器人，请将前面的webhook依次递增即可。
 
@@ -113,13 +113,13 @@ Prometheus是一款面向云原生应用程序的开源监控工具，本文介�
 
         如果需要添加邮件告警功能，请在应用目录-ack-prometheus-operator页面，单击下方的**参数**页签，将红色选框内的邮件信息补充完整，在alertmanager的config字段找到receiver，填写您receivers中对应的邮件告警名称（默认为 mail）。
 
-        ![邮件告警](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395854783_zh-CN.png)
+        ![邮件告警](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898154783_zh-CN.png)
 
 -   设置告警接收模板
 
     您可以在alertmanager的templateFiles定义我们的告警模板，示例如下：
 
-    ![模板设置](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395856918_zh-CN.png)
+    ![模板设置](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898256918_zh-CN.png)
 
 
 ## 存储配置 {#section_13v_n8h_p2w .section}
@@ -128,23 +128,23 @@ Prometheus是一款面向云原生应用程序的开源监控工具，本文介�
 
 -   TSDB配置
 
-    如果需要将prometheus的数据存入TSDB，请在应用目录-ack-prometheus-operator页面，单击下方的**参数**页签，找到tsdb字段，将enabled设置为true，并把remoteRead和remoteWrite的url填写完整，url填写可以参见[快速入门](https://www.alibabacloud.com/help/zh/doc-detail/114508.htm)
+    如果需要将prometheus的数据存入TSDB，请在应用目录-ack-prometheus-operator页面，单击下方的**参数**页签，找到tsdb字段，将enabled设置为true，并把remoteRead和remoteWrite的url填写完整，url填写可以参见[快速入门](https://help.aliyun.com/document_detail/114508.html)。
 
-    ![TSDB配置](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395854784_zh-CN.png)
+    ![TSDB配置](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898254784_zh-CN.png)
 
 -   云盘存储配置
 
     ack-prometheus-operator默认带了阿里云盘存储，可以选择在prometheus或者alertmanager中选择云盘存储，请在应用目录-ack-prometheus-operator页面，单击下方的**参数**页签，找到alertmanager的storage字段或者prometheus的storageSpec字段来配置云盘存储，这里的storageClassName需要填云盘类型，accessModes需要配置访问模式，srorage需要填写需要容量。
 
-    ![云盘配置](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395854800_zh-CN.png)
+    ![云盘配置](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898254800_zh-CN.png)
 
     **说明：** 本例中，您需要在Prometheus中启用一个SSD云盘，则在Prometheus的storageSpec字段中，将`storageClassName`配置为alicloud-disk-ssd，`accessModes`配置为ReadWriteOnce，`srorage`配置为50Gi，示例如下。
 
-    ![云盘存储](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395856923_zh-CN.png)
+    ![云盘存储](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898256923_zh-CN.png)
 
     配置完成后，您可以在ECS控制台，选择**存储与快照** \> **云盘**，查看您启用的SSD云盘。
 
-    如果您想要复用云盘，请参见[云盘存储卷使用说明](intl.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/云盘存储卷/云盘存储卷使用说明.md#)。
+    如果您想要复用云盘，请参见[云盘存储卷使用说明](cn.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/云盘存储卷/云盘存储卷使用说明.md#)。
 
 
 ## 通过自定义指标来实现HPA {#section_xhk_d2b_1ot .section}
@@ -153,7 +153,7 @@ Prometheus是一款面向云原生应用程序的开源监控工具，本文介�
 
 您可以在应用目录-ack-prometheus-operator页面，单击下方的**参数**页签，找到prometheus-adapter字段，将enabled为true，即可启用adapter。
 
-![启用adapter](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395854785_zh-CN.png)
+![启用adapter](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898254785_zh-CN.png)
 
 配置完成就，您可以通过执行如下命令，来查看是否正确开启adapter，如果您需要自定义指标，请参见[prometheus-adapter](https://github.com/DirectXMan12/k8s-prometheus-adapter/blob/master/docs/config-walkthrough.md)。
 
@@ -169,7 +169,7 @@ kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1"
 
 您可以在应用目录-ack-prometheus-operator页面，单击下方的**参数**页签，找到prometheus的configmaps字段，填入您自定义configmap名称。
 
-![挂载configmap](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395956963_zh-CN.png)
+![挂载configmap](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898256963_zh-CN.png)
 
 如果集群中已有部署好的prometheus-operator，请按照如下进行操作：
 
@@ -177,17 +177,17 @@ kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1"
 2.  单击**Helm**页签，在目标应用右侧单击**更新**，进入更新发布页面。
 3.  在prometheus和alertmanager的configmaps字段中，填入您自定义configmap名称后，单击**更新**。 
 
-    ![更新配置](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395956964_zh-CN.png)
+    ![更新配置](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898256964_zh-CN.png)
 
     **说明：** 例如，您想要定义一个名称为`special-config`的configmap，里面包含prometheus的config文件。如果您想要将在prometheus的pod启动时，将其作为 --config.file的参数，那我们就可以在prometheus的configmaps字段添加如下字段，就可以将其挂载到我们的pod中了，其挂载路径为/etc/prometheus/configmaps/。
 
     special-config的yml定义如下：
 
-    ![special-config](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395957825_zh-CN.png)
+    ![special-config](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898257825_zh-CN.png)
 
     prometheus的configmaps字段配置如下。
 
-    ![configmaps](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689395957828_zh-CN.png)
+    ![configmaps](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898257828_zh-CN.png)
 
 
 ## grafana配置 {#section_xg9_tpl_nfi .section}
@@ -196,7 +196,7 @@ kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1"
 
     如果您想将Dashboard文件以configmap的方式挂载到grafana pod中去，您可以在应用目录-ack-prometheus-operator页面，单击下方的**参数**页签，找到`extraConfigmapMounts`，您可以在下图的字段中进行挂载配置。
 
-    ![dashboard外挂配置](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689396057799_zh-CN.png)
+    ![dashboard外挂配置](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898257799_zh-CN.png)
 
     **说明：** 
 
@@ -216,7 +216,7 @@ kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1"
 ## 常见问题 {#section_wbb_dw7_h96 .section}
 
 -   钉钉配置后，没有收到告警。
-    1.  获取钉钉的webhook地址。请参见[场景1：使用钉钉实现Kubernetes监控告警](intl.zh-CN/Kubernetes集群用户指南/监控管理/事件监控.md#section_dfk_z88_5xf)。
+    1.  获取钉钉的webhook地址。请参见[场景1：使用钉钉实现Kubernetes监控告警](cn.zh-CN/Kubernetes集群用户指南/监控管理/事件监控.md#section_dfk_z88_5xf)。
     2.  找到dingtalk字段，将enabled设置为true，将Token字段填入钉钉的webhook地址。请参见[\#section\_kbc\_qjj\_hn3](#section_kbc_qjj_hn3)中的**钉钉告警配置**。
 -   部署prometheus-operator时报错。
 
@@ -238,7 +238,7 @@ kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1"
 
 -   如果在单击yaml更新时，出现如下图所示的错误。
 
-    ![集群报错](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689396057806_zh-CN.png)
+    ![集群报错](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898357806_zh-CN.png)
 
     此问题原因是tiller的配置文件过大，导致的集群无法访问，您可以先将部分注释删除，再将配置文件以configmap形式，挂载到pod中，目前prometheus-operator只支持prometheus和alertmanager pod的挂载，步骤如您可以参见[Prometheus挂载自定义configmap](#section_20m_m2b_ki9)中的方法二。
 
@@ -250,6 +250,6 @@ kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1"
 
     TSDB支持的地域比较少，而阿里云云盘是全域支持，数据回收策略请参见以下配置。
 
-    ![数据回收策略](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156689396057817_zh-CN.png)
+    ![数据回收策略](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/24503/156698898357817_zh-CN.png)
 
 
