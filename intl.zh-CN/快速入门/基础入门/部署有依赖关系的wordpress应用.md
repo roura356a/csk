@@ -1,9 +1,11 @@
 # 部署有依赖关系的wordpress应用 {#task_dd2_2td_n2b .task}
 
--   创建一个 Kubernetes 集群。详情参见[快速创建Kubernetes集群](intl.zh-CN/快速入门/基础入门/快速创建Kubernetes集群.md#)。
--   您需要创建存储卷和存储卷声明，关于如何创建存储卷，请参见[使用阿里云云盘](../../../../intl.zh-CN/用户指南/Kubernetes集群/存储管理/使用阿里云云盘.md#)、[使用阿里云 NAS](../../../../intl.zh-CN/用户指南/Kubernetes集群/存储管理/使用阿里云 NAS.md#)、[使用阿里云 OSS](../../../../intl.zh-CN/用户指南/Kubernetes集群/存储管理/使用阿里云 OSS.md#)；关于如何创建存储卷声明，请参见[创建持久化存储卷声明](../../../../intl.zh-CN/用户指南/Kubernetes集群/存储管理/创建持久化存储卷声明.md#)。在这里我们使用阿里云云盘作为存储卷；在示例中我们选择PV/PVC的方式进行存储卷挂载。在这里创建wordpress-pv-claim和wordpress-mysql-pv-claim两个存储声明，分别会在wordpress和wordpress-mysql的yaml文件中使用这两个声明来挂载相应的存储卷。
+本文主要为您介绍如何部署有依赖关系的wordpress应用。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16063/15619694947682_zh-CN.png)
+-   创建一个 Kubernetes 集群。详情参见[快速创建Kubernetes集群](intl.zh-CN/快速入门/基础入门/快速创建Kubernetes集群.md#)。
+-   您需要创建存储卷和存储卷声明，关于如何创建存储卷，请参见[使用阿里云云盘](../intl.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/云盘存储卷/云盘存储卷使用说明.md#)、[使用阿里云 NAS](../intl.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/NAS储存卷/NAS存储卷使用说明.md#)、[使用阿里云 OSS](../intl.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/OSS储存卷/OSS存储卷使用说明.md#)；关于如何创建存储卷声明，请参见[创建持久化存储卷声明](../intl.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/创建持久化存储卷声明.md#)。在这里我们使用阿里云云盘作为存储卷；在示例中我们选择PV/PVC的方式进行存储卷挂载。在这里创建wordpress-pv-claim和wordpress-mysql-pv-claim两个存储声明，分别会在wordpress和wordpress-mysql的yaml文件中使用这两个声明来挂载相应的存储卷。
+
+    ![存储与存储声明](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16063/15670416937682_zh-CN.png)
 
 
 本例主要演示如何通过编排模板中的自定义模板创建有依赖关系的应用。
@@ -21,23 +23,23 @@
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 2.  使用准备好的存储卷声明。在这里创建wordpress-pvc和wordpress-mysql-pvc两个存储声明，分别会在wordpress和wordpress-mysql的yaml文件中到这两个声明来挂载相应的存储卷。
-3.  单击左侧导航栏中**应用配置** \> **保密字典**，选择所需的集群和命名空间，单击右上角**创建**。创建过程请参考[创建密钥](../../../../intl.zh-CN/用户指南/Kubernetes集群/配置项及密钥管理/创建密钥.md#)。 
+3.  单击左侧导航栏中**应用配置** \> **保密字典**，选择所需的集群和命名空间，单击右上角**创建**。创建过程请参考[创建密钥](../intl.zh-CN/Kubernetes集群用户指南/配置项及密钥管理/创建密钥.md#)。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16063/15619694947669_zh-CN.png)
+    ![创建密钥](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16063/15670416937669_zh-CN.png)
 
     由于创建和访问mysql数据库需要用户名密码，所以我们通过创建密钥的方式进行用户名密码的管理。
 
     在使用secret前，您需要先将需要加密的secret在保密字典里进行创建，在本例中通过将mysql root的密码作为密钥进行创建，创建名称为mysql-pass，类型选择**Opaque**。该密钥会在后面的wordpress和wordpress-mysql的yaml文件中用到。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16063/15619694957693_zh-CN.png)
+    ![配置密钥页面](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16063/15670416937693_zh-CN.png)
 
 4.  单击左侧导航栏中的**应用** \> **无状态**，单击右上角**使用模板创建**。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16063/15619694957692_zh-CN.png)
+    ![创建应用](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16063/15670416937692_zh-CN.png)
 
     选择所需的集群和命名空间，创建wordpress deployment的yaml文件如下：
 
-    ```
+    ``` {#codeblock_8xp_wwa_psf}
     apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -67,7 +69,7 @@
               valueFrom:
                 secretKeyRef:
                   name: mysql-pass
-                  key: password-wordpress
+                  key: password-mysql
             ports:
             - containerPort: 80
               name: wordpress
@@ -82,7 +84,7 @@
 
     创建mysql deployment的yaml文件如下：
 
-    ```
+    ``` {#codeblock_nar_nod_nxh}
     apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -127,11 +129,11 @@
 
     wordpress mysql需要创建名为wordpress-mysql的service，以使在上面创建的wordpress deploymet可以访问到。由于该mysql只为wordpress内部调用，所以不需要为其创建LoadBalancer类型的service。
 
-    创建service的方法请参考[创建服务](../../../../intl.zh-CN/用户指南/Kubernetes集群/应用管理/创建服务.md#)。
+    创建service的方法请参考[创建服务](../intl.zh-CN/Kubernetes集群用户指南/应用管理/创建服务.md#)。
 
     创建wordpress和mysql service的yaml文件如下：
 
-    ```
+    ``` {#codeblock_qdz_3t7_g3o}
     apiVersion: v1
     kind: Service
     metadata:
@@ -158,16 +160,16 @@
       selector:
         app: wordpress
         tier: mysql
-            clusterIP: None
+      clusterIP: None
     ```
 
 6.  当部署完成后，单击左侧导航栏中的**路由与负载均衡** \> **服务**，找到wordpress服务并查看其外端端点。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16063/15619694957695_zh-CN.png)
+    ![服务列表](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16063/15670416937695_zh-CN.png)
 
-7.  在浏览器中访问wordpress服务的外部端点，您就可以通过负载均衡提供的IP地址进行wordpress应用的访问。 
+7.  在浏览器中输入XX.XX.XX.XX/wp-admin/install.php，访问wordpress服务的外部端点，您就可以通过负载均衡提供的IP地址进行wordpress应用的访问。 此处的XX.XX.XX.XX为上步骤获取的外部端点的IP地址。
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16063/15619694957696_zh-CN.png)
+    ![访问外部端点](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16063/15670416937696_zh-CN.png)
 
 
 在wordpress应用的配置过程中，您可以使用密钥中配置的密码登录应用，此外，wordpress应用所属的容器产生的数据会保存数据卷中。
