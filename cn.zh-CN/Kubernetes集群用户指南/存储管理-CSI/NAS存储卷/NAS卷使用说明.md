@@ -13,14 +13,6 @@
 
 例如，您的挂载点为`055f84ad83-ixxxx.cn-hangzhou.nas.aliyuncs.com `格式。
 
-## 注意事项 {#section_nd3_f8g_0nf .section}
-
--   NAS 为共享存储，可以同时为多个 Pod 提供共享存储服务，即一个PVC可以同时被多个POD使用。
--   在没有卸载NAS文件系统前，务必不要删除NAS挂载点，否则会造成操作系统Hang。
--   NAS挂载点创建后，等待一定时间，待挂载点Ready后方可使用。
--   数据卷挂载协议推荐使用NAS v3。
--   使用NAS数据卷前，推荐升级Flexvolume到最新版本。
-
 ## 注意事项 {#section_shi_di9_uxv .section}
 
 -   NAS 为共享存储，可以同时为多个 Pod 提供共享存储服务，即一个PVC可以同时被多个POD使用。
