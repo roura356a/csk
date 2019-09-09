@@ -10,11 +10,11 @@
 3.   在安全组列表中，单击选择你的 Kubernetes 集群所在的地域。 
 4.   在列表中，kubernetes 集群的安全组名称带有 k8s\_sg 字样，请据此选择对应的安全组 ID ，单击 **配置规则**。 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17795/15546952789869_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17795/15679941939869_zh-CN.png)
 
 5.   如在 **入方向** 列表中没有符合要求的安全组规则，则可单击 **添加安全组规则**，在弹出的添加安全组规则对话窗口进行设置。以下是一个参考设置示例： 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17795/15546952789870_zh-CN.png)
+    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17795/15679941939870_zh-CN.png)
 
     -   为 **规则方向** 选择 **入方向**。
     -   为 **端口范围** 根据区块链网络的外部端口 NodePort 范围选择合适的端口范围区间。
