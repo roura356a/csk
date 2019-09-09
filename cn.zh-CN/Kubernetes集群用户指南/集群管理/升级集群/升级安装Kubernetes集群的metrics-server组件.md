@@ -2,7 +2,7 @@
 
 本文档介绍如何在不升级Kubernetes集群的情况下升级安装metrics-server组件。
 
--   您已成功创建一个Kubernetes集群。有关如何创建Kubernetes集群，参见[ZH-CN\_TP\_16639.md\#](cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes 集群.md#)。
+-   您已成功创建一个Kubernetes集群。有关如何创建Kubernetes集群，参见[创建Kubernetes 集群](intl.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes 集群.md#)。
 -   确保Kubernetes集群的初始版本是1.12.6及以前的版本。
 
 Kubernetes集群组件的升级过程分为以下三个部分：切换数据采集组件、切换监控数据链路、变更组件兼容适配。
@@ -116,7 +116,7 @@ Kubernetes集群组件的升级过程分为以下三个部分：切换数据采�
 2.  选择目标**集群**。
 3.  找到集群的三个master节点。单击master节点的实例ID，进入实例详情页面（本文档以master-01为例）。 
 
-    ![切换链路1](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156568507539497_zh-CN.png)
+    ![切换链路1](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156802316539497_zh-CN.png)
 
 4.  单击**远程连接**。进入 ECS 实例远程连接界面，根据页面指导，输入远程连接密码并单击**确定**。登录成功后，输入以下命令： 
 
@@ -124,9 +124,9 @@ Kubernetes集群组件的升级过程分为以下三个部分：切换数据采�
     sed -i 's/--horizontal-pod-autoscaler-use-rest-clients=false/--horizontal-pod-autoscaler-use-rest-clients=true/' /etc/kubernetes/manifests/kube-controller-manager.yaml                            
     ```
 
-    ![切换链路2](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156568507539498_zh-CN.png)
+    ![切换链路2](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156802316539498_zh-CN.png)
 
-5.  重复步骤[ZH-CN\_TP\_129974.md\#li\_03](cn.zh-CN/Kubernetes集群用户指南/集群管理/升级集群/升级安装Kubernetes集群的metrics-server组件.md#li_03)-[ZH-CN\_TP\_129974.md\#li\_04](cn.zh-CN/Kubernetes集群用户指南/集群管理/升级集群/升级安装Kubernetes集群的metrics-server组件.md#li_04)，在master-02和master-03节点上执行该命令。
+5.  重复步骤3-4，在master-02和master-03节点上执行该命令。
 
 执行完毕后，kube-controller-manager组件会被kubelet自动拉起更新。
 
@@ -135,20 +135,20 @@ Kubernetes集群组件的升级过程分为以下三个部分：切换数据采�
 1.  单击左侧导航栏中的**路由与负载均衡** \> **服务**，进入服务页面。
 2.  选择目标**集群**和命名空间**kube-system**。单击服务**heapster**右侧的**查看YAML**。 
 
-    ![组件兼容适配变更1](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156568507539499_zh-CN.png)
+    ![组件兼容适配变更1](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156802316539499_zh-CN.png)
 
 3.  在弹出的对话框中，修改selector中k8s-app的值为metrics-server。单击**更新**，完成修改。 
 
-    ![组件兼容适配变更2](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156568507539500_zh-CN.png)
+    ![组件兼容适配变更2](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156802316639500_zh-CN.png)
 
 4.  单击左侧导航栏中的**应用** \> **无状态**，进入无状态页面。
 5.  选择目标**集群**和**命名空间**kube-system。 
 
-    ![组件兼容适配变更3](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156568507539506_zh-CN.png)
+    ![组件兼容适配变更3](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156802316639506_zh-CN.png)
 
 6.  选择Heapster相关组件（heapster和monitoring-influxdb），单击**更多** \> **删除**，在弹出的对话框中，单击**确定**，完成链路切换。 
 
-    ![组件兼容适配变更4](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156568507639501_zh-CN.png)
+    ![组件兼容适配变更4](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156802316639501_zh-CN.png)
 
     **说明：** 删除monitoring-influxdb 组件时，在弹出的删除monitoring-influxdb提示框中，勾选**移除关联的服务（Server）monitoring-influxdb**，单击**确定**。
 
@@ -158,6 +158,6 @@ Kubernetes集群组件的升级过程分为以下三个部分：切换数据采�
 
     **说明：** 所有组件的CPU和内存值均为0则表示异常。
 
-    ![组件兼容适配变更5](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156568507639502_zh-CN.png)
+    ![组件兼容适配变更5](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/129974/156802316639502_zh-CN.png)
 
 
