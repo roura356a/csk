@@ -1,8 +1,8 @@
 # Create an Apsara File Storage NAS data volume {#task_bh5_dll_vdb .task}
 
-Before you create an Apsara File Storage NAS data volume, you must have a storage package in the region where the Kubernetes cluster is located. You can use an existing storage package or purchase a new storage package. For more information, see [Purchase a storage package](https://help.aliyun.com/document_detail/27524.html).
+Before you create an Apsara File Storage NAS data volume, you must have a storage package in the region where the Kubernetes cluster is located. You can use an existing storage package or purchase a new storage package. For more information, see [Purchase a storage package](../../../../reseller.en-US/Pricing/Subscription/Purchase a storage package.md#).
 
-1.  Log on to the [Apsara File Storage NAS console](https://nas.console.aliyun.com/). 
+1.  Log on to the [Apsara File Storage NAS console](https://nas.console.aliyun.com/).
 2.  On the File System List page, select the region where the GPU cluster is located and click **Create File System**. 
 
     ![](images/9093_en-US.png)
@@ -16,12 +16,12 @@ Before you create an Apsara File Storage NAS data volume, you must have a storag
     -   **Protocol Type**: Select NFS \(including NFSv3 and NFSv4\).
     -   **Zone**: Select **China East 1 Zone B**. Different zones in the same region can communicate with each other.
     -   **Storage Package**: Select the storage package you have prepared.
-4.  Click **OK** to complete the file system creation. You can see the file system in the list. 
+4.  Click **OK** to complete the file system creation. You can see the file system in the list.
 5.  In the Actions column, click **Manage** to go to the file system details page. 
 
     ![](images/9095_en-US.png)
 
-6.  In the Mount Point navigation bar, click **Add Mount Point** and configure the information to add a mount point that is in a VPC. For more information, see the "Create a mount point" section of the [Mount a file system on an ECS instance running Windows](https://help.aliyun.com/document_detail/60431.html) topic. 
+6.  In the Mount Point navigation bar, click **Add Mount Point** and configure the information to add a mount point that is in a VPC. For more information, see [Step 2: Create a mount point](../../../../reseller.en-US/Quick Start/NAS Capacity and NAS Performance/Mount a file system on an ECS instance running Linux.md#section_9q8_owp_z6n). 
 
     ![](images/9096_en-US.png)
 
