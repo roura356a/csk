@@ -15,7 +15,7 @@ root@master # kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|
 ## 注意事项 {#section_0iv_2kv_rv0 .section}
 
 -   Cloud Controller Manager（简称CCM）会为`Type=LoadBalancer`类型的Service创建或配置阿里云负载均衡（SLB），包含**SLB**、**监听**、**虚拟服务器组**等资源。
--   对于非LoadBalancer类型的service则不会为其配置负载均衡，这包含如下场景：当用户将`Type=LoadBalancer`的service变更为`Type!=LoadBalancer`时，CCM也会删除其原先为该Service创建的SLB（用户通过`service.beta.kubernetes.io/alicloud-loadbalancer-id`指定的已有SLB除外）。
+-   对于非LoadBalancer类型的service则不会为其配置负载均衡，这包含如下场景：当用户将`Type=LoadBalancer`的service变更为`Type!=LoadBalancer`时，CCM也会删除其原先为该Service创建的SLB（用户通过`service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id`指定的已有SLB除外）。
 -   自动刷新配置：CCM使用声明式API，会在一定条件下自动根据service的配置刷新阿里云负载均衡配置，所有用户自行在SLB控制台上修改的配置均存在被覆盖的风险（使用已有SLB同时不覆盖监听的场景除外），因此不能在SLB控制台手动修改Kubernetes创建并维护的SLB的任何配置，否则有配置丢失的风险。
 -   同时支持为serivce指定一个已有的负载均衡，或者让CCM自行创建新的负载均衡。但两种方式在SLB的管理方面存在一些差异：
 
@@ -31,8 +31,8 @@ root@master # kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|
     -   SLB的删除：当Service删除的时候CCM会删除该SLB。
 -   后端服务器更新
     -   CCM会自动的为该Service对应的SLB刷新后端虚拟服务器组。当Service对应的后端Endpoint发生变化的时候或者集群节点变化的时候都会自动的更新SLB的后端Server。
-    -   `spec.ExternalTraffic = Cluster`模式的Service，CCM默认会将所有节点挂载到SLB的后端（使用BackendLabel标签配置后端的除外）。由于SLB限制了每个ECS上能够attach的SLB的个数（quota），因此这种方式会快速的消耗该quota,当quota耗尽后，会造成Service Reconcile失败。解决的办法，可以使用Local模式的Service。
-    -   `spec.ExternalTraffic = Local`模式的Service，CCM默认只会讲Service对应的Pod所在的节点加入到SLB后端。这会明显降低quota的消耗速度。同时支持四层源IP保留。
+    -   `spec.externalTrafficPolicy = Cluster`模式的Service，CCM默认会将所有节点挂载到SLB的后端（使用BackendLabel标签配置后端的除外）。由于SLB限制了每个ECS上能够attach的SLB的个数（quota），因此这种方式会快速的消耗该quota,当quota耗尽后，会造成Service Reconcile失败。解决的办法，可以使用Local模式的Service。
+    -   `spec.externalTrafficPolicy = Local`模式的Service，CCM默认只会讲Service对应的Pod所在的节点加入到SLB后端。这会明显降低quota的消耗速度。同时支持四层源IP保留。
     -   任何情况下CCM不会将Master节点作为SLB的后端。
     -   CCM会从SLB后端摘除被kubectl drain/cordon的节点。
 
@@ -123,23 +123,23 @@ root@master # kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|
 2.  登录[容器服务管理控制台](https://cs.console.aliyun.com)，单击目标集群右侧的**控制台**，进入 Kubernetes Dashboard 页面。
 3.  单击**创建**，开始创建应用。 
 
-    ![创建应用](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15662071179066_zh-CN.png)
+    ![创建应用](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15682527449066_zh-CN.png)
 
 4.  单击**使用文件创建**。选择刚才保存的nginx-svc.yml 文件。
 5.  单击**上传**。 此时，会创建一个阿里云负载均衡实例指向创建的 Nginx 应用，服务的名称为 `http-svc`。
 6.  在 Kubernetes Dashboard 上定位到 default 命名空间，选择服务。 可以看到刚刚创建的 `http-svc` 的 Nginx 服务和机器的负载均衡地址 `http://114.55.XX.XX:80`。
 
-    ![访问服务](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15662071179067_zh-CN.png)
+    ![访问服务](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/15682527449067_zh-CN.png)
 
 7.  将该地址拷贝到浏览器中即可访问该服务。
 
 ## 通过控制台操作 {#section_jcf_02c_7om .section}
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
-2.  在Kubernetes菜单下，单击左侧导航栏**应用** \> **无状态**，进入无状态（Deployment）页面。
+2.  在 Kubernetes 菜单下，单击左侧导航栏中的**应用** \> **无状态**，进入无状态（Deployment）页面。
 3.  选择目标集群和命名空间，单击右上角**使用模板创建**。 
 
-    ![创建应用](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/156620711813797_zh-CN.png)
+    ![创建应用](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/156825274413797_zh-CN.png)
 
 4.  **示例模板**选为自定义，将以下内容复制到**模板**中。 
 
@@ -164,11 +164,11 @@ root@master # kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|
 5.  单击**创建**。
 6.  创建成功，单击**Kubernetes 控制台**前往控制台查看创建进度。 
 
-    ![Kubernetes 控制台](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/156620711813798_zh-CN.png)
+    ![Kubernetes 控制台](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/156825274413798_zh-CN.png)
 
 7.  或单击左侧导航栏**路由与负载均衡** \> **服务**，选择目标集群和命名空间，查看已部署的服务。 
 
-    ![部署服务](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/156620711813800_zh-CN.png)
+    ![部署服务](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16677/156825274413800_zh-CN.png)
 
 
 ## 更多信息 {#section_jnq_v5w_nla .section}
@@ -283,7 +283,7 @@ root@master # kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|
 
 -   指定负载均衡规格
 
-    负载均衡规格可参见[CreateLoadBalancer](../../../../intl.zh-CN/API参考/负载均衡实例/CreateLoadBalancer.md#)。
+    负载均衡规格可参见[CreateLoadBalancer](../../../../../intl.zh-CN/API参考/负载均衡实例/CreateLoadBalancer.md#)。
 
     ``` {#codeblock_e8t_74y_rtz}
     apiVersion: v1
@@ -319,7 +319,7 @@ root@master # kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|
     kind: Service
     metadata:
       annotations:
-        service.beta.kubernetes.io/alicloud-loadbalancer-id: "${YOUR_LOADBALACER_ID}"
+        service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id: "${YOUR_LOADBALACER_ID}"
       name: nginx
       namespace: default
     spec:
@@ -341,7 +341,7 @@ root@master # kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|
     kind: Service
     metadata:
       annotations:
-        service.beta.kubernetes.io/alicloud-loadbalancer-id: "${YOUR_LOADBALACER_ID}"
+        service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id: "${YOUR_LOADBALACER_ID}"
         service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: "true"
       name: nginx
       namespace: default
@@ -499,7 +499,7 @@ root@master # kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|
 -   创建私有网络类型（VPC）的负载均衡
 
     -   创建私有网络类型的负载均衡，以下两个annotation必选。
-    -   私网负载均衡支持专有网络（VPC）\)和经典网络（Classic），两者区别参见[实例概述](../../../../intl.zh-CN/实例/实例概述.md#)。
+    -   私网负载均衡支持专有网络（VPC）\)和经典网络（Classic），两者区别参见[实例概述](../../../../../intl.zh-CN/实例/实例概述.md#)。
     ``` {#codeblock_eyl_08w_ay7}
     apiVersion: v1
     kind: Service
@@ -722,7 +722,19 @@ root@master # kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|
     ```
 
 
-**说明：** 注释的内容是区分大小写的。
+**说明：** 
+
+-   注释的内容是区分大小写的。
+-   自2019年9月11日起，annotation字段alicloud更新为alibaba-cloud。
+
+    例如：
+
+    更新前：`service.beta.kubernetes.io/alicloud-loadbalancer-id`
+
+    更新后：`service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id`
+
+    系统将继续兼容alicloud的写法，用户无需做任何修改，敬请注意。
+
 
 |注释|类型|描述|默认值|
 |--|--|--|---|
@@ -732,19 +744,19 @@ root@master # kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|
 
  |classic|
 |service.beta.kubernetes.io/alicloud-loadbalancer-charge-type|string|取值可以是paybytraffic或者paybybandwidth|paybytraffic|
-|service.beta.kubernetes.io/alicloud-loadbalancer-id|string|负载均衡实例的 ID。通过 service.beta.kubernetes.io/alicloud-loadbalancer-id指定您已有的SLB，默认情况下，使用已有的负载均衡实例，不会覆盖监听，如要强制覆盖已有监听，请配置service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners为true。|无|
+|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id|string|负载均衡实例的 ID。通过 service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id指定您已有的SLB，默认情况下，使用已有的负载均衡实例，不会覆盖监听，如要强制覆盖已有监听，请配置service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners为true。|无|
 |service.beta.kubernetes.io/alicloud-loadbalancer-backend-label|string|通过 label 指定 SLB 后端挂载哪些worker节点。|无|
-|service.beta.kubernetes.io/alicloud-loadbalancer-spec|string|负载均衡实例的规格。可参见：[CreateLoadBalancer](../../../../intl.zh-CN/API参考/负载均衡实例/CreateLoadBalancer.md#)|无|
+|service.beta.kubernetes.io/alicloud-loadbalancer-spec|string|负载均衡实例的规格。可参见：[CreateLoadBalancer](../../../../../intl.zh-CN/API参考/负载均衡实例/CreateLoadBalancer.md#)|无|
 |service.beta.kubernetes.io/alicloud-loadbalancer-persistence-timeout|string|会话保持时间。 仅针对TCP协议的监听，取值：0-3600（秒）
 
  默认情况下，取值为0，会话保持关闭。
 
- 可参见：[../../../../dita-oss-bucket/SP\_23/DNSLB11870158/ZH-CN\_TP\_4205.md\#](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
+ 可参见：[CreateLoadBalancerTCPListener](../../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
 
  |0|
 |service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session|string|是否开启会话保持。取值：on | off **说明：** 仅对HTTP和HTTPS协议的监听生效。
 
- 可参见：[../../../../dita-oss-bucket/SP\_23/DNSLB11870158/ZH-CN\_TP\_4203.md\#](../../../../intl.zh-CN/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md#)和[../../../../dita-oss-bucket/SP\_23/DNSLB11870158/ZH-CN\_TP\_4204.md\#](../../../../intl.zh-CN/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md#)
+ 可参见：[CreateLoadBalancerHTTPListener](../../../../../intl.zh-CN/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md#)和[CreateLoadBalancerHTTPSListener](../../../../../intl.zh-CN/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md#)
 
  |off|
 |service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session-type|string|cookie的处理方式。取值： -   insert：植入Cookie。
@@ -755,12 +767,12 @@ root@master # kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|
 -   仅对HTTP和HTTPS协议的监听生效。
 -   当service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session取值为on时，该参数必选。
 
-可参见：[../../../../dita-oss-bucket/SP\_23/DNSLB11870158/ZH-CN\_TP\_4203.md\#](../../../../intl.zh-CN/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md#)和[../../../../dita-oss-bucket/SP\_23/DNSLB11870158/ZH-CN\_TP\_4204.md\#](../../../../intl.zh-CN/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md#)
+可参见：[CreateLoadBalancerHTTPListener](../../../../../intl.zh-CN/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md#)和[CreateLoadBalancerHTTPSListener](../../../../../intl.zh-CN/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md#)
 
  |无|
 |service.beta.kubernetes.io/alicloud-loadbalancer-cookie-timeout|string|Cookie超时时间。取值：1-86400（秒） **说明：** 当service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session为on且service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session-type为insert时，该参数必选。
 
- 可参见：[CreateLoadBalancerHTTPListener](../../../../intl.zh-CN/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md#)和[CreateLoadBalancerHTTPSListener](../../../../intl.zh-CN/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md#)
+ 可参见：[CreateLoadBalancerHTTPListener](../../../../../intl.zh-CN/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md#)和[CreateLoadBalancerHTTPSListener](../../../../../intl.zh-CN/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md#)
 
  |无|
 |service.beta.kubernetes.io/alicloud-loadbalancer-cookie|string|服务器上配置的Cookie名称。 长度为1-200个字符，只能包含ASCII英文字母和数字字符，不能包含逗号、分号或空格，也不能以$开头。
@@ -769,7 +781,7 @@ root@master # kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|
 
 当service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session为on且service.beta.kubernetes.io/alicloud-loadbalancer-sticky-session-type为server时，该参数必选。
 
- 可参见：[CreateLoadBalancerHTTPListener](../../../../intl.zh-CN/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md#)和[CreateLoadBalancerHTTPSListener](../../../../intl.zh-CN/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md#)
+ 可参见：[CreateLoadBalancerHTTPListener](../../../../../intl.zh-CN/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md#)和[CreateLoadBalancerHTTPSListener](../../../../../intl.zh-CN/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md#)
 
  |无|
 |service.beta.kubernetes.io/alicloud-loadbalancer-master-zoneid|string|主后端服务器的可用区ID。|无|
@@ -785,47 +797,47 @@ root@master # kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|
 -   HTTP监听默认为off。
 
  |默认为off。TCP 不需要改参数。因为 TCP 默认打开健康检查，用户不可设置。|
-|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-type|string|健康检查类型，取值：tcp | http。 可参见：[../../../../dita-oss-bucket/SP\_23/DNSLB11870158/ZH-CN\_TP\_4205.md\#](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
+|service.beta.kubernetes.io/alicloud-loadbalancer-health-check-type|string|健康检查类型，取值：tcp | http。 可参见：[CreateLoadBalancerTCPListener](../../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
 
  |tcp|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-uri|string|用于健康检查的URI。 **说明：** 当健康检查类型为TCP模式时，无需配置该参数。
 
- 可参见：[../../../../dita-oss-bucket/SP\_23/DNSLB11870158/ZH-CN\_TP\_4205.md\#](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
+ 可参见：[CreateLoadBalancerTCPListener](../../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
 
  |无|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-port|string|健康检查使用的端口。取值： -   -520：默认使用监听配置的后端端口。
 -   1-65535：健康检查的后端服务器的端口。
 
- 可参见：[../../../../dita-oss-bucket/SP\_23/DNSLB11870158/ZH-CN\_TP\_4205.md\#](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
+ 可参见：[CreateLoadBalancerTCPListener](../../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
 
  |无|
 |service.beta.kubernetes.io/alicloud-loadbalancer-healthy-threshold|string|健康检查连续成功多少次后，将后端服务器的健康检查状态由fail判定为success。 取值：2-10
 
- 可参见：[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
+ 可参见：[CreateLoadBalancerTCPListener](../../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
 
  |3|
 |service.beta.kubernetes.io/alicloud-loadbalancer-unhealthy-threshold|string|健康检查连续失败多少次后，将后端服务器的健康检查状态由success判定为fail。取值： 2-10
 
- 可参见：[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
+ 可参见：[CreateLoadBalancerTCPListener](../../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
 
  |3|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval|string|健康检查的时间间隔。 取值：1-50（秒）
 
- 可参见：[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
+ 可参见：[CreateLoadBalancerTCPListener](../../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
 
  |2|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-timeout|string|接收来自运行状况检查的响应需要等待的时间，适用于TCP模式。如果后端ECS在指定的时间内没有正确响应，则判定为健康检查失败。 取值：1-300（秒）
 
  **说明：** 如果service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-timeout的值小于service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval的值，则service.beta.kubernetes.io/alicloud-loadbalancer-health-check-connect-timeout无效，超时时间为service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval的值。
 
- 可参见：[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
+ 可参见：[CreateLoadBalancerTCPListener](../../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
 
  |5|
 |service.beta.kubernetes.io/alicloud-loadbalancer-health-check-timeout|string|接收来自运行状况检查的响应需要等待的时间，适用于HTTP模式。如果后端ECS在指定的时间内没有正确响应，则判定为健康检查失败。 取值：1-300（秒）
 
  **说明：** 如果 service.beta.kubernetes.io/alicloud-loadbalancer-health-check-timeout的值小于service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval的值，则 service.beta.kubernetes.io/alicloud-loadbalancer-health-check-timeout无效，超时时间为 service.beta.kubernetes.io/alicloud-loadbalancer-health-check-interval的值。
 
- 可参见：[CreateLoadBalancerTCPListener](../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
+ 可参见：[CreateLoadBalancerTCPListener](../../../../../intl.zh-CN/API参考/TCP监听/CreateLoadBalancerTCPListener.md#)
 
  |5|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-domain|string|用于健康检查的域名。 -   $\_ip：后端服务器的私网IP。当指定了IP或该参数未指定时，负载均衡会使用各后端服务器的私网IP当做健康检查使用的域名。
