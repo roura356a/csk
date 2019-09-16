@@ -29,7 +29,7 @@ POST /clusters HTTP/1.1
 "container_cidr": "容器POD CIDR",
 "service_cidr": "服务CIDR",
 "cloud_monitor_flags":"是否安装云监控插件",
-"login_password": "节点SSH登陆密码，和key_pair二选一",
+"login_password": "节点SSH登录密码，和key_pair二选一",
 "key_pair":"keypair名称，和login_password 二选一",
 "worker_instance_types": "Worker实例规格多实例规格参数 ",
 "worker_system_disk_category": "Worker系统盘类型",
