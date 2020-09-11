@@ -6,7 +6,7 @@ keyword: [Mount NAS file systems to sandboxed containers, CSI-Plugin, Improve I/
 
 You can use the Container Service Interface \(CSI\) plug-in to mount a NAS file system to a sandboxed container. This significantly improves I/O performance. This topic describes how to use the CSI plug-in to directly mount a NAS file system to a sandboxed container and provides an example to demonstrate the mounting process. A NAS file system can also be mounted to a container through the host or the 9PFS file system. This topic compares the I/O performance in the three mount modes.
 
--   [t1830927.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Create a managed ACK cluster that supports sandboxed containers.md)
+-   [Create a managed ACK cluster that supports sandboxed containers](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Create a managed ACK cluster that supports sandboxed containers.md)
 -   [Use kubectl to connect to a cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Manage and access clusters/Use kubectl to connect to a cluster.md)
 
 Sandboxed-Container allows containers to run on lightweight virtual machines. Sandboxed containers outperform containers in runC in terms of resource isolation and security. You can mount NAS file systems as volumes to sandboxed containers. In the community solution, a NAS file system is first mounted to a local directory of the host. Then, the local directory is shared to a container through 9PFS. However, 9PFS drastically degrades the I/O performance of containers. To improve I/O performance, Container Service for Kubernetes \(ACK\) allows you to mount NAS file systems directly to sandboxed containers through a CSI plug-in. This feature allows you to mount a NAS file system to a container after the container is started. Previously, you can only mount a NAS file system to the host before the container is started. This improves the I/O performance because 9PFS is no longer required for a container to access a NAS file system.
@@ -124,7 +124,13 @@ The following example describes how to mount a NAS file system to a sandboxed co
 
     ```
     kubectl get pods
+    ```
+
+    ```
     kubectl exec -it ${podid} sh
+    ```
+
+    ```
     mount | grep /data | grep nfs
     ```
 
