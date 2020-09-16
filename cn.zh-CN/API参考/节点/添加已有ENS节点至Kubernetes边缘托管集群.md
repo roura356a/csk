@@ -84,7 +84,8 @@ POST /clusters/Cccfd68c474454665ace07efce924****/attach HTTP/1.1
     "instances": [
         "i-xxxx",
         "i-yyyy"
-    ]
+    ],
+    "keep_instance_name":true
 }
 ```
 
