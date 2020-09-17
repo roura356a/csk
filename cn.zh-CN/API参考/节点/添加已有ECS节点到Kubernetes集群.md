@@ -13,7 +13,7 @@
 ## 请求语法
 
 ```
- http://provision.cs.aliyun-inc.com http
+post /clusters/{ClusterId}/attach http|https
 ```
 
 ## 请求参数
