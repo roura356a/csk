@@ -65,7 +65,7 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
 
 **说明：**
 
-            -   在这两种模式下，节点上可以运行的Pod数均受节点的弹性网卡和辅助IP的配额限制。
+            -   在Terway模式下，节点上可以运行的Pod数均受节点的弹性网卡和辅助IP的配额限制。
             -   当专有网络选择共享VPC时，网络插件仅支持Terway。
             -   网络插件选择**Terway**时，会使用弹性网卡的辅助IP分配给Pod，一个Pod占用一个弹性网卡辅助IP地址。 |
         |**Terway模式**|网络插件选择**Terway**时，需要配置**Terway模式**。
@@ -83,8 +83,8 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
         |**Pod虚拟交换机**|网络插件选择Terway时，您需要为Pod分配IP的虚拟交换机。每个Pod虚拟交换机分别对应一个Worker实例的虚拟交换机。 |
         |**Pod网络CIDR**|网络插件选择**Flannel**时，需要配置**Pod网络CIDR**。
 
-**Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes的网络地址段规划](/cn.zh-CN/最佳实践/集群/VPC下Kubernetes的网络地址段规划.md)。 |
-        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes的网络地址段规划](/cn.zh-CN/最佳实践/集群/VPC下Kubernetes的网络地址段规划.md)。 |
+**Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/cn.zh-CN/最佳实践/集群/VPC下Kubernetes的网络地址段规划.md)。 |
+        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/cn.zh-CN/最佳实践/集群/VPC下Kubernetes的网络地址段规划.md)。 |
         |**节点IP数量**|如果您选择的网络模式为**Flannel**，您需设置**节点IP数量**。
 
 **说明：** **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。 |
