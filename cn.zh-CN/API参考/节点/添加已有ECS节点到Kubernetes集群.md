@@ -33,7 +33,7 @@ post /clusters/{ClusterId}/attach http|https
 |password|String|否|Hello@1234|扩容的worker节点密码。密码规则为8~30 个字符，且同时包含三项（大、小写字母，数字和特殊符号），和key\_pair二选一。 |
 |is\_edge\_worker|Boolean|否|false|是否为边缘节点。接入ENS节点时需要配置为true。 |
 |user\_data|String|否|""|RDS实例列表，将该ECS加入到选择的RDS实例的白名单中。 |
-|nodepool\_id|String|否|npb9d542d191c54253bb4488bdc4fe\*\*\*\*|节点标签。 |
+|nodepool\_id|String|否|npb9d542d191c54253bb4488bdc4fe\*\*\*\*|节点池ID。 |
 |rds\_instances|Array of String|否|rm-2zev748xi27xc\*\*\*\*|RDS实例。 |
 |tags|Array|否| |节点标签。 |
 |key|String|否|tier|标签键。 |
