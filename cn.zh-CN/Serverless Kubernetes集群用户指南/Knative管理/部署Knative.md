@@ -21,7 +21,7 @@ Knative是一款基于Kubernetes的Serverless框架，其目标是制定云原�
     -   若选择不自动配置SNAT，您可自行配置NAT网关实现VPC安全访问公网环境，并且手动配置SNAT，否则VPC内实例将不能正常访问公网。 |
     |公网访问|设置是否开放**使用EIP暴露API Server**。    -   如果选择开放，将创建一个EIP，同时会暴露Master节点的6443端口（对应API Server），您可以在外网通过kubeconfig连接或操作集群。
     -   若选择不开放，不会创建EIP，您只能在VPC内部用kubeconfig连接和操作集群。 |
-    |Knative|选中开启**Knative**，将在创建ASK集群时部署Knative。|
+    |Knative|选中开启**Knative**，将在创建ASK集群时部署Knative。![2](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2050821061/p170979.png) |
 
 5.  在页面右侧，单击**创建集群**，在弹出的当前配置确认页面，单击**确定**，启动部署。
 
