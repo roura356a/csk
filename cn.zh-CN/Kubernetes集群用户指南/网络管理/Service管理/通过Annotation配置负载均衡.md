@@ -474,9 +474,6 @@
 |注解|类型|描述|默认值|支持的版本|
 |--|--|--|---|-----|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type|string|取值可以是internet或者intranet。|internet|v1.9.3及以上版本|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-slb-network-type|string|负载均衡的网络类型，取值可以是classic或者vpc。取值为vpc时，需设置`service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type`为intranet。
-
-|classic|v1.9.3及以上版本|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-charge-type|string|取值可以是paybytraffic或者paybybandwidth。|paybytraffic|v1.9.3及以上版本|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id|string|负载均衡实例的ID。通过service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id指定您已有的SLB，默认情况下，使用已有的负载均衡实例，不会覆盖监听，如要强制覆盖已有监听，请配置service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners为true。|无|v1.9.3.81-gca19cd4-aliyun及以上版本|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-spec|string|负载均衡实例的规格。可参见：[CreateLoadBalancer](/cn.zh-CN/开发指南/API参考/负载均衡实例/CreateLoadBalancer.md)。|无|v1.9.3及以上版本|
