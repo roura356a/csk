@@ -102,9 +102,10 @@ keyword: [配置巡检, workload配置, 安全隐患]
 
 ![18](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1295659951/p129785.png) |
 
--   [Configure a Security Context for a Pod or Container](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
--   [Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
+**相关文档**  
 
-  
 
+[Configure a Security Context for a Pod or Container](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/?spm=a2c4g.11186623.2.30.17fa2c50Pt0mAG)
+
+[Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/?spm=a2c4g.11186623.2.31.17fa2c50Pt0mAG)
 
