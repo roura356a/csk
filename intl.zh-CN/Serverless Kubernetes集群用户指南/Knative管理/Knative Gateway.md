@@ -36,7 +36,7 @@ ASK Knative使用SLB作为Gateway。除了HTTP以外，Gateway还提供HTTPS功�
         输入以下命令：
 
         ```
-        curl -H  "Host: coffee.default.example.com" http://39.106.***.*
+        curl -H  "Host: helloworld-go.default.example.com" http://106.15.2**.**
         ```
 
         系统输出类似如下结果：
@@ -50,7 +50,7 @@ ASK Knative使用SLB作为Gateway。除了HTTP以外，Gateway还提供HTTPS功�
         输入以下命令：
 
         ```
-        curl -H  "Host: coffee.default.example.com" https://39.106.***.* -k
+        curl -H  "Host: helloworld-go.default.example.com" https://106.15.2**.** -k
         ```
 
         系统输出类似如下结果：
