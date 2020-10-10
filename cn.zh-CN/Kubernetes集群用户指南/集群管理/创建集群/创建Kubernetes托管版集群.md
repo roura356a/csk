@@ -68,23 +68,29 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
             -   在Terway模式下，节点上可以运行的Pod数均受节点的弹性网卡和辅助IP的配额限制。
             -   当专有网络选择共享VPC时，网络插件仅支持Terway。
             -   网络插件选择**Terway**时，会使用弹性网卡的辅助IP分配给Pod，一个Pod占用一个弹性网卡辅助IP地址。 |
-        |**Terway模式**|网络插件选择**Terway**时，需要配置**Terway模式**。
+        |**Terway模式**|网络插件选择**Terway**时，需要配置**Terway模式**：
 
-设置是否选中**Pod独占弹性网卡以获得最佳性能**。
+        -   设置是否选中**Pod独占弹性网卡以获得最佳性能**
 
-        -   如果选中，Pod将独占一个专有的弹性网卡。
-        -   如果不选中，使用弹性网卡的辅助IP分配给Pod，一个Pod占用一个弹性网卡辅助IP地址。
-设置是否选中**IPvlan**。
+-   如果选中，Pod将独占一个专有的弹性网卡。
+-   如果不选中，使用弹性网卡的辅助IP分配给Pod，一个Pod占用一个弹性网卡辅助IP地址。
+        -   设置是否选中**IPvlan**
 
-        -   只在弹性网卡共享模式支持选中。
-        -   如果选中，采用IPVLAN+eBPF作为网卡共享模式虚拟化技术，并且只能使用Aliyun Linux2系统，性能优于默认模式。
-        -   如果不选中，则使用默认模式，采用策略路由作为网卡共享模式虚拟化技术，同时兼容Centos 7和Aliyun Linux2的系统。
-**说明：** 当前只有白名单用户可使用上述两种功能。[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)申请使用。 |
+-   只在弹性网卡共享模式支持选中。
+-   如果选中，采用IPVLAN+eBPF作为网卡共享模式虚拟化技术，并且只能使用Aliyun Linux2系统，性能优于默认模式。
+-   如果不选中，则使用默认模式，采用策略路由作为网卡共享模式虚拟化技术，同时兼容Centos 7和Aliyun Linux2的系统。
+**说明：** 当前只有白名单用户可使用上述**Pod独占弹性网卡以获得最佳性能**和**IPvlan**两种功能。[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)申请使用。
+
+        -   设置是否选中**NetworkPolicy支持**
+
+-   只在弹性网卡共享模式下支持选中，默认不选中。
+-   如果选中，集群支持使用Kubernetes的NetworkPolicy策略对Pod进行网络控制。
+-   如果不选中，集群将不会支持使用Kubernetes的NetworkPolicy策略对Pod进行网络控制，这样将不存在网络策略对Kubernetes的API Server产生过大的负载。 |
         |**Pod虚拟交换机**|网络插件选择Terway时，您需要为Pod分配IP的虚拟交换机。每个Pod虚拟交换机分别对应一个Worker实例的虚拟交换机。 |
         |**Pod网络CIDR**|网络插件选择**Flannel**时，需要配置**Pod网络CIDR**。
 
-**Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/cn.zh-CN/最佳实践/集群/VPC下Kubernetes的网络地址段规划.md)。 |
-        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/cn.zh-CN/最佳实践/集群/VPC下Kubernetes的网络地址段规划.md)。 |
+**Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。 |
+        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。 |
         |**节点IP数量**|如果您选择的网络模式为**Flannel**，您需设置**节点IP数量**。
 
 **说明：** **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。 |
