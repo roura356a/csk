@@ -1,23 +1,25 @@
 # Enable Istio CoreDNS
 
+This topic provides an overview of CoreDNS and its plug-ins and the CoreDNS configuration file, and describes how to enable Istio CoreDNS.
+
 ## CoreDNS and its plug-ins
 
-CoreDNS is an incubation project led by CNCF. Formerly known as SkyDNS, it aims to build a fast and flexible DNS server that provides users with various ways to access and use DNS data. Based on the Caddy server framework, CoreDNS implements a plug-in chain architecture that abstracts large amounts of logic into plug-ins and then exposes these plug-ins to users. Each plug-in performs different DNS functions, such as DNS service discovery and Prometheus monitoring.
+CoreDNS is an incubation project led by Cloud Native Computing Foundation \(CNCF\). Formerly known as SkyDNS, the project aims to build a fast and flexible Domain Name System \(DNS\) server that allows users to access and use data in DNS in different ways. Based on the Caddy server framework, CoreDNS adopts a plug-in chain architecture that provides a large number of plug-ins. Each plug-in implements a DNS feature, such as DNS-based Kubernetes service discovery and Prometheus monitoring.
 
-In addition to pluginization, CoreDNS has the following features:
+In addition to plug-ins, CoreDNS has the following benefits:
 
--   Simplified configuration: The introduction of a more expressive DSL, namely Corefile configuration file, which is also developed based on the Caddy framework.
--   Integrated solution: Unlike kube-dns, CoreDNS is compiled into single executable binaries with built-in functions such as Cache, Backend Storage, and Health Check. No third-party components are required to implement other functions, making deployment more convenient and memory management safer.
+-   Simplified configuration: CoreDNS introduces an expressive domain-specific language \(DSL\). CoreDNS uses the Corefile configuration file, which is also developed based on the Caddy framework.
+-   All-in-one solution: CoreDNS provides a simpler solution than kube-dns. CoreDNS is compiled into a binary executable file that has built-in features such as cache, backend storage, and health check. CoreDNS does not require third-party components to implement features. This enables simple deployment and secure memory management.
 
 ## Corefile overview
 
-Corefile is the configuration file of CoreDNS. It was originated from the Caddyfile configuration file based on the Caddy framework. It defines the following content:
+Corefile is the configuration file of CoreDNS. The file is developed based on the Caddyfile configuration file of the Caddy framework. The file includes the following content:
 
--   The protocol that decides the port on which the server listens. Multiple servers can be defined to listen to different ports.
--   The authoritative DNS resolution zone for which the server is responsible.
+-   The port on which the server listens and the protocol that the server uses in port listening. You can specify different ports that multiple servers listen on.
+-   The zone where the server is used as the authoritative DNS server.
 -   The plug-ins to be loaded by the server.
 
-A typical Corefile format is as follows:
+The following content shows the typical format of a Corefile:
 
 ```
 ZONE:[PORT] {
@@ -25,41 +27,41 @@ ZONE:[PORT] {
 }
 ```
 
-The parameters are described as follows.
+The following table describes the parameters in the Corefile configuration file.
 
 |Parameter|Description|
 |---------|-----------|
-|ZONE|The zone for which the server is responsible.|
-|PORT|Optional. The listening port. Default value: 53.|
+|ZONE|The zone where the server is used to resolve domain names.|
+|PORT|The listening port. The parameter is optional. Default value: 53.|
 |PLUGIN|The plug-ins to be loaded by the server. Each plug-in can have multiple parameters.|
 
 ## How the plug-ins work
 
-When CoreDNS is started, it starts different servers according to the configuration file. Each server has its own chain of plug-ins. When a DNS request is received, the request goes through the following three steps in turn:
+After you start CoreDNS, CoreDNS starts servers based on the configuration file. Each server has its own chain of plug-ins. A DNS request is processed based on the following logic:
 
--   If the currently requested server has multiple zones, the greedy principle is adopted to select the zone that best matches.
--   Once a matching server is found, plug-ins in the plug-in chain are executed in the order defined by plugin.cfg.
--   Each plug-in determines whether the current request need to be processed. There are several possibilities:
-    -   The request is processed by the current plug-in.
+-   If the requested server has multiple zones, the zone that best matches the request is selected by using the greedy principle.
+-   CoreDNS runs the plug-ins based on the order defined by plugin.cfg.
+-   Plug-ins determine whether to process the request. The following possibilities exist:
+    -   The current plug-in determines to process the request.
 
-        The plug-in generates the corresponding response and returns it to the client, whereupon the request ends. The next plug-in, such as, whoami, is not called.
+        The current plug-in generates a response and returns it to the client. The request ends and the next plug-in, such as whoami, will not be called.
 
-    -   The request is not processed by the current plug-in.
+    -   The current plug-in determines not to process the request.
 
         The next plug-in is called. If the last plug-in fails to process the request, the server returns a SERVFAIL response.
 
-    -   The request is processed by the current plug-in in the form of Fallthrough.
+    -   The current plug-in processes the request in the form of Fallthrough.
 
-        If the request might jump to the next plug-in while it is being processed by the current plug-in, this process is called Fallthrough. The fallthrough keyword is used to decide whether to allow this operation. For example, for the host plug-in, if the queried domain name is not located in /etc/hosts, the next plug-in is called.
+        The scenario where a request that is being processed is redirected to the next plug-in is called a fallthrough. The fallthrough keyword is used to determine whether to allow this operation. For example, when the host plug-in is processing a request, if the queried domain name is not located in /etc/hosts, the next plug-in is called.
 
-        -   The request is processed with hints.
-        -   The request is processed by the plug-in and continues to be processed by the next plug-in after some information \(hints\) is added to its response. The additional information is used to form the final response to the client.
+        -   The request is processed and hints are added to its response.
+        -   The request is processed by the current plug-in and continues to be processed by the next plug-in after information such as a hint is added to its response. The additional information is included in the response to the client. For example, the metric plug-in adds additional information to the response.
 
 ## CoreDNS and Kubernetes
 
-Beginning Kubernetes 1.11, CoreDNS reached General Availability as a DNS plug-in for Kubernetes. Kubernetes recommends using CoreDNS as the DNS service within clusters. In Alibaba Cloud Container Service for Kubernetes 1.11.5 and later versions, CoreDNS is installed as the DNS service by default.
+In Kubernetes 1.11 and later, CoreDNS has reached General Availability as a DNS plug-in for Kubernetes. We recommend that you use CoreDNS for DNS resolution in Kubernetes clusters. In Alibaba Cloud Container Service for Kubernetes 1.11.5 and later, CoreDNS is the default DNS plug-in.
 
-Run the `kubectl -n kube-system get configmap coredns -oyaml` command to view CoreDNS configuration.
+You can run the `kubectl -n kube-system get configmap coredns -oyaml` command to view the CoreDNS configurations.
 
 ```
 apiVersion: v1
@@ -88,24 +90,24 @@ metadata:
   uid: 2f3241d5-0a72-11e9-99f1-00163e105bdf
 ```
 
-The parameters in the configuration file are as follows:
+The following content describes the parameters in the configuration file:
 
 |Parameter|Description|
 |---------|-----------|
-|errors|Errors are logged to the standard output.|
-|health|Health status can be viewed at http://localhost:8080/health.|
-|kubernetes|Responds to DNS query requests based on the IP of the service. The cluster domain defaults to cluster.local.|
-|prometheus|Monitoring data in prometheus format can be obtained at http://localhost:9153/metrics.|
-|proxy|If the domain name cannot be resolved locally, the upper address is queried. The /etc/resolv.conf configuration of the host is used by default.|
-|cache|Cache time|
+|errors|The errors that are generated when plug-ins process requests. Errors are included in the standard output.|
+|health|The health status of CoreDNS. You can view the status at http://localhost:8080/health.|
+|kubernetes|Responds to DNS query requests based on the IP address of the service. The default cluster domain is cluster.local.|
+|prometheus|Monitoring data in prometheus format, which can be obtained at http://localhost:9153/metrics.|
+|proxy|If the local DNS server cannot resolve a domain name, the DNS resolution request is sent to the upper-level DNS server. The default value is /etc/resolv.conf.|
+|cache|The time used for caching.|
 
 ## Enable Istio CoreDNS
 
-In the default Istio configuration, Istio CoreDNS is not enabled to perform DNS resolution. You can update the configuration to enable Istio CoreDNS after Istio is installed.
+In the default Istio configuration, Istio CoreDNS is not enabled to perform DNS resolution. After you install Istio, you can update the configuration to enable Istio CoreDNS.
 
 1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
-2.  In the Kubernetes menu, choose **Service Mesh** \> **Istio Management** in the left-side navigation pane.
+2.  Log on to the ACK console. In the left-side navigation pane, choose **Service Mesh** \> **Istio Management**.
 
 3.  Click **Update** in the upper-right corner. The Update Release page appears.
 
@@ -128,7 +130,7 @@ In the default Istio configuration, Istio CoreDNS is not enabled to perform DNS 
     istiocoredns   ClusterIP   172.19.XX.XX   <none>         53/UDP,53/TCP   44m
     ```
 
-    View the configmap configuration item of CoreDNS in the cluster. You can see that the istiocoredns service is added to configmap as the upstream DNS service of the \*.global domain as follows:
+    View the configmap configuration item of CoreDNS in the cluster. You can see that the istiocoredns service is added to configmap as the upstream DNS service of the \*.global domain, as shown in the following content.
 
     ```
     apiVersion: v1
@@ -158,20 +160,33 @@ In the default Istio configuration, Istio CoreDNS is not enabled to perform DNS 
         }
     ```
 
-2.  The CoreDNS container in the cluster reloads the configuration content. You can run the following command to view the loading log.
+2.  The CoreDNS container in the cluster reloads the configuration content. You can run the following commands to view the loading logs:
 
     ```
-    # kubectl get -n kube-system pod | grep coredns
+    kubectl get -n kube-system pod | grep coredns
+    ```
+
+    ```
     coredns-8645f4b4c6-5frkg                                     1/1     Running   0          20h
     coredns-8645f4b4c6-lj59t                                     1/1     Running   0          20h
-    
-    # kubectl logs -f -n kube-system coredns-8645f4b4c6-5frkg
+    ```
+
+    ```
+    kubectl logs -f -n kube-system coredns-8645f4b4c6-5frkg
+    ```
+
+    ```
     ....
     2019/01/08 05:06:47 [INFO] Reloading
     2019/01/08 05:06:47 [INFO] plugin/reload: Running configuration MD5 = 05514b3e44bcf4ea805c87cc6cd56c07
     2019/01/08 05:06:47 [INFO] Reloading complete
-    
-    # kubectl logs -f -n kube-system coredns-8645f4b4c6-lj59t
+    ```
+
+    ```
+    kubectl logs -f -n kube-system coredns-8645f4b4c6-lj59t
+    ```
+
+    ```
     ....
     2019/01/08 05:06:31 [INFO] Reloading
     2019/01/08 05:06:32 [INFO] plugin/reload: Running configuration MD5 = 05514b3e44bcf4ea805c87cc6cd56c07
@@ -181,13 +196,13 @@ In the default Istio configuration, Istio CoreDNS is not enabled to perform DNS 
 
 ## Create ServiceEntry to verify DNS resolution
 
-With ServiceEntry, additional entries can be added to the service registry within Istio. This allows services that are automatically discovered in the mesh to access and route to these manually added services. ServiceEntry describes the attributes of a service, including the DNS name, virtual IP address, port, protocol, and endpoint. The type of service may be an API outside the mesh, or an entry in the service registry within the mesh but not in the platform. For example, a group of VM-based services that need to communicate with the Kubernetes service.
+You can use ServiceEntry to add additional entries to the service registry within Istio. This allows services that are automatically discovered in the mesh to access and route to manually added services. ServiceEntry describes the attributes of a service, including the domain name, virtual IP address, port number, protocol, and endpoint. The services may be APIs outside the mesh or services that are deployed within the mesh but are not listed in the service registry. For example, the services may be a group of VM-based services that need to communicate with Kubernetes-based services.
 
-In this example, wildcard characters are used to define hosts and the address is specified as follows:
+In the following example, wildcard characters are used to define hosts, and the address is specified:
 
 1.  [Connect to a Kubernetes cluster by using kubectl](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Cluster management/Connect to a Kubernetes cluster by using kubectl.md).
 
-2.  Create an external-svc-serviceentry.yaml file with the following content. Run the `kubectl apply -f external-svc-serviceentry.yaml` command to create a ServiceEntry.
+2.  Create the external-svc-serviceentry.yaml file and copy the following content to the file. Run the `kubectl apply -f external-svc-serviceentry.yaml` command to create a ServiceEntry.
 
     ```
     apiVersion: networking.istio.io/v1alpha3
@@ -206,34 +221,51 @@ In this example, wildcard characters are used to define hosts and the address is
       location: MESH_INTERNAL
       resolution: DNS
       endpoints:
-      - address: 47.111.38.80
+      - address: 47.111. **.**
         ports:
           http1: 15443
     ```
 
-3.  Run the following command to view the istiocoredns container. You can see that the domain mapping relationship for the above ServiceEntry has been loaded.
+3.  Run the following command to view the istiocoredns container. The command output shows that the domain name mappings for the new ServiceEntry have been loaded.
 
     ```
-    # kubectl get po -n istio-system | grep istiocoredns
+    kubectl get po -n istio-system | grep istiocoredns
+    ```
+
+    ```
     istiocoredns-cdc56b67-ngtkr                 2/2     Running   0          1h
-    
-    # kubectl logs --tail 2 -n istio-system istiocoredns-cdc56b67-ngtkr -c istio-coredns-plugin
+    ```
+
+    ```
+    kubectl logs --tail 2 -n istio-system istiocoredns-cdc56b67-ngtkr -c istio-coredns-plugin
+    ```
+
+    ```
     2019-01-08T05:27:22.897845Z    info    Have 1 service entries
     2019-01-08T05:27:22.897888Z    info    adding DNS mapping: .test.global. ->[127.255.XX.XX]
     ```
 
-4.  Run the following command to create a test container with the tutum/dnsutils image:
+4.  Run the following command to create a test container by using the tutum/dnsutils image:
 
     ```
-    # kubectl run dnsutils -it --image=tutum/dnsutils bash
+    kubectl run dnsutils -it --image=tutum/dnsutils bash
     ```
 
-5.  After you open the CLI, run dig to view the corresponding domain name resolution.
+5.  After you open the CLI, run the following dig command to view the result of domain name resolution:
 
     ```
-    # dig +short 172.19.XX.XX (The cluster IP of the DNS service) A service1.test.global
+    dig +short 172.19.XX.XX (Cluster IP of the DNS service) A service1.test.global
+    ```
+
+    ```
     127.255.XX.XX
-    # dig +short 172.19.XX.XX (The cluster IP of the DNS service) A service2.test.global
+    ```
+
+    ```
+    dig +short 172.19.XX.XX (Cluster IP of the DNS service) A service2.test.global
+    ```
+
+    ```
     127.255.XX.XX
     ```
 
