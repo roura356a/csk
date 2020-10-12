@@ -8,6 +8,26 @@ keyword: [配置巡检, workload配置, 安全隐患]
 
 您已经成功创建一个Kubernetes 1.14.8或以上版本的托管版或专有版集群，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
 
+## 子账号RAM授权
+
+如果您当前使用的是子账号，请先完成日志服务指定logproject的RAM授权，否则会出现权限不足的情况，详细介绍请参见[RAM自定义授权场景](/cn.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。
+
+```
+{
+    "Version": "1",
+    "Statement": [
+        {
+            "Action": [
+                "log:Get*",
+                "log:List*"
+            ],
+            "Resource": "acs:log:*:*:project/<指定的Project名称>/*",
+            "Effect": "Allow"
+        }
+    ]
+}
+```
+
 ## 扫描集群workload
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
