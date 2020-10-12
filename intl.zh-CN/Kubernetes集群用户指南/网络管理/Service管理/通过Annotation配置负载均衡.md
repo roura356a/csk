@@ -655,12 +655,7 @@
 可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
 
 |无|v1.9.3及以上版本|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-connect-port|string|健康检查使用的端口。取值： -   -520：默认使用监听配置的后端端口。
--   1~65535：健康检查的后端服务器的端口。
-
-可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
-
-|无|v1.9.3及以上版本|
+|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-connect-port|string|健康检查使用的端口。取值： 1~65535。|无|v1.9.3及以上版本|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-healthy-threshold|string|健康检查连续成功多少次后，将后端服务器的健康检查状态由fail判定为success。 取值：2~10
 
 可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
