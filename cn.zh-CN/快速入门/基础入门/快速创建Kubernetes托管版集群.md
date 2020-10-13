@@ -55,8 +55,8 @@ keyword: [kubernetes, k8s, 创建]
         |**网络插件**|默认选择Flannel。有关Flannel和Terway的详情，请参见[Flannel与Terway](/cn.zh-CN/Kubernetes集群用户指南/网络管理/如何使用Terway网络插件.md)。 |
         |**Pod网络CIDR**|网络插件选择**Flannel**时，需要配置**Pod网络CIDR**。
 
-**Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes的网络地址段规划](/cn.zh-CN/最佳实践/集群/VPC下 Kubernetes 的网络地址段规划.md)。 |
-        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes的网络地址段规划](/cn.zh-CN/最佳实践/集群/VPC下 Kubernetes 的网络地址段规划.md)。 |
+**Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。 |
+        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。 |
         |**节点IP数量**|默认选择64。**节点IP数量**是指可分配给一个节点的IP数量。 |
         |**配置SNAT**|默认不选中**为专有网络配置SNAT网关**。
 
@@ -94,7 +94,7 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
         |**挂载数据盘**|默认不挂载。
 
 支持**ESSD云盘**、**SSD云盘**和**高效云盘**。挂载数据盘时，支持云盘**加密**和**开启云盘备份**。 |
-        |**操作系统**|默认选择Aliyun Linux 2.1903。|
+        |**操作系统**|默认选择Alibaba Cloud Linux 2.1903。|
         |**登录方式**|        -   设置密钥。
             -   **密钥对**：如您已经创建密钥对，在下拉列表中选择目标密钥对。
             -   **新建密钥对**：此项用于您还未创建密钥对。创建密钥对，请参见[创建SSH密钥对](/cn.zh-CN/安全/SSH密钥对/使用SSH密钥对/创建SSH密钥对.md)。密钥对创建完毕后，设置该密钥对作为登录集群的凭据。
@@ -103,7 +103,7 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
             -   **确认密码**：确认设置的节点登录密码。 |
         |Worker节点高级配置项
 
-|本文默认不配置Worker节点的高级参数。详情请参见[设置高级选项](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。|
+|本文默认不配置集群的高级参数。有关集群的高级配置项详情，请参见[集群高级选项配置](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。|
 
     3.  单击**下一步：组件配置**，并完成**组件配置**。
 
@@ -116,7 +116,7 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
 本文默认不安装云监控插件。 |
         |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。
 
-默认选中**使用日志服务**。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[使用日志服务进行Kubernetes日志采集](/cn.zh-CN/Kubernetes集群用户指南/日志管理/使用日志服务进行Kubernetes日志采集.md)。
+默认选中**使用日志服务**。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[通过日志服务采集Kubernetes容器日志](/cn.zh-CN/Kubernetes集群用户指南/日志管理/通过日志服务采集Kubernetes容器日志.md)。
 
 默认选中**安装node-problem-detector并创建事件中心**。您可以选择是否在日志服务控制台中**创建Ingress Dashboard**。
 
