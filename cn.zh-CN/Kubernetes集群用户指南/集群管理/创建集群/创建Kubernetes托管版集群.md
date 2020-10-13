@@ -77,8 +77,8 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
         -   设置是否选中**IPvlan**
 
 -   只在弹性网卡共享模式支持选中。
--   如果选中，采用IPVLAN+eBPF作为网卡共享模式虚拟化技术，并且只能使用Aliyun Linux2系统，性能优于默认模式。
--   如果不选中，则使用默认模式，采用策略路由作为网卡共享模式虚拟化技术，同时兼容Centos 7和Aliyun Linux2的系统。
+-   如果选中，采用IPVLAN+eBPF作为网卡共享模式虚拟化技术，并且只能使用Alibaba Cloud Linux 2系统，性能优于默认模式。
+-   如果不选中，则使用默认模式，采用策略路由作为网卡共享模式虚拟化技术，同时兼容Centos 7和Alibaba Cloud Linux 2的系统。
 **说明：** 当前只有白名单用户可使用上述**Pod独占弹性网卡以获得最佳性能**和**IPvlan**两种功能。[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)申请使用。
 
         -   设置是否选中**NetworkPolicy支持**
@@ -151,7 +151,7 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
 
 **说明：** 支持选中**开启云盘备份**以备份云盘数据。 |
             |**挂载数据盘**|支持**ESSD云盘**、**SSD云盘**和**高效云盘**。挂载数据盘时，支持云盘**加密**和**开启云盘备份**。 |
-            |**操作系统**|支持CentOS和Aliyun Linux操作系统。 |
+            |**操作系统**|支持CentOS和Alibaba Cloud Linux 2操作系统。 |
             |**登录方式**|            -   设置密钥。
                 -   **密钥对**：如您已经创建密钥对，在下拉列表中选择目标密钥对。
                 -   **新建密钥对**：此项用于您还未创建密钥对。创建密钥对，请参见[创建SSH密钥对](/cn.zh-CN/安全/SSH密钥对/使用SSH密钥对/创建SSH密钥对.md)。密钥对创建完毕后，设置该密钥对作为登录集群的凭据。
