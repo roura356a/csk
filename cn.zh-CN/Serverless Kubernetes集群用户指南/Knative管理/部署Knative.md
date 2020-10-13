@@ -2,7 +2,7 @@
 
 Knative是一款基于Kubernetes的Serverless框架，其目标是制定云原生、跨平台的Serverless编排标准。本文介绍如何在ASK部署Knative。
 
-从Knative 0.13.0开始，支持版本为1.15及以上的集群部署Knative，集群形态包括Kubernetes专有版集群、Kubernetes托管版集群以及Serverless Kubernetes集群。您可以在创建ASK集群时部署Knative或在ASK组件管理中部署Knative。目前在ASK集群中部署的Knative暂只支持Knative Serving。
+Knative当前支持在Kubernetes专有版集群、Kubernetes托管版集群以及Serverless Kubernetes （ASK）集群部署。目前在ASK集群中部署的Knative暂只支持Knative Serving。
 
 ## 在创建ASK集群时部署Knative
 
@@ -37,6 +37,8 @@ Knative是一款基于Kubernetes的Serverless框架，其目标是制定云原�
 4.  在集群管理页左侧导航栏选择**运维管理** \> **组件管理**。
 
 5.  在组件管理页面选择Knative组件，单击**安装**。
+
+    ![部署Knative](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6739652061/p172680.png)
 
 6.  在**提示**对话框中单击**确定**。
 
