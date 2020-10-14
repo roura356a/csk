@@ -1,21 +1,52 @@
-# 自定义RAM授权策略 {#task_1664328 .task}
+---
+keyword: [RAM, 自定义授权策略]
+---
+
+# 自定义RAM授权策略
 
 本文档介绍如何创建自定义授权策略。下面以授予子账号查询、扩容和删除集群的权限为例进行说明。
 
-在创建自定义授权策略时，您需要了解授权策略语言的基本结构和语法，相关内容的详细描述请参考[授权策略语言描述](https://www.alibabacloud.com/help/zh/doc-detail/28663.htm)。
+在创建自定义授权策略时，您需要了解授权策略语言的基本结构和语法，相关内容的详细描述请参见[授权策略语言描述](https://help.aliyun.com/document_detail/28663.html)。
 
-容器服务提供的系统授权策略的授权粒度比较粗，如果这种粗粒度授权策略不能满足您的需要，那么您可以创建自定义授权策略。例如，您想控制对某个具体的集群的操作权限，您必须使用自定义授权策略才能满足这种细粒度要求
+容器服务ACK提供的系统授权策略的授权粒度比较粗，如果这种粗粒度授权策略不能满足您的需要，那么您可以创建自定义授权策略。例如，您想控制对某个具体的集群的操作权限，您必须使用自定义授权策略才能满足这种细粒度要求。
 
-## 操作步骤 {#section_51g_z9p_55y .section}
+在进行子账号集群RBAC授权前，您需要完成对集群管控能力的RAM授权。您可以根据需要授予子账号对于目标集群的读写策略：
+
+-   读策略：用于查看集群配置、kubeconfig等基本信息。
+-   写策略：包含集群伸缩、升级、删除、添加节点等集群管控能力。
+
+在提交RBAC授权前，您需要确保目标集群已经被授予RAM只读权限，策略参考如下。
+
+```
+{
+  "Statement": [
+    {
+      "Action": "cs:Get*",
+      "Effect": "Allow",
+      "Resource": [
+        "acs:cs:*:*:cluster/<yourclusterID>"
+      ]
+    }
+  ],
+  "Version": "1"
+}
+```
+
+当您完成RAM授权后，可参见[t17456.md\#](/cn.zh-CN/Kubernetes集群用户指南/授权管理/配置子账号RBAC权限.md)完成集群内Kubernetes资源模型访问的RBAC授权。
+
+## RAM授权操作步骤
 
 1.  使用具有RAM权限的账号登录[RAM管理控制台](https://ram.console.aliyun.com/)。
+
 2.  单击左侧导航栏的**权限管理** \> **权限策略管理**，进入权限策略管理页面。
-3.  单击**新建授权策略**，进入新建自定义权限策略页面。
-4.  填写策略名称，配置模式选择脚本配置，并在策略内容中编写您的授权策略内容。 
 
-    ![自定义权限策略](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16637/156713222910480_zh-CN.png)
+3.  单击**创建授权策略**，进入新建自定义权限策略页面。
 
-    ``` {#codeblock_4h0_y5d_fr4}
+4.  填写**策略名称**，**配置模式**选择脚本配置，并在**策略内容**中编写您的授权策略内容。
+
+    ![自定义权限策略](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9075659951/p10480.png)
+
+    ```
     {
      "Statement": [{
          "Action": [
@@ -34,14 +65,14 @@
 
     其中：
 
-    -   `Action` 处填写您所要授予的权限。
+    -   `Action`处填写您所要授予的权限。
 
-        **说明：** 所有的 Action 均支持通配符。
+        **说明：** 所有的Action均支持通配符。
 
-    -   `Resource` 有如下配置方式。
+    -   `Resource`有以下配置方式。
         -   授予单集群权限
 
-            ``` {#codeblock_5iw_zt6_sg0}
+            ```
             "Resource": [
                  "acs:cs:*:*:cluster/集群ID"
              ]
@@ -49,60 +80,77 @@
 
         -   授予多个集群权限
 
-            ``` {#codeblock_x8v_frn_f5i}
+            ```
             "Resource": [
                  "acs:cs:*:*:cluster/集群ID",
                  "acs:cs:*:*:cluster/集群ID"
              ]
             ```
 
-        -   授予您所有集群的权限
+        -   授予所有集群的权限
 
-            ``` {#codeblock_ys8_5bv_4nx}
+            ```
             "Resource": [
                  "*"
              ]
             ```
 
-            其中，`集群ID` 需要替换为您要授权的真实的集群 ID。
+            其中，`集群ID`需要替换为您要授权的真实的集群ID。
 
-5.  编写完毕后，单击**确定**。 预期结果
+5.  编写完毕后，单击**确定**。
 
     返回权限策略管理页面，在搜索框中搜索策略名或备注，可以看到您授权的自定义的策略。
 
-    ![权限策略管理](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16637/156713222947367_zh-CN.png)
+    ![权限策略管理](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0175659951/p47367.png)
 
 
-## 相关参考 {#section_vsj_kku_tcx .section}
+## 相关参考
 
-|Action|说明|
-|------|--|
-|CreateCluster|创建集群|
-|AttachInstances|向集群中添加已有ECS实例|
-|ScaleCluster|扩容集群|
-|GetClusters|查看集群列表|
-|GetClusterById|查看集群详情|
-|ModifyClusterName|修改集群名称|
-|DeleteCluster|删除集群|
-|UpgradeClusterAgent|升级集群Agent|
-|GetClusterLogs|查看集群的操作日志|
-|GetClusterEndpoint|查看集群接入点地址|
-|GetClusterCerts|下载集群证书|
-|RevokeClusterCerts|吊销集群证书|
-|BindSLB|为集群绑定负载均衡实例|
-|UnBindSLB|为集群解绑负载均衡实例|
-|ReBindSecurityGroup|为集群重新绑定安全组|
-|CheckSecurityGroup|检测集群现有的安全组规则|
-|FixSecurityGroup|修复集群的安全组规则|
-|ResetClusterNode|重置集群中的节点|
-|DeleteClusterNode|移除集群中的节点|
-|CreateAutoScale|创建节点弹性伸缩规则|
-|UpdateAutoScale|更新节点弹性伸缩规则|
-|DeleteAutoScale|删除节点弹性伸缩规则|
-|GetClusterProjects|查看集群下的应用|
-|CreateTriggerHook|为应用创建触发器|
-|GetTriggerHook|查看应用的触发器列表|
-|RevokeTriggerHook|删除应用的触发器|
-|CreateClusterToken|创建 Token|
-|UpdateClusterTags|编辑集群标签|
+**RAM Action和API名称的对应关系**
+
+|API 名称|RAM Action|说明|
+|------|----------|--|
+|AttachInstances|AttachInstances|添加已有ECS实例到Kubernetes集群。|
+|CancelClusterUpgrade|CancelK8sCluster|取消升级集群。|
+|CancelComponentUpgrade|CancelComponentUpgrade|取消升级组件。|
+|CreateCluster|CreateCluster|创建Kubernetes集群。|
+|CreateKubernetesTrigger|GenerateTriggerHook|创建应用触发器。|
+|CreateTemplate|CreateTemplate|创建应用部署模板。|
+|DeleteCluster|DeleteCluster|删除集群。|
+|DeleteClusterNodes|DeleteClusterNodes|移除节点并释放ECS。|
+|DeleteKubernetesTrigger|RevokeTriggers|删除应用触发器。|
+|DeleteTemplate|V2DeleteTemplateInfo|删除应用部署模板。|
+|DescribeAddons|Queryk8sComponentsVersion|查询集群组件信息。|
+|DescribeApiVersion|GetCurrentVersions|获取API的版本。|
+|DescribeClusterAddonsVersion|Queryk8sComponentsUpdateVersion|查询集群组件版本信息。|
+|DescribeClusterAddonUpgradeStatus|QueryK8sComponentUpgradeStatus|查询集群组件升级状态。|
+|DescribeClusterAttachScripts|GetClusterJoinScript|获取手动添加节点到Kubernetes集群的脚本。|
+|DescribeClusterDetail|GetClusterInfo|查询集群实例。|
+|DescribeClusterLogs|GetClusterLogs|查看集群日志。|
+|DescribeClusterNodes|DescribeClusterNodes|查看集群节点。|
+|DescribeClusterResources|DescribeClusterResources|查看集群资源。|
+|DescribeClusters|GetClustersByUid|查询所有集群实例。|
+|DescribeClustersV1|ListClusters|查询所有集群实例。|
+|DescribeClusterUserKubeconfig|GetUserConfig|获取集群kubeconfig。|
+|DescribeClusterV2UserKubeconfig|GetUserConfig|获取用户。|
+|DescribeExternalAgent|DescribeExternalClusterAgentDeployment|查看额外代理。|
+|DescribeTemplates|V2ListTemplates|查看应用部署模板。|
+|DescribeUserQuota|GetUserQuota|查看用户配额。|
+|GetKubernetesTrigger|GetK8sTrigger|获取应用触发器详情|
+|GetUpgradeStatus|GetK8sClusterState|查看集群升级状态。|
+|InstallClusterAddons|InstallK8sComponents|安装集群插件。|
+|ModifyCluster|ModifyCluster|修改集群信息。|
+|ModifyClusterTags|UpdateClusterTags|修改集群标签。|
+|PauseClusterUpgrade|UpgradeCluster|暂停集群升级。|
+|PauseComponentUpgrade|PauseComponentUpgrade|暂停组件升级。|
+|ReBindSecurityGroup|ReBindSecurityGroup|重新绑定安全组。|
+|RemoveClusterNodes|DeleteClusterNodes|移除集群节点。|
+|ResumeComponentUpgrade|ResumeComponentUpgrade|重新开始组件升级。|
+|ResumeUpgradeCluster|UpgradeCluster|重新开始集群升级。|
+|ScaleCluster|ScaleCluster|集群扩容。|
+|ScaleOutCluster|V2ScaleCluster|添加已有节点。|
+|UnInstallClusterAddons|UnInstallK8sComponents|卸载集群组件。|
+|UpdateK8sClusterUserConfigExpire|UpdateK8sClusterUserConfigExpire|更新用户自定义配置过期时间。|
+|UpgradeCluster|UpgradeCluster|升级集群。|
+|UpgradeClusterAddons|UpgradeK8sComponents|升级集群插件。|
 
