@@ -4,12 +4,26 @@ keyword: [容器服务ACK, k8s, 开通服务, 角色授权]
 
 # 首次使用容器服务Kubernetes版
 
-您首次使用容器服务Kubernetes版ACK（Container Service for Kubernetes）时，无需开通ACK服务，但需要为服务账号授予名称为AliyunCSDefaultRole、AliyunCSServerlessKubernetesRole、AliyunCSClusterRole、AliyunCSManagedKubernetesRole和KubernetesAuditRole的系统默认角色。当且仅当该角色被正确授予后，容器服务才能正常地调用相关服务（ECS，OSS、NAS、SLB等），创建集群以及保存日志等。本文介绍如何给服务账号进行授权及授权角色包含的权限。
+您首次使用容器服务Kubernetes版ACK（Container Service for Kubernetes）时，无需开通ACK服务，但需要为服务账号授予系统默认角色。当且仅当该角色被正确授予后，容器服务才能正常地调用相关服务（ECS，OSS、NAS、SLB等），创建集群以及保存日志等。本文介绍首次使用ACK时，如何进行授权操作。
+
+ACK的默认角色包括：
+
+-   [AliyunCSManagedLogRole](#d7e62)
+-   [AliyunCSManagedCmsRole](#d7e317)
+-   [AliyunCSManagedCsiRole](#d7e414)
+-   [AliyunCSManagedVKRole](#d7e634)
+-   [AliyunCSClusterRole](#d7e888)
+-   [AliyunCSServerlessKubernetesRole](#d7e1227)
+-   [AliyunCSKubernetesAuditRole](#d7e1845)
+-   [AliyunCSManagedNetworkRole](#d7e2044)
+-   [AliyunCSDefaultRole](#d7e2110)
+-   [AliyunCSManagedKubernetesRole](#d7e3153)
+-   [AliyunCSManagedArmsRole](#d7e3450)
 
 ## 使用说明
 
--   如果您是在2018年1月15日之前使用过容器服务的用户，系统将默认完成角色授权，详细的授权权限内容请参见[t16635.md\#section\_rzm\_v4r\_306](/cn.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)。如果您之前是通过子账号使用，您需要对子账号进行策略升级，请参见[自定义RAM授权策略](/cn.zh-CN/Kubernetes集群用户指南/授权管理/自定义RAM授权策略.md)。
--   2018年1月15日容器服务全面接入跨服务授权后，新用户使用主账号只有进行了跨服务授权才能使用容器服务产品。如果新用户需要授权子账号使用容器服务，需要自行前往RAM控制台进行授权，详细操作请参见[使用子账号](/cn.zh-CN/Kubernetes集群用户指南/授权管理/使用子账号（RAM用户）.md)。
+-   如果您是在2018年1月15日之前使用过容器服务ACK的用户，系统将默认完成角色授权。详细的授权权限内容请参见[容器服务默认角色](/cn.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)。如果您之前是通过子账号使用，您需要对子账号进行策略升级，请参见[自定义RAM授权策略](/cn.zh-CN/Kubernetes集群用户指南/授权管理/自定义RAM授权策略.md)。
+-   2018年1月15日ACK全面接入跨服务授权后，新用户使用主账号只有进行了跨服务授权才能使用ACK产品。如果新用户需要授权子账号使用ACK，需要自行前往RAM控制台进行授权，详细操作请参见[使用子账号](/cn.zh-CN/Kubernetes集群用户指南/授权管理/使用子账号（RAM用户）.md)。
 
 ## 操作步骤
 
@@ -24,11 +38,11 @@ keyword: [容器服务ACK, k8s, 开通服务, 角色授权]
     -   如果您需修改容器服务已经设置好默认的角色权限，请在RAM控制台角色管理中设置。需注意错误的配置可能导致容器服务无法获取到必要的权限。
 3.  完成以上授权后，刷新ACK控制台即可使用ACK服务。
 
-    如果您想查看AliyunCSDefaultRole、AliyunCSServerlessKubernetesRole、AliyunCSClusterRole、AliyunCSManagedKubernetesRole和KubernetesAuditRole角色的详细策略信息，可以登录[RAM的控制台](https://ram.console.aliyun.com/)进行查看。
-
 
 **相关文档**  
 
+
+[容器服务默认角色](/cn.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)
 
 [快速创建Kubernetes托管版集群](/cn.zh-CN/快速入门/基础入门/快速创建Kubernetes托管版集群.md)
 
