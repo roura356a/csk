@@ -681,10 +681,7 @@ For more information, see [CreateLoadBalancerHTTPListener](/intl.en-US/User Guid
 For more information, see [CreateLoadBalancerTCPListener](/intl.en-US/User Guide/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md).
 
 |N/A|CCM 1.9.3 and later|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-connect-port|string|The port used for health checks. Valid values: -   -520: the port number of the listener.
--   1 to 65535: the port number of the backend server.
-
-For more information, see [CreateLoadBalancerTCPListener](/intl.en-US/User Guide/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md).
+|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-connect-port|string|The port used for health checks. Valid values: 1 to 65535For more information, see [CreateLoadBalancerTCPListener](/intl.en-US/User Guide/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md).
 
 |N/A|CCM 1.9.3 and later|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-healthy-threshold|string|The number of consecutive successes of health checks before a backend server is declared as healthy. Valid values: 2 to 10.
@@ -816,7 +813,7 @@ Default value: http\_2xx.|http\_2xx|CCM 1.9.3 and later|
 
 -   Add pods assigned with elastic network interface \(ENIs\) as the backend servers of an SLB instance
 
-    In Terway mode, you can use the annotation `service.beta.kubernetes.io/backend-type: "eni"` to add pods assigned with ENIs as the backend servers of an SLB instance. This improves network forwarding performance.
+    In Terway mode, you can use the annotation`service.beta.kubernetes.io/backend-type: "eni"` to add pods assigned with ENIs as the backend servers of an SLB instance. This improves network forwarding performance.
 
     ```
       apiVersion: v1
