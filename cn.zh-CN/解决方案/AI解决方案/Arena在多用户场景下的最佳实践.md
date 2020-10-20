@@ -268,7 +268,7 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
 
         使用上步创建的PV，分别创建PVC。有关创建PVC的具体操作步骤，请参见[创建PVC](/cn.zh-CN/Kubernetes集群用户指南/存储管理-CSI/NAS存储卷/通过控制台使用NAS静态存储卷.md)。
 
-        完成创建PVC后，可以看到在命名空间dev1下给dev1组分配部门和小组两级共享的NAS数据卷：department1-public-dev1和dev1-public。在 命名空间dev2下给dev2组分配部门和小组两级共享的NAS数据卷：department1-public-dev2和dev2-public。
+        完成创建PVC后，可以看到在命名空间dev1下给dev1组分配部门和小组两级共享的NAS数据卷：department1-public-dev1和dev1-public。在命名空间dev2下给dev2组分配部门和小组两级共享的NAS数据卷：department1-public-dev2和dev2-public。
 
 3.  检查数据卷的配置。
 
