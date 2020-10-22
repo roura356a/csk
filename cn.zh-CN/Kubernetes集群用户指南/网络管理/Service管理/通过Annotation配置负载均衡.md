@@ -805,6 +805,8 @@
         type: LoadBalancer
     ```
 
+    **说明：** 您也可以手动将`service.beta.kubernetes.io/backend-type："eni"`中的`eni`设置为`ecs`将ECS挂载到SLB后端。
+
 
 |注解|类型|描述|默认值|支持的版本|
 |--|--|--|---|-----|
@@ -814,5 +816,15 @@
 
 |Cluster|v1.9.3及以上版本|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-remove-unscheduled-backend|string|从SLB后端移除SchedulingDisabled Node。取值on或off。|off|v1.9.3.164-g2105d2e-aliyun及以上版本|
-|service.beta.kubernetes.io/backend-type|string|支持在Terway ENI网络模式下，通过设定改参数为`"eni"`，可将Pod直接挂载到SLB后端，提升网络转发性能。取值：eni。|无|v1.9.3.164-g2105d2e-aliyun及以上版本|
+|service.beta.kubernetes.io/backend-type|string|SLB后端服务器类型。取值：
+
+-   `eni`：将Pod挂载到SLB后端，仅Terway网络模式下生效，可以提高网络转发性能。
+-   `ecs`：将ECS挂载到SLB后端。
+
+|Flannel网络模式：默认值为`ecs`。Terway网络模式：
+
+-   2020年8月10日之前创建的Terway集群默认值为`ecs`。
+-   2020年8月10日之后创建的Terway集群默认值为`eni`。
+
+|v1.9.3.164-g2105d2e-aliyun及以上版本|
 
