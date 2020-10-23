@@ -4,7 +4,13 @@ ECI Pod Annotation
 Kubernetes集群通过虚拟节点创建Pod到ECI时，为充分利用ECI系统提供的功能，在不改变Kubernetes语义前提下，ECI根据需求增加Annotation。 本文主要介绍ECI目前支持的`Annotation列表`。
 
 
-**说明** 本文介绍的注解，仅适用于创建到 **虚拟节点** 上的Pod，调度到ECS上的Pod不受这些annotation影响。
+**说明**
+
+本文介绍的注解，仅适用于创建到
+
+**虚拟节点** 
+
+上的Pod，调度到ECS上的Pod不受这些annotation影响。
 
 指定ECI规格 
 ----------------------------
@@ -15,7 +21,14 @@ k8s.aliyun.com/eci-use-specs的值，支持列表，使用逗号分隔，列表�
 
 1.模糊匹配
 
-* `${cpu}-${mem}Gi`：例如: 2-4Gi；表示创建一个`2核4G`的ECI实例。模糊匹配仅支持普通规格，对于本地SSD、GPU等实例需设置明确的实例规格。
+* `${cpu}-${mem}Gi`
+
+  ：例如：2-4Gi；表示创建一个
+
+  `2核4G`
+
+  的ECI实例。模糊匹配仅支持普通规格，对于本地SSD、GPU等实例需设置明确的实例规格。
+  
 
 
 
