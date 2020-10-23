@@ -13,7 +13,7 @@ ECI与Kubernetes的结合可以分为两种方式：
 -   完全基于ECI。整个Kubernetes集群运行在ECI上，您不再需要关注底层VM的运维和容量问题。
 -   混合使用ECI和传统服务器。提升Kubernetes集群的资源利用率和弹性效率，并降低弹性和Job流量的运行成本。
 
-## 完全基于ECI（Serverless Kubernetes容器服务\)
+## 完全基于ECI（Serverless Kubernetes容器服务）
 
 依托ECI免运维的特性，Kubernetes可以完全依托 ECI 来进行构建，即所有Pod均运行在ECI上。Kubernetes仅需要负责管理业务负载，以便维持您业务的稳定运行。
 
