@@ -13,33 +13,34 @@
 ## 请求语法
 
 ```
-post /clusters/{ClusterId}/attachscript http|https
+POST /clusters/{ClusterId}/attachscript HTTP|HTTPS
 ```
 
 ## 请求参数
 
-|名称|类型|是否必选|示例值|描述|
-|--|--|----|---|--|
-|ClusterId|String|是|ca375a93a30474552ad2a0ebe183e\*\*\*\*|集群ID。 |
-|arch|String|否|amd64|节点CPU架构。支持的CPU架构包括:amd64、arm、arm64。默认amd64。当集群类型为边缘托管版时必填。 |
-|options|Object|否| |节点的接入配置参数，当集群类型为边缘托管版时必填。 |
-|allowedClusterAddons|Array of String|否|kube-proxy|组件名称，例如：cordons，flannel。 |
-|enableIptables|Boolean|否|true|是否开启iptables，默认值true。 |
-|flannelIface|String|否|eth0|flannel使用的网卡名。默认使用节点默认路由的网卡名。 |
-|gpuVersion|String|否|false|表示要接入的节点是否为GPU节点，默认为空。当前支持的GPU版本是Nvidia\_Tesla\_T4、Nvidia\_Tesla\_P4、Nvidia\_Tesla\_P100。 |
-|manageRuntime|Boolean|否|false|是否由edgeadm安装并检测Runtime，默认false。 |
-|nodeNameOverride|String|否|""|设置节点名。
+|名称|类型|位置|是否必选|示例值|描述|
+|--|--|--|----|---|--|
+|ClusterId|String|Path|是|ca375a93a30474552ad2a0ebe183e\*\*\*\*|集群ID。 |
+| |Object|Body|否| |节点CPU架构。支持的CPU架构包括：amd64、arm、arm64。默认amd64。当集群类型为边缘托管版时必填。 |
+|arch|String|Body|否|amd64|节点CPU架构。支持的CPU架构包括:amd64、arm、arm64。默认amd64。当集群类型为边缘托管版时必填。 |
+|options|Object|Body|否| |节点的接入配置参数，当集群类型为边缘托管版时必填。 |
+|allowedClusterAddons|Array of String|Body|否|kube-proxy|组件名称。 |
+|enableIptables|Boolean|Body|否|true|是否开启iptables，默认值true。 |
+|flannelIface|String|Body|否|eth0|flannel使用的网卡名。默认使用节点默认路由的网卡名。 |
+|gpuVersion|String|Body|否|false|表示要接入的节点是否为GPU节点，默认为空。当前支持的GPU版本是Nvidia\_Tesla\_T4、Nvidia\_Tesla\_P4、Nvidia\_Tesla\_P100。 |
+|manageRuntime|Boolean|Body|否|false|是否由edgeadm安装并检测Runtime，默认false。 |
+|nodeNameOverride|String|Body|否|""|设置节点名。
 
- -   ""（默认值，表示使用主机名。）
+-   ""（默认值，表示使用主机名。）
 -   "\*"（表示随机生成6位的字符串。）
 -   "\*.XXX"（表示随机生成6位字符串+XXX后缀。） |
-|quiet|String|否|false|是否使用静默模式安装。 |
+|quiet|String|Body|否|false|是否使用静默模式安装。 |
 
 ## 返回数据
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-| |String|"\\"wget http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/pkg/run/attach/1.12.6-aliyunedge.1/edgeadm -O edgeadm; chmod u+x edgeadm; ./edgeadm join --openapi-token=XXX --node-spec=\\"\{\\\\\\"flannelIface\\\\\\":\\\\\\"eth0\\\\\\",\\\\\\"enableIptables\\\\\\":true,\\\\\\"assumeYes\\\\\\":true,\\\\\\"manageRuntime\\\\\\":true,\\\\\\"nodeNameStrategy\\\\\\":\\\\\\"hostname\\\\\\",\\\\\\"enabledAddons\\\\\\":\[\\\\\\"kube-proxy\\\\\\",\\\\\\"flannel\\\\\\",\\\\\\"coredns\\\\\\"\]\}\\"\\""|节点接入脚本。 |
+| |String|"wget http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/pkg/run/attach/1.12.6-aliyunedge.1/edgeadm -O edgeadm; chmod u+x edgeadm; ./edgeadm join --openapi-token=XXX --node-spec="\{\\"flannelIface\\":\\"eth0\\",\\"enableIptables\\":true,\\"assumeYes\\":true,\\"manageRuntime\\":true,\\"nodeNameStrategy\\":\\"hostname\\",\\"enabledAddons\\":\[\\"kube-proxy\\",\\"flannel\\",\\"coredns\\"\]\}""|节点接入脚本。 |
 
 ## 示例
 
@@ -75,7 +76,7 @@ POST /clusters/[ClusterId]/attachscript HTTP/1.1
 
 边缘托管版：
 "wget http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/pkg/run/attach/1.12.6-aliyunedge.1/edgeadm -O edgeadm; chmod u+x edgeadm; ./edgeadm join --openapi-token=*** --node-spec="{\"flannelIface\":\"eth0\",\"enableIptables\":true,\"assumeYes\":true,\"manageRuntime\":true,\"nodeNameStrategy\":\"hostname\",\"enabledAddons\":[\"kube-proxy\",\"flannel\",\"coredns\"]}""
-
+            
 ```
 
 ## 错误码
