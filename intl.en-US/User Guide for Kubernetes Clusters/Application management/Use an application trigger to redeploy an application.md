@@ -1,43 +1,46 @@
-# Use an application trigger to redeploy an application {#task_hgt_52w_w2b .task}
+# Use an application trigger to redeploy an application
 
-Alibaba Cloud Container Service Kubernetes supports the application trigger function. You can use an application trigger in many ways.
+Container Service Kubernetes \(ACK\) supports application triggers. You can use application triggers for different methods. This topic describes how to use an application trigger to redeploy an application.
 
--   You have created a Kubernetes cluster. For more information, see [Create a Kubernetes cluster](reseller.en-US//Create a Kubernetes cluster.md#).
--   You have created an application that is used to create an application trigger and test the trigger. In this example, create an nginx application.
+-   An ACK cluster is created. For more information, see [Create a cluster of ACK Proprietary Edition](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a cluster of ACK Proprietary Edition.md).
+-   An application is created. You can use this application to create and test a trigger. In this example, an NGINX application is created.
 
-1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-2.  Click **Application** \> **Deployment** and select a cluster and namespace. Click **Details** at the right of the target nginx application. 
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17802/15646487359892_en-US.png)
+2.  In the left-side navigation pane, click **Clusters**.
 
-3.  On the nginx application details page, click **Create Trigger** on the right side of the trigger bar. 
+3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17802/15646487359898_en-US.png)
+4.  In the left-side navigation pane, click **Workload**.
 
-4.  In the pop-up dialog box, click **Redeploy** and click **Confirm**. 
+5.  On the Deployments tab, set the namespace, find the application that you want to manage, and then click **Details** in the **Actions** column of the application.
 
-    **Note:** Currently, only the redeploy action is supported.
+6.  On the NGINX application details page, click the **Triggers** tab and click **Create Trigger**.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17802/15646487359899_en-US.png)
+7.  In the Create Trigger dialog box, set **Action** to **Redeploy** and click **OK**.
 
-    After the trigger is created, a trigger link is displayed in the trigger bar on the nginx application detail page.
+    **Note:** Only Redeploy is available in the **Action** drop-down list.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17802/15646487359900_en-US.png)
+    ![Redeploy](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7145359951/p9899.png)
 
-5.  Copy the trigger link and visit it in the browser. A message is returned on the web page, containing information such as the request ID. 
+    After the trigger is created, a trigger link appears in the Trigger Link Address column on the Triggers tab.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17802/15646487359901_en-US.png)
+    ![Trigger](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7145359951/p9900.png)
 
-6.  Back to the nginx application detail page, you can see that a new pod appears. 
+8.  Copy the link and open it in your browser. A message appears to display specific information such as the request ID.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17802/15646487359904_en-US.png)
+    ![Trigger](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7145359951/p9901.png)
 
-    After a period of time, the nginx application removes the old pod and keeps only the new pod.
+9.  Go to the NGINX application details page. A new pod appears on the page.
+
+    ![New pod](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7145359951/p9904.png)
+
+    After the new pod is deployed, the original pod is automatically deleted.
 
 
 You can call a trigger by using GET or POST in a third-party system. For example, you can run the curl command to call a trigger.
 
-Call the redeploy trigger as follows:
+To call the trigger to redeploy an application, run the following command:
 
- `curl https://cs.console.aliyun.com/hook/trigger?token=xxxxxxx`
+`curl https://cs.console.aliyun.com/hook/trigger?token=xxxxxxx`
 
