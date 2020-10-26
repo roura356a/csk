@@ -35,7 +35,7 @@ The following table compares ACK Pro clusters and ACK Standard clusters.
 |Cluster size|Up to 5,000 nodes.|Up to 100 nodes for each new cluster. Up to 5,000 nodes can be deployed in an existing ACK Standard cluster. Existing ACK Standard cluster can be upgraded to ACK Pro cluster.|
 |SLA|99.95% \(supports compensation\).|99.90% \(does not support compensation\).|
 |API Server|-   Provides the automatic scaling feature.
--   Monitors availability and other observable metrics.
+-   Monitors availability.
 
 |Does not support features that are provided by the ACK Pro cluster.|
 |etcd|Supports frequent cold backups, frequent hot backups, and remote disaster recovery.|Does not support features that are provided by the ACK Pro cluster.|
