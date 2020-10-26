@@ -15,9 +15,6 @@ You can create an application in the Kubernetes dashboard.
     You can use one of the following methods to create the application:
 
     -   **CREATE FROM TEXT INPUT**: Enter the orchestration code in the YAML or JSON format to create an application. You must understand the required orchestration format. The following sample code shows the YAML template.
-
-        ![CREATE FROM TEXT INPUT](../images/p11095.png)
-
     -   **CREATE FROM FILE**: Upload an existing YAML or JSON configuration file to create an application.
     -   **CREATE AN APP**: Complete the following configurations to create an application.
 
