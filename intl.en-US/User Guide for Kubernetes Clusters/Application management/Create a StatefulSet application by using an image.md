@@ -1,10 +1,10 @@
-# Create a StatefulSet application by using an image {#task_o24_h1s_2fb .task}
+# Create a StatefulSet application by using an image
 
 Kubernetes clusters of Alibaba Cloud Container Service allows you to quickly create applications of the StatefultSet type through the web interface. In this example, create a StatefultSet Nginx application and show features of a StatefultSet application.
 
--   You have created a Kubernetes cluster. For more information, see [Create a Kubernetes cluster](reseller.en-US//Create a Kubernetes cluster.md#).
--   You have successfully created a cloud disk storage volume claim. For more information, see [Create a persistent volume claim](reseller.en-US//Create a Persistent Volume Claim.md#).
--   You have successfully connected to the master node of the Kubernetes cluster. For more information, see [Connect to a Kubernetes cluster by using kubectl](reseller.en-US//Connect to a Kubernetes cluster by using kubectl.md#).
+-   You have created a Kubernetes cluster. For more information, see [Create a cluster of ACK Proprietary Edition](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a cluster of ACK Proprietary Edition.md).
+-   You have successfully created a cloud disk storage volume claim. For more information, see [Create a Persistent Volume Claim](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Create a Persistent Volume Claim.md).
+-   You have successfully connected to the master node of the Kubernetes cluster. For more information, see [Use kubectl to connect to a cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to a cluster.md).
 
 StatefulSet features are as follows:
 
@@ -15,9 +15,11 @@ StatefulSet features are as follows:
 |Stable network marker|The hostname mode for a pod is: `(statefulset name)-(sequence number)`.|
 |Stable order|For StatefulSet of N replicas, each pod is assigned a unique order number within the range of 0 to N.|
 
-1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [Container Service console](https://cs.console.aliyun.com).
+
 2.  In the left-side navigation pane under Container Service-Kubernetes, choose **Application** \> **StatefulSet**. Then, click **Create from Image** in the upper-right corner.
-3.  Configure the basic parameters and then click **Next**. 
+
+3.  Configure the basic parameters and then click **Next**.
 
     -   **Name**: Enter the application name.
     -   **Cluster**: Select a cluster to which the application is deployed.
@@ -29,13 +31,13 @@ StatefulSet features are as follows:
 
     -   **Label**: Add a label to the application.
     -   **Annotations**: Add a annotation to the application.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156897929212304_en-US.png)
+    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7045359951/p12304.png)
 
-4.  Configure containers. 
+4.  Configure containers.
 
     **Note:** You can configure multiple containers for the pod of the application.
 
-    1.  Configure the general settings for the application. 
+    1.  Configure the general settings for the application.
 
         -   **Image Name**: Click **Select image** to select the image in the displayed dialog box and then click **OK**. In this example, select the nginx image.
 
@@ -45,18 +47,18 @@ StatefulSet features are as follows:
         -   **Always pull image**: Container Service caches the image to improve deployment efficiency. During deployment, if the image tag is found consistent with that on the local cache, the image on the local cache is reused and is not pulled again. Therefore, if you do not modify the image tag when changing your codes and image for convenience of upper-layer business, the early image on the local cache is used in the application deployment. With this check box selected, Container Service ignores the cached image and re-pulls the image from the repository when deploying the application to make sure the latest image and codes are always used.
         -   **Resource Limit**: Specify the upper limit for the resources \(CPU and memory\) that can be used by this application to avoid occupying excessive resources. CPU is measured in millicores, that is, one thousandth of one core. Memory is measured in bytes, which can be Gi, Mi, or Ki.
         -   **Resource Request**: Specify how many resources \(CPU and memory\) are reserved for the application, that is, these resources are exclusive to the container. Other services or processes will compete for resources when the resources are insufficient. By specifying the Resource Request, the application will not become unavailable because of insufficient resources.
-        -   **Init Container**: Selecting this check box creates an Init Container which contains useful tools. For more information, see [https://kubernetes.io/docs/concepts/workloads/pods/init-containers/](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156897929212305_en-US.png)
+        -   **Init Container**: Selecting this check box creates an Init Container which contains useful tools. For more information, see [Init Containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
+        ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7045359951/p12305.png)
 
-    2.  Configure **Environment**. 
+    2.  Configure **Environment**.
 
         You can configure environment variables for the pod by using key-value pairs. Environment variables are used to add environment labels or pass configurations for the pod. For more information, see [Pod variable](https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/?spm=0.0.0.0.8VJbrE).
 
-    3.  Configure **Health Check**. 
+    3.  Configure **Health Check**.
 
-        The health check function includes liveness probes and readiness probes. Liveness probes are used to detect when to restart the container. Readiness probes determine if the container is ready for receiving traffic. For more information about health check, see [https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes).
+        The health check function includes liveness probes and readiness probes. Liveness probes are used to detect when to restart the container. Readiness probes determine if the container is ready for receiving traffic. For more information about health check, see [Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes).
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156897929310977_en-US.png)
+        ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9565359951/p10977.png)
 
         |Request method|Description|
         |--------------|-----------|
@@ -68,33 +70,30 @@ StatefulSet features are as follows:
         -   Period \(in seconds\): Namely, the **periodseconds**. Intervals at which the probe is performed. The default value is 10. The minimum value is 1.
         -   Timeout \(in seconds\): Namely, the **timeoutSeconds**. The time of probe timeout. The default value is 1 and the minimum value is 1.
         -   Success Threshold: The minimum number of consecutive successful probes that are considered as successful after a failed probe. The default is 1 and the minimum is 1. It must be 1 for a liveness probe.
-        -   Failure Threshold: The minimum number of consecutive failed probes that are considered as failed after a successful probe. The default value is 3. The minimum value is 1.
- |
+        -   Failure Threshold: The minimum number of consecutive failed probes that are considered as failed after a successful probe. The default value is 3. The minimum value is 1. |
         |TCP connection|A TCP socket is send to the container. The kubelet attempts to open a socket to your container on the specified port. If a connection can be established, the container is considered healthy. If not, it is considered as a failure. The following are supported parameters:         -   Port: Number or name of the port exposed by the container. The port number must be in the range of 1 to 65535.
         -   Initial Delay \(in seconds\): Namely, the **initialDelaySeconds**. Seconds for the first liveness or readiness probe has to wait after the container is started. The default is 15.
         -   Period \(in seconds\): Namely, the **periodseconds**. Intervals at which the probe is performed. The default value is 10. The minimum value is 1.
         -   Timeout \(in seconds\): Namely, the **timeoutSeconds**. The time of probe timeout. The default value is 1 and the minimum value is 1.
         -   Success Threshold: The minimum number of consecutive successful probes that are considered as successful after a failed probe. The default is 1 and the minimum is 1. It must be 1 for a liveness probe.
-        -   Failure Threshold: The minimum number of consecutive failed probes that are considered as failed after a successful probe. The default value is 3. The minimum value is 1.
- |
+        -   Failure Threshold: The minimum number of consecutive failed probes that are considered as failed after a successful probe. The default value is 3. The minimum value is 1. |
         |Command line|Detect the health of the container by executing probe detection commands in the container. The following are supported parameters:         -   Command: A probe command used to detect the health of the container.
         -   Initial Delay \(in seconds\): Namely, the **initialDelaySeconds**. Seconds for the first liveness or readiness probe has to wait after the container is started. The default is 5.
         -   Period \(in seconds\): Namely, the **periodseconds**. Intervals at which the probe is performed. The default value is 10. The minimum value 1.
         -   Timeout \(in seconds\): Namely, the **timeoutSeconds**. The time of probe timeout. The default value is 1 and the minimum value is 1.
         -   Success Threshold: The minimum number of consecutive successful probes that are considered as successful after a failed probe. The default is 1 and the minimum is 1. It must be 1 for a liveness probe.
-        -   Failure Threshold: The minimum number of consecutive failed probes that are considered as failed after a successful probe. The default value is 3. The minimum value is 1.
- |
+        -   Failure Threshold: The minimum number of consecutive failed probes that are considered as failed after a successful probe. The default value is 3. The minimum value is 1. |
 
-    4.  Configure the lifecycle rule. 
+    4.  Configure the lifecycle rule.
 
-        You can configure the following parameters for the container lifecycle: start, post start, and pre-stop. For more information, see [https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/](https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/).
+        You can configure the following parameters for the container lifecycle: start, post start, and pre-stop. For more information, see[Attach Handlers to Container Lifecycle Events](https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event) .
 
         -   **Start**: Configure a pre-start command and parameter for the container.
         -   **Post Start**: Configure a post-start command for the container.
         -   **Pre Stop**: Configure a pre-end command for the container.
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156897929311371_en-US.png)
+        ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/0665359951/p11371.png)
 
-    5.  Configure data volumes. 
+    5.  Configure data volumes.
 
         Local storage and cloud storage can be configured.
 
@@ -102,9 +101,9 @@ StatefulSet features are as follows:
         -   **Cloud storage**: Supports three types of cloud storage: cloud disks, Network Attached Storage \(NAS\), and Object Storage Service \(OSS\).
         In this example, configure a data volume claim named disk-ssd of cloud disk type and mount it to the /data path.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156897929312307_en-US.png)
+        ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8045359951/p12307.png)
 
-    6.  Configure **Log Service**. You can configure collection methods and customize tags for this service. 
+    6.  Configure **Log Service**. You can configure collection methods and customize tags for this service.
 
         **Note:** Make sure that a Kubernetes cluster is deployed and that the log plug-in is installed on the cluster.
 
@@ -116,13 +115,17 @@ StatefulSet features are as follows:
             -   **text log**: Collects logs in the specified path in the container. In this example, collect text logs in the path of /var/log/nginx. Wildcards are also supported.
         You can also set custom tags. The customized tags are collected to the container output logs. A custom tag can help you tag container logs, providing convenience to log analysis such as log statistics and filter.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156897929311364_en-US.png)
+        ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8045359951/p11364.png)
 
 5.  Click **Next** after completing the configurations.
-6.  Configure advanced settings. In this example, configure only access settings. 
-    1.  Set **Access Control**. You can set the methods to expose the application pod and then click **Create**. In this example, a cluster IP service and an Ingress are set to create an Nginx application that is accessible for the Internet.
 
-        **Note:** 
+6.  Configure advanced settings. In this example, configure only access settings.
+
+    1.  Set **Access Control**.
+
+        You can set the methods to expose the application pod and then click **Create**. In this example, a cluster IP service and an Ingress are set to create an Nginx application that is accessible for the Internet.
+
+        **Note:**
 
         You can set access methods according to the communication requirements of your application.
 
@@ -130,11 +133,11 @@ StatefulSet features are as follows:
         -   External application: an application that needs to be exposed to the Internet. You can set how the application is accessed by using either of the following two methods:
             -   Create a Server Load Balancer service. This method uses Alibaba Cloud Server Load Balancer \(SLB\) to provide Internet accessibility for the application.
             -   Create a cluster IP service or a node port service, and create an Ingress. This method provides Internet accessibility through the Ingress. For more information, see [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156897929310979_en-US.png)
+        ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/0665359951/p10979.png)
 
         1.  Click **Create** on the right of **Service**. Configure a service in the displayed dialog box, and then click **Create**.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156897929310980_en-US.png)
+            ![create service](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8045359951/p63160.png)
 
             -   **Name**: Enter the service name. The default is `applicationname-svc`.
             -   **Type**: Select one service type.
@@ -142,27 +145,27 @@ StatefulSet features are as follows:
                 -   **Node port**: Exposes the service by using the IP address and the static port \(NodePort\) of each node. A node port service routes to a cluster IP service that is automatically created. You can access the node port service from outside the cluster by requesting `<NodeIP>:<NodePort>`.
                 -   **Server Load Balancer**: Alibaba Cloud Server Load Balancer service. With this type of service, you can set an Internet or intranet access method for your application. SLB can route to a node port service and a cluster IP service.
             -   **Port Mapping**: Add a service port and a container port, and select the TCP or UDP protocol. If you select the node port **Type**, you must add a node port to avoid port conflict.
-            -   **annotation**: Add an annotation to the service. You can set SLB parameters. For more information, see [Access services by using Server Load Balancer](reseller.en-US/User Guide for Kubernetes Clusters/Network management/Access services by using SLB.md#).
+            -   **Annotation**: Add an annotation to the service. You can set SLB parameters. For more information, see [t16677.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Use annotations to configure SLB instances.md).
             -   **Tag**: Add a tag to the service to identify the service.
-        2.  Click **Create** on the right of **Ingress**. In the displayed dialog box, configure an Ingress rule for the application pod, and then click **Create**. For more information, see [Ingress configurations](reseller.en-US/User Guide for Kubernetes Clusters/Network management/Ingress configurations.md#).
+        2.  Click **Create** on the right of **Ingress**. In the displayed dialog box, configure an Ingress rule for the application pod, and then click **Create**. For more information, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Ingress configurations.md).
 
             **Note:** When you create an application by using an image, you can create an Ingress rule for only one service. In this example, a virtual host name is used as the test domain name. You need to add a record to the host. You must use a filing domain name when you create your application.
 
-            ``` {#codeblock_9li_cbv_zq0}
+            ```
             101.37.224.146   foo.bar.com    #This is the IP address of the Ingress.
             ```
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156897929310981_en-US.png)
+            ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/0665359951/p10981.png)
 
         3.  In the access control area, the created service and Ingress are displayed. You can perform further configurations by clicking **Update** or **Delete**.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156897929310982_en-US.png)
+            ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/0665359951/p10982.png)
 
-    2.  Set **Horizontal Pod Autoscaling \(HPA\)**. 
+    2.  Set **Horizontal Pod Autoscaling \(HPA\)**.
 
         You enable HPA by selecting the **Enable** check box. Alibaba Cloud Container Service for Kubernetes provides pod auto scaling to deal with different application workloads. That is, you can change the number of pods according to the container CPU and memory usage.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156897929310978_en-US.png)
+        ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/0665359951/p10978.png)
 
         **Note:** To use this function, you must set required resources for the pod. Otherwise, pod auto scaling cannot take effect. For more information, see general container settings.
 
@@ -170,7 +173,7 @@ StatefulSet features are as follows:
         -   **Condition**: the percentage value of resource usage. The number of containers increases when the resource usage exceeds this value.
         -   **Maximum Replicas**: the maximum number of the containers that the StatefulSet application can contain.
         -   **Minimum Replicas**: the minimum number of the containers that the StatefulSet application can contain.
-    3.  Set **Scheduling**. 
+    3.  Set **Scheduling**.
 
         You can set an update method, node affinity, pod affinity, and pod anti affinity. For more information, see [Affinity and anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity).
 
@@ -182,7 +185,7 @@ StatefulSet features are as follows:
 
         2.  Set **Node Affinity** by using node tags.
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156897929311137_en-US.png)
+            ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8045359951/p11137.png)
 
             Required rules and preferred rules are supported, and available operators include `In, NotIn, Exists, DoesNotExist, Gt, and Lt` .
 
@@ -198,7 +201,7 @@ StatefulSet features are as follows:
 
         3.  Set **Pod Affinity** to deploy the application pod in a topology domain together with other pods. For example, to reduce network latency between the services that communicate with each other, you can deploy their pods to a topology domain \(for example, a host\).
 
-            ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/17653/156897929311222_en-US.png)
+            ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/0665359951/p11222.png)
 
             You can schedule pods according to tags of pods running on nodes. Required rules and preferred rules are supported, and available operators include `In, NotIn, Exists, DoesNotExist`.
 
@@ -220,33 +223,35 @@ StatefulSet features are as follows:
             **Note:** You can set pod anti affinity scheduling by using the same method as setting pod affinity scheduling. But the same scheduling rules have different meanings for these two types of scheduling. You need to select appropriate scheduling rules as needed.
 
 7.  Click **Create**.
-8.  After you create the application, the create success page is displayed by default and objects contained in the application are listed. You can click **View detail** to view the deployment details. 
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156897929312341_en-US.png)
+8.  After you create the application, the create success page is displayed by default and objects contained in the application are listed. You can click **View detail** to view the deployment details.
+
+    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8045359951/p12341.png)
 
     The StatefulSet page is displayed by default.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156897929312343_en-US.png)
+    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8045359951/p12343.png)
 
-9.  Then click **Back to list** in the upper-left corner to view the created StatefulSet application in the StatefulSet list page. 
+9.  Then click **Back to list** in the upper-left corner to view the created StatefulSet application in the StatefulSet list page.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156897929312431_en-US.png)
+    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9045359951/p12431.png)
 
-10. To verify service scalability, click **Scale** at the right of a target nginx application. 
-    1.  In the displayed dialog box, set the number of pod to 3. You can see that when you expand pods, the pods are in the increment order; when you contract pods, the pods are in the descending order. This shows the order stability of pods in StatefulSet. 
+10. To verify service scalability, click **Scale** at the right of a target nginx application.
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156897929412438_en-US.png)
+    1.  In the displayed dialog box, set the number of pod to 3. You can see that when you expand pods, the pods are in the increment order; when you contract pods, the pods are in the descending order. This shows the order stability of pods in StatefulSet.
 
-    2.  Click **Application** \> **Volumes Claim** in the left-side navigation pane, you can see that as the application expands, new cloud disk volumes are created with pods; if the application contracts, created PV/PVC will not be deleted. 
+        ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9045359951/p12438.png)
 
-        ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/21663/156897929412450_en-US.png)
+    2.  Click **Application** \> **Volumes Claim** in the left-side navigation pane, you can see that as the application expands, new cloud disk volumes are created with pods; if the application contracts, created PV/PVC will not be deleted.
+
+        ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9045359951/p12450.png)
 
 
 Connect to the master node and run following commands to verify the persistent storage feature.
 
 Create a temporary file on a cloud disk:
 
-``` {#codeblock_xyg_3n9_0gt}
+```
 # kubectl exec nginx-1 ls /tmp            #list files under this directory
 lost+found
 
@@ -259,7 +264,7 @@ statefulset
 
 Remove the pod to verify the data persistence:
 
-``` {#codeblock_l3d_a1n_bi0}
+```
 # kubectl delete pod nginx-1
 pod"nginx-1" deleted
 
