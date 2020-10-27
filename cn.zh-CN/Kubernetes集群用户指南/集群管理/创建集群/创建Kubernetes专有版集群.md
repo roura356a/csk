@@ -44,6 +44,7 @@ Kubernetes专有版集群需要创建至少3个Master节点以保证高可用性
 
 **说明：** 集群名称应包含1~63个字符，可包含数字、汉字、英文字符或短划线（-）。 |
         |**地域**|选择集群所在的地域。 |
+        |**时区**|选择集群所要使用的时区。默认时区为浏览器所配置的时区。 |
         |**资源组**|将鼠标悬浮于页面上方的**账号全部资源**，选择集群所在的资源组。这里显示选择的资源组。
 
 ![资源组](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png) |
@@ -102,7 +103,7 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
         |**SSH登录**|您需要开放**使用EIP暴露API Server**，才能设置公网SSH登录。
 
         -   选择开放公网SSH登录，您可以SSH访问集群。
-        -   选择不开放公网SSH登录，将无法通过SSH访问集群，也无法通过kubectl连接集群。如果您需要通过SSH访问集群实例，可以手动为ECS实例绑定EIP，并配置安全组规则，开放SSH（22）端口，具体操作请参见[通过SSH访问Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/管理与访问集群/通过SSH访问Kubernetes集群.md)。 |
+        -   选择不开放公网SSH登录，将无法通过SSH访问集群，也无法通过kubectl连接集群。如果您需要通过SSH访问集群实例，可以手动为ECS实例绑定EIP，并配置安全组规则，开放SSH（22）端口，具体操作请参见[通过SSH访问Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过SSH访问Kubernetes集群.md)。 |
         |**RDS白名单**|设置RDS白名单。将节点IP添加到RDS实例的白名单中。
 
 **说明：** 允许白名单RDS访问Kubernetes集群，RDS必须在当前集群的VPC内。 |
@@ -230,7 +231,7 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
 
         **说明：** 单击**重新绑定域名**，您可以重新绑定访问域名。
 
--   您可以[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/管理与访问集群/通过kubectl连接Kubernetes集群.md)，执行`kubectl get node`查看集群的节点信息。
+-   您可以[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)，执行`kubectl get node`查看集群的节点信息。
 
 ![集群查看结果](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1506659951/p9050.png)
 
