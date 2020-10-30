@@ -23,7 +23,7 @@ This topic describes how to register and manage an external Kubernetes cluster i
 **Note:** The name must be 1 to 63 characters in length, and can contain digits, letters, and hyphens \(-\). |
         |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group to which the cluster belongs. The name of the selected resource group appears on the page.
 
-![Resource Groups](../images/p127165.png) |
+![Resource Groups](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
         |**Region**|Select a region to deploy the cluster. |
         |**Zone**|Select a zone to deploy the cluster.|
         |**VPC**|You can select a virtual private cloud \(VPC\) and a VSwitch from the drop-down lists.|
