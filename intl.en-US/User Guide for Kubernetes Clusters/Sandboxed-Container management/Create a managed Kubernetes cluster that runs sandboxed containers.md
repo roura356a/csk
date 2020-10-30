@@ -51,7 +51,7 @@ This topic describes how to create a managed Kubernetes cluster that runs sandbo
         |**Region**|Select a region to deploy the cluster. |
         |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group to which the cluster belongs. The name of the selected resource group appears on the page.
 
-![Resource Groups](../images/p127165.png) |
+![Resource Groups](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
         |**Kubernetes Version**|Select a Kubernetes version.|
         |**Container Runtime**|Select **Sandboxed-Container**.|
         |**VPC**|Select a Virtual Private Cloud \(VPC\) network to deploy the cluster. Shared VPC networks and standard VPC networks are supported.
