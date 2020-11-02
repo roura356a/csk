@@ -170,9 +170,9 @@ The authorization succeeds. You are redirected to the Auto Scaling console. Go t
 
 1.  On the Auto Scaling page, you can find the newly created scaling group in the general purpose instance section.
 
-    ![Auto Scaling](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8211892951/p11273.png)
+    ![Auto Scaling](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7922234061/p11273.png)
 
-2.  On the Clusters page, click the name of the target cluster or click **Manage** in the **Actions** column.
+2.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 3.  In the left-side navigation pane, click **Workload**.
 
@@ -206,11 +206,11 @@ The authorization succeeds. You are redirected to the Auto Scaling console. Go t
 **Related topics**  
 
 
-[Access a Kubernetes API server from the Internet](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Manage and access clusters/Access a Kubernetes API server from the Internet.md)
+[Access the Kubernetes API server over the Internet](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Access the Kubernetes API server over the Internet.md)
 
-[Horizontal pod autoscaling](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Horizontal pod autoscaling.md)
+[HPA](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/HPA.md)
 
-[Implement autoscaling with Alibaba Cloud metrics](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Implement autoscaling with Alibaba Cloud metrics.md)
+[Implement horizontal auto scaling based on Alibaba Cloud metrics](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Implement horizontal auto scaling based on Alibaba Cloud metrics.md)
 
 [Implement cron HPA](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Implement cron HPA.md)
 
