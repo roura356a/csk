@@ -30,11 +30,9 @@ keyword: [Serverless集群, 创建Serverless]
 
 **说明：** 若您选择**自动创建**VPC，可选择是否自动配置SNAT网关。若选择不自动配置SNAT，您可自行配置NAT网关实现VPC安全访问公网环境，并且手动配置SNAT，否则VPC内实例将不能正常访问公网。
 
-详情请参见[创建NAT网关](/cn.zh-CN/NAT网关实例/创建NAT网关.md)。 |
+详情请参见[创建NAT网关](/cn.zh-CN/用户指南/NAT网关实例/创建NAT网关.md)。 |
     |**虚拟交换机**|设置虚拟交换机。仅当**专有网络**选择为**使用已有**时，需要设置该选项。 您可以在已有VSwitch列表中，根据**可用区**选择1~3个交换机 。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[创建交换机](/cn.zh-CN/专有网络和交换机/管理交换机/创建交换机.md)。 |
-    |**公网访问**|设置是否开放**使用EIP暴露API Server**。 **说明：** 通常边缘节点需要通过公网和云端API server交互，因此若不选中**使用EIP暴露API Server**，边缘节点将无法连接到云端集群，所创建集群也将无法在边缘场景下使用。
-
-API Server提供了各类资源对象（Pod、Service等）的增删改查及watch等HTTP Rest接口。
+    |**公网访问**|设置是否开放**使用EIP暴露API Server**，获取从公网访问集群API Server的能力。 API Server提供了各类资源对象（Pod、Service等）的增删改查及watch等HTTP Rest接口。
 
     -   如果选择开放，会创建一个EIP，同时把Master节点的6443端口（对应API Server）暴露出来，用户可以在外网通过kubeconfig连接或操作集群。
     -   若选择不开放，不会创建EIP，用户只能在VPC内部用kubeconfig连接/操作集群。
