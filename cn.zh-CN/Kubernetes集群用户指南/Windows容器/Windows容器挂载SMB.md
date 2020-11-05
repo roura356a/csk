@@ -7,7 +7,7 @@ keyword: [ACK Windows节点, SMB, 存储资源, Kubernetes]
 您可以在ACK Windows容器上使用SMB存储资源。本文介绍如何在Windows容器上使用SMB。
 
 -   [创建Windows节点池](/cn.zh-CN/Kubernetes集群用户指南/Windows容器/创建Windows节点池.md)。
--   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/管理与访问集群/通过kubectl连接Kubernetes集群.md)。
+-   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。
 -   在NAS控制台创建一个与集群在相同的VPC的SMB存储盘，并创建挂载点。有关具体操作步骤，请参见[Windows系统挂载SMB文件系统]()。
 
 ## 步骤一：部署插件
@@ -25,8 +25,8 @@ keyword: [ACK Windows节点, SMB, 存储资源, Kubernetes]
     |参数|描述|
     |--|--|
     |driver|配置挂载驱动，必须为alicloud/smb.exe。|
-    |server|SMB存储盘的挂载地址，所在网络需要和集群所在VPC相同。|
-    |path|SMB存储盘的挂载地址，必须以\\myshare开头，后面可以为空或者子目录。|
+    |server|SMB存储盘的挂载点域名，所在网络需要和集群所在VPC相同。|
+    |path|SMB存储盘的挂载路径，必须以\\myshare开头，后面可以为空或者子目录。|
     |user|集群节点的登录用户名，推荐使用workshop\\administrator。|
     |password|集群节点的登录密码。|
 
