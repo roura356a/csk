@@ -4,43 +4,64 @@ keyword: [容器服务ACK, k8s, 开通服务, 角色授权]
 
 # 首次使用容器服务Kubernetes版
 
-您首次使用容器服务Kubernetes版ACK（Container Service for Kubernetes）时，无需开通ACK服务，但需要为服务账号授予系统默认角色。当且仅当该角色被正确授予后，容器服务才能正常地调用相关服务（ECS，OSS、NAS、SLB等），创建集群以及保存日志等。本文介绍首次使用ACK时，如何进行授权操作。
+您首次使用容器服务Kubernetes版ACK（Container Service for Kubernetes）时，无需开通容器服务，但需要为服务账号授予系统默认角色。当且仅当该角色被正确授予后，容器服务才能正常地调用相关服务（ECS，OSS、NAS、SLB等），创建集群以及保存日志等。本文介绍在首次使用ACK时如何授权容服务默认角色以及开通相关云产品。
 
-ACK的默认角色包括：
-
--   [AliyunCSManagedLogRole](#d7e62)
--   [AliyunCSManagedCmsRole](#d7e317)
--   [AliyunCSManagedCsiRole](#d7e414)
--   [AliyunCSManagedVKRole](#d7e634)
--   [AliyunCSClusterRole](#d7e888)
--   [AliyunCSServerlessKubernetesRole](#d7e1227)
--   [AliyunCSKubernetesAuditRole](#d7e1845)
--   [AliyunCSManagedNetworkRole](#d7e2044)
--   [AliyunCSDefaultRole](#d7e2110)
--   [AliyunCSManagedKubernetesRole](#d7e3153)
--   [AliyunCSManagedArmsRole](#d7e3450)
-
-## 使用说明
-
--   如果您是在2018年1月15日之前使用过容器服务ACK的用户，系统将默认完成角色授权。详细的授权权限内容请参见[容器服务默认角色](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)。如果您之前是通过子账号使用，您需要对子账号进行策略升级，请参见[自定义RAM授权策略](/intl.zh-CN/Kubernetes集群用户指南/授权管理/自定义RAM授权策略.md)。
--   2018年1月15日ACK全面接入跨服务授权后，新用户使用主账号只有进行了跨服务授权才能使用ACK产品。如果新用户需要授权子账号使用ACK，需要自行前往RAM控制台进行授权，详细操作请参见[使用子账号](/intl.zh-CN/Kubernetes集群用户指南/授权管理/使用子账号（RAM用户）.md)。
-
-## 操作步骤
+## 步骤一：一键授权默认角色
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  单击**前往RAM进行授权**进入[云资源访问授权](https://ram.console.aliyun.com/#/role/authorize?request=%7B%22ReturnUrl%22:%22https:%2F%2Fcs.console.aliyun.com%2F%22,%22Service%22:%22CS%22,%22Requests%22:%7B%22request1%22:%7B%22RoleName%22:%22AliyunCSManagedLogRole%22,%22TemplateId%22:%22AliyunCSManagedLogRole%22%7D,%22request2%22:%7B%22RoleName%22:%22AliyunCSManagedCmsRole%22,%22TemplateId%22:%22AliyunCSManagedCmsRole%22%7D,%22request3%22:%7B%22RoleName%22:%22AliyunCSManagedCsiRole%22,%22TemplateId%22:%22AliyunCSManagedCsiRole%22%7D,%22request4%22:%7B%22RoleName%22:%22AliyunCSManagedVKRole%22,%22TemplateId%22:%22AliyunCSManagedVKRole%22%7D,%22request5%22:%7B%22RoleName%22:%22AliyunCSClusterRole%22,%22TemplateId%22:%22Cluster%22%7D,%22request6%22:%7B%22RoleName%22:%22AliyunCSServerlessKubernetesRole%22,%22TemplateId%22:%22ServerlessKubernetes%22%7D,%22request7%22:%7B%22RoleName%22:%22AliyunCSKubernetesAuditRole%22,%22TemplateId%22:%22KubernetesAudit%22%7D,%22request8%22:%7B%22RoleName%22:%22AliyunCSManagedNetworkRole%22,%22TemplateId%22:%22AliyunCSManagedNetworkRole%22%7D,%22request9%22:%7B%22RoleName%22:%22AliyunCSDefaultRole%22,%22TemplateId%22:%22Default%22%7D,%22request10%22:%7B%22RoleName%22:%22AliyunCSManagedKubernetesRole%22,%22TemplateId%22:%22ManagedKubernetes%22%7D,%22request11%22:%7B%22RoleName%22:%22AliyunCSManagedArmsRole%22,%22TemplateId%22:%22AliyunCSManagedArmsRole%22%7D%7D%7D)页面，然后单击**同意授权**。
 
-    **说明：**
+3.  完成以上授权后，刷新控制台即可使用容器服务。
 
-    -   如果您创建的是托管版集群，还需[同意授权KubernetesAuditRole角色](https://ram.console.aliyun.com/?spm=5176.2020520152.0.0.2d5916ddD6wVTY#/role/authorize?request=%7B%22Requests%22:%20%7B%22request1%22:%20%7B%22RoleName%22:%20%22KubernetesAuditRole%22,%20%22TemplateId%22:%20%22ManagedKubernetes%22%7D%7D,%20%22ReturnUrl%22:%20%22https:%2F%2Fcs.console.aliyun.com%22,%20%22Service%22:%20%22CS%22%7D)访问云产品中的资源。
-    -   当前托管集群节点默认的WorkerRolePolicy权限较大，为了进一步加强托管集群节点在多租户场景下的安全隔离性，容器服务Kubernetes版ACK（Container Service for Kubernetes）已收敛托管集群节点RAM角色绑定的权限。详情请参见[托管集群节点RAM角色收敛公告](/intl.zh-CN/产品公告/托管集群节点RAM角色收敛公告.md)。
-    -   如果您需修改容器服务已经设置好默认的角色权限，请在RAM控制台角色管理中设置。需注意错误的配置可能导致容器服务无法获取到必要的权限。
-3.  完成以上授权后，刷新ACK控制台即可使用ACK服务。
 
+## 步骤二：开通相关云产品
+
+容器服务ACK相关功能依赖或关联其他的云资源服务，因此您需要开通相关云产品。
+
+使用阿里云账号（即主账号）登录阿里云官网，根据需要开通以下相关云产品。
+
+-   必选项：使用ACK集群的强依赖服务，必须开通。
+-   建议项：集群创建和应用管理中常见的依赖服务，建议开通。
+-   可选项：根据业务架构和运维需求选择性开通。
+
+|产品名称|开通链接|开通类型|产品说明|
+|----|----|----|----|
+|VPC专有网络|[https://www.alibabacloud.com/product/vpc](https://www.alibabacloud.com/product/vpc)|必选项|用于构建集群网络环境和路由规则|
+|NAT网关服务|[https://www.alibabacloud.com/product/nat](https://www.alibabacloud.com/product/nat)|必选项|用于为集群开启公网访问和公网镜像拉取|
+|SLB负责均衡|[https://www.alibabacloud.com/product/server-load-balancer](https://www.alibabacloud.com/product/server-load-balancer)|必选项|用于为集群创建负载均衡|
+|ESS弹性伸缩服务|[https://www.alibabacloud.com/product/auto-scaling](https://www.alibabacloud.com/product/auto-scaling)|必选项|用于为集群创建Worker节点和实现自动伸缩|
+|ACR容器镜像服务|[https://www.alibabacloud.com/product/container-registry](https://www.alibabacloud.com/product/container-registry)|建议项|用于云原生资产的安全托管和全生命周期管理|
+|ECI弹性容器实例|[https://www.alibabacloud.com/products/elastic-container-instance](https://www.alibabacloud.com/products/elastic-container-instance)|建议项|用于部署ASK Serverless集群|
+|ASM服务网格|[https://servicemesh.console.aliyun.com/\#/instances](https://servicemesh.console.aliyun.com/#/instances)|建议项|基于服务网格实现多个ACK集群应用的统一流量管理|
+|SLS日志服务|[https://www.alibabacloud.com/product/log-service](https://www.alibabacloud.com/product/log-service)|建议项|用于ACK集群组件和应用的日志采集和检索|
+|CMS云监控服务|[https://www.alibabacloud.com/product/cloud-monitor](https://www.alibabacloud.com/product/cloud-monitor)|建议项|用于监控集群节点和应用运行状态|
+|阿里云Prometheus|[https://arms.console.aliyun.com/\#/home](https://arms.console.aliyun.com/#/home)|建议项|基于Prometheus实现对ACK集群的监控和告警|
+|SAS云安全中心|[https://www.alibabacloud.com/product/security-center](https://www.alibabacloud.com/product/security-center)|可选项|用于监控集群应用运行时的安全事件和告警|
+|NAS文件存储|[https://www.alibabacloud.com/product/nas](https://www.alibabacloud.com/product/nas)|可选项|基于NAS实现集群应用数据的文件存储方案|
+|OSS对象存储|[https://www.alibabacloud.com/product/oss](https://www.alibabacloud.com/product/oss)|可选项|基于OSS实现集群应用数据的对象存储方案|
+|KMS密钥管理服务|[https://www.alibabacloud.com/product/kms](https://www.alibabacloud.com/product/kms)|可选项|用于集群应用密钥的管理以及Pro集群开启密钥的落盘加密能力|
+|PrivateZone服务|[https://www.alibabacloud.com/products/private-zone](https://www.alibabacloud.com/products/private-zone)|可选项|基于内网DNS服务实现ASK集群应用的域名访问|
+
+## 容器服务默认角色说明
+
+|角色名称|角色说明|
+|----|----|
+|[AliyunCSDefaultRole](#section_ju1_tsb_brp)|ACK在集群管控操作中使用该角色访问您在ECS、VPC、SLB、ROS、ESS等服务中的资源。|
+|[AliyunCSManagedKubernetesRole](#section_j4k_173_ejk)|ACK托管版集群默认使用该角色来访问您在ECS、VPC、SLB、ACR等服务中的资源。|
+|[AliyunCSServerlessKubernetesRole](#section_6ht_wqj_yms)|ASK集群默认使用该角色来访问您在ECS、VPC、SLB、PVTZ等服务中的资源。|
+|[AliyunCSKubernetesAuditRole](#section_rf2_r4h_mip)|ACK托管版集群和ASK集群的审计功能使用该角色来访问您在SLS服务中的资源。|
+|[AliyunCSManagedNetworkRole](#section_2xh_x0c_se3)|ACK托管版集群和ASK集群的网络组件使用该角色访问您在ECS、VPC服务中的资源。|
+|[AliyunCSManagedCsiRole](#section_ot3_h1u_t4i)|ACK托管版集群和ASK集群的存储组件使用该角色访问您在ECS、NAS服务中的资源。|
+|[AliyunCSManagedCmsRole](#section_sdf_auf_nsx)|ACK托管版集群和ASK集群的监控组件使用该角色访问您在CMS、SLS服务中的资源。|
+|[AliyunCSManagedLogRole](#section_q0d_zoc_k5u)|ACK托管版集群和ASK集群的日志组件使用该角色访问您在SLS服务中的资源。|
+|[AliyunCSManagedVKRole](#section_1np_fxp_gl4)|ASK集群的Virtual Kubelet组件使用该角色访问您在ECS、VPC、ECI等服务中的资源。|
+|[AliyunCSManagedArmsRole](#section_s8z_f50_zrm)|ACK托管版集群和ASK集群的应用实时监控组件使用该角色访问您在ARMS服务中的资源。|
 
 **相关文档**  
 
+
+[入门指引](/intl.zh-CN/快速入门/入门指引.md)
 
 [容器服务默认角色](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)
 
