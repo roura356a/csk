@@ -82,7 +82,7 @@
         -   如果VPC中没有NAT网关，系统会默认自动为您创建一个NAT网关。如果您不希望系统自动创建NAT网关，可以取消选中页面下方的**为专有网络配置SNAT**。此时您需要自行配置NAT网关实现VPC安全访问公网环境，或者手动配置SNAT，否则VPC内实例将不能正常访问公网，会导致集群创建失败。 |
         |**公网访问**|设置是否开放**使用EIP暴露API Server**。 API Server提供了各类资源对象（Pod，Service等）的增删改查及watch等HTTP Rest接口。
 
-        -   如果选择开放，会创建一个EIP，并挂载到内网SLB上。此时，Master节点的6443端口（对应API Server）暴露出来，用户可以在外网通过kubeconfig连接或操作集群。
+        -   如果选择开放，会创建一个EIP，并挂载到公网SLB上。此时，Master节点的6443端口（对应API Server）暴露出来，用户可以在外网通过kubeconfig连接或操作集群。
         -   如果选择不开放，则不会创建EIP，用户只能在VPC内部用kubeconfig连接并操作集群。 |
         |**SSH登录**|您需要开放**使用EIP暴露API Server**，才能设置公网SSH登录。
 
