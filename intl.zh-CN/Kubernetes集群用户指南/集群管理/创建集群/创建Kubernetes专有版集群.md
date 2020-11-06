@@ -97,7 +97,7 @@ Kubernetes专有版集群需要创建至少3个Master节点以保证高可用性
 
 API Server提供了各类资源对象（Pod，Service等）的增删改查及watch等HTTP Rest接口。
 
-        -   如果选择开放，会创建一个EIP，并挂载到内网SLB上。此时，Master节点的6443端口（对应API Server）暴露出来，用户可以在外网通过kubeconfig连接并操作集群。
+        -   如果选择开放，会创建一个EIP，并挂载到公网SLB上。此时，Master节点的6443端口（对应API Server）暴露出来，用户可以在外网通过kubeconfig连接并操作集群。
         -   如果选择不开放，则不会创建EIP，您只能在VPC内部用kubeconfig连接并操作集群。 |
         |**SSH登录**|您需要开放**使用EIP暴露API Server**，才能设置公网SSH登录。
 
