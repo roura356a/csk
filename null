@@ -57,23 +57,23 @@ ACK支持为Serivce指定一个已有的SLB，或者让CCM自动创建新的SLB�
 
 **VPC**
 
--   集群中一个节点对应一条路由表项，VPC默认情况下仅支持48条路由表项，如果集群节点数目多于48个，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)给VPC产品。
+-   集群中一个节点对应一条路由表项，VPC默认情况下仅支持48条路由表项，如果集群节点数目多于48个，请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)给VPC产品。
 
     **说明：** 您可以在提交工单时，说明需要修改`vpc_quota_route_entrys_num`参数，用于提升单个路由表可创建的自定义路由条目的数量。
 
--   更多VPC使用限制，请参见[使用限制](/cn.zh-CN/产品简介/使用限制.md)。
+-   更多VPC使用限制，请参见[使用限制](/intl.zh-CN/产品简介/使用限制.md)。
 
     查询VPC配额，请参见[专有网络VPC配额管理](https://vpc.console.aliyun.com/quota%EF%BC%89)。
 
 
 **SLB**
 
--   CCM会为`Type=LoadBalancer`类型的Service创建SLB。默认情况下一个用户可以保留60个SLB实例。如果需要创建的SLB数量大于60，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)给SLB产品。
+-   CCM会为`Type=LoadBalancer`类型的Service创建SLB。默认情况下一个用户可以保留60个SLB实例。如果需要创建的SLB数量大于60，请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)给SLB产品。
 
     **说明：** 您可以在提交工单时，说明需要修改`slb_quota_instances_num`参数，用于提高您可保有的SLB实例个数。
 
 -   CCM会根据Service的配置将ECS挂载到SLB后端服务器组中。
-    -   默认情况下一个ECS实例可挂载的后端服务器组的数量为50个，如果一台ECS需要挂载到更多的后端服务器组中，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)给SLB产品。
+    -   默认情况下一个ECS实例可挂载的后端服务器组的数量为50个，如果一台ECS需要挂载到更多的后端服务器组中，请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)给SLB产品。
 
         **说明：** 您可以在提交工单时，说明需要修改`slb_quota_backendservers_num`参数，用于提高同一台服务器可以重复添加为SLB后端服务器的次数。
 
@@ -85,7 +85,7 @@ ACK支持为Serivce指定一个已有的SLB，或者让CCM自动创建新的SLB�
 
     **说明：** 您可以在提交工单时，说明需要修改`slb_quota_listeners_num`参数，用于提高每个实例可以保有的监听数量。
 
--   更多SLB使用限制请参见[使用限制](/cn.zh-CN/用户指南/产品限制/使用限制.md)。
+-   更多SLB使用限制请参见[使用限制](/intl.zh-CN/用户指南/产品限制/使用限制.md)。
 
     负载均衡SLB配额查询请参见[负载均衡SLB配额管理](https://slbnew.console.aliyun.com/slb/quota)。
 
