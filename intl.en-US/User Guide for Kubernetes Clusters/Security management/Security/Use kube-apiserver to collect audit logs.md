@@ -166,7 +166,7 @@ The Cluster Auditing page displays audit log reports on three tabs: Overview, Op
 
     This tab displays an overview of the events in the cluster and the details of important events, such as connections from the Internet, command execution, resource deletion, and access to secrets.
 
-    ![Overview](../images/p133068.png)
+    ![Overview](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6914005061/p133068.png)
 
     **Note:** By default, this tab displays statistics by week. You can specify a time range and view the statistics collected during the period. You can also filter the audit information by namespace, RAM user, and status code. One or more filter conditions can be specified at a time.
 
@@ -177,7 +177,7 @@ The Cluster Auditing page displays audit log reports on three tabs: Overview, Op
     -   Computing resources include deployments, StatefulSets, CronJobs, DaemonSets, jobs, and pods.
     -   Network resources include services and ingresses.
     -   Storage resources include ConfigMaps, secrets, and persistent volume claims \(PVCs\).
-    ![Operations Overview](../images/p133069.png)
+    ![Operations Overview](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6914005061/p133069.png)
 
     **Note:**
 
@@ -187,7 +187,7 @@ The Cluster Auditing page displays audit log reports on three tabs: Overview, Op
 
     This tab displays operation details by resource type. You can specify a resource type to query operation details in real time. This tab displays the total number of operations on resources, distribution of namespaces, operation success rates, the temporal order of operations, and other operation details.
 
-    ![Operation Details](../images/p133070.png)
+    ![Operation Details](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7914005061/p133070.png)
 
     **Note:**
 
@@ -204,7 +204,7 @@ To customize queries or analyze audit logs, go to the Log Service console and vi
 
 2.  Find the specific project, and click the project name.
 
-3.  Find Logstore audit-$\{clustered\}, click ![Search & Analysis icon](../images/p75381.png), and then select **Search & Analysis** to view the audit logs.
+3.  Find Logstore audit-$\{clustered\}, click ![Search & Analysis icon](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7914005061/p75381.png), and then select **Search & Analysis** to view the audit logs.
 
     **Note:**
 
@@ -269,17 +269,15 @@ By default, the **Enable Log Service** check box is selected when you create a c
 
 2.  In the left-side navigation pane, click **Clusters**.
 
-3.  On the Clusters page, click the name of the target cluster or click **Manage** in the **Actions** column.
+3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page of the cluster, choose **Security** \> **Cluster Auditing**. If cluster auditing is disabled, you are prompted to enable this feature.
-
-    ![Enable cluster auditing](../images/p147894.png)
 
 5.  Click **Enable Cluster Auditing Now**. **Select an existing project** or **create a project**, and then click **OK**.
 
     If the following page appears, cluster auditing is enabled.
 
-    ![Audit](../images/p133071.png)
+    ![Audit](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7914005061/p133071.png)
 
 
 ## Disable cluster auditing
@@ -290,7 +288,7 @@ You can take the following steps to disable cluster auditing:
 
 2.  In the left-side navigation pane, click **Clusters**.
 
-3.  On the Clusters page, click the name of the target cluster or click **Manage** in the **Actions** column.
+3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page of the cluster, choose **Security** \> **Cluster Auditing**.
 
