@@ -23,8 +23,8 @@ keyword: [Arena, k8s集群, 多用户, 存储]
 
 本文示例中的ACK集群和Client机器的节点信息如下表所示。
 
-|主机名（假名）|角色|IP地址|GPU卡数|CPU核数|MEM|
-|-------|--|----|-----|-----|---|
+|主机名|角色|IP地址|GPU卡数|CPU核数|MEM|
+|---|--|----|-----|-----|---|
 |client01|Client|10.0.0.97（私有）39.98.xxx.xxx（公）|0|2|8 GiB|
 |master01|Master|10.0.0.91（私有）|0|4|8 GiB|
 |master02|Master|10.0.0.92（私有）|0|4|8 GiB|
@@ -52,7 +52,7 @@ keyword: [Arena, k8s集群, 多用户, 存储]
 
 **说明：** department1-public-dev1和department1-public-dev2数据卷指向的是同一份数据；组dev1和dev2为所有用户共享；dev1-public和dev2-public分别对应分组dev1、dev2用户独享的数据。
 
-## 步骤一：创建和管理AI平台的用户和组
+## 步骤一：创建和管理ACK集群的用户和组
 
 为了安全起见，不建议您直接登录ACK集群的Master节点安装使用Arena以及对集群进行操作，因此建议您在与ACK集群同一个VPC下创建ECS实例（Client机器）。通过配置KubeConfig文件，使用ECS实例节点对ACK集群进行访问。
 
@@ -60,7 +60,7 @@ keyword: [Arena, k8s集群, 多用户, 存储]
 
     1.  通过kubectl连接ACK集群。
 
-        使用kubectl命令连接ACK集群时，您需要安装kubectl客户端工具和配置供集群管理员admin操作ACK集群的KubeConfig文件。有关具体的操作步骤，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/管理与访问集群/通过kubectl连接Kubernetes集群.md)。
+        使用kubectl命令连接ACK集群时，您需要安装kubectl客户端工具和配置供集群管理员admin操作ACK集群的KubeConfig文件。有关具体的操作步骤，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。
 
         **说明：** 要求kubectl的版本大于或等于1.10。
 
@@ -303,7 +303,7 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
 
     ![result](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4599282061/p174151.png)
 
-2.  执行以下命令提交一个1张GPU卡的训练作业。
+2.  执行以下命令提交一个需要1张GPU卡的训练作业。
 
     ```
     arena submit tf \
@@ -368,7 +368,7 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
 
     ![list](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4599282061/p174176.png)
 
-3.  执行以下命令提交一个1张GPU卡的训练作业。
+3.  执行以下命令提交一个需要1张GPU卡的训练作业。
 
     ```
      arena submit tf \
@@ -384,7 +384,7 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
 
     **说明：** 由于示例分配了组dev2的GPU、CPU、MEM资源，因此在dev2组里的用户提交作业的时候需要明确指定GPU、CPU、MEM的使用资源。
 
-4.  执行以下命令再次提交一个1张GPU卡的训练作业。
+4.  执行以下命令再次提交一个需要1张GPU卡的训练作业。
 
     ```
      arena submit tf \
@@ -410,6 +410,10 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
 ## 执行结果
 
 从上述操作可以看到，目前分别位于两个组的用户bob、tom可以通过自己的账号登录Client机器独立地使用Arena ，并通过Arena查看和使用用户当前所在组可访问的存储资源和计算资源，以及管理各自的作业。
+
+## 操作视频
+
+
 
 ## 附录
 
