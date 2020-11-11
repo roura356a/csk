@@ -1,6 +1,6 @@
 # Billing
 
-Alibaba Cloud Container Service for Kubernetes \(ACK\) supports four types of clusters: dedicated clusters, managed clusters, serverless clusters, and edge clusters. Managed clusters include standard managed clusters and professional managed clusters. This topic describes the billing methods of the clusters of these types.
+Container Service for Kubernetes \(ACK\) supports four types of clusters: dedicated clusters, managed clusters, serverless clusters, and edge clusters. Managed clusters include standard managed clusters and professional managed clusters. This topic describes the billing methods of the clusters of these types.
 
 ## Professional managed clusters
 
@@ -15,7 +15,7 @@ If you use a professional managed cluster, you are charged for cluster managemen
     |Pay-as-you-go|USD 0.09/hour per cluster |
 
 -   For information about the billing methods of cloud resources, see the following topics:
-    -   [Elastic Compute Service \(ECS\) billing overview](/intl.en-US/Pricing/Billing items/Billing overview.md)
+    -   [Elastic Compute Service \(ECS\) billing overview](/intl.en-US/Pricing/Billing overview.md)
     -   [Network Address Translation \(NAT\) gateway billing](/intl.en-US/Pricing/Billing.md)
     -   [Server Load Balancer \(SLB\) pay-as-you-go billing](/intl.en-US/Pricing/Billing method.md)
 
@@ -34,7 +34,7 @@ If you use a professional managed cluster, you are charged for cluster managemen
 
 If you use a dedicated or standard cluster, you are charged for only the cloud resources that are created in the cluster. The cloud resources include ECS instances, SLB instances, and NAT gateways. For more information about the billing methods of these resources, see the following topics:
 
--   [ECS billing overview](/intl.en-US/Pricing/Billing items/Billing overview.md)
+-   [ECS billing overview](/intl.en-US/Pricing/Billing overview.md)
 -   [NAT gateway billing](/intl.en-US/Pricing/Billing.md)
 -   [SLB pay-as-you-go billing](/intl.en-US/Pricing/Billing method.md)
 
