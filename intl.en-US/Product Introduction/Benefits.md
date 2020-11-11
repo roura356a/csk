@@ -1,6 +1,6 @@
 # Benefits
 
-This topic describes the advantages of Alibaba Cloud Container Service for Kubernetes \(ACK\) clusters and the disadvantages of user-created Kubernetes clusters.
+This topic describes the advantages of Container Service for Kubernetes \(ACK\) clusters and the disadvantages of user-created Kubernetes clusters.
 
 ## Advantages of ACK
 
@@ -67,7 +67,9 @@ Allows you to create public-facing and internal Server Load Balancer \(SLB\) ins
 -   Default security capabilities:
     -   ACK provides optimized OS images of Kubernetes containers and supports Kubernetes clusters and Docker versions that have high stability and enhanced security.
     -   Enhances the security compliance of cluster configurations, system components, and system images based on the CIS Benchmark and container security best practices.
-    -   Grants minimum permissions on managing default cloud resources on nodes. |
+    -   Grants minimum permissions on managing default cloud resources on nodes.
+-   [Sandboxed-Container](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Sandboxed-Container overview.md) allows you to run an application in a sandboxed and lightweight virtual machine. This virtual machine has a dedicated kernel, isolates applications from each other, and provides enhanced security. Sandboxed-Container is suitable in scenarios such as untrusted application isolation, fault isolation, performance isolation, and load isolation among multiple users.
+-   [TEE-based confidential computing](/intl.en-US/User Guide for Kubernetes Clusters/TEE-based confidential computing/TEE-based confidential computing.md) is a cloud-native and all-in-one solution based on Intel Software Guard Extensions \(SGX\). This solution ensures security, integrity, and confidentiality of data in use. It also lowers the costs of developing, delivering, and managing trusted applications and confidential computing applications. Confidential computing allows you to isolate sensitive data and code by using a trusted execution environment. |
 |24/7 technical support|Provides you with 24/7 technical support in the ticket system.|
 
 ## Disadvantages of user-created Kubernetes clusters
