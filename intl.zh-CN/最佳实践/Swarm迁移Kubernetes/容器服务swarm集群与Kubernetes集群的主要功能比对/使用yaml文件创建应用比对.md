@@ -1,70 +1,70 @@
-# 使用yaml文件创建应用比对 {#concept_ikh_x5z_ggb .concept}
+# 使用yaml文件创建应用比对
 
 本文介绍容器服务Swarm集群与Kubernetes集群使用yaml文件创建应用时，Swarm集群下的yaml文件与Kubernetes集群下的yaml文件的对应关系。
 
-## 背景信息 {#section_ubk_4zz_ggb .section}
+## 背景信息
 
 在使用yaml文件创建应用时，Swarm集群与Kubernetes集群的yaml文件格式不一样：
 
 -   您可以通过Kompose工具对Swarm集群的yaml文件进行自动转换。但转换后的内容仍需您核对检查。
 
-    Kompose工具可以从Github上获取：[https://github.com/AliyunContainerService/kompose](https://github.com/AliyunContainerService/kompose)。
+    [Kompose工具](https://github.com/AliyunContainerService/kompose)可以从Github上获取。
 
     Kompose工具下载地址：
 
-    -   Mac下载地址：[http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/swarm/kompose-darwin-amd64](http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/swarm/kompose-darwin-amd64)
-    -   Linux下载地址：[http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/swarm/kompose-linux-amd64](http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/swarm/kompose-linux-amd64)
-    -   Window下载地址：[http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/swarm/kompose-windows-amd64.exe](http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/swarm/kompose-windows-amd64.exe)
-    **说明：** 目前Kompose工具对阿里云的一些定制标签还不支持，如表[1](#)所示，阿里云容器服务团队会持续研发逐步覆盖各个标签的支持。
+    -   Mac下载地址：[Mac](http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/swarm/kompose-darwin-amd64)
+    -   Linux下载地址：[Linux](http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/swarm/kompose-linux-amd64)
+    -   Window下载地址：[Window](http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/swarm/kompose-windows-amd64.exe)
+    **说明：** 目前Kompose工具对阿里云的一些定制标签还不支持，如[表 1](#table_bd5_q3d_bhb)所示，阿里云容器服务团队会持续研发逐步覆盖各个标签的支持。
 
     |标签|参考|
     |--|--|
-    |external|[external](../../../../intl.zh-CN/用户指南/服务编排/external.md#)|
-    |dns\_options|[dns\_options](../../../../intl.zh-CN/用户指南/服务编排/dns_options.md#)|
-    |oom\_kill\_disable|[oom\_kill\_disable](../../../../intl.zh-CN/用户指南/服务编排/oom_kill_disable.md#)|
-    |affinity:service|[服务部署约束（affinity:service）](../../../../intl.zh-CN/用户指南/服务编排/服务部署约束（affinity:service）.md#)|
+    |external|[external](/intl.zh-CN/用户指南/服务编排/external.md)|
+    |dns\_options|[dns\_options](/intl.zh-CN/用户指南/服务编排/dns_options.md)|
+    |oom\_kill\_disable|[oom\_kill\_disable](/intl.zh-CN/用户指南/服务编排/oom_kill_disable.md)|
+    |affinity:service|[服务部署约束（affinity:service）](/intl.zh-CN/用户指南/服务编排/服务部署约束（affinity:service）.md)|
 
 -   您也可以手动改写yaml文件。
 
-本文将基于容器服务Swarm的yaml文件，介绍介绍Kubernetes的yaml文件如何与之对应。文章中的yaml示例，仅作为示例，具体部署请依据具体情况添加及修改相关内容。
+本文将基于容器服务Swarm的yaml文件，介绍Kubernetes的yaml文件如何与之对应。文章中的yaml示例，仅作为示例，具体部署请依据具体情况添加及修改相关内容。
 
-## 容器服务Swarm与Kubernetes集群的yaml文件比对 {#section_nrg_hb1_hgb .section}
+## 容器服务Swarm与Kubernetes集群的yaml文件比对
 
 **容器服务Swarm集群**
 
 容器服务Swarm集群的yaml文件wordpress-swarm.yaml如下，注释中的阿拉伯数字与容器服务Kubernetes集群的yaml文件的注释对应。
 
 ```
-web:		#---1
-  image: registry.aliyuncs.com/acs-sample/wordpress:4.5		#---2
-  ports:		#---3
+web:        #---1
+  image: registry.aliyuncs.com/acs-sample/wordpress:4.5        #---2
+  ports:        #---3
     - '80'
-  environment:		#---4
-    WORDPRESS_AUTH_KEY: changeme			#---5
-    WORDPRESS_SECURE_AUTH_KEY: changeme		#---5
-    WORDPRESS_LOGGED_IN_KEY: changeme		#---5
-    WORDPRESS_NONCE_KEY: changeme			#---5
-    WORDPRESS_AUTH_SALT: changeme			#---5
-    WORDPRESS_SECURE_AUTH_SALT: changeme		#---5
-    WORDPRESS_LOGGED_IN_SALT: changeme		#---5
-    WORDPRESS_NONCE_SALT: changeme			#---5
-    WORDPRESS_NONCE_AA: changeme			#---5
-  restart: always		#---6
-  links:			#---7
+  environment:        #---4
+    WORDPRESS_AUTH_KEY: changeme            #---5
+    WORDPRESS_SECURE_AUTH_KEY: changeme        #---5
+    WORDPRESS_LOGGED_IN_KEY: changeme        #---5
+    WORDPRESS_NONCE_KEY: changeme            #---5
+    WORDPRESS_AUTH_SALT: changeme            #---5
+    WORDPRESS_SECURE_AUTH_SALT: changeme        #---5
+    WORDPRESS_LOGGED_IN_SALT: changeme        #---5
+    WORDPRESS_NONCE_SALT: changeme            #---5
+    WORDPRESS_NONCE_AA: changeme            #---5
+  restart: always        #---6
+  links:            #---7
     - 'db:mysql'
-  labels:			#---8
-    aliyun.logs: /var/log		#---9
-    aliyun.probe.url: http://container/license.txt		#---10
-    aliyun.probe.initial_delay_seconds: '10'			#---10
-    aliyun.routing.port_80: http://wordpress			#---11
-    aliyun.scale: '3'							#---12
-db: 			#---1
-  image: registry.aliyuncs.com/acs-sample/mysql:5.7		#---2
-  environment:		#---4
-    MYSQL_ROOT_PASSWORD: password		#---5
-  restart: always		#---6
-  labels:		#---8
-    aliyun.logs: /var/log/mysql		#---9
+  labels:            #---8
+    aliyun.logs: /var/log        #---9
+    aliyun.probe.url: http://container/license.txt        #---10
+    aliyun.probe.initial_delay_seconds: '10'            #---10
+    aliyun.routing.port_80: http://wordpress            #---11
+    aliyun.scale: '3'                            #---12
+db:             #---1
+  image: registry.aliyuncs.com/acs-sample/mysql:5.7        #---2
+  environment:        #---4
+    MYSQL_ROOT_PASSWORD: password        #---5
+  restart: always        #---6
+  labels:        #---8
+    aliyun.logs: /var/log/mysql        #---9
 ```
 
 **容器服务Kubernetes集群**
@@ -81,12 +81,12 @@ db: 			#---1
 
     ```
     apiVersion: apps/v1     # api版本
-    kind: Deployment		# 创建资源的类型
+    kind: Deployment        # 创建资源的类型
     metadata:
       name: wordpress      #---1 
-      labels:			#---8 在这里的label只能做标识作用
+      labels:            #---8 在这里的label只能做标识作用
         app: wordpress
-    spec:	#资源创建详细内容
+    spec:    #资源创建详细内容
       replicas: 2        #---12 设定实例（副本）个数
       selector:  
         matchLabels:
@@ -103,10 +103,10 @@ db: 			#---1
           containers:    #
           - image: wordpress:4   #---2  对应于镜像及版本
             name: wordpress
-            env:    #---4 环境变量设置，kubernetes上configmap，secret都可以通过env的方式使用
+            env:    #---4 环境变量设置，kubernetes上configmap，secret都可以通过env的方式使用。
             - name: WORDPRESS_DB_HOST
               value: wordpress-mysql  #---7 通过名称指向需要访问的mysql，该名称与mysql service的名称相对应。
-            - name: WORDPRESS_DB_PASSWORD    #---5 密码在这里使用，但kubernetes提供了secret进行密码封装
+            - name: WORDPRESS_DB_PASSWORD    #---5 密码在这里使用，但kubernetes提供了secret进行密码封装。
               valueFrom:
                 secretKeyRef:
                   name: mysql-pass
@@ -121,17 +121,17 @@ db: 			#---1
               initialDelaySeconds: 30
               timeoutSeconds: 5
               periodSeconds: 5
-            readinessProbe:       #add health check	   ---10 健康检查
+            readinessProbe:       #add health check       ---10 健康检查
               httpGet:
                 path: /
                 port: 8080
               initialDelaySeconds: 5
               timeoutSeconds: 1
               periodSeconds: 5
-            volumeMounts:  #使用存储卷，将存储卷真正挂到容器内部
+            volumeMounts:  #使用存储卷，将存储卷真正挂到容器内部。
             - name: wordpress-pvc
               mountPath: /var/www/html
-          volumes:   #获取存储卷，需先进行PV和PVC的创建
+          volumes:   #获取存储卷，需先进行PV和PVC的创建。
           - name: wordpress-pvc
             persistentVolumeClaim:
               claimName: wordpress-pv-claim
@@ -141,7 +141,7 @@ db: 			#---1
 
     ```
     apiVersion: v1   #版本号
-    kind: Service    #创建资源类型，在这里为service
+    kind: Service    #创建资源类型，在这里为service。
     metadata:
       name: wordpress
       labels:
@@ -152,7 +152,7 @@ db: 			#---1
       selector:  #通过label进行应用的关联
         app: wordpress
         tier: frontend
-      type: LoadBalancer  #---11 定义访问方式，此处为LoadBalancer类型的service，会自动创建SLB
+      type: LoadBalancer  #---11 定义访问方式，此处为LoadBalancer类型的service，会自动创建SLB。
     ```
 
 
