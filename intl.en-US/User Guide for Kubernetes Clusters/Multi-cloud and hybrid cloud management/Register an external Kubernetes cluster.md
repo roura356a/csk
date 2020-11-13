@@ -18,13 +18,13 @@ This topic describes how to register and manage an external Kubernetes cluster i
 
         |Parameter|Description|
         |---------|-----------|
-        |**Cluster Name**|Enter a name for the cluster of Container Service for Kubernetes \(ACK\).
+        |**Cluster Name**|Enter a name for the ACK cluster.
 
-**Note:** The name must be 1 to 63 characters in length, and can contain digits, letters, and hyphens \(-\). |
-        |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group to which the cluster belongs. The name of the selected resource group appears on the page.
+**Note:** The name must be 1 to 63 characters in length. It can contain digits, letters, and hyphens \(-\). |
+        |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group to which the ACK cluster belongs. The name of the selected resource group appears on the page.
 
 ![Resource Groups](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
-        |**Region**|Select a region to deploy the cluster. |
+        |**Region**|Select a region to deploy the ACK cluster. |
         |**Zone**|Select a zone to deploy the cluster.|
         |**VPC**|You can select a virtual private cloud \(VPC\) and a VSwitch from the drop-down lists.|
         |**EIP**|Specify whether to bind an elastic IP address \(EIP\) to the cluster. If you select this check box, an EIP is automatically created and bound to the cluster.|
