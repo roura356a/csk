@@ -9,7 +9,7 @@ Arena是基于Kubernetes的机器学习轻量级解决方案，支持数据准�
 -   创建包含GPU的Kubernetes集群，请参见[Kubernetes GPU集群支持GPU调度](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU管理/GPU资源调度/Kubernetes GPU集群支持GPU调度.md)。
 -   集群节点可以访问公网，请参见[通过公网访问集群API Server](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过公网访问集群API Server.md)。
 
-## 操作步骤
+## 步骤一：安装Arena组件
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
@@ -20,7 +20,7 @@ Arena是基于Kubernetes的机器学习轻量级解决方案，支持数据准�
 4.  找到组件**ack-arena**，单击**安装**。
 
 
-## 配置Arena客户端
+## 步骤二：配置Arena客户端
 
 如果您使用的是专有版集群，以SSH方式登录到专有版集群的管理节点上，然后直接执行arena命令。有关使用SSH方式登录集群具体步骤，请参见[通过SSH访问Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过SSH访问Kubernetes集群.md)。
 
@@ -93,7 +93,7 @@ Arena是基于Kubernetes的机器学习轻量级解决方案，支持数据准�
     在命令行终端通过**Tab**键即可自动补齐命令。
 
 
-## 验证Arena
+## 步骤三：验证Arena
 
 您可以执行以下步骤验证Arena是否正常工作。
 
