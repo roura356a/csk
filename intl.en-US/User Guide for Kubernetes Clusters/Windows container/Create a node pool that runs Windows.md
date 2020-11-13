@@ -6,7 +6,7 @@ keyword: [node pool that runs Windows, create a node pool that runs Windows]
 
 Container Service for Kubernetes \(ACK\) enables centralized management of nodes in a node pool. For example, you can centrally manage the labels and taints that are attached to nodes in a node pool. This topic describes how to create a pool of nodes that runs Windows in the ACK console.
 
--   An ACK cluster is created. For more information, see [Create a cluster of ACK Managed Edition](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a cluster of ACK Managed Edition.md).
+-   An ACK cluster is created. For more information, see [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md).
 -   The ACK cluster must run Kubernetes 1.9 or later.
 
 **Note:**
@@ -30,7 +30,7 @@ Container Service for Kubernetes \(ACK\) enables centralized management of nodes
 
     ![Parameters](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5365359951/p95988.png)
 
-    For more information about the parameters, see [Create a cluster of ACK Managed Edition](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a cluster of ACK Managed Edition.md). The following list describes some of the parameters:
+    For more information about the parameters, see [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md). The following list describes some of the parameters:
 
     -   Quantity: Specify the number of nodes that you want to add to the node pool. If you do not want to add nodes to the pool, set this parameter to 0.
     -   Operating System: Select Windows.
