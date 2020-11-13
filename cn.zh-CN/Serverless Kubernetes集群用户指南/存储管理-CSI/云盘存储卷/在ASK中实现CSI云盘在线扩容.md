@@ -14,9 +14,9 @@
 
         ![resizedisk](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4785659951/p101021.jpg)
 
--   专有集群（Flexvolume插件）、托管集群：
+-   **插件版本**
 
-    参照上述步骤，并将上述**步骤e中的单击****Master RAM 角色**链接改成单击**Worker RAM 角色**链接。
+    升级您使用Flexvolume或者CSI插件到最新版本。
 
 
 云盘数据卷扩容包括**云盘扩容**和**文件系统扩容**两部分，云盘和文件系统都支持应用在线扩容（设备mount到目录状态下扩容），但是从文件系统扩容最佳实践角度，最稳定的扩容方案是先停止应用层服务、解除挂载目录，再进行数据卷扩容。
