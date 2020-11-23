@@ -21,7 +21,7 @@ keyword: [虚拟节点, Virtual Node Addon, 创建弹性容器实例ECI Pod]
 
 阿里云容器服务基于虚拟节点和ECI提供了多种Serverless Container产品形态，包括Serverless Kubernetes（ASK）和ACK on ECI，充分支撑各种弹性和免节点运维场景的用户诉求。
 
-![virtual node](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4106659951/p85192.png)
+![virtual node](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4106659951/p85192.png)
 
 ## 在ACK集群中部署虚拟节点Addon
 
@@ -47,7 +47,7 @@ keyword: [虚拟节点, Virtual Node Addon, 创建弹性容器实例ECI Pod]
 
 5.  在应用目录-ack-virtual-node页面，单击**参数**页签，配置虚拟节点参数，然后单击右侧创建页面的**创建**。
 
-    ![创建插件](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4106659951/p47256.png)
+    ![创建插件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4106659951/p47256.png)
 
     |参数|描述|获取路径|
     |--|--|----|
@@ -60,8 +60,8 @@ keyword: [虚拟节点, Virtual Node Addon, 创建弹性容器实例ECI Pod]
 
 虚拟交换机支持多可用区。因此，这里可以填写多个vSwitch，例如`ECI_VSWITCH: "vsw-xxxxxxx1, vsw-xxxxxxx2, vsw-xxxxxxx3"`。 |
     |ECI\_SECURITY\_GROUP|安全组ID|您可以在节点列表单击某个节点，在**本实例安全组**页签的**安全组列表**区域中，获取安全组ID的值。|
-    |ECI\_ACCESS\_KEY|用户AccessKey ID|请参见[获取AccessKey]()。请授权RAM的**AliyunECIReadOnlyAccess**策略，详情请参见[子账号鉴权]()。 |
-    |ECI\_SECRET\_KEY|用户AccessKey Secret|请参见[获取AccessKey]()。请授权RAM的**AliyunECIReadOnlyAccess**策略，详情请参见[子账号鉴权]()。 |
+    |ECI\_ACCESS\_KEY|用户AccessKey ID|请参见[获取AccessKey]()。请授权RAM的**AliyunECIFullAccess**策略，详情请参见[子账号鉴权]()。 |
+    |ECI\_SECRET\_KEY|用户AccessKey Secret|请参见[获取AccessKey]()。请授权RAM的**AliyunECIFullAccess**策略，详情请参见[子账号鉴权]()。 |
 
 6.  安装完成后，您可查看新建的虚拟节点**virtual-node-eci**。
 
@@ -71,7 +71,7 @@ keyword: [虚拟节点, Virtual Node Addon, 创建弹性容器实例ECI Pod]
 
     3.  在集群管理页左侧导航栏中，单击**节点管理**，可查看虚拟节点**virtual-node-eci**。
 
-        ![添加节点](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4106659951/p146959.png)
+        ![添加节点](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4106659951/p146959.png)
 
 7.  执行以下命令查看**virtual-node-controller**和**virtual-node-admission-controller**部署状态。详情请参见[在CloudShell上通过kubectl管理Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/在CloudShell上通过kubectl管理Kubernetes集群.md)。
 
