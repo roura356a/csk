@@ -20,7 +20,7 @@ You can use annotations in the YAML file of a service to configure a Server Load
 
 **Common annotations used to configure SLB instances**
 
--   Create a public SLB instance
+-   Create a public-facing SLB instance
 
     ```
     apiVersion: v1
@@ -80,7 +80,7 @@ You can use annotations in the YAML file of a service to configure a Server Load
 
 -   Create an HTTPS-based SLB instance
 
-    You must first create a certificate in the SLB console. Then, you can use the certificate ID and the following template to create a LoadBalancer service and an HTTPS-based SLB instance:
+    You must first create a certificate in the SLB console. Then, you can use the certificate ID and the following template to create a LoadBalancer service and an HTTPS-based SLB instance.
 
     **Note:** HTTPS listeners of the SLB instance decrypt HTTPS requests into HTTP requests and forward these requests to pods on the backend servers.
 
@@ -105,9 +105,9 @@ You can use annotations in the YAML file of a service to configure a Server Load
 
 -   Set the SLB instance specification
 
-    For more information about SLB instance specifications, see [CreateLoadBalancer](/intl.en-US/User Guide/Developer Guide/Server Load Balancer (SLB) instances/CreateLoadBalancer.md). Use the following template to create a LoadBalancer service and an SLB instance of a specified specification or update the specification of an existing SLB instance.
+    For more information about SLB instance specifications, see [CreateLoadBalancer](/intl.en-US/User Guide/Developer Guide/Server Load Balancer (SLB) instances/CreateLoadBalancer.md). Use the following template to create a LoadBalancer service and an SLB instance of a specified specification. Otherwise, use the template to update the specification of an existing SLB instance.
 
-    **Note:** Do not modify the SLB specification in the SLB console. If you modify the SLB specification in the SLB console, the modification may be restored by CCM.
+    **Note:** Do not modify the SLB specification in the SLB console. If you modify the SLB specification in the SLB console, the modification may be restored by the cloud controller manager \(CCM\).
 
     ```
     apiVersion: v1
@@ -129,12 +129,12 @@ You can use annotations in the YAML file of a service to configure a Server Load
 
 -   Use an existing SLB instance
 
-    -   By default, CCM does not overwrite listeners of an existing SLB instance. To overwrite listeners of an existing SLB instance, set the annotation `service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners` to true.
+    -   By default, the CCM does not overwrite listeners of an existing SLB instance. To overwrite listeners of an existing SLB instance, set the annotation `service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners` to true.
 
-        **Note:** The following list explains why CCM does not overwrite listeners of an existing SLB instance:
+        **Note:** In the following two cases, you do not need to use the CCM to overwrite listeners of an existing SLB instance:
 
         -   If you overwrite the listeners of an existing SLB instance that processes network traffic to a service, a service interruption may occur.
-        -   CCM supports limited backend configurations and cannot process complex configurations. If you require complex VServer group configurations, you can manually create listeners in the SLB console. You do not need to overwrite the existing listeners.
+        -   The CCM supports limited backend configurations and cannot process complex configurations. If you require complex VServer group configurations, you can manually create listeners in the SLB console. You do not need to overwrite the existing listeners.
         In either case, we recommend that you do not overwrite the listeners of existing SLB instances. However, you can overwrite an existing listener if the port of the listener is no longer required.
 
     -   If you specify an existing SLB instance for a service, the annotation `service.beta.kubernetes.io/alibaba-cloud-loadbalancer-additional-resource-tags` is invalid. As a result, you cannot attach additional tags to the instance.
@@ -202,29 +202,6 @@ You can use annotations in the YAML file of a service to configure a Server Load
       type: LoadBalancer
     ```
 
--   Create an SLB instance that runs in a Virtual Private Cloud \(VPC\) network
-
-    -   To create an SLB instance that runs in a VPC, the annotations in the following template are required.
-    -   Internal SLB instances support virtual private clouds \(VPCs\) and the classic network. For more information, see [SLB instance overview](/intl.en-US/User Guide/Instance/SLB instance overview.md).
-    ```
-    apiVersion: v1
-    kind: Service
-    metadata:
-      annotations:
-        service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type: "intranet"
-        service.beta.kubernetes.io/alibaba-cloud-loadbalancer-network-type: "vpc"
-      name: nginx
-      namespace: default
-    spec:
-      ports:
-      - port: 443
-        protocol: TCP
-        targetPort: 443
-      selector:
-        run: nginx
-      type: LoadBalancer
-    ```
-
 -   Create a pay-by-bandwidth SLB instance
 
     -   Use the following template to create a LoadBalancer service and an SLB instance that is billed by bandwidth. Only public-facing SLB instances support the pay-by-bandwidth billing method.
@@ -260,7 +237,7 @@ You can use annotations in the YAML file of a service to configure a Server Load
     -   Enable the health check feature for a TCP-based SLB instance
 
         -   By default, the health check feature is enabled for TCP listeners and cannot be disabled. The annotation `service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-flag annotation` is invalid.
-        -   To create a TCP-based SLB instance with the health check feature enabled, all annotations specified in the following example are required.
+        -   To create a TCP-based SLB instance with the health check feature enabled, all annotations that are specified in the following example are required.
         ```
         apiVersion: v1
         kind: Service
@@ -285,7 +262,7 @@ You can use annotations in the YAML file of a service to configure a Server Load
 
     -   Create an HTTP-based SLB instance with the health check feature enabled
 
-        To create an HTTP-based SLB instance with the health check feature enabled, all annotations specified in the following example are required.
+        To create an HTTP-based SLB instance with the health check feature enabled, all annotations that are specified in the following example are required.
 
         ```
         apiVersion: v1
@@ -497,16 +474,13 @@ You can use annotations in the YAML file of a service to configure a Server Load
 |Annotation|Type|Description|Default value|Supported CCM version|
 |----------|----|-----------|-------------|---------------------|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type|string|The type of SLB instance. Valid values: internet and intranet.|internet|CCM V1.9.3 and later|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-slb-network-type|string|The network type of an SLB instance. Valid values: classic and vpc.If you want to create an SLB instance in a VPC network, set the annotation `service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type` to intranet.
-
-|classic|CCM V1.9.3 and later|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-charge-type|string|The billing method of an SLB instance. Valid values: paybytraffic and paybybandwidth.|paybytraffic|CCM V1.9.3 and later|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id|string|The ID of an SLB instance. You can specify an existing SLB instance by using the annotation service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id. By default, if you specify an existing SLB instance, CCM does not overwrite the listeners of the SLB instance. To overwrite the listeners, set the annotation service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners to true.|N/A|CCM V1.9.3.81-gca19cd4-aliyun and later|
+|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id|string|The ID of an SLB instance. You can specify an existing SLB instance by using the annotation service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id. By default, if you specify an existing SLB instance, the CCM does not overwrite the listeners of the SLB instance. To overwrite the listeners, set the annotation service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners to true.|N/A|CCM V1.9.3.81-gca19cd4-aliyun and later|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-spec|string|The specification of an SLB instance. For more information, see [CreateLoadBalancer](/intl.en-US/User Guide/Developer Guide/Server Load Balancer (SLB) instances/CreateLoadBalancer.md).|N/A|CCM V1.9.3 and later|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-master-zoneid|string|The ID of the zone of the primary backend server.|N/A|CCM V1.9.3.10-gfb99107-aliyun and later|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-slave-zoneid|string|The ID of the zone of the secondary backend server.|N/A|CCM V1.9.3.10-gfb99107-aliyun and later|
+|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-master-zoneid|string|The ID of the zone for the primary backend server.|N/A|CCM V1.9.3.10-gfb99107-aliyun and later|
+|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-slave-zoneid|string|The ID of the zone for the secondary backend server.|N/A|CCM V1.9.3.10-gfb99107-aliyun and later|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners|string|Specifies whether to overwrite the listeners of an existing SLB instance that is specified.|false: The listeners of the existing SLB instance are not overwritten.|CCM V1.9.3.81-gca19cd4-aliyun and later|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-bandwidth|string|The bandwidth of the SLB instance. This annotation applies to only public SLB instances.|50|CCM V1.9.3.10-gfb99107-aliyun and later|
+|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-bandwidth|string|The bandwidth of the SLB instance. This annotation applies to only public-facing SLB instances.|50|CCM V1.9.3.10-gfb99107-aliyun and later|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-scheduler|string|The scheduling algorithm. Valid values: wrr, wlc, and rr. -   wrr: Backend servers that have higher weights receive more requests than the backend servers that have lower weights.
 -   wlc: Requests are distributed based on the combination of the weights and connections to backend servers. If two backend servers have the same weight, the backend server that has fewer connections receives more requests.
 -   rr \(default\): Requests are distributed to backend servers in sequence.
@@ -546,7 +520,7 @@ You can use annotations in the YAML file of a service to configure a Server Load
       type: LoadBalancer
     ```
 
--   Enable session persistence for an HTTP-based or HTTPS-based SLB instance by using the insert cookie method
+-   Enable session persistence for an HTTP/HTTPS-based SLB instance by inserting a cookie
 
     -   The annotations in the following template apply to only HTTP-based or HTTPS-based SLB instances.
     -   If an SLB instance has multiple HTTP or HTTPS listeners, the changes apply to all the HTTP or HTTPS listeners.
@@ -575,7 +549,7 @@ You can use annotations in the YAML file of a service to configure a Server Load
 -   Create an SLB instance with the access control feature enabled
 
     -   Create an access control list \(ACL\) in the SLB console and note the ACL ID. Then, use the annotations in the following template to enable access control for an SLB instance.
-    -   A whitelist allows access from only specific IP addresses. A blacklist restricts access from only specific IP addresses.
+    -   A whitelist allows access from only specific IP addresses. A blacklist limits access from only specific IP addresses.
     -   All annotations in the following template are required.
     ```
     apiVersion: v1
@@ -599,8 +573,8 @@ You can use annotations in the YAML file of a service to configure a Server Load
 
 -   Configure port forwarding for an SLB instance
 
-    -   Port forwarding enables an SLB instance to forward requests from an HTTP port to an HTTPS port.
-    -   Create a certificate in the SLB console and note down the certificate ID. Then, use the following annotations to configure port forwarding for an SLB instance.
+    -   Port forwarding allows an SLB instance to forward requests from an HTTP port to an HTTPS port.
+    -   Create a certificate in the SLB console and note the certificate ID. Then, use the following annotations to configure port forwarding for an SLB instance.
     -   All annotations in the following example are required.
     ```
     apiVersion: v1
@@ -630,7 +604,7 @@ You can use annotations in the YAML file of a service to configure a Server Load
 
 |Annotation|Type|Description|Default value|Supported CCM version|
 |----------|----|-----------|-------------|---------------------|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-protocol-port|string|The listener port. Separate multiple ports with commas \(,\). For example, the ports `https:443,http:80` can be specified.|N/A|CCM V1.9.3 and later|
+|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-protocol-port|string|The listening port. Separate multiple ports with commas \(,\). For example, the ports `https:443,http:80` can be specified.|N/A|CCM V1.9.3 and later|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-persistence-timeout|string|The session persistence period. Unit: seconds. This annotation applies to only TCP listeners. Valid values: 0 to 3600.
 
 Default value: 0. By default, session persistence is disabled.
@@ -643,7 +617,7 @@ For more information, see [CreateLoadBalancerTCPListener](/intl.en-US/User Guide
 For more information, see [CreateLoadBalancerHTTPListener](/intl.en-US/User Guide/Developer Guide/HTTP listeners/CreateLoadBalancerHTTPListener.md) and [CreateLoadBalancerHTTPSListener](/intl.en-US/User Guide/Developer Guide/HTTPS listeners/CreateLoadBalancerHTTPSListener.md).
 
 |off|CCM V1.9.3 and later|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-sticky-session-type|string|The method used to handle the cookie. Valid values: -   insert: inserts a cookie.
+|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-sticky-session-type|string|The method that is used to process the cookie. Valid values: -   insert: inserts a cookie.
 -   server: rewrites a cookie.
 
 **Note:**
@@ -681,12 +655,7 @@ For more information, see [CreateLoadBalancerHTTPListener](/intl.en-US/User Guid
 For more information, see [CreateLoadBalancerTCPListener](/intl.en-US/User Guide/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md).
 
 |N/A|CCM V1.9.3 and later|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-connect-port|string|The port used for health checks. Valid values: -   -520: the port number of the listener.
--   1 to 65535: the port number of the backend server.
-
-For more information, see [CreateLoadBalancerTCPListener](/intl.en-US/User Guide/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md).
-
-|N/A|CCM V1.9.3 and later|
+|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-connect-port|string|The port t that is used for health checks. Valid values: 1 to 65535.|N/A|CCM V1.9.3 and later|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-healthy-threshold|string|The number of consecutive successful health checks that must occur before a backend server is declared as healthy. Valid values: 2 to 10.
 
 For more information, see [CreateLoadBalancerTCPListener](/intl.en-US/User Guide/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md).
@@ -716,11 +685,11 @@ For more information, see [CreateLoadBalancerTCPListener](/intl.en-US/User Guide
 For more information, see [CreateLoadBalancerTCPListener](/intl.en-US/User Guide/Developer Guide/TCP listeners/CreateLoadBalancerTCPListener.md).
 
 |5|CCM V1.9.3 and later|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-domain|string|The domain name used for health checks. -   $\_ip: the private IP address of a backend server. If you do not set this annotation or set the annotation to $\_ip, the SLB instance uses the private IP address of each backend server as the domain name for health checks.
+|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-domain|string|The domain name that is used for health checks. -   $\_ip: the private IP address of a backend server. If you do not set this annotation or set the annotation to $\_ip, the SLB instance uses the private IP address of each backend server as the domain name for health checks.
 -   domain: The domain name must be 1 to 80 characters in length, and can contain only letters, digits, periods \(.\), and hyphens \(-\).
 
 |N/A|CCM V1.9.3 and later|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-httpcode|string|The HTTP status code that specifies a successful health check. Separate multiple HTTP status codes with commas \(,\). Valid values: -   http\_2xx
+|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-httpcode|string|The HTTP status code that indicates a successful health check. Separate multiple HTTP status codes with commas \(,\). Valid values: -   http\_2xx
 -   http\_3xx
 -   http\_4xx
 -   http\_5xx
@@ -734,7 +703,7 @@ Default value: http\_2xx.|http\_2xx|CCM V1.9.3 and later|
 -   black: specifies the ACL as a blacklist. All requests from the IP addresses or CIDR blocks in the ACL are rejected. Blacklists apply to scenarios when you want to block access from specific IP addresses to an application. If you set a blacklist that has no IP addresses, listeners of the SLB instance forward all requests. If the annotation service.beta.kubernetes.io/alibaba-cloud-loadbalancer-acl-status is set to on, this annotation is required.
 
 |N/A|CCM V1.9.3.164-g2105d2e-aliyun and later|
-|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-forward-port|string|Redirects HTTP requests to the specified port of an HTTPS listener. For example, `80:443`.|N/A|CCM V1.9.3.164-g2105d2e-aliyun and later|
+|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-forward-port|string|Redirects HTTP requests to the specified port of an HTTPS listener. Example: `80:443`.|N/A|CCM V1.9.3.164-g2105d2e-aliyun and later|
 
 ## VServer groups
 
@@ -762,7 +731,7 @@ Default value: http\_2xx.|http\_2xx|CCM V1.9.3 and later|
       type: LoadBalancer
     ```
 
--   Use the nodes where pods are located as backend servers
+-   Add the nodes where pods that run the service are deployed as the backend servers of an SLB instance
 
     -   By default, `externalTrafficPolicy` is set to Cluster for a service. In Cluster mode, all nodes in the cluster are added as backend servers of the SLB instance. In Local mode, only nodes that run the pods of the service are added as backend servers of the SLB instance.
 
@@ -770,7 +739,7 @@ Default value: http\_2xx.|http\_2xx|CCM V1.9.3 and later|
 
         **Note:**
 
-        For CCM V1.9.3.164-g2105d2e-aliyun and later, node weights are calculated based on the number of pods that run on each node for services whose externalTrafficPolicy is set to **Local**. For more information about node weight calculation, see [How does CCM calculate node weights in Local mode?](/intl.en-US/User Guide for Kubernetes Clusters/Network management/FAQ.md)
+        For CCM V1.9.3.164-g2105d2e-aliyun and later, node weights are calculated based on the number of pods that run on each node for services whose externalTrafficPolicy is set to **Local**. For more information about node weight calculation, see [How does the CCM calculate node weights in Local mode?](/intl.en-US/User Guide for Kubernetes Clusters/Network management/FAQ.md)
 
     ```
     apiVersion: v1
@@ -814,9 +783,9 @@ Default value: http\_2xx.|http\_2xx|CCM V1.9.3 and later|
       type: LoadBalancer
     ```
 
--   Add pods assigned with elastic network interface \(ENIs\) as the backend servers of an SLB instance
+-   Add pods that are assigned with elastic network interfaces \(ENIs\) as the backend servers of an SLB instance
 
-    In Terway mode, you can use the annotation `service.beta.kubernetes.io/backend-type: "eni"` to add pods assigned with ENIs as the backend servers of an SLB instance. This improves network forwarding performance.
+    When the Terway network plug-in is used, you can use the annotation `service.beta.kubernetes.io/backend-type: "eni"` to add pods that are assigned with ENIs as the backend servers of an SLB instance. This improves network forwarding performance.
 
     ```
       apiVersion: v1
@@ -836,14 +805,26 @@ Default value: http\_2xx.|http\_2xx|CCM V1.9.3 and later|
         type: LoadBalancer
     ```
 
+    **Note:** You can also set `eni` in `service.beta.kubernetes.io/backend-type: "eni"` to `ecs`. This allows you to add Elastic Compute Service \(ECS\) instances as backend severs of an SLB instance.
+
 
 |Annotation|Type|Description|Default value|Supported CCM version|
 |----------|----|-----------|-------------|---------------------|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-backend-label|string|Specifies that worker nodes that have matching labels are added as backend servers of an SLB instance.|N/A|CCM V1.9.3 and later|
-|externalTrafficPolicy|string|The policy used to add nodes as backend servers. Valid values: -   Cluster: adds all nodes as backend servers.
--   Local: adds the nodes where pods are located as backend servers.
+|externalTrafficPolicy|string|The policy that is used to add nodes as backend servers. Valid values: -   Cluster: adds all nodes as backend servers.
+-   Local: adds the nodes where pods that run the service are deployed as backend servers.
 
 |Cluster|CCM V1.9.3 and later|
 |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-remove-unscheduled-backend|string|Removes backend servers in the unschedulable state from an SLB instance. Valid values: on and off.|off|CCM V1.9.3.164-g2105d2e-aliyun and later|
-|service.beta.kubernetes.io/backend-type|string|Adds pods assigned with ENIs as the backend servers of an SLB instance. You must set the annotation to `eni` in Terway mode. Valid value: eni.|N/A|CCM V1.9.3.164-g2105d2e-aliyun and later|
+|service.beta.kubernetes.io/backend-type|string|The type of backend server attached to an SLB instance.Valid values:
+
+-   `eni`: adds pods as the backend servers of an SLB instance. This parameter takes effect only in Terway mode. This improves network forwarding performance.
+-   `ecs`: adds ECS instances as the backend servers of an SLB instance.
+
+|When the Flannel network plug-in is used, the default value is `ecs`.When the Terway network plug-in is used:
+
+-   The default value is `ecs`. This applies to Container Service for Kubernetes \(ACK\) clusters that were created before August 10, 2020.
+-   The default value is `eni`. This applies to ACK clusters that are created after August 10, 2020.
+
+|CCM V1.9.3.164-g2105d2e-aliyun and later|
 
