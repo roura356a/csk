@@ -74,7 +74,7 @@
 |[查询集群节点](/cn.zh-CN/API参考/节点/查询集群节点.md)
 
 |调用DescribeClusterNodes查询集群节点。|
-|[移除集群节点](/cn.zh-CN/API参考/节点/移除集群节点.md)
+|[删除节点]()
 
 |调用RemoveClusterNodes移除指定集群额外节点。|
 |[添加已有ECS节点到Kubernetes集群](/cn.zh-CN/API参考/节点/添加已有ECS节点到Kubernetes集群.md)
