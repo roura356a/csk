@@ -6,6 +6,12 @@ keyword: [CCM, 变更记录]
 
 本文为您介绍了CCM（Cloud Controller Manager）相关内容的最新动态。
 
+## 2020年11月
+
+|版本号|镜像地址|变更时间|变更内容|
+|---|----|----|----|
+|v1.9.3.335-ge5e4bc3-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64: v1.9.3.335-ge5e4bc3-aliyun|2020年11月24日|支持为LoadBalancer类型Service添加hash值，以保证CCM重启时在Service未做修改的情况下，仅同步虚拟服务器组后端，不再同步LoadBalancer配置及监听配置。|
+
 ## 2020年9月
 
 |版本号|镜像地址|变更时间|变更内容|
