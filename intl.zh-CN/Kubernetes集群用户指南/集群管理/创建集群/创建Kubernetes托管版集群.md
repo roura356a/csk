@@ -46,7 +46,7 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
         |**地域**|选择集群所在的地域。 |
         |**资源组**|将鼠标悬浮于页面上方的**账号全部资源**，选择集群所在的资源组。这里显示选择的资源组。
 
-![资源组](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png) |
+![资源组](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png) |
         |**时区**|选择集群所要使用的时区。默认时区为浏览器所配置的时区。 |
         |**Kubernetes版本**|选择Kubernetes版本。 |
         |**容器运行时**|支持**Docker**和**安全沙箱**。 |
@@ -77,7 +77,7 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
         -   设置是否选中**IPvlan**
 
 -   只在弹性网卡共享模式支持选中。
--   如果选中，采用IPVLAN+eBPF作为网卡共享模式虚拟化技术，并且只能使用Alibaba Cloud Linux 2系统，性能优于默认模式。
+-   如果选中，采用IPVLAN eBPF作为网卡共享模式虚拟化技术，并且只能使用Alibaba Cloud Linux 2系统，性能优于默认模式。
 -   如果不选中，则使用默认模式，采用策略路由作为网卡共享模式虚拟化技术，同时兼容Centos 7和Alibaba Cloud Linux 2的系统。
 **说明：** 当前只有白名单用户可使用上述**Pod独占弹性网卡以获得最佳性能**和**IPvlan**两种功能。[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请使用。
 
@@ -151,7 +151,12 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
 
 **说明：** 支持选中**开启云盘备份**以备份云盘数据。 |
             |**挂载数据盘**|支持**ESSD云盘**、**SSD云盘**和**高效云盘**。挂载数据盘时，支持云盘**加密**和**开启云盘备份**。 |
-            |**操作系统**|Alibaba Cloud Linux 2是ACK默认的操作系统，同时ACK也支持CentOS。 |
+            |**操作系统**|ACK支持的节点操作系统包括：
+
+            -   Alibaba Cloud Linux 2（ACK默认的操作系统）
+            -   CentOS 7.x
+
+**说明：** 暂不支持CentOS 8.x及以上的操作系统。 |
             |**登录方式**|            -   设置密钥。
                 -   **密钥对**：如您已经创建密钥对，在下拉列表中选择目标密钥对。
                 -   **新建密钥对**：此项用于您还未创建密钥对。创建密钥对，请参见[创建SSH密钥对](/intl.zh-CN/安全/SSH密钥对/使用SSH密钥对/创建SSH密钥对.md)。密钥对创建完毕后，设置该密钥对作为登录集群的凭据。
@@ -168,12 +173,15 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
 
 **说明：** 为防止通过控制台或API误释放集群节点，默认启用实例保护。 |
         |**实例自定义数据**|请参见[生成实例自定义数据](/intl.zh-CN/实例/管理实例/使用实例自定义数据/生成实例自定义数据.md)。 |
-        |**自定义镜像**|允许您选择一个自定义ECS镜像，选择后，集群所有节点将基于此镜像进行部署 。有关创建自定义镜像操作，请参见[使用自定义镜像创建Kubernetes集群](/intl.zh-CN/最佳实践/集群/使用自定义镜像创建Kubernetes集群.md)。
+        |**自定义镜像**|允许您选择一个自定义ECS镜像。选择自定义镜像后，集群所有节点将基于此镜像进行部署 。有关创建自定义镜像操作，请参见[使用自定义镜像创建Kubernetes集群](/intl.zh-CN/最佳实践/集群/使用自定义镜像创建Kubernetes集群.md)。
 
-**说明：** 当前只有白名单用户可使用该功能。[提交工单](https://selfservice.console.aliyun.com/ticket/scene/ecs/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%20ECS/detail)申请使用。 |
+**说明：**
+
+        -   目前自定义镜像的操作系统仅支持CentOS 7.x和Alibaba Cloud Linux 2.x。
+        -   当前只有白名单用户可使用该功能。[提交工单](https://selfservice.console.aliyun.com/ticket/scene/ecs/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%20ECS/detail)申请使用。 |
         |**自定义节点名称**|是否开启**自定义节点名称**。
 
-节点名称由前缀 + 节点IP地址子串 + 后缀三部分组成：
+节点名称由前缀 节点IP地址子串 后缀三部分组成：
 
         -   前缀和后缀均可由**.**分隔的一个或多个部分构成，每个部分可以使用小写字母、数字和短划线（-），且首尾必须为小写字母和数字。
         -   IP地址段长度指截取节点IP地址末尾的位数，取值范围5~12。
@@ -234,6 +242,6 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
 
 -   您可以[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)，执行`kubectl get node`查看集群的节点信息。
 
-    ![集群查看结果](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275659951/p21438.png)
+    ![集群查看结果](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9275659951/p21438.png)
 
 
