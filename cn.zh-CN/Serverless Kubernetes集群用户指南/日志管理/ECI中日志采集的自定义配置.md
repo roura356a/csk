@@ -18,7 +18,7 @@ ECI中日志采集的自定义配置
 
 ECI除了具备为用户生成所有默认设置外，还支持为用户生成自定义的配置。比如项目名、日志库名、配置名、机器组名、以及日志收集目录等。具体的参数通过ECI的容器的环境变量传入，格式如下：
 
-**Logstore名和配置名:** 
+**Logstore名和配置名** 
 
 首先是配置名
 
@@ -41,7 +41,7 @@ ECI除了具备为用户生成所有默认设置外，还支持为用户生成�
 
 
 
-**日志库名约束:** 
+**日志库名约束** 
 
 * 日志库名称仅支持小写字母、数字、连字符（-）和下划线（_）。
 
@@ -63,7 +63,7 @@ ECI除了具备为用户生成所有默认设置外，还支持为用户生成�
 
 
 
-**项目名:** 
+**项目名** 
 
 设置日志收集所属的project，方式如下。
 
@@ -74,11 +74,15 @@ ECI除了具备为用户生成所有默认设置外，还支持为用户生成�
 
 默认情况下，对于ECI的API用户，每个地域会有一个默认的project，对于k8s的用户，默认project为每个集群一个，命名方式为"k8s-log-{k8s集群id}"
 
-**项目名约束:** 
+**项目名约束** 
 
 * 项目名称仅支持小写字母、数字和连字符（-）。
 
+  
+
 * 必须以小写字母和数字开头和结尾。
+
+  
 
 * 名称长度为3-63个字符。
 
@@ -92,7 +96,7 @@ ECI除了具备为用户生成所有默认设置外，还支持为用户生成�
 
 
 
-**Logstore设置分区数:** 
+**Logstore设置分区数** 
 
 什么是分区（Shard），请参见[分区](/cn.zh-CN/产品简介/基本概念/分区.md)。
 
@@ -109,7 +113,7 @@ ECI除了具备为用户生成所有默认设置外，还支持为用户生成�
 
 
 
-**Logstore设置日志保留时间:** 
+**Logstore设置日志保留时间** 
 
 设置方法： 
 
@@ -124,7 +128,7 @@ ECI除了具备为用户生成所有默认设置外，还支持为用户生成�
 
 
 
-**机器组名称:** 
+**机器组名称** 
 
 非必填参数，
 
@@ -147,15 +151,23 @@ ECI除了具备为用户生成所有默认设置外，还支持为用户生成�
 
 * 机器组名称仅支持字母、数字、连字符（-）和下划线（_）。
 
+  
+
 * 必须以小写字母和数字开头和结尾。
+
+  
 
 * 名称长度为3-63个字符。
 
+  
 
 
 
 
-**注意** 校验不通过的，会直接忽略，使用ECI默认的。
+
+**注意**
+
+校验不通过的，会直接忽略，使用ECI默认的。
 
 用户Volume日志收集 
 ---------------------------------
@@ -215,13 +227,13 @@ Volume的标准日志收集目录为Volume挂载的目录下的子目录，具�
 
 **效果** 
 
-![sls](//static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4539819951/p133041.png)
+![sls](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4539819951/p133041.png)
 
 标准输出日志：
 
-![stdin log](//static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4539819951/p133042.png)
+![stdin log](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4539819951/p133042.png)
 
 日志文件收集：
 
-![logfile](//static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4539819951/p133043.png)
+![logfile](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4539819951/p133043.png)
 
