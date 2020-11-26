@@ -13,41 +13,42 @@
 ## 请求语法
 
 ```
-post /clusters/{ClusterId}/attach http|https
+POST /clusters/{ClusterId}/attach 
 ```
 
 ## 请求参数
 
-|名称|类型|是否必选|示例值|描述|
-|--|--|----|---|--|
-|ClusterId|String|是|c106f377e16f34eb1808d6b9362c9\*\*\*\*|集群ID。 |
-|instances|Array of String|是|i-0xi187lghfcy5t2d\*\*\*\*|实例ID。 |
-|runtime|Object|否|true|是否保留实例名称。 |
-|name|String|否|docker|容器运行时名称。 |
-|version|String|否|19.03.5|容器运行时版本。 |
-|image\_id|String|否|centos\_7\_7\_x64\_20G\_alibase\_20191225.vhd|自定义镜像，默认使用系统镜像。当选择自定义镜像时，将取代默认系统镜像。请参见[自定义镜像](https://help.aliyun.com/document_detail/146647.html)。 |
-|format\_disk|Boolean|否|false|是否格式化数据盘。 |
-|keep\_instance\_name|Boolean|否|true|是否保留实例名称。 |
-|cpu\_policy|String|否|none|CPU策略。Kubernetes集群版本为1.12.6及以上版本支持static和none两种策略，默认为none。 |
-|key\_pair|String|否|secrity-key|key\_pair名称，与login\_password二选一 |
-|password|String|否|Hello@1234|扩容的worker节点密码。密码规则为8~30 个字符，且同时包含三项（大、小写字母，数字和特殊符号），和key\_pair二选一。 |
-|is\_edge\_worker|Boolean|否|false|是否为边缘节点。接入ENS节点时需要配置为true。 |
-|user\_data|String|否|""|RDS实例列表，将该ECS加入到选择的RDS实例的白名单中。 |
-|nodepool\_id|String|否|npb9d542d191c54253bb4488bdc4fe\*\*\*\*|节点池ID。 |
-|rds\_instances|Array of String|否|rm-2zev748xi27xc\*\*\*\*|RDS实例。 |
-|tags|Array|否| |节点标签。 |
-|key|String|否|tier|标签键。 |
-|value|String|否|frontend|标签值。 |
+|名称|类型|位置|是否必选|示例值|描述|
+|--|--|--|----|---|--|
+|ClusterId|String|Path|是|c106f377e16f34eb1808d6b9362c9\*\*\*\*|集群ID。 |
+| |Object|Body|否| |实例列表。 |
+|cpu\_policy|String|Body|否|none|CPU管理策略。 |
+|format\_disk|Boolean|Body|否|false|是否格式化数据盘。 |
+|image\_id|String|Body|否|aliyun\_2\_1903\_x64\_20G\_alibase\_20200529.vhd|自定义镜像ID。 |
+|instances|Array of String|Body|否|i-2zed0sswuau6o89b\*\*\*\*|实例ID。 |
+|is\_edge\_worker|Boolean|Body|否|false|是否为边缘节点，即ens节点。 |
+|keep\_instance\_name|Boolean|Body|否|true|保留主机名。取值：true和false。 |
+|key\_pair|String|Body|否|\*\*\*|免密登录密钥对名称，和login\_password二选一。 |
+|nodepool\_id|String|Body|否|np615c0e0966124216a0412e10afe0\*\*\*\*|节点池ID。 |
+|password|String|Body|否|Hello1234|SSH登录密码，和key\_pair二选一。 |
+|rds\_instances|Array of String|Body|否|rds-xxx|RDS实例ID。 |
+|runtime|Object|Body|否| |容器运行时配置。 |
+|name|String|Body|否|docker|容器运行时名称。 |
+|version|String|Body|否|19.03.5|容器运行时版本。 |
+|tags|Array|Body|否| |标签配置。 |
+|key|String|Body|否|k-aa|标签key。 |
+|value|String|Body|否|v-aa|标签值。 |
+|user\_data|String|Body|否|\*\*\*|自定义节点数据。 |
 
 ## 返回数据
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
 |list|Array of list| |节点信息列表。 |
-|code|String|"200"|结果状态码。 |
-|instanceId|String|"i-2ze0lgm3y6iylcbt\*\*\*\*"|节点实例ID。 |
-|message|String|"successful"|添加结果描述信息。 |
-|task\_id|String|"T-5a544aff80282e39ea000039"|任务ID。 |
+|code|String|200|结果状态码。 |
+|instanceId|String|i-2ze0lgm3y6iylcbt\*\*\*\*|节点实例ID。 |
+|message|String|successful|添加结果描述信息。 |
+|task\_id|String|T-5a544aff80282e39ea000039|任务ID。 |
 
 ## 示例
 
