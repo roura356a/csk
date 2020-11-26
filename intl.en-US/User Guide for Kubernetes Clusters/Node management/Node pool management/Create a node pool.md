@@ -6,7 +6,7 @@ keyword: [node pool, create a node pool]
 
 You can add the nodes to a node pool. This allows you to manage multiple nodes as a group. For example, you can manage the labels and taints that are added to the nodes in the node pool. This topic describes how to create a node pool in the Container Service for Kubernetes \(ACK\) console.
 
--   An ACK cluster is created. For more information, see [Create a cluster of ACK Managed Edition](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a cluster of ACK Managed Edition.md).
+-   An ACK cluster is created. For more information, see [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md).
 -   The ACK cluster must run Kubernetes 1.9 or later.
 
 **Note:**
@@ -28,10 +28,10 @@ You can add the nodes to a node pool. This allows you to manage multiple nodes a
 
 6.  On the Create Node Pool page, set the parameters for the node pool.
 
-    For more information, see [Create a cluster of ACK Proprietary Edition](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a cluster of ACK Proprietary Edition.md). The following list describes some of the parameters:
+    For more information, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md). The following list describes some of the parameters:
 
     -   Quantity: Specify the number of nodes that you want to add to the node pool. If you do not need to create a node, set this parameter to 0.
-    -   Select the operating system for the nodes. Valid values: CentOS, AliyunLinux, and Windows.
+    -   Select the operating system for the nodes. Valid values: CentOS, Alibaba Cloud Linux, and Windows.
     -   Node Label: You can add labels to the specified nodes.
     -   ECS Label: You can add labels to the specified ECS instances.
     -   Custom Resource Group: You can specify the resource group to which the nodes of the node pool belong.
@@ -39,7 +39,7 @@ You can add the nodes to a node pool. This allows you to manage multiple nodes a
 
     On the Node Pools page, the **Status** column of the node pool displays **Initializing**. This indicates that the node pool creation is in progress. After the node pool is created, the **Status** column displays **Active**.
 
-    ![nodepool](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5365359951/p95881.png)
+    ![nodepool](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5365359951/p95881.png)
 
 
 After the node pool is created, go to the Node Pools page, find the created node pool, and then click **Details** in the **Actions** column to view the details of the node pool. You can also click Scale Out in the Actions column to scale out the node pool.
