@@ -1,16 +1,16 @@
 ECI支持Core Dump 
 ===================================
 
-当程序运行的过程中异常终止或崩溃，操作系统会将程序当时的内存状态记录下来，保存在一个文件中，这种行为就叫做Core Dump（核心转储)。
+当程序运行的过程中异常终止或崩溃，操作系统会将程序当时的内存状态记录下来，保存在一个文件中，这种行为就叫做Core Dump（核心转储）。
 
 背景 
 -----------------------
 
-在Linux中，当进程在运行过程中因异常终止或崩溃时会发生 core dump，即操作系统会自动将进程现场的内存状态保存在本地的一个文件中。"The default action of certain signals is to cause a process to terminate and produce a core dump file, a disk file containing an image of the process's memory at the time of termination"。
+在Linux中，当进程在运行过程中因异常终止或崩溃时会发生core dump，即操作系统会自动将进程现场的内存状态保存在本地的一个文件中。"The default action of certain signals is to cause a process to terminate and produce a core dump file, a disk file containing an image of the process's memory at the time of termination"。
 
 Linux中支持core dump的信号如下（Action为Core）：
 
-![](//static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4149837951/p107903.png)
+![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4149837951/p107903.png)
 
 ECI支持 
 --------------------------
@@ -31,7 +31,7 @@ ECI支持
 
 
 
-可以看到，默认情况下，linux的core dump的文件名是 core.pid，而且保存的当前目录。但是容器如果退出了，core文件会随之一起丢失。
+可以看到，默认情况下，linux的core dump的文件名是core.pid，而且保存的当前目录。但是容器如果退出了，core文件会随之一起丢失。
 
 而ECI将core dump的文件名以及保存目录的设置能力透给用户，对于用户现在只需要设置一个参数即可：API用户：CorePattern = "/xx/xx/core"。
 
@@ -73,7 +73,7 @@ Demo演示
 
 将nfs的目录挂载到容器的/pod/data/dump/目录，然后设置core dump目录为/pod/data/dump/core。这样容器所有的cor dump文件都会自动保存在/pod/data/dump/并且同步到nfs，不随容器释放便于用户做离线分析。
 
-1、我们在容器任意的目录触发core dump:
+1、我们在容器任意的目录触发core dump：
 
 
 
@@ -104,4 +104,4 @@ Demo演示
 
 core dump文件没有随ECI容器销毁，即可以进行离线分析了。
 
-关于core dump详情请参见:http://man7.org/linux/man-pages/man5/core.5.html
+关于core dump详情请参见[core](https://man7.org/linux/man-pages/man5/core.5.html)。
