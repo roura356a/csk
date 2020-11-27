@@ -20,11 +20,11 @@ This topic describes how to upgrade the configurations of a master node. Master 
 
     you can view instance information such as the instance type.
 
-    ![Instance Details page](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/1246858951/p50527.png)
+    ![Instance Details page](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1246858951/p50527.png)
 
 6.  In the Configuration Information section, click **Change Instance Type**.
 
-    ![Change instance type](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/1246858951/p50517.png)
+    ![Change instance type](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1246858951/p50517.png)
 
     If the **Change Instance Type** button is dimmed, it indicates that the instance is running. Before you change the instance type, you must click **Stop** in the upper-right corner to stop the instance.
 
@@ -34,13 +34,13 @@ This topic describes how to upgrade the configurations of a master node. Master 
 
     Then, you are redirected to the Instances page.
 
-    ![Instances page](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/1246858951/p50514.png)
+    ![Instances page](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1246858951/p50514.png)
 
     The instance type of master-01 is changed.
 
 9.  Select the instance and click **Start**. Then, master-01 is automatically added to the cluster and the state of the node changes to **Running**, as shown in the following figure.
 
-    ![Nodes](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2246858951/p50530.png)
+    ![Nodes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2246858951/p50530.png)
 
 10. Repeat Step 4 to Step 7 to upgrade configurations of the other master nodes.
 
