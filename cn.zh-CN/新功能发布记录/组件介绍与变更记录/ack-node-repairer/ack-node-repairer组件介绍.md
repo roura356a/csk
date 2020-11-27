@@ -22,16 +22,22 @@ NPD是Kubernetes节点诊断的工具，可以将节点的异常，例如Docker 
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
-2.  在控制台左侧导航栏中，单击**市场** \> **应用目录**。
+2.  在控制台左侧导航栏中，选择**市场** \> **应用目录**。
 
-3.  找到并单击ack-node-repairer，然后在应用目录 - ack-node-repairer页面的**参数**页签上，设置账号的AK信息。具体步骤，请参见[获取AccessKey]()。
+3.  找到并单击ack-node-repairer，然后在应用目录 - ack-node-repairer页面的**参数**页签上，设置账号的AK信息。
 
+    ![AK](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8429646061/p185927.png)
+
+    AK信息设置如下：
+
+    -   accessKey：nodeRepairer.accessKey
+    -   accessSecret：nodeRepairer.accessSecret
 4.  在页面右侧，单击**创建**。
 
 
 ## 配置ack-node-repairer
 
-针对每一种故障场景的自愈，您需要关联故障的节点Condition与其对应的修复操作，以及修复操作的具体执行内容。本文以修复节点NTP服务故障为例，介绍ack-node-repairer组件的配置过程。
+安装ACK的自愈系统（ACK Node Repairer）后，ACK Node Repairer会默认开启当前版本所支持的所有自愈功能。您可对某个自愈功能进行开关和配置，以下以NTP服务故障为例。
 
 1.  查看default-node-repairer资源的YAML文件。
 
@@ -43,7 +49,7 @@ NPD是Kubernetes节点诊断的工具，可以将节点的异常，例如Docker 
 
 2.  修改default-node-repairer。
 
-    在spec.rules列表中加入用于检测`NTPProblem`的detector和对应问题修复的nodeOperation，其定义片段如下：
+    在spec.rules列表中加入用于检测`NTPProblem`的detector和对应问题修复的healers，其定义片段如下：
 
     ```
     spec:
@@ -52,58 +58,22 @@ NPD是Kubernetes节点诊断的工具，可以将节点的异常，例如Docker 
       - detector:
           conditionType: NTPProblem
           type: conditionType
+          paused: false
         healers:
         - nodeOperation: restart-ntpd
           type: nodejob
     ```
 
-3.  定义资源类型为nodeoperations.nodes.alibabacloud.com的修复操作。
+    **说明：** 针对每一种故障场景的自愈，您需要关联故障的节点Condition与其对应的修复操作。rules.detector.conditionType是集群中出现的异常Condition。当设置rules.detector.paused为true时，此问题的自愈功能将被关闭。
 
-    1.  使用以下YAML信息创建文件来定义资源。
+    至此，当集群节点上有NTP服务异常时，ACK的自愈框架将会通过[OOS]()到节点上执行`systemctl restart chronyd.service`命令，重启NTP服务。
 
-        ```
-        apiVersion: nodes.alibabacloud.com/v1beta1
-        kind: NodeOperation
-        metadata:
-          generation: 1
-          name: restart-ntpd-20200905220953
-          namespace: kube-system
-        spec:
-          args: ""
-          batch:
-          - 1
-          - 10
-          - 50
-          - 200
-        # systemctl restart chronyd.service
-          content: c3lzdGVtY3RsIHJlc3RhcnQgY2hyb255ZC5zZXJ2aWNlCg==
-          forward: auto
-          internal: 60
-          retry: 3
-          timeout: 60
-          version: "20200905220953"
-        ```
 
-    2.  执行`kubectl apply -f {FILENAME}.yaml`将该资源加入集群。
+## 自愈过程与结果记录
 
-4.  定义类型为nodeoperationexecutors.nodes.alibabacloud.com的修复操作执行器。
+集群会默认在kube-system命名空间下创建类型为nodejobs.nodes.alibabacloud.com的资源来记录每次执行的自愈操作。您可执行以下命令查看资源中定义的内容，并通过Status字段查看自愈执行的结果。
 
-    1.  使用以下YAML信息创建文件来定义资源。
-
-        ```
-        apiVersion: nodes.alibabacloud.com/v1beta1
-        kind: NodeOperationExecutor
-        metadata:
-          name: restart-ntpd
-          namespace: kube-system
-        spec:
-          stableVersion: "20200905220953"
-          versions:
-          - "20200905220953"
-        ```
-
-    2.  执行`kubectl apply -f {FILENAME}.yaml`将该资源加入集群。
-
-    至此当集群中有节点上NTP服务异常时，ACK的自愈框架将会通过OOS到节点上执行`systemctl restart chronyd.service`命令，重启NTP服务。
-
+```
+kubectl -n kube-system get nodejobs.nodes.alibabacloud.com {nodejob_cr_name} -o yaml
+```
 
