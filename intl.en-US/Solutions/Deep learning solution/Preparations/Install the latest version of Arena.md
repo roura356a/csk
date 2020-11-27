@@ -6,8 +6,8 @@ keyword: [Arena, machine learning, lightweight solution]
 
 Arena is a thin client that is designed to manage Kubernetes-based machine learning tasks. Arena allows you to streamline data preparation, model development, model training, and model prediction throughout a complete lifecycle of machine learning. This improves the work efficiency of data scientists. Arena is also deeply integrated with basic services of Alibaba Cloud. It supports GPU sharing and Cloud Paralleled File System \(CPFS\). Arena can run in deep learning frameworks optimized by Alibaba Cloud. This maximizes the performance and utilization of heterogeneous computing resources provi1ded by Alibaba Cloud.
 
--   An ACK cluster that contains GPU-accelerated nodes is created. For more information, see [Configure a Kubernetes GPU cluster to support GPU scheduling](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU management/GPU resource scheduling/Configure a Kubernetes GPU cluster to support GPU scheduling.md).
--   Nodes in the cluster can access the Internet. For more information, see [Access the Kubernetes API server over the Internet](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Access the Kubernetes API server over the Internet.md).
+-   An ACK cluster that contains GPU-accelerated nodes is created. For more information, see [Create a managed GPU cluster](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU management/Create heterogeneous computing clusters/Create a managed GPU cluster.md) or [Create a dedicated GPU cluster for heterogeneous computing](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU management/Create heterogeneous computing clusters/Create a dedicated GPU cluster for heterogeneous computing.md).
+-   Nodes in the cluster can access the Internet.
 
 ## Procedure
 
