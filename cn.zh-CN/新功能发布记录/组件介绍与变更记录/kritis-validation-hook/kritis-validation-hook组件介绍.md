@@ -167,7 +167,7 @@ spec:
 
     -   当配置项值不包含星号（\*）字符时，将按配置的值进行完整匹配。比如`nginx:v0.1.0`只会匹配`nginx:v0.1.0`。
     -   当通过星号（\*）字符实现通配符匹配时，有以下限制。
-        -   星号（\*）位于末尾时，匹配除正斜线（/）外的任意字符。比如`a.com/nginx/*`匹配`a.com/nginx:v0.1.0`，但是不匹配`a.com/nginx/test:v0.1.0` 。
+        -   星号（\*）位于末尾时，匹配除正斜线（/）外的任意字符。比如`a.com/nginx*`匹配`a.com/nginx:v0.1.0`，但是不匹配`a.com/nginx/test:v0.1.0` 。
         -   星号（\*）不位于末尾时，匹配字母、数字、短横线\(-\) 以及下划线（\_） 。比如`registry-vpc.cn-*.aliyuncs.com/acs/pause:3.2`既匹配`registry-vpc.cn-hangzhou.aliyuncs.com/acs/pause:3.2`，也匹配`registry-vpc.cn-beijing.aliyuncs.com/acs/pause:3.2`。
     常见的白名单如下，您可以根据实际需求进行添加。
 
