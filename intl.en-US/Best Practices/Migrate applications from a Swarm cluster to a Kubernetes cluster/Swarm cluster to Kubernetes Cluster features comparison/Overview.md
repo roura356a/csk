@@ -1,19 +1,20 @@
-# Overview {#concept_m4j_5rd_ggb .concept}
+# Overview
 
-This topic describes the prerequisites and limits for function comparisons between a Swarm cluster and a Kubernetes cluster that run in Container Service.
+This topic describes the prerequisites and limits that are used to compare clusters of Container Service for Swarm and clusters of Container Service for Kubernetes \(ACK\).
 
-## Prerequisites {#section_fgg_lzd_ggb .section}
+## Prerequisites
 
-You have created a Kubernetes cluster. For more information, see [Create a Kubernetes cluster](../../../../reseller.en-US/User Guide/Kubernetes cluster/Cluster management/Create a Kubernetes cluster.md#).
+An ACK cluster is created. For more information, see [t16639.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md).
 
-**Note:** .
+**Note:**
 
--   Alibaba Cloud Container Service for Kubernetes supports the following clusters: the dedicated Kubernetes cluster, the managed Kubernetes cluster, the multi-zone Kubernetes cluster, and the serverless Kubernetes cluster \(in beta\).
--   The topic uses creating a Kubernetes cluster as an example to compare the functions between a Swarm and a Kubernetes cluster that run on Container Service.
+-   ACK provides the following types of clusters: the dedicated Kubernetes cluster, the managed Kubernetes cluster, the multi-zone Kubernetes cluster, and the serverless Kubernetes \(ASK\) cluster \(in public preview\).
+-   In this topic, an application is created in a Swarm and an ACK cluster to compare the features of Swarm and ACK clusters.
 
-## Limits {#section_a42_t22_ggb .section}
+## Limits
 
--   The applications used for the function comparison are as follows:
-    -   Stateless applications
-    -   Applications that use a data base or a storage device to store data
+In this topic, the features of Swarm and Kubernetes clusters are compared based on the following limits:
+
+-   Both applications are stateless.
+-   Application data is stored in databases or volumes.
 
