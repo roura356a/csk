@@ -6,8 +6,8 @@ keyword: [Arena, 机器学习, 轻量级解决方案]
 
 Arena是基于Kubernetes的机器学习轻量级解决方案，支持数据准备，模型开发，模型训练，模型预测的完整生命周期，提升数据科学家工作效率。同时和阿里云的基础云服务深度集成，支持GPU共享、CPFS等服务，可以运行阿里云优化的深度学习框架，最大化使用阿里云异构设备的性能和成本的效益。
 
--   创建包含GPU的Kubernetes集群，请参见[Kubernetes GPU集群支持GPU调度](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU管理/GPU资源调度/Kubernetes GPU集群支持GPU调度.md)。
--   集群节点可以访问公网，请参见[通过公网访问集群API Server](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过公网访问集群API Server.md)。
+-   创建包含GPU的Kubernetes集群。具体操作，请参见[创建托管GPU集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU管理/创建异构计算集群/创建托管GPU集群.md)或[创建专有GPU集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU管理/创建异构计算集群/创建专有GPU集群.md)。
+-   集群节点可以访问公网。
 
 ## 步骤一：安装Arena组件
 
