@@ -9,7 +9,7 @@ Terway is a network plug-in developed by ACK. It allows you to assign native ela
 -   Assign Alibaba Cloud ENIs and secondary IP addresses to containers.
 -   Define access policies based on standard Kubernetes network policies for intercommunication among containers. Terway is compatible with Calico network policies.
 
-![Terway network plug-in](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/0545359951/p32414.png)
+![Terway network plug-in](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0545359951/p32414.png)
 
 In a cluster that has Terway installed, each pod has a separate network stack and is assigned a separate IP address. Pods on the same ECS instance communicate with each other by forwarding packets inside the ECS instance. Pods on different ECS instances communicate with each other through an ENI in the virtual private cloud \(VPC\). This improves communication efficiency because no tunneling technologies such as Virtual Extensible Local Area Network \(VXLAN\) is needed to encapsulate packets.
 
@@ -33,14 +33,30 @@ In a cluster that has Terway installed, each pod has a separate network stack an
 
 4.  On the Select Cluster Template page, click **Standard Managed Cluster**.
 
-    **Note:** A standard managed cluster is created in this topic. For more information, see [Create a cluster of ACK Managed Edition](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a cluster of ACK Managed Edition.md).
+    **Note:** A standard managed cluster is created in this topic. For more information, see [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md).
 
 5.  Select the **Terway** network plug-in.
 
-    ![Select the network plug-in](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/0545359951/p32375.png)
+    ![Select the network plug-in](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0545359951/p32375.png)
 
     If you select **Terway**, you must set **Terway Mode**.
 
+    -   Select or clear **Assign One ENI to Each Pod**.
+
+-   If you select the check box, an ENI is assigned to each pod.
+-   If you clear the check box, an ENI is shared among multiple pods. A secondary IP address provided by the ENI is assigned to each pod.
+    -   Select or clear **IPVLAN**.
+
+-   This option is available only when you clear Assign One ENI to Each Pod.
+-   If you select IPVLAN, IPVLAN and the extended Berkeley Packet Filter \(eBPF\) are used for network virtualization when an ENI is shared among multiple pods. This improves network performance. Only the Alibaba Cloud Linux 2 operating system is supported.
+-   If you clear IPVLAN, policy-based routes are used for network virtualization when an ENI is shared among multiple pods. The CentOS 7 and Alibaba Cloud Linux 2 operating systems are supported. This is the default setting.
+**Note:** **Assign One ENI to Each Pod** and **IPVLAN** are available to only users in the whitelist.If you are not in the whitelist, [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
+
+    -   Specify whether to enable the **NetworkPolicy** feature.
+
+-   The NetworkPolicy feature is available only when you clear Assign One ENI to Each Pod. By default, Assign One ENI to Each Pod is unselected.
+-   If you select Support for NetworkPolicy, you can use Kubernetes network policies to control communication among pods.
+-   If you clear Support for NetworkPolicy, you cannot use Kubernetes network policies to control communication among pods. This prevents Kubernetes network policies from posing heavy loads on the Kunernetes API server.
 
 ## Flannel and Terway
 
