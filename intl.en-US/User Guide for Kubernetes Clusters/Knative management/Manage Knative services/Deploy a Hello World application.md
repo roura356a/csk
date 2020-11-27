@@ -3,7 +3,7 @@
 This topic describes how to deploy a Knative service. The Hello World application is used as an example.
 
 -   [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md)
--   [Deploy a Knative component](/intl.en-US/User Guide for Kubernetes Clusters/Knative management/Manage Knative components/Deploy Knative components in a Kubernetes cluster.md)
+-   [Deploy a Knative component](/intl.en-US/User Guide for Kubernetes Clusters/Knative management/Manage Knative components/Deploy a Knative component.md)
 -   The Serving component is deployed in a Container Service for Kubernetes \(ACK\) cluster. For more information, see [Deploy a Knative component](/intl.en-US/User Guide for Kubernetes Clusters/Knative management/Manage Knative components/Deploy a Knative component.md).
 
 ## Procedure
