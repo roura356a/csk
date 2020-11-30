@@ -147,20 +147,7 @@
     coffee   https://198639303048****.cn-beijing.fc.aliyuncs.com/2016-08-15/proxy/kn_default_coffee.http-prd/kn_default_coffee/   coffee-5bqdr    coffee-5bqdr   True
     ```
 
-2.  查看服务部署状态。
-
-    ```
-    kubectl get ksvc
-    ```
-
-    预期输出：
-
-    ```
-    NAME     URL                                                                                                                  LATESTCREATED   LATESTREADY    READY   REASON
-    coffee   https://198639303048****.cn-beijing.fc.aliyuncs.com/2016-08-15/proxy/kn_default_coffee.http-prd/kn_default_coffee/   coffee-5bqdr    coffee-5bqdr   True
-    ```
-
-3.  使用curl命令访问服务。
+2.  使用curl命令访问服务。
 
     ```
     curl https://198639303048****.cn-beijing.fc.aliyuncs.com/2016-08-15/proxy/kn_default_coffee.http-prd/kn_default_coffee/
@@ -172,7 +159,7 @@
     Hello coffee-default
     ```
 
-4.  在函数计算控制台查看服务和函数。
+3.  在函数计算控制台查看服务和函数。
 
     1.  登录[函数计算控制台](https://fc.console.aliyun.com)。
 
