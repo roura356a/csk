@@ -147,20 +147,7 @@ You can verify that the service is deployed. The following example describes how
     coffee   https://198639303048****.cn-beijing.fc.aliyuncs.com/2016-08-15/proxy/kn_default_coffee.http-prd/kn_default_coffee/   coffee-5bqdr    coffee-5bqdr   True
     ```
 
-2.  Check the service deployment status.
-
-    ```
-    kubectl get ksvc
-    ```
-
-    Expected output:
-
-    ```
-    NAME     URL                                                                                                                  LATESTCREATED   LATESTREADY    READY   REASON
-    coffee   https://198639303048****.cn-beijing.fc.aliyuncs.com/2016-08-15/proxy/kn_default_coffee.http-prd/kn_default_coffee/   coffee-5bqdr    coffee-5bqdr   True
-    ```
-
-3.  Run the curl command to access the service.
+2.  Run the curl command to access the service.
 
     ```
     curl https://198639303048****.cn-beijing.fc.aliyuncs.com/2016-08-15/proxy/kn_default_coffee.http-prd/kn_default_coffee/
@@ -172,10 +159,14 @@ You can verify that the service is deployed. The following example describes how
     Hello coffee-default
     ```
 
-4.  Check the service and the function that is used to deploy the service in the FC console.
+3.  Check the service and the function that is used to deploy the service in the FC console.
 
-    1.  In the left-side navigation pane, click **Service/Function**. On the Service/Function page, the kn\_default\_coffee service is displayed.
+    1.  Log on to the [Function Compute console](https://fc.console.aliyun.com).
 
-    2.  Click kn\_default\_coffee. On the **Functions** tab, the kn\_default\_coffee function is displayed.
+    2.  In the top navigation bar, select a region.
+
+    3.  In the left-side navigation pane, click **Service/Function**. On the Service/Function page, the kn\_default\_coffee service is displayed.
+
+    4.  Click kn\_default\_coffee. On the **Functions** tab, the kn\_default\_coffee function is displayed.
 
 
