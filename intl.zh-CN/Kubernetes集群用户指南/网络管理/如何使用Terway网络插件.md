@@ -111,27 +111,27 @@ Terway网络场景下，当VSwitch IP资源不足时，您需要对VSwitch扩容
 
 6.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-7.  在控制台左侧导航栏中，选择**运维管理** \> **组件管理**。按照以下步骤将Terway版本升到最新版本。
+7.  在控制台左侧导航栏中，选择**运维管理** \> **组件管理**，然后将Terway版本升到最新版本。
 
     1.  在组件管理页面，单击**网络**页签。
 
-    2.  在网络页签中选择需要升级的目标terway组件，单击**升级**。
+    2.  在网络页签中选择需要升级的目标Terway组件，单击**升级**。
 
 8.  执行以下命令删除全部Terway Pod后，系统自动重建全部Terway Pod。
 
-    针对ENI多IP场景，执行以下命令：
+    -   针对ENI多IP场景，执行以下命令删除全部Terway Pod：
 
-    ```
-    kubectl delete -n kube-system pod -l app=terway-eniip
-    ```
+        ```
+        kubectl delete -n kube-system pod -l app=terway-eniip
+        ```
 
-    针对ENI单IP场景，执行以下命令：
+    -   针对ENI单IP场景，执行以下命令删除全部Terway Pod：
 
-    ```
-    kubectl delete -n kube-system pod -l app=terway-eni
-    ```
+        ```
+        kubectl delete -n kube-system pod -l app=terway-eni
+        ```
 
-    执行以下命令，检查全部Terway Pod是否重建成功。
+    执行以下命令检查全部是否成功重建Terway Pod。
 
     ```
     kubectl get pod -n kube-system  | grep terway
@@ -146,7 +146,7 @@ Terway网络场景下，当VSwitch IP资源不足时，您需要对VSwitch扩容
 
 在创建Kubernetes集群时，阿里云容器服务提供两种网络插件：Terway和Flannel。
 
--   Flannel：使用的是简单稳定的社区的[Flannel](https://github.com/coreos/flannel)CNI插件，配合阿里云的VPC的高速网络，能给集群高性能和稳定的容器网络体验，但功能偏简单，支持的特性少。例如，不支持基于Kubernetes标准的Network Policy。
+-   Flannel：使用的是简单稳定的社区的[Flannel](https://github.com/coreos/flannel) CNI插件，配合阿里云的VPC的高速网络，能给集群高性能和稳定的容器网络体验，但功能偏简单，支持的特性少。例如，不支持基于Kubernetes标准的Network Policy。
 -   Terway：是阿里云容器服务Kubernetes版自研的网络插件，将阿里云的弹性网卡分配给容器，支持基于Kubernetes标准的Network Policy来定义容器间的访问策略，支持对单个容器做带宽的限流。对于不需要使用Network Policy的用户，可以选择Flannel，其他情况建议选择Terway。
 
     **说明：**
