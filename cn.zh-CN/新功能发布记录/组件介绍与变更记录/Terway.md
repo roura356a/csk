@@ -11,7 +11,7 @@ keyword: Terway变更记录
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
 |v1.0.10.261-g8342155-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.261-g8342155-aliyun|2020年11月27日|-   支持使用同步调用方式调用ECS接口。
--   修复使用CNI插件时返回的错误信息。
+-   修复使用CNI插件时返回错误信息的问题。
 
 |此次升级不会对业务造成影响。 |
 |v1.0.10.250-gb7bb10a-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.250-gb7bb10a-aliyun|2020年11月23日|-   修复ENI驱动加载失败时的Pod网络问题。
