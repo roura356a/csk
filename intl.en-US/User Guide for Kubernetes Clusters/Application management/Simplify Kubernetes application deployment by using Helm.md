@@ -1,270 +1,153 @@
-# Simplify Kubernetes application deployment by using Helm {#concept_fvz_4vm_vdb .concept}
+# Simplify Kubernetes application deployment by using Helm
 
-In Kubernetes, app management is the most challenging and in demand field. The Helm project provides a uniform software packaging method which supports version control and greatly simplifies Kubernetes app distribution and deployment complexity.
+This topic introduces the basic concepts and components of Helm and describes how to use Helm to deploy the sample applications WordPress and Spark in a Container Service for Kubernetes \(ACK\) cluster.
 
-Alibaba Cloud Container Service integrates the app catalog management function with the Helm tool, extends the functions, and supports official repository, allowing you to deploy the application quickly. You can deploy the application in the Container Service console or by using command lines.
+-   An ACK cluster is created in the ACK console. For more information, see [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md).
 
-This document introduces the basic concepts and usage of Helm and demonstrates how to use Helm to deploy the sample applications WordPress and Spark on an Alibaba Cloud Kubernetes cluster.
+    Tiller is automatically deployed to the cluster when the ACK cluster is created. The Helm command-line interface \(CLI\) is automatically installed on each master node. You must configure the Helm CLI to point to the Alibaba Cloud chart repository.
 
-## Basic concepts of Helm {#section_sjv_cwm_vdb .section}
+-   The supported Kubernetes version is used.
 
-Helm is an open-source tool initiated by Deis and helps to simplify the deployment and management of Kubernetes applications.
-
-You can understand Helm as a Kubernetes package management tool that facilitates discovery, sharing and use of apps built for Kubernetes. It involves several basic concepts.
-
--   **Chart**: A Helm package containing the images, dependencies, and resource definitions required for running an application. It may also contain service definitions in a Kubernetes cluster, similar to the formula of Homebrew, the dpkg of APT, or the rpm file of Yum.
--   **Release**: A chart running on a Kubernetes cluster. A chart can be installed multiple times on the same cluster. A new release will be created every time a chart is installed. For example, to run two databases on the server, you can install the MySQL chart twice. Each installation will generate its own release with its own release name.
--   **Repository**: The repository for publishing and storing charts.
-
-## Helm components {#section_ujv_cwm_vdb .section}
-
-Helm adopts a client/server architecture composed of the following components:
-
--   Helm CLI is the Helm client and can be run locally or on the master nodes of the Kubernetes cluster.
--   Tiller is the server component and runs on the Kubernetes cluster. It manages the lifecycles of Kubernetes applications.
--   Repository is the chart repository. The Helm client accesses the chart index files and packages in the repository by means of the HTTP protocol.
-
-## Use Helm to deploy applications {#section_z1l_fwm_vdb .section}
-
-**Prerequisites**
-
--   Before using Helm to deploy an application, create a Kubernetes cluster in Alibaba Cloud Container Service. For more information, see [Create a Kubernetes cluster](reseller.en-US//Create a Kubernetes cluster.md#).
-
-    Tiller is automatically deployed to the cluster when the Kubernetes cluster is created. Helm CLI is automatically installed on all the master nodes and the configuration points to the Alibaba Cloud chart repository.
-
--   Check the Kubernetes version of your cluster.
-
-    Only clusters whose Kubernetes version is 1.8.4 or later are supported. For clusters whose Kubernetes version is 1.8.1, **upgrade the cluster** on the Cluster List page.
+    Only Kubernetes V1.8.4 and later are supported. For Kubernetes V1.8.1, you can upgrade the cluster to the required version. To upgrade the cluster, log on to the ACK console, go to the Clusters page, find the cluster, and then choose More \> **Upgrade Cluster** in the Actions column.
 
 
-## Deploy applications in Container Service console {#section_ozs_qxm_vdb .section}
+When you run and manage applications with ACK, you can use Helm as the package manager to simplify application distribution and deployment. The Helm project allows you to perform software packaging and supports version control. In the ACK console, the App Catalog feature integrates the Helm binaries and supports the Alibaba Cloud chart repository. This allows you to deploy applications by using the Helm CLI or in the ACK console.
 
-1.  Log on to the [Container Service console](https://partners-intl.console.aliyun.com/#/cs).
-2.  Under Kubernetes, click **Store** \> **App Catalog** in the left-side navigation pane.
-3.  On the App Catalog page, click a chart \(WordPress in this example\) to enter the chart details page.
+## Overview
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/156464877810396_en-US.png)
+Helm is an open source tool that is created by Deis. It can be used to simplify the deployment and management of ACK applications.
 
-4.  Enter the basic information for the deployment on the right.
+Helm serves as an ACK package manager and allows you to find, share, and run applications that are created in ACK. When you use Helm, you must learn more about the following basic concepts:
 
-    -   **Clusters**: Select the cluster in which the application is to be deployed.
-    -   **Namespace**: Select the namespace. default is selected by default.
-    -   **Release Name**: Enter the release name for the application. Enter test in this example.
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/156464877910397_en-US.png)
+-   Chart: a packaging format used by Helm. Each chart contains the images, dependencies, and resource definitions that are required to run an application. A chart may contain service definitions in an ACK cluster. You can use a chart by using a similar method as you use a Homebrew formula, the dpkg packages manager of the Advanced Package Tool \(APT\) package management system, or the Red Hat Package Manager \(RPM\) package for Yellowdog Updater, Modified \(YUM\).
+-   Release: an instance of a chart that runs in an ACK cluster. A chart can be installed multiple times into the same cluster. After a chart is installed, a new release is created. For example, you can install a MySQL chart. If you want to run two databases in your cluster, you can install the MySQL chart twice. Each installation generates a release with a release name.
+-   Repository: the location where charts are stored and released.
 
-5.  Click the **Values** tab to modify the configurations.
+## Helm components
 
-    In this example, bind dynamic data volumes of the cloud disk to a persistent storage volume claim \(PVC\). For more information, see .
+Helm works in a client-server architecture and consists of the following components:
 
-    **Note:** You need to create a persistent storage volume \(PV\) of cloud disk in advance. The capacity of the PV cannot be less than the value defined by the PVC.
+-   The Helm CLI is the Helm client that runs on your on-premises computer or on the master nodes of an ACK cluster.
+-   Tiller is the server-side component and runs in an ACK cluster. Tiller manages the lifecycles of ACK applications.
+-   A repository is used to store charts. The Helm client can access the index file and packaged charts in a chart repository over HTTP.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/156464877910398_en-US.png)
+## Deploy an application in the ACK console
 
-6.  Click **DEPLOY** after completing the configurations. After the successful deployment, you are redirected to the release page of this application.
+1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/156464877910399_en-US.png)
+2.  In the left-side navigation pane, choose **Marketplace** \> **App Catalog**.
 
-7.  Click **Ingresses and Load Balancing** \> **Service** in the left-hand navigation pane. Select the target cluster and namespace and find the corresponding service. You can obtain the HTTP/HTTPS external endpoint address.
+3.  For example, on the **Alibaba Cloud Apps** tab, click a chart, such as WordPress. Then, you are redirected to the page that shows more details of the WordPress chart.
 
-    ![](http://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/16661/156464877910400_en-US.png)
+4.  In the Deploy pane on the right side of the page, enter the basic information for the deployment.
 
-8.  Click the preceding access address to enter the WordPress blog publishing page.
+    -   **Cluster**: Select the cluster to which you want to deploy the application.
+    -   **Namespace**: Select a namespace for the application. By default, this parameter is set to default.
+    -   **Release Name**: Enter a release name for the application.
+    ![Basic deployment information](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5145359951/p10397.png)
 
-## Deploy applications by using command lines {#section_ekv_cwm_vdb .section}
+5.  Click the **Parameters** tab to set the parameters.
 
-You can use SSH to log on to the master node of the Kubernetes cluster when deploying applications by using command lines \(Helm CLI is automatically installed and has configured the repository\). For more information, see [Access Kubernetes clusters by using SSH](reseller.en-US//Access a Kubernetes cluster by using SSH.md#). You can also install and configure the kubectl and Helm CLI locally.
+    In this example, a dynamically provisioned volume \(PV\) is associated with a persistent volume claim \(PVC\). For more information, see [Use Alibaba Cloud disks as volumes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Disk volumes/Use Alibaba Cloud disks as volumes.md).
 
-In this example, install and configure the kubectl and Helm CLI locally and deploy the applications WordPress and Spark.
+    **Note:** Before you associate the PV with the PVC, you must create a dynamically provisioned persistent volume \(PV\). The capacity of the PV cannot be less than the value that is defined by the PVC.
 
-## Install and configure kubectl and Helm CLI {#section_fkv_cwm_vdb .section}
+    ![Set the parameters](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5145359951/p10398.png)
 
-1.  Install and configure kubectl on a local computer.
+6.  After you set the parameters, click **Create** to deploy the application. After the application is deployed, you are redirected to the release page of the application.
 
-    For more information, see [Connect to a Kubernetes cluster by using kubectl](reseller.en-US//Connect to a Kubernetes cluster by using kubectl.md#).
+7.  In the left-side navigation pane, choose **Clusters**. Find the cluster that you want to manage and click **Applications** in the **Actions** column. The Workload page appears. In the left-side navigation pane, click **Services**. On the Services page, find the newly created service. You can check the HTTP and HTTPS external endpoint of the service.
 
-    To view information of the target Kubernetes cluster, enter the command `kubectl cluster-info`.
-
-2.  Install Helm on a local computer.
-
-    For the installation method, see [Install Helm](https://github.com/kubernetes/helm/blob/master/docs/install.md?spm=5176.100239.blogcont159601.27.k76Hec&file=install.md).
-
-3.  Configure the Helm repository. Here the charts repository provided by Alibaba Cloud Container Service is used.
-
-    ``` {#codeblock_9x9_n2o_qwn}
-    helm init --client-only --stable-repo-url https://aliacs-app-catalog.oss-cn-hangzhou.aliyuncs.com/charts/
-    helm repo add incubator https://aliacs-app-catalog.oss-cn-hangzhou.aliyuncs.com/charts-incubator/
-    helm repo update
-    ```
+8.  Click either of the endpoints to go to the WordPress application where you can publish blog posts.
 
 
-**Basic operations of Helm**
+## Deploy an application by using the Helm CLI
 
--   To view the list of charts installed on the cluster, enter the following command:
+After the Helm CLI is automatically installed on each master node of the ACK cluster and points to the required repository, you can log on to a master node by using SSH. This allows you to deploy applications by using the Helm CLI. For more information, see [t16642.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use SSH to connect to an ACK cluster.md). You can also install and configure the Helm CLI and kubectl on your on-premises computer.
 
-    `helm list`
+In this example, on your on-premises computer, the Helm CLI and kubectl are installed and configured and the WordPress and Spark applications are deployed.
 
-    Or you can use the abbreviated version:
+1.  Install and configure the Helm CLI and kubectl.
 
-    `helm ls`
+    1.  Install and configure kubectl on your on-premises computer.
 
--   To view the repository configurations, enter the following command:
+        For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
 
-    `helm repo list`
+        To view further details of the ACK cluster, enter `kubectl cluster-info` in the CLI of kubectl.
 
--   To view or search for the Helm charts in the repository, enter one of the following commands:
+    2.  Install Helm on your on-premises computer.
 
-    ``` {#codeblock_bc9_w2m_4ro}
-    helm search 
-    helm search repository name #For example, stable or incubator.
-    helm search chart name #For example, wordpress or spark.
-    ```
+        For more information, see [Install Helm](https://github.com/helm/helm).
 
--   To update the chart list to get the latest version, enter the following command:
+2.  Deploy the WordPress application.
 
-    `helm repo update`
+    To deploy a WordPress blog website by using Helm, perform the following steps:
+
+    1.  In the CLI, run the following command:
+
+        ```
+        helm install --name wordpress-test stable/wordpress
+        ```
+
+        **Note:** ACK allows you to use block storage or disks as dynamically provisioned volumes. Before you deploy the WordPress application, you must create dynamically provisioned volumes based on disks.
+
+        The following output is returned:
+
+        ```
+        NAME:   wordpress-test
+        LAST DEPLOYED: Mon Nov  20 19:01:55 2017
+        NAMESPACE: default
+        STATUS: DEPLOYED
+        ...
+        ```
+
+    2.  In the CLI, run the following commands to view the release and service of WordPress.
+
+        ```
+        helm list
+        kubectl get svc
+        ```
+
+    3.  In the CLI, run the following command to view the pod that is associated with the WordPress application. The pod may require a few minutes to change to the Running state.
+
+        ```
+        kubectl get pod
+        ```
+
+    4.  In the CLI, run the following command to obtain the endpoint of the WordPress application.
+
+        ```
+        echo http://$(kubectl get svc wordpress-test-wordpress -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+        ```
+
+        You can enter the preceding endpoint in your browser to access the WordPress application.
+
+        You can perform the steps for the chart that are provided in the ACK console. Then, you can run the following commands to obtain the administrator account and password of the WordPress application:
+
+        ```
+        echo Username: user
+        echo Password: $(kubectl get secret --namespace default wordpress-test-wordpress -o jsonpath="{.data.wordpress-password}" | base64 --decode)
+        ```
+
+    5.  In the CLI, run the following command to delete the WordPress application:
+
+        ```
+        helm delete --purge wordpress-test
+        ```
 
 
-For more information about how to use Helm, see [Helm document](https://github.com/kubernetes/helm).
+## Use a third-party chart repository
 
-## Deploy WordPress by using Helm {#section_kkv_cwm_vdb .section}
+You can use the default Alibaba Cloud chart repository. If a third-party chart repository is accessible, you can also use the third-party chart repository. In the CLI, run the following command to add a third-party chart repository:
 
-Use Helm to deploy a WordPress blog website.
-
-Enter the following command.
-
-``` {#codeblock_qdj_0xt_f8n}
-helm install --name wordpress-test stable/wordpress
 ```
-
-**Note:** The Alibaba Cloud Kubernetes service provides the support for dynamic storage volumes of block storage \(cloud disk\). You need to create a storage volume of cloud disk in advance.
-
-The result is as follows:
-
-``` {#codeblock_obs_6o4_j71}
-NAME: wordpress-test
-LAST DEPLOYED: Mon Nov 20 19:01:55 2017
-NAMESPACE: default
-STATUS: DEPLOYED
-...
-```
-
-Use the following command to view the release and service of WordPress.
-
-``` {#codeblock_rte_8zw_s20}
-helm list
-kubectl get svc
-```
-
-Use the following command to view the WordPress related pods and wait until the status changes to Running.
-
-``` {#codeblock_8in_3b3_1n4}
-kubectl get pod
-```
-
-Use the following command to obtain the WordPress access address:
-
-``` {#codeblock_x65_q0y_cmm}
-echo http://$(kubectl get svc wordpress-test-wordpress -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-```
-
-Access the preceding URL in the browser, and you can see the familiar WordPress website.
-
-You can also follow the chart instructions and use the following command to obtain the administrator account and password of the WordPress website:
-
-``` {#codeblock_r4n_13a_bz3}
-echo Username: user
-echo Password: $(kubectl get secret --namespace default wordpress-test-wordpress -o jsonpath="{.data.wordpress-password}" | base64 --decode)
-```
-
-To completely delete the WordPress application, enter the following command:
-
-``` {#codeblock_j2u_scq_9n8}
-helm delete --purge wordpress-test
-```
-
-## Deploy Spark by using Helm {#section_tkv_cwm_vdb .section}
-
-Use Helm to deploy Spark for processing big data.
-
-Enter the following command:
-
-``` {#codeblock_srg_el5_75e}
-helm install --name myspark stable/spark
-```
-
-The result is as follows:
-
-``` {#codeblock_k2m_clz_9jl}
-NAME: myspark
-LAST DEPLOYED: Mon Nov 20 19:24:22 2017
-NAMESPACE: default
-STATUS: DEPLOYED
-...
-```
-
-Use the following commands to view the release and service of Spark.
-
-``` {#codeblock_i7k_583_0c1}
-helm list
-kubectl get svc
-```
-
-Use the following command to view the Spark related pods and wait until the status changes to Running. Pulling images takes some time because the Spark related images are large.
-
-``` {#codeblock_xre_d7u_96z}
-kubectl get pod
-```
-
-Use the following command to obtain the Spark Web UI access address:
-
-``` {#codeblock_ae6_pqo_x4g}
-echo http://$(kubectl get svc myspark-webui -o jsonpath='{.status.loadBalancer.ingress[0].ip}'):8080
-```
-
-Access the preceding URL in the browser, and you can see the Spark Web UI, on which indicating currently three worker instances exist.
-
-Then, use the following command to use Helm to upgrade the Spark application and change the number of worker instances from three to four. The parameter name is case sensitive.
-
-``` {#codeblock_34l_dcm_7wr}
-helm upgrade myspark --set "Worker.Replicas=4" stable/spark
-```
-
-The result is as follows:
-
-``` {#codeblock_uo4_l0g_9zz}
-Release "myspark" has been upgraded. Happy Helming!
-LAST DEPLOYED: Mon Nov 20 19:27:29 2017
-NAMESPACE: default
-STATUS: DEPLOYED
-...
-```
-
-Use the following command to view the newly added pods of Spark and wait until the status changes to Running.
-
-``` {#codeblock_lp3_s9x_bee}
-kubectl get pod
-```
-
-Refresh the Spark Web UI in the browser. The number of worker instances changes to four.
-
-To completely delete the Spark application, enter the following command:
-
-``` {#codeblock_u4f_aar_gzu}
-helm delete --purge myspark
-```
-
-## Use third-party chart repository {#section_elv_cwm_vdb .section}
-
-Besides the preset Alibaba Cloud chart repository, you can also use the third-party chart repository \(make sure the network is accessible\). Add the third-party chart repository in the following command format:
-
-``` {#codeblock_x14_kkz_d4y}
-helm repo add repository name repository URL
+helm repo add Repository name Repository URL
 helm repo update
 ```
 
-For more information about the Helm related commands, see [Helm document](https://docs.helm.sh/helm/#helm-repo-add).
+For more information about Helm commands, see [Helm documentation](https://docs.helm.sh/helm/#helm-repo-add).
 
-## References {#section_glv_cwm_vdb .section}
+## References
 
-Helm boosts the growth of communities. More and more software providers, such as Bitnami, have begun to provide high-quality charts. You can search for and discover existing charts at `https://kubeapps.com/`.
+Helm provides several rapid technological developments for the Kubernetes community. These developments have allowed software providers, such as Bitnami, to offer high-quality charts. For more information about available charts, visit `https://kubeapps.com/`.
 
