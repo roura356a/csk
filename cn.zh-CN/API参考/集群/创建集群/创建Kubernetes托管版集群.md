@@ -134,8 +134,8 @@ POST /clusters HTTP/1.1
     -   cloud\_efficiency：高效云盘。
     -   cloud\_ssd：SSD云盘。
 -   size：数据盘大小，单位为GiB。 |
-|worker\_data\_disk\_category|int|否|数据盘类型 **说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的category取值。 |
-|worker\_data\_disk\_size|string|否|数据盘大小 **说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的size取值。 |
+|worker\_data\_disk\_category|string|否|数据盘类型 **说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的category取值。 |
+|worker\_data\_disk\_size|int|否|数据盘大小 **说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的size取值。 |
 |worker\_instance\_charge\_type|string|否|Worker节点付费类型，可选值为： -   PrePaid：预付费。
 -   PostPaid：按量付费。 |
 |worker\_period|int|否|包年包月时长，当worker\_instance\_charge\_type取值为PrePaid时才生效且为必选值。`PeriodUnit=Month`时，Period取值：\{ “1”，“2”，“3”，“6”，“12”\} 。|
