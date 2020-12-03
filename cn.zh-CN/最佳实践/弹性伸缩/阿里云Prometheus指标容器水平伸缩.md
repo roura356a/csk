@@ -6,11 +6,13 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
 
 默认HPA只支持基于CPU/内存的自动伸缩，并不能满足日常的运维需求。阿里云Prometheus监控全面对接开源Prometheus生态，支持类型丰富的组件监控，提供多种开箱即用的预置监控大盘，且提供全面托管的Prometheus服务。本文介绍如何将阿里云Prometheus指标转换成HPA可用的指标，从而为应用提供更加便捷的扩缩机制。
 
-## 部署组件
+## 前提条件
+
+在将阿里云Prometheus指标转换成HPA可用的指标前，您需要部署相关组件。
 
 1.  部署阿里云Prometheus监控组件。
 
-    有关部署阿里云Prometheus的详细步骤，请参见[安装阿里云Prometheus监控组件](/cn.zh-CN/Kubernetes集群用户指南/监控管理/托管阿里云Prometheus监控.md)。
+    有关部署阿里云Prometheus的详细步骤，请参见[开启阿里云Prometheus监控](/cn.zh-CN/Kubernetes集群用户指南/监控管理/托管阿里云Prometheus监控.md)。
 
 2.  部署alibaba-cloud-metrics-adapter组件。
 
@@ -19,63 +21,67 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
 
 ## 示例
 
-本文举例如何配置alibaba-cloud-metrics-adapter，实现将阿里云Prometheus转换为HPA可用指标，并实现该指标自动伸缩。
+本文举例如何配置alibaba-cloud-metrics-adapter，实现将阿里云Prometheus指标转换为HPA可用指标，并实现该指标自动伸缩。
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+1.  部署工作负载。
 
-2.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
+    1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
-3.  在集群管理页左侧导航栏中，单击**工作负载**。
+    2.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-4.  在**无状态**页签，单击**使用模板创建**。
+    3.  在集群管理页左侧导航栏中，单击**工作负载**。
 
-5.  在使用模板创建页面，部署以下YAML文件创建一个应用及对应的Service，然后单击**创建**。
+    4.  在**无状态**页签，单击**使用模板创建**。
 
-    **说明：** 此容器暴露出http\_requests\_total的指标用来标识访问次数。
+        ![prometheus](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0640580061/p169565.png)
 
-    ```
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: sample-app
-      labels:
-        app: sample-app
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          app: sample-app
-      template:
+    5.  在使用模板创建页面，部署以下YAML文件创建一个应用及对应的Service，然后单击**创建**。
+
+        **说明：** 此容器暴露出http\_requests\_total的指标用来标识访问次数。
+
+        ```
+        apiVersion: apps/v1
+        kind: Deployment
         metadata:
+          name: sample-app
           labels:
             app: sample-app
         spec:
-          containers:
-          - image: luxas/autoscale-demo:v0.1.2
-            name: metrics-provider
-            ports:
-            - name: http
-              containerPort: 8080
-    ---
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: sample-app
-      namespace: default
-      labels:
-        app: sample-app
-    spec:
-      ports:
-        - port: 8080
-          name: http
-          protocol: TCP
-          targetPort: 8080
-      selector:
-        app: sample-app
-      type: ClusterIP
-    ```
+          replicas: 1
+          selector:
+            matchLabels:
+              app: sample-app
+          template:
+            metadata:
+              labels:
+                app: sample-app
+            spec:
+              containers:
+              - image: luxas/autoscale-demo:v0.1.2
+                name: metrics-provider
+                ports:
+                - name: http
+                  containerPort: 8080
+        ---
+        apiVersion: v1
+        kind: Service
+        metadata:
+          name: sample-app
+          namespace: default
+          labels:
+            app: sample-app
+        spec:
+          ports:
+            - port: 8080
+              name: http
+              protocol: TCP
+              targetPort: 8080
+          selector:
+            app: sample-app
+          type: ClusterIP
+        ```
 
-6.  添加ServiceMonitor。
+2.  添加ServiceMonitor。
 
     1.  登录[ARMS控制台](https://arms.console.aliyun.com/#/home)。
 
@@ -105,13 +111,13 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
               app: sample-app
         ```
 
-7.  确认监控状态。
+3.  确认监控状态。
 
     单击**Targets\(beta\)**，如果看到**default/sample-app/0\(1/1 up\)**，则说明您成功在阿里云Prometheus监控到了部署的应用。
 
-    ![monitor](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9974480061/p169390.png)
+    ![monitor](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9974480061/p169390.png)
 
-8.  修改alibaba-cloud-metrics-adapter配置。
+4.  修改alibaba-cloud-metrics-adapter配置。
 
     1.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
@@ -134,8 +140,8 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
           fullnameOverride: ""
           image:
             pullPolicy: IfNotPresent
-            repository: registry.cn-beijing.aliyuncs.com/acs/adapter
-            tag: v1.1                         ##这里待修改。
+            repository: registry.aliyuncs.com/acs/alibaba-cloud-metrics-adapter-amd64
+            tag: v0.2.0-alpha-0c00ec2                        
           listenPort: 443
           nameOverride: ""
           nodeSelector: {}
@@ -144,7 +150,7 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
             adapter:
               rules:
                 custom: 
-                # 添加新的转换规则
+                # 添加新的转换规则，请确保阿里云Prometheus中指标标签和此处一致，如果不一致，请照阿里云Prometheus中指标标签修改。
                 - seriesQuery: 'http_requests_total{kubernetes_namespace!="",kubernetes_pod_name!=""}'
                   resources:
                     overrides:
@@ -174,7 +180,7 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
           tolerations: []
         ```
 
-9.  检查apiService指标。
+5.  检查apiService指标。
 
     ```
     kubectl get apiservice
@@ -185,11 +191,10 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
     ```
 
     ```
-    kubectl get --raw
+    kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/pods/*/http_requests_per_second" | jq .
     ```
 
     ```
-    "/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/pods/*/http_requests_per_second" | jq .
     {
       "kind": "MetricValueList",
       "apiVersion": "custom.metrics.k8s.io/v1beta1",
@@ -213,11 +218,11 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
     }
     ```
 
-10. 使用以下YAML文件部署HPA。
+6.  使用以下YAML文件部署HPA，然后执行`kubectl apply -f hpa.yaml`创建HPA应用。
 
     ```
     kind: HorizontalPodAutoscaler
-    apiVersion: autoscaling/v2beta2
+    apiVersion: autoscaling/v2beta1
     metadata:
       name: sample-app
     spec:
@@ -234,7 +239,7 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
           targetAverageValue: 500m
     ```
 
-11. 执行压测验证。
+7.  执行压测验证。
 
     ```
     ab -c 50 -n 2000 ClusterIP(sample-app):8080
