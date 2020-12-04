@@ -36,7 +36,7 @@ Kubernetes提供Default StorageClass机制，您在PVC不指定StorageClass的�
 
 **说明：**
 
--   由于Default StorageClass会对所有PVC起作用，对于具备不同类型存储卷能力的集群，需要小心使用。例如，您想生成一个NAS类型PVC、PV，并绑定PVC和PV，但可能因为有Default StorageClass而自动创建了云盘PV。基于上述原因，ACK集群没有提供Default StorageClass，如果您期望使用Default StorageClass，可以参考以下配置。
+-   由于Default StorageClass会对所有PVC起作用，对于具备不同类型存储卷能力的集群，需要小心使用。例如，您想生成一个NAS类型PVC、PV，并绑定PVC和PV，但可能因为有Default StorageClass而自动创建了云盘PV。基于上述原因，ASK集群没有提供Default StorageClass，如果您期望使用Default StorageClass，可以参考以下配置。
 -   一个集群中最多配置一个Default StorageClass，否则默认能力将不起作用。
 
 1.  配置Default StorageClass。
