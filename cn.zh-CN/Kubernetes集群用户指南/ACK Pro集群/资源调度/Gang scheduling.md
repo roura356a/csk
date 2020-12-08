@@ -8,9 +8,8 @@ ACK基于新版的Kube-scheduler框架实现Gang scheduling的能力，解决原
 
 -   您已创建ACK Pro版集群。具体步骤，请参见[创建Kubernetes Pro版集群](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建Kubernetes Pro版集群.md)。
 
-    **说明：** 目前CPU拓扑感知调度仅支持ACK Pro托管版集群。如果您需要专有版集群，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)申请白名单。
+    **说明：** 目前Gang scheduling仅支持ACK Pro托管版集群。如果您需要专有版集群，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)申请白名单。
 
--   在使用CPU拓扑感知调度前，需要预先部署组件resource-controller。具体步骤，请参见[管理组件](/cn.zh-CN/Kubernetes集群用户指南/集群管理/升级集群/管理组件.md)。
 -   系统组件版本要求具体如下表所示。
 
     |组件|版本要求|
