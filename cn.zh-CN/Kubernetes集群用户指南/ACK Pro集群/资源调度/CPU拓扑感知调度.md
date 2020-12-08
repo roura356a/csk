@@ -65,6 +65,7 @@ spec:
 在Deployment中使用CPU拓扑感知调度的模板如下。
 
 ```
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: go-demo
