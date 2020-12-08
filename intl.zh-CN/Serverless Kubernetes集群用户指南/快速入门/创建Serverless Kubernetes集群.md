@@ -45,7 +45,7 @@ keyword: [Serverless集群, 创建Serverless]
     |**服务发现**|设置集群的服务发现，支持**不开启**、**PrivateZone**和**CoreDNS**三种方式。**说明：**
 
     -   PrivateZone：基于阿里云专有网络VPC环境的私有DNS服务。该呜呜允许您在自定义的一个或多个VPC中将私有域名映射到IP地址。
-    -   CoreDNS：是一个灵活可扩展的DNS服务器，也是KubernetesBI。 |
+    -   CoreDNS：是一个灵活可扩展的DNS服务器，也是Kubernetes标准的服务发现组件。 |
     |**Ingress**|设置是否安装Ingress组件。默认选中**安装Ingress组件**，请参见[配置Ingress](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/配置Ingress.md)。 |
     |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。 不开启日志服务时，将无法使用集群审计功能。日志服务详情请参见[快速入门](/intl.zh-CN/快速入门/快速入门.md)。 |
     |**Knative**|设置是否开启Knative。Knative是一款基于Kubernetes的Serverless框架，其目标是制定云原生、跨平台的Serverless编排标准，详细介绍请参见[概述](/intl.zh-CN/Serverless Kubernetes集群用户指南/Knative管理/概述.md)。|
