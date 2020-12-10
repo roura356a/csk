@@ -13,32 +13,29 @@
 ## 请求语法
 
 ```
- http://provision.cs.aliyun-inc.com http
+GET /k8s/{ClusterId}/user_config 
 ```
 
 ## 请求参数
 
-|名称|类型|是否必选|示例值|描述|
-|--|--|----|---|--|
-|ClusterId|String|是|c5b5e80b0b64a4bf6939d2d8fbbc5\*\*\*\*|集群ID。 |
-|PrivateIpAddress|Boolean|否|true|当前用户对应的集群访问kubeconfig。 |
+|名称|类型|位置|是否必选|示例值|描述|
+|--|--|--|----|---|--|
+|ClusterId|String|Path|是|c5b5e80b0b64a4bf6939d2d8fbbc5\*\*\*\*|集群ID。 |
+|PrivateIpAddress|Boolean|Query|否|true|是否获取内网连接配置。 |
 
 ## 返回数据
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|config|String|"\*\*\*"|集群访问配置。 |
+|config|String|\*\*\*|集群访问配置。 |
 
 ## 示例
 
 请求示例
 
 ```
-GET /k8s/[ClusterId]/user_config HTTP/1.1
+GET /k8s/c5b5e80b0b64a4bf6939d2d8fbbc5****/user_config?PrivateIpAddress=true
 公共请求头
-{
-    "ClusterId":"c5b5e80b0b64a4bf6939d2d8fbbc5****"
-}
 ```
 
 正常返回示例
