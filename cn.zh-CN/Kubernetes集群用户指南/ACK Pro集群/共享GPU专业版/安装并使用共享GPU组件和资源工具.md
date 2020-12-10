@@ -68,10 +68,10 @@ ACK提供了GPU共享调度能力，服务于共享单GPU的模型预测场景�
     关于配置项的详细说明，请参见[创建Kubernetes Pro版集群](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建Kubernetes Pro版集群.md)。部分配置项说明如下：
 
     -   数量：设置节点池初始节点数量。如不需要创建节点，可以填写为0。
-    -   操作系统：选择节点的操作系统，包括CentOS、Aliyun Cloud Linux 2.x、Windows。
+    -   操作系统：选择节点的操作系统，包括CentOS、Alibaba Cloud Linux 2.x、Windows。
     -   ECS标签：您可以为ECS实例添加标签。
     -   自定义资源组：您可以指定节点池所扩容节点的资源组信息。
-    -   节点标签：为集群节点添加标签。关于节点标签的详细说明，请参见[GPU节点标签说明]()。
+    -   节点标签：为集群节点添加标签。关于节点标签的详细说明，请参见[GPU节点标签说明](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/GPU节点标签说明.md)。
         -   开启GPU共享调度能力，同时开启GPU显存隔离能力。
 
             单击**节点标签**的![节点标签](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7405585061/p183919.png)，设置**键**为ack.node.gpu.schedule，**值**为cgpu。
