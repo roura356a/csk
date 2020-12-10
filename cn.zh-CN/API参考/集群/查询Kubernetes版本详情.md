@@ -13,54 +13,61 @@
 ## 请求语法
 
 ```
-get /api/v1/metadata/versions http|https
+GET /api/v1/metadata/versions 
 ```
 
 ## 请求参数
 
-|名称|类型|是否必选|示例值|描述|
-|--|--|----|---|--|
-|Region|String|是|cn-beijing|地域ID。 |
-|MultiAZ|Boolean|否|false|是否查询多可用区。 |
-|ClusterType|String|是|Kubernetest|集群类型，更多集群类型前参见[创建Kubernetes集群](～～167759～～)。 |
-|KubernetesVersion|String|否|1.16.9-aliyun.1|Kubernetes版本，例如：1.16.9-aliyun.1。 |
-|Profile|String|否|Default|边缘集群标识。
+|名称|类型|位置|是否必选|示例值|描述|
+|--|--|--|----|---|--|
+|Region|String|Query|是|cn-beijing|地域ID。 |
+|MultiAZ|Boolean|Query|否|false|是否查询多可用区。 |
+|ClusterType|String|Query|是|Kubernetes|集群类型。
 
- -   Default：非边缘集群。
--   Edge：边缘集群。 |
+ -   Kubernetes: 专有版集群。
+-   ManagedKubernetes：托管版集群。
+-   Ask：Serverless集群。
+-   ExternalKubernetes：注册集群。
+-   ServiceMesh：ASM集群。 |
+|KubernetesVersion|String|Query|否|1.16.9-aliyun.1|版本号。关于ACK支持的版本号信息，请参见[Kubernetes版本发布概览](~~185269~~)。 |
+|Profile|String|Query|否|Default|面向场景时的集群类型：
+
+ -   Default：非边缘场景集群。
+-   Edge：边缘场景集群。 |
 
 ## 返回数据
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-| |Array of data| |返回数据体。 |
-|capabilities|Object| |Kubernetes版本特性。 |
-|images|Array| |ECS系统镜像列表。 |
-|image\_id|String|"centos\_7\_7\_x64\_20G\_alibase\_20200426.vhd"|镜像ID。 |
-|image\_name|String|"CentOS 7.7"|镜像名称。 |
-|image\_type|String|"centos\_7\_7\_2"|镜像类型。 |
-|os\_type|String|"Linux"|操作系统发行版本号。 |
-|os\_version|String|"7.7"|操作系统平台类型。取值范围： Windows、Linux（默认）。 |
-|platform|String|"CentOS"|操作系统发行版。取值范围： CentOS、AliyunLinux、Windows、WindowsCore。 |
-|meta\_data|Object| |Kubernetes版本元数据信息。 |
-|multi\_az|String|"false"|是否为多可用区。 |
+| |Array of data| |版本详情列表。 |
+|capabilities|Map| |Kubernetes版本功能特性。 |
+|images|Array| |系统镜像列表。 |
+|image\_id|String|centos\_7\_7\_x64\_20G\_alibase\_20200426.vhd|镜像ID。 |
+|image\_name|String|CentOS 7.7|镜像名称。 |
+|image\_type|String|centos\_7\_7\_2|镜像类型。 |
+|os\_type|String|Linux|镜像的操作系统类型。取值范围：
+
+ -   Windows
+-   Linux |
+|os\_version|String|7.7|镜像的操作系统版本。 |
+|platform|String|CentOS|操作系统平台。取值：
+
+ -   AliyunLinux
+-   CentOS |
+|meta\_data|Map| |Kubernetes版本元数据信息。 |
+|multi\_az|String|false|是否为多可用区。 |
 |runtimes|Array| |容器运行时配置。 |
-|name|String|"docker"|运行时名称。 |
-|version|String|"19.05.3"|运行时版本。 |
-|version|String|"1.16.9-aliyun.1"|Kubernetes版本。 |
+|name|String|docker|运行时名称。 |
+|version|String|19.05.3|运行时版本。 |
+|version|String|1.16.9-aliyun.1|ACK发布的Kubernetes版本。 |
 
 ## 示例
 
 请求示例
 
 ```
-GET /api/v1/metadata/versions HTTP/1.1
-{
-    "Region":"cn-beijing",
-    "ClusterType":"Kubernetes",
-    "MultiAZ":false,
-    "KubernetestVersion":"1.16.9-aliyun.1"
-}
+GET /api/v1/metadata/versions?Region=cn-beijing&ClusterType=Kubernetes
+公共请求头
 ```
 
 正常返回示例
