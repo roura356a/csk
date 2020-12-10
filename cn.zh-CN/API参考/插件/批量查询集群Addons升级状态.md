@@ -13,26 +13,23 @@
 ## 请求语法
 
 ```
-get /clusters/[ClusterId]/components/upgradestatus http|https
+GET /clusters/[ClusterId]/components/upgradestatus 
 ```
 
 ## 请求参数
 
-|名称|类型|是否必选|示例值|描述|
-|--|--|----|---|--|
-|ClusterId|String|是|c23421cfa74454bc8b37163fd19af\*\*\*\*|集群ID。 |
-|componentIds|Array of String|否|metric-server|组件名。 |
+|名称|类型|位置|是否必选|示例值|描述|
+|--|--|--|----|---|--|
+|ClusterId|String|Path|是|c23421cfa74454bc8b37163fd19af\*\*\*\*|集群ID。 |
+|componentIds|Array of String|Query|否|metric-server|组件名。 |
 
 ## 示例
 
 请求示例
 
 ```
-GET /clusters/[ClusterId]/components/upgradestatus HTTP/1.1
+GET /clusters/c23421cfa74454bc8b37163fd19af****/components/upgradestatus?componentIds=["metric-server"]
 公共请求头
-{
-    "ClusterId":"c23421cfa74454bc8b37163fd19af****"
-}
 ```
 
 ## 错误码
