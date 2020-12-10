@@ -43,7 +43,7 @@ GPU共享调度中，在节点上支持按照Binpack和Spread算法为Pod分配G
 
 如下图所示，节点上有2张GPU卡，每张卡的显存为15 GiB，Pod1申请了2 GiB的显存，Pod2申请了3 GiB显存。
 
--   如果您设置的是Binpack算法，系统会优先将一张GPU卡的分配完后，再分配另一张GPU卡。如下图左边部分所示，两个Pod被分配到GPU1上，优先将GPU1上的显存分配完。。
+-   如果您设置的是Binpack算法，系统会优先将一张GPU卡的分配完后，再分配另一张GPU卡。如下图左边部分所示，两个Pod被分配到GPU1上，优先将GPU1上的显存分配完。
 -   如果您设置的是Spread算法，系统会尽量将Pod申请的显存分散到各个GPU上。如下图中右边部分所示，Pod1和Pod2被分散到了GPU1和GPU2上。
 
 ![算法](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7486936061/p185649.png)
