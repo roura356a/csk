@@ -13,29 +13,33 @@
 ## 请求语法
 
 ```
-put /clusters/{ClusterId}/configuration http|https
+PUT /clusters/{ClusterId}/configuration 
 ```
 
 ## 请求参数
 
-|名称|类型|是否必选|示例值|描述|
-|--|--|----|---|--|
-|ClusterId|String|是|cc0f87de0b8fb403f86e10e204f83\*\*\*\*|集群ID。 |
-|customize\_config|Object|否| |自定义配置。 |
-|configs|Object|否| |配置信息。 |
-|key|String|否|k-aa|key。 |
-|value|String|否|v-aa|value。 |
-|name|String|否|metric-server|Addon名称。 |
+|名称|类型|位置|是否必选|示例值|描述|
+|--|--|--|----|---|--|
+|ClusterId|String|Path|是|cc0f87de0b8fb403f86e10e204f83\*\*\*\*|集群ID。 |
+| |Object|Body|否| |请求体参数。 |
+|configs|Object|Body|否| |配置信息。 |
+|key|String|Body|否|k-aa|key。 |
+|value|String|Body|否|v-aa|value。 |
+|name|String|Body|否|metric-server|Addon名称。 |
 
 ## 示例
 
 请求示例
 
 ```
-PUT /clusters/[ClusterId]/configuration HTTP/1.1
+PUT /clusters/cc0f87de0b8fb403f86e10e204f83****/configuration
 公共请求头
 {
-    "ClusterId":"cc0f87de0b8fb403f86e10e204f83****"
+    "configs":{
+        "value":"v-aa",
+        "key":"k-aa"
+    },
+    "name":"metric-server"
 }
 ```
 
