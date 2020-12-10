@@ -21,13 +21,13 @@ POST /clusters/{ClusterId}/attach
 |名称|类型|位置|是否必选|示例值|描述|
 |--|--|--|----|---|--|
 |ClusterId|String|Path|是|c106f377e16f34eb1808d6b9362c9\*\*\*\*|集群ID。 |
-| |Object|Body|否| |实例列表。 |
+| |Object|Body|否| |请求体参数。 |
 |cpu\_policy|String|Body|否|none|CPU管理策略。 |
 |format\_disk|Boolean|Body|否|false|是否格式化数据盘。 |
 |image\_id|String|Body|否|aliyun\_2\_1903\_x64\_20G\_alibase\_20200529.vhd|自定义镜像ID。 |
 |instances|Array of String|Body|否|i-2zed0sswuau6o89b\*\*\*\*|实例ID。 |
-|is\_edge\_worker|Boolean|Body|否|false|是否为边缘节点，即ens节点。 |
-|keep\_instance\_name|Boolean|Body|否|true|保留主机名。取值：true和false。 |
+|is\_edge\_worker|Boolean|Body|否|false|是否为边缘节点，即ENS节点。 |
+|keep\_instance\_name|Boolean|Body|否|true|保留主机名。取值：true或false。 |
 |key\_pair|String|Body|否|\*\*\*|免密登录密钥对名称，和login\_password二选一。 |
 |nodepool\_id|String|Body|否|np615c0e0966124216a0412e10afe0\*\*\*\*|节点池ID。 |
 |password|String|Body|否|Hello1234|SSH登录密码，和key\_pair二选一。 |
@@ -55,33 +55,34 @@ POST /clusters/{ClusterId}/attach
 请求示例
 
 ```
-POST /clusters/[ClusterId]/attach HTTP/1.1
+POST /clusters/c106f377e16f34eb1808d6b9362c9****/attach
 公共请求头
 {
-    "ClusterId": "c106f377e16f34eb1808d6b9362c9****",
     "instances":[
-        "i-wz9e8pvnjalxkggk****"
+        "i-2zed0sswuau6o89b****"
     ],
-    "format_disk":true,
-    "image_id":"centos_7_7_x64_20G_alibase_20191225.vhd",
-    "rds_instances":[
-        "rds1",
-        "rds2"
-    ],
-    "user_data":"ZWNobyAxMjM0NTY=",
-    "tags":[
-        {
-            "key":"foo",
-            "value":"bar"
-        }
-    ],
-    "keep_instance_name":true,
-    "cpu_policy":"none",
+    "key_pair":"***",
     "runtime":{
         "name":"docker",
         "version":"19.03.5"
     },
-    "password":"Hello@1234"
+    "user_data":"***",
+    "format_disk":"false",
+    "tags":[
+        {
+            "key":"k-aa",
+            "value":"v-aa"
+        }
+    ],
+    "password":"Hello1234",
+    "keep_instance_name":"true",
+    "rds_instances":[
+        "rds-xxx"
+    ],
+    "cpu_policy":"none",
+    "is_edge_worker":"false",
+    "image_id":"aliyun_2_1903_x64_20G_alibase_20200529.vhd",
+    "nodepool_id":"np615c0e0966124216a0412e10afe0****"
 }
 ```
 
