@@ -1,13 +1,13 @@
 # Use ASK to run jobs
 
-In a Serverless Kubernetes \(ASK\) cluster, you can create pods as needed. When a pod stops running, the billing stops, and you do not need to reserve computing resources for processing jobs. This solves the issues of insufficient computing resources and expanding of the cluster. You can reduce the computing cost by applying preemptible instances. This topic describes how to use ASK to create jobs as needed.
+In a serverless Kubernetes \(ASK\) cluster, you can create pods as needed. The system stops billing after a pod is stopped and you do not need to reserve computing resources to handle jobs. This solves the issues of insufficient computing resources and saves you the need to expand the cluster. In addition, you can reduce the computing cost by using preemptible instances. This topic describes how to use ASK to create jobs to meet your business requirements.
 
--   [Create a serverless Kubernetes cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create a serverless Kubernetes cluster.md)
--   [Connect to a Kubernetes cluster by using kubectl](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Cluster management/Connect to a Kubernetes cluster by using kubectl.md)
+-   [Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md)
+-   [Use kubectl to connect to an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Cluster management/Manage and access clusters/Use kubectl to connect to an ASK cluster.md)
 
 ## Procedure
 
-1.  Use the kubectl client to create a job.yaml file, copy the following code into the file:
+1.  Use the kubectl client to create the job.yaml file and copy the following content into the file:
 
     ```
     apiVersion: batch/v1
@@ -35,7 +35,9 @@ In a Serverless Kubernetes \(ASK\) cluster, you can create pods as needed. When 
     kubectl apply -f job.yaml
     ```
 
-3.  Run the following command to check the status of the pod:
+3.  Run the following commands to check the state of the pod.
+
+    Run the following command to check the state of the pod:
 
     ```
     kubectl get pod
@@ -45,6 +47,8 @@ In a Serverless Kubernetes \(ASK\) cluster, you can create pods as needed. When 
     NAME       READY   STATUS      RESTARTS   AGE
     pi-4f7w5   0/1     Completed   0          80s
     ```
+
+    Run the following command to view detailed information about the state of the pod:
 
     ```
     kubectl describe pod
@@ -67,9 +71,9 @@ In a Serverless Kubernetes \(ASK\) cluster, you can create pods as needed. When 
       Normal  Started                64s   kubelet, eci  Started container
     ```
 
-4.  To use a preemptible instance, add the annotation of the preemptible instance to the pod.
+4.  To use a preemptible instance, add a preemptible instance annotation to the pod.
 
-    For more information about how to set the annotation of preemptible instances, see [Use preemptible instances](/intl.en-US/User Guide for Serverless Kubernetes Clusters/ECI Pod management/Use preemptible instances.md).
+    For more information about how to a preemptible instance annotation, see [Use preemptible instances](/intl.en-US/User Guide for Serverless Kubernetes Clusters/ECI Pod management/Use preemptible instances.md).
 
     ```
     apiVersion: batch/v1
