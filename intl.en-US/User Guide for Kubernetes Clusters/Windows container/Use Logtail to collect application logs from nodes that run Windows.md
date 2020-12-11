@@ -1,27 +1,27 @@
 ---
-keyword: [Nodes that run Windows, Logtail, Collect application logs]
+keyword: [nodes that run Windows, Logtail, collect application logs]
 ---
 
 # Use Logtail to collect application logs from nodes that run Windows
 
-This topic describes how to use Logtail to collect application logs from nodes that run Windows.
+You can use Logtail to collect application logs from nodes that run Windows. This topic describes how to use Logtail to collect application logs from nodes that run Windows.
 
--   An ACK cluster is created. Make sure that you have enabled **Log Service** when you create the cluster. For more information, see [Create a cluster of ACK Managed Edition](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed ACK cluster.md).
--   [Create a Windows-based node pool](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a Windows-based node pool.md).
+-   A Container Service for Kubernetes \(ACK\) cluster is created and **Enable Log Service** is selected when you created the cluster. For more information, see [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md).
+-   [Create a node pool that runs Windows](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a node pool that runs Windows.md).
 
-## Add Logtail to the node
+## Add Logtail to a node that runs Windows
 
-1.  [Use kubectl to connect to a cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Manage and access clusters/Use kubectl to connect to a cluster.md).
+1.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
 
-2.  Find the alibaba-log-configuration ConfigMap in the kube-system namespace. Add the following content to alibaba-log-configuration.
+2.  Find the alibaba-log-configuration ConfigMap in the kube-system namespace and add the following content to alibaba-log-configuration:
 
     ```
     win-log-config-path: C:\Program Files (x86)\Alibaba\Logtail\conf\{your region}\ilogtail_config.json
     ```
 
-    **Note:** Replace the value of `{your region}` with the region where the target cluster is deployed.
+    **Note:** Replace the value of `{your region}` with the region where your ACK cluster is deployed.
 
-3.  Run the following command to deploy the DaemonSet on the node.
+3.  Run the following command to deploy DaemonSet on the node that runs Windows:
 
     ```
     apiVersion: extensions/v1beta1
@@ -144,12 +144,12 @@ This topic describes how to use Logtail to collect application logs from nodes t
             name: root-c
     ```
 
-    **Note:** Currently, Logtail can collect only stdout files and import them to Alibaba Cloud Log Service \(SLS\). Logtail will soon support log file collection.
+    **Note:** Logtail can collect only stdout files and import them to Alibaba Cloud Log Service. Logtail will soon support log file collection.
 
 
 ## Example
 
-After you add Logtail to a node that runs Windows, use the following template to verify that Logtail works properly:
+After you add Logtail to a node that runs Windows, use the following template to deploy Logtail:
 
 ```
 apiVersion: extensions/v1beta1
@@ -187,5 +187,5 @@ spec:
         value: windows
 ```
 
-After the application is deployed, you can view the logs. For more information, see [Query logs](/intl.en-US/Index and query/Query logs.md).
+After the preceding application is deployed, you can view the log data. For more information, see [Query logs](/intl.en-US/Index and query/Query logs.md).
 
