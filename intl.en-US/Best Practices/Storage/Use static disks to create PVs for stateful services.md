@@ -2,28 +2,30 @@
 
 This topic describes the common scenarios of static disks and how to use static disks to create persistent volumes \(PVs\) for stateful services.
 
--   A Container Service for Kubernetes \(ACK\) cluster is created. For more information, see [Create a cluster of ACK Managed Edition](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a cluster of ACK Managed Edition.md).
--   A disk is created. For more information, see [Create a disk](/intl.en-US/Block Storage/Cloud disks/Create a cloud disk/Create a pay-as-you-go disk.md).
--   The cluster is connected through kubectl. For more information, see [Use kubectl to connect to a cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Manage and access clusters/Use kubectl to connect to a cluster.md).
+Before you enable auto scaling, make sure that the following operations are complete:
+
+-   [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md)
+-   [Create a disk](/intl.en-US/Block Storage/Cloud disks/Create a cloud disk/Create a pay-as-you-go disk.md)
+-   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md)
 
 Scenarios:
 
--   Create applications that require high disk I/O and do not require shared data. For example, MySQL, Redis, and other data storage services.
+-   Create applications that require high disk I/O and do not require shared data, such as MySQL and Redis.
 -   Collect logs at high speeds.
 -   Store data in a way that is independent of the lifetime of a pod.
 
 Before you use static disks, make sure that you have purchased disks.
 
-To use a static disk, manually create a PV and a persistent volume claim \(PVC\). For more information, see [Use static volumes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Disk volumes/Use static volumes.md).
+To use a static disk, manually create a PV and a persistent volume claim \(PVC\). For more information, see [Use Alibaba Cloud disks as statically provisioned volumes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Disk volumes/Use static volumes.md).
 
 ## Limits
 
--   Disks provided by Alibaba Cloud cannot be shared. Each disk can be mounted to only one pod at a time.
--   Disks can only be mounted to nodes that are located in the same zone.
+-   Disks that are provided by Alibaba Cloud cannot be shared. Each disk can be mounted to only one pod at a time.
+-   Disks can be mounted to only the nodes that are located in the same zone.
 
 ## Create a PV
 
-1.  Add the following content to the pv-static.yaml file:
+1.  Create the pv-static.yaml file.
 
     ```
     apiVersion: v1
@@ -59,14 +61,17 @@ To use a static disk, manually create a PV and a persistent volume claim \(PVC\)
     kubectl create -f pv-static.yaml
     ```
 
+    **View results**
 
-Expected results:
-
-In the left-side navigation pane of the details page of the cluster, click **Persistent Volumes**. On the **Persistent Volumes** tab, view the newly created PV.
+    1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+    2.  In the left-side navigation pane, click **Clusters**.
+    3.  On the Clusters page, find the cluster that you want to manage, and click the cluster name or click **Details** in the **Actions** column of the cluster. The Cluster Information page appears.
+    4.  In the left-side pane, click **Persistent Volumes**.
+    5.  Click the **Persistent Volumes** tab to view the PV that you created.
 
 ## Create a PVC
 
-1.  Add the following content to the pvc-static.yaml file:
+1.  Create the pvc-static.yaml file.
 
     ```
     kind: PersistentVolumeClaim
@@ -90,14 +95,17 @@ In the left-side navigation pane of the details page of the cluster, click **Per
     kubectl create -f pvc-static.yaml
     ```
 
+    **View results**
 
-Expected results:
+    1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+    2.  In the left-side navigation pane, click **Clusters**.
+    3.  On the Clusters page, find the cluster that you want to manage and click **Details** in the **Actions** column of the cluster.
+    4.  In the left-side pane, click **Persistent Volumes**.
+    5.  Click the **Persistent Volume Claims** tab to view the PVC that you created.
 
-In the left-side navigation pane of the details page of the cluster, click **Persistent Volumes**. On the **Persistent Volume Claims** tab, view the newly created PVC.
+## Create a deployment
 
-## Create an application
-
-1.  Add the following content to the static.yaml file:
+1.  Create the static. yaml file.
 
     ```
     apiVersion: apps/v1
@@ -127,16 +135,19 @@ In the left-side navigation pane of the details page of the cluster, click **Per
                 claimName: pvc-disk
     ```
 
-2.  Run the following command to create an application:
+2.  Run the following command to create a deployment:
 
     ```
     kubectl create -f static.yaml
     ```
 
+    **View results**
 
-Expected results:
-
-In the left-side navigation pane of the details page of the cluster, click **Workload**. On the **Deployments** tab, view the application.
+    1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+    2.  In the left-side navigation pane, click **Clusters**.
+    3.  On the Clusters page, find the cluster to which you mounted the NAS file system, and click the cluster name or **Applications** in the **Actions** column.
+    4.  In the left-side navigation pane on the page that appears, click **Workload**.
+    5.  Click the **Deployments** tab. You can view the old-nginx deployment.
 
 ## Use static disks for persistent storage
 
@@ -145,8 +156,6 @@ In the left-side navigation pane of the details page of the cluster, click **Wor
     ```
     kubectl get pod | grep static
     ```
-
-    The following command output appears:
 
     ```
     nginx-static-78c7dcb9d7-g****   2/2     Running     0          32s
@@ -158,62 +167,52 @@ In the left-side navigation pane of the details page of the cluster, click **Wor
     kubectl exec nginx-static-78c7dcb9d7-g**** df | grep data
     ```
 
-    The following command output appears:
-
     ```
     /dev/vdf        20511312    45080  20449848   1% /data
     ```
 
-3.  Run the following command to query the files in the /data path:
+3.  Run the following command to view the files in the /data path:
 
     ```
     kubectl exec nginx-static-78c7dcb9d7-g**** ls /data
     ```
-
-    The following command output appears:
 
     ```
     lost+found
     ```
 
-4.  Run the following command to create file static in the /data path:
+4.  Run the following command to create the static file in the /data path:
 
     ```
     kubectl exec nginx-static-78c7dcb9d7-g**** touch /data/static
     ```
 
-5.  Run the following command to query the files in the /data path:
+5.  Run the following command to view files in the /data path of each pod:
 
     ```
     kubectl exec nginx-static-78c7dcb9d7-g**** ls /data
     ```
-
-    The following command output appears:
 
     ```
     static
     lost+found
     ```
 
-6.  Run the following command to delete pod `nginx-static-78c7dcb9d7-g****`:
+6.  Run the following command to delete the pod named `nginx-static-78c7dcb9d7-g****`.
 
     ```
     kubectl delete pod nginx-static-78c7dcb9d7-g****
     ```
 
-    The following command output appears:
-
     ```
     pod "nginx-static-78c7dcb9d7-g****" deleted
     ```
 
-7.  Open another kubectl CLI and run the following command to query how the pod is deleted and a new pod is created:
+7.  Open another kubectl CLI and run the following command to view the process of how the pod is deleted and a new pod is created in Kubernetes:
 
     ```
     kubectl get pod -w -l app=nginx
     ```
-
-    The following command output appears:
 
     ```
     NAME                            READY   STATUS            RESTARTS   AGE
@@ -230,26 +229,22 @@ In the left-side navigation pane of the details page of the cluster, click **Wor
     nginx-static-78c7dcb9d7-h****   2/2     Running           0          8s
     ```
 
-8.  Run the following command to query the new pod:
+8.  Run the following command to view the newly created pod:
 
     ```
     kubectl get pod
     ```
-
-    The following command output appears:
 
     ```
     NAME                            READY   STATUS      RESTARTS   AGE
     nginx-static-78c7dcb9d7-h****   2/2     Running     0          14s
     ```
 
-9.  Run the following command to verify that file static exists in the /data path. This indicates that data in the static disk is persistently stored.
+9.  Run the following command to verify that the static file in the /data path is not deleted. This indicates that data in the static disk is persistently stored.
 
     ```
     kubectl exec nginx-static-78c7dcb9d7-h6brd ls /data
     ```
-
-    The following command output appears:
 
     ```
     static
