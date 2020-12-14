@@ -20,7 +20,7 @@ keyword: [ASK集群, ASK ARMS, ASK接入应用实时监控服务ARMS]
 
 5.  在**应用目录 - ack-arms-pilot**页面单击**参数**页签，设置相应的参数，然后单击右侧**创建**区域的**创建**。
 
-    ![pilot parm](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9206659951/p76784.png)
+    ![pilot parm](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9206659951/p76784.png)
 
     |参数|描述|
     |--|--|
