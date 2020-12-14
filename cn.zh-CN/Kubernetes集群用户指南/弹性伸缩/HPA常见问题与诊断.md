@@ -15,5 +15,5 @@ HPA（容器水平伸缩）可以实现容器资源的弹性伸缩。本文介�
 
 [容器水平伸缩（HPA）](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/容器水平伸缩（HPA）.md)
 
-[定时伸缩CronHPA兼容HPA](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/定时伸缩CronHPA兼容HPA.md)
+[容器定时伸缩（CronHPA）](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/容器定时伸缩（CronHPA）.md)
 
