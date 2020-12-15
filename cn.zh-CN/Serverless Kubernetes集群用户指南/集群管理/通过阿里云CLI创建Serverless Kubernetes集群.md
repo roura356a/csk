@@ -168,7 +168,7 @@ Cloud Shell默认安装配置了阿里云CLI和账号信息，无需任何额外
 
 ## 验证Serverless Kubernetes集群
 
-1.  执行命令以下，部署Nginx应用。
+1.  执行以下命令，部署Nginx应用。
 
     ```
     kubectl run nginx --image=registry-vpc.cn-shenzhen.aliyuncs.com/acs-sample/nginx:latest
@@ -180,7 +180,7 @@ Cloud Shell默认安装配置了阿里云CLI和账号信息，无需任何额外
     deployment.apps/nginx created
     ```
 
-2.  执行命令以下，查询Nginx应用状态。
+2.  执行以下命令，查询Nginx应用状态。
 
     ```
     kubectl get deploy
