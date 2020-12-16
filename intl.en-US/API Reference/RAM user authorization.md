@@ -73,7 +73,7 @@ The following table describes the mappings between the operations in the Contain
 |DescribeClusterLogs|GetClusterLogs|Queries the logs of a cluster.|
 |DescribeClusterNodes|DescribeClusterNodes|Queries nodes in a cluster.|
 |DescribeClusterResources|DescribeClusterResources|Queries all resources in a cluster.|
-|DescribeClusters|GetClustersByUid|Queries all clusters under your account.|
+|DescribeClusters|GetClustersByUid and GetClusters|Queries all clusters under your account.|
 |DescribeClustersV1|ListClusters|Queries all clusters under your account.|
 |DescribeClusterUserKubeconfig|GetUserConfig|Obtains the kubeconfig file of an ACK cluster.|
 |DescribeClusterV2UserKubeconfig|GetUserConfig|Obtains the kubeconfig file of an ACK cluster.|
