@@ -93,51 +93,7 @@ Field name   | Mandatory? | Allowed values  | Allowed special characters
     kubectl apply -f deployment_cronhpa.yaml
     ```
 
-    deployment\_cronhpa.yaml如下：
 
-    ```
-    ---
-    apiVersion: apps/v1 
-    kind: Deployment
-    metadata:
-      name: nginx-deployment-basic
-      labels:
-        app: nginx
-    spec:
-      replicas: 2
-      selector:
-        matchLabels:
-          app: nginx
-      template:
-        metadata:
-          labels:
-            app: nginx
-        spec:
-          containers:
-          - name: nginx
-            image: nginx:1.7.9 # replace it with your exactly <image_name:tags>
-            ports:
-            - containerPort: 80
-    ---
-    apiVersion: autoscaling.alibabacloud.com/v1beta1
-    kind: CronHorizontalPodAutoscaler
-    metadata:
-      labels:
-        controller-tools.k8s.io: "1.0"
-      name: cronhpa-sample
-    spec:
-       scaleTargetRef:
-          apiVersion: apps/v1
-          kind: Deployment
-          name: nginx-deployment-basic
-       jobs:
-       - name: "scale-down"
-         schedule: "30 */1 * * * *"
-         targetSize: 1
-       - name: "scale-up"
-         schedule: "0 */1 * * * *"
-         targetSize: 3
-    ```
 
 2.  执行以下命令，检查示例应用副本数目。
 
@@ -153,49 +109,6 @@ Field name   | Mandatory? | Allowed values  | Allowed special characters
 
 3.  执行`kubectl describe cronhpa cronhpa-sample`命令，查看cronhpa的状态，确认cronhpa的job已提交。
 
-    ```
-    Name:         cronhpa-sample
-    Namespace:    default
-    Labels:       controller-tools.k8s.io=1.0
-    Annotations:  kubectl.kubernetes.io/last-applied-configuration:
-                    {"apiVersion":"autoscaling.alibabacloud.com/v1beta1","kind":"CronHorizontalPodAutoscaler","metadata":{"annotations":{},"labels":{"controll...
-    API Version:  autoscaling.alibabacloud.com/v1beta1
-    Kind:         CronHorizontalPodAutoscaler
-    Metadata:
-      Creation Timestamp:  2019-04-14T10:42:38Z
-      Generation:          1
-      Resource Version:    4017247
-      Self Link:           /apis/autoscaling.alibabacloud.com/v1beta1/namespaces/default/cronhorizontalpodautoscalers/cronhpa-sample
-      UID:                 05e41c95-5ea2-11e9-8ce6-00163e12e274
-    Spec:
-      Jobs:
-        Name:         scale-down
-        Schedule:     30 */1 * * * *
-        Target Size:  1
-        Name:         scale-up
-        Schedule:     0 */1 * * * *
-        Target Size:  3
-      Scale Target Ref:
-        API Version:  apps/v1
-        Kind:         Deployment
-        Name:         nginx-deployment-basic
-    Status:
-      Conditions:
-        Job Id:           38e79271-9a42-4131-9acd-1f5bfab38802
-        Last Probe Time:  2019-04-14T10:43:02Z
-        Message:
-        Name:             scale-down
-        Schedule:         30 */1 * * * *
-        State:            Submitted
-        Job Id:           a7db95b6-396a-4753-91d5-23c2e73819ac
-        Last Probe Time:  2019-04-14T10:43:02Z
-        Message:
-        Name:             scale-up
-        Schedule:         0 */1 * * * *
-        State:            Submitted
-    Events:               <none>
-    ```
-
     **说明：** 以上示例中出现的代码，请参见[examples目录](https://github.com/AliyunContainerService/kubernetes-cronhpa-controller/blob/master/examples)。
 
 
@@ -205,73 +118,6 @@ Field name   | Mandatory? | Allowed values  | Allowed special characters
 
     ```
     kubectl apply -f deployment_cronhpa_hpa.yaml
-    ```
-
-    deployment\_cronhpa\_hpa.yaml如下：
-
-    ```
-    ---
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: nginx-deployment-basic
-      labels:
-        app: nginx
-    spec:
-      replicas: 2
-      selector:
-        matchLabels:
-          app: nginx
-      template:
-        metadata:
-          labels:
-            app: nginx
-        spec:
-          containers:
-          - name: nginx
-            image: nginx:1.7.9 # replace it with your exactly <image_name:tags>
-            resources:
-              requests:
-                cpu: 50m
-                memory: 60m
-            ports:
-            - containerPort: 80
-    ---
-    apiVersion: autoscaling/v1
-    kind: HorizontalPodAutoscaler
-    metadata:
-      name: nginx-deployment-basic-hpa
-      namespace: default
-    spec:
-      scaleTargetRef:
-        apiVersion: apps/v1
-        kind: Deployment
-        name: nginx-deployment-basic
-      minReplicas: 1
-      maxReplicas: 10
-      targetCPUUtilizationPercentage: 50
-    ---
-    apiVersion: autoscaling.alibabacloud.com/v1beta1
-    kind: CronHorizontalPodAutoscaler
-    metadata:
-      labels:
-        controller-tools.k8s.io: "1.0"
-      name: cronhpa-sample
-    spec:
-       scaleTargetRef:
-          apiVersion: autoscaling/v1
-          kind: HorizontalPodAutoscaler
-          name:  nginx-deployment-basic-hpa
-       jobs:
-       - name: "scale-down"
-         schedule: "30 */1 * * * *"
-         targetSize: 1
-         runOnce: true
-       - name: "scale-up"
-         schedule: "0 */1 * * * *"
-         targetSize: 3
-         runOnce: true
-                        
     ```
 
 2.  执行以下命令，检查示例应用副本数目及HPA。
@@ -290,70 +136,6 @@ Field name   | Mandatory? | Allowed values  | Allowed special characters
     ```
 
 3.  执行`kubectl describe cronhpa cronhpa-sample`命令，查看cronhpa的状态 。
-
-    ```
-    Name:         cronhpa-sample
-    Namespace:    default
-    Labels:       controller-tools.k8s.io=1.0
-    Annotations:  kubectl.kubernetes.io/last-applied-configuration:
-                    {"apiVersion":"autoscaling.alibabacloud.com/v1beta1","kind":"CronHorizontalPodAutoscaler","metadata":{"annotations":{},"labels":{"contro
-    ll...
-    API Version:  autoscaling.alibabacloud.com/v1beta1
-    Kind:         CronHorizontalPodAutoscaler
-    Metadata:
-      Creation Timestamp:  2020-04-15T06:02:26Z
-      Generation:          32
-      Resource Version:    45484074
-      Self Link:           /apis/autoscaling.alibabacloud.com/v1beta1/namespaces/default/cronhorizontalpodautoscalers/cronhpa-sample
-      UID:                 ae9c547e-7ede-11ea-8a4c-00163e080212
-    Spec:
-      Exclude Dates:  <nil>
-      Jobs:
-        Name:         scale-down
-        Run Once:     false
-        Schedule:     30 */1 * * * *
-        Target Size:  1
-        Name:         scale-up
-        Run Once:     false
-        Schedule:     0 */1 * * * *
-        Target Size:  3
-      Scale Target Ref:
-        API Version:  autoscaling/v1
-        Kind:         HorizontalPodAutoscaler
-        Name:         nginx-deployment-basic-hpa
-    Status:
-      Conditions:
-        Job Id:           6d5dca76-d120-4d2a-b154-2c39a6650241
-        Last Probe Time:  2020-04-15T09:36:30Z
-        Message:          cron hpa job scale-down executed successfully. Skip scale replicas because HPA nginx-deployment-basic-hpa current replicas:3 >= de
-    sired replicas:1.
-        Name:             scale-down
-        Run Once:         false
-        Schedule:         30 */1 * * * *
-        State:            Succeed
-        Target Size:      1
-        Job Id:           26a6176f-c476-4efa-bcf9-3388c6fd6059
-        Last Probe Time:  2020-04-15T09:36:00Z
-        Message:          cron hpa job scale-up executed successfully. current replicas:2, desired replicas:3.
-        Name:             scale-up
-        Run Once:         false
-        Schedule:         0 */1 * * * *
-        State:            Succeed
-        Target Size:      3
-      Exclude Dates:      <nil>
-      Scale Target Ref:
-        API Version:  autoscaling/v1
-        Kind:         HorizontalPodAutoscaler
-        Name:         nginx-deployment-basic-hpa
-    Events:
-      Type    Reason   Age                  From                            Message
-      ----    ------   ----                 ----                            -------
-      Normal  Succeed  31s (x4 over 3h33m)  cron-horizontal-pod-autoscaler  cron hpa job scale-up executed successfully. current replicas:2, desired replica
-    s:3.
-      Normal  Succeed  1s (x8 over 121m)    cron-horizontal-pod-autoscaler  cron hpa job scale-down executed successfully. Skip scale replicas because HPA n
-    ginx-deployment-basic-hpa current replicas:3 >= desired replicas:1.
-    ```
-
 
 如果cronhpa任务的State是Succeed，则说明最近一次的执行是成功的；如果是Submitted则意味着cronhpa任务已经提交给cron engine，但是截至当前还未执行。等待30秒后可再次查询状态，如果所有任务的State都为Succeed，则全部运行成功。
 
@@ -447,5 +229,5 @@ spec:
 
 [容器水平伸缩（HPA）](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/容器水平伸缩（HPA）.md)
 
-[定时伸缩CronHPA兼容HPA](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/定时伸缩CronHPA兼容HPA.md)
+[定时伸缩CronHPA兼容HPA]()
 
