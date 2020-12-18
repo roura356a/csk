@@ -6,24 +6,25 @@ keyword: [CCM, 变更记录]
 
 本文为您介绍了CCM（Cloud Controller Manager）相关内容的最新动态。
 
-## 2020年11月
+## 2020年12月
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
-|v1.9.3.335-ge5e4bc3-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64: v1.9.3.335-ge5e4bc3-aliyun|2020年11月24日|支持为LoadBalancer类型Service添加hash值，以保证CCM重启时在Service未做修改的情况下，仅同步虚拟服务器组后端，不再同步LoadBalancer配置及监听配置。|
+|v1.9.3.339-g9830b58-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.339-g9830b58-aliyun|2020年12月18日|-   支持为LoadBalancer类型Service添加Hash值，以保证CCM重启时在Service未做修改的情况下，仅同步虚拟服务器组后端，不再同步LoadBalancer配置及监听配置。
+-   优化SLB OpenAPI调用，降低被限流风险。 |
 
 ## 2020年9月
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
-|v1.9.3.316-g8daf1a9-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.316-g8daf1a9-aliyun|2020年9月29日|-   修复偶发性SLB虚拟服务器组未更新问题。
+|v1.9.3.316-g8daf1a9-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.316-g8daf1a9-aliyun|2020年09月29日|-   修复偶发性SLB虚拟服务器组未更新问题。
 -   更新健康检查端口（从10252变更为10258）。 |
 
 ## 2020年8月
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
-|v1.9.3.313-g748f81e-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.313-g748f81e-aliyun|2020年8月10日|-   新功能：
+|v1.9.3.313-g748f81e-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.313-g748f81e-aliyun|2020年08月10日|-   新功能：
 
 -   支持通过annotation：service.beta.kubernetes.io/alibaba-cloud-loadbalancer-delete-protection设置SLB删除保护，新建SLB默认开启删除保护。
 -   支持通过annotation：service.beta.kubernetes.io/alibaba-cloud-loadbalancer-modification-protection设置SLB配置修改保护，新建SLB默认开启配置修改保护。
@@ -43,7 +44,7 @@ keyword: [CCM, 变更记录]
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
-|v1.9.3.276-g372aa98-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64: v1.9.3.276-g372aa98-aliyun|2020年6月11日|-   新功能：
+|v1.9.3.276-g372aa98-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64: v1.9.3.276-g372aa98-aliyun|2020年06月11日|-   新功能：
 
 -   对于LoadBalancer类型的Service，限制复用集群API Server的SLB。
 -   新增Prometheus Metrics（ccm\_node\_latencies\_duration\_milliseconds、ccm\_route\_latencies\_duration\_milliseconds、ccm\_slb\_latencies\_duration\_milliseconds），用于透出CCM同步时延信息。
@@ -61,7 +62,7 @@ keyword: [CCM, 变更记录]
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
-|v1.9.3.239-g40d97e1-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64: v1.9.3.239-g40d97e1-aliyun|2020年3月5日|-   新功能：
+|v1.9.3.239-g40d97e1-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64: v1.9.3.239-g40d97e1-aliyun|2020年03月05日|-   新功能：
 
 对于Loadbalancer类型的Service，CCM支持为SLB后端同时挂载ECS节点和弹性网卡ENI。
 
@@ -99,7 +100,7 @@ keyword: [CCM, 变更记录]
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
-|v1.9.3.164-g2105d2e-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3-164-g2105d2e-aliyun|2019年9月11日|-   支持通过annotation：service.beta.kubernetes.io/alibaba-cloud-loadbalancer-cert-id更新证书。
+|v1.9.3.164-g2105d2e-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3-164-g2105d2e-aliyun|2019年09月11日|-   支持通过annotation：service.beta.kubernetes.io/alibaba-cloud-loadbalancer-cert-id更新证书。
 -   支持通过annotation：service.beta.kubernetes.io/alibaba-cloud-loadbalancer-forward-port实现http到https的端口转发。
 -   支持通过annotation：service.beta.kubernetes.io/alibaba-cloud-loadbalancer-acl-status、service.beta.kubernetes.io/alibaba-cloud-loadbalancer-acl-id和service.beta.kubernetes.io/alibaba-cloud-loadbalancer-acl-type创建带有ACL的SLB。
 -   支持通过annotation：service.beta.kubernetes.io/alibaba-cloud-loadbalancer-remove-unscheduled-backend设定是否移除不可调度的节点。
@@ -110,14 +111,14 @@ keyword: [CCM, 变更记录]
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
-|v1.9.3.105-gfd4e547-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.105-gfd4e547-aliyun|2019年4月15日|-   支持VPC多路由表。允许通过配置文件的方式为集群配置多个路由表。
+|v1.9.3.105-gfd4e547-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.105-gfd4e547-aliyun|2019年04月15日|-   支持VPC多路由表。允许通过配置文件的方式为集群配置多个路由表。
 -   修复HTTP协议配置更新不生效的问题。 |
 
 ## 2019年3月
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
-|v1.9.3.81-gca19cd4-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.81-gca19cd4-aliyun|2019年3月20日|-   Managed Kubernetes及Dedicated Kubernetes支持复用已有非Kubernetes创建的SLB。
+|v1.9.3.81-gca19cd4-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.81-gca19cd4-aliyun|2019年03月20日|-   Managed Kubernetes及Dedicated Kubernetes支持复用已有非Kubernetes创建的SLB。
 -   CCM支持用户自定义Kubernetes节点名称。不再强依赖Kubernetes NodeName。
 -   修复CCM 1.8.4版本与Kubernetes 1.11.5版本的兼容性问题。请升级CCM到最新版本。 |
 
@@ -137,7 +138,7 @@ keyword: [CCM, 变更记录]
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
-|v1.9.3.10-gfb99107-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.10-gfb99107-aliyun|2018年8月15日|-   支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-master-zoneid指定自动创建的SLB所处的主可用区。
+|v1.9.3.10-gfb99107-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.10-gfb99107-aliyun|2018年08月15日|-   支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-master-zoneid指定自动创建的SLB所处的主可用区。
 -   支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-slave-zoneid指定自动创建的SLB所处的备可用区。
 
 **说明：** 某些Region不支持创建主备可用区类型的SLB，该参数不起作用。
@@ -149,7 +150,7 @@ keyword: [CCM, 变更记录]
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
-|v1.9.3|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3|2018年6月25日|-   支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-backend-label让用户能够使用指定label的worker节点作为后端服务器。
+|v1.9.3|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3|2018年06月25日|-   支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-backend-label让用户能够使用指定label的worker节点作为后端服务器。
 -   支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-spec指定SLB的类型，如性能共享型还是独占型。
 -   支持service的`externalTrafic: Local`模式。仅添加Pod所在的节点作为SLB的后端。
 -   当集群节点有添加或者删除的时候，自动处理SLB的后端，同步添加移除相应节点。
