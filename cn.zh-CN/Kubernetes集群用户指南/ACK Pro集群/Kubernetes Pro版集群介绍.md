@@ -52,3 +52,41 @@ ACK Pro版集群和标准版集群的对比详情如下表。
 |安全管理|开放高级版，支持数据加密。更多信息，请参见[使用阿里云KMS进行Secret的落盘加密](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/使用阿里云KMS进行Secret的落盘加密.md)。|开放标准版。|
 |托管节点池|支持。更多信息，请参见[托管节点池概述](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/托管节点池/托管节点池概述.md)。|不支持|
 
+## 开服地域
+
+-   亚太
+
+    |地域名称|所在城市|Region ID|
+    |----|----|---------|
+    |华北2|北京|cn-beijing|
+    |华北3|张家口|cn-zhangjiakou|
+    |华北5|呼和浩特|cn-huhehaote|
+    |华北6|乌兰察布|cn-wulanchabu|
+    |华东1|杭州|cn-hangzhou|
+    |华东2|上海|cn-shanghai|
+    |华南1|深圳|cn-shenzhen|
+    |华南2|河源|cn-heyuan|
+    |西南1|成都|cn-chengdu|
+    |中国（香港）|香港|cn-hongkong|
+    |日本|东京|ap-northeast-1|
+    |新加坡|新加坡|ap-southeast-1|
+    |澳大利亚|悉尼|ap-southeast-2|
+    |马来西亚|吉隆坡|ap-southeast-3|
+    |印度尼西亚|雅加达|ap-southeast-5|
+
+-   美洲与欧洲
+
+    |地域名称|所在城市|Region ID|
+    |----|----|---------|
+    |美国西部|硅谷|us-west-1|
+    |美国东部|弗吉尼亚|us-east-1|
+    |英国|伦敦|eu-west-1|
+    |德国|法兰克福|eu-central-1|
+
+-   印度
+
+    |地域名称|所在城市|Region ID|
+    |----|----|---------|
+    |印度|孟买|ap-south-1|
+
+
