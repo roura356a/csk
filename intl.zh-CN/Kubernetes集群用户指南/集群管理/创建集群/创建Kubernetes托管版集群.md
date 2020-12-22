@@ -58,7 +58,7 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
         |**虚拟交换机**|设置虚拟交换机。
 
 您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[创建交换机](/intl.zh-CN/专有网络和交换机/管理交换机/创建交换机.md)。 |
-        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[Flannel与Terway](/intl.zh-CN/Kubernetes集群用户指南/网络管理/如何使用Terway网络插件.md)。
+        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[Flannel与Terway](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/如何使用Terway网络插件.md)。
 
         -   Flannel：简单稳定的社区的Flannel CNI插件。但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
         -   Terway：阿里云容器服务自研的网络插件，将阿里云的弹性网卡分配给容器，支持Kubernetes的Network Policy来定义容器间的访问策略，支持对单个容器做带宽的限流。
