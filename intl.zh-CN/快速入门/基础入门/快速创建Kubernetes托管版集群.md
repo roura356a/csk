@@ -6,9 +6,9 @@ keyword: [kubernetes, k8s, 创建]
 
 本文以托管版Kubernetes集群为例，介绍如何使用控制台快速创建Kubernetes集群。
 
--   [首次使用容器服务Kubernetes版](/intl.zh-CN/快速入门/首次使用容器服务Kubernetes版.md)。
+-   在使用容器服务Kubernetes版前，您需要完成授权操作。具体操作步骤，请参见[首次使用容器服务Kubernetes版](/intl.zh-CN/快速入门/首次使用容器服务Kubernetes版.md)。
 -   登录[RAM 管理控制台](https://ram.console.aliyun.com/)开通相应服务。
--   [开通弹性伸缩服务](/intl.zh-CN/快速入门/开通和授权服务.md)。
+-   [开通弹性伸缩服务]()。
 
 本示例将演示如何快速创建一个Kubernetes集群，部分配置采用默认或最简配置。
 
@@ -18,7 +18,7 @@ keyword: [kubernetes, k8s, 创建]
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
-3.  单击页面右上角的**创建集群**，在弹出的选择集群模板页面，选择标准版集群，并单击**创建**。
+3.  在集群列表页面中，单击页面右上角的**创建集群**。
 
 4.  配置集群参数。
 
@@ -35,9 +35,10 @@ keyword: [kubernetes, k8s, 创建]
         |**地域**|选择集群所在的地域。 |
         |**资源组**|将鼠标悬浮于页面上方的**账号全部资源**，选择集群所在的资源组。这里显示选择的资源组。
 
-![资源组](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png)
+![资源组](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png)
 
 本文默认选择**账号全部资源**。 |
+        |**时区**|选择集群所要使用的时区。默认时区为浏览器所配置的时区。 |
         |**Kubernetes版本**|使用默认的版本。 |
         |容器运行时
 
@@ -52,20 +53,20 @@ keyword: [kubernetes, k8s, 创建]
         |**虚拟交换机**|设置虚拟交换机。
 
 您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[创建交换机](/intl.zh-CN/专有网络和交换机/管理交换机/创建交换机.md)。 |
-        |**网络插件**|默认选择Flannel。有关Flannel和Terway的详情，请参见[Flannel与Terway](/intl.zh-CN/Kubernetes集群用户指南/网络管理/如何使用Terway网络插件.md)。 |
+        |**网络插件**|默认选择Flannel。有关Flannel和Terway的详情，请参见[Flannel与Terway](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/如何使用Terway网络插件.md)。 |
         |**Pod网络CIDR**|网络插件选择**Flannel**时，需要配置**Pod网络CIDR**。
 
 **Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/intl.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。 |
         |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/intl.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。 |
         |**节点IP数量**|默认选择64。**节点IP数量**是指可分配给一个节点的IP数量。 |
-        |**配置SNAT**|默认不选中**为专有网络配置SNAT网关**。
+        |**配置SNAT**|默认选中**为专有网络配置SNAT网关**。
 
 创建集群时，默认不开通公网。如果您选择的VPC不具备公网访问能力，选中**为专有网络配置SNAT**后，ACK将为您创建NAT网关并自动配置SNAT规则。 |
         |**公网访问**|默认不选中**使用EIP暴露API Server**。
 
 API Server提供了各类资源对象（Pod，Service等）的增删改查及watch等HTTP Rest接口。
 
-        -   如果选择开放，会创建一个EIP，并挂载到内网SLB上。此时，Master节点的6443端口（对应API Server）暴露出来，用户可以在外网通过kubeconfig连接并操作集群。
+        -   如果选择开放，会创建一个EIP，并挂载到公网SLB上。此时，Master节点的6443端口（对应API Server）暴露出来，用户可以在外网通过kubeconfig连接并操作集群。
         -   如果选择不开放，则不会创建EIP，您只能在VPC内部用kubeconfig连接并操作集群。 |
         |**RDS白名单**|设置RDS白名单。将节点IP添加到RDS实例的白名单中。
 
