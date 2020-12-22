@@ -46,7 +46,7 @@ Kubernetes专有版集群需要创建至少3个Master节点以保证高可用性
         |**时区**|选择集群所要使用的时区。默认时区为浏览器所配置的时区。 |
         |**资源组**|将鼠标悬浮于页面上方的**账号全部资源**，选择集群所在的资源组。这里显示选择的资源组。
 
-![资源组](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png) |
+![资源组](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png) |
         |**Kubernetes版本**|选择Kubernetes版本。 |
         |**容器运行时**|使用默认的Docker运行时。|
         |**专有网络**|设置集群的网络，您可以选择普通VPC和共享VPC。
@@ -57,7 +57,7 @@ Kubernetes专有版集群需要创建至少3个Master节点以保证高可用性
         |**虚拟交换机**|设置虚拟交换机。
 
 您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[创建交换机](/intl.zh-CN/专有网络和交换机/管理交换机/创建交换机.md)。 |
-        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[Flannel与Terway](/intl.zh-CN/Kubernetes集群用户指南/网络管理/如何使用Terway网络插件.md)。
+        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[Flannel与Terway](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/如何使用Terway网络插件.md)。
 
         -   Flannel：简单稳定的社区的Flannel CNI插件。但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
         -   Terway：阿里云容器服务自研的网络插件，将阿里云的弹性网卡分配给容器，支持Kubernetes的Network Policy来定义容器间的访问策略，支持对单个容器做带宽的限流。
@@ -79,7 +79,7 @@ Kubernetes专有版集群需要创建至少3个Master节点以保证高可用性
         -   设置是否选中**IPvlan**
 
 -   只在弹性网卡共享模式支持选中。
--   如果选中，采用IPVLAN+eBPF作为网卡共享模式虚拟化技术，并且只能使用Alibaba Cloud Linux 2系统，性能优于默认模式。
+-   如果选中，采用IPVLAN eBPF作为网卡共享模式虚拟化技术，并且只能使用Alibaba Cloud Linux 2系统，性能优于默认模式。
 -   如果不选中，则使用默认模式，采用策略路由作为网卡共享模式虚拟化技术，同时兼容Centos 7和Alibaba Cloud Linux 2的系统。
 **说明：** 当前只有白名单用户可使用上述**Pod独占弹性网卡以获得最佳性能**和**IPvlan**两种功能。[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请使用。
 
@@ -125,9 +125,12 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
         -   值不能是http:// 或https://，可以为空，不区分大小写，最多128个字符。
         -   同一个资源，标签键不能重复，相同标签键（Key）的标签会被覆盖。
         -   如果一个资源已经绑定了20个标签，已有标签和新建标签会失效，您需要解绑部分标签后才能再绑定新的标签。 |
-        |**自定义镜像**|允许您选择一个自定义ECS镜像，选择后，集群所有节点将基于此镜像进行部署 。有关创建自定义镜像操作，请参见[使用自定义镜像创建Kubernetes集群](/intl.zh-CN/最佳实践/集群/使用自定义镜像创建Kubernetes集群.md)。
+        |**自定义镜像**|允许您选择一个自定义ECS镜像。选择自定义镜像后，集群所有节点将基于此镜像进行部署 。有关创建自定义镜像操作，请参见[使用自定义镜像创建Kubernetes集群](/intl.zh-CN/最佳实践/集群/使用自定义镜像创建Kubernetes集群.md)。
 
-**说明：** 当前只有白名单用户可使用该功能。[提交工单](https://selfservice.console.aliyun.com/ticket/scene/ecs/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%20ECS/detail)申请使用。 |
+**说明：**
+
+        -   目前自定义镜像的操作系统仅支持CentOS 7.x和Alibaba Cloud Linux 2.x。
+        -   当前只有白名单用户可使用该功能。[提交工单](https://selfservice.console.aliyun.com/ticket/scene/ecs/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%20ECS/detail)申请使用。 |
         |**集群本地域名**|设置是否配置集群本地域名。
 
 **说明：** 默认域名为**cluster.local**，可自定义域名。域名由两段组成，每段不超过63个字符，且只能使用大小写字母和数字，不能为空。 |
@@ -163,7 +166,12 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
 
 **说明：** 支持选中**开启云盘备份**以备份云盘数据。 |
             |**挂载数据盘**|支持**ESSD云盘**、**SSD云盘**和**高效云盘**。挂载数据盘时，支持云盘**加密**和**开启云盘备份**。 |
-            |**操作系统**|Alibaba Cloud Linux 2是ACK默认的操作系统，同时ACK也支持CentOS。 |
+            |**操作系统**|ACK支持的节点操作系统包括：
+
+            -   Alibaba Cloud Linux 2（ACK默认的操作系统）
+            -   CentOS 7.x
+
+**说明：** 暂不支持CentOS 8.x及以上的操作系统。 |
             |**登录方式**|            -   设置密钥。
                 -   **密钥对**：如您已经创建密钥对，在下拉列表中选择目标密钥对。
                 -   **新建密钥对**：此项用于您还未创建密钥对。创建密钥对，请参见[创建SSH密钥对](/intl.zh-CN/安全/SSH密钥对/使用SSH密钥对/创建SSH密钥对.md)。密钥对创建完毕后，设置该密钥对作为登录集群的凭据。
@@ -182,7 +190,7 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
         |**实例自定义数据**|请参见[生成实例自定义数据](/intl.zh-CN/实例/管理实例/使用实例自定义数据/生成实例自定义数据.md)。 |
         |**自定义节点名称**|是否开启**自定义节点名称**。
 
-节点名称由前缀 + 节点IP地址子串 + 后缀三部分组成：
+节点名称由前缀 节点IP地址子串 后缀三部分组成：
 
         -   前缀和后缀均可由**.**分隔的一个或多个部分构成，每个部分可以使用小写字母、数字和短划线（-），且首尾必须为小写字母和数字。
         -   IP地址段长度指截取节点IP地址末尾的位数，取值范围5~12。
@@ -232,6 +240,6 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
 
 -   您可以[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)，执行`kubectl get node`查看集群的节点信息。
 
-![集群查看结果](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1506659951/p9050.png)
+![集群查看结果](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1506659951/p9050.png)
 
 
