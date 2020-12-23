@@ -16,6 +16,12 @@ sandboxed-container-controller是安全沙箱运行时提供的专用控制器�
 
 ## 变更记录
 
+**2020年12月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.1.1-55d545f-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/sandboxed-container-controller:v1.1.1-55d545f-aliyun|2020年12月22日|强制覆盖Pod中手动设置的两个Annotations：securecontainer.alibabacloud.com/cpus和securecontainer.alibabacloud.com/memory。|此次升级不会对业务造成影响。|
+
 **2020年11月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
