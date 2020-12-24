@@ -52,7 +52,7 @@ Before you start, make sure that the following requirements are met:
 
     6.  On the Jenkins logon page, enter the username and password. The default username and password are both admin. We recommend that you change the username and password after you log on.
 
-        ![Jenkins logon page](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8397297951/p38516.png)
+        ![Jenkins logon page](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8397297951/p38516.png)
 
 
 ## Create a cluster certificate and an image repository certificate, and build and deploy an application
@@ -65,19 +65,19 @@ Before you start, make sure that the following requirements are met:
 
     3.  In the **Cloud** section, set **Kubernetes URL** to the API server URL in KubeConfig.
 
-        ![Kubernetes URL](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8397297951/p38521.png)
+        ![Kubernetes URL](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8397297951/p38521.png)
 
     4.  Click **Add** on the right side of **Credentials**.
 
-        ![Add](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9397297951/p38523.png)
+        ![Add](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9397297951/p38523.png)
 
         Before you add a credential, go to the Basic Information page of the serverless Kubernetes cluster and find **KubeConfig** below **Configure the cluster credentials**.
 
-        ![KubeConfig](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9397297951/p38524.png)
+        ![KubeConfig](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9397297951/p38524.png)
 
         In the Add Credentials dialog box, set the following parameters:
 
-        ![Add a credential](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9397297951/p38527.png)
+        ![Add a credential](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9397297951/p38527.png)
 
         -   **Kind**: Select **Docker Host Certificate Authentication**.
         -   **Client Key**: Enter the value of client-key-data obtained from KubeConfig.
@@ -90,11 +90,11 @@ Before you start, make sure that the following requirements are met:
 
         From the **Credentials** drop-down list, select the newly added credential and click **Test Connection**.
 
-        ![3](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6588654061/p142012.png)
+        ![3](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6588654061/p142012.png)
 
     7.  Set **Jenkins URL** to the external endpoint of the Jenkins service and set **Jenkins tunnel** to the external endpoint of the jenkins-agent service.
 
-        ![Jenkins URL](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9397297951/p38531.png)
+        ![Jenkins URL](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9397297951/p38531.png)
 
     8.  Click **Save**.
 
@@ -118,17 +118,15 @@ Before you start, make sure that the following requirements are met:
 
     3.  Modify the parameters based on the image repository information. Set **api\_server\_url** to the API server URL in KubeConfig. The source code repository branch is serverless and the image is **registry.cn-beijing.aliyuncs.com/haoshuwei/jenkins-java-demo:serverless** in this example.
 
-        ![api_server_url](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9397297951/p38622.png)
+        ![api_server_url](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9397297951/p38622.png)
 
     4.  Click **Build**.
 
     5.  Click Build History to check the result. The following figure shows that the build is successful.
 
-        ![Build History](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9397297951/p38532.png)
+        ![Build History](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9397297951/p38532.png)
 
     6.  Log on to the [Container Service console](https://cs.console.aliyun.com) to view the IP addresses of the services provided by the application.
-
-    7.  Log on to the to view the IP addresses of the services provided by the application.
 
 
 ## Source code repository
