@@ -4,8 +4,8 @@
 
 目前，ACK仅支持OSS静态存储卷，不支持OSS动态存储卷。您可以通过以下方式使用OSS静态存储卷：
 
--   [直接使用volumes方式](/intl.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/OSS储存卷/使用OSS静态卷.md)
--   [使用PV/PVC](/intl.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/OSS储存卷/使用OSS静态卷.md)
+-   [直接使用volumes挂载的方式](/intl.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/OSS储存卷/使用OSS静态卷.md)
+-   [使用创建PV和PVC的方式](/intl.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/OSS储存卷/使用OSS静态卷.md)
 
 ## 前提条件
 
