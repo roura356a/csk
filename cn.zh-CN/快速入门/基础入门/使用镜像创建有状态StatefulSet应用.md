@@ -6,7 +6,7 @@
 
 -   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)
 -   [创建持久化存储卷声明](/cn.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/创建持久化存储卷声明.md)
--   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/管理与访问集群/通过kubectl连接Kubernetes集群.md)
+-   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)
 
 StatefulSet包括以下特性：
 
@@ -25,7 +25,7 @@ StatefulSet包括以下特性：
 
 3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-4.  在集群管理页左侧导航栏中，单击**工作负载**。
+4.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**。
 
 5.  单击**有状态**页签，在**有状态**页签中单击**使用镜像创建**。
 
@@ -53,7 +53,7 @@ StatefulSet包括以下特性：
 
     -   基本配置
 
-        ![设置容器基本信息](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p12305.png)
+        ![设置容器基本信息](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p12305.png)
 
         |配置项|描述|
         |---|--|
@@ -100,11 +100,11 @@ StatefulSet包括以下特性：
 
             选择**密钥**，选择**变量**，默认全部文件引用。
 
-            ![环境变量](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p130410.png)
+            ![环境变量](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p130410.png)
 
             对应的yaml，则引用了整个Secret。
 
-            ![yaml](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p130413.jpg)
+            ![yaml](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p130413.jpg)
 
         -   变量名称：设置环境变量名称。
         -   变量/变量引用：设置变量引用的值。
@@ -143,7 +143,7 @@ StatefulSet包括以下特性：
         -   **启动执行**：为容器设置预启动命令和参数。
         -   **启动后处理**：为容器设置启动后的命令。
         -   **停止前处理**：为容器设置预结束命令。
-        ![生命周期](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p134222.png)
+        ![生命周期](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p134222.png)
 
     -   数据卷
 
@@ -153,7 +153,7 @@ StatefulSet包括以下特性：
         -   **云存储声明（PVC）**：支持云存储。
         本例中配置了一个云存储类型的数据卷声明disk-ssd，将其挂载到容器的/tmp路径下。
 
-        ![配置数据卷](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p12307.png)
+        ![配置数据卷](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p12307.png)
 
     -   日志配置
 
@@ -197,20 +197,26 @@ StatefulSet包括以下特性：
 
         在**访问设置**区域中，您可看到创建完毕的服务和路由，您可单击**变更**和**删除**进行二次配置。
 
-        ![变更或删除路由](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5975659951/p10982.png)
+        ![变更或删除路由](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5975659951/p10982.png)
 
     -   伸缩配置
 
-        您可选中是否开启**容器组水平伸缩**，为了满足应用在不同负载下的需求，容器服务支持服容器组Pod的弹性伸缩，即根据容器CPU和内存资源占用情况自动调整容器组数量。
+        在**伸缩配置**区域，配置是否开启**指标伸缩**和**定时伸缩**，从而满足应用在不同负载下的需求。
 
-        ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p10978.png)
+        ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0952419061/p10978.png)
 
-        **说明：** 若要启用自动伸缩，您必须为容器设置所需资源，否则容器自动伸缩无法生效。
+        -   容器服务支持容器组的指标伸缩，即根据容器CPU和内存资源占用情况自动调整容器组数量。
 
-        -   **指标**：支持CPU和内存，需要和设置的所需资源类型相同。
-        -   **触发条件**：资源使用率的百分比，超过该使用量，容器开始扩容。
-        -   **最大副本数**：该负载类型可扩容的容器数量上限。
-        -   **最小副本数**：该负载类型可缩容的容器数量下限。
+            **说明：** 若要启用自动伸缩，您必须为容器设置所需资源，否则容器自动伸缩无法生效。
+
+            |配置项|描述|
+            |---|--|
+            |指标|支持CPU和内存，需要和设置的所需资源类型相同。|
+            |触发条件|资源使用率的百分比，超过该使用量，容器开始扩容。|
+            |最大副本数量|该应用可扩容的容器数量上限。|
+            |最小副本数量|该应用可缩容的容器数量下限。|
+
+        -   容器服务支持容器组的定时伸缩，即定时地对容器服务Kubernetes集群进行扩缩容。关于定时伸缩的详细说明，请参见[t1858461.md\#section\_4nl\_xmn\_i53](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/容器定时伸缩（CronHPA）.md)。
     -   调度设置
 
         您可设置升级方式、节点亲和性、应用亲和性和应用非亲和性，详情请参见[Affinity and anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/?spm=a2c4g.11186623.2.31.3fdd30dfnyevPx#affinity-and-anti-affinity)。
@@ -259,7 +265,7 @@ StatefulSet包括以下特性：
 
     1.  在弹出的对话框中，将容器组数量设置为3，您可发现扩容时，扩容容器组的排序依次递增；反之，进行缩容时，先按Pod次序从高到低进行缩容。这体现StatefulSet中Pod的次序稳定性。
 
-        ![验证服务伸缩](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5975659951/p12438.png)
+        ![验证服务伸缩](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5975659951/p12438.png)
 
     2.  单击左侧导航栏中的**存储卷** \> **存储声明**，您可发现，随着应用扩容，会随着Pod创建新的云存储卷。缩容后，已创建的PV/PVC不会删除。
 
