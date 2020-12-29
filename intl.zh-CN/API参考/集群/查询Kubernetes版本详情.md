@@ -68,7 +68,7 @@ GET /api/v1/metadata/versions
 -   `others`：其他用户的公开镜像。
 -   `marketplace`：镜像市场镜像。 |
 |meta\_data|Map| |Kubernetes版本元数据信息。 |
-|runtimes|Array of [runtime](t.md#)| |容器运行时配置。 |
+|runtimes|Array of [runtime](/intl.zh-CN/API参考/通用数据结构.md)| |容器运行时配置。 |
 |version|String|1.16.9-aliyun.1|ACK发布的Kubernetes版本。更多版本信息，请参见[Kubernetes版本发布概览](~~185269~~)。 |
 |multi\_az|String|false|是否为多可用区：
 
