@@ -8,7 +8,7 @@
 
 |API|描述|
 |---|--|
-|[创建Kubernetes专有版集群](/cn.zh-CN/API参考/集群/创建集群/创建Kubernetes专有版集群.md)
+|[创建集群](/cn.zh-CN/API参考/集群/创建集群/创建集群.md)
 
 |调用CreateCluster创建一个新的Kubernetes集群实例，并新建指定数量的节点。|
 |[创建Kubernetes托管版集群](/cn.zh-CN/API参考/集群/创建集群/创建Kubernetes托管版集群.md)
@@ -20,10 +20,10 @@
 |[创建Kubernetes边缘托管版集群](/cn.zh-CN/API参考/集群/创建集群/创建Kubernetes边缘托管版集群.md)
 
 |调用CreateCluster创建一个新的Kubernetes边缘托管版集群实例。|
-|[创建安全沙箱Kubernetes集群](/cn.zh-CN/API参考/集群/创建集群/创建安全沙箱Kubernetes集群.md)
+|[t1830556.md\#](/cn.zh-CN/API参考/集群/创建集群/创建专有版安全沙箱Kubernetes集群.md)
 
 |调用CreateCluster创建一个新的安全沙箱容器Kubernetes集群。|
-|[扩容Kubernetes集群](/cn.zh-CN/API参考/集群/扩容集群/扩容Kubernetes集群.md)
+|[自动扩容集群](/cn.zh-CN/API参考/集群/扩容集群/自动扩容集群.md)
 
 |调用ScaleOutCluster增加集群中Worker节点的数量（支持多可用区实例）。|
 |[扩容安全沙箱容器集群](/cn.zh-CN/API参考/集群/扩容集群/扩容安全沙箱容器集群.md)
@@ -47,7 +47,7 @@
 |[查询用户配额](/cn.zh-CN/API参考/集群/查询用户配额.md)
 
 |调用DescribeUserQuota查询用户配额。|
-|[查询指定集群日志](/cn.zh-CN/API参考/集群/查询指定集群日志.md)
+|[查询集群日志](/cn.zh-CN/API参考/集群/查询集群日志.md)
 
 |调用DescribeClusterLogs查询指定集群日志。|
 |[获取集群kubeconfig接口](/cn.zh-CN/API参考/集群/获取集群kubeconfig接口.md)
@@ -59,10 +59,10 @@
 |[删除集群](/cn.zh-CN/API参考/集群/删除集群.md)
 
 |调用DeleteCluster根据集群ID，删除集群实例，并释放集群所有节点资源。|
-|[修改集群tag接口](/cn.zh-CN/API参考/集群/修改集群tag接口.md)
+|[修改集群标签](/cn.zh-CN/API参考/集群/修改集群标签.md)
 
 |调用ModifyClusterTags修改当前Kubernetes集群的tag接口。|
-|[查看资源Tag列表](/cn.zh-CN/API参考/集群/查看资源Tag列表.md)
+|[查询资源标签列表](/cn.zh-CN/API参考/集群/查询资源标签列表.md)
 
 |调用ListTagResources，查询可见的资源标签关系。|
 |[查询Kubernetes版本详情](/cn.zh-CN/API参考/集群/查询Kubernetes版本详情.md)|调用DescribeKubernetesVersionMetadata查询支持的Kubernetes版本的详细信息。|
@@ -74,13 +74,13 @@
 |[查询集群节点](/cn.zh-CN/API参考/节点/查询集群节点.md)
 
 |调用DescribeClusterNodes查询集群节点。|
-|[删除节点]()
+|[移除集群节点](/cn.zh-CN/API参考/节点/移除集群节点.md)
 
 |调用RemoveClusterNodes移除指定集群额外节点。|
-|[添加已有ECS节点到Kubernetes集群](/cn.zh-CN/API参考/节点/添加已有ECS节点到Kubernetes集群.md)
+|[添加已有实例到集群](/cn.zh-CN/API参考/节点/添加已有实例到集群.md)
 
 |调用AttachInstances添加已有实例到集群。|
-|[生成Kubernetes集群的节点接入脚本](/cn.zh-CN/API参考/节点/生成Kubernetes集群的节点接入脚本.md)
+|[手动添加已有实例到集群](/cn.zh-CN/API参考/节点/手动添加已有实例到集群.md)
 
 |调用DescribeClusterAttachScripts添加已有节点到边缘Kubernetes托管集群。该API返回唯一的可执行脚本，您获取脚本后，在已有节点上执行即可完成该节点的接入。|
 |[添加已有ENS节点至Kubernetes边缘托管集群]()
@@ -97,7 +97,7 @@
 |[扩容节点池](/cn.zh-CN/API参考/节点/节点池/扩容节点池.md)
 
 |调用ScaleClusterNodePool扩容节点池节点。|
-|[更新节点池配置](/cn.zh-CN/API参考/节点/节点池/更新节点池配置.md)
+|[修改节点池配置](/cn.zh-CN/API参考/节点/节点池/修改节点池配置.md)
 
 |调用ModifyClusterNodePool更新节点配置。|
 |[查询节点池列表](/cn.zh-CN/API参考/节点/节点池/查询节点池列表.md)
@@ -124,7 +124,7 @@
 |[取消集群升级](/cn.zh-CN/API参考/升级/取消集群升级.md)
 
 |调用CancelClusterUpgrade取消集群升级。|
-|[重新开始集群升级](/cn.zh-CN/API参考/升级/重新开始集群升级.md)
+|[恢复集群升级](/cn.zh-CN/API参考/升级/恢复集群升级.md)
 
 |调用ResumeUpgradeCluster重新开始暂停集群的升级。|
 
@@ -132,16 +132,16 @@
 
 |API|描述|
 |---|--|
-|[创建部署模板](/cn.zh-CN/API参考/应用/创建部署模板.md)
+|[创建编排模板](/cn.zh-CN/API参考/应用/创建编排模板.md)
 
 |调用CreateTemplate创建一个模板。|
-|[查询部署模板](/cn.zh-CN/API参考/应用/查询部署模板.md)
+|[查询所有编排模板](/cn.zh-CN/API参考/应用/查询所有编排模板.md)
 
 |调用DescribeTemplates查询部署模板。|
-|[更新部署模板](/cn.zh-CN/API参考/应用/更新部署模板.md)
+|[更新编排模板](/cn.zh-CN/API参考/应用/更新编排模板.md)
 
 |调用UpdateTemplate更新一个用户部署模板。|
-|[删除部署模板](/cn.zh-CN/API参考/应用/删除部署模板.md)
+|[删除编排模板](/cn.zh-CN/API参考/应用/删除编排模板.md)
 
 |调用DeleteTemplate删除指定模板。|
 |[创建触发器](/cn.zh-CN/API参考/应用/创建触发器.md)|调用CreateKubernetesTrigger为应用创建触发器。|
@@ -149,25 +149,29 @@
 |[删除触发器](/cn.zh-CN/API参考/应用/删除触发器.md)|调用DeleteKubernetesTrigger删除应用触发器。|
 |[查询编排模板详情](/cn.zh-CN/API参考/应用/查询编排模板详情.md)|调用DescribeTemplateAttribute查看指定模板的详细信息。|
 
-## 插件
+## 组件
 
 |API|描述|
 |---|--|
-|[安装集群插件](/cn.zh-CN/API参考/插件/安装集群插件.md)
+|[安装集群组件](/cn.zh-CN/API参考/组件/安装集群组件.md)
 
-|调用InstallClusterAddons为指定集群安装Addon。|
-|[查询集群Addons版本](/cn.zh-CN/API参考/插件/查询集群Addons版本.md)
+|调用InstallClusterAddons为指定集群安装组件。|
+|[查询集群组件版本](/cn.zh-CN/API参考/组件/查询集群组件版本.md)
 
-|调用DescribeClusterAddonsVersion查询指定集群的Addons版本。|
-|[查询集群Addons详情](/cn.zh-CN/API参考/插件/查询集群Addons详情.md)
+|调用DescribeClusterAddonsVersion查询指定集群的组件版本。|
+|[查询集群组件详情](/cn.zh-CN/API参考/组件/查询集群组件详情.md)
 
-|调用DescribeAddons查询集群安装的Addons详情。|
-|[查询集群Addons升级状态](/cn.zh-CN/API参考/插件/查询集群Addons升级状态.md)
+|调用DescribeAddons查询集群安装的组件详情。|
+|[升级集群组件](/cn.zh-CN/API参考/组件/升级集群组件.md)|调用UpgradeClusterAddons将指定组件升级到指定版本。|
+|[暂停组件升级](/cn.zh-CN/API参考/组件/暂停组件升级.md)|调用PauseComponentUpgrade暂停组件升级。|
+|[恢复集群组件升级]()|调用ResumeComponentUpgrade重新启动被暂停的组件升级任务。|
+|[取消集群组件升级](/cn.zh-CN/API参考/组件/取消集群组件升级.md)|调用CancelComponentUpgrade取消集群组件升级。|
+|[查询集群组件升级状态](/cn.zh-CN/API参考/组件/查询集群组件升级状态.md)
 
-|调用DescribeClusterAddonUpgradeStatus查询集群Addons升级状态。|
-|[批量查询集群Addons升级状态](/cn.zh-CN/API参考/插件/批量查询集群Addons升级状态.md)|调用DescribeClusterAddonsUpgradeStatus同时查询多个组件的升级状态。|
-|[修改Managed集群的Addon参数](/cn.zh-CN/API参考/插件/修改Managed集群的Addon参数.md)|调用ModifyClusterConfiguration修改托管侧Addon的参数，下发ConfigMap到托管侧。|
-|[卸载集群Addons](/cn.zh-CN/API参考/插件/卸载集群Addons.md)
+|调用DescribeClusterAddonUpgradeStatus查询集群组件升级状态。|
+|[批量查询集群组件升级状态](/cn.zh-CN/API参考/组件/批量查询集群组件升级状态.md)|调用DescribeClusterAddonsUpgradeStatus同时查询多个组件的升级状态。|
+|[修改集群托管侧组件参数](/cn.zh-CN/API参考/组件/修改集群托管侧组件参数.md)|调用ModifyClusterConfiguration修改托管侧组件的参数，下发ConfigMap到托管侧。|
+|[卸载集群组件](/cn.zh-CN/API参考/组件/卸载集群组件.md)
 
-|调用UnInstallClusterAddons卸载指定集群的Addons。|
+|调用UnInstallClusterAddons卸载指定集群的组件。|
 
