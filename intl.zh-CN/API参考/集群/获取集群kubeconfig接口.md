@@ -8,7 +8,7 @@
 
 ## 请求头
 
-该接口使用公共请求头，无特殊请求头。请参见公共请求参数文档。
+该接口使用公共请求头，无特殊请求头。更多信息，请参见[公共请求参数](~~167755~~)。
 
 ## 请求语法
 
@@ -21,13 +21,18 @@ GET /k8s/{ClusterId}/user_config
 |名称|类型|位置|是否必选|示例值|描述|
 |--|--|--|----|---|--|
 |ClusterId|String|Path|是|c5b5e80b0b64a4bf6939d2d8fbbc5\*\*\*\*|集群ID。 |
-|PrivateIpAddress|Boolean|Query|否|true|是否获取内网连接配置。 |
+|PrivateIpAddress|Boolean|Query|否|true|是否获取内网连接配置。取值：
+
+ -   `ture`：仅获取内网连接凭据。
+-   `false`：仅获取公网连接凭据。
+
+ 默认值：`false`。 |
 
 ## 返回数据
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|config|String|\*\*\*|集群访问配置。 |
+|config|String|apiVersion: v1\*\*\*\*|集群访问配置。 |
 
 ## 示例
 
@@ -35,7 +40,6 @@ GET /k8s/{ClusterId}/user_config
 
 ```
 GET /k8s/c5b5e80b0b64a4bf6939d2d8fbbc5****/user_config?PrivateIpAddress=true
-公共请求头
 ```
 
 正常返回示例
