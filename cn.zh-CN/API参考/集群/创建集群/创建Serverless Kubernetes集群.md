@@ -2,83 +2,113 @@
 
 调用CreateCluster创建一个新的Serverless Kubernetes集群实例。
 
-## 请求信息
+## 调试
 
-请求行RequestLine
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=CS&api=CreateCluster&type=ROA&version=2015-12-15)
 
-```
-POST /clusters HTTP/1.1
-```
+## 请求头
 
-特有请求头RequestHead
+该接口使用公共请求头，无特殊请求头。更多信息，请参见[公共请求参数](公共请求参数t1884803.dita#concept_944293)。
 
-无。请参见[公共请求和返回结果](/cn.zh-CN/API参考/公共请求和返回结果.md)。
-
-请求体RequestBody
+## 请求语法
 
 ```
-{
-"cluster_type": "Ask", 
-"name": "集群名称",
-"region_id": "地域",
-"zoneid": "可用区",
-"nat_gateway": "true", //是否创建NAT网关。
-"private_zone": true, //是否开启privateZone用于服务发现。
-"vpc_id": "VPC ID", //不填则自动创建专有网络VPC。
-"tags": "给集群打tag标签, 数组格式对象。",
-"vswitch_id": "交换机ID。"
-}
+POST /clusters 
 ```
 
-|名称|类型|必须|描述|
-|--|--|--|--|
-|cluster\_type|string|是|集群类型。|
-|name|string|是|集群名称， 集群名称可以使用大小写英文字母、中文、数字、中划线。|
-|kubernetes\_version|string|否|集群版本号。|
-|private\_zone|bool|是|是否开启PrivateZone用于服务发现，取值为true或者false。请参见[Serverless集群基于云解析PrivateZone的服务发现](/cn.zh-CN/Serverless Kubernetes集群用户指南/应用管理/Serverless集群基于云解析PrivateZone的服务发现.md)。|
-|region\_id|string|是|集群所在地域ID。|
-|endpoint\_public\_access|bool|否|是否开启API Server公网可访问。|
-|zone\_id|string|是|所属地域的可用区。|
-|vswitch\_id|string|否|交换机ID，可空。若不设置，系统会自动创建交换机，系统自动创建的交换机网段为192.168.0.0/16。|
-|tags|list|否|给集群打tag标签： -   key：标签名称。
--   value：标签值。 |
-|deletion\_protection|bool|否|是否开启集群删除保护。|
-|addons|Array|否|Kubernetes集群的安装的组件列表。Serverless Kubernetes类型集群只支持日志相关组件：-   addons的参数：
-    -   name：必填，组件名称。
-    -   config：可选，取值为空时表示无需配置。
-    -   disabled：可选，是否禁止默认安装。
--   日志组件：可选，如果不开启日志服务时，将无法使用集群审计功能：
-    -   创建新的`sls project`：\[\{"name":"logtail-ds","config":""\}\]
-    -   使用已有`sls project`：\[\{"name":"logtail-ds","config":"\{"sls\_project\_name":"your\_sls\_project\_name"\}"\}\] |
-|nat\_gateway|bool|否|是否创建NAT网关。取值为true或者false。如果不设置，系统默认为false。|
-|vpc\_id|string|否|VPC ID，可空。如果不设置，系统会自动创建VPC，系统创建的VPC网段为192.168.0.0/16。 **说明：** vpc\_id和vswitch\_ids只能同时为空或者同时都设置对应的值。 |
-|vswitch\_ids|list|否|虚拟交换机列表，可空。如果不设置，系统会自动创建。**说明：** vpc\_id和vswitch\_ids只能同时为空或者同时设置对应的值。 |
-|security\_group\_id|string|否|安全组ID，如果不设置，系统会自动创建。|
+## 请求参数
 
-## 返回信息
+|名称|类型|位置|是否必选|示例值|描述|
+|--|--|--|----|---|--|
+|cluster\_type|String|Body|是|Ask|集群类型。取值`Ask`创建标准Serverless集群。 |
+|name|String|Body|是|cluster-demo|集群名称。
 
-返回行ResponseLine
+命名规则：由数字、汉字、英文字符或短划线（-）组成，长度范围1~63个字符，且不能以短划线（-）开头。 |
+|kubernetes\_version|String|Body|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。
 
-```
-HTTP/1.1 202 Accepted
-```
+目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[Kubernetes版本发布概览](/cn.zh-CN/新功能发布记录/Kubernetes版本发布说明/Kubernetes版本发布概览.md)。 |
+|private\_zone|Boolean|Body|否|false|是否开启PrivateZone用于服务发现。取值：-   `true`：开启PrivateZone用于服务发现。
+-   `false`：不开启PrivateZone用于服务发现。
 
-特有返回头ResponseHead
+更多信息，请参见[Serverless集群基于云解析PrivateZone的服务发现](/cn.zh-CN/Serverless Kubernetes集群用户指南/应用管理/Serverless集群基于云解析PrivateZone的服务发现.md)。|
+|region\_id|String|Body|是|cn-beijing|集群所在地域ID。|
+|endpoint\_public\_access|Boolean|Body|否|true|是否开启公网API Server。取值：
 
-无。请参见[公共请求和返回结果](/cn.zh-CN/API参考/公共请求和返回结果.md)。
+-   `true`：表示开放公网API Server。
+-   `false`：表示不会创建公网的API Server，仅创建私网的API Server。
 
-|名称|类型|描述|
-|--|--|--|
-|cluster\_id|string|集群实例ID。|
-|request\_id|string|请求ID。|
-|task\_id|string|任务ID。系统自动分配，用户查询任务状态。|
+默认值：`true`。 |
+|zone\_id|String|Body|否|cn-beiji\*\*\*\*|集群所属地域的可用区ID。 |
+|tags|list|Body|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签。包含以下信息： -   `key`：标签名称。
+-   `value`：标签值。 |
+|deletion\_protection|Boolean|Body|否|true|集群是否开启集群删除保护，防止通过控制台或API误删除集群。取值：
+
+-   `true`：集群开启集群删除保护。
+-   `false`：集群不开启集群删除保护。
+
+默认值：`false`。 |
+|addons|Array|Body|否|\[\{"name":"logtail-ds","config":"\{"sls\_project\_name":"your\_sls\_project\_name"\}"\}\]|Kubernetes集群安装的组件列表。组件的结构包括：
+
+-   `name`：必填，组件名称。
+-   `config`：可选，取值为空时表示无需配置。
+-   `disabled`：可选，是否禁止默认安装。
+
+**网络组件**：必选，包含Flannel和Terway两种网络类型，创建集群时二选一：
+
+-   Flannel网络：\[\{"name":"flannel","config":""\}\]。
+-   Terway网络：\[\{"name": "terway-eniip","config": ""\}\] 。
+
+**存储组件**：必选，支持`csi`和`flexvolume`两种类型：
+
+-   `csi`：\[\{"name":"csi-plugin","config": ""\},\{"name": "csi-provisioner","config": ""\}\]。
+-   `flexvolume`：\[\{"name": "flexvolume","config": ""\}\] 。
+
+**日志组件**：可选。
+
+**说明：** 如果不开启日志服务时，将无法使用集群审计功能。
+
+-   使用已有SLS Project：\[\{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\",\\"sls\_project\_name\\":\\"your\_sls\_project\_name\\"\}"\}\] 。
+-   创建新的SLS Project：\[\{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\"\}"\}\] 。
+
+**Ingress组件**：可选，ACK专有版集群默认安装Ingress组件nginx-ingress-controller。
+
+-   安装Ingress并且开启公网：\[\{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\] 。
+-   不安装Ingress：\[\{"name": "nginx-ingress-controller","config": "","disabled": true\}\] 。
+
+**事件中心**：可选，默认开启。事件中心提供对Kubernetes事件的存储、查询、告警等能力。Kubernetes事件中心关联的Logstore在90天内免费。关于免费策略的更多信息，请参见[创建并使用Kubernetes事件中心](/cn.zh-CN/应用中心（App）/K8S事件中心/创建并使用Kubernetes事件中心.md)。
+
+开启事件中心：\[\{"name":"ack-node-problem-detector","config":"\{\\"sls\_project\_name\\":\\"
+
+your\_sls\_project\_name\\"\}"\}\]。 |
+|nat\_gateway|Boolean|Body|否|true|为专有网络配置SNAT。取值：
+
+-   `true`：将为您创建NAT网关并自动配置SNAT规则。
+
+**说明：** 如果您集群内的节点、应用等需要访问公网，该参数需被设置为`true`。
+
+-   `false`：不为您创建NAT网关及SNAT规则。这种模式下，集群内节点及应用将不能访问公网。
+
+**说明：** 如果创建集群时未开启专有网络配置SNAT，后续业务需要访问公网，可手动开启。更多信息，请参见[如何为已有集群开启SNAT？](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/如何为已有集群开启SNAT？.md)。
+
+默认值：`true`。 |
+|vpc\_id|String|Body|否|vpc-2zeik9h3ahvv2zz95\*\*\*\*vpc-2zeik9h3ahvv2zz95\*\*\*\*|VPC ID，可空。如果不设置，系统会自动创建VPC，系统创建的VPC网段为192.168.0.0/16。 **说明：** `vpc_id`和`vswitch_ids`只能同时为空或者同时都设置对应的值。 |
+|vswitch\_ids|list|Body|否|\["vsw-2ze97jwri7cei0mpw\*\*\*\*"\]\["vsw-2ze97jwri7cei0mpw\*\*\*\*"\]|虚拟交换机列表，可空。如果不设置，系统会自动创建。**说明：** vpc\_id和vswitch\_ids只能同时为空或者同时设置对应的值。 |
+|security\_group\_id|String|Body|否|sg-bp1bdue0qc1g7k1e\*\*|使用已有安全组创建集群时需要指定安全组ID，和`is_enterprise_security_group`二选一，集群节点自动加入到此安全组。 |
+
+## 返回数据
+
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|cluster\_id|String|cb95aa626a47740afbf6aa099b650\*\*\*\*|集群ID。 |
+|request\_id|String|687C5BAA-D103-4993-884B-C35E4314A1E1|请求ID。 |
+|task\_id|String|T-5a54309c80282e39ea00002f|任务ID。 |
 
 ## 示例
 
 请求示例
 
 ```
-POST /clusters HTTP/1.1
+POST /clusters 
 <公共请求头>
 {
     "cluster_type":"Ask",
@@ -112,7 +142,7 @@ POST /clusters HTTP/1.1
 创建ASK集群时使用已有VPC。请求示例如下。
 
 ```
-POST /clusters HTTP/1.1
+POST /clusters 
 <公共请求头>
 {
     "cluster_type":"Ask",
@@ -141,12 +171,14 @@ POST /clusters HTTP/1.1
 返回示例
 
 ```
-HTTP/1.1 202 Accepted
-<公共响应头>
 {
     "cluster_id": "cb95aa626a47740afbf6aa099b650****",
     "RequestId": "687C5BAA-D103-4993-884B-C35E4314A1E1",
     "task_id": "T-5a54309c80282e39ea00002f",
 }
 ```
+
+## 错误码
+
+访问[错误中心](https://error-center.aliyun.com/status/product/CS)查看更多错误码。
 
