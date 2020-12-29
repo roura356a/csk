@@ -2,182 +2,218 @@
 
 调用CreateCluster创建一个Kubernetes托管版集群实例，并创建指定数量的节点。
 
-## 请求信息
+## 调试
 
-请求行RequestLine
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=CS&api=CreateCluster&type=ROA&version=2015-12-15)
 
-```
-POST /clusters HTTP/1.1 
-```
+## 请求头
 
-特有请求头RequestHead
+该接口使用公共请求头，无特殊请求头。更多信息，请参见[公共请求参数](公共请求参数t1884803.dita#concept_944293)。
 
-该接口使用公共请求头，无特殊请求头。请参见[公共请求和返回结果](/intl.zh-CN/API参考/公共请求和返回结果.md)。
-
-请求体RequestBody
-
-**说明：** 创建集群时，请求参数需要正确组合，否则会导致集群创建失败。在容器服务控制台创建集群界面，提供了**生成集群创建OpenAPI参数**功能，可以为您提供准确的参数组合。请参见[生成OpenAPI参数](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/生成OpenAPI参数.md)。
+## 请求语法
 
 ```
-{
-"disable_rollback": "失败是否回滚。",
-"name": "集群名称。",
-"timeout_mins": "集群创建超时时间。",
-"cluster_type": "集群类型，ManagedKubernetes。",
-"region_id": "地域。",
-"vpcid": "VPC ID",
-"vswitch_ids": "一台或多台虚拟交换机ID，交换机个数的取值范围为[1,3]。",
-"container_cidr": "容器POD CIDR。",
-"service_cidr": "服务CIDR。",
-"cloud_monitor_flags":"是否安装云监控插件。",
-"login_password": "节点SSH登录密码，和key_pair二选一。",
-"key_pair":"keypair名称，和login_password二选一。",
-"worker_instance_charge_type":"Worker节点付费类型PrePaid|PostPaid。",
-"worker_period_unit":"包年包月单位，Month,Year，只有在PrePaid下生效。",
-"worker_period":"包年包月时长，只有在PrePaid下生效。",
-"worker_auto_renew":"Worker节点自动续费true|false。",
-"worker_auto_renew_period":"Worker节点续费周期。",
-"worker_instance_types": "Worker实例规格多实例规格参数。 ",
-"worker_system_disk_category": "Worker系统盘类型。",
-"worker_system_disk_size": "Worker节点系统盘大小。",
-"worker_data_disk":"是否挂载数据盘true|false。",
-"worker_data_disks":"Worker节点数据盘配置。",
-"num_of_nodes": "Worker节点数。",
-"snat_entry": "是否配置SNATEntry",
-"endpoint_public_access":"是否公网暴露集群endpoint。",
-"proxy_mode": "网络模式, 可选值iptables|ipvs。",
-"addons": "选装addon, 数组格式对象", 
-"tags": "给集群打tag标签, 数组格式对象。",
-"security_group_id": "安全组ID，和is_enterprise_security_group二选一",
-"is_enterprise_security_group": "是否自动创建安全组，security_group_id如果没设置，那么该参数必填，值为true",
-"taints": "给节点添加taint, 数组格式对象。",
-"cpu_policy":"cpu的策略，static|none。",
-"runtime":"容器的运行时环境，默认为docker。例如："runtime":{"name":"docker","version":"19.03.5"}"。",
-"platform":"运行Pod的主机的平台架构。",
-"os_type":"运行Pod的主机的操作系统类型，例如：linux，Windows等。",
-"node_cidr_mask":"节点网络的网络ID的位数。",
-"kubernetes_version":"kubernetes集群的版本，默认最新版本。",
-"deletion_protection":"是否开启集群删除保护，防止通过控制台或API误删除集群。"
-}
+POST /clusters 
 ```
 
-|名称|类型|必须|描述|
-|--|--|--|--|
-|cluster\_type|string|是|集群类型。-   Kubernetes：Kubernetes专有版
--   ManagedKubernetes：标准托管版集群，边缘托管版集群
--   Ask：标准Serverless集群 |
-|key\_pair|string|是|keypair名称。与login\_password二选一。|
-|login\_password|string|是|SSH登录密码。密码规则为8 - 30个字符，且至少同时包含三项（大小写字母、数字和特殊符号）。和key\_pair二选一。|
-|name|string|是|集群名称，集群名称可以使用大小写英文字母、中文、数字、中划线。|
-|num\_of\_nodes|int|是|Worker节点数。范围是\[0，100\]。|
-|region\_id|string|是|集群所在地域ID。|
-|snat\_entry|bool|是|是否为网络配置SNAT。如果是自动创建VPC必须设置为true。如果使用已有VPC则根据是否具备出网能力来设置。|
-|vswitch\_ids|list|是|交换机ID。List长度范围为 \[1，3\]。|
-|worker\_system\_disk\_category|string|是|Worker节点系统盘类型。|
-|worker\_system\_disk\_size|int|是|Worker节点系统盘大小。|
-|addons|list|否|Kubernetes集群的addon插件的组合。 -   addons的参数：
-    -   name：必填，addon插件的名称。
-    -   version：可选，取值为空时默认取最新版本。
-    -   config：可选。
--   网络插件：包含Flannel和Terway网络插件，二选一。
--   日志服务：可选，如果不开启日志服务时，将无法使用集群审计功能。
--   Ingress：默认开启安装Ingress组件nginx-ingress-controller。 |
-|container\_cidr|string|否|容器网段，不能和VPC网段冲突。当选择系统自动创建VPC时，默认使用172.16.0.0/16网段。|
-|cloud\_monitor\_flags|bool|否|是否安装云监控插件。|
-|disable\_rollback|bool|否|失败是否回滚： -   true：表示失败不回滚。
--   false：表示失败回滚。
+## 请求参数
 
-如果选择失败回滚，则会释放创建过程中所生产的资源，不推荐使用false。|
-|public\_slb|bool|否|是否开启公网API Server： -   true：默认为True，表示开放公网API Server。
--   false：若设置为false， 则不会创建公网的API Server，仅创建私网的API Server。
+|名称|类型|位置|是否必选|示例值|描述|
+|--|--|--|----|---|--|
+|cluster\_type|String|Body|是|ManagedKubernetes|集群类型。取值`ManagedKubernetes`创建标准托管版集群。|
+|key\_pair|String|Body|否|secrity-key|密钥对名称，和`login_password`二选一。|
+|login\_password|String|Body|否|Hello@1234|SSH登录密码，和`key_pair`二选一。密码规则为8~30个字符，且至少同时包含三项（大小写字母、数字和特殊符号）。|
+|name|String|Body|是|cluster-demo|集群名称。
+
+命名规则：由数字、汉字、英文字符或短划线（-）组成，长度范围1~63个字符，且不能以短划线（-）开头。 |
+|num\_of\_nodes|int|Body|是|3|Worker节点数。范围是\[0,100\]。|
+|region\_id|String|Body|是|cn-beijing|集群所在地域ID。|
+|snat\_entry|Boolean|Body|否|true|是否为网络配置SNAT：
+
+-   当已有VPC能访问公网环境时，设置为`false`。
+-   当已有VPC不能访问公网环境时：
+    -   设置为`true`，表示配置SNAT，此时可以访问公网环境。
+    -   设置为`false`，表示不配置SNAT，此时不能访问公网环境。
+
+如果您的应用需要访问公网，建议配置为true。
+
+默认值：`false`。 |
+|vswitch\_ids|list|Body|是|\["vsw-2ze48rkq464rsdts1\*\*\*\*"\]|交换机ID。List长度范围为 \[1,3\]。|
+|worker\_system\_disk\_category|String|Body|否|cloud\_efficiency|Worker节点系统盘类型，取值：
+
+-   `cloud_efficiency`：高效云盘。
+-   `cloud_ssd`：SSD云盘。
+
+默认值：`cloud_ssd`。 |
+|worker\_system\_disk\_size|int|Body|否|120|Worker节点系统盘大小，单位为GiB。
+
+取值范围：\[20,500\]。
+
+该参数的取值必须大于或者等于max\{20, ImageSize\}。
+
+默认值：max\{40, 参数ImageId对应的镜像大小\}。 |
+|addons|list|Body|否|\[\{"name": "terway-eniip","config": ""\}, \{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\",\\"sls\_project\_name\\":\\"your\_sls\_project\_name\\"\}"\}, \{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\]|Kubernetes集群安装的组件列表。组件的结构包括：
+
+-   `name`：必填，组件名称。
+-   `config`：可选，取值为空时表示无需配置。
+-   `disabled`：可选，是否禁止默认安装。
+
+**网络组件**：必选，包含Flannel和Terway两种网络类型，创建集群时二选一：
+
+-   Flannel网络：\[\{"name":"flannel","config":""\}\]。
+-   Terway网络：\[\{"name": "terway-eniip","config": ""\}\] 。
+
+**存储组件**：必选，支持`csi`和`flexvolume`两种类型：
+
+-   `csi`：\[\{"name":"csi-plugin","config": ""\},\{"name": "csi-provisioner","config": ""\}\]。
+-   `flexvolume`：\[\{"name": "flexvolume","config": ""\}\] 。
+
+**日志组件**：可选。
+
+**说明：** 如果不开启日志服务时，将无法使用集群审计功能。
+
+-   使用已有SLS Project：\[\{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\",\\"sls\_project\_name\\":\\"your\_sls\_project\_name\\"\}"\}\] 。
+-   创建新的SLS Project：\[\{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\"\}"\}\] 。
+
+**Ingress组件**：可选，ACK专有版集群默认安装Ingress组件nginx-ingress-controller。
+
+-   安装Ingress并且开启公网：\[\{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\] 。
+-   不安装Ingress：\[\{"name": "nginx-ingress-controller","config": "","disabled": true\}\] 。
+
+**事件中心**：可选，默认开启。事件中心提供对Kubernetes事件的存储、查询、告警等能力。Kubernetes事件中心关联的Logstore在90天内免费。关于免费策略的更多信息，请参见[创建并使用Kubernetes事件中心](/intl.zh-CN/应用中心（App）/K8S事件中心/创建并使用Kubernetes事件中心.md)。
+
+开启事件中心：\[\{"name":"ack-node-problem-detector","config":"\{\\"sls\_project\_name\\":\\"
+
+your\_sls\_project\_name\\"\}"\}\]。 |
+|container\_cidr|String|Body|否|172.20.0.0/16|Pod网络地址段，不能和VPC网段冲突。当选择系统自动创建VPC时，默认使用172.16.0.0/16网段。
+
+**说明：** 当创建Flannel网络类型的集群时，该字段为必填。 |
+|cloud\_monitor\_flags|Boolean|Body|否|true|集群是否安装云监控插件。取值：
+
+-   `true`：安装云监控插件。
+-   `false`：不安装云监控插件。
+
+默认值：`false`。 |
+|disable\_rollback|Boolean|Body|否|true|集群创建失败是否回滚。取值：
+
+-   `true`：当集群创建失败时，进行回滚操作。
+-   `false`：当集群创建失败时，不进行回滚操作。
+
+默认值：`false`。 |
+|public\_slb|Boolean|Body|否|true|是否开启公网API Server。取值： -   true：开放公网API Server。
+-   false：不会创建公网的API Server，仅创建私网的API Server。
+
+默认值：`true`。
 
 **说明：** 过期参数，替代参数请参见endpoint\_public\_access。 |
-|proxy\_mode|string|否|kube-proxy代理模式，支持iptables和IPVS两种模式。 默认为iptables。|
-|endpoint\_public\_access|bool|否|是否开启公网API Server： -   true：默认为True，表示开放公网API Server。
--   false：若设置为false， 则不会创建公网的API Server，仅创建私网的API Server。 |
-|security\_group\_id|string|否|指定集群ECS实例所属于的安全组ID，和is\_enterprise\_security\_group二选一。|
-|is\_enterprise\_security\_group|bool|否|是否自动创建安全组，如果security\_group\_id未设置，那么is\_enterprise\_security\_group必填且值为true。|
-|service\_cidr|string|否|服务网段，不能和VPC网段以及容器网段冲突。当选择系统自动创建VPC时，默认使用172.19.0.0/20网段。|
-|addons|Array|否|Kubernetes集群的安装的组件列表：
+|proxy\_mode|String|Body|否|ipvs|kube-proxy代理模式，支持`iptables`和`ipvs`两种模式，默认为`ipvs`。 |
+|endpoint\_public\_access|Boolean|Body|否|true|是否开启公网API Server。取值：
 
--   addons的参数：
-    -   name：必填，组件名称。
-    -   config：可选，取值为空时表示无需配置。
-    -   disabled：可选，是否禁止默认安装。
--   网络插件：必选，包含Flannel和Terway网络两种网络类型，创建集群时二选一：
-    -   `flannel`网络：\[\{"name":"flannel","config":""\}\]
-    -   `terway`网络：\[\{"name": "terway-eniip","config": ""\}\]
--   存储插件：必选，支持`csi`和`flexvolume`两种类型：
-    -   `csi`插件：\[\{"name":"csi-plugin","config": ""\},\{"name": "csi-provisioner","config": ""\}\]
-    -   `flexvolume`插件：\[\{"name": "flexvolume","config": ""\}\]
--   日志组件：可选，如果不开启日志服务时，将无法使用集群审计功能：
-    -   使用已有`sls project`：\[\{"name": "logtail-ds","config": "\{"IngressDashboardEnabled":"true","sls\_project\_name":"your\_sls\_project\_name"\}"\}\]
-    -   创建新的`sls project`：\[\{"name": "logtail-ds","config": "\{"IngressDashboardEnabled":"true"\}"\}\]
--   Ingress：可选，默认开启安装Ingress组件nginx-ingress-controller：
-    -   安装`Ingress`并且开启公网：\[\{"name":"nginx-ingress-controller","config":"\{"IngressSlbNetworkType":"internet"\}"\}\]
-    -   不安装`Ingress`：\[\{"name": "nginx-ingress-controller","config": "","disabled": true\}\]
--   事件中心：可选，默认开启。事件中心提供对Kubernetes事件的存储、查询、告警等能力。默认可免费存储90天内的事件，请参见[查看详情](/intl.zh-CN/应用中心（App）/K8S事件中心/创建并使用Kubernetes事件中心.md)。
+-   `true`：表示开放公网API Server。
+-   `false`：表示不会创建公网的API Server，仅创建私网的API Server。
 
-开启事件中心：\[\{"name":"ack-node-problem-detector","config":"\{"sls\_project\_name":""\}"\}\] |
-|tags|list|否|给集群打tag标签： -   key：标签名称。
--   value：标签值。 |
-|taints|list|否|用于给节点做污点标记，通常用于Pods的调度策略。与之相对应的概念为：容忍（tolerance），若Pods上有相对应的tolerance标记，则可以容忍节点上的污点，并调度到该节点。|
-|timeout\_mins|int|否|集群资源栈创建超时时间，以分钟为单位，默认值60分钟。|
-|vpcid|string|是|VPC ID不能为空。 **说明：** vpcid和vswitchid只能同时都设置对应的值。 |
-|worker\_auto\_renew|bool|否|是否开启Worker节点自动续费，可选值为： -   true：自动续费。
--   false：不自动续费。 |
-|worker\_auto\_renew\_period|int|否|自动续费周期，当worker\_instance\_charge\_type取值为PrePaid时才生效且为必选值。PeriodUnit=Month时，取值为\{“1”，“2”，“3”，“6”，“12”\}。|
-|worker\_data\_disk|string|否|是否挂载数据盘，可选择： -   true：表示worker节点挂载数据盘。
--   false：表示worker节点不挂载数据盘。 |
-|worker\_data\_disks|list|否|Worker数据盘类型、大小等配置的组合。该参数只有在挂载Worker节点数据盘时有效，包含以下参数： -   category：数据盘类型。取值范围：
-    -   cloud：普通云盘。
-    -   cloud\_efficiency：高效云盘。
-    -   cloud\_ssd：SSD云盘。
--   size：数据盘大小，单位为GiB。 |
-|worker\_data\_disk\_category|string|否|数据盘类型 **说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的category取值。 |
-|worker\_data\_disk\_size|int|否|数据盘大小 **说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的size取值。 |
-|worker\_instance\_charge\_type|string|否|Worker节点付费类型，可选值为： -   PrePaid：预付费。
--   PostPaid：按量付费。 |
-|worker\_period|int|否|包年包月时长，当worker\_instance\_charge\_type取值为PrePaid时才生效且为必选值。`PeriodUnit=Month`时，Period取值：\{ “1”，“2”，“3”，“6”，“12”\} 。|
-|worker\_period\_unit|string|否|当指定为PrePaid的时候需要指定周期。 **说明：** Month：以月为计时单位。 |
-|worker\_instance\_types|list|是|Worker节点ECS规格类型代码。更多详细信息，参见[实例规格族](/intl.zh-CN/实例/实例规格族.md)。|
-|cpu\_policy|string|否|CPU策略。集群版本为1.12.6及以上版本支持static和none两种策略。默认为none。|
-|runtime|json|否|容器运行时，例如docker、Sandboxed-Container.runv等，通常为docker。runtime包括下面2个信息： -   name：容器运行时名称。
--   version：容器运行时版本。 |
-|platform|string|否|运行Pod的主机的平台架构，例如CentOS、AliyunLinux、Windows、WindowsCore等。|
-|os\_type|string|否|运行Pod的主机的操作系统类型，例如Linux，Windows。|
-|node\_cidr\_mask|string|否|节点网络的网络前缀。node\_cidr\_mask通过cidr限制一个节点上能运行容器网络的Pod数量。例如node\_cidr\_mask是24的话，对应的容器数量是256，25对应的就是128。计算方式：2^\(32-node\_cidr\_mask的值\)-1。|
-|kubernetes\_version|string|否|Kubernetes集群的版本，默认最新版本。|
-|deletion\_protection|bool|否|是否开启集群删除保护，防止通过控制台或API误删除集群。|
+默认值：`true`。 |
+|security\_group\_id|String|Body|否|sg-bp1bdue0qc1g7k1e\*\*|使用已有安全组创建集群时需要指定安全组ID，和`is_enterprise_security_group`二选一，集群节点自动加入到此安全组。 |
+|is\_enterprise\_security\_group|Boolean|Body|否|true|自动创建企业级安全组，当`security_group_id`为空的时生效。
 
-## 返回信息
+**说明：** Terway网络类型集群，必须指定为企业安全组。
 
-返回行ResponseLine
+-   `true`：创建企业级安全组。
+-   `false`：不创建企业级安全组。
 
-```
-HTTP/1.1 202 Accepted
-```
+默认值：`false`。 |
+|service\_cidr|String|Body|否|172.21.0.0/20|Service网络地址段，不能和VPC网段及Pod网络网段冲突。当选择系统自动创建VPC时，默认使用172.19.0.0/20网段。 |
+|tags|list|Body|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签。包含以下信息：
 
-特有返回头ResponseHead
+-   `key`：标签名称。
+-   `value`：标签值。 |
+|taints|list|Body|否|\[\{"key": "env", "value": "private", "effect": "NoSchedule"\}\]|节点污点信息。污点和容忍度（Toleration）相互配合，可以用来避免Pod被分配到不合适的节点上。更多信息，请参见[taint-and-toleration](https://kubernetes.io/zh/docs/concepts/scheduling-eviction/taint-and-toleration/)。 |
+|timeout\_mins|int|Body|否|60|集群创建超时时间，单位分钟。
 
-无，请参见[公共请求和返回结果](/intl.zh-CN/API参考/公共请求和返回结果.md)。
+默认值：60。 |
+|vpcid|String|Body|是|vpc-2zeik9h3ahvv2zz95\*\*\*\*|集群使用的VPC实例ID。 |
+|worker\_auto\_renew|Boolean|Body|否|true|Worker节点是否开启自动续费，当`worker_instance_charge_type`取值为`PrePaid`时才生效，可选值为：
 
-返回体ResponseBody
+-   `true`：自动续费。
+-   `false`：不自动续费。
 
-```
-{
-"cluster_id":"string",
-"request_id":"string",
-"task_id":"string"
-}
-```
+默认值：`true`。 |
+|worker\_auto\_renew\_period|int|Body|否|1|Worker节点自动续费周期，当选择包年包月付费类型时才生效，且为必选值。
+
+取值范围：\{1, 2, 3, 6, 12\}。 |
+|worker\_data\_disks|list|Body|否|\[\{"category": "cloud\_ssd", "size": "40", "auto\_snapshot\_policy\_id": "sp-bp14j6w7ss6ozzbp\*\*"\}\]|Worker数据盘类型、大小等配置的组合。|
+|worker\_data\_disk\_category|String|Body|否| |数据盘类型。取值：-   `cloud_efficiency`：高效云盘。
+-   `cloud_ssd`：SSD云盘。
+-   `cloud`：普通云盘。
+
+默认值：`cloud_efficiency`。**说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的category取值。 |
+|worker\_data\_disk\_size|int|Body|否| |数据盘大小，单位为GiB。**说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的size取值。 |
+|worker\_instance\_charge\_type|String|Body|否|PrePaid|Worker节点付费类型，取值：
+
+-   `PrePaid`：包年包月。
+-   `PostPaid`：按量付费。
+
+默认值：按量付费。 |
+|worker\_period|int|Body|否|1|Worker节点包年包月时长，当`worker_instance_charge_type`取值为`PrePaid`时才生效且为必选值。
+
+取值范围：\{1, 2, 3, 6, 12, 24, 36, 48, 60\}。
+
+默认值：1。 |
+|worker\_period\_unit|String|Body|否|Month|Wroker节点付费周期，当付费类型为`PrePaid`的时候需要指定周期。
+
+取值：`Month`，当前只支持以月为周期。 |
+|worker\_instance\_types|list|Body|是|\["ecs.n4.xlarge"\]|Worker节点实例规格，至少要指定一个实例规格。更多详细信息，请参见[实例规格族](/intl.zh-CN/实例/实例规格族.md)。
+
+**说明：** 实例规格优先级随着在数据中的位置增大依次降低。当无法根据优先级较高的实例规格创建出实例时，会自动选择下一优先级的实例规格来创建实例。 |
+|cpu\_policy|String|Body|否|none|节点CPU管理策略。当集群版本在1.12.6及以上时支持以下两种策略：
+
+-   `static`：允许为节点上具有某些资源特征Pod增强其CPU亲和性和独占性。
+-   `none`：表示启用现有的默认CPU亲和性方案。
+
+默认值：`none`。 |
+|runtime|json|Body|否|\{"name": "docker", "version": "19.03.5"\}|容器运行时，例如docker、Sandboxed-Container.runv等，通常为docker。runtime包括下面2个信息： -   `name`：容器运行时名称。
+-   `version`：容器运行时版本。 |
+|platform|String|Body|否|CentOS|操作系统发行版。取值：
+
+-   `CentOS`
+-   `AliyunLinux`
+-   `QbootAliyunLinux`
+-   `Qboot`
+-   `Windows`
+-   `WindowsCore`
+
+默认值：`CentOS`。 |
+|os\_type|String|Body|否|Linux|操作系统平台类型。取值：
+
+-   `Windows`
+-   `Linux`
+
+默认值：`Linux`。 |
+|node\_cidr\_mask|String|Body|否|25|节点IP数量，通过指定网络的CIDR来确定IP的数量，只对于Flannel网络类型集群生效。
+
+默认值：25。 |
+|kubernetes\_version|String|Body|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[Kubernetes版本发布概览](/intl.zh-CN/新功能发布记录/Kubernetes版本发布说明/Kubernetes版本发布概览.md)。 |
+|deletion\_protection|Boolean|Body|否|true|集群是否开启集群删除保护，防止通过控制台或API误删除集群。取值：
+
+-   `true`：集群开启集群删除保护。
+-   `false`：集群不开启集群删除保护。
+
+默认值：`false`。 |
+
+## 返回数据
+
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|cluster\_id|String|cb95aa626a47740afbf6aa099b650\*\*\*\*|集群ID。 |
+|request\_id|String|687C5BAA-D103-4993-884B-C35E4314A1E1|请求ID。 |
+|task\_id|String|T-5a54309c80282e39ea00002f|任务ID。 |
 
 ## 示例
 
 请求示例
 
 ```
-POST /clusters HTTP/1.1
+POST /clusters 
 <公共请求头>
 {
     "name":"amk-cluster",
@@ -246,13 +282,25 @@ POST /clusters HTTP/1.1
 
 返回示例
 
+`XML格式`
+
 ```
-HTTP/1.1 202 Accepted
-<公共响应头>
+<cluster_id>cb95aa626a47740afbf6aa099b65****</cluster_id>
+<task_id>687C5BAA-D103-4993-884B-C35E4314A1E1</task_id>
+<request_id>T-5a54309c80282e39ea00002f</request_id>
+```
+
+JSON格式
+
+```
 {
     "cluster_id": "cb95aa626a47740afbf6aa099b65****",
-    "RequestId": "687C5BAA-D103-4993-884B-C35E4314A1E1",
+    "request_id": "687C5BAA-D103-4993-884B-C35E4314A1E1",
     "task_id": "T-5a54309c80282e39ea00002f"
 }
 ```
+
+## 错误码
+
+访问[错误中心](https://error-center.alibabacloud.com/status/product/CS)查看更多错误码。
 
