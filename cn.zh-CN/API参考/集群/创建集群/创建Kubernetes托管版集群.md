@@ -216,67 +216,114 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 POST /clusters 
 <公共请求头>
 {
-    "name":"amk-cluster",
-    "cluster_type":"ManagedKubernetes",
-    "disable_rollback":true,
-    "timeout_mins":60,
-    "kubernetes_version":"1.16.9-aliyun.1",
-    "region_id":"cn-beijing",
-    "snat_entry":true,
-    "cloud_monitor_flags":true,
-    "endpoint_public_access":true,
-    "deletion_protection":true,
-    "node_cidr_mask":"26",
-    "proxy_mode":"ipvs",
-    "tags":[
+    "name":"ACK托管版",                      // 集群名称 #required
+    "cluster_type":"ManagedKubernetes",     // 集群类型 #required
+    "disable_rollback":true,                // 失败是否回滚。
+    "timeout_mins":60,                      // 集群创建超时时间。
+    "kubernetes_version":"1.18.8-aliyun.1", // 集群版本，只维护最新的2个版本。
+    "region_id":"cn-zhangjiakou",  // 地域ID, #required。
+    "snat_entry":true,             // 为专有网络配置SNAT规则，以开启集群公网访问。
+    "cloud_monitor_flags":true,    // 在ECS节点上安装云监控插件。
+    "endpoint_public_access":true, // 开启公网访问。
+    "deletion_protection":true,    // 集群删除保护。
+    "node_cidr_mask":"26",         // 节点IP数量，通过指定节点网段的掩码来决定。
+    "proxy_mode":"ipvs",           // kube-proxy代理模式，取值：iptables或者ipvs。
+    "tags":[                       // 集群标签。标签将同时作用于 ACK集群、ECS实例和Kuberntes节点。
         {
-            "key":"tier",
-            "value":"backend"
+            "key":"tag-k",
+            "value":"tag-v"
         }
     ],
-    "addons":[{"name":"flannel"},{"name":"csi-plugin"},{"name":"csi-provisioner"},{"name":"logtail-ds","config":"{\"IngressDashboardEnabled\":\"true\"}"},{"name":"ack-node-problem-detector","config":"{\"sls_project_name\":\"\"}"},{"name":"nginx-ingress-controller","config":"{\"IngressSlbNetworkType\":\"internet\"}"},{"name":"arms-prometheus"}],
-    "os_type":"Linux",
-    "platform":"CentOS",
-    "runtime":{
-        "name":"docker",
-        "version":"19.03.5"
+    "timezone":"Asia/Shanghai",   // 时区
+    "addons":[                    // 组件配置
+        {
+            "name":"flannel"      // 当集群网络类型是Terway时，设置为{"name":"terway-eni"}。
+        },
+        {
+            "name":"csi-plugin"
+        },
+        {
+            "name":"csi-provisioner"
+        },
+        {
+            "name":"logtail-ds",
+            "config":"{\"IngressDashboardEnabled\":\"true\"}"
+        },
+        {
+            "name":"ack-node-problem-detector",
+            "config":"{\"sls_project_name\":\"\"}"
+        },
+        {
+            "name":"nginx-ingress-controller",                      // 组件名称
+            "config":"{\"IngressSlbNetworkType\":\"internet\"}",    // 组件配置
+            "disabled": true                                        // 是否禁止默认安装。
+        },
+        {
+            "name":"arms-prometheus"
+        }
+    ],
+    "cluster_spec":"ack.pro.small",       // 托管版集群类型。ack.pro.small：ACK Pro版集群；ack.standed：标准托管版集群。
+    "encryption_provider_key":"8734596c-c0d6-4a63-a76e-fe72c7b0****", // Secret落盘加密的密钥ID。
+    "os_type":"Linux",        // 操作系统类型，支持：Linux、Windows。
+    "platform":"AliyunLinux", // 操作系统平台，支持：CentOS，AliyunLinux，Windows, WindowsCore。
+    "user_data":"IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFDSyEi", // 节点自定义数据。
+    "runtime":{             // 容器运行时
+        "name":"docker",    // 运行时名称
+        "version":"19.03.5" // 运行时版本
     },
-    "worker_instance_types":[
-        "ecs.i2.2xlarge"
+    "worker_instance_types":[  // Worker节点实例规格#required
+        "ecs.t6-c1m4.large"
     ],
-    "num_of_nodes":3,
-    "worker_system_disk_category":"cloud_efficiency",
-    "worker_system_disk_size":120,
-    "worker_data_disks":[
+    "num_of_nodes":3,                              // Worker节点数量 #required
+    "worker_system_disk_category":"cloud_essd",    // Worker节点系统盘类型 #required
+    "worker_system_disk_size":120,                 // Worker节点系统盘大小 #required
+    "worker_data_disks":[                          // Worker节点数据盘配置
         {
-            "category":"cloud_efficiency",
-            "size":"40",
-            "encrypted":"true",
-            "auto_snapshot_policy_id":""
+            "category":"cloud_efficiency",        // 数据盘类型。
+            "size":"40",                          // 数据盘大小，取值：40～32768。
+            "encrypted":"true",                   // 数据盘是否加密。
+            "auto_snapshot_policy_id":"sp-8vbajx6y2hk21hco****", // 数据盘备份策略ID。
         }
     ],
-    "worker_instance_charge_type":"PrePaid",
-    "worker_period_unit":"Month",
-    "worker_period":1,
-    "worker_auto_renew":true,
-    "worker_auto_renew_period":1,
-    "vpcid":"vpc-2zemm8mo5rmdppgqm****",
-    "container_cidr":"172.20.0.0/16",
-    "service_cidr":"172.21.0.0/20",
-    "vswitch_ids":[
-        "vsw-2zej67xyhh61oqn7i****"
+    "worker_instance_charge_type":"PrePaid",      // Worker节点付费类型：PostPaid或PrePaid。
+    "worker_period_unit":"Month",                 // Worker节点自动续费周期，只支持：Month。
+    "worker_period":1,                            // Worker节点自动续费时长，默认：1。
+    "worker_auto_renew":true,                     // Worker节点到期是否自动续费。
+    "worker_auto_renew_period":1,                 // Worker节点到期后自动续费周期。
+    "vpcid":"vpc-8vbh3b9a2f38urhls****",          // 集群专有网络ID。 #required
+    "container_cidr":"172.20.0.0/16",             // 集群POD网段#required, 网络模式是terway插件的情况下不必须。
+    "service_cidr":"172.21.0.0/20",               // 集群Service网段。 #required
+    "vswitch_ids":[                               // 集群虚拟交换机ID。 #required
+        "vsw-8vbmoffowsztjaawj****"
     ],
-    "login_password":"Hello1234",
-    "logging_type":"SLS",
-    "cpu_policy":"none",
-    "taints":[
+    "login_password":"Hello1234",                 // 集群节点Root用户登录密码，与key_pair二选一。 #required
+    "key_pair": "sin-name",                       // 集群节点Root免密登录密钥，与login_password二选一。 #required
+    "cpu_policy":"none",                 // 集群节点CPU亲和策略。取值：static、none。
+    "taints":[                           // 节点污点配置。
         {
-            "key":"key1",
-            "value":"value1",
-            "effect":"NoSchedule"
+            "key":"1",                   // 污点key值。
+            "value":"1",                 // 污点value值。
+            "effect":"NoSchedule"        // 污点调度策略。
         }
     ],
-    "security_group_id":"sg-2zeg3u73kkhtixda****"
+    "cluster_domain":"cluster.local",    // 集群本地域名，默认：cluster.local。
+    "custom_san":"cs.aliyuncs.com",      // 集群自定义证书SAN。
+    "service_account_issuer":"kubernetes.default.svc", // 服务账户令牌卷投影。serviceaccount token中的签发身份，即token payload中的iss字段。
+    "api_audiences":"kubernetes.default.svc",          // 服务账户令牌卷投影。合法的请求token身份，用于apiserver服务端认证请求token是否合法。
+    "node_name_mode":"customized,aliyun.com,5,k8s",    // 自定义集群节点名称。
+    "security_group_id":"sg-8vb7grbyvlb10j0i****",     // 使用已有安全组。和is_enterprise_security_group二选一。
+    "is_enterprise_security_group":true,               // 自动创建企业安全组，和security_group_id二选一。
+    "rds_instances": ["rm-xx","rm-xx"],                // RDS白名单。
+    "image_id":"CentOS-xxx",                           // 自定义节点系统镜像。
+    "pod_vswitch_ids":[                                // Terway网络类型的集群，需要指定POD所在的虚拟交换，因为POD独占一个机器IP。                     
+        "vsw-8vbo5fwyqiw0bbtlq****"
+    ],
+    "instances": [                // 使用已有实例创建集群时，Worker节点列表。
+        "i-dewgagxdfa****",
+        "i-3kjaf9q43l****"
+    ],
+    "format_disk": false,        // 是否进行数据盘挂载，数据盘挂载会格式化数据盘，请注意做数据备份。
+    "keep_instance_name": true   // 是否保留原实例名称，默认：保留。
 }
 ```
 
