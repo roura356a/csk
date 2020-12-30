@@ -136,24 +136,65 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 POST /clusters 
 <公共请求头>
 {
-"name":"test",
-"cluster_type":"ManagedKubernetes",
-"profile":"Edge",
-"disable_rollback":true,
-"timeout_mins":60,
-"region_id":"cn-beijing",
-"snat_entry":true,
-"cloud_monitor_flags":true,
-"endpoint_public_access":true,
-"tags":[],
-"worker_instance_types":["ecs.hfc5.xlarge"],
-"num_of_nodes":1,
-"worker_system_disk_category":"cloud_efficiency",
-"vpcid":"vpc-2zegvl5eta******",
-"container_cidr":"172.20.0.0/16",
-"service_cidr":"172.21.0.0/20",
-"vswitch_ids":["vsw-2ze48rkq464rsdts1****"],
-"login_password":"test@19****"
+    "name":"ACK边缘托管版",
+    "cluster_type":"ManagedKubernetes",
+    "disable_rollback":true,
+    "timeout_mins":60,
+    "kubernetes_version":"1.14.8-aliyunedge.1",
+    "region_id":"cn-zhangjiakou",
+    "snat_entry":true,
+    "cloud_monitor_flags":true,
+    "endpoint_public_access":true,
+    "deletion_protection":true,
+    "node_cidr_mask":"26",
+    "tags":[
+        {
+            "key":"tag-k",
+            "value":"tag-v"
+        }
+    ],
+    "addons":[
+        {
+            "name":"logtail-ds-docker"
+        },
+        {
+            "name":"alibaba-log-controller",
+            "config":"{\"IngressDashboardEnabled\":\"false\"}"
+        },
+        {
+            "name":"flannel"
+        },
+        {
+            "name":"alicloud-monitor-controller"
+        }
+    ],
+    "profile":"Edge",            // 边缘集群标识。
+    "worker_instance_types":[
+        "ecs.hfc6.large"
+    ],
+    "num_of_nodes":1,
+    "worker_system_disk_category":"cloud_ssd",
+    "worker_system_disk_size":40,
+    "worker_data_disks":[
+        {
+            "category":"cloud_efficiency",
+            "size":"40",
+            "encrypted":"false",
+            "auto_snapshot_policy_id":"",
+        }
+    ],
+    "worker_instance_charge_type":"PostPaid",
+    "vpcid":"vpc-8vb435kr467tnfj42****",
+    "container_cidr":"172.20.0.0/16",
+    "service_cidr":"172.21.0.0/20",
+    "vswitch_ids":[
+        "vsw-8vbhdhn461i65p32g****"
+    ],
+    "login_password":"Hello1234",
+    "key_pair": "sin-name",
+    "security_group_id":"sg-8vb7grbyvlb10j0i****",
+    "is_enterprise_security_group":true,
+    "rds_instances": ["rm-xx","rm-xx"]
 }
 ```
 
