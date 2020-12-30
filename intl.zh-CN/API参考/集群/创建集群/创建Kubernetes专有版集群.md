@@ -24,7 +24,7 @@ POST /clusters
 |name|String|Body|是|cluster-demo|集群名称。
 
 命名规则：由数字、汉字、英文字符或短划线（-）组成，长度范围1~63个字符，且不能以短划线（-）开头。 |
-|region\_id|String|Body|否|cn-beijing|集群所在的地域ID。 |
+|region\_id|String|Body|是|cn-beijing|集群所在的地域ID。 |
 |cluster\_type|String|Body|是|Kubernetes|集群类型。取值：
 
 -   `Kubernetes`: 专有版集群。
@@ -57,8 +57,8 @@ POST /clusters
 不能与 VPC 网段 10.1.0.0/21 及 VPC 内已有 Kubernetes 集群使用的网段重复，创建成功后不能修改。
 
 默认使用172.19.0.0/20网段。 |
-|security\_group\_id|String|Body|是|sg-bp1bdue0qc1g7k\*\*\*\*|使用已有安全组创建集群时需要指定安全组ID，和`is_enterprise_security_group`二选一，集群节点自动加入到此安全组。 |
-|is\_enterprise\_security\_group|Boolean|Body|是|true|自动创建企业级安全组，当`security_group_id`为空的时生效。
+|security\_group\_id|String|Body|否|sg-bp1bdue0qc1g7k\*\*\*\*|使用已有安全组创建集群时需要指定安全组ID，和`is_enterprise_security_group`二选一，集群节点自动加入到此安全组。 |
+|is\_enterprise\_security\_group|Boolean|Body|否|true|自动创建企业级安全组，当`security_group_id`为空的时生效。
 
 **说明：** 使用普通安全组时，集群内节点与 Terway Pod 数量之和不能超过 2000。所以创建Terway网络类型集群时，建议使用企业安全组。
 
