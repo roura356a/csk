@@ -27,7 +27,7 @@ POST /clusters
 |region\_id|String|Body|是|cn-beijing|集群所在的地域ID。 |
 |cluster\_type|String|Body|是|Kubernetes|集群类型。取值：
 
--   `Kubernetes`: 专有版集群。
+-   `Kubernetes`：专有版集群。
 -   `ManagedKubernetes`：标准托管版集群、边缘托管版集群。
 -   `Ask`：标准Serverless集群。
 -   `ExternalKubernetes`：注册至ACK的外部集群。 |
