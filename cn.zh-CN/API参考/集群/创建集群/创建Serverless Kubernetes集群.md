@@ -112,30 +112,42 @@ POST /clusters
 <公共请求头>
 {
     "cluster_type":"Ask",
-    "name":"ask-cluster",
-    "kubernetes_version":"1.16.9-aliyun.1",
-    "region_id":"cn-shenzhen",
+    "name":"ASK集群",
+    "kubernetes_version":"1.18.8-aliyun.1",
+    "region_id":"cn-zhangjiakou",
     "endpoint_public_access":true,
-    "private_zone":true,
+    "service_discovery_types":[    //服务发现方式。
+        "PrivateZone"
+    ],
     "tags":[
         {
-            "key":"tier",
-            "value":"frontend"
+            "key":"tag-k",
+            "value":"tag-v"
         }
     ],
     "deletion_protection":true,
+    "service_cidr":"172.21.0.0/20",
+    "timezone":"Asia/Shanghai",
     "addons":[
         {
+            "name":"nginx-ingress-controller",
+            "config":"{\"IngressSlbNetworkType\":\"internet\"}"
+        },
+        {
+            "name":"metrics-server"
+        },
+        {
             "name":"logtail-ds"
+        },
+        {
+            "name":"knative"    // 开启Knative， 可不开启。
         }
     ],
-    "zone_id":"cn-shenzhen-a",
-    "vpc_id":"vpc-wz984yvbd6lck22z3****",
+    "zone_id":"",   // 可用区ID
+    "vpc_id":"vpc-8vbh3b9a2f38urhls****",
     "vswitch_ids":[
-        "vsw-wz9uwxhawmtzg7u9h****"
+        "vsw-8vbmoffowsztjaawj****"
     ],
-    "logging_type":"SLS",
-    "security_group_id":"sg-wz9b86l4s7nthi1k****"
 }
 ```
 
