@@ -21,8 +21,8 @@ POST /clusters
 |名称|类型|位置|是否必选|示例值|描述|
 |--|--|--|----|---|--|
 |cluster\_type|String|Body|是|ManagedKubernetes|集群类型。取值`ManagedKubernetes`创建标准托管版集群。|
-|key\_pair|String|Body|否|secrity-key|密钥对名称，和`login_password`二选一。|
-|login\_password|String|Body|否|Hello@1234|SSH登录密码，和`key_pair`二选一。密码规则为8~30个字符，且至少同时包含三项（大小写字母、数字和特殊符号）。|
+|key\_pair|String|Body|是|secrity-key|密钥对名称，和`login_password`二选一。|
+|login\_password|String|Body|是|Hello@1234|SSH登录密码，和`key_pair`二选一。密码规则为8~30个字符，且至少同时包含三项（大小写字母、数字和特殊符号）。|
 |name|String|Body|是|cluster-demo|集群名称。
 
 命名规则：由数字、汉字、英文字符或短划线（-）组成，长度范围1~63个字符，且不能以短划线（-）开头。 |
@@ -39,13 +39,13 @@ POST /clusters
 
 默认值：`false`。 |
 |vswitch\_ids|list|Body|是|\["vsw-2ze48rkq464rsdts1\*\*\*\*"\]|交换机ID。List长度范围为 \[1,3\]。|
-|worker\_system\_disk\_category|String|Body|否|cloud\_efficiency|Worker节点系统盘类型，取值：
+|worker\_system\_disk\_category|String|Body|是|cloud\_efficiency|Worker节点系统盘类型，取值：
 
 -   `cloud_efficiency`：高效云盘。
 -   `cloud_ssd`：SSD云盘。
 
 默认值：`cloud_ssd`。 |
-|worker\_system\_disk\_size|int|Body|否|120|Worker节点系统盘大小，单位为GiB。
+|worker\_system\_disk\_size|int|Body|是|120|Worker节点系统盘大小，单位为GiB。
 
 取值范围：\[20,500\]。
 
@@ -85,7 +85,7 @@ POST /clusters
 开启事件中心：\[\{"name":"ack-node-problem-detector","config":"\{\\"sls\_project\_name\\":\\"
 
 your\_sls\_project\_name\\"\}"\}\]。 |
-|container\_cidr|String|Body|否|172.20.0.0/16|Pod网络地址段，不能和VPC网段冲突。当选择系统自动创建VPC时，默认使用172.16.0.0/16网段。
+|container\_cidr|String|Body|是|172.20.0.0/16|Pod网络地址段，不能和VPC网段冲突。当选择系统自动创建VPC时，默认使用172.16.0.0/16网段。
 
 **说明：** 当创建Flannel网络类型的集群时，该字段为必填。 |
 |cloud\_monitor\_flags|Boolean|Body|否|true|集群是否安装云监控插件。取值：
@@ -100,19 +100,11 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 -   `false`：当集群创建失败时，不进行回滚操作。
 
 默认值：`false`。 |
-|public\_slb|Boolean|Body|否|true|是否开启公网API Server。取值： -   true：开放公网API Server。
--   false：不会创建公网的API Server，仅创建私网的API Server。
-
-默认值：`true`。
-
-**说明：** 过期参数，替代参数请参见endpoint\_public\_access。 |
-|proxy\_mode|String|Body|否|ipvs|kube-proxy代理模式，支持`iptables`和`ipvs`两种模式，默认为`ipvs`。 |
-|endpoint\_public\_access|Boolean|Body|否|true|是否开启公网API Server。取值：
-
--   `true`：表示开放公网API Server。
--   `false`：表示不会创建公网的API Server，仅创建私网的API Server。
+|endpoint\_public\_access|Boolean|Body|否|true|是否开启公网访问。通过EIP暴露API Server，实现集群公网访问。取值： -   `true`：开启公网访问。
+-   `false`：不开启公网访问。选择不开放时，则无法通过外网访问集群API Server。
 
 默认值：`true`。 |
+|proxy\_mode|String|Body|否|ipvs|kube-proxy代理模式，支持`iptables`和`ipvs`两种模式，默认为`ipvs`。 |
 |security\_group\_id|String|Body|否|sg-bp1bdue0qc1g7k1e\*\*|使用已有安全组创建集群时需要指定安全组ID，和`is_enterprise_security_group`二选一，集群节点自动加入到此安全组。 |
 |is\_enterprise\_security\_group|Boolean|Body|否|true|自动创建企业级安全组，当`security_group_id`为空的时生效。
 
@@ -122,7 +114,7 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 -   `false`：不创建企业级安全组。
 
 默认值：`false`。 |
-|service\_cidr|String|Body|否|172.21.0.0/20|Service网络地址段，不能和VPC网段及Pod网络网段冲突。当选择系统自动创建VPC时，默认使用172.19.0.0/20网段。 |
+|service\_cidr|String|Body|是|172.21.0.0/20|Service网络地址段，不能和VPC网段及Pod网络网段冲突。当选择系统自动创建VPC时，默认使用172.19.0.0/20网段。 |
 |tags|list|Body|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签。包含以下信息：
 
 -   `key`：标签名称。
@@ -148,7 +140,7 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 
 默认值：`cloud_efficiency`。**说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的category取值。 |
 |worker\_data\_disk\_size|int|Body|否| |数据盘大小，单位为GiB。**说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的size取值。 |
-|worker\_instance\_charge\_type|String|Body|否|PrePaid|Worker节点付费类型，取值：
+|worker\_instance\_charge\_type|String|Body|是|PrePaid|Worker节点付费类型，取值：
 
 -   `PrePaid`：包年包月。
 -   `PostPaid`：按量付费。
