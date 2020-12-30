@@ -29,7 +29,7 @@ POST /clusters
 |num\_of\_nodes|int|是|1|Worker节点数。范围是\[0,100\]。|
 |profile|String|是|Edge|边缘集群标识，默认取值：Edge。|
 |region\_id|String|是|cn-beijing|集群所在地域ID。|
-|snat\_entry|Boolean|是|true|是否为网络配置SNAT：
+|snat\_entry|Boolean|否|true|是否为网络配置SNAT：
 
 -   当已有VPC能访问公网环境时，设置为`false`。
 -   当已有VPC不能访问公网环境时：
@@ -49,7 +49,7 @@ POST /clusters
 |worker\_system\_disk\_size|int|是|100|Worker节点系统盘大小，单位为GiB。
 
 取值范围：\[20,500\]。 |
-|container\_cidr|String|否|172.20.0.0|Pod网络地址段，不能和VPC网段冲突。当选择系统自动创建VPC时，默认使用172.16.0.0/16网段。
+|container\_cidr|String|是|172.20.0.0|Pod网络地址段，不能和VPC网段冲突。当选择系统自动创建VPC时，默认使用172.16.0.0/16网段。
 
 **说明：** 当创建Flannel网络类型的集群时，该字段为必填。 |
 |cloud\_monitor\_flags|Boolean|否|true|集群是否安装云监控插件。取值：
@@ -73,7 +73,7 @@ POST /clusters
 默认值：`true`。
 
 **说明：** 在边缘集群场景，边缘节点通过公网和云端管控交互；因此，边缘集群需要开启公网访问。 |
-|service\_cidr|String|否|172.21.0.0|Service网络地址段，不能和VPC网段及Pod网络网段冲突。当选择系统自动创建VPC时，默认使用172.19.0.0/20网段。 |
+|service\_cidr|String|是|172.21.0.0|Service网络地址段，不能和VPC网段及Pod网络网段冲突。当选择系统自动创建VPC时，默认使用172.19.0.0/20网段。 |
 |addons|Array|否|\[\{"name":"flannel","config":""\},\{"name":"logtail-ds-docker","config":""\},\{"name":"alibaba-log-controller","config":"\{"IngressDashboardEnabled":"false"\}"\}\]|Kubernetes集群安装的组件列表。组件的结构包括：
 
 -   `name`：必填，组件名称。
@@ -110,7 +110,7 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 |tags|list|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签： -   key：标签名称。
 -   value：标签值。 |
 |timeout\_mins|int|否|60|集群资源栈创建超时时间，以分钟为单位，默认值60分钟。|
-|vpcid|String|否|vpc-2zeik9h3ahvv2zz95\*\*\*\*|VPC ID，可空。如果不设置，系统会自动创建VPC，系统创建的VPC网段为192.168.0.0/16。 **说明：** `vpc_id`和`vswitch_ids`只能同时为空或者同时都设置对应的值。 |
+|vpcid|String|是|vpc-2zeik9h3ahvv2zz95\*\*\*\*|集群使用的专有网络，创建集群时必须为集群提供。**说明：** `vpc_id`和`vswitch_ids`只能同时为空或者同时都设置对应的值。 |
 |worker\_data\_disk|String|否|true|Worker节点是否挂载数据盘，可选择： -   `true`：表示worker节点挂载数据盘。
 -   `false`：表示worker节点不挂载数据盘。 |
 |worker\_data\_disk\_category|int|否|cloud\_ssd|数据盘类型。取值：-   `cloud_efficiency`：高效云盘。
