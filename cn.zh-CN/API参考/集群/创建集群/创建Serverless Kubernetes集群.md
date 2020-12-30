@@ -38,7 +38,7 @@ POST /clusters
 -   `false`：表示不会创建公网的API Server，仅创建私网的API Server。
 
 默认值：`true`。 |
-|zone\_id|String|Body|否|cn-beiji\*\*\*\*|集群所属地域的可用区ID。 |
+|zone\_id|String|Body|是|cn-beiji\*\*\*\*|集群所属地域的可用区ID。 |
 |tags|list|Body|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签。包含以下信息： -   `key`：标签名称。
 -   `value`：标签值。 |
 |deletion\_protection|Boolean|Body|否|true|集群是否开启集群删除保护，防止通过控制台或API误删除集群。取值：
@@ -91,9 +91,9 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 **说明：** 如果创建集群时未开启专有网络配置SNAT，后续业务需要访问公网，可手动开启。更多信息，请参见[如何为已有集群开启SNAT？](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/如何为已有集群开启SNAT？.md)。
 
 默认值：`true`。 |
-|vpc\_id|String|Body|否|vpc-2zeik9h3ahvv2zz95\*\*\*\*vpc-2zeik9h3ahvv2zz95\*\*\*\*|VPC ID，可空。如果不设置，系统会自动创建VPC，系统创建的VPC网段为192.168.0.0/16。 **说明：** `vpc_id`和`vswitch_ids`只能同时为空或者同时都设置对应的值。 |
-|vswitch\_ids|list|Body|否|\["vsw-2ze97jwri7cei0mpw\*\*\*\*"\]\["vsw-2ze97jwri7cei0mpw\*\*\*\*"\]|虚拟交换机列表，可空。如果不设置，系统会自动创建。**说明：** vpc\_id和vswitch\_ids只能同时为空或者同时设置对应的值。 |
-|security\_group\_id|String|Body|否|sg-bp1bdue0qc1g7k1e\*\*|使用已有安全组创建集群时需要指定安全组ID，和`is_enterprise_security_group`二选一，集群节点自动加入到此安全组。 |
+|vpc\_id|String|Body|是|vpc-2zeik9h3ahvv2zz95\*\*\*\*|集群使用的专有网络，创建集群时必须为集群提供。**说明：** `vpcid`和`vswitch_ids`只能同时都设置对应的值。 |
+|vswitch\_ids|list|Body|是|\["vsw-2ze97jwri7cei0mpw\*\*\*\*"\]|交换机ID。List长度范围为 \[1，3\]。|
+|security\_group\_id|String|Body|否|sg-bp1bdue0qc1g7k\*\*\*\*|使用已有安全组创建集群时需要指定安全组ID，和`is_enterprise_security_group`二选一，集群节点自动加入到此安全组。 |
 
 ## 返回数据
 
