@@ -10,7 +10,8 @@
 |---|--|
 |[创建集群](/intl.zh-CN/API参考/集群/创建集群/创建集群.md)
 
-|调用CreateCluster创建一个新的Kubernetes集群实例，并新建指定数量的节点。|
+|调用CreateCluster创建一个Kubernetes集群实例，并新建指定数量的节点。|
+|[创建Kubernetes专有版集群](/intl.zh-CN/API参考/集群/创建集群/创建Kubernetes专有版集群.md)|调用CreateCluster创建一个标准Kubernetes专有版集群。|
 |[创建Kubernetes托管版集群](/intl.zh-CN/API参考/集群/创建集群/创建Kubernetes托管版集群.md)
 
 |调用CreateCluster创建一个新的Managed Kubernetes集群实例，并创建指定数量的节点。|
@@ -20,10 +21,11 @@
 |[创建Kubernetes边缘托管版集群](/intl.zh-CN/API参考/集群/创建集群/创建Kubernetes边缘托管版集群.md)
 
 |调用CreateCluster创建一个新的Kubernetes边缘托管版集群实例。|
-|[t1830556.md\#](/intl.zh-CN/API参考/集群/创建集群/创建专有版安全沙箱Kubernetes集群.md)
+|[创建专有版安全沙箱Kubernetes集群](/intl.zh-CN/API参考/集群/创建集群/创建专有版安全沙箱Kubernetes集群.md)
 
-|调用CreateCluster创建一个新的安全沙箱容器Kubernetes集群。|
-|[自动扩容集群](/intl.zh-CN/API参考/集群/扩容集群/自动扩容集群.md)
+|调用CreateCluster创建一个专有版安全沙箱Kubernetes集群。|
+|[创建标准托管版安全沙箱Kubernetes集群](/intl.zh-CN/API参考/集群/创建集群/创建标准托管版安全沙箱Kubernetes集群.md)|调用CreateCluster创建一个托管版安全沙箱Kubernetes集群。|
+|[扩容集群](/intl.zh-CN/API参考/集群/扩容集群/扩容集群.md)
 
 |调用ScaleOutCluster增加集群中Worker节点的数量（支持多可用区实例）。|
 |[扩容安全沙箱容器集群](/intl.zh-CN/API参考/集群/扩容集群/扩容安全沙箱容器集群.md)
@@ -66,6 +68,7 @@
 
 |调用ListTagResources，查询可见的资源标签关系。|
 |[查询Kubernetes版本详情](/intl.zh-CN/API参考/集群/查询Kubernetes版本详情.md)|调用DescribeKubernetesVersionMetadata查询支持的Kubernetes版本的详细信息。|
+|[查询任务详情](/intl.zh-CN/API参考/集群/查询任务详情.md)|调用DescribeTaskInfo根据任务ID查询任务执行详情。|
 
 ## 节点
 
@@ -163,9 +166,6 @@
 
 |调用DescribeAddons查询集群安装的组件详情。|
 |[升级集群组件](/intl.zh-CN/API参考/组件/升级集群组件.md)|调用UpgradeClusterAddons将指定组件升级到指定版本。|
-|[暂停组件升级](/intl.zh-CN/API参考/组件/暂停组件升级.md)|调用PauseComponentUpgrade暂停组件升级。|
-|[恢复集群组件升级]()|调用ResumeComponentUpgrade重新启动被暂停的组件升级任务。|
-|[取消集群组件升级](/intl.zh-CN/API参考/组件/取消集群组件升级.md)|调用CancelComponentUpgrade取消集群组件升级。|
 |[查询集群组件升级状态](/intl.zh-CN/API参考/组件/查询集群组件升级状态.md)
 
 |调用DescribeClusterAddonUpgradeStatus查询集群组件升级状态。|
