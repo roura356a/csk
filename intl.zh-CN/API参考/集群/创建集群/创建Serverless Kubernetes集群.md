@@ -94,12 +94,12 @@ POST /clusters
 your\_sls\_project\_name\\"\}"\}\]。 |
 |nat\_gateway|Boolean|Body|否|true|创建ASK集群时，是否在VPC中创建NAT网关并配置SNAT规则。取值：
 
--   `true`：将为您创建NAT网关并自动配置SNAT规则，集群VPC 将具备公网访问能力。
+-   `true`：将为您创建NAT网关并自动配置SNAT规则，集群VPC将具备公网访问能力。
 -   `false`：不为您创建NAT网关及SNAT规则。集群VPC将不具备公网访问能力。
 
 默认值：`false`。 |
 |vpcid|String|Body|是|vpc-2zeik9h3ahvv2zz95\*\*\*\*|集群使用的专有网络，创建集群时必须为集群提供。**说明：** `vpcid`和`vswitch_ids`只能同时都设置对应的值。 |
-|vswitch\_ids|Array of String|Body|是|\["vsw-2ze97jwri7cei0mpw\*\*\*\*"\]|交换机ID。List长度范围为 \[1，3\]。|
+|vswitch\_ids|Array of String|Body|是|\["vsw-2ze97jwri7cei0mpw\*\*\*\*"\]|交换机ID。List长度范围为\[1，3\]。|
 |security\_group\_id|String|Body|否|sg-bp1bdue0qc1g7k\*\*\*\*|使用已有安全组创建集群时需要指定安全组ID，和`is_enterprise_security_group`二选一，集群节点自动加入到此安全组。 |
 
 ## 返回数据
