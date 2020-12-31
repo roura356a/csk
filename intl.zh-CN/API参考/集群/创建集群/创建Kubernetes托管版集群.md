@@ -26,7 +26,7 @@ POST /clusters
 |name|String|Body|是|cluster-demo|集群名称。
 
 命名规则：由数字、汉字、英文字符或短划线（-）组成，长度范围1~63个字符，且不能以短划线（-）开头。 |
-|num\_of\_nodes|int|Body|是|3|Worker节点数。范围是\[0,100\]。|
+|num\_of\_nodes|Long|Body|是|3|Worker节点数。范围是\[0,100\]。|
 |region\_id|String|Body|是|cn-beijing|集群所在地域ID。|
 |snat\_entry|Boolean|Body|否|true|是否为网络配置SNAT：
 
@@ -38,21 +38,21 @@ POST /clusters
 如果您的应用需要访问公网，建议配置为true。
 
 默认值：`false`。 |
-|vswitch\_ids|list|Body|是|\["vsw-2ze48rkq464rsdts1\*\*\*\*"\]|交换机ID。List长度范围为 \[1,3\]。|
+|vswitch\_ids|Array of String|Body|是|\["vsw-2ze48rkq464rsdts1\*\*\*\*"\]|交换机ID。List长度范围为 \[1,3\]。|
 |worker\_system\_disk\_category|String|Body|是|cloud\_efficiency|Worker节点系统盘类型，取值：
 
 -   `cloud_efficiency`：高效云盘。
 -   `cloud_ssd`：SSD云盘。
 
 默认值：`cloud_ssd`。 |
-|worker\_system\_disk\_size|int|Body|是|120|Worker节点系统盘大小，单位为GiB。
+|worker\_system\_disk\_size|Long|Body|是|120|Worker节点系统盘大小，单位为GiB。
 
 取值范围：\[20,500\]。
 
 该参数的取值必须大于或者等于max\{20, ImageSize\}。
 
 默认值：max\{40, 参数ImageId对应的镜像大小\}。 |
-|addons|list|Body|否|\[\{"name": "terway-eniip","config": ""\}, \{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\",\\"sls\_project\_name\\":\\"your\_sls\_project\_name\\"\}"\}, \{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\]|Kubernetes集群安装的组件列表。组件的结构包括：
+|addons|Array of [addon](/intl.zh-CN/API参考/通用数据结构.md)|Body|否|\[\{"name": "terway-eniip","config": ""\}, \{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\",\\"sls\_project\_name\\":\\"your\_sls\_project\_name\\"\}"\}, \{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\]|Kubernetes集群安装的组件列表。组件的结构包括：
 
 -   `name`：必填，组件名称。
 -   `config`：可选，取值为空时表示无需配置。
@@ -85,6 +85,17 @@ POST /clusters
 开启事件中心：\[\{"name":"ack-node-problem-detector","config":"\{\\"sls\_project\_name\\":\\"
 
 your\_sls\_project\_name\\"\}"\}\]。 |
+|cluster\_spec|String|Body|否|ack.pro.small|托管版集群类型，面向托管集群。取值：
+
+-   `ack.pro.small`：专业托管集群，即："ACK Pro版集群"。
+-   `ack.standard`：标准托管集群。
+
+默认值：`ack.standard`。取值可以为空，为空时则创建标准托管集群。
+
+更多详情，请参见[t1913636.dita\#concept\_2558837](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/Kubernetes Pro版集群介绍.md)。 |
+|encryption\_provider\_key|String|Body|否|0fe64791-55eb-4fc7-84c5-c6c7cdca\*\*\*\*|KMS密钥ID，使用该密钥对数据盘进行加密。更多详情，请参见[t22664.dita\#concept\_28935\_zh](/intl.zh-CN/产品简介/什么是密钥管理服务.md)。
+
+**说明：** 该功能只在专业托管版集群（ACK Pro版集群）中生效。 |
 |container\_cidr|String|Body|是|172.20.0.0/16|Pod网络地址段，不能和VPC网段冲突。当选择系统自动创建VPC时，默认使用172.16.0.0/16网段。
 
 **说明：** 当创建Flannel网络类型的集群时，该字段为必填。 |
@@ -115,12 +126,52 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 
 默认值：`false`。 |
 |service\_cidr|String|Body|是|172.21.0.0/20|Service网络地址段，不能和VPC网段及Pod网络网段冲突。当选择系统自动创建VPC时，默认使用172.19.0.0/20网段。 |
-|tags|list|Body|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签。包含以下信息：
+|tags|Array of [tag](/intl.zh-CN/API参考/通用数据结构.md)|Body|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签。包含以下信息：
 
 -   `key`：标签名称。
 -   `value`：标签值。 |
-|taints|list|Body|否|\[\{"key": "env", "value": "private", "effect": "NoSchedule"\}\]|节点污点信息。污点和容忍度（Toleration）相互配合，可以用来避免Pod被分配到不合适的节点上。更多信息，请参见[taint-and-toleration](https://kubernetes.io/zh/docs/concepts/scheduling-eviction/taint-and-toleration/)。 |
-|timeout\_mins|int|Body|否|60|集群创建超时时间，单位分钟。
+|timezone|String|Body|否|Asia/Shanghai|集群使用的时区。 |
+|taints|Array of [taint](/intl.zh-CN/API参考/通用数据结构.md)|Body|否|\[\{"key": "env", "value": "private", "effect": "NoSchedule"\}\]|节点污点信息。污点和容忍度（Toleration）相互配合，可以用来避免Pod被分配到不合适的节点上。更多信息，请参见[taint-and-toleration](https://kubernetes.io/zh/docs/concepts/scheduling-eviction/taint-and-toleration/)。 |
+|cluster\_domain|String|Body|否|cluster.local|集群本地域名。
+
+命名规则：域名由小数点（.）分隔的一个或多个部分构成，每个部分最长为63个字符，可以使用小写字母、数字和短划线（-），且首尾必须为小写字母或数字。 |
+|custom\_san|String|Body|否|cs.aliyun.com|自定义证书SAN，多个IP或域名以英文逗号（,）分隔。 |
+|service\_account\_issuer|String|Body|否|kubernetes.default.svc|ServiceAccount是Pod和集群`apiserver`通讯的访问凭证。而`service-account-issuer`是`serviceaccount token`中的签发身份，即`token payload`中的`iss`字段。
+
+关于`ServiceAccount`更多详情，请参见[t1881266.dita\#task\_2460323](/intl.zh-CN/Kubernetes集群用户指南/安全管理/部署服务账户令牌卷投影.md)。 |
+|api\_audiences|String|Body|否|kubernetes.default.svc|ServiceAccount是Pod和集群`apiserver`通讯的访问凭证，而`api-audiences`是合法的请求`token`身份，用于`apiserver`服务端认证请求`token`是否合法。支持配置多个`audienc`e，通过英文逗号（,）分割。
+
+关于`ServiceAccount`更多详情，请参见[t1881266.dita\#task\_2460323](/intl.zh-CN/Kubernetes集群用户指南/安全管理/部署服务账户令牌卷投影.md)。 |
+|node\_name\_mode|String|Body|否|aliyun.com00055test|自定义节点名称。
+
+节点名称由三部分组成：前缀+节点IP地址子串+后缀：
+
+-   前缀和后缀均可由英文句号（.）分隔的一个或多个部分构成，每个部分可以使用小写字母、数字和短划线（-），且首尾必须为小写字母和数字。
+-   IP地址段长度指截取节点IP地址末尾的位数，取值范围\[5,12\]。
+
+例如，节点IP地址为：192.168.0.55，指定前缀为aliyun.com，IP地址段长度为5，后缀为test，则节点名称为aliyun.com00055test。 |
+|rds\_instances|Array of String|Body|否|rm-2zev748xi27xc\*\*\*\*|RDS实例名称。 |
+|image\_id|String|Body|否|m-bp16z7xko3vvv8gt\*\*\*\*|节点自定义镜像，默认使用系统镜像。当选择自定义镜像时，将取代默认系统镜像。请参见[t1849273.dita\#task\_2362493](/intl.zh-CN/最佳实践/自建Kubernetes迁移ACK/使用自定义镜像创建ACK集群.md)。 |
+|pod\_vswitch\_ids|Array of String|Body|是|vsw-2ze97jwri7cei0mpw\*\*\*\*|Terway网络类型的集群，需要指定Pod所在的虚拟交换，因为Pod独占一个机器IP。 |
+|instances|Array of String|Body|否|i-2ze4zxnm36vq00xn\*\*\*\*|实例名称。 |
+|format\_disk|Boolean|Body|否|false|使用已有实例创建集群时，是否对实例进行数据盘挂载，取值：
+
+-   `true`：将容器和镜像存储在数据盘，数据盘内原有数据将丢失，请注意备份数据。
+-   `false`：不将容器和镜像存储在数据盘。
+
+默认值：`false`。
+
+数据盘挂载规则：
+
+-   如果ECS已挂载数据盘，且最后一块数据盘的文件系统未初始化，系统会自动将该数据盘格式化为ext4，用来存放内容/var/lib/docker、/var/lib/kubelet 。
+-   如果ECS未挂载数据盘，则不会挂载新的数据盘。 |
+|keep\_instance\_name|Boolean|Body|否|true|使用已有实例创建集群时，是否保留实例名称。
+
+-   `true`：保留。
+-   `false`：不保留，会用系统规则进行替换。
+
+默认值：`true`。 |
+|timeout\_mins|Long|Body|否|60|集群创建超时时间，单位分钟。
 
 默认值：60。 |
 |vpcid|String|Body|是|vpc-2zeik9h3ahvv2zz95\*\*\*\*|集群使用的VPC实例ID。 |
@@ -130,23 +181,23 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 -   `false`：不自动续费。
 
 默认值：`true`。 |
-|worker\_auto\_renew\_period|int|Body|否|1|Worker节点自动续费周期，当选择包年包月付费类型时才生效，且为必选值。
+|worker\_auto\_renew\_period|Long|Body|否|1|Worker节点自动续费周期，当选择包年包月付费类型时才生效，且为必选值。
 
 取值范围：\{1, 2, 3, 6, 12\}。 |
-|worker\_data\_disks|list|Body|否|\[\{"category": "cloud\_ssd", "size": "40", "auto\_snapshot\_policy\_id": "sp-bp14j6w7ss6ozzbp\*\*"\}\]|Worker数据盘类型、大小等配置的组合。|
+|worker\_data\_disks|Array of [data\_disk](/intl.zh-CN/API参考/通用数据结构.md)|Body|否|\[\{"category": "cloud\_ssd", "size": "40", "auto\_snapshot\_policy\_id": "sp-bp14j6w7ss6ozzbp\*\*"\}\]|Worker数据盘类型、大小等配置的组合。|
 |worker\_data\_disk\_category|String|Body|否| |数据盘类型。取值：-   `cloud_efficiency`：高效云盘。
 -   `cloud_ssd`：SSD云盘。
 -   `cloud`：普通云盘。
 
 默认值：`cloud_efficiency`。**说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的category取值。 |
-|worker\_data\_disk\_size|int|Body|否| |数据盘大小，单位为GiB。**说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的size取值。 |
+|worker\_data\_disk\_size|Long|Body|否| |数据盘大小，单位为GiB。**说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的size取值。 |
 |worker\_instance\_charge\_type|String|Body|是|PrePaid|Worker节点付费类型，取值：
 
 -   `PrePaid`：包年包月。
 -   `PostPaid`：按量付费。
 
 默认值：按量付费。 |
-|worker\_period|int|Body|否|1|Worker节点包年包月时长，当`worker_instance_charge_type`取值为`PrePaid`时才生效且为必选值。
+|worker\_period|Long|Body|否|1|Worker节点包年包月时长，当`worker_instance_charge_type`取值为`PrePaid`时才生效且为必选值。
 
 取值范围：\{1, 2, 3, 6, 12, 24, 36, 48, 60\}。
 
@@ -154,7 +205,7 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 |worker\_period\_unit|String|Body|否|Month|Wroker节点付费周期，当付费类型为`PrePaid`的时候需要指定周期。
 
 取值：`Month`，当前只支持以月为周期。 |
-|worker\_instance\_types|list|Body|是|\["ecs.n4.xlarge"\]|Worker节点实例规格，至少要指定一个实例规格。更多详细信息，请参见[实例规格族](/intl.zh-CN/实例/实例规格族.md)。
+|worker\_instance\_types|Array of String|Body|是|\["ecs.n4.xlarge"\]|Worker节点实例规格，至少要指定一个实例规格。更多详细信息，请参见[实例规格族](/intl.zh-CN/实例/实例规格族.md)。
 
 **说明：** 实例规格优先级随着在数据中的位置增大依次降低。当无法根据优先级较高的实例规格创建出实例时，会自动选择下一优先级的实例规格来创建实例。 |
 |cpu\_policy|String|Body|否|none|节点CPU管理策略。当集群版本在1.12.6及以上时支持以下两种策略：
@@ -163,7 +214,7 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 -   `none`：表示启用现有的默认CPU亲和性方案。
 
 默认值：`none`。 |
-|runtime|json|Body|否|\{"name": "docker", "version": "19.03.5"\}|容器运行时，例如docker、Sandboxed-Container.runv等，通常为docker。runtime包括下面2个信息： -   `name`：容器运行时名称。
+|runtime|[runtime](/intl.zh-CN/API参考/通用数据结构.md)|Body|否|\{"name": "docker", "version": "19.03.5"\}|容器运行时，例如docker、Sandboxed-Container.runv等，通常为docker。runtime包括下面2个信息： -   `name`：容器运行时名称。
 -   `version`：容器运行时版本。 |
 |platform|String|Body|否|CentOS|操作系统发行版。取值：
 
@@ -175,6 +226,7 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 -   `WindowsCore`
 
 默认值：`CentOS`。 |
+|user\_data|String|Body|否|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFD\*\*\*\*|自定义节点数据。更多详情，请参见[t9660.dita\#concept\_fgf\_tjn\_xdb](/intl.zh-CN/实例/管理实例/使用实例自定义数据/生成实例自定义数据.md)。 |
 |os\_type|String|Body|否|Linux|操作系统平台类型。取值：
 
 -   `Windows`
