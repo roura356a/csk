@@ -1,5 +1,5 @@
 ---
-keyword: [ack-node-repairer, health check and auto repairing of nodes, ACK Node Repairer]
+keyword: [ack-node-repairer, health check and auto repairing of node, ACK Node Repairer]
 ---
 
 # Introduction to ack-node-repairer
@@ -7,12 +7,12 @@ keyword: [ack-node-repairer, health check and auto repairing of nodes, ACK Node 
 When a Node Problem Detector \(NPD\) detects node exceptions, node events or node conditions are generated and reported to the cluster of Container Service for Kubernetes \(ACK\). ACK Node Repairer automatically listens to the events or conditions on each node and fixes these issues based on the related configurations. This topic describes how to install and configure ACK Node Repairer.
 
 -   One of the following types of ACK cluster is created:
-    -   [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md).
+    -   [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
     -   [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md).
--   ACK Node Problem Detector is installed. For more information, see [Scenario 3: Use node-problem-detector with kube-eventer to raise alerts upon node anomalies](/intl.en-US/User Guide for Kubernetes Clusters/Monitoring management/Monitor events.md).
+-   ACK Node Problem Detector is installed. For more information, see [Scenario 3: Use node-problem-detector with kube-eventer to raise alerts upon node anomalies](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Event monitoring.md).
 -   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
 
-ACK Node Repairer is programmed with a predefined list of commonly occurred node exceptions and the actions to fix these exceptions. When a node exception occurs, ACK Node Repairer automatically triggers the corresponding action on the node to fix the exception. After the node exception is fixed, NPD automatically changes the state of the node exception. This creates a closed-loop system for detecting and repairing node exceptions. The operations and maintenance \(O&M\) engineers can also define the node exceptions that need to be fixed and the actions to fix the exceptions.
+ACK Node Repairer is programmed with a predefined list of commonly occurring node exceptions and the actions to fix these exceptions. When a node exception occurs, ACK Node Repairer automatically triggers the corresponding action on the node to fix the exception. After the node exception is fixed, NPD automatically changes the state of the node exception. This creates a closed-loop system for detecting and repairing node exceptions. The operations and maintenance \(O&M\) engineers can also define the node exceptions that need to be fixed and the actions to fix the exceptions.
 
 NPD is a tool for diagnosing Kubernetes nodes. NPD detects node exceptions and generates node events when the following exceptions are detected: Docker engine hangs, Linux kernel hangs, outbound traffic anomalies, and file descriptor anomalies.
 
@@ -20,16 +20,24 @@ NPD is a tool for diagnosing Kubernetes nodes. NPD detects node exceptions and g
 
 Before you use ACK Node Repairer, you must first install ack-node-repairer.
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
-2.  Find and click ack-node-repairer. On the App Catalog - ack-node-repairer page, click the **Parameters** tab and specify the AccessKey pair of the current account. For more information, see [Obtain an AccessKey pair]().
+2.  In the left-side navigation pane, choose **Marketplace** \> **App Catalog**.
 
-3.  On the right side of the page, click **Create**.
+3.  Find and click ack-node-repairer. On the App Catalog - ack-node-repairer page, click the **Parameters** tab and specify the AccessKey pair of the current account.
+
+    ![AK](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8642988061/p185927.png)
+
+    In this example, set the AccessKey pair based on the following description:
+
+    -   accessKey: nodeRepairer.accessKey
+    -   accessSecret: nodeRepairer.accessSecret
+4.  On the right side of the page, click **Create**.
 
 
 ## Configure ack-node-repairer
 
-To configure auto repairing for each node exception, you must associate the node condition with the action that is performed to fix the node exception. You must also specify the details of the action. The following example shows how to configure ack-node-repairer to automatically fix the issue of Network Time Protocol \(NTP\) service failure.
+After ACK Node Repairer is installed, all auto repairing operations that are supported by the current version are automatically performed. You can configure and enable or disable auto repairing for a type of node exception. The following example shows how to configure ack-node-repairer to automatically fix the issue of Network Time Protocol \(NTP\) service failure.
 
 1.  View the YAML file of default-node-repairer.
 
@@ -41,67 +49,31 @@ To configure auto repairing for each node exception, you must associate the node
 
 2.  Modify the configurations of default-node-repairer.
 
-    In the spec.rules filed, add the detector parameter for detecting the `NTPProblem` condition and add the nodeOperation parameter for fixing NTP issues. The following code block is an example:
+    In the spec.rules field, add the detector parameter to detect the `NTPProblem` condition and add the healers parameter to fix NTP issues. The following code block is an example:
 
     ```
     spec:
       rules:
-      # Specify the detector parameter for detecting NTP issues and the nodeOperation parameter for fixing NTP issues.
+      Specify the detector parameter to detect NTP issues and the nodeOperation parameter to fix NTP issues.
       - detector:
           conditionType: NTPProblem
           type: conditionType
+          paused: false
         healers:
         - nodeOperation: restart-ntpd
           type: nodejob
     ```
 
-3.  Define actions to fix NTP issues. The resource object type of the action is nodeoperations.nodes.alibabacloud.com.
+    **Note:** To configure auto repairing for each node exception, you must associate the node condition with the action that is performed to fix the node exception. The rules.detector.conditionType parameter specifies the node condition. If you set rules.detector.paused to true, auto repairing is disabled for this type of node condition.
 
-    1.  The following code block is a sample YAML template:
+    After you perform the preceding steps, when NTP issues occur on a node in the cluster, ACK Node Repairer automatically runs the `systemctl restart chronyd.service` command on the node through [OOS]() to restart NTP on the node.
 
-        ```
-        apiVersion: nodes.alibabacloud.com/v1beta1
-        kind: NodeOperation
-        metadata:
-          generation: 1
-          name: restart-ntpd-20200905220953
-          namespace: kube-system
-        spec:
-          args: ""
-          batch:
-          - 1
-          - 10
-          - 50
-          - 200
-        # systemctl restart chronyd.service
-          content: c3lzdGVtY3RsIHJlc3RhcnQgY2hyb255ZC5zZXJ2aWNlCg==
-          forward: auto
-          internal: 60
-          retry: 3
-          timeout: 60
-          version: "20200905220953"
-        ```
 
-    2.  Run the `kubectl apply -f {FILENAME}.yaml` command to deploy the resource object in the cluster.
+## Records of auto repairing events and results
 
-4.  Define an executor to perform the actions. The type of the executor is nodeoperationexecutors.nodes.alibabacloud.com.
+A noderepairers.nodes.alibabacloud.com type resource object is automatically created in the kube-system namespace to record each auto repairing event. To view the content of this resource object, run the following command. You can also view the auto repairing result by checking the Status field in the output.
 
-    1.  The following code block is a sample YAML template:
-
-        ```
-        apiVersion: nodes.alibabacloud.com/v1beta1
-        kind: NodeOperationExecutor
-        metadata:
-          name: restart-ntpd
-          namespace: kube-system
-        spec:
-          stableVersion: "20200905220953"
-          versions:
-          - "20200905220953"
-        ```
-
-    2.  Run the `kubectl apply -f {FILENAME}.yaml` command to deploy the resource object in the cluster.
-
-    After you perform the preceding steps, when NTP issues occur on a node in the cluster, ACK Node Repairer automatically runs the `systemctl restart chronyd.service` command on the node through OOS to restart NTP on the node.
-
+```
+kubectl -n kube-system get nodejobs.nodes.alibabacloud.com {nodejob_cr_name} -o yaml
+```
 
