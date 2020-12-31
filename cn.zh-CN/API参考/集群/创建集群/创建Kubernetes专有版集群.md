@@ -31,14 +31,6 @@ POST /clusters
 -   `ManagedKubernetes`：标准托管版集群、边缘托管版集群。
 -   `Ask`：标准Serverless集群。
 -   `ExternalKubernetes`：注册至ACK的外部集群。 |
-|cluster\_spec|String|Body|否|ack.pro.small|托管版集群类型，面向托管集群。取值：
-
--   `ack.pro.small`：专业托管集群，即："ACK Pro版集群"。
--   `ack.standard`：标准托管集群。
-
-默认值：`ack.standard`。取值可以为空，为空时则创建标准托管集群。
-
-更多详情，请参见[t1913636.dita\#concept\_2558837](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/Kubernetes Pro版集群介绍.md)。 |
 |kubernetes\_version|String|Body|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。
 
 目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[t1960241.dita\#task\_1960241](/cn.zh-CN/新功能发布记录/Kubernetes版本发布说明/Kubernetes版本发布概览.md)。 |
@@ -104,9 +96,6 @@ POST /clusters
 
 例如，节点IP地址为：192.168.0.55，指定前缀为aliyun.com，IP地址段长度为5，后缀为test，则节点名称为aliyun.com00055test。 |
 |custom\_san|String|Body|否|cs.aliyun.com|自定义证书SAN，多个IP或域名以英文逗号（,）分隔。 |
-|encryption\_provider\_key|String|Body|否|0fe64791-55eb-4fc7-84c5-c6c7cdca\*\*\*\*|KMS密钥ID，使用该密钥对数据盘进行加密。更多详情，请参见[t22664.dita\#concept\_28935\_zh](/cn.zh-CN/产品简介/什么是密钥管理服务.md)。
-
-**说明：** 该功能只在专业托管版集群（ACK Pro版集群）中生效。 |
 |service\_account\_issuer|String|Body|否|kubernetes.default.svc|ServiceAccount是Pod和集群`apiserver`通讯的访问凭证。而`service-account-issuer`是`serviceaccount token`中的签发身份，即`token payload`中的`iss`字段。
 
 关于`ServiceAccount`更多详情，请参见[t1881266.dita\#task\_2460323](/cn.zh-CN/Kubernetes集群用户指南/安全管理/部署服务账户令牌卷投影.md)。 |
@@ -254,20 +243,12 @@ POST /clusters
 
 数据盘挂载规则：
 
--   如果 ECS 已挂载数据盘，且最后一块数据盘的文件系统未初始化，系统会自动将该数据盘格式化为 ext4，用来存放内容/var/lib/docker、/var/lib/kubelet 。
--   如果 ECS 未挂载数据盘，则不会挂载新的数据盘。 |
+-   如果ECS已挂载数据盘，且最后一块数据盘的文件系统未初始化，系统会自动将该数据盘格式化为ext4，用来存放内容/var/lib/docker、/var/lib/kubelet。
+-   如果ECS未挂载数据盘，则不会挂载新的数据盘。 |
 |keep\_instance\_name|Boolean|Body|否|true|使用已有实例创建集群时，是否保留实例名称。
 
 -   `true`：保留。
 -   `false`：不保留，会用系统规则进行替换。
-
-默认值：`true`。 |
-|nat\_gateway|Boolean|Body|否|true|为专有网络配置SNAT。
-
--   `true`：将为您创建NAT网关并自动配置SNAT规则，若您集群内的节点、应用等需要访问公网需要设置为`true`。
--   `false`：不为您创建NAT网关及SNAT规则。这种模式下，集群内节点及应用将不能访问公网。
-
-**说明：** 如果创建集群时未开启，后续业务需要访问公网，可[t1936294.dita\#task\_1936294](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/如何为已有集群开启SNAT？.md)。
 
 默认值：`true`。 |
 |deletion\_protection|Boolean|Body|否|true|集群删除保护，防止通过控制台或API误删除集群。取值：
