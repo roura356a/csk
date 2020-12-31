@@ -38,7 +38,7 @@ POST /clusters
 如果您的应用需要访问公网，建议配置为true。
 
 默认值：`false`。 |
-|vswitch\_ids|Array of String|Body|是|\["vsw-2ze48rkq464rsdts1\*\*\*\*"\]|交换机ID。List长度范围为 \[1,3\]。|
+|vswitch\_ids|Array of String|Body|是|\["vsw-2ze48rkq464rsdts1\*\*\*\*"\]|交换机ID。List长度范围为\[1,3\]。|
 |worker\_system\_disk\_category|String|Body|是|cloud\_efficiency|Worker节点系统盘类型，取值：
 
 -   `cloud_efficiency`：高效云盘。
@@ -163,7 +163,7 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 
 数据盘挂载规则：
 
--   如果ECS已挂载数据盘，且最后一块数据盘的文件系统未初始化，系统会自动将该数据盘格式化为ext4，用来存放内容/var/lib/docker、/var/lib/kubelet 。
+-   如果ECS已挂载数据盘，且最后一块数据盘的文件系统未初始化，系统会自动将该数据盘格式化为ext4，用来存放内容/var/lib/docker、/var/lib/kubelet。
 -   如果ECS未挂载数据盘，则不会挂载新的数据盘。 |
 |keep\_instance\_name|Boolean|Body|否|true|使用已有实例创建集群时，是否保留实例名称。
 
