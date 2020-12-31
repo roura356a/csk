@@ -169,6 +169,8 @@ Alibaba Terraform Provider从1.111.0版本开始可通过组件[alicloud\_cs\_ku
 
 [节点自动伸缩](/intl.zh-CN/Kubernetes集群用户指南/弹性伸缩/节点自动伸缩.md)
 
+[t2005064.md\#]()
+
 [alicloud\_cs\_kubernetes\_node\_pool](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes_node_pool)
 
 [alicloud\_cs\_kubernetes\_autoscaler](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes_autoscaler)
