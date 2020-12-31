@@ -18,17 +18,27 @@ POST /clusters
 
 ## 请求参数
 
-|名称|类型|必须|示例值|描述|
-|--|--|--|---|--|
-|cluster\_type|String|是|ManagedKubernetes|集群类型。取值`ManagedKubernetes`创建边缘托管版集群。|
-|key\_pair|String|是|demo-key|密钥对名称，和`login_password`二选一。|
-|login\_password|String|是|HelloWorld123|SSH登录密码，和`key_pair`二选一。密码规则为8~30个字符，且至少同时包含三项（大小写字母、数字和特殊符号）。|
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
 |name|String|是|demo-edge-cluster|集群名称。
 
 命名规则：由数字、汉字、英文字符或短划线（-）组成，长度范围1~63个字符，且不能以短划线（-）开头。 |
-|num\_of\_nodes|int|是|1|Worker节点数。范围是\[0,100\]。|
-|profile|String|是|Edge|边缘集群标识，默认取值：Edge。|
+|cluster\_type|String|是|ManagedKubernetes|集群类型。取值`ManagedKubernetes`创建边缘托管版集群。|
+|disable\_rollback|Boolean|否|true|集群创建失败是否回滚。取值：
+
+-   `true`：当集群创建失败时，进行回滚操作。
+-   `false`：当集群创建失败时，不进行回滚操作。
+
+默认值：`false`。 |
+|timeout\_mins|Long|否|60|集群资源栈创建超时时间，以分钟为单位，默认值60分钟。|
+|kubernetes\_version|String|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。
+
+目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[Kubernetes版本发布概览](/cn.zh-CN/新功能发布记录/Kubernetes版本发布说明/Kubernetes版本发布概览.md)。 |
 |region\_id|String|是|cn-beijing|集群所在地域ID。|
+|key\_pair|String|是|demo-key|密钥对名称，和`login_password`二选一。|
+|login\_password|String|是|HelloWorld123|SSH登录密码，和`key_pair`二选一。密码规则为8~30个字符，且至少同时包含三项（大小写字母、数字和特殊符号）。|
+|num\_of\_nodes|Long|是|1|Worker节点数。范围是\[0,100\]。|
+|profile|String|是|Edge|边缘集群标识，默认取值：Edge。|
 |snat\_entry|Boolean|否|true|是否为网络配置SNAT：
 
 -   当已有VPC能访问公网环境时，设置为`false`。
@@ -39,14 +49,14 @@ POST /clusters
 如果您的应用需要访问公网，建议配置为`true`。
 
 默认值：`false`。 |
-|vswitch\_ids|list|是|vsw-2ze48rkq464rsdts1\*\*\*\*|交换机ID。List长度范围为 \[1,3\]。|
+|vswitch\_ids|Array of String|是|vsw-2ze48rkq464rsdts1\*\*\*\*|交换机ID。List长度范围为 \[1,3\]。|
 |worker\_system\_disk\_category|String|是|cloud\_efficiency|Worker节点系统盘类型，取值：
 
 -   `cloud_efficiency`：高效云盘。
 -   `cloud_ssd`：SSD云盘。
 
 默认值：`cloud_ssd`。 |
-|worker\_system\_disk\_size|int|是|100|Worker节点系统盘大小，单位为GiB。
+|worker\_system\_disk\_size|Long|是|100|Worker节点系统盘大小，单位为GiB。
 
 取值范围：\[20,500\]。 |
 |container\_cidr|String|是|172.20.0.0|Pod网络地址段，不能和VPC网段冲突。当选择系统自动创建VPC时，默认使用172.16.0.0/16网段。
@@ -58,13 +68,6 @@ POST /clusters
 -   `false`：不安装云监控插件。
 
 默认值：`false`。 |
-|disable\_rollback|Boolean|否|true|集群创建失败是否回滚。取值：
-
--   `true`：当集群创建失败时，进行回滚操作。
--   `false`：当集群创建失败时，不进行回滚操作。
-
-默认值：`false`。 |
-|proxy\_mode|String|否|iptables|kube-proxy代理模式，支持`iptables`和`ipvs`两种模式，默认为`ipvs`。 |
 |endpoint\_public\_access|Boolean|否|true|是否开启公网API Server。取值：
 
 -   `true`：表示开放公网API Server。
@@ -74,7 +77,7 @@ POST /clusters
 
 **说明：** 在边缘集群场景，边缘节点通过公网和云端管控交互；因此，边缘集群需要开启公网访问。 |
 |service\_cidr|String|是|172.21.0.0|Service网络地址段，不能和VPC网段及Pod网络网段冲突。当选择系统自动创建VPC时，默认使用172.19.0.0/20网段。 |
-|addons|Array|否|\[\{"name":"flannel","config":""\},\{"name":"logtail-ds-docker","config":""\},\{"name":"alibaba-log-controller","config":"\{"IngressDashboardEnabled":"false"\}"\}\]|Kubernetes集群安装的组件列表。组件的结构包括：
+|addons|Array of [addon](/cn.zh-CN/API参考/通用数据结构.md)|否|\[\{"name":"flannel","config":""\},\{"name":"logtail-ds-docker","config":""\},\{"name":"alibaba-log-controller","config":"\{"IngressDashboardEnabled":"false"\}"\}\]|Kubernetes集群安装的组件列表。组件的结构包括：
 
 -   `name`：必填，组件名称。
 -   `config`：可选，取值为空时表示无需配置。
@@ -104,21 +107,43 @@ POST /clusters
 
 **事件中心**：可选，默认开启。事件中心提供对Kubernetes事件的存储、查询、告警等能力。Kubernetes事件中心关联的Logstore在90天内免费。关于免费策略的更多信息，请参见[创建并使用Kubernetes事件中心](/cn.zh-CN/应用中心（App）/K8S事件中心/创建并使用Kubernetes事件中心.md)。
 
+**事件中心**：可选，默认开启。事件中心提供对Kubernetes事件的存储、查询、告警等能力。Kubernetes事件中心关联的Logstore在90天内免费。关于免费策略的更多信息，请参见
+
 开启事件中心：\[\{"name":"ack-node-problem-detector","config":"\{\\"sls\_project\_name\\":\\"
 
 your\_sls\_project\_name\\"\}"\}\]。 |
-|tags|list|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签： -   key：标签名称。
+|tags|Array of [tag](/cn.zh-CN/API参考/通用数据结构.md)|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签： -   key：标签名称。
 -   value：标签值。 |
-|timeout\_mins|int|否|60|集群资源栈创建超时时间，以分钟为单位，默认值60分钟。|
 |vpcid|String|是|vpc-2zeik9h3ahvv2zz95\*\*\*\*|集群使用的专有网络，创建集群时必须为集群提供。**说明：** `vpc_id`和`vswitch_ids`只能同时为空或者同时都设置对应的值。 |
-|worker\_data\_disk|String|否|true|Worker节点是否挂载数据盘，可选择： -   `true`：表示worker节点挂载数据盘。
--   `false`：表示worker节点不挂载数据盘。 |
-|worker\_data\_disk\_category|int|否|cloud\_ssd|数据盘类型。取值：-   `cloud_efficiency`：高效云盘。
--   `cloud_ssd`：SSD云盘。
--   `cloud`：普通云盘。
+|worker\_data\_disks|Array of[data\_disk](/cn.zh-CN/API参考/通用数据结构.md)|否| |Worker节点数据盘类型、大小等配置的组合。|
+|deletion\_protection|Boolean|否|true|集群删除保护，防止通过控制台或API误删除集群。取值：
 
-默认值：`cloud_efficiency`。**说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的category取值。 |
-|worker\_data\_disk\_size|String|否|100|数据盘大小，单位为GiB。|
+-   `true`：启用集群删除保护，将不能通过控制台或API删除集群。
+-   `false`：不启用集群删除保护，则能通过控制台或API删除集群。
+
+默认值：`false`。 |
+|node\_cidr\_mask|String|否|25|节点IP数量，通过指定网络的CIDR来确定IP的数量，只对于Flannel网络类型集群生效。
+
+默认值：`26`。 |
+|worker\_instance\_types|Array of String|是|ecs.n4.large|Worker节点实例规格，至少要指定一个实例规格。更多信息，请参见[实例规格族](/cn.zh-CN/实例/实例规格族.md)。
+
+**说明：** 实例规格优先级随着在数据中的位置增大依次降低。当无法根据优先级较高的实例规格创建出实例时，会自动选择下一优先级的实例规格来创建实例。 |
+|worker\_instance\_charge\_type|String|是|PrePaid|Worker节点付费类型，取值：
+
+-   `PrePaid`：包年包月。
+-   `PostPaid`：按量付费。
+
+默认值：按量付费。 |
+|security\_group\_id|String|否|sg-bp1bdue0qc1g7k\*\*\*\*|使用已有安全组创建集群时需要指定安全组ID，和`is_enterprise_security_group`二选一，集群节点自动加入到此安全组。|
+|is\_enterprise\_security\_group|Boolean|否|true|自动创建企业级安全组，当`security_group_id`为空的时生效。
+
+**说明：** 使用普通安全组时，集群内节点与 Terway Pod 数量之和不能超过 2000。所以创建Terway网络类型集群时，建议使用企业安全组。
+
+-   `true`：创建并使用企业级安全组。
+-   `false`：不使用企业级安全组。
+
+默认值：`true`。 |
+|rds\_instances|rds\_instances|否|rm-2zev748xi27xc\*\*\*\*|RDS实例名称。|
 
 ## 返回数据
 
