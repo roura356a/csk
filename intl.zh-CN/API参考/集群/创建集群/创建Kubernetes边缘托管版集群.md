@@ -49,7 +49,7 @@ POST /clusters
 如果您的应用需要访问公网，建议配置为`true`。
 
 默认值：`false`。 |
-|vswitch\_ids|Array of String|是|vsw-2ze48rkq464rsdts1\*\*\*\*|交换机ID。List长度范围为 \[1,3\]。|
+|vswitch\_ids|Array of String|是|vsw-2ze48rkq464rsdts1\*\*\*\*|交换机ID。List长度范围为\[1,3\]。|
 |worker\_system\_disk\_category|String|是|cloud\_efficiency|Worker节点系统盘类型，取值：
 
 -   `cloud_efficiency`：高效云盘。
@@ -137,7 +137,7 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 |security\_group\_id|String|否|sg-bp1bdue0qc1g7k\*\*\*\*|使用已有安全组创建集群时需要指定安全组ID，和`is_enterprise_security_group`二选一，集群节点自动加入到此安全组。|
 |is\_enterprise\_security\_group|Boolean|否|true|自动创建企业级安全组，当`security_group_id`为空的时生效。
 
-**说明：** 使用普通安全组时，集群内节点与 Terway Pod 数量之和不能超过 2000。所以创建Terway网络类型集群时，建议使用企业安全组。
+**说明：** 使用普通安全组时，集群内节点与Terway Pod数量之和不能超过2000。所以创建Terway网络类型集群时，建议使用企业安全组。
 
 -   `true`：创建并使用企业级安全组。
 -   `false`：不使用企业级安全组。
