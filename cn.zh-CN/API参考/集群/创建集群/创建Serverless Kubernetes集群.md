@@ -38,8 +38,14 @@ POST /clusters
 -   `false`：表示不会创建公网的API Server，仅创建私网的API Server。
 
 默认值：`true`。 |
+|service\_discovery\_types|Array of String|Body|否|PrivateZone|集群内服务发现类型，用于在`ASK`集群中指定服务发现方式。
+
+-   `CoreDNS`：使用Kubernetes原生标准服务发现组件CoreDNS，需要在集群部署一组容器用于DNS解析。默认采用两个0.25 Core 512 MiB规格的ECI实例。
+-   `PrivateZone`：使用阿里云PrivateZone产品提供服务发现能力，需要开启PrivateZone服务。
+
+默认值：不开启。 |
 |zone\_id|String|Body|是|cn-beiji\*\*\*\*|集群所属地域的可用区ID。 |
-|tags|list|Body|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签。包含以下信息： -   `key`：标签名称。
+|tags|Array of [tag](/cn.zh-CN/API参考/通用数据结构.md)|Body|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签。包含以下信息： -   `key`：标签名称。
 -   `value`：标签值。 |
 |deletion\_protection|Boolean|Body|否|true|集群是否开启集群删除保护，防止通过控制台或API误删除集群。取值：
 
@@ -47,7 +53,13 @@ POST /clusters
 -   `false`：集群不开启集群删除保护。
 
 默认值：`false`。 |
-|addons|Array|Body|否|\[\{"name":"logtail-ds","config":"\{"sls\_project\_name":"your\_sls\_project\_name"\}"\}\]|Kubernetes集群安装的组件列表。组件的结构包括：
+|service\_cidr|String|Body|是|172.21.0.0/20|Service网络地址段，可选范围：10.0.0.0/16-24，172.16-31.0.0/16-24，192.168.0.0/16-24
+
+不能与VPC网段10.1.0.0/21及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。
+
+默认使用172.19.0.0/20网段。 |
+|timezone|String|Body|否|Asia/Shanghai|集群使用的时区。 |
+|addons|Array of [addon](/cn.zh-CN/API参考/通用数据结构.md)|Body|否|\[\{"name":"logtail-ds","config":"\{"sls\_project\_name":"your\_sls\_project\_name"\}"\}\]|Kubernetes集群安装的组件列表。组件的结构包括：
 
 -   `name`：必填，组件名称。
 -   `config`：可选，取值为空时表示无需配置。
@@ -80,19 +92,14 @@ POST /clusters
 开启事件中心：\[\{"name":"ack-node-problem-detector","config":"\{\\"sls\_project\_name\\":\\"
 
 your\_sls\_project\_name\\"\}"\}\]。 |
-|nat\_gateway|Boolean|Body|否|true|为专有网络配置SNAT。取值：
+|nat\_gateway|Boolean|Body|否|true|创建ASK集群时，是否在VPC中创建NAT网关并配置SNAT规则。取值：
 
--   `true`：将为您创建NAT网关并自动配置SNAT规则。
+-   `true`：将为您创建NAT网关并自动配置SNAT规则，集群VPC 将具备公网访问能力。
+-   `false`：不为您创建NAT网关及SNAT规则。集群VPC将不具备公网访问能力。
 
-**说明：** 如果您集群内的节点、应用等需要访问公网，该参数需被设置为`true`。
-
--   `false`：不为您创建NAT网关及SNAT规则。这种模式下，集群内节点及应用将不能访问公网。
-
-**说明：** 如果创建集群时未开启专有网络配置SNAT，后续业务需要访问公网，可手动开启。更多信息，请参见[如何为已有集群开启SNAT？](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/如何为已有集群开启SNAT？.md)。
-
-默认值：`true`。 |
-|vpc\_id|String|Body|是|vpc-2zeik9h3ahvv2zz95\*\*\*\*|集群使用的专有网络，创建集群时必须为集群提供。**说明：** `vpcid`和`vswitch_ids`只能同时都设置对应的值。 |
-|vswitch\_ids|list|Body|是|\["vsw-2ze97jwri7cei0mpw\*\*\*\*"\]|交换机ID。List长度范围为 \[1，3\]。|
+默认值：`false`。 |
+|vpcid|String|Body|是|vpc-2zeik9h3ahvv2zz95\*\*\*\*|集群使用的专有网络，创建集群时必须为集群提供。**说明：** `vpcid`和`vswitch_ids`只能同时都设置对应的值。 |
+|vswitch\_ids|Array of String|Body|是|\["vsw-2ze97jwri7cei0mpw\*\*\*\*"\]|交换机ID。List长度范围为 \[1，3\]。|
 |security\_group\_id|String|Body|否|sg-bp1bdue0qc1g7k\*\*\*\*|使用已有安全组创建集群时需要指定安全组ID，和`is_enterprise_security_group`二选一，集群节点自动加入到此安全组。 |
 
 ## 返回数据
@@ -144,7 +151,7 @@ POST /clusters
         }
     ],
     "zone_id":"",   // 可用区ID
-    "vpc_id":"vpc-8vbh3b9a2f38urhls****",
+    "vpcid":"vpc-8vbh3b9a2f38urhls****",
     "vswitch_ids":[
         "vsw-8vbmoffowsztjaawj****"
     ],
