@@ -41,18 +41,18 @@ POST /clusters
 |pod\_vswitch\_ids|Array of String|Body|是|vsw-2ze97jwri7cei0mpw\*\*\*\*|虚拟交换ID。 |
 |container\_cidr|String|Body|是|172.20.0.0/16|Pod网络地址段，必须是有效的私有网段，即以下网段及其子网：10.0.0.0/8，172.16-31.0.0/12-16，192.168.0.0/16。不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。
 
-有关集群网络规划，请参见：[t16651.dita\#concept\_izq\_sg4\_vdb](/cn.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。
+有关集群网络规划，请参见[t16651.dita\#concept\_izq\_sg4\_vdb](/cn.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。
 
 **说明：** 当创建Flannel网络类型的集群时，该字段为必填。 |
 |service\_cidr|String|Body|是|172.21.0.0/20|Service网络地址段，可选范围：10.0.0.0/16-24，172.16-31.0.0/16-24，192.168.0.0/16-24
 
-不能与 VPC 网段 10.1.0.0/21 及 VPC 内已有 Kubernetes 集群使用的网段重复，创建成功后不能修改。
+不能与VPC网段10.1.0.0/21及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。
 
 默认使用172.19.0.0/20网段。 |
 |security\_group\_id|String|Body|否|sg-bp1bdue0qc1g7k\*\*\*\*|使用已有安全组创建集群时需要指定安全组ID，和`is_enterprise_security_group`二选一，集群节点自动加入到此安全组。 |
 |is\_enterprise\_security\_group|Boolean|Body|否|true|自动创建企业级安全组，当`security_group_id`为空的时生效。
 
-**说明：** 使用普通安全组时，集群内节点与 Terway Pod 数量之和不能超过 2000。所以创建Terway网络类型集群时，建议使用企业安全组。
+**说明：** 使用普通安全组时，集群内节点与Terway Pod数量之和不能超过2000。所以创建Terway网络类型集群时，建议使用企业安全组。
 
 -   `true`：创建并使用企业级安全组。
 -   `false`：不使用企业级安全组。
@@ -69,7 +69,7 @@ POST /clusters
 |endpoint\_public\_access|Boolean|Body|否|true|是否开启公网访问。通过EIP暴露API Server，实现集群公网访问。
 
 -   `true`：开启公网访问。
--   `false`：不开启公网访问。选择不开放时，则无法通过外网访问集群 API Server。
+-   `false`：不开启公网访问。选择不开放时，则无法通过外网访问集群API Server。
 
 默认值：`false`。 |
 |ssh\_flags|Boolean|Body|否|true|是否开放公网SSH登录。用登录"专有版集群"的Master节点，托管版集群中该参数不生效。
@@ -140,8 +140,8 @@ POST /clusters
 默认值：`none`。 |
 |proxy\_mode|String|Body|否|ipvs|kube-proxy代理模式
 
--   `iptables`: 成熟稳定的 kube-proxy 代理模式，Kubernetes Service 的服务发现和负载均衡使用 iptables 规则配置，但是性能一般，受规模影响较大，适用于集群存在少量的service。
--   `ipvs`：高性能的 kube-proxy 代理模式，Kubernetes Service 的服务发现和负载均衡使用 Linux IPVS 模块进行配置，适用于集群存在大量的 service，对负载均衡有高性能要求的场景。
+-   `iptables`: 成熟稳定的kube-proxy代理模式，Kubernetes Service的服务发现和负载均衡使用iptables规则配置，但是性能一般，受规模影响较大，适用于集群存在少量的service。
+-   `ipvs`：高性能的kube-proxy代理模式，Kubernetes Service的服务发现和负载均衡使用Linux IPVS模块进行配置，适用于集群存在大量的Service，对负载均衡有高性能要求的场景。
 
 默认值：`ipvs`。 |
 |node\_port\_range|String|Body|否|30000~32767|节点服务端口，可选端口范围：\[30000,65535\]。
