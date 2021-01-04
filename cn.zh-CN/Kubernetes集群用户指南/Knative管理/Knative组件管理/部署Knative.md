@@ -6,16 +6,12 @@ keyword: [Knative部署, Kubernetes]
 
 Knative是一款基于Kubernetes的Serverless框架，其目标是制定云原生、跨平台的Serverless编排标准。本文介绍如何部署Knative。
 
--   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
+[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
 
-    **说明：**
+**说明：**
 
-    -   从Knative v0.14.0开始，仅支持Kubernetes版本1.15及以上的集群。支持标准托管、标准专有以及Serverless Kubernetes集群。
-    -   针对标准托管和标准专有Kubernetes集群，Worker节点数量需要大于等于3个。
--   [部署Istio](/cn.zh-CN/Kubernetes集群用户指南/服务网格/Istio管理/部署Istio.md)。
-
-    如果需要实现Tracing分布式追踪服务，需要额外设置Istio信息，请参见[在Knative上实现Tracing分布式追踪](/cn.zh-CN/Kubernetes集群用户指南/Knative管理/Knative最佳实践/在Knative上实现Tracing分布式追踪.md)。
-
+-   从Knative v0.14.0开始，仅支持Kubernetes版本1.15及以上的集群。支持标准托管、标准专有以及Serverless Kubernetes集群。
+-   针对标准托管和标准专有Kubernetes集群，Worker节点数量需要大于等于3个。
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
