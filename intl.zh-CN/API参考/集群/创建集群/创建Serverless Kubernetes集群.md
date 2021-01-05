@@ -44,7 +44,9 @@ POST /clusters
 -   `PrivateZone`：使用阿里云PrivateZone产品提供服务发现能力，需要开启PrivateZone服务。
 
 默认值：不开启。 |
-|zone\_id|String|Body|是|cn-beiji\*\*\*\*|集群所属地域的可用区ID。 |
+|zone\_id|String|Body|否|cn-beiji\*\*\*\*|集群所属地域的可用区ID。
+
+**说明：** 如果不指定`vpc_id`和`vswitch_ids`的情况下，必须指定`zone_id`。 |
 |tags|Array of [tag](/intl.zh-CN/API参考/通用数据结构.md)|Body|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签。包含以下信息： -   `key`：标签名称。
 -   `value`：标签值。 |
 |deletion\_protection|Boolean|Body|否|true|集群是否开启集群删除保护，防止通过控制台或API误删除集群。取值：
