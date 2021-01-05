@@ -13,14 +13,14 @@ keyword: [CCM, 变更记录]
 |v1.9.3.339-g9830b58-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.339-g9830b58-aliyun|2020年12月18日|-   支持为LoadBalancer类型Service添加Hash值，以保证CCM重启时在Service未做修改的情况下，仅同步虚拟服务器组后端，不再同步LoadBalancer配置及监听配置。
 -   优化SLB OpenAPI调用，降低被限流风险。 |
 
-## 2020年9月
+## 2020年09月
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
 |v1.9.3.316-g8daf1a9-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.316-g8daf1a9-aliyun|2020年09月29日|-   修复偶发性SLB虚拟服务器组未更新问题。
 -   更新健康检查端口（从10252变更为10258）。 |
 
-## 2020年8月
+## 2020年08月
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -40,7 +40,7 @@ keyword: [CCM, 变更记录]
 -   更新监听，将会同步更新虚拟服务器组。
 -   优化SLB API，减少SLB创建时间。 |
 
-## 2020年6月
+## 2020年06月
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -58,7 +58,7 @@ keyword: [CCM, 变更记录]
     -   修复更新Service时，无法通过annotation设置persistence timeout为0的问题。
     -   修复更新Service时，无法通过annotation设置bandwidth为100的问题。 |
 
-## 2020年3月
+## 2020年03月
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -96,7 +96,7 @@ keyword: [CCM, 变更记录]
 -   修复因并发导致的重复创建虚拟服务器组的问题。
 -   修复因缓存导致的设置Node权重时产生脏数据的问题。 |
 
-## 2019年9月
+## 2019年09月
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -107,14 +107,14 @@ keyword: [CCM, 变更记录]
 -   支持在Terway网络模式下，通过annotation：service.beta.kubernetes.io/backend-type："eni"将Pod直接挂载到SLB后端，提升网络转发性能。
 -   支持Local模式下（即设定service的externalTrafficPolicy=Local），Service自动根据Node上的Pod数量为Node设置权重。 |
 
-## 2019年4月
+## 2019年04月
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
 |v1.9.3.105-gfd4e547-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.105-gfd4e547-aliyun|2019年04月15日|-   支持VPC多路由表。允许通过配置文件的方式为集群配置多个路由表。
 -   修复HTTP协议配置更新不生效的问题。 |
 
-## 2019年3月
+## 2019年03月
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -134,7 +134,7 @@ keyword: [CCM, 变更记录]
     -   不支持跨集群复用SLB。
 -   操作VPC路由表方式由并行改为串行方式，修复了触发VPC限流问题。 |
 
-## 2018年8月
+## 2018年08月
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -146,7 +146,7 @@ keyword: [CCM, 变更记录]
 -   在指定已有SLB时，支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners覆盖式处理原有SLB上的监听。
 -   支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth为创建的按带宽付费的SLB指定带宽值。其中多个Listener共享该带宽。 |
 
-## 2018年6月
+## 2018年06月
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
