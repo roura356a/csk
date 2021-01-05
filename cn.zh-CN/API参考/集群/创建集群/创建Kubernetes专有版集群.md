@@ -111,7 +111,33 @@ POST /clusters
 
 -   标签由区分大小写的键值对组成，您最多可以设置20个标签。
 -   标签键不可以重复，最长为64个字符；标签值可以为空，最长为128个字符。标签键和标签值都不能以“aliyun”、“acs:”、“https://”或“http://”开头。详情请参见[Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set)。 |
-|addons|Array of [addon](/cn.zh-CN/API参考/通用数据结构.md)|Body|否| |集群组件列表，创建集群时通过`addons`指定想要安装的集群组件。 |
+|addons|Array of [addon](/cn.zh-CN/API参考/通用数据结构.md)|Body|否| |集群组件列表，创建集群时通过`addons`指定想要安装的集群组件。
+
+**网络组件**：必选，包含Flannel和Terway两种网络类型，创建集群时二选一：
+
+-   Flannel网络：\[\{"name":"flannel","config":""\}\]。
+-   Terway网络：\[\{"name": "terway-eniip","config": ""\}\] 。
+
+**存储组件**：必选，支持`csi`和`flexvolume`两种类型：
+
+-   `csi`：\[\{"name":"csi-plugin","config": ""\},\{"name": "csi-provisioner","config": ""\}\]。
+-   `flexvolume`：\[\{"name": "flexvolume","config": ""\}\] 。
+
+**日志组件**：可选。推荐开启，如果不开启日志服务时，将无法使用集群审计功能。
+
+-   使用已有`SLS Project`：\[\{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\",\\"sls\_project\_name\\":\\"your\_sls\_project\_name\\"\}"\}\] 。
+-   创建新的`SLS Project`：\[\{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\"\}"\}\] 。
+
+**Ingress组件**：可选，ACK专有版集群默认安装Ingress组件`nginx-ingress-controller`。
+
+-   安装Ingress并且开启公网：\[\{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\] 。
+-   禁止默认安装Ingress：\[\{"name": "nginx-ingress-controller","config": "","disabled": true\}\] 。
+
+**事件中心**：可选，默认开启。
+
+事件中心提供对Kubernetes事件的存储、查询、告警等能力。Kubernetes事件中心关联的Logstore在90天内免费。关于免费策略的更多信息，请参见[t1857672.dita\#task\_2389213](/cn.zh-CN/应用中心（App）/K8S事件中心/创建并使用Kubernetes事件中心.md)。
+
+开启事件中心：\[\{"name":"ack-node-problem-detector","config":"\{\\"sls\_project\_name\\":\\"your\_sls\_project\_name\\"\}"\}\]。 |
 |taints|Array of [taint](/cn.zh-CN/API参考/通用数据结构.md)|Body|否| |节点污点信息。污点和容忍度（Toleration）相互配合，可以用来避免Pod被分配到不合适的节点上。更多信息，请参见[taint-and-toleration](https://kubernetes.io/zh/docs/concepts/scheduling-eviction/taint-and-toleration/)。 |
 |cloud\_monitor\_flags|Boolean|Body|否|true|集群是否安装云监控插件。取值：
 
