@@ -38,12 +38,15 @@ POST /clusters
 
 更多有关容器引擎的选择，请参见[t1879872.dita\#task\_2455499](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱管理/如何选择Docker运行时与安全沙箱运行时？.md)。 |
 |vpcid|String|Body|是|vpc-2zeik9h3ahvv2zz95\*\*\*\*|集群使用的专有网络，创建集群时必须为集群提供。 |
-|pod\_vswitch\_ids|Array of String|Body|是|vsw-2ze97jwri7cei0mpw\*\*\*\*|虚拟交换ID。 |
-|container\_cidr|String|Body|是|172.20.0.0/16|Pod网络地址段，必须是有效的私有网段，即以下网段及其子网：10.0.0.0/8，172.16-31.0.0/12-16，192.168.0.0/16。不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。
+|pod\_vswitch\_ids|Array of String|Body|否|vsw-2ze97jwri7cei0mpw\*\*\*\*|Pod虚拟交换机列表，您需要为每一个节点虚拟交换机指定至少一个相同可用区的Pod虚拟交换机并且不能跟节点`vswitch`重复，建议选择网段掩码不大于19的虚拟交换机。
 
-有关集群网络规划，请参见[t16651.dita\#concept\_izq\_sg4\_vdb](/cn.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。
+**说明：** 当集群采用Terway网络类型时，必须为集群指定`pod_vswitch_ids`。 |
+|container\_cidr|String|Body|是|172.20.0.0/16|Pod网络地址段，不能和VPC网段冲突。当选择系统自动创建VPC时，默认使用172.16.0.0/16网段。
 
-**说明：** 当创建Flannel网络类型的集群时，该字段为必填。 |
+**说明：**
+
+-   当创建Flannel网络类型的集群时，该字段为必填。
+-   当创建Terway网络类型的集群时，该字段不需要填。 |
 |service\_cidr|String|Body|是|172.21.0.0/20|Service网络地址段，可选范围：10.0.0.0/16-24，172.16-31.0.0/16-24，192.168.0.0/16-24
 
 不能与VPC网段10.1.0.0/21及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。
@@ -149,7 +152,7 @@ POST /clusters
 默认值：`30000-32767`。 |
 |key\_pair|String|Body|是|secrity-key|密钥对名称，和`login_password`二选一。 |
 |login\_password|String|Body|是|Hello@1234|SSH登录密码，和`key_pair`二选一。密码规则为8~30个字符，且至少同时包含三项（大小写字母、数字和特殊符号）。 |
-|master\_count|Long|Body|是|3|Master节点数量，可选值`3`或`5`。
+|master\_count|Long|Body|否|3|Master节点数量，可选值`3`或`5`。
 
 默认值：`3`。 |
 |master\_vswitch\_ids|Array of String|Body|是|vsw-2ze3ds0mdip0hdz8i\*\*\*\*|虚拟交换ID。 |
@@ -165,7 +168,7 @@ POST /clusters
 
 默认值：`40`。 |
 |master\_system\_disk\_snapshot\_policy\_id|String|Body|否|sp-2zej1nogjvovnz4z\*\*\*\*|Master节点系统盘采用的自动快照策略ID。 |
-|master\_instance\_charge\_type|String|Body|是|PrePaid|Master节点付费类型，取值：
+|master\_instance\_charge\_type|String|Body|否|PrePaid|Master节点付费类型，取值：
 
 -   `PrePaid`：包年包月。
 -   `PostPaid`：按量付费。
@@ -210,7 +213,7 @@ POST /clusters
 默认值：max\{40, 参数ImageId对应的镜像大小\}。 |
 |worker\_system\_disk\_snapshot\_policy\_id|String|Body|否|sp-2zej1nogjvovnz4z\*\*\*\*|Worker节点系统盘采用的自动快照策略ID。 |
 |worker\_data\_disks|Array of [data\_disk](/cn.zh-CN/API参考/通用数据结构.md)|Body|否| |Worker节点数据盘类型、大小等配置的组合。 |
-|worker\_instance\_charge\_type|String|Body|是|PrePaid|Worker节点付费类型，取值：
+|worker\_instance\_charge\_type|String|Body|否|PrePaid|Worker节点付费类型，取值：
 
 -   `PrePaid`：包年包月。
 -   `PostPaid`：按量付费。
