@@ -191,7 +191,7 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 
 默认值：`cloud_efficiency`。**说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的category取值。 |
 |worker\_data\_disk\_size|Long|Body|否| |数据盘大小，单位为GiB。**说明：** 过期参数，替代参数请参见worker\_data\_disks参数中的size取值。 |
-|worker\_instance\_charge\_type|String|Body|是|PrePaid|Worker节点付费类型，取值：
+|worker\_instance\_charge\_type|String|Body|否|PrePaid|Worker节点付费类型，取值：
 
 -   `PrePaid`：包年包月。
 -   `PostPaid`：按量付费。
