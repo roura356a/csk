@@ -166,9 +166,6 @@
 
 |调用DescribeAddons查询集群安装的组件详情。|
 |[升级集群组件](/intl.zh-CN/API参考/组件/升级集群组件.md)|调用UpgradeClusterAddons将指定组件升级到指定版本。|
-|[查询集群组件升级状态](/intl.zh-CN/API参考/组件/查询集群组件升级状态.md)
-
-|调用DescribeClusterAddonUpgradeStatus查询集群组件升级状态。|
 |[批量查询集群组件升级状态](/intl.zh-CN/API参考/组件/批量查询集群组件升级状态.md)|调用DescribeClusterAddonsUpgradeStatus同时查询多个组件的升级状态。|
 |[修改集群托管侧组件参数](/intl.zh-CN/API参考/组件/修改集群托管侧组件参数.md)|调用ModifyClusterConfiguration修改托管侧组件的参数，下发ConfigMap到托管侧。|
 |[卸载集群组件](/intl.zh-CN/API参考/组件/卸载集群组件.md)
