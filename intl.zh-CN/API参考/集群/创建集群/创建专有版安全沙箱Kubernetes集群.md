@@ -92,7 +92,7 @@ POST /clusters
 -   `PostPaid`：按量付费。
 
 默认为`PostPaid`按量付费。 |
-|master\_instance\_types|Array of String|Body|否|ecs.n4.xlarge|Master节点实例类型。指定的实例规格数量需要和`master_count`保持一致, 和`master_instance_types`中的元素一一对应。|
+|master\_instance\_types|Array of String|Body|否|ecs.n4.xlarge|Master节点实例类型。指定的实例规格数量需要和`master_count`保持一致，和`master_instance_types`中的元素一一对应。|
 |master\_period|Long|Body|否|1|Master节点包年包月时长，当`master_instance_charge_type`取值为`PrePaid`时才生效且为必选值。
 
 取值范围：\{1, 2, 3, 6, 12, 24, 36, 48, 60\}。
@@ -109,7 +109,7 @@ POST /clusters
 默认值：`cloud_ssd`。 |
 |master\_system\_disk\_size|Long|Body|否|120|Master节点系统盘类型，取值范围\[40,500\]，单位：GiB。
 
-默认值：40。 |
+默认值：120。 |
 |master\_vswitch\_ids|Array of String|Body|否|vsw-2ze3ds0mdip0hdz8i\*\*\*\*|Master节点虚拟交换机ID。|
 |name|String|Body|是|cluster-demo|集群名称。
 
@@ -191,9 +191,13 @@ POST /clusters
 -   `cloud_ssd`：SSD云盘。
 
 默认值：`cloud_ssd`。 |
-|worker\_system\_disk\_size|Long|Body|否|200|Worker节点系统盘大小，单位为GiB。取值范围：\[20,500\]。该参数的取值必须大于或者等于max\{20, ImageSize\}。
+|worker\_system\_disk\_size|Long|Body|否|200|Worker节点系统盘大小，单位为GiB。
 
-默认值：max\{40, 参数ImageId对应的镜像大小\}。 |
+取值范围：\[40,500\]。
+
+该参数的取值必须大于或者等于max\{40, ImageSize\}。
+
+默认值：`120`。 |
 |worker\_vswitch\_ids|Array of String|Body|否|vsw-2ze3ds0mdip0hdz8i\*\*\*\*|集群节点使用的虚拟交换机列表，一个节点对应一个值。|
 |zone\_id|String|Body|否|cn-beijing-b|集群所属地域的可用区ID。|
 
