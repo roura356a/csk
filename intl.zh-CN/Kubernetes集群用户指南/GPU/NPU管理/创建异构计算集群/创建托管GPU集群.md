@@ -43,9 +43,9 @@
 
 3.  在集群列表页面中，单击页面右上角的**集群模板**。
 
-4.  在**选择集群模板**页面，选择**异构计算集群**，然后单击**创建**。
+4.  在选择集群模板页面的**托管集群**区域，选择**异构计算托管集群**，并单击**创建**。
 
-5.  完成集群配置。
+5.  在**ACK托管版**页面，完成集群配置。
 
     1.  完成集群基础选项配置。
 
@@ -130,6 +130,9 @@
             |**操作系统**|ACK支持的节点操作系统包括：
 
             -   Alibaba Cloud Linux 2（ACK默认的操作系统）
+
+Alibaba Cloud Linux 2操作系统的集群暂不支持Centos 6的容器镜像。
+
             -   CentOS 7.x
 
 **说明：** 暂不支持CentOS 8.x及以上的操作系统。 |
@@ -177,7 +180,7 @@
     |**Ingress**|设置是否安装Ingress组件。默认选中**安装Ingress组件**，请参见[t16679.md\#](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/配置Ingress.md)。 **说明：** 如果您选中**创建Ingress Dashboard**，则需要同步安装日志服务组件。 |
     |**存储插件**|设置存储插件，支持Flexvolume和CSI。Kubernetes集群通过Pod可自动绑定阿里云云盘、NAS、OSS存储服务。请参见[存储管理-Flexvolume](/intl.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/概述.md)和[存储管理-CSI](/intl.zh-CN/Kubernetes集群用户指南/存储管理-CSI/概述.md)。|
     |**监控插件**|设置是否启用云监控插件。默认选中**在ECS节点上安装云监控插件**和**使用Prometheus监控服务**，前者用于在云监控控制台查看所创建ECS实例的监控信息。 |
-    |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。
+    |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。默认选中**使用日志服务**。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[通过日志服务采集Kubernetes容器日志](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/通过日志服务采集Kubernetes容器日志.md)。
 
 默认选中**使用日志服务**，您还可以选择是否在日志服务控制台中**创建Ingress Dashboard**或者**安装node-problem-detector并创建事件中心**。 |
     |**工作流引擎**|设置是否使用AGS。     -   如果选中AGS，则创建集群时系统自动安装AGS工作流插件。
