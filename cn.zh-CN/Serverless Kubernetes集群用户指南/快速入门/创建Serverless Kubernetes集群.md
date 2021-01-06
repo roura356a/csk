@@ -35,13 +35,17 @@ keyword: [Serverless集群, 创建Serverless]
 
 **说明：** 若您选择**自动创建**VPC，可选择是否自动配置SNAT网关。若选择不自动配置SNAT，您可自行配置NAT网关实现VPC安全访问公网环境，并且手动配置SNAT，否则VPC内实例将不能正常访问公网。
 
-详情请参见[创建NAT网关](/cn.zh-CN/用户指南/NAT网关实例/创建NAT网关.md)。 |
+详情请参见[创建NAT网关]()。 |
     |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。 |
-    |**公网访问**|设置是否开放**使用EIP暴露API Server**，获取从公网访问集群API Server的能力。 API Server提供了各类资源对象（Pod、Service等）的增删改查及watch等HTTP Rest接口。
+    |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/cn.zh-CN/传统型负载均衡CLB/用户指南/实例/实例概述.md)。
 
-    -   如果选择开放，会创建一个EIP，同时把Master节点的6443端口（对应API Server）暴露出来，用户可以在外网通过kubeconfig连接或操作集群。
-    -   若选择不开放，不会创建EIP，用户只能在VPC内部用kubeconfig连接/操作集群。
-详情请参见[什么是弹性公网IP](/cn.zh-CN/.md)。 |
+**说明：** 删除默认创建的SLB实例将会导致无法访问API Server。
+
+您可设置是否开放**使用EIP暴露API Server**。API Server提供了各类资源对象（Pod，Service等）的增删改查及Watch等HTTP Rest接口。
+
+    -   如果选择开放，ACK会创建一个EIP，并挂载到公网SLB上。此时，Master节点的6443端口（对应API Server）暴露出来，您可以在外网通过kubeconfig连接并操作集群。
+    -   如果选择不开放，则不会创建EIP，您只能在VPC内部用kubeconfig连接并操作集群。
+更多信息，请参见[什么是弹性公网IP](/cn.zh-CN/.md)。 |
     |**服务发现**|设置集群的服务发现，支持**不开启**、**PrivateZone**和**CoreDNS**三种方式。**说明：**
 
     -   PrivateZone：基于阿里云专有网络VPC环境的私有DNS服务。该服务允许您在自定义的一个或多个VPC中将私有域名映射到IP地址。
