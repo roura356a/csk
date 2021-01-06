@@ -58,7 +58,11 @@ POST /clusters
 默认值：`cloud_ssd`。 |
 |worker\_system\_disk\_size|Long|是|100|Worker节点系统盘大小，单位为GiB。
 
-取值范围：\[20,500\]。 |
+取值范围：\[40,500\]。
+
+该参数的取值必须大于或者等于max\{40, ImageSize\}。
+
+默认值：`120`。 |
 |container\_cidr|String|是|172.20.0.0|Pod网络地址段，不能和VPC网段冲突。当选择系统自动创建VPC时，默认使用172.16.0.0/16网段。
 
 **说明：** 当创建Flannel网络类型的集群时，该字段为必填。 |
