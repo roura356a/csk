@@ -10,13 +10,13 @@
 
 3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-4.  在集群管理页左侧导航栏中，单击**工作负载**。
+4.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**。
 
 5.  在**无状态**页签中，单击**使用镜像创建**。
 
 6.  在**应用基本信息**页签，设置应用的基本信息。
 
-    ![基本配置](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0885659951/p10973.png)
+    ![基本配置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0885659951/p10973.png)
 
     |配置项|描述|
     |---|--|
@@ -40,7 +40,7 @@
 
     -   基本配置
 
-        ![设置容器基本信息](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p12305.png)
+        ![设置容器基本信息](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p12305.png)
 
         |配置项|描述|
         |---|--|
@@ -79,11 +79,11 @@
 
             选择**密钥**，选择**变量**，默认全部文件引用。
 
-            ![环境变量](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p130410.png)
+            ![环境变量](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p130410.png)
 
             对应的yaml，则引用了整个secret。
 
-            ![yaml](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p130413.jpg)
+            ![yaml](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p130413.jpg)
 
         -   变量名称：设置环境变量名称。
         -   变量/变量引用：设置变量引用的值。
@@ -122,7 +122,7 @@
         -   **启动执行**：为容器设置预启动命令和参数。
         -   **启动后处理**：为容器设置启动后的命令。
         -   **停止前处理**：为容器设置预结束命令。
-        ![生命周期](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p134222.png)
+        ![生命周期](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p134222.png)
 
     -   数据卷
 
@@ -132,7 +132,7 @@
         -   **云存储声明（PVC）**：支持云存储。
         本例中配置了一个云存储类型的数据卷声明disk-ssd，将其挂载到容器的/tmp路径下。
 
-        ![配置数据卷](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p12307.png)
+        ![配置数据卷](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p12307.png)
 
     -   日志配置
 
@@ -178,16 +178,22 @@
 
     -   伸缩配置
 
-        您可选择是否开启**容器组水平伸缩**，为了满足应用在不同负载下的需求，容器服务支持服容器组Pod的弹性伸缩，即根据容器CPU和内存资源占用情况自动调整容器组数量。
+        在**伸缩配置**区域，配置是否开启**指标伸缩**和**定时伸缩**，从而满足应用在不同负载下的需求。
 
-        ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p10978.png)
+        ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0952419061/p10978.png)
 
-        **说明：** 若要启用自动伸缩，您必须为容器设置所需资源，否则容器自动伸缩无法生效。
+        -   容器服务支持容器组的指标伸缩，即根据容器CPU和内存资源占用情况自动调整容器组数量。
 
-        -   **指标**：支持CPU和内存，需要和设置的所需资源类型相同。
-        -   **触发条件**：资源使用率的百分比，超过该使用量，容器开始扩容。
-        -   **最大副本数**：该负载类型可扩容的容器数量上限。
-        -   **最小副本数**：该负载类型可缩容的容器数量下限。
+            **说明：** 若要启用自动伸缩，您必须为容器设置所需资源，否则容器自动伸缩无法生效。
+
+            |配置项|描述|
+            |---|--|
+            |指标|支持CPU和内存，需要和设置的所需资源类型相同。|
+            |触发条件|资源使用率的百分比，超过该使用量，容器开始扩容。|
+            |最大副本数量|该应用可扩容的容器数量上限。|
+            |最小副本数量|该应用可缩容的容器数量下限。|
+
+        -   容器服务支持容器组的定时伸缩，即定时地对容器服务Kubernetes集群进行扩缩容。关于定时伸缩的详细说明，请参见[创建定时伸缩CronHPA任务](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/容器定时伸缩（CronHPA）.md)。
     -   调度设置
 
         您可设置升级方式、节点亲和性、应用亲和性、应用非亲和性和调度容忍，详情请参见[Affinity and anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/?spm=a2c4g.11186623.2.31.3fdd30dfnyevPx#affinity-and-anti-affinity)。
@@ -228,7 +234,7 @@
 
 12. 创建成功后，默认进入创建完成页面，会列出应用包含的对象，您可以单击**查看应用详情**进行查看。
 
-    ![查看详情](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p10983.png)
+    ![查看详情](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p10983.png)
 
     默认进入新建的nginx-deployment的详情页面。
 
@@ -238,10 +244,10 @@
     -   单击**路由（Ingress）**右侧的**创建**，进行路由的创建，请参见[路由配置说明](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/路由配置说明.md)。
 13. 单击左侧导航栏的**路由**，可以看到路由列表下出现一条规则。
 
-    ![路由规则](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p10985.png)
+    ![路由规则](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4054404061/p10985.png)
 
 14. 在浏览器中访问路由测试域名，您可访问Nginx欢迎页。
 
-    ![访问nginx](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3506659951/p10986.png)
+    ![访问nginx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p10986.png)
 
 
