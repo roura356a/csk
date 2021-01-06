@@ -113,7 +113,7 @@ POST /clusters
 |key|String|Body|否|disk\_type|污点key-value的键。|
 |value|String|Body|否|sshd|污点key-value的值。|
 |timeout\_mins|Long|Body|否|60|集群创建超时时间。默认值：60。 |
-|user\_data|String|Body|否|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFD\*\*\*\*|节点自定义数据。更多信息 ，请参见[生成实例自定义数据](/intl.zh-CN/实例/管理实例/使用实例自定义数据/生成实例自定义数据.md)。|
+|user\_data|String|Body|否|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFD\*\*\*\*|节点自定义数据。更多信息，请参见[生成实例自定义数据](/intl.zh-CN/实例/管理实例/使用实例自定义数据/生成实例自定义数据.md)。|
 |vpcid|String|Body|是|vpc-2zeik9h3ahvv2zz95\*\*\*\*|集群使用的VPC实例ID。|
 |vswitch\_ids|Array of String|Body|是|vsw-2ze48rkq464rsdts1\*\*\*\*"|虚拟交换实例ID。|
 |worker\_auto\_renew|Boolean|Body|否|true|Worker节点是否开启自动续费，当`worker_instance_charge_type`取值为`PrePaid`时才生效，可选值为：-   true：自动续费。
@@ -148,9 +148,13 @@ POST /clusters
 -   `cloud_ssd`：SSD云盘。
 
 默认值：`cloud_ssd`。 |
-|worker\_system\_disk\_size|Long|Body|否|120|Worker节点系统盘大小，单位为GiB。取值范围：\[20,500\]。该参数的取值必须大于或者等于max\{20, ImageSize\}。
+|worker\_system\_disk\_size|Long|Body|否|120|Worker节点系统盘大小，单位为GiB。
 
-默认值：max\{40, 参数ImageId对应的镜像大小\}。 |
+取值范围：\[40,500\]。
+
+该参数的取值必须大于或者等于max\{40, ImageSize\}。
+
+默认值：`120`。 |
 |worker\_vswitch\_ids|Array of String|Body|否|vsw-2ze3ds0mdip0hdz8i\*\*\*\*|集群节点使用的虚拟交换机列表，一个节点对应一个值。|
 |zone\_id|String|Body|否|cn-beijing-b|集群所属地域的可用区ID。|
 
