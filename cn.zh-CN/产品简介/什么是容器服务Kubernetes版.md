@@ -17,20 +17,20 @@ ACK包含了专有版Kubernetes（Dedicated Kubernetes）、托管版Kubernetes�
 |主要特点|您需要自行创建Master节点及Worker节点。|您只需创建Worker节点，Master节点由ACK创建并托管。|您无需创建Master节点及Worker节点。|
 |可以对集群基础设施进行更细粒度的控制，需要自行规划、维护、升级服务器集群。|简单、低成本、高可用，无需管理Master节点。|无需管理任何节点，可直接启动应用程序。|
 |收费方式|集群管理免费，但需要承担Master节点、Worker节点以及其他基础资源的费用。|-   标准版：集群管理免费，但需要承担Worker节点以及其他基础资源的费用。
--   [Pro版](/cn.zh-CN/Kubernetes集群用户指南/简介/Kubernetes Pro版集群介绍.md)：按照集群数量或者包年包月方式收费。
+-   [Pro版](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/Kubernetes Pro版集群介绍.md)：按照集群数量或者包年包月方式收费。
 
 |按容器实例的使用资源量和时长（秒）计费。|
 |应用场景|适用于所有场景。|适用于所有场景。|适用于批量任务、突发扩容，以及CI/CD测试。|
-|用户画像|![专有版](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5748490061/p143465.png)
+|用户画像|![专有版](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5748490061/p143465.png)
 
-|![2](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5748490061/p143466.png)
+|![2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5748490061/p143466.png)
 
-|![3](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5748490061/p143467.png) |
-|集群创建|![专有版](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4868490061/p143471.png)
+|![3](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5748490061/p143467.png) |
+|集群创建|![专有版](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4868490061/p143471.png)
 
-|![托管版](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4868490061/p143472.png)
+|![托管版](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4868490061/p143472.png)
 
-|![ASK](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5748490061/p143473.png) |
+|![ASK](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5748490061/p143473.png) |
 
 ## 产品功能
 
@@ -72,7 +72,7 @@ ACK包含了专有版Kubernetes（Dedicated Kubernetes）、托管版Kubernetes�
 
 阿里云容器服务产品线的整体架构如下图所示。
 
-![产品架构](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5748490061/p169914.png)
+![产品架构](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5748490061/p169914.png)
 
 -   [阿里云容器镜像服务ACR]()（Alibaba Cloud Container Registry）：提供云原生资产的安全托管和全生命周期管理，支持多场景下镜像的高效分发，与容器服务ACK无缝集成，打造云原生应用一站式解决方案。
 -   [阿里云服务网格ASM]()（Alibaba Cloud Service Mesh）：是一个托管式的微服务应用流量统一管理平台，兼容Istio，支持多个Kubernetes集群统一流量管理，为容器和虚拟机应用服务提供一致性的通信控制。
