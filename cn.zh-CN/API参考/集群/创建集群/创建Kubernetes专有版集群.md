@@ -192,7 +192,7 @@ POST /clusters
 默认值：`cloud_ssd`。不同可用区，默认值可能会有所差异。 |
 |master\_system\_disk\_size|Long|Body|是|120|Master节点系统盘类型，取值范围\[40,500\]，单位：GiB。
 
-默认值：`40`。 |
+默认值：`120`。 |
 |master\_system\_disk\_snapshot\_policy\_id|String|Body|否|sp-2zej1nogjvovnz4z\*\*\*\*|Master节点系统盘采用的自动快照策略ID。 |
 |master\_instance\_charge\_type|String|Body|否|PrePaid|Master节点付费类型，取值：
 
@@ -232,11 +232,11 @@ POST /clusters
 默认值：`cloud_ssd`。 |
 |worker\_system\_disk\_size|Long|Body|是|120|Worker节点系统盘大小，单位为GiB。
 
-取值范围：\[20,500\]。
+取值范围：\[40,500\]。
 
-该参数的取值必须大于或者等于max\{20, ImageSize\}。
+该参数的取值必须大于或者等于max\{40, ImageSize\}。
 
-默认值：max\{40, 参数ImageId对应的镜像大小\}。 |
+默认值：120。 |
 |worker\_system\_disk\_snapshot\_policy\_id|String|Body|否|sp-2zej1nogjvovnz4z\*\*\*\*|Worker节点系统盘采用的自动快照策略ID。 |
 |worker\_data\_disks|Array of [data\_disk](/cn.zh-CN/API参考/通用数据结构.md)|Body|否| |Worker节点数据盘类型、大小等配置的组合。 |
 |worker\_instance\_charge\_type|String|Body|否|PrePaid|Worker节点付费类型，取值：
