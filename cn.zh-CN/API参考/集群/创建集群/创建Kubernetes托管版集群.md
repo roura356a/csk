@@ -47,11 +47,11 @@ POST /clusters
 默认值：`cloud_ssd`。 |
 |worker\_system\_disk\_size|Long|Body|是|120|Worker节点系统盘大小，单位为GiB。
 
-取值范围：\[20,500\]。
+取值范围：\[40,500\]。
 
-该参数的取值必须大于或者等于max\{20, ImageSize\}。
+该参数的取值必须大于或者等于max\{40, ImageSize\}。
 
-默认值：max\{40, 参数ImageId对应的镜像大小\}。 |
+默认值：120。 |
 |addons|Array of [addon](/cn.zh-CN/API参考/通用数据结构.md)|Body|否|\[\{"name": "terway-eniip","config": ""\}, \{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\",\\"sls\_project\_name\\":\\"your\_sls\_project\_name\\"\}"\}, \{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\]|Kubernetes集群安装的组件列表。组件的结构包括：
 
 -   `name`：必填，组件名称。
