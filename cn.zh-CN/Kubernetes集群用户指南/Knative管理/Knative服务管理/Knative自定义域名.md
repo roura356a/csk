@@ -3,7 +3,7 @@
 本文介绍了如何在Knative Serving中使用自定义域名。
 
 -   您已经成功申请一个域名，参见[阿里云域名服务](/cn.zh-CN/产品简介/什么是阿里云域名服务.md)。
--   您已经成功部署Knative，参见[t423002.md\#](/cn.zh-CN/Kubernetes集群用户指南/Knative管理/Knative组件管理/部署Knative.md)。
+-   您已经成功部署Knative，参见[t423002.md\#](/cn.zh-CN/Kubernetes集群用户指南/Knative管理/Knative组件管理/一键部署Knative.md)。
 
 在Knative Serving Route路由中使用`example.com`作为默认域名，Route完全定义的域名格式默认为：`{route}.{namespace}.{default-domain}`。
 
@@ -65,14 +65,16 @@
 
 2.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-3.  在集群管理页左侧导航栏中，单击**Knative** \> **服务管理**。
+3.  在集群管理页左侧导航栏中，选择**应用** \> **Knative**。
 
-4.  在服务管理页面，选择目标集群及命名空间，可以看到目标应用对应的**访问网关**。
+4.  单击服务管理页签，然后单击目标服务名称。
 
-5.  将Knative网关IP设置到对应的域名解析，参见[添加解析记录](https://help.aliyun.com/knowledge_detail/29725.html)。
+    您可以在Knative服务详情页的**基本信息**区域，查看访问网关和域名。
+
+5.  将Knative网关IP设置到对应的域名解析。更多信息，请参见[添加解析记录](https://help.aliyun.com/knowledge_detail/29725.html)。
 
 
-执行如下命令，查看执行结果。
+执行以下命令，查看执行结果。
 
 ```
 curl http://helloworld-go.default.mydomain.com
