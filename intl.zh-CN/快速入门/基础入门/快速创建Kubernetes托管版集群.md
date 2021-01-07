@@ -62,11 +62,15 @@ keyword: [kubernetes, k8s, 创建]
         |**配置SNAT**|默认选中**为专有网络配置SNAT网关**。
 
 创建集群时，默认不开通公网。如果您选择的VPC不具备公网访问能力，选中**为专有网络配置SNAT**后，ACK将为您创建NAT网关并自动配置SNAT规则。 |
-        |**公网访问**|默认不选中**使用EIP暴露API Server**。
+        |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/intl.zh-CN/传统型负载均衡CLB/用户指南/实例/实例概述.md)。
 
-API Server提供了各类资源对象（Pod，Service等）的增删改查及watch等HTTP Rest接口。
+**说明：** 删除默认创建的SLB实例将会导致无法访问API Server。
 
-        -   如果选择开放，会创建一个EIP，并挂载到公网SLB上。此时，Master节点的6443端口（对应API Server）暴露出来，用户可以在外网通过kubeconfig连接并操作集群。
+本文默认不选中**使用EIP暴露API Server**。
+
+您可设置是否开放**使用EIP暴露API Server**。API Server提供了各类资源对象（Pod，Service等）的增删改查及Watch等HTTP Rest接口。
+
+        -   如果选择开放，ACK会创建一个EIP，并挂载到公网SLB上。此时，Master节点的6443端口（对应API Server）暴露出来，您可以在外网通过kubeconfig连接并操作集群。
         -   如果选择不开放，则不会创建EIP，您只能在VPC内部用kubeconfig连接并操作集群。 |
         |**RDS白名单**|设置RDS白名单。将节点IP添加到RDS实例的白名单中。
 
@@ -115,13 +119,15 @@ API Server提供了各类资源对象（Pod，Service等）的增删改查及wat
         |**监控插件**|设置是否启用云监控插件。默认选中**在ECS节点上安装云监控插件**和**使用Prometheus监控服务**，前者用于在云监控控制台查看所创建ECS实例的监控信息。
 
 本文默认不安装云监控插件。 |
-        |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。
+        |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。默认选中**使用日志服务**。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[通过日志服务采集Kubernetes容器日志](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/通过日志服务采集Kubernetes容器日志.md)。
 
-默认选中**使用日志服务**。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[通过日志服务采集Kubernetes容器日志](/intl.zh-CN/Kubernetes集群用户指南/日志管理/通过日志服务采集Kubernetes容器日志.md)。
+您可以设置是否选中**收集控制平面组件日志**，该功能从ACK控制层收集托管集群控制平面组件日志到您账号中的SLS日志服务的Log Project中。更多信息，请参见[收集托管集群控制平面组件日志]()。
+
+**说明：** ACK Pro托管集群默认选中**收集控制平面组件日志**。
 
 默认选中**安装node-problem-detector并创建事件中心**。您可以选择是否在日志服务控制台中**创建Ingress Dashboard**。
 
-本文默认不使用日志服务。 |
+本文默认使用日志服务。 |
         |**工作流引擎**|设置是否使用AGS。
 
         -   如果选中AGS，则创建集群时系统自动安装AGS工作流插件。
