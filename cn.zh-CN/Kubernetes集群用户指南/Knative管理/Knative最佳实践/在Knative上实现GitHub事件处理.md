@@ -2,34 +2,12 @@
 
 本文介绍了如何在Knative上实现GitHub事件处理。
 
--   您已经成功部署Serving组件、Eventing组件及add-on组件，参见[部署组件](/cn.zh-CN/Kubernetes集群用户指南/Knative管理/Knative组件管理/部署组件.md)。
+-   您已经成功部署Serving组件、Eventing组件及add-on组件，参见[部署Knative组件](/cn.zh-CN/Kubernetes集群用户指南/Knative管理/Knative组件管理/部署Knative组件.md)。
 -   您已经在Knative上自定义域名并完成域名配置。参见[Knative自定义域名](/cn.zh-CN/Kubernetes集群用户指南/Knative管理/Knative服务管理/Knative自定义域名.md)。
 
-## 创建服务
+## 步骤一：创建服务
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
-
-2.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
-
-3.  在集群管理页左侧导航栏中，单击**Knative** \> **服务管理**。
-
-4.  单击右上角的**创建服务**。
-
-5.  设置集群名称、命名空间、服务名称，选择所要使用的镜像和镜像版本等配置信息。
-
-    ![设置服务信息](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6995659951/p57948.png)
-
-    **说明：**
-
-    本示例中，界面参数取值参考如下：
-
-    -   **服务名称**：自定义该服务的名称。本例为github-event-display。
-    -   **镜像名称**：您可以单击选择镜像，在弹出的对话框中选择所需的镜像并单击**确定**。您还可以填写私有registry。填写的格式为domainname/namespace/imagename:tag。本例中为registry.cn-shanghai.aliyuncs.com/knative-release/eventing-sources-event\_display。
-    -   **镜像版本**：您可以单击选择镜像版本选择镜像的版本。若不指定，默认为latest。本例中为bf45b3eb1e7fc4cb63d6a5a6416cf696295484a7662e0cf9ccdf5c080542c21d。
-    界面其他参数详细信息请参见[参数说明](/cn.zh-CN/Kubernetes集群用户指南/Knative管理/Knative服务管理/创建Knative服务.md)。
-
-6.  单击**创建**。
-
+关于创建服务的详细步骤，请参见[创建Knative服务](/cn.zh-CN/Kubernetes集群用户指南/Knative管理/Knative服务管理/创建Knative服务.md)。
 
 ## 创建GitHub Token
 
@@ -39,7 +17,7 @@
 
     下面是设置一个GitHubSource Sample token的示例。
 
-    ![创建github token](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6995659951/p58037.png)
+    ![创建github token](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6995659951/p58037.png)
 
     **说明：** 需要开启`repo:public_repo`和`admin:repo_hook`，以便通过公共仓库触发Event事件，并为这些公共仓库创建webhooks。
 
