@@ -1,151 +1,256 @@
-# Use Knative to handle GitHub events
+# 在Knative上使用MnsOss事件源
 
-This topic describes how to handle GitHub events by using Knative.
+通过MnsOss事件源采集OSS事件，然后驱动服务对事件进行处理，可用于人脸识别等场景。本文介绍如何在Knative上使用MnsOss事件源。
 
--   Knative Serving, Knative Eventing, and the GitHub add-on are deployed in your Container Service for Kubernetes \(ACK\) cluster. For more information, see [Deploy components](/intl.en-US/User Guide for Kubernetes Clusters/Knative management/Manage Knative components/Deploy a Knative component.md).
--   A custom domain name is configured in Knative. For more information, see [Set up a custom domain name for Knative Serving](/intl.en-US/User Guide for Kubernetes Clusters/Knative management/Manage Knative services/Use a custom domain name in Knative.md).
+-   已安装Knative Serving和Knative Eventing。具体操作，请参见[一键部署Knative](/cn.zh-CN/Kubernetes集群用户指南/Knative管理/Knative组件管理/一键部署Knative.md)。
+-   已在OSS控制台创建Bucket。具体操作，请参见[创建存储空间](/cn.zh-CN/控制台用户指南/存储空间管理/创建存储空间.md)。
+-   已开通MNS服务。具体操作，请参见[开通MNS服务]()。
 
-## Create a Knative service
+## 步骤一：安装MnsOss事件源
 
-1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
-2.  On the Clusters page, find the cluster that you want to manage and click **Details** in the **Actions** column.
+2.  在控制台左侧导航栏中，单击**集群**。
 
-3.  In the left-side navigation pane, choose **Knative** \> **Services**.
+3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-4.  On the Knative Services page, click **Create Service** in the upper-right corner of the page.
+4.  在集群管理页面选择**应用** \> **Knative**。
 
-5.  On the Create Service page, select the cluster and namespace where you want to deploy the Knative service, enter a name for the service, and then select an image and image version.
+5.  在**组件管理**页签下单击MnsOss**操作**列的**部署**。
 
-    **Note:**
-
-    In this example, the parameters are specified based on the following information:
-
-    -   **Service Name**: Enter a name for the service. The name is github-event-display in this example.
-    -   **Image Name**: Click Select Image. In the dialog box that appears, select an image and click **OK**. You can also enter the address of a private image repository. The address must be in the domainname/namespace/imagename:tag format. This parameter is set to registry.cn-shanghai.aliyuncs.com/knative-release/eventing-sources-event\_display in this example.
-    -   **Image Version**: Click Select Image Version and select an image version. If you do not specify an image version, the latest version is used. The image version is bf45b3eb1e7fc4cb63d6a5a6416cf696295484a7662e0cf9ccdf5c080542c21d in this example.
-    For more information about other parameters, see [Parameter descriptions](/intl.en-US/User Guide for Kubernetes Clusters/Knative management/Manage Knative services/Create a Knative Service.md).
-
-6.  Click **Create**.
+6.  在**部署MnsOSS**对话框中单击**确定**。
 
 
-## Create a GitHub token
+## 步骤二：创建OSS事件通知
 
-1.  Create a personal access token.
+1.  登录[OSS管理控制台](https://oss.console.aliyun.com/)。
 
-    A personal access token is required when you call the GitHub API. For more information, see [Personal access tokens](https://github.com/settings/tokens).
+2.  单击**Bucket列表**，之后单击目标Bucket名称。
 
-    The following figure shows how to create a token named GitHubSource Sample.
+3.  单击**基础设置** \> **事件通知**，之后单击**设置**。
 
-    ![Create a GitHub token](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0165359951/p58037.png)
+4.  单击**创建规则**，在**创建规则**对话框配置事件通知。
 
-    **Note:** To trigger events from your public repositories and create webhooks for those repositories, select `repo:public_repo` and `admin:repo_hook`.
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1594459951/p11309.png)
 
-    You can enter a custom token name.
+    各配置项说明见下表：
 
-2.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+    |配置项|说明|
+    |---|--|
+    |**规则名称**|事件通知规则的名称，自定义。|
+    |**事件类型**|选择一个或多个需要进行消息通知的事件，同样的事件不可以多次配置在同一资源上。事件类型对应OSS资源的不同操作，具体类型和含义请参见[事件类型](/cn.zh-CN/开发指南/事件通知.md)。|
+    |**资源描述**|填写您希望关注的Object信息，可以是全名、前缀、后缀以及前后缀，不同资源描述不能有交集。填写之后，此条事件通知规则仅在对应Object发生改变时发出消息通知。     -   **全名**：输入某个Object的完整路径可以精确关注到此Object，例如test/myphoto/photo1.jpg。
+    -   **前后缀**：设置Object的前后缀可以关注一个Bucket中的全部或者部分Object。例如对于名为`nightbucket`的Bucket：
+        -   要关注其中所有的文件，则前缀、后缀都不填。
+        -   要关注其中目录movie下的所有文件，则前缀填 movie/，后缀不填。
+        -   要关注其中所有的.jpg的图片，则前缀不填，后缀填 .jpg。
+        -   要关注其中目录movie下的.mp3格式的影片，则前缀填 movie/，后缀填 .mp3。
+**说明：** 您可以通过**添加**按钮，创建最多5条**资源描述**。 |
+    |**接收终端**|添加一个或多个接收终端。事件通知消息的接收端目前支持HttpServer和Queue。|
 
-3.  Use the following method to generate a random string as secretToken:
+    **说明：**
+
+    -   OSS事件通知功能在某个操作规则匹配之后，会生成相关消息描述，并将该消息发布到MNS的Topic中，然后根据该Topic上的订阅，将消息推送到具体的接收终端上。
+    -   对于如何处理MNS的HTTP推送消息以及从队列中消费消息，请参见[消息服务产品概述](https://help.aliyun.com/document_detail/27414.html)。
+    -   阿里云消息服务MNS是收费服务，计费详情请参见[t1835565.dita\#concept\_2028746]()。
+    -   报错信息请参见[错误码]()。
+5.  单击**确定**。
+
+    OSS事件通知完成后，会在[消息服务MNS控制台](https://mns.console.aliyun.com/)的主题页面生成一条主题。
+
+
+## 步骤三：创建MNS Token
+
+1.  登录[消息服务MNS控制台](https://mns.console.aliyun.com/)。
+
+2.  在顶部菜单栏，选择地域。
+
+3.  在主题页面单击**获取Endpoint**。
+
+4.  在**获取EndPoint**对话框中复制公网访问链接。
+
+5.  获取AK和SK信息。具体操作，请参见[如何获取AccessKeyId和AccessKeySecret](/cn.zh-CN/常见问题/一般性问题/如何获取AccessKeyId和AccessKeySecret.md)。
+
+6.  执行以下命令，对获取到的公网访问链接、AK和SK进行Base64编码处理，生成访问Token。
 
     ```
-    head -c 8 /dev/urandom | base64
+    echo '{ "url":"https://xxxx.mns.cn-shanghai.aliyuncs.com/", "accessKeyId":"xxx","accessKeySecret":"xx" }' | base64
     ```
 
-4.  Update the githubsecret.yaml file.
+7.  创建Secret，用于管理和存储Token。
 
-    If the generated token is personal\_access\_token\_value, you must set the secretToken field. The following code block is an example:
+    1.  创建mnsoss-secret.yaml。
+
+        ```
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: mnsoss-secret
+        type: Opaque
+        data:
+          mns: eyAidXJsIjoiaHR0cHM6Ly94eHh4Lm1ucy5jbi1zaGFuZ2hhaS5hbGl5dW5jcy5jb20vIiwgImFjY2Vzc0tleUlkIjoieHh4IiwiYWNjZXNzS2V5U2VjcmV0IjoieHgiIH0K
+        ```
+
+        将`mns`替换成步骤[6](#step_k36_cbs_rqi)生成的Token。
+
+    2.  执行以下命令，使mnsoss-secret.yaml生效。
+
+        ```
+        kubectl apply -f mnsoss-secret.yaml
+        ```
+
+
+## 步骤四：创建Service Account和Broker
+
+1.  创建Service Account。
+
+    1.  创建mnsoss-sa.yaml。
+
+        ```
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: ClusterRoleBinding
+        metadata:
+          name: eventing-sources-mnsoss
+        subjects:
+        - kind: ServiceAccount
+          name: mnsoss-sa
+          namespace: default
+        roleRef:
+          apiGroup: rbac.authorization.k8s.io
+          kind: ClusterRole
+          name: eventing-sources-mnsoss-controller
+        ---
+        apiVersion: v1
+        kind: ServiceAccount
+        metadata:
+          name: mnsoss-sa
+        ```
+
+    2.  执行以下命令，使mnsoss-sa.yaml生效。
+
+        ```
+        kubectl apply -f mnsoss-sa.yaml
+        ```
+
+2.  执行以下命令，创建Broker。
 
     ```
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: githubsecret
-    type: Opaque
-    stringData:
-      accessToken: personal_access_token_value
-      secretToken: asdfasfdsaf
-    ```
-
-5.  Run the following command to create a GitHub token:
-
-    ```
-    kubectl --namespace default apply githubsecret.yaml
+    kubectl label namespace default knative-eventing-injection=enabled
     ```
 
 
-## Create a GitHub event source
+## 步骤五：创建MnsOss事件源
 
-You can create a GitHub event source to receive events generated by GitHub.
+为了接收MnsOss产生的事件， 需要创建MnsOss Source用于接收事件。
 
-1.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
-
-2.  Create the github-source.yaml file and copy the following content to the file:
+1.  创建mnsoss-source.yaml。
 
     ```
     apiVersion: sources.eventing.knative.dev/v1alpha1
-    kind: GitHubSource
+    kind: MnsOssSource
     metadata:
-      name: githubsourcesample
+      labels:
+        controller-tools.k8s.io: "1.0"
+      name: mnsoss-face
     spec:
-      eventTypes:
-        - pull_request
-      ownerAndRepository: <YOUR USER>/<YOUR REPO>
+      # Add fields here
+      serviceAccountName: mnsoss-sa
       accessToken:
         secretKeyRef:
-          name: githubsecret
-          key: accessToken
-      secretToken:
-        secretKeyRef:
-          name: githubsecret
-          key: secretToken
+          name: mnsoss-secret
+          key: mns
       sink:
-        apiVersion: serving.knative.dev/v1alpha1
-        kind: Service
-        name: github-event-display
+        apiVersion: eventing.knative.dev/v1alpha1
+        kind: Broker
+        name: default
+      topic: mns-en-topics-oss-face-image-2381221888dds9129
     ```
 
-3.  Run the following command to create a GitHub event source in the default namespace:
+    `topic`：表示MNS主题名称。
+
+2.  执行以下命令，使mnsoss-source.yaml生效。
 
     ```
-    kubectl --namespace default apply github-source.yaml
+    kubectl  apply -f mnsoss-source.yaml
     ```
 
 
-In your GitHub repository, choose **Settings** \> **Webhooks** and check whether a verified hook URL is displayed.
+## 步骤六：创建Knative Service
 
-**Note:** The domain name has an Internet Content Provider \(ICP\) number. Otherwise, the domain name cannot be accessed.
+为了验证MnsOss Source是否可以正常工作，需要创建Knative Service，以下使用的是event-display示例。
 
-Run the following command in your GitHub repository to create a `pull request`. Then, an event is triggered.
+1.  创建service.yaml。
+
+    ```
+    apiVersion: serving.knative.dev/v1alpha1
+    kind: Service
+    metadata:
+      name: event-dispaly
+      namespace: default
+    spec:
+      template:
+        spec:
+          containers:
+          - image: registry.cn-hangzhou.aliyuncs.com/knative-sample/event-display:1215
+    ```
+
+2.  执行以下命令，使service.yaml生效。
+
+
+## 步骤七：创建Trigger
+
+创建Trigger， 订阅事件信息。
+
+1.  创建trigger.yaml。
+
+    ```
+    apiVersion: eventing.knative.dev/v1alpha1
+    kind: Trigger
+    metadata:
+      name: oss-trigger
+      namespace: default
+    spec:
+      subscriber:
+        ref:
+          apiVersion: serving.knative.dev/v1alpha1
+          kind: Service
+          name: event-dispaly
+    ```
+
+2.  执行以下命令，使trigger.yaml生效。
+
+    ```
+    kubectl apply -f trigger.yaml
+    ```
+
+
+## 执行结果
+
+往OSS上传文件，会在Pod中收到事件通知。
 
 ```
-kubectl --namespace default get pods
-kubectl --namespace default logs github-event-display-XXXX user-container
-```
-
-In Knative Eventing, you can view event details that are similar to the following content:
-
-```
-2018/11/08 18:25:34 Message Dumper received a message: POST / HTTP/1.1
-Host: github-event-display.knative-demo.svc.cluster.local
-Accept-Encoding: gzip
-Ce-Cloudeventsversion: 0.1
-Ce-Eventid: a8d4cf20-e383-11e8-8069-46e3c8ad****
-Ce-Eventtime: 2018-11-08T18:25:32.819548012Z
-Ce-Eventtype: dev.knative.source.github.pull_request
-Ce-Source: https://github.com/someuser/somerepo/pull/1
-Content-Length: 21060
-Content-Type: application/json
-User-Agent: Go-http-client/1.1
-X-B3-Parentspanid: b2e514c3dbe94c03
-X-B3-Sampled: 1
-X-B3-Spanid: c85e346d89c8be4e
-X-B3-Traceid: abf6292d458fb8e7
-X-Envoy-Expected-Rq-Timeout-Ms: 60000
-X-Envoy-Internal: true
-X-Forwarded-For: 12*. *. *. *, 12*. *. *. *
-X-Forwarded-Proto: http
-X-Request-Id: 8a2201af-5075-9447-b593-ec3a243a****
-
-{"action":"opened","number":1,"pull_request": ...}
+2020/12/16 13:04:19 receive cloudevents.Event:
+{"events": [{
+            "eventName": "ObjectCreated:PostObject",
+            "eventSource": "acs:oss",
+            "eventTime": "2019-06-18T06:44:16.000Z",
+            "eventVersion": "1.0",
+            "oss": {
+                "bucket": {
+                    "arn": "acs:oss:cn-beijing:1041208914252405:testjian",
+                    "name": "testjian",
+                    "ownerIdentity": "1041208914252405",
+                    "virtualBucket": ""},
+                "object": {
+                    "deltaSize": 0,
+                    "eTag": "137138904F2E18D307D04EB38EA44CDA",
+                    "key": "timg.jpg",
+                    "size": 12990},
+                "ossSchemaVersion": "1.0",
+                "ruleId": "demo-i****"},
+            "region": "cn-beijing",
+            "requestParameters": {"sourceIPAddress": "42.120.7*.***"},
+            "responseElements": {"requestId": "5D08884070BC12B192C6****"},
+            "userIdentity": {"principalId": "104120891425****"}}]}
 ```
 
