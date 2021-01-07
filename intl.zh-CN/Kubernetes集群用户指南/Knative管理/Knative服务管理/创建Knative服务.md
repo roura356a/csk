@@ -3,18 +3,18 @@
 本文主要为您介绍如何创建Knative服务。
 
 -   [创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)
--   [部署Knative](/intl.zh-CN/Kubernetes集群用户指南/Knative管理/Knative组件管理/部署Knative.md)
--   部署Serving组件，请参见[部署组件](/intl.zh-CN/Kubernetes集群用户指南/Knative管理/Knative组件管理/部署组件.md)。
+-   [一键部署Knative](/intl.zh-CN/Kubernetes集群用户指南/Knative管理/Knative组件管理/一键部署Knative.md)
+-   部署Serving组件，请参见[部署Knative组件](/intl.zh-CN/Kubernetes集群用户指南/Knative管理/Knative组件管理/部署Knative组件.md)。
 
-## 部署Knative服务
+## 步骤一：部署Knative服务
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-3.  在集群管理页左侧导航栏中，单击**Knative** \> **服务管理**。
+3.  在集群管理页左侧导航栏中，选择**应用** \> **Knative**。
 
-4.  在Knative服务管理页面，单击右上角的**创建服务**。
+4.  在服务管理页签，单击右上角的**创建服务**。
 
 5.  设置配置信息。
 
@@ -26,7 +26,7 @@
     |**镜像名称**|您可以单击选择镜像，在弹出的对话框中选择所需的镜像并单击**确定**。您还可以填写私有registry。填写的格式为domainname/namespace/imagename:tag。本例中为registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go。 |
     |**镜像版本**|您可以单击选择镜像版本选择镜像的版本。本例中为73fbdd56。
 
-![举例](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8895659951/p127510.png) |
+![举例](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8895659951/p127510.png) |
     |**访问协议**|支持**HTTP**和**gRPC**两种访问协议。 |
     |**容器端口**|设置暴露的容器访问端口，端口号必须介于1~65535。 |
     |**仅内部访问**|选中**仅内部访问**后，不支持通过公网访问该服务。 |
@@ -46,15 +46,15 @@
 6.  单击**创建**。
 
 
-## 访问服务
+## 步骤二：访问服务
 
 Knative服务创建完成后，通过绑定Host域名与访问网关，可以直接访问服务地址。操作步骤如下。
 
-1.  在容器服务管理控制台左侧导航栏，选择**Knative** \> **服务管理**，然后单击服务名称。
+1.  在服务管理页签，单击服务名称。
 
-    ![新服务](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8895659951/p52562.png)
+    您可以在Knative服务详情页的**基本信息**区域，查看访问网关及域名。
 
-    您可以在Knative服务详情页的**基本信息**区域，查看**访问网关**及**域名**。
+    ![新服务](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8895659951/p52562.png)
 
 2.  将访问网关地址与需要访问的域名进行Host绑定，在Hosts文件中添加绑定信息。
 
@@ -66,6 +66,6 @@ Knative服务创建完成后，通过绑定Host域名与访问网关，可以直
 
 3.  完成Host绑定后，可通过域名直接对服务进行访问。
 
-    ![访问服务](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0995659951/p52568.png)
+    ![访问服务](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0995659951/p52568.png)
 
 
