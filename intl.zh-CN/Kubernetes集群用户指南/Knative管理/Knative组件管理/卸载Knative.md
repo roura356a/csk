@@ -2,7 +2,7 @@
 
 本文主要为您介绍如何卸载Knative。
 
-[部署Knative](/intl.zh-CN/Kubernetes集群用户指南/Knative管理/Knative组件管理/部署Knative.md)
+[一键部署Knative](/intl.zh-CN/Kubernetes集群用户指南/Knative管理/Knative组件管理/一键部署Knative.md)
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
