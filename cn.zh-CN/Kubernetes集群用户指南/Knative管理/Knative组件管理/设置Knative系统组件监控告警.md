@@ -70,7 +70,7 @@ Knative系统组件包括：
 
     以Knative Serving系统组件activator为例，如果可用Pod数小于期望实例数（即不可用Pod数大于等于1），则进行告警通知。设置告警策略如下图。
 
-    ![报警策略](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6895659951/p128009.png)
+    ![报警策略](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6895659951/p128009.png)
 
     其中，activator组件PromQL如下。
 
@@ -85,5 +85,5 @@ Knative系统组件包括：
 
 您可以设置通过短信、邮件及钉钉机器人接收通知。触发告警之后，邮件接收通知如下。
 
-![邮件](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6895659951/p128010.png)
+![邮件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6895659951/p128010.png)
 
