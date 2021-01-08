@@ -215,7 +215,7 @@ Cloud Shell默认安装配置了阿里云CLI和账号信息，无需任何额外
     ```
 
 
-[概述](/intl.zh-CN/通过CLI使用容器服务/概述.md)
+[新版阿里云CLI工具ARC使用说明](/intl.zh-CN/CLI参考（旧版）/概述.md)
 
 [什么是阿里云CLI？]()
 
