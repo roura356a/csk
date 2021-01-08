@@ -8,9 +8,6 @@
 
 |API|描述|
 |---|--|
-|[创建集群](/cn.zh-CN/API参考/集群/创建集群/创建集群.md)
-
-|调用CreateCluster创建一个Kubernetes集群实例，并新建指定数量的节点。|
 |[创建Kubernetes专有版集群](/cn.zh-CN/API参考/集群/创建集群/创建Kubernetes专有版集群.md)|调用CreateCluster创建一个标准Kubernetes专有版集群。|
 |[创建Kubernetes托管版集群](/cn.zh-CN/API参考/集群/创建集群/创建Kubernetes托管版集群.md)
 
@@ -140,10 +137,10 @@
 |调用CreateTemplate创建一个模板。|
 |[查询所有编排模板](/cn.zh-CN/API参考/应用/查询所有编排模板.md)
 
-|调用DescribeTemplates查询部署模板。|
+|调用DescribeTemplates查询编排模板。|
 |[更新编排模板](/cn.zh-CN/API参考/应用/更新编排模板.md)
 
-|调用UpdateTemplate更新一个用户部署模板。|
+|调用UpdateTemplate更新一个编排模板。|
 |[删除编排模板](/cn.zh-CN/API参考/应用/删除编排模板.md)
 
 |调用DeleteTemplate删除指定模板。|
@@ -166,7 +163,7 @@
 
 |调用DescribeAddons查询集群安装的组件详情。|
 |[升级集群组件](/cn.zh-CN/API参考/组件/升级集群组件.md)|调用UpgradeClusterAddons将指定组件升级到指定版本。|
-|[批量查询集群组件升级状态](/cn.zh-CN/API参考/组件/批量查询集群组件升级状态.md)|调用DescribeClusterAddonsUpgradeStatus同时查询多个组件的升级状态。|
+|[查询集群组件升级状态](/cn.zh-CN/API参考/组件/查询集群组件升级状态.md)|调用DescribeClusterAddonsUpgradeStatus同时查询多个组件的升级状态。|
 |[修改集群托管侧组件参数](/cn.zh-CN/API参考/组件/修改集群托管侧组件参数.md)|调用ModifyClusterConfiguration修改托管侧组件的参数，下发ConfigMap到托管侧。|
 |[卸载集群组件](/cn.zh-CN/API参考/组件/卸载集群组件.md)
 
