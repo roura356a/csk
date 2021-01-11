@@ -16,5 +16,5 @@
 
 ## Alibaba Cloud Linux2操作系统的集群兼容CentOS的容器镜像吗？
 
-暂不支持Centos 6的容器镜像，其他版本完全兼容。更多信息，请参见[使用容器优化操作系统Alibaba Cloud Linux 2](/cn.zh-CN/Kubernetes集群用户指南/集群管理/集群管理最佳实践/使用容器优化操作系统Alibaba Cloud Linux 2.md)。
+完全兼容。更多信息，请参见[使用容器优化操作系统Alibaba Cloud Linux 2](/cn.zh-CN/Kubernetes集群用户指南/集群管理/集群管理最佳实践/使用容器优化操作系统Alibaba Cloud Linux 2.md)。
 
