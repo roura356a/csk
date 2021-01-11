@@ -1,33 +1,18 @@
 # 添加已有ECS实例
 
-添加已有ECS实例到集群。具体的API描述。
+通过执行`arc cs node attach <clusterid> --password <password> --instances '["instanceid 1","instanceid 2"]'`命令添加已有ECS实例至ACK集群。
 
-具体的API描述，请参见[添加已有实例到集群](/intl.zh-CN/API参考/节点/添加已有实例到集群.md)。
+关于该命令的详细参数说明，请参见API文档[添加已有实例到集群](/intl.zh-CN/API参考/节点/添加已有实例到集群.md)。
 
-## API请求响应
+## CLI示例
 
-请求格式
-
-```
-aliyun cs  POST /clusters/<cluster_id>/attach --header "Content-Type=application/json" --body "$(cat attach.json)"
-```
-
-参数说明：
-
--   `--header`需要指定Content-Type为application/json。
--   `--body`是要发送给服务端的body内容，可以从本地文件读取，需要是有效的JSON格式。`attach.json`的内容如下所示。
+请求示例：
 
 ```
-{
-    "password": "ECS实例root登录密码",
-    "instances": "要添加的实例数组",
-    "format_disk": "是否格式化数据盘",
-    "key_pair": "密钥对",
-    "tags": "给节点打tag标签, 数组格式对象"
-}
+arc cs node attach c8cfc598fc84a41d6af96965f34ed**** --password Hello**** --instances '["i-bp1bw9dno0jghymp****","i-bp1bw9dno0jghymp****"]'
 ```
 
-响应结果
+返回结果示例：
 
 ```
 {
