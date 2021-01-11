@@ -216,5 +216,6 @@ usage:
 |[创建托管版集群](/cn.zh-CN/CLI参考（新版）/创建集群/创建托管版集群.md)|`arc-cs cluster create-managed`|创建一个托管版集群。|ACK支持的托管版Kubernetes集群。|
 |[创建Serverless集群](/cn.zh-CN/CLI参考（新版）/创建集群/创建Serverless集群.md)|`arc-cs cluster create-ask`|创建一个Serverless版集群。|ACK支持的Serverless版Kubernetes集群。|
 |[扩容集群](/cn.zh-CN/CLI参考（新版）/扩容集群.md)|`arc-cs cluster scaleout <clusterId>`|增加集群中节点的数量。|ACK支持的Kubernetes集群。|
+|[添加已有ECS实例](/cn.zh-CN/CLI参考（新版）/添加已有ECS实例.md)|`arc cs node attach <clusterid> --password <password> --instances '["<instanceid1>","<instanceid2>"]'`|添加已有ECS实例至ACK集群。|ACK支持的Kubernetes集群。|
 |[删除集群](/cn.zh-CN/CLI参考（新版）/删除集群.md)|`arc-cs cluster delete <clusterId>`|根据集群ID，删除集群实例，并释放集群所有节点资源。|ACK支持的Kubernetes集群。|
 
