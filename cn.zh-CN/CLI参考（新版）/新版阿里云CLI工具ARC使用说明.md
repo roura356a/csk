@@ -208,14 +208,13 @@ usage:
 
 您可以使用ARC操作ACK，常见操作的示例如下表。
 
-|API接口|描述|适用范围|
-|:----|:-|:---|
-|[查看所有集群](/cn.zh-CN/CLI参考（新版）/查看所有集群.md)|查看您在容器服务中创建的所有集群。|ACK支持的Kubernetes集群。|
-|[查看集群详细信息](/cn.zh-CN/CLI参考（新版）/查看集群详细信息.md)|根据集群ID，查看集群的详细信息。|ACK支持的Kubernetes集群。|
-|[创建专有版集群](/cn.zh-CN/CLI参考（新版）/创建集群/创建专有版集群.md)|创建一个专有版集群，并新建指定数量的节点。|ACK支持的专有版Kubernetes集群。|
-|[创建托管版集群](/cn.zh-CN/CLI参考（新版）/创建集群/创建托管版集群.md)|创建一个托管版集群。|ACK支持的托管版Kubernetes集群。|
-|[创建Serverless集群](/cn.zh-CN/CLI参考（新版）/创建集群/创建Serverless集群.md)|创建一个Serverless版集群。|ACK支持的Serverless版Kubernetes集群。|
-|[扩容集群](/cn.zh-CN/CLI参考（新版）/扩容集群.md)|增加集群中节点的数量。|ACK支持的Kubernetes集群。|
-|[添加已有ECS实例](/cn.zh-CN/CLI参考（新版）/添加已有ECS实例.md)|添加已有实例到集群。|ACK支持的Kubernetes集群。|
-|[删除集群](/cn.zh-CN/CLI参考（新版）/删除集群.md)|根据集群ID，删除集群实例，并释放集群所有节点资源。|ACK支持的Kubernetes集群。|
+|场景示例|CLI命令|描述|适用范围|
+|:---|-----|:-|:---|
+|[查看所有集群](/cn.zh-CN/CLI参考（新版）/查看所有集群.md)|`arc-cs cluster list`|查看您在容器服务中创建的所有集群。|ACK支持的Kubernetes集群。|
+|[查看集群详细信息](/cn.zh-CN/CLI参考（新版）/查看集群详细信息.md)|`arc-cs cluster get <clusterId>`|根据集群ID，查看集群的详细信息。|ACK支持的Kubernetes集群。|
+|[创建专有版集群](/cn.zh-CN/CLI参考（新版）/创建集群/创建专有版集群.md)|`arc-cs cluster create-kubernetes`|创建一个专有版集群，并新建指定数量的节点。|ACK支持的专有版Kubernetes集群。|
+|[创建托管版集群](/cn.zh-CN/CLI参考（新版）/创建集群/创建托管版集群.md)|`arc-cs cluster create-managed`|创建一个托管版集群。|ACK支持的托管版Kubernetes集群。|
+|[创建Serverless集群](/cn.zh-CN/CLI参考（新版）/创建集群/创建Serverless集群.md)|`arc-cs cluster create-ask`|创建一个Serverless版集群。|ACK支持的Serverless版Kubernetes集群。|
+|[扩容集群](/cn.zh-CN/CLI参考（新版）/扩容集群.md)|`arc-cs cluster scaleout <clusterId>`|增加集群中节点的数量。|ACK支持的Kubernetes集群。|
+|[删除集群](/cn.zh-CN/CLI参考（新版）/删除集群.md)|`arc-cs cluster delete <clusterId>`|根据集群ID，删除集群实例，并释放集群所有节点资源。|ACK支持的Kubernetes集群。|
 
