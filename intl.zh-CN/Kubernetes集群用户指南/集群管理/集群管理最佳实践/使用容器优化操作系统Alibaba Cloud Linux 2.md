@@ -69,8 +69,7 @@ Alibaba Cloud Linux 2的操作系统是针对阿里云飞天虚拟化平台开�
 
 **说明：**
 
--   Alibaba Cloud Linux 2操作系统的集群暂不支持Centos 6的容器镜像。
--   如果您选用Alibaba Cloud Linux 2，在创建集群以及后期扩容节点、添加节点、自动伸缩节点时，ACK会自动检测Alibaba Cloud Linux 2的安全补丁更新并自动安装补丁。
+如果您选用Alibaba Cloud Linux 2，在创建集群以及后期扩容节点、添加节点、自动伸缩节点时，ACK会自动检测Alibaba Cloud Linux 2的安全补丁更新并自动安装补丁。
 
 **相关文档**  
 
