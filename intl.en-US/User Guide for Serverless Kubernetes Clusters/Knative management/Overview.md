@@ -1,38 +1,50 @@
 # Overview
 
-The Knative community version is a cloud-native and cross-platform orchestration engine for serverless applications. You can deploy Knative in a serverless Kubernetes \(ASK\) cluster only if you pay for the Knative controller. ASK Knative integrates Knative with ASK. To use cloud resources by calling Knative API operations, you only need to create an ASK cluster and enable the Knative feature. In this case, you do not need to pay for the Knative controller.
+The Knative community version is a cloud-native and cross-platform orchestration engine for serverless applications. You can deploy the Knative community version in a serverless Kubernetes \(ASK\) cluster. However, you must pay additional fees. ASK is integrated with Knative. To use cloud resources by calling the Knative API, you only need to create an ASK cluster and enable Knative for the cluster. In this case, you do not need to pay additional fees.
 
-## Benefits of ASK Knative
+## Benefits
 
-|Knative community version|ASK Knative|
-|-------------------------|-----------|
+|The Knative community version|ASK Knative|
+|-----------------------------|-----------|
 |By default, Istio gateways are used. Therefore, you must pay for some infrastructures that are used to install Istio controllers.|You do not have to pay for the Knative controller.|
-|You must pay for some infrastructures that are used to install the Knative controller.|
-|A cold start occurs when you create a pod in an ASK cluster. The scale to zero mechanism of the Knative community version reduces resource costs. However, during the cold start, the cluster may fail to process requests due to session timeout.|ASK Knative does not scale pods to zero during off-peak hours. The reserved instances can be used to avoid cold starts at low costs. For more information about reserved instances, see [t1956246.md\#]().|
+|You must pay extra fees for Infrastructure as a Service \(IaaS\) that is required to install the Knative controller.|
+|A cold start time is required before a pod is created in an ASK cluster. The Knative community version uses the scale-to-zero mechanism to reduce the costs. However, during the cold start, the cluster may fail to process requests due to session timeout.|ASK Knative does not scale the number of instances to zero during off-peak hours. Instead, ASK Knative uses reserved instances. ASK Knative uses reserved instances to prevent cold starts at low costs. For more information about reserved instances, see [Reserved instances](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Knative management/Manage Knative services/Reserved instances.md).|
 
 ## Resource management in Knative
 
-ASK provides an simple way to use Kubernetes. To deploy containerized applications in ASK clusters, you do not have to purchase nodes. The following list describes the benefits of using Knative to manage resources:
+ASK hosts serverless applications and provides an easy way to use Kubernetes. You can directly deploy containerized applications in ASK clusters without the need to purchase nodes. The following list describes the benefits of the resource management in Knative:
 
 -   You can use Knative to manage applications in ASK clusters.
--   Knative automatically requests pod resources from ASK clusters.
+-   Knative automatically requests pod resources from ASK clusters when it is required.
 
-The Knative Serving controller is integrated with ASK. To use cloud resources by calling Knative API operations, you only need to create an ASK cluster and enable the Knative feature. You do not have to pay for the Knative controller.
+The Knative Serving controller is integrated in ACK. To use cloud resources by calling the Knative API, you only need to create an ASK cluster and enable Knative for the cluster. You do not need to pay for the Knative controller.
 
 ## Knative Gateway
 
-By default, the Knative community version supports multiple gateway solutions, such as Istio, Gloo, Contour, Kourier, and Ambassador. Among these solutions, Istio is most frequently used. This is because Istio also functions as a service mesh. Each ASK cluster must contain at least two resident gateway instances. The two instances provide backup for each other to ensure high availability. The gateway controllers must be resident. You must pay for the infrastructures and O&M of resident resources.
+By default, the Knative community version supports multiple gateway solutions, such as Istio, Gloo, Contour, Kourier, and Ambassador. Istio is most frequently used among these solutions. This is because Istio also functions as a service mesh. Each ASK cluster must contain at least two resident gateway instances. The two gateway instances provide backup for each other to ensure high availability. The controllers of these gateways must be resident. You must pay infrastructure and O&M fees for these resident instances.
 
-To improve user experience, Alibaba Cloud provides Knative Gateway based on Server Load Balancer \(SLB\). This feature provides gateway capabilities required by ASK clusters and is as stable and reliable as cloud services. It does not require resident resources and saves infrastructure and O&M costs.
+To improve user experience, Alibaba Cloud provides Knative Gateway based on Server Load Balancer \(SLB\) instances. Knative Gateway provides gateway services required by ASK clusters. Knative Gateway is as stable and reliable as cloud resources. Resident resources are not required. This reduces infrastructure costs and O&M workloads.
 
 ## Reserved instances
 
-By default, the Knative community version scales pods to zero during off-peak hours. This leads to a cold start the next time when the system starts the application. During a cold start, the system must allocate infrastructures, schedule pods, and pull the application image. A cold start takes longer than a hot start. The image size and the time required to start an application vary based on the application developer and the service.
+By default, the Knative community version scales the number of instances to zero during off-peak hours. This reduces the costs of running resident instances. During a cold start, the system must allocate IaaS resources, schedule pods, and pull images. A cold start also involves the startup time of the application. The image size and startup time of the application vary based on developers and services.
 
-ASK Knative does not scale pods to zero during off-peak hours. Instead, it reserves one pod. The following content describes how reserved instances work:
+Unlike the Knative community version, ASK Knative does not scale the number of instances to zero during off-peak hours. Instead, ASK Knative reserves one instance. The following content describes how reserved instances work:
 
--   ASK Knative uses burstable instances to replace standard compute optimized instances during off-peak hours, and switches back to standard computing instances when requests arrive. This mechanism saves your costs during off-peak hours.
--   CPU credits that are accumulated during off-peak hours can be used during peak hours to reduce costs.
+-   ASK Knative uses burstable instances to replace compute optimized instances during off-peak hours. When requests are received, ASK switches back to compute optimized instances. This mechanism reduces the computing costs during off-peak hours.
+-   CPU credits that are accumulated during off-peak hours can be used during peak hours to reduce the computing costs.
 
-For more information about reserved instances, see [t1956246.md\#]().
+For more information about reserved instances, see [Reserved instances](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Knative management/Manage Knative services/Reserved instances.md).
+
+## Deploy Knative
+
+You can deploy Knative in ASK clusters.
+
+-   If the version of your ASK cluster is V1.16 or later, you can deploy Knative in the ACK console. For more information, see [Deploy Knative in an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Knative management/Manage Knative components/One-click Deploy Knative in an ASK cluster.md).
+-   If the version of your ASK cluster is earlier than V1.16, you must join the Knative DingTalk group to deploy Knative:
+    1.  Scan the following QR code to join the Knative DingTalk group.
+
+        ![Knative DingTalk group](../images/p135061.png)
+
+    2.  Send the cluster ID to the group owner to deploy Knative in the cluster.
 
