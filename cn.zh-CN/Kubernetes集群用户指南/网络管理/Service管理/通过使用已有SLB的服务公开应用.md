@@ -28,6 +28,7 @@ keyword: [指定已有SLB, 负载均衡型服务, loadbalancer service, 公开�
 -   被复用的SLB需要满足以下限制条件：
     -   支持复用通过SLB控制台创建的SLB，不支持复用CCM自动创建的SLB。
     -   如果您需要在Kubernetes集群中复用私网类型的SLB，则该SLB需要和Kubernetes集群处于同一VPC下。
+    -   复用SLB的地址类型必须与服务的访问类型一致。当服务为**公网访问**（即`service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type: "internet"`）时，所用SLB的**地址类型**必须为**公网**；当服务为**内部访问**（即`service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type: "intranet"`）时，所用SLB的**地址类型**必须为**私网**。
     -   多个服务不能同时使用一个SLB的同一个监听端口。
 -   CCM只为`Type=LoadBalancer`类型的服务配置SLB。对于非LoadBalancer类型的服务，则不会为其配置负载均衡。
 
@@ -254,5 +255,5 @@ keyword: [指定已有SLB, 负载均衡型服务, loadbalancer service, 公开�
 
 [通过Annotation配置负载均衡](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Service管理/通过Annotation配置负载均衡.md)
 
-[通过使用自动创建SLB的服务公开应用]()
+[通过使用自动创建SLB的服务公开应用](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Service管理/通过使用自动创建SLB的服务公开应用.md)
 
