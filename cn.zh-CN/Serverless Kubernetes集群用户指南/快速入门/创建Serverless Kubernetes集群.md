@@ -36,7 +36,7 @@ keyword: [Serverless集群, 创建Serverless]
 **说明：** 若您选择**自动创建**VPC，可选择是否自动配置SNAT网关。若选择不自动配置SNAT，您可自行配置NAT网关实现VPC安全访问公网环境，并且手动配置SNAT，否则VPC内实例将不能正常访问公网。
 
 详情请参见[创建NAT网关]()。 |
-    |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。 |
+    |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Kubernetes集群网络规划.md)。 |
     |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/cn.zh-CN/传统型负载均衡CLB/用户指南/实例/实例概述.md)。
 
 **说明：** 删除默认创建的SLB实例将会导致无法访问API Server。
