@@ -62,21 +62,21 @@
         -   普通VPC：不具备共享功能的VPC。
 **说明：** Kubernetes集群仅支持专有网络。您可以在已有VPC列表中选择所需的VPC。如果没有您需要的专有网络，可以通过单击**创建专有网络**进行创建，请参见[创建专有网络](/cn.zh-CN/专有网络和交换机/管理专有网络/创建专有网络.md)。 |
         |**虚拟交换机**|设置虚拟交换机。 您可以在已有虚拟交换机列表中，根据**可用区**选择1-3个交换机 。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[t2436.md\#](/cn.zh-CN/专有网络和交换机/管理交换机/创建交换机.md)。 |
-        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体可参见[Flannel与Terway](/cn.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/如何使用Terway网络插件.md)。         -   Flannel：简单稳定的社区的Flannel CNI插件。但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
+        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体可参见[t64408.md\#section\_k1z\_f1n\_lmh](/cn.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用Terway网络插件.md)。         -   Flannel：简单稳定的社区的Flannel CNI插件。但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
         -   Terway：阿里云容器服务自研的网络插件，将阿里云的弹性网卡分配给容器，支持Kubernetes的Network Policy来定义容器间的访问策略，支持对单个容器做带宽的限流。
 
 **说明：**
 
             -   在这两种模式下，节点上可以运行的Pod数均受节点的弹性网卡和辅助IP的配额限制。
             -   当专有网络选择共享VPC时，网络插件仅支持Terway。 |
-        |**Pod网络CIDR**|网络插件选择**Flannel**时，需要配置**Pod网络CIDR**。 **Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。 |
+        |**Pod网络CIDR**|网络插件选择**Flannel**时，需要配置**Pod网络CIDR**。 **Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Kubernetes集群网络规划.md)。 |
         |**Terway模式**|网络插件选择**Terway**时，需要配置**Terway模式**。 配置**Terway模式**，需选择是否选中**Pod独占弹性网卡以获得最佳性能**。
 
         -   选中**Pod独占弹性网卡以获得最佳性能**，Pod将独占一个专有的弹性网卡。
         -   没有选中**Pod独占弹性网卡以获得最佳性能**，使用弹性网卡的辅助IP分配给Pod，一个Pod占用一个弹性网卡辅助IP地址。
 **说明：** 当前只有白名单用户可使用该功能。[提交工单](https://selfservice.console.aliyun.com/ticket/scene/ecs/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%20ECS/detail)申请使用。 |
         |**Pod虚拟交换机**|网络插件选择**Terway**时，需要配置**Pod虚拟交换机**。**Pod虚拟交换机**指定Terway网络插件需要配置Pod的VSwitch，由于Pod的弹性网卡需要和所在的机器在同一个可用区，所以需要为上面所选的集群节点的VSwitch相对应可用区的Pod选择另一个VSwitch，集群运行时Pod的IP地址将会从所选择的VSwitch中分配，为了保障Pod可用数量，建议选择掩码不大于19的VSwitch。|
-        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。|
+        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Kubernetes集群网络规划.md)。|
         |**节点IP数量**|如果您选择的网络模式为**Flannel**，您需设置**节点IP数量**。 **说明：** **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。 |
         |**配置SNAT**|设置是否为专有网络配置SNAT网关。         -   如果您使用的VPC中当前已有NAT网关，容器服务会使用已有的NAT网关。
         -   如果VPC中没有NAT网关，系统会默认自动为您创建一个NAT网关。如果您不希望系统自动创建NAT网关，可以取消选中页面下方的**为专有网络配置SNAT**。此时您需要自行配置NAT网关实现VPC安全访问公网环境，或者手动配置SNAT，否则VPC内实例将不能正常访问公网，会导致集群创建失败。 |
@@ -168,8 +168,6 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
 等保加固会禁止Root用户通过SSH远程登录。您可通过ECS控制台使用VNC方式登录系统创建可使用SSH的普通用户。具体操作，请参见[通过VNC远程连接登录Linux实例](/cn.zh-CN/实例/连接实例/连接Linux实例/通过VNC远程连接登录Linux实例.md)。
 
 关于等保加固的详细信息，请参见[ACK等保加固使用说明](/cn.zh-CN/Kubernetes集群用户指南/集群管理/ACK等保加固使用说明.md)。
-
-Alibaba Cloud Linux 2操作系统的集群暂不支持Centos 6的容器镜像。
 
             -   CentOS 7.x
 
