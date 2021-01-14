@@ -32,16 +32,16 @@ You must perform the following steps in the ACK console to create an ACK cluster
 
     The pay-as-you-go and subscription billing methods are supported.
 
-    **Note:** After an ECS instance is created, you can change its billing method from pay-as-you-go to subscription in the ECS console. For more information, see [Change the billing method of an instance from pay-as-you-go to subscription](/intl.en-US/Pricing/Change the billing method/Switch the billing method from pay-as-you-go to subscription.md).
+    **Note:** After an ECS instance is created, you can change its billing method from pay-as-you-go to subscription in the ECS console. For more information, see [Change the billing method of an instance from pay-as-you-go to subscription](/intl.en-US/Pricing/Change the billing method/Change the billing method of an instance from pay-as-you-go to subscription.md).
 
 
 ## Procedure
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane, click **Clusters**.
 
-3.  On the Clusters page, click **Create Kubernetes Cluster** in the upper-right corner of the page.
+3.  In the upper-right corner of the Clusters page, click **Create Kubernetes cluster**.
 
 4.  5.  Set the cluster parameters.
 
@@ -58,21 +58,21 @@ You must perform the following steps in the ACK console to create an ACK cluster
         -   Standard VPC network: The owner of a VPC network \(resource owner\) cannot share VSwitches in the VPC network under the account of the owner with other accounts.
 **Note:** Kubernetes clusters support only VPC networks. You can select a VPC network from the drop-down list. If no VPC network is available, you can click **Create VPC** to create one. For more information, see [Create a VPC](/intl.en-US/VPCs and VSwitches/VPC management/Create a VPC.md). |
         |**VSwitch**|Set the VSwitch. You can select up to three VSwitches that are deployed in different **zones**. If no VSwitch is available, click **Create VSwitch** to create one. For more information, see [t2436.md\#](/intl.en-US/VPCs and VSwitches/VSwitch management/Create a VSwitch.md). |
-        |**Network Plug-in**|Select a network plug-in. Flannel and Terway are available. For more information, see [Flannel and Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Use Terway.md).         -   Flannel: A simple and stable CNI plug-in developed by the community. Flannel offers a few simple features but does not support standard Kubernetes network policies.
+        |**Network Plug-in**|Select a network plug-in. Flannel and Terway are available. For more information, see [Flannel and Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Use Terway.md).         -   Flannel: A simple and stable CNI plug-in developed by the community. Flannel offers a few simple features but does not support standard Kubernetes network policies.
         -   Terway: a network plug-in developed by ACK. Terway allows you to assign Alibaba Cloud Elastic Network Interfaces \(ENIs\) to containers. It also allows you to customize Kubernetes network policies to control intercommunication among containers, and implement bandwidth throttling on individual containers.
 
 **Note:**
 
             -   The number of pods that can be deployed on a node depends on the number of ENIs that are attached to the node and the maximum number of secondary IP addresses provided by these ENIs.
             -   If you select a shared VPC network for a cluster, you must select the Terway network plug-in. |
-        |**Pod CIDR Block**|If you set Network Plug-in to **Flannel**, the **Pod CIDR Block** parameter is available. The CIDR block specified by **Pod CIDR Block** cannot overlap with the CIDR blocks that are used by the VPC network or existing clusters in the VPC network. After you create the cluster, you cannot modify the pod CIDR block. In addition, the service CIDR block cannot overlap with the pod CIDR block. For more information, see [Plan Kubernetes CIDR blocks under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan Kubernetes CIDR blocks under a VPC.md). |
+        |**Pod CIDR Block**|If you set Network Plug-in to **Flannel**, the **Pod CIDR Block** parameter is available. The CIDR block specified by **Pod CIDR Block** cannot overlap with the CIDR blocks that are used by the VPC network or existing clusters in the VPC network. After you create the cluster, you cannot modify the pod CIDR block. In addition, the service CIDR block cannot overlap with the pod CIDR block. For more information, see [Assign CIDR blocks to resources in a Kubernetes cluster under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Assign CIDR blocks to resources in a Kubernetes cluster under a VPC.md). |
         |**Terway Mode**|If you set Network Plug-in to **Terway**, the **Terway Mode** parameter is available. When you set **Terway Mode**, you can select or clear **Assign One ENI to Each Pod**.
 
         -   If you select this check box, an ENI will be assigned to each pod.
         -   If you clear this check box, an ENI will be shared among multiple pods. A secondary IP address of the ENI will be assigned to each pod.
 **Note:** This feature is available to only users in the whitelist. If you are not in the whitelist, [submit a ticket](https://selfservice.console.aliyun.com/ticket/scene/ecs/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%20ECS/detail). |
         |**Pod VSwitch**|If you set Network Plug-in to **Terway**, the **Pod VSwitch** parameter is available. **Pod VSwitch** specifies VSwitches for pods. The ENIs that are assigned to pods must be in the same zone as the nodes that host the pods. For each VSwitch that has been assigned to nodes, select a VSwitch for pods in the same zone. Pod VSwitches will assign IP addresses to pods when the cluster is started. We recommend that you select VSwitches whose prefix length is no greater than 19 bits. This ensures that the number of pods is sufficient.|
-        |**Service CIDR**|Set the **Service CIDR** parameter. The CIDR block specified by **Service CIDR** cannot overlap with the CIDR blocks that are used by the VPC network or existing clusters in the VPC network. After you create the cluster, you cannot modify the service CIDR block. In addition, the service CIDR block cannot overlap with the pod CIDR block. For more information, see [Plan Kubernetes CIDR blocks under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan Kubernetes CIDR blocks under a VPC.md).|
+        |**Service CIDR**|Set the **Service CIDR** parameter. The CIDR block specified by **Service CIDR** cannot overlap with the CIDR blocks that are used by the VPC network or existing clusters in the VPC network. After you create the cluster, you cannot modify the service CIDR block. In addition, the service CIDR block cannot overlap with the pod CIDR block. For more information, see [Assign CIDR blocks to resources in a Kubernetes cluster under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Assign CIDR blocks to resources in a Kubernetes cluster under a VPC.md).|
         |**IP Addresses per Node**|If you set Network Plug-in to **Flannel**, the **IP Addresses per Node** parameter is available. **Note:** **IP Addresses per Node** specifies the maximum number of IP addresses that can be assigned to each node. We recommend that you use the default value. |
         |**Configure SNAT**|Specify whether to configure Source Network Address Translation \(SNAT\) rules for the VPC network.         -   If the specified VPC network has a Network Address Translation \(NAT\) gateway, Container Service for Kubernetes uses this NAT gateway.
         -   Otherwise, the system automatically creates a NAT gateway. If you do not want the system to create a NAT gateway, clear **Configure SNAT for VPC**. In this case, you must manually create a NAT gateway and configure SNAT rules to enable Internet access to the VPC network. Otherwise, the cluster cannot be created. |
@@ -83,7 +83,7 @@ You must perform the following steps in the ACK console to create an ACK cluster
         |**SSH Logon**|Before you enable SSH, you must select **Expose API Server with EIP**.
 
         -   If you select this check box, you can access the cluster by using SSH.
-        -   If you clear this check box, you cannot access the cluster by using SSH or kubectl. If you want to access an ECS instance in the cluster through SSH, you must manually bind an EIP to the instance and configure security group rules to open SSH port 22. For more information, see [t16642.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use SSH to connect to a cluster.md). |
+        -   If you clear this check box, you cannot access the cluster by using SSH or kubectl. If you want to access an ECS instance in the cluster through SSH, you must manually bind an EIP to the instance and configure security group rules to open SSH port 22. For more information, see [t16642.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use SSH to connect to an ACK cluster.md). |
         |**RDS Whitelist**|Set the Relational Database Service \(RDS\) whitelist. Add the IP addresses of cluster nodes to the RDS whitelist.|
         |**Security Group**|**Create Basic Security Group**, **Create Advanced Security Group**, and **Select Existing Security Group** are available. For more information, see [Overview](/intl.en-US/Security/Security groups/Overview.md). |
 
@@ -136,11 +136,11 @@ You must perform the following steps in the ACK console to create an ACK cluster
             |**System Disk**|ESSDs, standard SSDs, and ultra disks are supported.**Note:** You can select **Enable Backup** to back up disk data. |
             |**Mount Data Disk**|ESSDs, standard SSDs, and ultra disks are supported. You can enable disk encryption and backup when you add data disks. |
             |**Operating System**|The CentOS and Aliyun Linux operating systems are supported.|
-            |Logon Type|            -   Key Pair:
+            |Logon Type|            -   Key pair logon.
                 -   **Key Pair**: Select an SSH key pair from the drop-down list.
-                -   **create a key pair**: Create a key pair if no SSH key pair is available. For more information about how to create an SSH key pair, see [Create an SSH key pair](/intl.en-US/Security/Key pairs/Use an SSH key pair/Create an SSH key pair.md). After the key pair is created, set it as the credential for logging on to the cluster.
-            -   Password:
-                -   **Password**: Enter a password for logging on to the nodes.
+                -   **create a key pair**: Create an SSH key pair if no SSH key pair is available. For more information about how to create an SSH key pair, see [Create an SSH key pair](/intl.en-US/Security/Key pairs/Use an SSH key pair/Create an SSH key pair.md). After the key pair is created, set it as the credential that is used to log on to the ACK cluster.
+            -   Password logon.
+                -   **Password**: Enter the password that is used to log on to the nodes.
                 -   **Confirm Password**: Enter the password again. |
 
         -   If you select **Add Existing Instance**, make sure that you have created ECS instances that are deployed in the specified region. Then, set **Operating System**, **Logon Type**, and **Key Pair** based on the preceding settings.
@@ -169,7 +169,7 @@ For example, if the node IP address is 192.168.0.55, the prefix is aliyun.com, t
     |**Monitoring Agents**|Specify whether to install the Cloud Monitor agent. After the Cloud Monitor agent is installed on ECS instances, you can view monitoring information about the nodes in the Cloud Monitor console. |
     |**Log Service**|Specify whether to enable Log Service. You can select an existing project or create a project.
 
-If you select **Enable Log Service**, the Log Service plug-in is automatically installed in the cluster. When you create an application, you can activate Log Service through a few steps. For more information, see [Use Log Service to collect Kubernetes logs](/intl.en-US/User Guide for Kubernetes Clusters/Log management/Use Log Service to collect Kubernetes cluster logs.md).
+If you select **Enable Log Service**, the Log Service plug-in is automatically installed in the cluster. When you create an application, you can activate Log Service through a few steps. For more information, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
 
 After you select **Enable Log Service**, you can specify whether to **create Ingress dashboards** and whether to **install node-problem-detector and create event centers**. |
     |**Workflow Engine**|Specify whether to activate Alibaba Cloud Genomics Compute Service \(AGS\).     -   If you select this check box, the system automatically installs the AGS workflow plug-in when it creates the cluster.
