@@ -52,7 +52,7 @@ ACK的Kubernetes Pro版集群相比原托管版集群进一步提升了集群的
         -   普通VPC：不具备共享功能的VPC。
 **说明：** Kubernetes集群仅支持专有网络。您可以在已有VPC列表中选择所需的VPC。如果没有您需要的专有网络，可以通过单击**创建专有网络**进行创建，请参见[创建专有网络](/intl.zh-CN/专有网络和交换机/管理专有网络/创建专有网络.md)。 |
         |**虚拟交换机**|设置虚拟交换机。 |
-        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[Flannel与Terway](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/如何使用Terway网络插件.md)。
+        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[t64408.md\#section\_k1z\_f1n\_lmh](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用Terway网络插件.md)。
 
         -   Flannel：简单稳定的社区的Flannel CNI插件。但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
         -   Terway：阿里云容器服务自研的网络插件，将阿里云的弹性网卡分配给容器，支持Kubernetes的Network Policy来定义容器间的访问策略，支持对单个容器做带宽的限流。
@@ -64,7 +64,7 @@ ACK的Kubernetes Pro版集群相比原托管版集群进一步提升了集群的
             -   网络插件选择**Terway**时，会使用弹性网卡的辅助IP分配给Pod，一个Pod占用一个弹性网卡辅助IP地址。 |
         |**Pod网络CIDR**|网络插件选择**Flannel**时，需要配置**Pod网络CIDR**。
 
-**Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/intl.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。 |
+**Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Kubernetes集群网络规划.md)。 |
         |**Terway模式**|设置**网络插件**为**Terway**时，需要配置**Terway模式**：
 
         -   设置是否选中**Pod独占弹性网卡以获得最佳性能**
@@ -83,7 +83,7 @@ ACK的Kubernetes Pro版集群相比原托管版集群进一步提升了集群的
 -   只在弹性网卡共享模式下支持选中，默认不选中。
 -   如果选中，集群支持使用Kubernetes的NetworkPolicy策略对Pod进行网络控制。
 -   如果不选中，集群将不会支持使用Kubernetes的NetworkPolicy策略对Pod进行网络控制，这样将不存在网络策略对Kubernetes的API Server产生过大的负载。 |
-        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[VPC下Kubernetes集群的网络地址段规划](/intl.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。 |
+        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Kubernetes集群网络规划.md)。 |
         |**节点IP数量**|如果您选择的网络模式为**Flannel**，您需设置**节点IP数量**。
 
 **说明：** **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。 |
@@ -155,9 +155,6 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
             |**操作系统**|ACK支持的节点操作系统包括：
 
             -   Alibaba Cloud Linux 2（ACK默认的操作系统）
-
-Alibaba Cloud Linux 2操作系统的集群暂不支持Centos 6的容器镜像。
-
             -   CentOS 7.x
 
 **说明：** 暂不支持CentOS 8.x及以上的操作系统。 |
