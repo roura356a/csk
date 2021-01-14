@@ -87,7 +87,7 @@ POST /clusters
 your\_sls\_project\_name\\"\}"\}\]。 |
 |cluster\_spec|String|Body|否|ack.pro.small|托管版集群类型，面向托管集群。取值：
 
--   `ack.pro.small`：专业托管集群，即："ACK Pro版集群"。
+-   `ack.pro.small`：专业托管集群，即：”ACK Pro版集群“。
 -   `ack.standard`：标准托管集群。
 
 默认值：`ack.standard`。取值可以为空，为空时则创建标准托管集群。
