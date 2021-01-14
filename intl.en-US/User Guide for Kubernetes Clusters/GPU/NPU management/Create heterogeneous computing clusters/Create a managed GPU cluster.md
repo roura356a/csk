@@ -32,16 +32,16 @@ You must perform the following steps in the ACK console to create an ACK cluster
 
     The pay-as-you-go and subscription billing methods are supported.
 
-    **Note:** After an ECS instance is created, you can change its billing method from pay-as-you-go to subscription in the ECS console. For more information, see [Change the billing method of an instance from pay-as-you-go to subscription](/intl.en-US/Pricing/Change the billing method/Switch the billing method from pay-as-you-go to subscription.md).
+    **Note:** After an ECS instance is created, you can change its billing method from pay-as-you-go to subscription in the ECS console. For more information, see [Change the billing method of an instance from pay-as-you-go to subscription](/intl.en-US/Pricing/Change the billing method/Change the billing method of an instance from pay-as-you-go to subscription.md).
 
 
 ## Procedure
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane, click **Clusters**.
 
-3.  On the Clusters page, click **Create Kubernetes Cluster** in the upper-right corner of the page.
+3.  In the upper-right corner of the Clusters page, click **Create Kubernetes cluster**.
 
 4.  In the **Select Cluster Template** dialog box, click **Create** on the **Managed Cluster for Heterogeneous Computing** card.
 
@@ -61,20 +61,20 @@ You must perform the following steps in the ACK console to create an ACK cluster
         -   Standard VPC network: The owner of a VPC network \(resource owner\) cannot share VSwitches in the VPC network under the account of the owner with other accounts.
 **Note:** Kubernetes clusters support only VPC networks. You can select a VPC network from the drop-down list. If no VPC network is available, you can click **Create VPC** to create one. For more information, see [Create a VPC](/intl.en-US/VPCs and VSwitches/VPC management/Create a VPC.md). |
         |**VSwitch**|Set the VSwitch. You can select up to three VSwitches that are deployed in different **zones**. If no VSwitch is available, click **Create VSwitch** to create one. For more information, see [Create a VSwitch](/intl.en-US/VPCs and VSwitches/VSwitch management/Create a VSwitch.md). |
-        |**Network Plug-in**|Select a network plug-in. Flannel and Terway are available. For more information, see [Flannel and Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Use Terway.md).         -   Flannel: a simple and stable Container Network Interface \(CNI\) plug-in developed by the Kubernetes community. Flannel offers a few simple features but does not support standard Kubernetes network policies.
+        |**Network Plug-in**|Select a network plug-in. Flannel and Terway are available. For more information, see [Flannel and Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Use Terway.md).         -   Flannel: a simple and stable Container Network Interface \(CNI\) plug-in developed by the Kubernetes community. Flannel offers a few simple features but does not support standard Kubernetes network policies.
         -   Terway: a network plug-in developed by ACK. Terway allows you to assign elastic network interfaces \(ENIs\) to containers. It also allows you to customize Kubernetes network policies to control intercommunication among containers, and implement bandwidth throttling on individual containers.
 
 **Note:**
 
             -   The number of pods that can be deployed on a node depends on the number of ENIs that are attached to the node and the maximum number of secondary IP addresses provided by these ENIs.
             -   If you select a shared VPC network for a cluster, you must select the Terway network plug-in. |
-        |**Pod CIDR Block**|If you select **Flannel**, you must set **Pod CIDR Block**. The CIDR block specified by **Pod CIDR Block** cannot overlap with the CIDR blocks that are used by the VPC network or existing clusters in the VPC network. After you create the cluster, you cannot modify the pod CIDR block. In addition, the service CIDR block cannot overlap with the pod CIDR block. For more information, see [Plan Kubernetes CIDR blocks under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan Kubernetes CIDR blocks under a VPC.md). |
+        |**Pod CIDR Block**|If you select **Flannel**, you must set **Pod CIDR Block**. The CIDR block specified by **Pod CIDR Block** cannot overlap with the CIDR blocks that are used by the VPC network or existing clusters in the VPC network. After you create the cluster, you cannot modify the pod CIDR block. In addition, the service CIDR block cannot overlap with the pod CIDR block. For more information, see [Assign CIDR blocks to resources in a Kubernetes cluster under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Assign CIDR blocks to resources in a Kubernetes cluster under a VPC.md). |
         |**Terway Mode**|If you set Network Plug-in to **Terway**, the **Terway Mode** parameter is available. When you set **Terway Mode**, you can select or clear **Assign One ENI to Each Pod**.
 
         -   If you select this check box, an ENI will be assigned to each pod.****
         -   If you clear this check box, an ENI will be shared among multiple pods. A secondary IP address of the ENI will be assigned to each pod.****
 **Note:** This feature is available to only users in the whitelist. If you are not in the whitelist, to use this feature, [submit a ticket](https://selfservice.console.aliyun.com/ticket/scene/ecs/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%20ECS/detail). |
-        |**Service CIDR**|Set the **Service CIDR** parameter. The CIDR block specified by **Service CIDR** cannot overlap with the CIDR blocks that are used by the VPC network or existing clusters in the VPC network. After you create the cluster, you cannot modify the service CIDR block. In addition, the service CIDR block cannot overlap with the pod CIDR block. For more information, see [Plan Kubernetes CIDR blocks under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan Kubernetes CIDR blocks under a VPC.md).|
+        |**Service CIDR**|Set the **Service CIDR** parameter. The CIDR block specified by **Service CIDR** cannot overlap with the CIDR blocks that are used by the VPC network or existing clusters in the VPC network. After you create the cluster, you cannot modify the service CIDR block. In addition, the service CIDR block cannot overlap with the pod CIDR block. For more information, see [Assign CIDR blocks to resources in a Kubernetes cluster under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Assign CIDR blocks to resources in a Kubernetes cluster under a VPC.md).|
         |**IP Addresses per Node**|If you set Network Plug-in to **Flannel**, the **IP Addresses per Node** parameter is available. **Note:** **IP Addresses per Node** specifies the maximum number of IP addresses that can be assigned to each node. We recommend that you use the default value. |
         |**Configure SNAT**|Specify whether to configure Source Network Address Translation \(SNAT\) rules for the VPC network.         -   If the specified VPC network has a Network Address Translation \(NAT\) gateway, Container Service for Kubernetes uses this NAT gateway.
         -   Otherwise, the system automatically creates a NAT gateway. If you do not want the system to create a NAT gateway, clear **Configure SNAT for VPC**. In this case, you must manually create a NAT gateway and configure SNAT rules to enable Internet access to the VPC network. Otherwise, the cluster cannot be created. |
@@ -85,29 +85,29 @@ You must perform the following steps in the ACK console to create an ACK cluster
         |**RDS Whitelist**|Set the Relational Database Service \(RDS\) whitelist. Add the IP addresses of cluster nodes to the RDS whitelist.|
         |**Security Group**|**Create Basic Security Group**, **Create Advanced Security Group**, and **Select Existing Security Group** are available. For more information, see [Overview](/intl.en-US/Security/Security groups/Overview.md). |
 
-    2.  Configure advanced settings.
+    2.  Configure advanced settings of the cluster.
 
         |Parameter|Description|
         |---------|-----------|
         |**Kube-proxy Mode**|IPVS and iptables are supported.
 
-        -   iptables is a kube-proxy mode. It uses iptables rules to conduct service discovery and load balancing. The performance of this mode is restricted by the size of the cluster. This mode is suitable for clusters that run a small number of Services.
-        -   IPVS is a high-performance kube-proxy mode. It uses Linux Virtual Server \(LVS\) to conduct service discovery and load balancing. This mode is suitable for clusters that run a large number of Services. We recommend that you use this mode in scenarios where high-performance load balancing is required. |
-        |**Labels**|Attach labels to nodes. Enter keys and values, and then click **Add**.
+        -   iptables is a kube-proxy mode. It uses iptables rules to conduct service discovery and load balancing. The performance of this mode is restricted by the size of the ACK cluster. This mode is suitable for ACK clusters that manage a small number of Services.
+        -   IPVS is a high-performance kube-proxy mode. It uses Linux Virtual Server \(LVS\) to conduct service discovery and load balancing. This mode is suitable for ACK clusters that manage a large number of Services. We recommend that you use this mode in scenarios where high-performance load balancing is required. |
+        |**Labels**|Add labels to nodes. Enter a key and a value, and then click **Add**.
 
 **Note:**
 
         -   Key is required. Value is optional.
         -   Keys are not case-sensitive. A key must be 1 to 64 characters in length, and cannot start with aliyun, http://, or https://.
-        -   Values are not case-sensitive. A value must be 1 to 128 characters in length, and cannot start with http:// or https://.
-        -   The keys of labels that are attached to the same resource must be unique. If you add a label with a used key, the label overwrites the one using the same key.
-        -   You can attach up to 20 labels to each resource. If you attach more than 20 labels to a resource, all labels become invalid. You must detach unused labels for the remaining labels to take effect. |
-        |**Cluster Domain**|Set the cluster domain.
+        -   Values are not case-sensitive. A value must be 1 to 128 characters in length and cannot start with http:// or https://. This parameter can be empty.
+        -   The keys of labels that are added to the same resource must be unique. If you add a label with a used key, the label overwrites the one that uses the same key.
+        -   You can add up to 20 labels to each resource. If you add more than 20 labels to a resource, all labels become invalid. You must remove unused labels for the remaining labels to take effect. |
+        |**Cluster Domain**|Set the domain name of the ACK cluster.
 
-**Note:** The default cluster domain is **cluster.local**. You can enter a custom domain. A domain consists of two parts. Each part must be 1 to 63 characters in length, and can contain only letters and digits. |
-        |**Custom Certificate SANs**|You can enter custom subject alternative names \(SANs\) for the API server of the cluster to accept requests from specified IP addresses or domains. |
+**Note:** The default domain name is **cluster.local**. You can enter a custom domain name. A domain name consists of two parts. Each part must be 1 to 63 characters in length and can contain only letters and digits. You cannot leave these parts empty. |
+        |**Custom Certificate SANs**|You can enter custom subject alternative names \(SANs\) for the API server certificate of the cluster to accept requests from specified IP addresses or domain names. |
         |**Service Account Token Volume Projection**|**Service account token volume projection** reduces security risks when pods use service accounts to access the API server. This feature enables kubelet to request and store the token on behalf of the pod. This feature also allows you to configure token properties, such as the audience and validity duration. For more information, see [Deploy service account token volume projection](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Use service account token volume projection.md). |
-        |**Deletion Protection**|Specify whether to enable deletion protection. If you select this check box, the cluster cannot be deleted in the console or by calling the API. This allows you to avoid user errors. |
+        |**Deletion Protection**|Specify whether to enable deletion protection. If you select this check box, the ACK cluster cannot be deleted in the console or by calling the API. This prevents user errors. |
 
 6.  Click **Next:Worker Configurations** to configure worker nodes.
 
@@ -136,29 +136,32 @@ If no key pair is available, you can click **create a key pair** to create one i
             |**Key Pair**|
 
         -   If you select **Add Existing Instance**, you must select ECS instances that are deployed in the specified region. Then, set the **Operating System**, **Logon Type**, and **Key Pair** parameters in the same way as you create ECS instances.
-    2.  Configure advanced settings.
+    2.  Configure advanced settings for worker nodes.
 
         |Parameter|Description|
         |---------|-----------|
         |**Node Protection**|Specify whether to enable node protection.
 
-**Note:** By default, this check box is selected. This way, cluster nodes cannot be deleted in the console or by calling the API. This allows you to avoid user errors. |
+**Note:** By default, this check box is selected. The nodes in the ACK cluster cannot be deleted in the console or by calling the API. This prevents user errors. |
         |**User Data**|For more information, see [Prepare user data](/intl.en-US/Instance/Manage instances/User data/Prepare user data.md). |
-        |**Custom Image**|You can select a custom image, and then use the image to deploy all nodes in the cluster. For more information about how to create a custom image, see [Create a Kubernetes cluster by using a custom image](/intl.en-US/Best Practices/Cluster/Create a Kubernetes cluster by using a custom image.md).
+        |**Custom Image**|You can select a custom image for your nodes. After you select a custom image, all nodes in the cluster are deployed by using the image. For more information about how to create a custom image, see [Create a Kubernetes cluster by using a custom image](/intl.en-US/Best Practices/Cluster/Create a Kubernetes cluster by using a custom image.md).
 
-**Note:** This feature is available to only users in the whitelist. If you are not in the whitelist, [submit a ticket](https://selfservice.console.aliyun.com/ticket/scene/ecs/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%20ECS/detail). |
+**Note:**
+
+        -   Only custom images based on CentOS 7.x and Alibaba Cloud Linux 2.x are supported.
+        -   This feature is available to only users in the whitelist. If you are not in the whitelist, [submit a ticket](https://selfservice.console.aliyun.com/ticket/scene/ecs/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%20ECS/detail). |
         |**Custom Node Name**|Specify whether to use a **custom node name**.
 
 A node name consists of a prefix, an IP substring, and a suffix.
 
-        -   Both the prefix and suffix can contain one or more parts that are separated with periods \(**.**\) and must start and end with a lowercase letter or digit. These parts can contain lowercase letters, digits, and hyphens \(-\), and must start and end with a lowercase letter or digit.
+        -   Both the prefix and suffix can contain one or more parts that are separated with periods \(**.**\). These parts can contain lowercase letters, digits, and hyphens \(-\), and must start and end with a lowercase letter or digit.
         -   The IP substring length specifies the number of digits to be truncated from the end of the returned node IP address. Valid values: 5 to 12.
 For example, if the node IP address is 192.1xx.x.xx, the prefix is aliyun.com, the IP substring length is 5, and the suffix is test, the node name will be aliyun.com00055test. |
         |**CPU Policy**|Set the CPU policy.
 
         -   none: This policy indicates that the default CPU affinity is used. This is the default policy.
-        -   static: This policy allows pods with certain resource characteristics on the node to be granted with enhanced CPU affinity and exclusivity. |
-        |**Taints**|Add taints to worker nodes in the cluster. |
+        -   static: This policy allows pods with specific resource characteristics on the node to be granted with enhanced CPU affinity and exclusivity. |
+        |**Taints**|Add taints to worker nodes in the ACK cluster. |
 
 7.  Click **Next:Component Configurations** to configure components.
 
@@ -166,8 +169,8 @@ For example, if the node IP address is 192.1xx.x.xx, the prefix is aliyun.com, t
     |---------|-----------|
     |**Ingress**|Specify whether to install Ingress controllers. By default, **Install Ingress Controllers** is selected. For more information, see [t16679.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Configure an Ingress.md). **Note:** If you select **Create Ingress Dashboard**, you must enable Log Service. |
     |**Volume Plug-in**|Select a volume plug-in. Flexvolume and CSI are supported. Kubernetes clusters can be automatically bound to Alibaba Cloud disks, Network Attached Storage \(NAS\) file systems, and Object Storage Service \(OSS\) buckets through pods. For more information, see [Storage management-Flexvolume](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Overview.md) and [Storage management-CSI](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Overview.md).|
-    |**Monitoring Agents**|Specify whether to install the Cloud Monitor agent. By default, **Install CloudMonitor Agent on ECS Instance** and **Enable Prometheus Monitoring** are selected. After the Cloud Monitor agent is installed on ECS nodes, you can view monitoring information about the nodes in the Cloud Monitor console. |
-    |**Log Service**|Specify whether to activate Log Service. You can select an existing Log Service project or create a Log Service project.
+    |**Monitoring Agents**|Specify whether to install the Cloud Monitor agent. By default, **Install CloudMonitor Agent on ECS Instance** and **Enable Prometheus Monitoring** are selected. After the Cloud Monitor agent is installed on ECS nodes, you can view monitoring data about the nodes in the Cloud Monitor console. |
+    |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create a new one. By default, **Enable Log Service** is selected. When you create an application, you can perform a few steps to enable Log Service. For more information, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
 
 After you select **Enable Log Service**, you can specify whether to **create Ingress dashboards** and whether to **install node-problem-detector and create event centers**. |
     |**Workflow Engine**|Specify whether to activate Alibaba Cloud Genomics Compute Service \(AGS\).     -   If you select this check box, the system automatically installs the AGS workflow plug-in when it creates the cluster.
