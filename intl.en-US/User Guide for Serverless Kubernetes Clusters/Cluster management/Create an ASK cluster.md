@@ -21,11 +21,11 @@ This topic describes how to create a serverless Kubernetes \(ASK\) cluster in th
     |**Cluster Name**|Enter a name for the cluster. **Note:** The name must be 1 to 63 characters in length, and can contain digits, letters, and hyphens \(-\). |
     |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group to which the ACK cluster belongs. The name of the selected resource group appears on the page.
 
-![Resource Groups](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png)
+![Resource Group](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png)
 
 Move the pointer over **All Resources** at the top of the page and select the resource group to which the cluster belongs. The name of the selected resource group appears.|
     |**Region**|Select a region to deploy the ASK cluster.|
-    |**Time Zone**|Select a time zone for the ACK cluster By default, the time zone configured for your browser is selected. |
+    |**Time Zone**|Select a time zone for the ACK cluster. By default, the time zone configured for your browser is selected. |
     |**Kubernetes Version**|Select a Kubernetes version. |
     |**VPC**|Set the virtual private cloud \(VPC\) to deploy the cluster. ASK clusters support only VPCs. You can select an **existing VPC** or **create a VPC**.     -   **Create VPC**: If you select this option, ACK automatically creates a VPC and a Network Address Translation \(NAT\) gateway in the VPC. ACK also configures source network address translation \(SNAT\) entries for the NAT gateway.
     -   **Select Existing VPC**: If you select this option, you need to select a VPC from the VPC drop-down list and select vSwitches from the VSwitch list. If you want to enable Internet access, for example, to download container images from the Internet, you must configure a NAT gateway. We recommend that you upload container images to a Container Registry instance in the region where the ASK cluster is deployed. This way, you can pull the images through the VPC where the cluster is deployed.
@@ -36,7 +36,7 @@ For more information, see [Create a VPC](/intl.en-US/VPCs and VSwitches/VPC mana
 **Note:** After you select **Create VPC**, you can specify whether to automatically create a NAT gateway and configure SNAT rules for the NAT gateway. If you clear this check box, you must manually create a NAT gateway and configure SNAT entries to enable Internet access for the cluster. Otherwise, the cluster cannot access the Internet.
 
 For more information, see [Create a NAT gateway](). |
-    |**Service CIDR**|Set **Service CIDR**. The CIDR block specified by **Service CIDR** cannot overlap with that of the VPC or existing ACK clusters in the VPC. The CIDR block cannot be modified after it is specified. The Service CIDR block cannot overlap with the pod CIDR block. For more information about subnetting for ACK clusters, see [Assign CIDR blocks to resources in a Kubernetes cluster under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Assign CIDR blocks to resources in a Kubernetes cluster under a VPC.md). |
+    |**Service CIDR**|Set **Service CIDR**. The CIDR block that is specified by **Service CIDR** cannot overlap with that of the VPC or existing ACK clusters in the VPC. The CIDR block cannot be modified after it is specified. The Service CIDR block cannot overlap with the pod CIDR block. For more information about subnetting for ACK clusters, see [Assign CIDR blocks to resources in a Kubernetes cluster under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Assign CIDR blocks to resources in a Kubernetes cluster under a VPC.md). |
     |**Public Access**|Specify whether to **expose the API server with an elastic IP address \(EIP\)**. If you select this check box, you can access the API server of the cluster over the Internet. The ACK API server provides multiple HTTP-based RESTful APIs, which can be used to create, delete, modify, query, and monitor resources such as pods and Services.
 
     -   If you select this check box, an EIP is created, and port 6443 used by the API server is opened on master nodes. You can connect to and manage the cluster by using kubeconfig over the Internet.
