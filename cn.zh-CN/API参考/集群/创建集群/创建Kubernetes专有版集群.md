@@ -75,7 +75,7 @@ POST /clusters
 -   `false`：不开启公网访问。选择不开放时，则无法通过外网访问集群API Server。
 
 默认值：`false`。 |
-|ssh\_flags|Boolean|Body|否|true|是否开放公网SSH登录。用登录"专有版集群"的Master节点，托管版集群中该参数不生效。
+|ssh\_flags|Boolean|Body|否|true|是否开放公网SSH登录。用登录”专有版集群“的Master节点，托管版集群中该参数不生效。
 
 -   `true`：表示开放。
 -   `false`：表示不开放。
