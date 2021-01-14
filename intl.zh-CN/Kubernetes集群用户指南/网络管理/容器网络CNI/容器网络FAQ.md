@@ -96,7 +96,7 @@ Flannel目前默认不允许回环访问。
 
     **说明：** 推荐使用此方法。
 
--   重建集群使用Terway的网络插件，具体操作，请参见[如何使用Terway网络插件](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/如何使用Terway网络插件.md)。
+-   重建集群使用Terway的网络插件，具体操作，请参见[使用Terway网络插件](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用Terway网络插件.md)。
 -   修改Flannel的配置，然后重建Flannel和Pod。
 
     **说明：** 不推荐此方法，可能会被后续升级覆盖。
@@ -128,9 +128,9 @@ Flannel目前默认不允许回环访问。
 在创建Kubernetes集群时，阿里云容器服务提供以下两种网络插件：
 
 -   Flannel：使用的是简单稳定的社区的[Flannel](https://github.com/coreos/flannel) CNI插件，配合阿里云的VPC的高速网络，能给集群高性能和稳定的容器网络体验，但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
--   Terway：是阿里云容器服务自研的网络插件，功能上完全兼容Flannel，支持将阿里云的弹性网卡分配给容器，支持基于Kubernetes标准的NetworkPolicy来定义容器间的访问策略，支持对单个容器做带宽的限流。对于不需要使用Network Policy的用户，可以选择Flannel，其他情况建议选择Terway。了解更多Terway网络插件的相关内容，请参见[如何使用Terway网络插件](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/如何使用Terway网络插件.md)。
+-   Terway：是阿里云容器服务自研的网络插件，功能上完全兼容Flannel，支持将阿里云的弹性网卡分配给容器，支持基于Kubernetes标准的NetworkPolicy来定义容器间的访问策略，支持对单个容器做带宽的限流。对于不需要使用Network Policy的用户，可以选择Flannel，其他情况建议选择Terway。了解更多Terway网络插件的相关内容，请参见[使用Terway网络插件](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用Terway网络插件.md)。
 
 ## 如何规划集群网络
 
-在创建ACK集群时，需要指定专有网络VPC、虚拟交换机、 Pod网络CIDR（地址段）和Service CIDR（地址段）。建议您提前规划ECS地址、Kubernetes Pod地址和Service地址。详情请参见[VPC下Kubernetes集群的网络地址段规划](/intl.zh-CN/Kubernetes集群用户指南/网络管理/VPC下Kubernetes集群的网络地址段规划.md)。
+在创建ACK集群时，需要指定专有网络VPC、虚拟交换机、 Pod网络CIDR（地址段）和Service CIDR（地址段）。建议您提前规划ECS地址、Kubernetes Pod地址和Service地址。详情请参见[Kubernetes集群网络规划](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Kubernetes集群网络规划.md)。
 
