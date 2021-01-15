@@ -4,43 +4,48 @@ keyword: [集群网络, 专有网络, Terway和Flannel]
 
 # Kubernetes集群网络规划
 
-在创建ACK Kubernetes集群时，您需要指定专有网络VPC、虚拟交换机、 Pod网络CIDR（地址段）和Service CIDR（地址段）。因此建议您提前规划ECS地址、Kubernetes Pod地址和Service地址。本文将介绍阿里云VPC环境下ACK Kubernetes集群里各种地址的作用，以及地址段该如何规划。
+在创建ACK Kubernetes集群时，您需要指定专有网络VPC、虚拟交换机、 Pod网络CIDR（地址段）和Service CIDR（地址段）。因此建议您提前规划ECS地址、Kubernetes Pod地址和Service地址。本文将介绍阿里云专有网络VPC环境下ACK Kubernetes集群里各种地址的作用，以及地址段该如何规划。
 
 ## 专有网络VPC网段和Kubernetes网段关系
 
-专有网络VPC的网段规划包含VPC自身网段和虚拟交换机网段，Kubernetes网段规划包含Pod地址段和Service地址段。二者的关系示例，如下图所示。
+专有网络VPC（下文简称为VPC或专有网络）的网段规划包含VPC自身网段和虚拟交换机网段，Kubernetes网段规划包含Pod地址段和Service地址段。ACK网络支持Terway和Flannel两种模式，两种模式的网络关系如下图所示。
 
-![terway](../images/p211963.png "Terway示意图")
+|Terway模式|Flannel模式|
+|--------|---------|
+|![terway](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6311530161/p211963.png)
 
-![Flannel示意图](../images/p211964.png "Flannel示意图")
+|![Flannel示意图](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6311530161/p211964.png) |
 
-## 注意事项
+配置Terway网络模式和Flannel网络模式时，需要设置相关参数的网段，其注意事项如下。
 
-在配置ACK Kubernetes集群网络时，涉及的参数配置注意事项如下表。
+|配置参数|Terway网络模式|Flannel网络模式|
+|----|----------|-----------|
+|**专有网络**|您在创建VPC时需要选择网段，只能从10.0.0.0/8、172.16.0.0/12、192.168.0.0/16三者当中选择一个。|
+|**虚拟交换机**|ECS使用的交换机，用于节点间网络通信。在VPC里创建交换机时指定的网段，必须是当前VPC网段的子集（可以和VPC网段一样，但不能超过）。配置网段时，请注意：-   虚拟交换机是VPC交换机。
+-   交换机下ECS所分配到的地址，就是从这个交换机网段内获取的。
+-   一个VPC下，可以创建多个交换机，但交换机网段不能重叠。
+-   虚拟交换机和Pod虚拟交换机需要在一个可用区下。关于可用区的概念，请参见[地域和可用区]()。
 
-|配置参数|注意事项|
-|----|----|
-|专有网络VPC|您在创建VPC时需要选择的网段，只能从10.0.0.0/8、172.16.0.0/12、192.168.0.0/16三者当中选择一个。在容器服务控制台配置中，专有网络VPC网段也称为专有网络网段。 |
-|虚拟交换机|虚拟交换机用于节点间网络通信。在VPC里创建交换机时指定的网段，必须是当前VPC网段的子集（可以跟VPC网段一样，但不能超过）。
-
--   交换机下的ECS所分配到的地址，就是从这个交换机网段内获取的。
+|ECS使用的交换机，用于节点间网络通信。在VPC里创建交换机时指定的网段，必须是当前VPC网段的子集（可以和VPC网段一样，但不能超过）。配置网段时，请注意：-   虚拟交换机是VPC交换机。
+-   交换机下ECS所分配到的地址，就是从这个交换机网段内获取的。
 -   一个VPC下，可以创建多个交换机，但交换机网段不能重叠。 |
-|Pod虚拟交换机|在选择Terway网络插件时需要配置Pod虚拟交换机。Pod是Kubernetes内的概念，每个Pod具有一个IP地址。Flannel场景中Pod不使用交换机，无需配置此项。在VPC里创建交换机时指定的网段，必须是当前VPC网段的子集。
+|**Pod虚拟交换机**|Pod地址从该交换机分配，用于Pod网络通信。Pod是Kubernetes内的概念，每个Pod具有一个IP地址。在VPC里创建交换机时指定的网段，必须是当前VPC网段的子集。配置网段时，请注意：-   Pod虚拟交换机是VPC交换机。
+-   Terway网络模式下，Pod分配的Pod IP 就是从这个交换机网段内获取的。
+-   该地址段不能和**虚拟交换机**网段重叠。
+-   该地址段不能和**Service CIDR**网段重叠。
+-   虚拟交换机和Pod虚拟交换机需要在一个可用区下。关于可用区的概念，请参见[地域和可用区]()。
 
--   Terway网络模式下，Pod分配的Pod IP就是从这个交换机网段内获取的。
--   该地址段不能和虚拟交换机网段重叠。
--   该地址段不能和Service地址段重叠。 |
-|Pod网络CIDR|在选择Flannel网络插件时需要配置。Terway网络模式使用Pod虚拟交换机，无需配置此项。
+例如，VPC网段用的是172.16.0.0/12，Kubernetes的Pod地址段就不能使用172.16.0.0/16、172.17.0.0/16等，因为这些地址都包含在172.16.0.0/12里。
 
--   该地址段不能和虚拟交换机网段重叠。
--   该地址段不能和Service地址段重叠。
+|选择Flannel网络模式时，无需设置此参数。|
+|**Pod网络CIDR**|选择Terway网络模式时，无需设置此参数。|Pod 网络CIDR，Pod 地址从该地址段分配，用于Pod网络通信。Pod是Kubernetes内的概念，每个Pod具有一个IP地址。配置网段时，请注意：-   非VPC交换机，为虚拟网段。
+-   该地址段不能和**虚拟交换机**网段重叠。
+-   该地址段不能和**Service CIDR**网段重叠。
 
-例如，VPC网段用的是172.16.0.0/12，Kubernetes的Pod地址段就不能使用172.16.0.0/16、172.17.0.0/16等，因为这些地址都包含在172.16.0.0/12里。 |
-|Service地址段|Service是Kubernetes内的概念，对应的是`Type=ClusterIP`时Service使用的地址，每个Service有自己的地址。
-
--   Service地址只在Kubernetes集群内使用，不能在集群外使用。
--   Service地址段不能和VPC网段重叠。
--   Service地址段不能和Pod地址段重叠。 |
+VPC网段用的是172.16.0.0/12，Kubernetes的Pod地址段就不能使用172.16.0.0/16、172.17.0.0/16等，因为这些地址都包含在172.16.0.0/12里。 |
+|**Service CIDR**|Service地址段。Service是Kubernetes内的概念，对应的是Service类型为ClusterIP（`Type=ClusterIP`）时Service使用的地址，每个Service有自己的地址。配置网段时，请注意：-   Service地址只在Kubernetes集群内使用，不能在集群外使用。
+-   Service地址段不能和**虚拟交换机**地址段重叠。
+-   Service地址段不能和**Pod虚拟交换机**地址段、**Pod网络CIDR**地址段重叠。 |
 
 ## 网络规划
 
@@ -119,4 +124,15 @@ keyword: [集群网络, 专有网络, Terway和Flannel]
 
     和VPC互联场景类似，同样存在VPC里部分地址段路由到IDC，Kubernetes集群的Pod地址就不能和这部分地址重叠。IDC里如果需要访问Kubernetes里的Pod地址，同样需要在IDC端配置到专线VBR的路由表。
 
+
+**相关文档**  
+
+
+[概述](/cn.zh-CN/Kubernetes集群用户指南/网络管理/概述.md)
+
+[使用Terway网络插件](/cn.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用Terway网络插件.md)
+
+[使用网络策略（Network Policy）](/cn.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用网络策略（Network Policy）.md)
+
+[网络管理FAQ](/cn.zh-CN/Kubernetes集群用户指南/网络管理/网络管理FAQ.md)
 
