@@ -4,7 +4,7 @@ keyword: [集群网络, 专有网络, Terway和Flannel]
 
 # Kubernetes集群网络规划
 
-在创建ACK Kubernetes集群时，您需要指定专有网络VPC、虚拟交换机、 Pod网络CIDR（地址段）和Service CIDR（地址段）。因此建议您提前规划ECS地址、Kubernetes Pod地址和Service地址。本文将介绍阿里云专有网络VPC环境下ACK Kubernetes集群里各种地址的作用，以及地址段该如何规划。
+在创建ACK Kubernetes集群时，您需要指定专有网络VPC、虚拟交换机、Pod网络CIDR（地址段）和Service CIDR（地址段）。因此建议您提前规划ECS地址、Kubernetes Pod地址和Service地址。本文将介绍阿里云专有网络VPC环境下ACK Kubernetes集群里各种地址的作用，以及地址段该如何规划。
 
 ## 专有网络VPC网段和Kubernetes网段关系
 
@@ -36,7 +36,7 @@ keyword: [集群网络, 专有网络, Terway和Flannel]
 例如，VPC网段用的是172.16.0.0/12，Kubernetes的Pod地址段就不能使用172.16.0.0/16、172.17.0.0/16等，因为这些地址都包含在172.16.0.0/12里。
 
 |选择Flannel网络模式时，无需设置此参数。|
-|**Pod网络CIDR**|选择Terway网络模式时，无需设置此参数。|Pod 网络CIDR，Pod 地址从该地址段分配，用于Pod网络通信。Pod是Kubernetes内的概念，每个Pod具有一个IP地址。配置网段时，请注意：-   非VPC交换机，为虚拟网段。
+|**Pod网络CIDR**|选择Terway网络模式时，无需设置此参数。|Pod网络CIDR，Pod地址从该地址段分配，用于Pod网络通信。Pod是Kubernetes内的概念，每个Pod具有一个IP地址。配置网段时，请注意：-   非VPC交换机，为虚拟网段。
 -   该地址段不能和**虚拟交换机**网段重叠。
 -   该地址段不能和**Service CIDR**网段重叠。
 
