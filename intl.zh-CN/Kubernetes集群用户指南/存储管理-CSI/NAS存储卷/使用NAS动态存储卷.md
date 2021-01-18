@@ -18,11 +18,11 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
 
     2.  创建NAS文件系统。请参见[管理文件系统]()。
 
-        ![创建文件系统](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7785659951/p69131.png)
+        ![创建文件系统](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7785659951/p69131.png)
 
     3.  添加挂载点。请参见[管理挂载点]()。
 
-        ![添加挂载点](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8785659951/p69132.png)
+        ![添加挂载点](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8785659951/p69132.png)
 
 2.  创建StorageClass。
 
@@ -43,13 +43,21 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         reclaimPolicy: Retain
         ```
 
+        |参数|描述|
+        |--|--|
+        |mountOptions|挂载NAS的options参数在mountOptions中配置，包括NFS协议版本。|
+        |volumeAs|可选subpath、filesystem，分别表示创建子目录类型的PV和文件系统类型PV。|
+        |server|表示创建子目录类型的PV时，NAS文件系统的挂载点地址。|
+        |reclaimPolicy|PV的回收策略。|
+        |archiveOnDelete|表示在reclaimPolicy为Delete时，是否删除后端存储。因为NAS为共享存储，添加此选项进行双重确认。默认为true。|
+
     2.  执行以下命令创建StorageClass。
 
         ```
         kubectl create -f alicloud-nas-subpath.yaml
         ```
 
-3.  创建PV/PVC和Pod挂载NAS存储卷。
+3.  创建PV、PVC，和Pod挂载NAS存储卷。
 
     创建Pod `nginx-1`和`nginx-2`共享NAS存储卷的同一个子目录，`pvc.yaml`、`nginx-1.yaml`、`nginx-2.yaml`文件内容如下。
 
@@ -190,13 +198,13 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
 
     您可以通过以下任意一种方式进行授权：
 
-    -   编辑Kubernetes集群的Master RAM角色中的自定义策略内容，添加以上NAS相关的权限设置。请参见[角色授权](/intl.zh-CN/Kubernetes集群用户指南/授权管理/角色授权.md)。
+    -   编辑Kubernetes集群的Master RAM角色中的自定义策略内容，添加以上NAS相关的权限设置。请参见[容器服务默认角色](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)。
 
-        ![自定义授权](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8785659951/p69183.png)
+        ![自定义授权](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8785659951/p69183.png)
 
         **说明：** 托管集群是自动添加Master RAM，专有集群则需要加Master的RAM。
 
-    -   创建子账号授权以上RAM Policy并生成AccessKey，配置到StatefulSet csi-provisioner中csi-nasprovisioner的env变量中。请参见[角色授权](/intl.zh-CN/Kubernetes集群用户指南/授权管理/角色授权.md)。
+    -   创建子账号授权以上RAM Policy并生成AccessKey，配置到StatefulSet csi-provisioner中csi-nasprovisioner的env变量中。请参见[容器服务默认角色](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)。
 
         ```
         env:
@@ -247,7 +255,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         kubectl create -f alicloud-nas-fs.yaml
         ```
 
-3.  创建PV/PVC和Pod挂载NAS存储卷。
+3.  创建PV、PVC，和Pod挂载NAS存储卷。
 
     `pvc.yaml`、`nginx.yaml`文件内容如下。
 
