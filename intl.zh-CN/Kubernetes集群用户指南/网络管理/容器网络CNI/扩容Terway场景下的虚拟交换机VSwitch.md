@@ -54,20 +54,21 @@ Terway网络场景下，VSwitch IP资源不足的特征如下：
 
     样例中添加`vsw-BBB`到`VSwitches`部分，其中`vsw-AAA`是已经存在的且IP资源不足的VSwitch。
 
-3.  如果Terway版本不是最新的，您需要执行步骤3~6，将Terway版本升到最新版本，否则直接跳转至步骤7继续执行操作。
-4.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+3.  升级Terway版本。
 
-5.  在控制台左侧导航栏中，单击**集群**。
+    如果Terway版本不是最新的，您需将Terway版本升到最新版本，否则跳转此步骤。
 
-6.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
+    1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
-7.  在控制台左侧导航栏中，选择**运维管理** \> **组件管理**，然后将Terway版本升到最新版本。
+    2.  在控制台左侧导航栏中，单击**集群**。
 
-    1.  在组件管理页面，单击**网络**页签。
+    3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-    2.  在网络页签中选择需要升级的目标Terway组件，单击**升级**。
+    4.  在控制台左侧导航栏中，选择**运维管理** \> **组件管理**，然后在组件管理页面，单击**网络**页签。
 
-8.  执行以下命令删除全部Terway Pod后，系统自动重建全部Terway Pod。
+    5.  在网络页签中选择需要升级的目标Terway组件，单击**升级**。
+
+4.  执行以下命令删除全部Terway Pod后，系统自动重建全部Terway Pod。
 
     -   针对ENI多IP场景，执行以下命令删除全部Terway Pod：
 
@@ -87,8 +88,15 @@ Terway网络场景下，VSwitch IP资源不足的特征如下：
     kubectl get pod -n kube-system  | grep terway
     ```
 
-9.  创建Pod，验证新创建的Pod是否可以从新添加的VSwitch成功分配获得IP地址。
+5.  创建Pod，验证新创建的Pod是否可以从新添加的VSwitch成功分配获得IP地址。
 
 
 如果您在上述操作中遇到异常情况，请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)。
+
+**相关文档**  
+
+
+[使用Terway网络插件](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用Terway网络插件.md)
+
+[使用网络策略（Network Policy）](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用网络策略（Network Policy）.md)
 
