@@ -6,7 +6,7 @@ keyword: [edge node, managed edge Kubernetes cluster]
 
 This topic describes how to add an edge node as a worker node to a managed edge Kubernetes cluster in the Container Service for Kubernetes \(ACK\) console. You must ensure that the added node can communicate with the Kubernetes API server of the cluster. You can add Elastic Compute Service \(ECS\) instances, Edge Node Service \(ENS\) instances, and on-premises servers to a managed edge Kubernetes cluster.
 
--   A managed edge Kubernetes cluster is created. For more information, see [Create a managed edge cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Create a managed edge cluster.md).
+-   A managed edge Kubernetes cluster is created. For more information, see [Create a managed edge Kubernetes cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Create a managed edge cluster.md).
 -   To enable the cluster to automatically add ENS instances, ENS must be activated and an edge Kubernetes service must be created.
 
 **Note:** When you use a managed edge Kubernetes cluster, note the following limits:
@@ -18,7 +18,7 @@ This topic describes how to add an edge node as a worker node to a managed edge 
 
 ## Add a node
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
 2.  Add an existing node in the following methods:
 
@@ -50,7 +50,7 @@ This topic describes how to add an edge node as a worker node to a managed edge 
 
     The ENS instance is added to the cluster, as shown in the following figure.
 
-    ![Added successfully](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9883068951/p52432.png)
+    ![Added successfully](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9883068951/p52432.png)
 
 
 ## Parameters
