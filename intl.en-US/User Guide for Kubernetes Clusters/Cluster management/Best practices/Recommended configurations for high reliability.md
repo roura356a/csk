@@ -25,7 +25,7 @@ When you create an ACK cluster, you can set **Node Type** to the following value
 ## Network selection
 
 -   If you want to connect your cluster to external services such as ApsaraDB RDS for MySQL \(RDS\), you must use an existing virtual private cloud \(VPC\) instead of creating a VPC. VPCs are isolated from each other. You can create a VSwitch and attach the ECS instances of your cluster to the VSwitch. This facilitates cluster management.
--   You can select one of the following network plug-ins when creating an ACK cluster: Terway and Flannel. For more information, see [Flannel and Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Use Terway.md).
+-   You can select one of the following network plug-ins when creating an ACK cluster: Terway and Flannel. For more information, see [Flannel and Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Use Terway.md).
 -   Do not set a small CIDR block for the pod network. Otherwise, the number of supported nodes is limited. To set this parameter, consider the value that you want to specify for the **Pod Number for Node** parameter in the **Advanced Settings** section. For example, if you set the CIDR block of the pod network to X.X.X.X/16, it indicates that 256 × 256 IP addresses are assigned to your cluster. If the Pod Number for Node parameter is set to 128, the maximum number of nodes supported by your cluster is 512.
 
 ## Use cross-zone deployment
