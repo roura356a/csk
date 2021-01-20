@@ -6,14 +6,54 @@
 
 [您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=CS&api=CreateCluster&type=ROA&version=2015-12-15)
 
-## 请求头
-
-该接口使用公共请求头，无特殊请求头。更多信息，请参见[公共请求参数](公共请求参数t1884803.dita#concept_944293)。
-
 ## 请求语法
 
 ```
-POST /clusters 
+POST /clusters HTTP/1.1
+Content-Type:application/json
+{
+  "name" : "String",
+  "cluster_type" : "String",
+  "disable_rollback" : Boolean,
+  "timeout_mins" : Long,
+  "kubernetes_version" : "String",
+  "region_id" : "String",
+  "key_pair" : "String",
+  "login_password" : "String",
+  "num_of_nodes" : Long,
+  "profile" : "String",
+  "snat_entry" : Boolean,
+  "vswitch_ids" : [ "String" ],
+  "worker_system_disk_category" : "String",
+  "worker_system_disk_size" : Long,
+  "container_cidr" : "String",
+  "cloud_monitor_flags" : Boolean,
+  "endpoint_public_access" : Boolean,
+  "service_cidr" : "String",
+  "addons" : [ {
+    "name" : "String",
+    "config" : "String",
+    "disabled" : Boolean
+  } ],
+  "tags" : [ {
+    "key" : "String",
+    "value" : "String"
+  } ],
+  "vpcid" : "String",
+  "worker_data_disks" : [ {
+    "category" : "String",
+    "size" : Long,
+    "encrypted" : "String",
+    "auto_snapshot_policy_id" : "String"
+  } ],
+  "deletion_protection" : Boolean,
+  "node_cidr_mask" : "String",
+  "worker_instance_types" : [ "String" ],
+  "worker_instance_charge_type" : "String",
+  "security_group_id" : "String",
+  "is_enterprise_security_group" : Boolean,
+  "rds_instances" : [ "String" ]
+}
 ```
 
 ## 请求参数
@@ -149,7 +189,19 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 默认值：`true`。 |
 |rds\_instances|rds\_instances|否|rm-2zev748xi27xc\*\*\*\*|RDS实例名称。|
 
-## 返回数据
+## 响应体语法
+
+```
+HTTP/1.1 200
+Content-Type:application/json
+{
+  "cluster_id" : "String",
+  "request_id" : "String",
+  "task_id" : "String"
+}
+```
+
+## 响应参数
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
