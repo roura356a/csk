@@ -6,46 +6,74 @@
 
 [您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=CS&api=CreateCluster&type=ROA&version=2015-12-15)
 
-## 请求头
-
-该接口使用公共请求头，无特殊请求头。更多信息，请参见[公共请求参数](公共请求参数t1884803.dita#concept_944293)。
-
 ## 请求语法
 
 ```
-POST /api/v2/clusters/{cluster_id} 
+POST /api/v2/clusters/ClusterId HTTP/1.1
+Content-Type:application/json
+{
+  "count" : Long,
+  "worker_instance_type" : "String",
+  "ens_region_id" : "String",
+  "worker_image_id" : "String",
+  "ens_internet_charge_type": "String",
+  "worker_period": Long,
+  "login_password": "String",
+  "worker_system_disk_size": Long,
+  "is_edge_worker": Boolean,
+  "worker_data_disk_size": Long,
+  "worker_auto_renew": Boolean,
+  "worker_auto_renew_period": Long,
+  "timeout_mins": Long
+}
 ```
 
 ## 请求参数
 
+|参数名称|类型|是否必选|示例|说明|
+|----|--|----|--|--|
+|ClusterId|String|是|Cccfd68c474454665ace07efce924\*\*\*\*|集群ID。 |
+
 |名称|类型|必须|示例值|描述|
 |--|--|--|---|--|
-|count|Int|是|1|扩容ENS实例数量。|
+|count|Long|是|1|扩容ENS实例数量。|
 |worker\_instance\_type|String|是|ens.sn1.tiny|ENS实例规格。|
 |ens\_region\_id|String|是|cn-beijing-cmcc-2|ENS地域ID。|
 |worker\_image\_id|String|是|centos\_7\_06\_64\_20G\_alibase\_2019\*\*\*\*|节点自定义镜像，默认使用系统镜像。当选择自定义镜像时，将取代默认系统镜像。请参见[自定义镜像](~~146647~~)。 |
 |ens\_Internet\_charge\_type|String|是|BandwidthByDay|计费方式,，取值：-   `BandwidthByDay`：日峰值带宽。
 -   `95BandwidthByMonth`：月95峰值带宽。 |
-|worker\_period|Int|是|1|Worker节点包年包月时长，当`worker_instance_charge_type`取值为`PrePaid`时才生效且为必选值。
+|worker\_period|Long|是|1|Worker节点包年包月时长，当`worker_instance_charge_type`取值为`PrePaid`时才生效且为必选值。
 
 取值范围：\{1, 2, 3, 6, 12, 24, 36, 48, 60\}。
 
 默认值：1。 |
-|login\_password|String|是|HelloWorld123|SSH登录密码，和`key_pair`二选一。密码规则为8~30个字符，且至少同时包含三项（大小写字母、数字和特殊符号）。 |
-|worker\_system\_disk\_size|Int|是|40|系统盘大小，单位为GiB。取值：20~100之间10的倍数，并且要大于OS镜像大小。|
+|login\_password|String|是|HelloWorl\*\*\*\*|SSH登录密码，和`key_pair`二选一。密码规则为8~30个字符，且至少同时包含三项（大小写字母、数字和特殊符号）。 |
+|worker\_system\_disk\_size|Long|是|40|系统盘大小，单位为GiB。取值：20~100之间10的倍数，并且要大于OS镜像大小。|
 |is\_edge\_worker|Boolean|是|true|扩容的ENS节点是否作为边缘worker节点。取值：-   `true`：作为边缘Worker节点。
 -   `false`：不作为边缘Worker。
 
 该场景下，只允许为`true`。|
-|worker\_data\_disk\_size|Int|否|40|数据盘大小。0表示不需要数据盘，20~200之间的10的倍数。|
+|worker\_data\_disk\_size|Long|否|40|数据盘大小。0表示不需要数据盘，20~200之间的10的倍数。|
 |worker\_auto\_renew|Boolean|否|true|是否要自动续费。取值-   `true`：自动续费。
 -   `false`：不自动续费。
 
 默认值：`false`。|
-|worker\_auto\_renew\_period|Int|否|1|每次自动续费的时长，当参数`worker_auto_renew`取值`true`时为必填。取值范围：\[1,12\]。|
-|timeout\_mins|Int|否|60|扩容超时时间，单位分钟。|
+|worker\_auto\_renew\_period|Long|否|1|每次自动续费的时长，当参数`worker_auto_renew`取值`true`时为必填。取值范围：\[1,12\]。|
+|timeout\_mins|Long|否|60|扩容超时时间，单位分钟。|
 
-## 返回数据
+## 响应体语法
+
+```
+HTTP/1.1 200
+Content-Type:application/json
+{
+  "cluster_id" : "String",
+  "request_id" : "String",
+  "task_id" : "String"
+}
+```
+
+## 响应参数
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
@@ -100,4 +128,19 @@ POST /api/v2/clusters/Cccfd68c474454665ace07efce924****
 ## 错误码
 
 访问[错误中心](https://error-center.aliyun.com/status/product/CS)查看更多错误码。
+
+## 开发者资源
+
+-   [SDK](https://next.api.aliyun.com/api-tools/sdk/CS?version=2015-12-15&)
+
+    阿里云为您提供多种语言的SDK，帮助您快速通过API集成阿里云的产品和服务，推荐您使用SDK调用API，已免除您手动签名验证，详情请参见SDK参考文档链接。
+
+-   [OpenAPI Explorer](https://next.api.aliyun.com/api/CS/2015-12-15/ScaleOutCluster)
+
+    快速检索，可视化调试API，在线命令行工具，同步动态生成可执行的SDK代码示例。
+
+-   [阿里云CLI](https://github.com/aliyun/aliyun-cli)
+
+    阿里云资产管理和配置工具，可通过命令方式同时管理多个阿里云产品和服务，简单快捷，是您上云好帮手。
+
 
