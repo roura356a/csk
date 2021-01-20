@@ -148,67 +148,20 @@ Content-Type:application/json
 |request\_id|String|687C5BAA-D103-4993-884B-C35E4314A1E1|请求ID。 |
 |task\_id|String|T-5a54309c80282e39ea00002f|任务ID。 |
 
-## 示例
+## 示例1 使用自动创建VPC方式创建ASK集群
 
 请求示例
 
 ```
-POST /clusters 
-<公共请求头>
-{
-    "cluster_type":"Ask",
-    "name":"ASK集群",
-    "kubernetes_version":"1.18.8-aliyun.1",
-    "region_id":"cn-zhangjiakou",
-    "endpoint_public_access":true,
-    "service_discovery_types":[    //服务发现方式。
-        "PrivateZone"
-    ],
-    "tags":[
-        {
-            "key":"tag-k",
-            "value":"tag-v"
-        }
-    ],
-    "deletion_protection":true,
-    "service_cidr":"172.21.0.0/20",
-    "timezone":"Asia/Shanghai",
-    "addons":[
-        {
-            "name":"nginx-ingress-controller",
-            "config":"{\"IngressSlbNetworkType\":\"internet\"}"
-        },
-        {
-            "name":"metrics-server"
-        },
-        {
-            "name":"logtail-ds"
-        },
-        {
-            "name":"knative"    // 开启Knative， 可不开启。
-        }
-    ],
-    "zone_id":"",   // 可用区ID
-    "vpcid":"vpc-8vbh3b9a2f38urhls****",
-    "vswitch_ids":[
-        "vsw-8vbmoffowsztjaawj****"
-    ],
-}
-```
-
-创建ASK集群时使用已有VPC。请求示例如下。
-
-```
-POST /clusters 
+POST /clusters HTTP/1.1
 <公共请求头>
 {
     "cluster_type":"Ask",
     "name":"test-ask",
-    "kubernetes_version":"1.16.9-aliyun.1",
     "region_id":"cn-hangzhou",
     "endpoint_public_access":false,
     "private_zone":false,
-    "nat_gateway":false,
+    "nat_gateway":true,
     "tags":[
         {
             "key":"k-aa",
@@ -222,6 +175,49 @@ POST /clusters
         }
     ],
     "zone_id":"cn-hangzhou-i"
+}
+```
+
+返回示例
+
+```
+{
+    "cluster_id": "cb95aa626a47740afbf6aa099b650****",
+    "RequestId": "687C5BAA-D103-4993-884B-C35E4314A1E1",
+    "task_id": "T-5a54309c80282e39ea00002f",
+}
+```
+
+## 示例2 使用已有VPC方式创建ASK集群
+
+请求示例
+
+```
+POST /clusters HTTP/1.1
+<公共请求头>
+{
+    "cluster_type":"Ask",
+    "name":"ask-cluster",
+    "region_id":"cn-shenzhen",
+    "endpoint_public_access":true,
+    "private_zone":true,
+    "tags":[
+        {
+            "key":"tier",
+            "value":"frontend"
+        }
+    ],
+    "deletion_protection":true,
+    "addons":[
+        {
+            "name":"logtail-ds"
+        }
+    ],
+    "vpc_id":"vpc-wz984yvbd6lck22z3****",
+    "vswitch_ids":[
+        "vsw-wz9uwxhawmtzg7u9h****"
+    ],
+    "security_group_id":"sg-wz9b86l4s7nthi1k****"
 }
 ```
 
