@@ -6,41 +6,62 @@
 
 [您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=CS&api=DescribeKubernetesVersionMetadata&type=ROA&version=2015-12-15)
 
-## 请求头
-
-该接口使用公共请求头，无特殊请求头。更多信息，请参见[公共请求参数](~~167755~~)。
-
 ## 请求语法
 
 ```
-GET /api/v1/metadata/versions 
+GET /api/v1/metadata/versions?Region=String&ClusterType=String&KubernetesVersion=String&Profile=String HTTP/1.1 
+Content-Type:application/json
 ```
 
 ## 请求参数
 
-|名称|类型|位置|是否必选|示例值|描述|
-|--|--|--|----|---|--|
-|Region|String|Query|是|cn-beijing|集群所在地域ID。 |
-|ClusterType|String|Query|是|Kubernetes|集群类型，取值：
+|参数名称|类型|是否必选|示例|说明|
+|----|--|----|--|--|
+|Region|String|是|cn-beijing|集群所在地域ID。 |
+|ClusterType|String|是|Kubernetes|集群类型，取值：
 
  -   `Kubernetes`: 专有版集群。
 -   `ManagedKubernetes`：托管版集群。
 -   `Ask`：Serverless集群。
 -   `ExternalKubernetes`：注册集群。 |
-|KubernetesVersion|String|Query|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。
+|KubernetesVersion|String|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。
 
  目前在ACK控制台您可以创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。ACK支持的Kubernetes版本，请参见[Kubernetes版本发布概览](~~185269~~)。 |
-|Profile|String|Query|否|Default|面向场景时的集群类型，取值：
+|Profile|String|否|Default|面向场景时的集群类型，取值：
 
  -   `Default`：非边缘场景集群。
 -   `Edge`：边缘场景集群。
 
  默认值：`Default`。 |
 
-## 返回数据
+## 响应体语法
 
-|名称|类型|示例值|描述|
-|--|--|---|--|
+```
+HTTP/1.1 200
+Content-Type:application/json
+[ {
+  "images" : [ {
+    "image_id" : "String",
+    "image_name" : "String",
+    "platform" : "String",
+    "os_version" : "String",
+    "image_type" : "String",
+    "os_type" : "String",
+    "image_category" : "String"
+  } ],
+  "runtimes" : [ {
+    "name" : "String",
+    "version" : "String"
+  } ],
+  "version" : "String",
+  "multi_az" : "String"
+} ]
+```
+
+## 响应参数
+
+|参数名称|类型|示例|说明|
+|----|--|--|--|
 | |Array| |集群版本详情列表。 |
 |capabilities|Map| |Kubernetes版本功能特性。 |
 |images|Array| |系统镜像列表。 |
@@ -80,111 +101,58 @@ GET /api/v1/metadata/versions
 请求示例
 
 ```
-GET /api/v1/metadata/versions?KubernetesVersion=1.16.9-aliyun.1&Region=cn-beijing&ClusterType=Kubernetes
+GET /api/v1/metadata/versions?Region=cn-beijing&ClusterType=Kubernetes&KubernetesVersion=1.16.9-aliyun.1&Profile=Default HTTP/1.1 
+Content-Type:application/json
 ```
 
 正常返回示例
 
-`XML` 格式
+`XML`格式
 
 ```
+HTTP/1.1 200
+Content-Type:application/xml
 <0>
-    <version>1.18.8-aliyun.1</version>
-    <capabilities>
-        <CloudMonitorVersion>1.3.7</CloudMonitorVersion>
-        <DockerVersion>17.06.2-ce-3</DockerVersion>
-        <EnterpriseSecurityGroup>true</EnterpriseSecurityGroup>
-        <EtcdVersion>v3.3.8</EtcdVersion>
-        <HpcCluster>true</HpcCluster>
-        <IsEnterpriseSecurityGroup>false</IsEnterpriseSecurityGroup>
-    </capabilities>
-    <multi_az>false</multi_az>
-    <meta_data>
-        <KubernetesVersion>1.18.8-aliyun.1</KubernetesVersion>
-        <DockerVersion>19.03.5</DockerVersion>
-        <EtcdVersion>v3.4.3</EtcdVersion>
-    </meta_data>
+    <images>
+        <image_id>centos_7_7_x64_20G_alibase_20200426.vhd</image_id>
+        <image_name>CentOS 7.7</image_name>
+        <platform>CentOS</platform>
+        <os_version>7.7</os_version>
+        <image_type>centos_7_7_20</image_type>
+        <os_type>Linux</os_type>
+        <image_category>system</image_category>
+    </images>
     <runtimes>
         <name>docker</name>
         <version>19.03.5</version>
     </runtimes>
-    <runtimes>
-        <name>Sandboxed-Container.runv</name>
-        <version>2.1.0</version>
-    </runtimes>
-    <images>
-        <image_id>centos_7_7_x64_20G_alibase_20200426.vhd</image_id>
-        <image_name>CentOS 7.7</image_name>
-        <image_type>centos_7_7_20</image_type>
-        <image_category>system</image_category>
-        <platform>CentOS</platform>
-        <os_type>Linux</os_type>
-        <os_version>7.7</os_version>
-    </images>
-    <images>
-        <image_id>aliyun_2_1903_x64_20G_alibase_20200904.vhd</image_id>
-        <image_name>Alibaba Cloud Linux 2.1903</image_name>
-        <image_type>aliyunlinux_2_64_20</image_type>
-        <image_category>system</image_category>
-        <platform>AliyunLinux</platform>
-        <os_type>Linux</os_type>
-        <os_version>2.1903</os_version>
-    </images>
+    <version>1.16.9-aliyun.1</version>
+    <multi_az>false</multi_az>
 </0>
 ```
 
-`JSON` 格式
+`JSON`格式
 
 ```
-[
-  {
-    "version": "1.18.8-aliyun.1",
-    "capabilities": {
-      "CloudMonitorVersion": "1.3.7",
-      "DockerVersion": "17.06.2-ce-3",
-      "EnterpriseSecurityGroup": true,
-      "EtcdVersion": "v3.3.8",
-      "HpcCluster": true,
-      "IsEnterpriseSecurityGroup": false
-    },
-    "multi_az": false,
-    "meta_data": {
-      "KubernetesVersion": "1.18.8-aliyun.1",
-      "DockerVersion": "19.03.5",
-      "EtcdVersion": "v3.4.3"
-    },
-    "runtimes": [
-      {
-        "name": "docker",
-        "version": "19.03.5"
-      },
-      {
-        "name": "Sandboxed-Container.runv",
-        "version": "2.1.0"
-      }
-    ],
-    "images": [
-      {
-        "image_id": "centos_7_7_x64_20G_alibase_20200426.vhd",
-        "image_name": "CentOS 7.7",
-        "image_type": "centos_7_7_20",
-        "image_category": "system",
-        "platform": "CentOS",
-        "os_type": "Linux",
-        "os_version": "7.7"
-      },
-      {
-        "image_id": "aliyun_2_1903_x64_20G_alibase_20200904.vhd",
-        "image_name": "Alibaba Cloud Linux 2.1903",
-        "image_type": "aliyunlinux_2_64_20",
-        "image_category": "system",
-        "platform": "AliyunLinux",
-        "os_type": "Linux",
-        "os_version": "2.1903"
-      }
-    ]
-  }
-]
+HTTP/1.1 200
+Content-Type:application/json
+[ {
+  "images" : [ {
+    "image_id" : "centos_7_7_x64_20G_alibase_20200426.vhd",
+    "image_name" : "CentOS 7.7",
+    "platform" : "CentOS",
+    "os_version" : "7.7",
+    "image_type" : "centos_7_7_20",
+    "os_type" : "Linux",
+    "image_category" : "system"
+  } ],
+  "runtimes" : [ {
+    "name" : "docker",
+    "version" : "19.03.5"
+  } ],
+  "version" : "1.16.9-aliyun.1",
+  "multi_az" : "false"
+} ]
 ```
 
 ## 错误码
