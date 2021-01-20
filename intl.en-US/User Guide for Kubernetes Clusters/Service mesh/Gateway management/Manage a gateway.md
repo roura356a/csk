@@ -2,7 +2,9 @@
 
 This topic describes how to modify or delete a gateway in the Container Service console.
 
--   -   -   A gateway is deployed. For more information, see [Deploy a gateway](/intl.en-US/User Guide for Kubernetes Clusters/Service mesh/Gateway management/Deploy a gateway.md).
+-   [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)
+-   [Deploy Istio](/intl.en-US/User Guide for Kubernetes Clusters/Service mesh/Istio management/Deploy Istio.md)
+-   A gateway is deployed. For more information, see [Deploy a gateway](/intl.en-US/User Guide for Kubernetes Clusters/Service mesh/Gateway management/Deploy a gateway.md).
 
 ## Modify a gateway
 
@@ -10,9 +12,7 @@ You can modify the gateway configuration by updating the YAML configuration.
 
 1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane under Container Service - Kubernetes, choose **Service Mesh** \> **Gateways**. The Gateways page appears on the right.
-
-3.  Click **View in YAML** in the Actions column for the target gateway.
+2.  Click **View in YAML** in the Actions column for the target gateway.
 
     The YAML configuration similar to the following appears:
 
@@ -44,15 +44,13 @@ You can modify the gateway configuration by updating the YAML configuration.
     -   `name` in port: the name of the gateway port. In this example, the gateway port name is http.
     -   `number`: the port number of the gateway.
     -   `protocol`: the gateway protocol.
-4.  After you modify the YAML configuration as required, click **Update**.
+3.  After you modify the YAML configuration as required, click **Update**.
 
 
 ## Delete a gateway
 
-1.  In the left-side navigation pane under Container Service - Kubernetes, choose **Service Mesh** \> **Gateways**. The Gateways page appears on the right.
+1.  Click **Delete** in the Actions column for the target gateway.
 
-2.  Click **Delete** in the Actions column for the target gateway.
-
-3.  In the dialog box that appears, click **OK**. The gateway is deleted.
+2.  In the dialog box that appears, click **OK**. The gateway is deleted.
 
 
