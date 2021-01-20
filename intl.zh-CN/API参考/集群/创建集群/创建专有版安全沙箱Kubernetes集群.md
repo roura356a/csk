@@ -290,7 +290,7 @@ Content-Type:application/json
 |request\_id|String|687C5BAA-D103-4993-884B-C35E4314A1E1|请求ID。|
 |task\_id|String|T-5a54309c80282e39ea00002f|任务ID。|
 
-## 示例
+## 示例1 使用Flannel网络插件创建ACK专有版安全沙箱集群
 
 请求示例
 
@@ -360,10 +360,33 @@ POST /clusters
 }
 ```
 
-请求示例补充说明
+正常返回示例
+
+`XML`格式
 
 ```
-如果是terway网络类型的集群，pod_vswitch_ids为必填参数，请求入参示例如下：
+<cluster_id>cb95aa626a47740afbf6aa099b650****</cluster_id>
+<task_id>T-5a54309c80282e39ea00002f</task_id>
+<request_id>687C5BAA-D103-4993-884B-C35E4314A1E1</request_id>
+```
+
+`JSON`格式
+
+```
+{
+    "cluster_id": "cb95aa626a47740afbf6aa099b650****",
+    "task_id": "T-5a54309c80282e39ea00002f",
+    "request_id": "687C5BAA-D103-4993-884B-C35E4314A1E1"
+}
+```
+
+## 示例2 使用Terway网络插件创建专有版安全沙箱集群示例
+
+**说明：** 如果您创建是Terway网络类型的集群，`pod_vswitch_ids`为必填参数。
+
+请求示例
+
+```
 POST /clusters HTTP/1.1
 公共请求头
 {
