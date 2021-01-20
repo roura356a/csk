@@ -6,14 +6,54 @@
 
 [您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=CS&api=CreateCluster&type=ROA&version=2015-12-15)
 
-## 请求头
-
-该接口使用公共请求头，无特殊请求头。更多信息，请参见[公共请求参数](公共请求参数t1884803.dita#concept_944293)。
-
 ## 请求语法
 
 ```
-POST /clusters 
+POST /clusters HTTP/1.1
+Content-Type:application/json
+{
+  "name" : "String",
+  "cluster_type" : "String",
+  "disable_rollback" : Boolean,
+  "timeout_mins" : Long,
+  "kubernetes_version" : "String",
+  "region_id" : "String",
+  "key_pair" : "String",
+  "login_password" : "String",
+  "num_of_nodes" : Long,
+  "profile" : "String",
+  "snat_entry" : Boolean,
+  "vswitch_ids" : [ "String" ],
+  "worker_system_disk_category" : "String",
+  "worker_system_disk_size" : Long,
+  "container_cidr" : "String",
+  "cloud_monitor_flags" : Boolean,
+  "endpoint_public_access" : Boolean,
+  "service_cidr" : "String",
+  "addons" : [ {
+    "name" : "String",
+    "config" : "String",
+    "disabled" : Boolean
+  } ],
+  "tags" : [ {
+    "key" : "String",
+    "value" : "String"
+  } ],
+  "vpcid" : "String",
+  "worker_data_disks" : [ {
+    "category" : "String",
+    "size" : Long,
+    "encrypted" : "String",
+    "auto_snapshot_policy_id" : "String"
+  } ],
+  "deletion_protection" : Boolean,
+  "node_cidr_mask" : "String",
+  "worker_instance_types" : [ "String" ],
+  "worker_instance_charge_type" : "String",
+  "security_group_id" : "String",
+  "is_enterprise_security_group" : Boolean,
+  "rds_instances" : [ "String" ]
+}
 ```
 
 ## 请求参数
@@ -149,7 +189,19 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 默认值：`true`。 |
 |rds\_instances|rds\_instances|否|rm-2zev748xi27xc\*\*\*\*|RDS实例名称。|
 
-## 返回数据
+## 响应体语法
+
+```
+HTTP/1.1 200
+Content-Type:application/json
+{
+  "cluster_id" : "String",
+  "request_id" : "String",
+  "task_id" : "String"
+}
+```
+
+## 响应参数
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
@@ -250,4 +302,19 @@ POST /clusters
 ## 错误码
 
 访问[错误中心](https://error-center.aliyun.com/status/product/CS)查看更多错误码。
+
+## 开发者资源
+
+-   [SDK](https://next.api.aliyun.com/api-tools/sdk/CS?version=2015-12-15&)
+
+    阿里云为您提供多种语言的SDK，帮助您快速通过API集成阿里云的产品和服务，推荐您使用SDK调用API，已免除您手动签名验证，详情请参见SDK参考文档链接。
+
+-   [OpenAPI Explorer](https://next.api.aliyun.com/api/CS/2015-12-15/CreateCluster)
+
+    快速检索，可视化调试API，在线命令行工具，同步动态生成可执行的SDK代码示例。
+
+-   [阿里云CLI](https://github.com/aliyun/aliyun-cli)
+
+    阿里云资产管理和配置工具，可通过命令方式同时管理多个阿里云产品和服务，简单快捷，是您上云好帮手。
+
 
