@@ -334,7 +334,7 @@ Content-Type:application/json
 |request\_id|String|687C5BAA-D103-4993-884B-C35E4314A1E1|请求ID。 |
 |task\_id|String|T-5a54309c80282e39ea00002f|任务ID。 |
 
-## 示例
+## 创建ACK标准托管版集群示例
 
 请求示例
 
