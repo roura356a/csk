@@ -44,7 +44,7 @@ Content-Type:application/json
 |----|--|--|--|
 |config|String|apiVersion: v1\*\*\*\*|集群访问配置。 |
 
-## 示例
+## 获取集群kubeconfig接口示例
 
 请求示例
 
@@ -58,8 +58,9 @@ Content-Type:application/json
 `XML`格式
 
 ```
-HTTP/1.1 200
+HTTP/1.1 200 OK
 Content-Type:application/xml
+
 <config>
 apiVersion: v1
 clusters:
@@ -86,8 +87,9 @@ users:
 `JSON`格式
 
 ```
-HTTP/1.1 200
+HTTP/1.1 200 OK
 Content-Type:application/json
+
 {
   "config" : "\napiVersion: v1\nclusters:\n- cluster:\n    server: https://192.168.0.**:6443\n    certificate-authority-data: ***\n  name: kubernetes\ncontexts:\n- context:\n    cluster: kubernetes\n    user: \"kubernetes-admin\"\n  name: kubernetes-admin-c23421cfa74454bc8b37163fd19af****\ncurrent-context: kubernetes-admin-c23421cfa74454bc8b37163fd19af****\nkind: Config\npreferences: {}\nusers:\n- name: \"kubernetes-admin\"\n  user:\n    client-certificate-data: ***\n    client-key-data: ***\n"
 }
