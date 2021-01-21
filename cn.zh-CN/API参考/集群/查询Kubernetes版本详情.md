@@ -96,7 +96,7 @@ Content-Type:application/json
  -   `true`：是多可用区。
 -   `false`：非多可用区。 |
 
-## 示例
+## 查询Kubernetes版本详情示例
 
 请求示例
 
@@ -110,8 +110,9 @@ Content-Type:application/json
 `XML`格式
 
 ```
-HTTP/1.1 200
+HTTP/1.1 200 OK
 Content-Type:application/xml
+
 <0>
     <images>
         <image_id>centos_7_7_x64_20G_alibase_20200426.vhd</image_id>
@@ -134,8 +135,9 @@ Content-Type:application/xml
 `JSON`格式
 
 ```
-HTTP/1.1 200
+HTTP/1.1 200 OK
 Content-Type:application/json
+
 [ {
   "images" : [ {
     "image_id" : "centos_7_7_x64_20G_alibase_20200426.vhd",
