@@ -6,9 +6,9 @@ You can call CreateTemplate to create an application deployment template.
 
 [OpenAPI Explorer automatically calculates the signature value. For your convenience, we recommend that you call this operation in OpenAPI Explorer. OpenAPI Explorer dynamically generates the sample code of the operation for different SDKs.](https://api.aliyun.com/#product=CS&api=CreateTemplate&type=ROA&version=2015-12-15)
 
-## Request headers
+## Request parameter types
 
-This operation uses the common request header only. For more information, see Common parameters.
+This operation uses common request parameters only. For more information, see Common parameters.
 
 ## Request syntax
 
@@ -37,7 +37,7 @@ Sample requests
 
 ```
 POST /templates HTTP/1.1
-Common request header
+Common request parameters
 {
 "name": "nginx",
 "template": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: nginx-deployment-basic\n  labels:\n    app: nginx\nspec:\n  replicas: 2\n  selector:\n    matchLabels:\n      app: nginx\n  template:\n    metadata:\n      labels:\n        app: nginx\n    spec:\n      containers:\n      - name: nginx\n        image: busybox:latest\n        ports:\n        - containerPort: 80"
