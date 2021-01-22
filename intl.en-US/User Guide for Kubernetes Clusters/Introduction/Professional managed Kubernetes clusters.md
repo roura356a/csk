@@ -1,12 +1,12 @@
 ---
-keyword: [professional managed Kubernetes cluster, professional managed Kubernetes cluster, introduction to professional managed Kubernetes cluster]
+keyword: [professional managed Kubernetes clusters, professional managed Kubernetes clusters, introduction to professional managed Kubernetes clusters]
 ---
 
 # Professional managed Kubernetes clusters
 
-Professional managed Kubernetes clusters are developed based on managed Kubernetes clusters. Professional managed Kubernetes clusters offer higher reliability and security in large-scale production environments for enterprise users. Professional managed Kubernetes clusters are also covered by the service-level agreement \(SLA\) that supports compensation clauses.
+Professional managed Kubernetes clusters are developed on top of managed Kubernetes clusters. Professional managed Kubernetes clusters offer higher reliability and security in large-scale production environments for enterprise users. Professional managed Kubernetes clusters are also covered by the service-level agreement \(SLA\) that supports compensation clauses.
 
-Professional managed Kubernetes clusters provide all benefits of managed Kubernetes clusters. For example, master nodes are also highly available and managed by Container Service for Kubernetes \(ACK\). In addition, professional managed Kubernetes clusters provide higher reliability, security, and schedulability. Professional managed Kubernetes clusters are covered by terms of SLA for customer compensation and are suitable for enterprises that require higher security and stability for large-scale business deployed in a production environment.
+Professional managed Kubernetes clusters provide all benefits of managed Kubernetes clusters. For example, master nodes are also highly available and managed by Container Service for Kubernetes \(ACK\). In addition, professional managed Kubernetes clusters provide higher reliability, security, and schedulability. Professional managed Kubernetes clusters are covered by terms of SLA for customer compensation. Professional managed Kubernetes clusters are suitable for enterprises that require higher security and stability for large-scale business deployed in a production environment.
 
 ## Scenarios
 
@@ -30,13 +30,13 @@ For more information about the pricing of professional managed Kubernetes cluste
 
 The following table compares professional managed Kubernetes clusters and standard managed Kubernetes clusters.
 
-**Note:** Managed Kubernetes clusters are renamed standard managed Kubernetes clusters.
+**Note:** Managed ACK clusters are renamed standard managed Kubernetes clusters.
 
 |Category|Managed Kubernetes cluster|
 |Professional managed Kubernetes cluster|Standard managed Kubernetes cluster|
 |--------|--------------------------|
 |---------------------------------------|-----------------------------------|
-|Cluster size|Up to 5,000 nodes.|Up to 100 nodes for each newly created cluster. A maximum of 5,000 nodes can be deployed in an existing standard managed Kubernetes cluster. Existing standard managed Kubernetes can be upgraded to professional managed Kubernetes clusters.|
+|Cluster size|Up to 5,000 nodes.|Up to 100 nodes for each newly created cluster. A maximum of 5,000 nodes can be deployed in an existing standard managed Kubernetes cluster. Existing standard managed Kubernetes clusters can be upgraded to professional managed Kubernetes clusters.|
 |SLA|99.95% \(supports compensation\).|99.90% \(does not support compensation\).|
 |API Server|-   Provides the auto scaling feature.
 -   Monitors availability.
@@ -45,10 +45,48 @@ The following table compares professional managed Kubernetes clusters and standa
 |etcd|Supports high-frequency cold backups, high-frequency hot backups, and geo-disaster recovery.|Does not support features that are provided by professional managed Kubernetes clusters.|
 |Kube-scheduler|-   Supports gang scheduling. For more information, see [Gang scheduling](/intl.en-US/User Guide for Kubernetes Clusters/Introduction/Resource scheduling/Gang scheduling.md).
 -   Supports topology-aware CPU scheduling. For more information, see [Topology-aware CPU scheduling](/intl.en-US/User Guide for Kubernetes Clusters/Introduction/Resource scheduling/Topology-aware CPU scheduling.md).
--   Supports topology-aware GPU scheduling. For more information, see [Topology-aware GPU scheduling]().
+-   Supports topology-aware GPU scheduling For more information, see [Topology-aware GPU scheduling](/intl.en-US/User Guide for Kubernetes Clusters/Introduction/GPU topology-aware scheduling/Overview.md).
 -   Supports cGPU Professional Edition. For more information, see [Overview](/intl.en-US/User Guide for Kubernetes Clusters/Introduction/cGPU Professional Edition/Overview.md).
 
 |Supports cGPU Basic Edition. For more information, see [Overview](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU management/Shared GPU scheduling/Overview.md).|
-|Security management|Supports the professional edition. Data encryption is supported. For more information, see [Use KMS to encrypt Kubernetes secrets at rest in the etcd](/intl.en-US/User Guide for Kubernetes Clusters/Introduction/Use KMS to encrypt Kubernetes secrets at rest in the etcd.md).|Supports the basic edition.|
-|Managed node pool|Supported. For more information, see [Overview]().|Not supported.|
+|Security management|Supports the professional edition and data encryption. For more information, see [Use KMS to encrypt Kubernetes secrets at rest in the etcd](/intl.en-US/User Guide for Kubernetes Clusters/Introduction/Use KMS to encrypt Kubernetes secrets at rest in the etcd.md).|Supports the basic edition.|
+|Managed node pool|Supported. For more information, see [Overview](/intl.en-US/User Guide for Kubernetes Clusters/Introduction/Managed node pools/Overview.md).|Not supported.|
+
+## Supported regions
+
+-   Asia Pacific
+
+    |Region|City|Region ID|
+    |------|----|---------|
+    |China \(Beijing\)|Beijing|cn-beijing|
+    |China \(Zhangjiakou\)|Zhangjiakou|cn-zhangjiakou|
+    |China \(Hohhot\)|Hohhot|cn-huhehaote|
+    |China \(Ulanqab\)|Ulanqab|cn-wulanchabu|
+    |China \(Hangzhou\)|Hangzhou|cn-hangzhou|
+    |China \(Shanghai\)|Shanghai|cn-shanghai|
+    |China \(Shenzhen\)|Shenzhen|cn-shenzhen|
+    |China \(Heyuan\)|Heyuan|cn-heyuan|
+    |China \(Chengdu\)|Chengdu|cn-chengdu|
+    |China \(Hong Kong\)|Hong Kong|cn-hongkong|
+    |Japan \(Tokyo\)|Tokyo|ap-northeast-1|
+    |Singapore \(Singapore\)|Singapore|ap-southeast-1|
+    |Australia \(Sydney\)|Sydney|ap-southeast-2|
+    |Malaysia \(Kuala Lumpur\)|Kuala Lumpur|ap-southeast-3|
+    |Indonesia \(Jakarta\)|Jakarta|ap-southeast-5|
+
+-   Europe & Americas
+
+    |Region|City|Region ID|
+    |------|----|---------|
+    |US \(Silicon Valley\)|Silicon Valley|us-west-1|
+    |US \(Virginia\)|Virginia|us-east-1|
+    |UK \(London\)|London|eu-west-1|
+    |Germany \(Frankfurt\)|Frankfurt|eu-central-1|
+
+-   India
+
+    |Region|City|Region ID|
+    |------|----|---------|
+    |India \(Mumbai\)|Mumbai|ap-south-1|
+
 
