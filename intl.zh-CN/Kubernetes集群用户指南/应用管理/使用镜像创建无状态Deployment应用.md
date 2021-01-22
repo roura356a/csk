@@ -14,11 +14,11 @@
 
 4.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**。
 
-5.  在**无状态**页签中，单击**使用镜像创建**。
+5.  在**无状态**页面中，单击**使用镜像创建**。
 
 6.  在**应用基本信息**页签中，设置应用的基本信息。
 
-    ![基本配置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0885659951/p10973.png)
+    ![基本配置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6163690161/p10973.png)
 
     |配置项|描述|
     |---|--|
@@ -257,7 +257,7 @@
         |最大副本数量|该应用可扩容的容器数量上限。|
         |最小副本数量|该应用可缩容的容器数量下限。|
 
-    -   容器服务支持容器组的定时伸缩，即定时地对容器服务Kubernetes集群进行扩缩容。关于定时伸缩的详细说明，请参见[t1858461.md\#section\_4nl\_xmn\_i53](/intl.zh-CN/Kubernetes集群用户指南/弹性伸缩/容器定时伸缩（CronHPA）.md)。
+    -   容器服务支持容器组的定时伸缩，即定时地对容器服务Kubernetes集群进行扩缩容。关于定时伸缩的详细说明，请参见[创建定时伸缩CronHPA任务](/intl.zh-CN/Kubernetes集群用户指南/弹性伸缩/容器定时伸缩（CronHPA）.md)。
 3.  在**调度设置**区域，设置升级方式、节点亲和性、应用亲和性和应用非亲和性，详情请参见[Affinity and anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/?spm=a2c4g.11186623.2.31.3fdd30dfnyevPx#affinity-and-anti-affinity)。
 
     **说明：** 亲和性调度依赖节点标签和Pod标签。您可使用内置的标签进行调度；也可预先为节点、Pod配置相关的标签。
