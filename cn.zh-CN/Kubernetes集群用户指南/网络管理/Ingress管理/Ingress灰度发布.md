@@ -18,13 +18,13 @@ keyword: [Ingress Controller, 灰度发布, 蓝绿发布, AB测试]
 
 假设当前线上环境，您已经有一套服务Service A对外提供7层服务，此时上线了一些新的特性，需要发布上线一个新的版本Service A‘。但又不想直接替换Service A服务，而是希望将请求头中包含`foo=bar`或者cookie中包含`foo=bar`的客户端请求转发到Service A‘服务中。待运行一段时间稳定后，可将所有的流量从Service A切换到Service A‘服务中，再平滑地将Service A服务下线。
 
-![场景一](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2079690161/p9950.png)
+![场景一](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2391031161/p9950.png)
 
 **基于服务权重的流量切分场景**
 
 假设当前线上环境，您已经有一套服务Service B对外提供7层服务，此时修复了一些问题，需要发布上线一个新的版本Service B‘。但又不想简将所有客户端流量切换到新版本Service B‘中，而是希望将20%的流量切换到新版本Service B‘中。待运行一段时间稳定后，再将所有的流量从Service B切换到Service B‘服务中，再平滑地将Service B服务下线。
 
-![场景二](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3079690161/p9951.png)
+![场景二](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2391031161/p9951.png)
 
 针对以上多种不同的应用发布需求，阿里云容器服务Ingress Controller支持了多种流量切分方式：
 
