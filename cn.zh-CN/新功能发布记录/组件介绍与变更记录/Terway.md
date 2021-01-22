@@ -10,7 +10,7 @@ keyword: Terway变更记录
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
-|v1.0.10.295-g0f3dedc-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/v1.0.10.295-g0f3dedc-aliyun|2021年01月21日|新增：
+|v1.0.10.301-g0115576-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.301-g0115576-aliyun|2021年01月21日|新增：
 
 -   增加自定义MTU功能。
 -   增加ENI独占模式下对主机网络栈路由的支持。
