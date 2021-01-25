@@ -77,7 +77,7 @@ ACK的Kubernetes Pro版集群相比原托管版集群进一步提升了集群的
 -   只在弹性网卡共享模式支持选中。
 -   如果选中，采用IPVLAN eBPF作为网卡共享模式虚拟化技术，并且只能使用Alibaba Cloud Linux 2系统，性能优于默认模式。
 -   如果不选中，则使用默认模式，采用策略路由作为网卡共享模式虚拟化技术，同时兼容Centos 7和Alibaba Cloud Linux 2的系统。
-**说明：** 当前只有白名单用户可使用上述**Pod独占弹性网卡以获得最佳性能**和**IPvlan**两种功能。[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)申请使用。
+**说明：** 当前只有白名单用户可使用上述**Pod独占弹性网卡以获得最佳性能**功能。[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)申请使用。
 
         -   设置是否选中**NetworkPolicy支持**
 
