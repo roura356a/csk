@@ -174,7 +174,7 @@ keyword: [Windows节点, Logtail, 应用日志信息采集]
                   apiVersion: v1
                   fieldPath: status.hostIP
             # 根据不同集群的地域，您需修改以下镜像地址中的地域<cn-hangzhou>信息。
-            image: registry-vpc.cn-hangzhou.aliyuncs.com/acs/logtail-windows  
+            image: registry-vpc.cn-hangzhou.aliyuncs.com/acs/logtail-windows:v1.0.18  
             imagePullPolicy: IfNotPresent
             resources:
               limits:
