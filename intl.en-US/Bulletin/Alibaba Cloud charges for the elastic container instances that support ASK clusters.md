@@ -1,0 +1,4 @@
+# Alibaba Cloud charges for the elastic container instances that support ASK clusters
+
+Since 10:00, January 22, 2019, Alibaba Cloud charges for the elastic container instances that support serverless Kubernetes \(ASK\) clusters. For more information, see [Pricing](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Introduction.md). If you have created ASK clusters and run elastic container instances in the clusters, estimate the costs of the elastic container instances based on your business requirements. The elastic container instances are billed when they serve your workloads. If you no longer require the elastic container instances, delete the elastic container instances. Otherwise, you may be charged extra service fees. You can continue to use ASK clusters free of charge to serve your workloads.
+
