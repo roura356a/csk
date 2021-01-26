@@ -2,7 +2,7 @@
 
 本文主要为您介绍Ingress常见问题的处理方法。
 
-## Ingress支持哪些TLS版本？
+## Ingress支持哪些SSL/TLS版本？
 
 Ingress-Nginx默认仅支持TLS V1.2版本，对于部分旧版本的浏览器，或者移动客户端TLS版本低于1.2时，会导致客户端在与Ingress-Nginx服务SSL版本协商时报错。
 
