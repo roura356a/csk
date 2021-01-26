@@ -31,44 +31,10 @@ Managed edge Kubernetes clusters provide the following features to support lifec
 -   Supports reverse tunneling for management and maintenance of edge nodes.
 -   Allows you to deploy and manage processing units, and manage network traffic that is received by these processing units.
 
-## Network autonomy at the edge
-
-By default, network autonomy is enabled for a node in a managed edge Kubernetes cluster. If an error occurs, the network is automatically recovered.
-
--   On an edge node, each pod IP address is bound to a pod name. No matter whether the application or the node is restarted, the pod IP addresses remain unchanged. The MAC address of the VXLAN tunnel endpoint \(VTEP\) that is provided by the flannel.1 virtual network interface for a node is bound to the name of the node. No matter whether the container where flannel is deployed is restarted or the node where the container is deployed is restarted, the MAC address of the VTEP remains unchanged.
--   If an error occurs to the network between an edge node and the cloud, you can restart the edge node or the applications deployed on the edge node to automatically restore all network connections related to the applications. This feature applies to cross-node communication in edge computing scenarios where the network connection is weak.
-
-No matter whether an application is deployed in the host network or not, network autonomy is enabled for the application pods. This ensures that the network communications between applications can be automatically restored after applications are restarted from exceptions. The following figure shows the architecture.
-
-![Network autonomy at the edge](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9783068951/p100694.png)
-
-**Note:** If a pod is deleted or migrated to another node, the IP address of the pod is changed.
-
-## Tunneling for management of edge nodes
-
-In a native Kubernetes cluster, cloud management components such as kube-apiserver must access kubelet on each edge node. The components must directly run commands, such as `kubectl logs/exec`, on edge nodes to manage the edge nodes. Monitoring components such as metrics-server must collect metrics of edge nodes from the cloud. However, a managed edge Kubernetes cluster cannot be directly accessed from the cloud if the edge nodes in the cluster are deployed in a virtual private cloud \(VPC\).
-
-To improve user experience, ACK provides a solution for you to access edge nodes that are deployed in a VPC from the cloud. After you create a managed edge Kubernetes cluster, the edge-tunnel-server and edge-tunnel-agent components are automatically deployed in the created cluster by ACK@Edge to create tunnels between the cloud and edge.
-
--   The edge-tunnel-server component is deployed as a Deployment on a node in the cloud.
-
-    Therefore, when you create a managed edge Kubernetes cluster, you must purchase at least one Elastic Compute Service \(ECS\) instance to deploy the component.
-
--   The edge-tunnel-agent component is deployed as a DaemonSet on each edge node.
-
-To create secure and encrypted tunnels over the Internet, ACK@Edge purchases a Server Load Balancer \(SLB\) instance. The edge-tunnel-agent component on each edge node establishes a secure and encrypted tunnel to the cloud through this SLB instance. The following figure shows the architecture.
-
-![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9783068951/p101538.png)
-
-**Note:**
-
--   When edge nodes are disconnected from the cloud or the network connection is weak, the tunnels may fail to work as expected.
--   If you delete or stop the SLB instance that is used by the tunnels, the tunnels cannot work as expected.
-
 **Related topics**  
 
 
-[Create a managed edge cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Create a managed edge cluster.md)
+[Create a managed edge Kubernetes cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Create a managed edge cluster.md)
 
 [Upgrade an edge cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Upgrade an edge cluster.md)
 
