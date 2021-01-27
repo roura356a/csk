@@ -7,7 +7,7 @@ keyword: [应用备份, 应用恢复, 跨集群恢复]
 ACK基于开源项目Velero开发了应用备份功能。该功能支持ACK集群和外部注册集群对应用和存储卷进行单集群和跨集群的备份和恢复。本文介绍如何对Kubernetes应用进行备份及恢复，以便于对您的集群应用及数据进行有效的保护。
 
 -   该功能处于公测期。使用该功能前，您需要[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)申请白名单。
--   已创建Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)或[注册外部Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/多云混合云管理/注册外部Kubernetes集群.md)。
+-   已创建Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)、[创建Kubernetes专有版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes专有版集群.md)或[注册外部Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/多云混合云管理/注册外部Kubernetes集群.md)。
 
     **说明：** 请确保您的Kubernetes集群版本大于1.10，否则影响该功能的使用。
 
@@ -23,9 +23,9 @@ ACK基于开源项目Velero开发了应用备份功能。该功能支持ACK集�
 
 ## 步骤一：配置OSS权限
 
-**为托管版集群配置权限**
+**为托管版或专有版集群配置权限**
 
-如果您的集群为托管版集群，您需要为托管版集群配置OSS权限。
+如果您的集群为托管版集群或专有版集群，您需要为托管版集群或专有版集群配置OSS权限。
 
 1.  为OSS创建自定义权限策略。具体步骤，请参见[创建自定义策略](/cn.zh-CN/权限策略管理/自定义策略/创建自定义策略.md)。
 
