@@ -53,8 +53,6 @@ StatefulSet包括以下特性：
 
     -   基本配置
 
-        ![设置容器基本信息](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p12305.png)
-
         |配置项|描述|
         |---|--|
         |镜像名称|        -   您可以单击**选择镜像**，选择所需的镜像并单击**确定**。本例中为官方Nginx镜像，可以在**搜索**页签中，选择**Docker镜像**，然后在文本框中输入nginx进行搜索。
@@ -196,8 +194,6 @@ StatefulSet包括以下特性：
         ``` |
 
         在**访问设置**区域中，您可看到创建完毕的服务和路由，您可单击**变更**和**删除**进行二次配置。
-
-        ![变更或删除路由](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5975659951/p10982.png)
 
     -   伸缩配置
 
