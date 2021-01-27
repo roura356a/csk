@@ -8,6 +8,10 @@ keyword: [ACK标准托管集群, ACK Pro, 实时迁移, 集群升级]
 
 ACK Pro托管集群是在ACK标准托管集群基础上针对企业大规模生产环境，进一步增强了可靠性、安全性，并且提供可赔付的SLA的Kubernetes集群。关于ACK Pro托管集群的详细信息，请参见[Kubernetes Pro版集群介绍](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/Kubernetes Pro版集群介绍.md)。
 
+## 注意事项
+
+热迁移ACK标准托管版集群至Pro托管版集群功能，只支持集群Kubernetes 1.16及以上版本。
+
 ## 迁移流程
 
 ACK标准托管集群到Pro版的集群迁移流程涉及两个部分：集群迁移前置检查和集群迁移。
