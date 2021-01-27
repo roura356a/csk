@@ -42,7 +42,7 @@ Content-Type:application/json
 
 |参数名称|类型|示例|说明|
 |----|--|--|--|
-|config|String|apiVersion: v1\*\*\*\*|集群访问配置。 |
+|config|String|apiVersion: v1\*\*\*\*|集群访问配置。关于如何查看访问集群配置信息，请参见[配置集群凭据](~~86494~~)。 |
 
 ## 获取集群kubeconfig接口示例
 
