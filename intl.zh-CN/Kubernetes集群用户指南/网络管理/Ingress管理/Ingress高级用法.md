@@ -801,7 +801,7 @@ cert-manager是一个云原生证书管理开源工具，用于在Kubernetes集�
           - path: /
             backend:
               serviceName: your_service_name  # 替换为您的后端服务名。
-              servicePort: your_service_port  # 替换为您的后端服务名。
+              servicePort: your_service_port  # 替换为您的服务端口。
     EOF
     ```
 
