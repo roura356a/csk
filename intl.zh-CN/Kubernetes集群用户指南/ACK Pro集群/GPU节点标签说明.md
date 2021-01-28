@@ -17,7 +17,7 @@ keyword: [共享GPU, GPU拓扑感知, GPU节点标签]
 |ack.node.gpu.schedule=share|aliyun.com/gpu-mem|在节点上开启GPU共享调度能力，不开启GPU显存隔离能力。|
 |ack.node.gpu.schedule=cgpu|aliyun.com/gpu-mem|在节点上开启GPU共享调度能力，同时开启GPU显存隔离能力。|
 |ack.node.gpu.schedule=topology|aliyun.com/gpu|在节点上开启GPU拓扑感知能力。|
-|ck.node.gpu.schedule=default|nvidia.com/gpu|在节点使用默认GPU调度能力。|
+|ack.node.gpu.schedule=default|nvidia.com/gpu|在节点使用默认GPU调度能力。|
 |ack.node.gpu.placement=binpack|\\|在节点上为Pod选择GPU卡时，使用Binpack算法（仅对共享GPU生效）。|
 |ack.node.gpu.placement=spread|\\|在节点上为Pod选择GPU卡时，使用Spread算法（仅对共享GPU生效）。|
 
