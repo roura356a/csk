@@ -84,7 +84,7 @@ keyword: [配置巡检, workload配置, 安全隐患]
 |hostPortSet|通过检查workload的Pod Spec中是否配置了hostPort，检查是否配置了把容器中监听的端口映射到主机指定端口上。如果配置了，存在挤占主机可用端口以及被非预期的请求方请求容器端口的风险。|修改Pod Spec，删除hostPort字段。 示例：
 
 ![4](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9195659951/p129770.png) |
-|runAsRootAllowed|通过检查workload的Pod Spec中是否未配置runAsNonRoot：true，检查是否配置了允许使用root用户运行容器。如果配置了，存在被容器中的恶意进程入侵用户应用、入侵主机甚至入侵整个集群的风险。|修改Pod Spec，增加runAsNonRoot: true。 示例：
+|runAsRootAllowed|通过检查workload的Pod Spec中是否未配置runAsNonRoot：true，检查是否未配置允许使用root用户运行容器。如果未配置，存在被容器中的恶意进程入侵用户应用、入侵主机甚至入侵整个集群的风险。|修改Pod Spec，增加runAsNonRoot: true。 示例：
 
 ![5](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0295659951/p129771.png) |
 |runAsPrivileged|通过检查workload的Pod Spec中是否配置了privileged：true，检查是否配置了允许以特权模式运行容器。如果配置了，存在被容器中的恶意进程入侵用户应用、入侵主机甚至入侵集群的风险。|修改Pod Spec，删除privileged字段。 示例：
