@@ -43,19 +43,17 @@ keyword: [Ingress Controller, 高负载]
 
 ## 步骤一：添加节点
 
-1.  选择指定集群，创建新的节点池。
+选择指定集群，创建新的节点池并添加2台节点。
 
-    创建节点池需要配置的主要参数如下所示。具体操作，请参见[创建节点池](/intl.zh-CN/Kubernetes集群用户指南/节点管理/节点池管理/创建节点池.md)。
+创建节点池需要配置的主要参数如下所示。具体操作，请参见[创建节点池](/intl.zh-CN/Kubernetes集群用户指南/节点管理/节点池管理/创建节点池.md)。
 
-    -   选择**操作系统**为**Alibaba Cloud Linux 2.1903**。
-    -   配置**节点标签**和**污点（Taints）**。
-        -   设置**污点（Taints）**的**键**为ingress-pod，**值**为yes，**Effect**为**NoExecute**。
-        -   设置**节点标签**的**键**为ingress-pod，**值**为yes。
-    -   选择**CPU Policy**为**Static**。
-    ![创建节点池](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7991981161/p236352.png)
+-   选择**操作系统**为**Alibaba Cloud Linux 2.1903**。
+-   配置**节点标签**和**污点（Taints）**。
+    -   设置**污点（Taints）**的**键**为ingress-pod，**值**为yes，**Effect**为**NoExecute**。
+    -   设置**节点标签**的**键**为ingress-pod，**值**为yes。
+-   选择**CPU Policy**为**Static**。
 
-2.  添加2~3台节点到节点池。具体操作，请参见[添加已有节点](/intl.zh-CN/Kubernetes集群用户指南/节点管理/添加已有节点.md)。
-
+![创建节点池](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7991981161/p236352.png)
 
 ## 步骤二：配置Ingress Controller
 
