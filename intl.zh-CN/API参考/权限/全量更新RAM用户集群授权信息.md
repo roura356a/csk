@@ -43,19 +43,19 @@ Content-Type:application/json
 |cluster|String|是|c796c60\*\*\*|授权目标集群ID。
 
  -   当`role_type`参数的值是`all-clusters`时，此参数的值传空字符串。 |
-|is\_custom|Boolean|否|false|该授权是否是自定义授权（`role_name`使用自定义的集群管理角色名称）。 |
+|is\_custom|Boolean|否|false|该授权是否是自定义授权（`role_name`使用自定义的ClusterRole名称）。 |
 |role\_name|String|是|ops|预置的角色名称，取值：
 
  -   `admin`: 管理员。
 -   `ops`：运维人员。
 -   `dev`：开发人员。
 -   `restricted`: 受限用户。
--   `custom`：自定义的集群管理角色名称。 |
+-   自定义的ClusterRole名称。 |
 |role\_type|String|是|cluster|授权类型，取值：
 
  -   `cluster`：集群维度。
 -   `namespace`: 命名空间维度。
--   `all-clusters`: 所有集群维度，此时`cluster` 字段的值需传当前所有集群的集群ID（使用逗号分隔多个集群ID）。 |
+-   `all-clusters`: 所有集群维度。 |
 |namespace|String|否|test|命名空间名称，集群维度授权时默认为空。 |
 |is\_ram\_role|Boolean|否|false|是否是RAM角色授权。 |
 
