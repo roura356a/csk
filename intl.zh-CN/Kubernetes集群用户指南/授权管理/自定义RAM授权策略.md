@@ -40,7 +40,7 @@ keyword: [RAM, 自定义授权策略]
 
 2.  单击左侧导航栏的**权限管理** \> **权限策略管理**，进入权限策略管理页面。
 
-3.  单击**创建授权策略**，进入新建自定义权限策略页面。
+3.  单击**创建权限策略**，进入新建自定义权限策略页面。
 
 4.  填写**策略名称**，**配置模式**选择脚本配置，并在**策略内容**中编写您的授权策略内容。
 
@@ -152,4 +152,6 @@ keyword: [RAM, 自定义授权策略]
 |UpdateK8sClusterUserConfigExpire|UpdateK8sClusterUserConfigExpire|更新用户自定义配置过期时间。|
 |UpgradeCluster|UpgradeCluster|升级集群。|
 |UpgradeClusterAddons|UpgradeK8sComponents|升级集群插件。|
+|DescribeUserPermission|GetUserPermissions|获取RAM用户集群授权信息。|
+|GrantPermissions|GrantPermission|全量更新RAM用户集群授权信息。|
 
