@@ -4,7 +4,7 @@ keyword: [managed edge Kubernetes cluster, edge computing, edge, edge network, n
 
 # ACK@Edge overview
 
-Container Service for Kubernetes@Edge \(ACK@Edge\) is a cloud-managed solution that is provided by Alibaba Cloud to coordinate cloud and edge computing. This topic describes the background and features of managed edge Kubernetes clusters. This topic also provides further details about network autonomy and tunneling for edge node management.
+Container Service for Kubernetes@Edge \(ACK@Edge\) is a cloud-managed solution that is provided by Alibaba Cloud to coordinate cloud and edge computing. This topic describes the background and features of managed edge Kubernetes clusters.
 
 ## Background
 
