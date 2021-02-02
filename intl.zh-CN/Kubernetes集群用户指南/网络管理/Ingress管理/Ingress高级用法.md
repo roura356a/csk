@@ -120,10 +120,10 @@ annotations:
 
     2.  执行以下命令，创建密钥。
 
-        通过该证书和私钥创建一个名为foo.bar的Kubernetes Secret。创建Ingress时需要引用这个Secret。
+        通过该证书和私钥创建一个名为tls-test-ingress的Kubernetes Secret。创建Ingress时需要引用这个Secret。
 
         ```
-        kubectl create secret tls foo.bar --key tls.key --cert tls.crt
+        kubectl create secret tls tls-test-ingress --key tls.key --cert tls.crt
         ```
 
 2.  执行以下命令，创建一个安全的Ingress服务。
