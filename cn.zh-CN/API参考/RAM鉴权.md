@@ -96,4 +96,6 @@ acs:service-name:region:account-id:resource-relative-id
 |UpdateK8sClusterUserConfigExpire|UpdateK8sClusterUserConfigExpire|更新用户自定义配置过期时间。|
 |UpgradeCluster|UpgradeCluster|升级集群。|
 |UpgradeClusterAddons|UpgradeK8sComponents|升级集群插件。|
+|DescribeUserPermission|GetUserPermissions|获取RAM用户集群授权信息。|
+|GrantPermissions|GrantPermission|全量更新RAM用户集群授权信息。|
 
