@@ -31,7 +31,7 @@
 |[扩容Kubernetes边缘托管版集群](/cn.zh-CN/API参考/集群/扩容集群/扩容Kubernetes边缘托管版集群.md)
 
 |调用ScaleOutCluster增加集群中Worker节点数量。目前只能扩容边缘节点服务ENS（Edge Node Service）实例。|
-|[查询集群实例](/cn.zh-CN/API参考/集群/查询集群实例.md)
+|[查询集群信息](/cn.zh-CN/API参考/集群/查询集群信息.md)
 
 |调用DescribeClusterDetail，根据集群ID，查看集群的详细信息。|
 |[查询所有集群列表](/cn.zh-CN/API参考/集群/查询所有集群列表.md)
@@ -58,14 +58,25 @@
 |[删除集群](/cn.zh-CN/API参考/集群/删除集群.md)
 
 |调用DeleteCluster根据集群ID，删除集群实例，并释放集群所有节点资源。|
-|[修改集群标签](/cn.zh-CN/API参考/集群/修改集群标签.md)
+|[修改集群标签](/cn.zh-CN/API参考/标签/修改集群标签.md)
 
 |调用ModifyClusterTags修改当前Kubernetes集群的tag接口。|
-|[查询资源标签列表](/cn.zh-CN/API参考/集群/查询资源标签列表.md)
+|[查询资源标签列表](/cn.zh-CN/API参考/标签/查询资源标签列表.md)
 
 |调用ListTagResources，查询可见的资源标签关系。|
 |[查询Kubernetes版本详情](/cn.zh-CN/API参考/集群/查询Kubernetes版本详情.md)|调用DescribeKubernetesVersionMetadata查询支持的Kubernetes版本的详细信息。|
 |[查询任务详情](/cn.zh-CN/API参考/集群/查询任务详情.md)|调用DescribeTaskInfo根据任务ID查询任务执行详情。|
+
+## 权限
+
+|API|描述|
+|---|--|
+|[查询RAM用户集群授权信息]()
+
+|调用DescribeUserPermission查询指定RAM用户的集群授权信息。|
+|[全量更新RAM用户集群授权信息]()
+
+|调用GrantPermissions全量更新RAM用户集群授权信息。|
 
 ## 节点
 
@@ -80,7 +91,7 @@
 |[添加已有实例到集群](/cn.zh-CN/API参考/节点/添加已有实例到集群.md)
 
 |调用AttachInstances添加已有实例到集群。|
-|[手动添加已有实例到集群](/cn.zh-CN/API参考/节点/手动添加已有实例到集群.md)
+|[手动添加已有实例至集群](/cn.zh-CN/API参考/节点/手动添加已有实例至集群.md)
 
 |调用DescribeClusterAttachScripts添加已有节点到边缘Kubernetes托管集群。该API返回唯一的可执行脚本，您获取脚本后，在已有节点上执行即可完成该节点的接入。|
 |[添加已有ENS节点至Kubernetes边缘托管集群]()
@@ -168,4 +179,21 @@
 |[卸载集群组件](/cn.zh-CN/API参考/组件/卸载集群组件.md)
 
 |调用UnInstallClusterAddons卸载指定集群的组件。|
+
+## 标签
+
+|API|描述|
+|---|--|
+|[绑定资源标签](/cn.zh-CN/API参考/标签/绑定资源标签.md)
+
+|调用TagResources为指定的集群绑定特定标签。|
+|[修改集群标签](/cn.zh-CN/API参考/标签/修改集群标签.md)
+
+|调用ModifyClusterTags修改当前Kubernetes集群的标签。|
+|[查询资源标签列表](/cn.zh-CN/API参考/标签/查询资源标签列表.md)
+
+|调用ListTagResources查询可见的资源标签关系。|
+|[解绑资源标签](/cn.zh-CN/API参考/标签/解绑资源标签.md)
+
+|调用UntagResources为指定的集群解绑标签。|
 
