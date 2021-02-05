@@ -251,7 +251,7 @@
 
 2.  申请SLB实例。
 
-    您需要在集群同Region下自行申请一个**性能保障型**SLB实例（例如slb.s2.small），可以是私网也可以是公网（依据具体需求）。参见[创建负载均衡实例](/intl.zh-CN/传统型负载均衡CLB/用户指南/实例/创建负载均衡实例.md)。本例中申请一个公网SLB实例，记录SLB实例的ID。
+    您需要在集群同VPC下自行申请一个**性能保障型**SLB实例（例如slb.s2.small），可以是私网也可以是公网（依据具体需求）。参见[创建负载均衡实例](/intl.zh-CN/传统型负载均衡CLB/用户指南/实例/创建负载均衡实例.md)。本例中申请一个公网SLB实例，记录SLB实例的ID。
 
     ![申请SLB实例](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7648649951/p10321.png)
 
@@ -292,7 +292,7 @@
         cert-example   kubernetes.io/tls   2         12s
         ```
 
-    **说明：** 系统自动依据第一个创建的Ingress的TLS证书来初始化SLB的HTTPS默认证书，若需要修改HTTPS默认证书，可在SLB控制台自行修改；若需配置多个证书，可在SLB控制台HTTPS监听扩展域名下自行添加。
+    **说明：** 系统自动依据第一个创建的Ingress的TLS证书来初始化SLB的HTTPS默认证书，您只能通过Ingress引用的**secret**修改证书配置，不可在SLB控制台自行修改。当前不支持配置多个证书，若您想要使用多个域名的多个证书您可以通过复用SLB的方式为每一个证书分别指定一个SLB实例。您手动在SLB控制台上面做的任何修改都有可能导致Ingress服务异常，请不要在SLB控制台做修改。
 
 4.  配置Ingress。
 
