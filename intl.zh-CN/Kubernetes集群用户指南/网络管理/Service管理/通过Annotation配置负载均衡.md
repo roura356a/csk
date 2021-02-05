@@ -448,7 +448,7 @@
 
 -   指定负载均衡所属的资源组
 
-    在[阿里云资源管理平台](https://resourcemanager.console.aliyun.com/)查询资源组ID，然后使用以下annotation为负载均衡实例指定资源组。
+    在[阿里云资源管理平台](https://resourcemanager.console.aliyun.com/)[阿里云资源管理平台](https://partner-intl.console.aliyun.com/#/resourcemanager)查询资源组ID，然后使用以下annotation为负载均衡实例指定资源组。
 
     **说明：** 资源组ID创建后不可被修改。
 
@@ -613,7 +613,7 @@
 
         **说明：**
 
-        在v1.9.3.164-g2105d2e-aliyun及之后版本，外部流量策略设置为**Local**模式的服务会自动根据Node上的Pod数量为Node设置权重，权重计算规则请参见[Local模式下如何自动设置Node权重](/intl.zh-CN/Kubernetes集群用户指南/网络管理/网络管理FAQ.md)。
+        在v1.9.3.164-g2105d2e-aliyun及之后版本，外部流量策略设置为**Local**模式的服务会自动根据Node上的Pod数量为Node设置权重，权重计算规则请参见[t2039653.md\#section\_7xa\_hpn\_yfw]()。
 
     ```
     apiVersion: v1
