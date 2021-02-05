@@ -50,7 +50,7 @@ keyword: [CCM, 变更记录]
 -   新增Prometheus Metrics（ccm\_node\_latencies\_duration\_milliseconds、ccm\_route\_latencies\_duration\_milliseconds、ccm\_slb\_latencies\_duration\_milliseconds），用于透出CCM同步时延信息。
 -   支持以Event方式透出Service与LoadBalancer同步过程。
 -   改进：
-    -   优化Local模式下（设定Service的externalTrafficPolicy=Local）权重计算方式，使Pod间负载更加均衡，详情请参见[Local模式下如何自动设置Node权重](/intl.zh-CN/Kubernetes集群用户指南/网络管理/网络管理FAQ.md)。
+    -   优化Local模式下（设定Service的externalTrafficPolicy=Local）权重计算方式，使Pod间负载更加均衡，详情请参见[t2039653.md\#section\_7xa\_hpn\_yfw]()。
 
     -   优化云产品API调用，提升效率、降低限流风险。
     -   当节点有service.beta.kubernetes.io/exclude-node标签时，删除节点时不再删除关联路由。
