@@ -2,7 +2,14 @@
 
 本文为您介绍容器网络中的常见问题。
 
-## 手动升级了Flannel镜像版本后，如何解决无法兼容1.16以上版本集群的问题
+-   [手动升级了Flannel镜像版本后，如何解决无法兼容1.16以上版本集群的问题？](#section_z0i_qcj_rz7)
+-   [如何解决Pod启动后存在时延的问题？](#section_g60_wqh_qtq)
+-   [如何让Pod访问自己暴露的服务？](#section_w3o_3as_8lq)
+-   [如何选择Kubernetes集群Terway和Flannel网络插件？](#section_ylr_ln7_pfe)
+-   [如何规划集群网络？](#section_8td_x8b_qez)
+-   [ACK是否支持hostPort的端口映射？](#section_hlo_gm1_u0l)
+
+## 手动升级了Flannel镜像版本后，如何解决无法兼容1.16以上版本集群的问题？
 
 问题现象：
 
@@ -35,7 +42,7 @@
     ```
 
 
-## 如何解决Pod启动后存在时延的问题
+## 如何解决Pod启动后存在时延的问题？
 
 问题现象：
 
@@ -61,7 +68,7 @@ Pod启动后网络需要延迟一会才能通信。
 
 2.  如果Terway版本不是最新的，请在控制台升级Terway版本。
 
-    1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+    1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
 
     2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -80,7 +87,7 @@ Pod启动后网络需要延迟一会才能通信。
     ```
 
 
-## 如何让Pod访问自己暴露的服务
+## 如何让Pod访问自己暴露的服务？
 
 问题现象：
 
@@ -121,7 +128,7 @@ Flannel目前默认不允许回环访问。
 
     3.  删除并重新创建Pod。
 
-## 如何选择Kubernetes集群Terway和Flannel网络插件
+## 如何选择Kubernetes集群Terway和Flannel网络插件？
 
 下面为您详细介绍在ACK创建集群时使用的两种网络插件：Terway和Flannel。
 
@@ -130,7 +137,13 @@ Flannel目前默认不允许回环访问。
 -   Flannel：使用的是简单稳定的社区的[Flannel](https://github.com/coreos/flannel) CNI插件，配合阿里云的VPC的高速网络，能给集群高性能和稳定的容器网络体验，但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
 -   Terway：是阿里云容器服务自研的网络插件，功能上完全兼容Flannel，支持将阿里云的弹性网卡分配给容器，支持基于Kubernetes标准的NetworkPolicy来定义容器间的访问策略，支持对单个容器做带宽的限流。对于不需要使用Network Policy的用户，可以选择Flannel，其他情况建议选择Terway。了解更多Terway网络插件的相关内容，请参见[使用Terway网络插件](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用Terway网络插件.md)。
 
-## 如何规划集群网络
+## 如何规划集群网络？
 
 在创建ACK集群时，需要指定专有网络VPC、虚拟交换机、 Pod网络CIDR（地址段）和Service CIDR（地址段）。建议您提前规划ECS地址、Kubernetes Pod地址和Service地址。详情请参见[Kubernetes集群网络规划](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Kubernetes集群网络规划.md)。
+
+## ACK是否支持hostPort的端口映射？
+
+-   不支持hostPort。
+-   容器服务ACK的Pod地址是可以直接被VPC中其他资源访问的，不需要额外的端口映射。
+-   如果需要把服务暴露到外部，可以使用NodePort或者LoadBalancer类型的Service。
 
