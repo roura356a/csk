@@ -1,0 +1,264 @@
+# 使用云盘动态存储卷实现持久化存储-Flexvolume
+
+当容器发生宕机故障时，有状态服务容器存储的业务数据存在着丢失和不可靠等风险。使用持久化存储可以解决该问题。本文介绍如何使用云盘动态存储卷实现持久化存储。
+
+## 背景信息
+
+动态云盘的使用场景：
+
+没有购买云盘，在应用部署时自动购买云盘的情况。
+
+动态云盘的使用方式：
+
+1.  手动创建PVC，在PVC中声明StorageClass。
+2.  部署应用时通过StorageClass自动创建PV。
+
+## 前提条件
+
+-   您已成功创建一个Kubernetes集群，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
+-   您可以通过kubectl连接到Kubernetes集群，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   集群中需要安装Provisioner插件，该插件可以根据StorageClass自动创建云盘。
+
+## Provisioner插件
+
+容器服务Kubernetes版在创建集群时，默认安装Provisioner插件。
+
+## 创建StorageClass
+
+阿里云容器服务Kubernetes在系统初始化的时候会默认创建4个StorageClass，且使用参数的默认情况。同时这4个StorageClass仅适用于单可用区集群，若是多可用区集群，则需要您创建StorageClass。这4个StorageClass分别为：
+
+-   alicloud-disk-common：自动创建普通云盘。
+-   alicloud-disk-efficiency：自动创建高效云盘。
+-   alicloud-disk-ssd：自动创建SSD云盘。
+-   alicloud-disk-available：提供高可用选项，先尝试自动创建高效云盘；如果相应可用区的高效云盘资源售尽，再尝试自动创建SSD云盘，如果该可用区的SSD云盘也售尽，则尝试自动创建普通云盘。
+
+1.  创建storageclass.yaml文件。
+
+    ```
+    kind: StorageClass
+    apiVersion: storage.k8s.io/v1beta1
+    metadata:
+      name: alicloud-disk-ssd-hangzhou-b
+    provisioner: alicloud/disk
+    reclaimPolicy: Retain
+    parameters:
+      type: cloud_ssd
+      regionid: cn-hangzhou
+      zoneid: cn-hangzhou-b
+      fstype: "ext4"
+      readonly: "false"
+    ```
+
+    |参数|描述|
+    |--|--|
+    |`provisioner`|动态云盘配置为alicloud/disk，标识使用provisioner插件自动创建阿里云云盘。|
+    |`reclaimPolicy`|云盘的回收策略。支持Delete和Retain，默认情况为Delete。**说明：** 如果配置为Delete，删除PVC时，云盘会一起删除，云盘上的数据不可恢复。 |
+    |`type`|自动创建云盘的类型，支持cloud、cloud\_efficiency、cloud\_ssd、available。|
+    |`regionid`|（可选）自动创建云盘所在的地域，与集群的地域相同。|
+    |`zoneid`|（可选）自动创建云盘所在的区域。    -   单可用区集群，与集群所在区域相同。
+    -   多可用区集群，zoneid可同时配置多个，例如：
+
+        ```
+zoneid: cn-hangzhou-a,cn-hangzhou-b,cn-hangzhou-c
+        ``` |
+    |`fstype`|（可选）自动创建云盘所使用的文件系统，默认情况为ext4。|
+    |`readonly`|（可选）挂载自动创建云盘的权限是否为可读，支持true：云盘具有只读权限，false：云盘具有可读可写权限，默认情况为false。|
+    |`encrypted`|（可选）自动创建的云盘是否加密，支持true：加密，false：不加密，默认情况为false。|
+
+2.  执行以下命令，创建StorageClass。
+
+    ```
+    kubectl create -f storageclass.yaml
+    ```
+
+
+## 创建PVC
+
+1.  创建pvc-ssd.yaml文件。
+
+    ```
+    kind: PersistentVolumeClaim
+    apiVersion: v1
+    metadata:
+      name: disk-ssd
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: alicloud-disk-ssd-hangzhou-b
+      resources:
+        requests:
+          storage: 20Gi
+    ```
+
+2.  执行以下命令，创建PVC。
+
+    ```
+    kubectl create -f pvc-ssd.yaml
+    ```
+
+
+在目标集群的页面下单击左侧导航栏的**存储卷**，选择**存储声明**页签，进入存储声明页面，可以看到该PVC绑定的存储类型为`StorageClass`中声明的alicloud-disk-ssd-hangzhou-b，并且关联存储卷。
+
+![存储声明](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4685659951/p99211.png)
+
+## 创建应用
+
+1.  创建pvc-dynamic.yaml文件。
+
+    ```
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: nginx-dynamic
+      labels:
+        app: nginx
+    spec:
+      selector:
+        matchLabels:
+          app: nginx
+      template:
+        metadata:
+          labels:
+            app: nginx
+        spec:
+          containers:
+          - name: nginx
+            image: nginx
+            volumeMounts:
+              - name: disk-pvc
+                mountPath: "/data"
+          volumes:
+            - name: disk-pvc
+              persistentVolumeClaim:
+                claimName: disk-ssd
+    ```
+
+2.  执行以下命令，创建Deployment。
+
+    ```
+    kubectl create -f nginx-dynamic.yaml
+    ```
+
+
+在目标集群页面下单击左侧导航栏的**工作负载**，选择**无状态**页签，进入无状态页面，可以看到刚刚创建的Deployment。
+
+![deployment](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4685659951/p99209.png)
+
+## 动态云盘的持久化存储
+
+1.  执行以下命令，查看部署的Deployment所在Pod的名称。
+
+    ```
+    kubectl get pod | grep dynamic
+    ```
+
+    返回结果如下：
+
+    ```
+    nginx-dynamic-5c74594ccb-zl9pf     2/2     Running     0          3m
+    ```
+
+2.  执行以下命令，查看/data路径下是否挂载了新的云盘。
+
+    ```
+    kubectl exec nginx-dynamic-5c74594ccb-zl9pf df | grep data
+    ```
+
+    返回结果如下：
+
+    ```
+    /dev/vdh        20511312    45080  20449848   1% /data
+    ```
+
+3.  执行以下命令，查看/data路径下的文件。
+
+    ```
+    kubectl exec nginx-dynamic-5c74594ccb-zl9pf ls /data
+    ```
+
+    返回结果如下：
+
+    ```
+    lost+found
+    ```
+
+4.  执行以下命令，在/data路径下创建文件dynamic。
+
+    ```
+    kubectl exec nginx-dynamic-5c74594ccb-zl9pf touch /data/dynamic
+    ```
+
+5.  执行以下命令，查看/data路径下的文件。
+
+    ```
+    kubectl exec nginx-dynamic-5c74594ccb-zl9pf ls /data
+    ```
+
+    返回结果如下：
+
+    ```
+    dynamic
+    lost+found
+    ```
+
+6.  执行以下命令，删除名称为`nginx-dynamic-5c74594ccb-zl9pf`的Pod。
+
+    ```
+    kubectl delete pod nginx-dynamic-5c74594ccb-zl9pf
+    ```
+
+    返回结果如下：
+
+    ```
+    pod "nginx-dynamic-5c74594ccb-zl9pf" deleted
+    ```
+
+7.  同时在另一个窗口中，执行以下命令，查看Pod删除及Kubernetes重建Pod的过程。
+
+    ```
+    kubectl get pod -w -l app=nginx
+    ```
+
+    返回结果如下：
+
+    ```
+    NAME                               READY   STATUS    RESTARTS   AGE
+    nginx-dynamic-5c74594ccb-zl9pf     2/2     Running   0          6m48s
+    nginx-dynamic-5c74594ccb-zl9pf   2/2   Terminating   0     7m32s
+    nginx-dynamic-5c74594ccb-45sd4   0/2   Pending   0     0s
+    nginx-dynamic-5c74594ccb-45sd4   0/2   Pending   0     0s
+    nginx-dynamic-5c74594ccb-45sd4   0/2   Init:0/1   0     0s
+    nginx-dynamic-5c74594ccb-zl9pf   0/2   Terminating   0     7m32s
+    nginx-dynamic-5c74594ccb-zl9pf   0/2   Terminating   0     7m33s
+    nginx-dynamic-5c74594ccb-zl9pf   0/2   Terminating   0     7m33s
+    nginx-dynamic-5c74594ccb-45sd4   0/2   PodInitializing   0     5s
+    nginx-dynamic-5c74594ccb-45sd4   2/2   Running   0     22s
+    ```
+
+8.  执行以下命令，查看Kubernetes重建的Pod名称。
+
+    ```
+    kubectl get pod 
+    ```
+
+    返回结果如下：
+
+    ```
+    NAME                               READY   STATUS      RESTARTS   AGE
+    nginx-dynamic-5c74594ccb-45sd4     2/2     Running     0          2m
+    ```
+
+9.  执行以下命令，查看/data路径下的文件，刚刚创建的文件dynamic并没有被删除，说明动态云盘的数据可持久保存。
+
+    ```
+    kubectl exec nginx-dynamic-5c74594ccb-45sd4 ls /data
+    ```
+
+    返回结果如下：
+
+    ```
+    dynamic
+    lost+found
+    ```
+
+
