@@ -6,11 +6,20 @@ keyword: Terway变更记录
 
 本文为您介绍了Terway相关内容的最新动态。
 
-## 2020年01月
+## 2021年02月
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
-|v1.0.10.295-g0f3dedc-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/v1.0.10.295-g0f3dedc-aliyun|2021年01月21日|新增：
+|v1.0.10.309-g5314eee-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.309-g5314eee-aliyun|2021年02月05日|-   去除主动修复安全组规则的逻辑，只通过事件提示修复。
+-   修复IP地址管理在异常情况下泄漏问题。
+
+|此次升级不会对业务造成影响。 |
+
+## 2021年01月
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.0.10.301-g0115576-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.301-g0115576-aliyun|2021年01月21日|新增：
 
 -   增加自定义MTU功能。
 -   增加ENI独占模式下对主机网络栈路由的支持。
