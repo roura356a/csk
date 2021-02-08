@@ -30,7 +30,7 @@
 -   alicloud-disk-common：自动创建普通云盘。
 -   alicloud-disk-efficiency：自动创建高效云盘。
 -   alicloud-disk-ssd：自动创建SSD云盘。
--   alicloud-disk-available：提供高可用选项，先尝试自动创建高效云盘；如果相应可用区的高效云盘资源售尽，再尝试自动创建SSD云盘，如果该可用区的SSD云盘也售尽，则尝试自动创建普通云盘。
+-   alicloud-disk-available：提供高可用选项，先尝试自动创建SSD云盘；如果相应可用区的SSD云盘资源售尽，再尝试自动创建高效云盘。
 
 1.  创建storageclass.yaml文件。
 
@@ -43,8 +43,8 @@
     reclaimPolicy: Retain
     parameters:
       type: cloud_ssd
-      regionid: cn-hangzhou
-      zoneid: cn-hangzhou-b
+      regionId: cn-hangzhou
+      zoneId: cn-hangzhou-b
       fstype: "ext4"
       readonly: "false"
     ```
@@ -54,8 +54,8 @@
     |`provisioner`|动态云盘配置为alicloud/disk，标识使用provisioner插件自动创建阿里云云盘。|
     |`reclaimPolicy`|云盘的回收策略。支持Delete和Retain，默认情况为Delete。**说明：** 如果配置为Delete，删除PVC时，云盘会一起删除，云盘上的数据不可恢复。 |
     |`type`|自动创建云盘的类型，支持cloud、cloud\_efficiency、cloud\_ssd、available。|
-    |`regionid`|（可选）自动创建云盘所在的地域，与集群的地域相同。|
-    |`zoneid`|（可选）自动创建云盘所在的区域。    -   单可用区集群，与集群所在区域相同。
+    |`regionId`|（可选）自动创建云盘所在的地域，与集群的地域相同。|
+    |`zoneId`|（可选）自动创建云盘所在的区域。    -   单可用区集群，与集群所在区域相同。
     -   多可用区集群，zoneid可同时配置多个，例如：
 
         ```
