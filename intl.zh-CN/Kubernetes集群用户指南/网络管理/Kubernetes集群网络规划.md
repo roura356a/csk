@@ -8,12 +8,6 @@ keyword: [集群网络, 专有网络, Terway和Flannel]
 
 ## 专有网络VPC网段和Kubernetes网段关系
 
-专有网络VPC（下文简称为VPC或专有网络）的网段规划包含VPC自身网段和虚拟交换机网段，Kubernetes网段规划包含Pod地址段和Service地址段。ACK网络支持Terway和Flannel两种网络模式。
-
-
-
-## 专有网络VPC网段和Kubernetes网段关系
-
 专有网络VPC（下文简称为VPC或专有网络）的网段规划包含VPC自身网段和虚拟交换机网段，Kubernetes网段规划包含Pod地址段和Service地址段。ACK网络支持Terway和Flannel两种模式，两种模式的网络关系如下图所示。
 
 ![terway](../images/p211963.png "Terway模式")
