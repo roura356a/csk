@@ -4,44 +4,45 @@ keyword: [HTTPS安全访问, HTTPS访问配置]
 
 # 在Kubernetes中实现HTTPS安全访问
 
-当前容器服务Kubernetes集群支持多种应用访问的形式，最常见形式如`SLB:Port`、`NodeIP:NodePort`和域名访问等。Kubernetes集群默认不支持HTTPS访问，如果用户希望能够通过HTTPS进行应用的访问，容器服务和阿里云负载均衡服务为您提供安全的HTTPS访问。本文旨在通过实际案例演示的HTTPS访问配置，帮助用户在容器服务Kubernetes中配置自己的证书。
+容器服务ACK集群支持多种应用访问的形式，最常见形式如`<SLB-Instance-IP>:<Port>`、`<NodeIP>:<NodePort>`和域名访问等。ACK集群默认不支持HTTPS访问，如果您希望能够通过HTTPS进行应用的访问，容器服务ACK和阿里云负载均衡服务为您提供安全的HTTPS访问。本文通过实际案例演示的HTTPS访问配置，帮助您在容器服务ACK中配置自己的证书。
 
 -   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
--   [SSH访问Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过SSH访问Kubernetes集群.md)。
--   连接到Master节点后，创建集群的服务器证书，包括公钥证书和私钥。您可通过以下命令快速创建。
+-   创建集群的服务器证书，包括公钥证书和私钥。
+    -   您可通过以下命令快速创建集群的服务器证书。
 
-    ```
-    openssl genrsa -out tls.key 2048
-    ```
+        ```
+        openssl genrsa -out tls.key 2048
+        ```
 
-    输出：
+        输出：
 
-    ```
-    Generating RSA private key, 2048 bit long modulus
-    ................................................................+++
-    ........................................................................................+++
-    e is 65537 (0x10001)
-    ```
+        ```
+        Generating RSA private key, 2048 bit long modulus
+        ................................................................+++
+        ........................................................................................+++
+        e is 65537 (0x10001)
+        ```
 
-    ```
-    openssl req -sha256 -new -x509 -days 365 -key tls.key -out tls.crt
-    ```
+        ```
+        ls
+        ```
 
-    输出：
+        输出：
 
-    ```
-    You are about to be asked to enter information that will be incorporated
-    ...
-    -----
-    Country Name (2 letter code) [XX]:CN
-    State or Province Name (full name) []:zhejiang
-    Locality Name (eg, city) [Default City]:hangzhou
-    Organization Name (eg, company) [Default Company Ltd]:alibaba
-    Organizational Unit Name (eg, section) []:test
-    Common Name (eg, your name or your server's hostname) []:foo.bar.com           #注意，您需要正确配置域名。
-    Email Address []:a@alibaba.com
-    ```
+        ```
+        You are about to be asked to enter information that will be incorporated
+        ...
+        -----
+        Country Name (2 letter code) [XX]:CN
+        State or Province Name (full name) []:zhejiang
+        Locality Name (eg, city) [Default City]:hangzhou
+        Organization Name (eg, company) [Default Company Ltd]:alibaba
+        Organizational Unit Name (eg, section) []:test
+        Common Name (eg, your name or your server's hostname) []:foo.bar.com           #注意，您需要正确配置域名。
+        Email Address []:a@alibaba.com
+        ```
 
+    -   您也可以选择购买阿里云签发证书。具体操作，请参见[选择阿里云签发证书](/cn.zh-CN/CLB用户指南/证书管理/创建证书/选择阿里云签发证书.md)。
 
 根据访问的方式不同，当前可以分为两种配置证书的方式：
 
@@ -52,13 +53,13 @@ keyword: [HTTPS安全访问, HTTPS访问配置]
 
 该方式有如下特点：
 
--   优点：证书配置在SLB上，为应用外部访问的入口，在集群内部进行应用的访问依然用的是http访问方式。
+-   优点：证书配置在SLB上，为应用外部访问的入口，在集群内部进行应用的访问依然用的是HTTP访问方式。
 -   缺点：需要维护较多的域名与IP地址的对应关系。
 -   适用场景：应用不使用Ingress暴露访问方式，通过LoadBalancer类型的Service进行应用访问的暴露。
 
 准备工作：
 
-您已在该Kubernetes集群中创建一个Tomcat应用，该应用采用LoadBalancer类型的服务（service）对外提供访问。详情请参见[创建服务](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Service管理/创建服务.md)。
+您已在该ACK集群中创建一个Nginx应用，该应用采用LoadBalancer类型的服务（Service）对外提供访问。更多信息，请参见[使用镜像创建无状态Deployment应用](/cn.zh-CN/Kubernetes集群用户指南/应用管理/使用镜像创建无状态Deployment应用.md)。
 
 示例：
 
@@ -70,43 +71,62 @@ keyword: [HTTPS安全访问, HTTPS访问配置]
 
 4.  在集群管理页左侧导航栏中，选择**服务与路由** \> **服务**。
 
-5.  选择集群的命名空间和服务，单击外部端点，您可通过`IP:Port`的方式访问该应用。
+5.  选择集群的命名空间和服务，单击外部端点，您可通过`<SLB IP>:<Port>`的方式访问该应用。
 
-    ![外部端点](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9095659951/p13806.png)
+    ![nginx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3218782161/p241037.png)
 
 6.  登录[负载均衡管理控制台](https://slb.console.aliyun.com/)。
 
-7.  在控制台左侧导航栏，选择**传统型负载均衡CLB** \> **实例管理**，在服务地址栏中，找到与tomcat-svc服务外部端点对应的负载均衡实例，单击操作列中的**监听配置向导**。
+7.  配置**SSL证书**。
 
-8.  开始进行负载均衡配置，首先进行配置监听协议。选择**HTTPS**，监听端口设置为**443**，然后单击**下一步**。
+    -   如果您是通过命令方式创建集群的服务器证书，您需要使用前提条件中创建的公钥证书和私钥上传非阿里云签发证书。具体操作，请参见[上传非阿里云签发证书](/cn.zh-CN/CLB用户指南/证书管理/创建证书/上传非阿里云签发证书.md)。
+    -   如果您是通过购买方式获取阿里云签发证书，请跳过此步骤。关于创建阿里云签发证书的操作，请参见[选择阿里云签发证书](/cn.zh-CN/CLB用户指南/证书管理/创建证书/选择阿里云签发证书.md)。
+    在证书列表中，找到目标证书名称下面的证书ID。
 
-9.  配置**SSL证书**。
+8.  在容器服务管理控制台的服务列表中，找到之前创建的服务，单击右侧**操作**列下的**更新**。
 
-    1.  首先单击**新建服务器证书**。
+9.  在**更新服务**对话框中的注解区域，添加以下两个注解内容。
 
-    2.  在弹出的创建证书页面中，选择证书来源。本例中选择**上传非阿里云签发证书**，然后配置证书名称，选择证书部署区域，然后在**公钥证书**和**私钥**栏中输入您创建的服务器公钥证书和私钥，最后单击**创建**。
+    ![注解](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3218782161/p241100.png)
 
-    3.  然后在**选择服务器证书**栏选择刚创建的服务器证书。
+    |注解|名称|值|
+    |--|--|--|
+    |注解一|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-protocol-port|https:443|
+    |注解二|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-cert-id|$\{YOUR\_CERT\_ID\}|
 
-    4.  单击**下一步**。
+    **说明：** 将$\{YOUR\_CERT\_ID\}替换成[步骤7配置SSL证书](#step_0js_m4a_04m)生成的证书ID。
 
-10. 配置**后端服务器**，默认情况下已添加服务器，您需要配置后端服务器**端口**，用于监听tomcat-svc服务，最后单击**下一步**。
+    您还可以使用YAML方式添加注解内容，完整YAML示例如下：
 
-    **说明：** 您需要在容器服务Web界面找到该服务对应的NodePort，并在后端服务器端口中配置该端口。
+    ```
+    apiVersion: v1
+    kind: Service
+    metadata:
+      annotations:
+        service.beta.kubernetes.io/alibaba-cloud-loadbalancer-protocol-port: "https:443"
+        service.beta.kubernetes.io/alibaba-cloud-loadbalancer-cert-id: "${YOUR_CERT_ID}"
+      name: nginx
+      namespace: default
+    spec:
+      ports:
+      - name: https
+        port: 443
+        protocol: TCP
+        targetPort: 80
+      - name: http
+        port: 80
+        protocol: TCP
+        targetPort: 80
+      selector:
+        run: nginx
+      type: LoadBalancer
+    ```
 
-11. 配置**健康检查**，然后单击**下一步**。本例中采用默认配置。
+    **说明：** HTTPS的443端口对应的targetPort端口需要配置成HTTP的端口80。
 
-12. 进行**配置审核**，确认配置正确后，单击**提交**。
+10. 访问HTTPS的Nginx应用，在浏览器中输入`https://<slb-instance-ip>`并进行访问。
 
-13. 配置成功后，单击**确定**。
-
-14. 返回实例管理页面，您查看该实例，`HTTPS:443`监听规则已经生成。
-
-15. 访问HTTPS的tomcat应用，在浏览器中输入`https://slb_ip`并进行访问。
-
-    **说明：** 如果在证书中加入了域名验证，可以使用域名进行访问。同时我们没有删除`tcp:8080`，所以通过`slb_ip:8080`也可以访问。
-
-    ![实例管理](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0195659951/p13820.png)
+    ![https](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3218782161/p241101.png)
 
 
 ## 在Ingress上配置证书
@@ -118,11 +138,11 @@ keyword: [HTTPS安全访问, HTTPS访问配置]
 
 准备工作：
 
-您已在该Kubernetes集群中创建一个Tomcat应用，该应用的服务（Service）采用ClusterIP的方式提供访问。本例中准备使用Ingress对外提供HTTPS访问服务。
+您已在该Kubernetes集群中创建一个Tomcat应用，该应用的服务（Service）采用ClusterIP的方式提供访问。本例中准备使用Ingress对外提供HTTPS访问服务。更多信息，请参见[使用镜像创建无状态Deployment应用](/cn.zh-CN/Kubernetes集群用户指南/应用管理/使用镜像创建无状态Deployment应用.md)。
 
 示例：
 
-1.  登录到Kubernetes集群的Master节点，根据准备好的证书创建secret。
+1.  根据前提条件中准备好的证书执行以下命令创建Secret。
 
     **说明：** 在这里需要正确配置域名，否则后续通过HTTPS访问会有问题。
 
@@ -140,12 +160,12 @@ keyword: [HTTPS安全访问, HTTPS访问配置]
 
 6.  在创建路由对话框中，配置可HTTPS访问的路由，完成后单击**创建**。
 
-    更多详细的路由配置信息，请参见[创建路由（Ingress）](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/创建路由（Ingress）.md)。本例中进行如下配置。
+    更多详细的路由配置信息，请参见[创建路由（Ingress）](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress基本操作.md)。本例中进行如下配置。
 
     -   **名称**：输入该路由的名称。
     -   **域名**：即是前面配置的正确域名，与ssl证书中配置的保持一致。
-    -   **服务**：选择tomcat应用对应的service，端口为8080。
-    -   **开启TLS**：开启TLS后，选择已创建的secret。
+    -   **服务**：选择Tomcat应用对应的Service，端口为8080。
+    -   **开启TLS**：开启TLS后，选择已创建的Secret。
     您也可采用YAML文件的方式创建路由（Ingress），本例对应的YAML示例文件如下。
 
     ```
