@@ -43,7 +43,11 @@ keyword: [集群网络, 专有网络, Terway和Flannel]
 VPC网段用的是172.16.0.0/12，Kubernetes的Pod地址段就不能使用172.16.0.0/16、172.17.0.0/16等，因为这些地址都包含在172.16.0.0/12里。 |
 |**Service CIDR**|Service地址段。Service是Kubernetes内的概念，对应的是Service类型为ClusterIP（`Type=ClusterIP`）时Service使用的地址，每个Service有自己的地址。配置网段时，请注意：-   Service地址只在Kubernetes集群内使用，不能在集群外使用。
 -   Service地址段不能和**虚拟交换机**地址段重叠。
--   Service地址段不能和**Pod虚拟交换机**地址段、**Pod网络CIDR**地址段重叠。 |
+-   Service地址段不能和**Pod虚拟交换机**地址段重叠。
+
+|Service地址段。Service是Kubernetes内的概念，对应的是Service类型为ClusterIP（`Type=ClusterIP`）时Service使用的地址，每个Service有自己的地址。配置网段时，请注意：-   Service地址只在Kubernetes集群内使用，不能在集群外使用。
+-   Service地址段不能和**虚拟交换机**地址段重叠。
+-   Service地址段不能和**Pod网络CIDR**地址段重叠。 |
 
 ## 网络规划
 
