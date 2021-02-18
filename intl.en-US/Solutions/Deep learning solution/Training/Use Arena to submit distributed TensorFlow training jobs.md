@@ -9,7 +9,7 @@ This topic describes how to use the Arena client to submit distributed TensorFlo
 -   [A cluster of Alibaba Cloud Container Service for Kubernetes \(ACK\) that contains GPU-accelerated nodes is created](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU management/GPU resource scheduling/Configure a Kubernetes GPU cluster to support GPU scheduling.md).
 -   [Nodes in the cluster can access the Internet](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Access the Kubernetes API server over the Internet.md).
 -   [The latest versions of the ack-arena add-on and the Arena client are installed](/intl.en-US/Solutions/Deep learning solution/Preparations/Install the latest version of Arena.md).
--   A persistent volume claim \(PVC\) is created for the target ACK cluster and the datasets used in this topic are downloaded to the corresponding persistent volume \(PV\). For more information, see [Configure a shared NAS volume for training jobs](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared NAS volume for training jobs.md) or [Configure a shared CPFS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared CPFS volume.md).
+-   A persistent volume claim \(PVC\) is created for the target ACK cluster and the datasets used in this topic are downloaded to the corresponding persistent volume \(PV\). For more information, see [Configure a shared NAS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared NAS volume for training jobs.md) or [Configure a shared CPFS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared CPFS volume.md).
 
 In this topic, the source training code is downloaded from a Git repository. The datasets are stored in a shared Network Attached Storage \(NAS\) volume that is mounted by using a PV and a PVC. In this example, a PVC that is named **training-data** is created. The PVC uses a shared PV. The datasets are stored in the tf\_data directory of the shared PV.
 
@@ -85,7 +85,7 @@ NAME           ACCESSMODE     DESCRIPTION  OWNER  AGE
 training-data  ReadWriteMany                      35m
     ```
 
-If no PVC is available, create one. For more information, see [Configure a shared NAS volume for training jobs](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared NAS volume for training jobs.md) or [Configure a shared CPFS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared CPFS volume.md).
+If no PVC is available, create one. For more information, see [Configure a shared NAS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared NAS volume for training jobs.md) or [Configure a shared CPFS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared CPFS volume.md).
 
 |N/A|
     |--tensorboard|No|Specifies that TensorBoard is used to visualize training results. You can set this parameter in combination with the --logdir parameter to specify the path from which TensorBoard reads event files. If you do not specify this parameter, TensorBoard is not used.|N/A|
@@ -195,7 +195,7 @@ If no PVC is available, create one. For more information, see [Configure a share
 
     Copy the URL \(http://192.1xx.x.xx:31870\) that is obtained in Step 6 to the address bar of your browser and press Enter. The TensorBoard page appears.
 
-    ![tf](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8086258951/p135005.png)
+    ![tf](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8086258951/p135005.png)
 
 8.  Run the following command to print the job logs:
 
