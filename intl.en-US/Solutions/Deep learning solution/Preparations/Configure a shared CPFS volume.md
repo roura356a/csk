@@ -6,9 +6,9 @@ keyword: [shared CPFS volumes, Arena, distributed storage, configure PVs and PVC
 
 Cloud Paralleled File System \(CPFS\) is a type of parallel file system provided by Alibaba Cloud. CPFS stores data across multiple data nodes in a cluster and allows data to be simultaneously accessed by multiple clients. Therefore, CPFS can provide data storage services with high input/output operations per second \(IOPS\), high throughput, and low latency for large, high-performance computing clusters. This topic describes how to configure a shared CPFS volume.
 
-Data scientists may need to keep their data or retrieve the same copy of training data. To meet this requirement, we recommend that you configure a shared NAS volume and mount it to the runtime where you use Arena to submit jobs. This prevents data loss because code and data stored in the shared NAS volume are not deleted with containers.
+Data scientists may want to persist their data or retrieve the same copy of training data. To meet this requirement, we recommend that you configure a shared NAS volume and mount it to the runtime where you use Arena to submit jobs. This prevents data loss because the code and data that are stored in the shared NAS volume are not deleted with containers.
 
-You can allow the developers in a team to share the same storage pool. If you have declared a shared NAS volume and specified the path that is used to mount the volume, the shared NAS volume is automatically mounted to the specified path. After the shared NAS volume is mounted, you can use data and code stored in the volume by specifying the --data parameter each time you submit a job.
+We recommend that you allow the developers in a team to share the same storage pool. If you declare a shared NAS volume and specify the path that is used to mount the volume, the shared NAS volume is automatically mounted to the specified path. After the shared NAS volume is mounted, you can consume the data and code that are stored in the volume by specifying the --data parameter each time you submit a job.
 
 In Kubernetes, storage volumes are declared by using persistent volumes \(PVs\) and persistent volume claims \(PVCs\). As the administrator of a Kubernetes cluster, you must create a PVC for each data scientist in your team. For example, User A and User B can mount their PVs to the same NAS volume or Cloud Paralleled File System \(CPFS\). However, the PVs must be mounted to different subdirectories to isolate the runtimes of User A and User B.
 
@@ -30,7 +30,7 @@ When you create a CPFS file system, set the region, Virtual Private Cloud \(VPC\
 
     On the **Basic Information** tab, you can view the ID and mount target of the newly created file system.
 
-    ![CPFS](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5976258951/p134706.png)
+    ![CPFS](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5976258951/p134706.png)
 
 
 ## Step 3: Create a PV and a PVC for the target ACK cluster
