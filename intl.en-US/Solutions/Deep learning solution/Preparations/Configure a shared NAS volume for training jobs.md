@@ -35,9 +35,9 @@ Set the parameters based on the following descriptions:
 -   Select **VPC Network** as the type of the mount target.
 -   Select the same Virtual Private Cloud \(VPC\) network and same VSwitches that are used in the target ACK cluster.
 
-After the mount target is created, go to the **Mount Target** page and move the pointer over the ![Mount target](../images/p134346.png)to view and copy the address of the mount target.
+After the mount target is created, go to the **Mount Target** page and move the pointer over the ![Mount target](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2138263161/p134346.png)to view and copy the address of the mount target.
 
-![The information of the mount target](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9876258951/p134349.png)
+![The information of the mount target](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9876258951/p134349.png)
 
 ## Step 3: Create a PV and a PVC for the target ACK cluster
 
@@ -72,7 +72,7 @@ Kubernetes clusters uses PVCs to access shared data \(data stored in the NAS fil
 
     The mount command is used to mount the NAS file system to the /mnt path of the ECS instance.
 
-    ![Mount command](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9876258951/p134539.png)
+    ![Mount command](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9876258951/p134539.png)
 
     ```
     sudo mount -t nfs -o xxxx.nas.aliyuncs.com:/ /mnt
