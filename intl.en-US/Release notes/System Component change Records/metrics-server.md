@@ -85,7 +85,7 @@ Perform the following checks:
 Check whether the metrics-server component is upgraded to the latest version. If the metrics-server component is upgraded to the latest version, configure the following startup settings in the kube-system namespace for the pod where metrics-server is deployed.
 
 ```
---metric_resolution=15s
+--metric-resolution=15s
 --enable-hpa-rolling-update-skipped=true
 ```
 
