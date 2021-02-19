@@ -3,8 +3,8 @@
 阿里云Kubernetes集群的虚拟节点已经支持服务发现功能，目前支持Intranet service、Headless service、ClusterIP service。
 
 -   需要先开通云解析PrivateZone，在[云解析DNS控制台](https://dns.console.aliyun.com/)中开通。
--   您在Kubernetes集群创建一个虚拟节点，请参见[部署虚拟节点Chart](/intl.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/部署虚拟节点Chart.md)。
--   您已成功连接到Kubernetes集群，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/管理与访问集群/通过kubectl连接Kubernetes集群.md)。
+-   您在Kubernetes集群创建一个虚拟节点，请参见[通过部署ACK虚拟节点组件创建ECI Pod](/intl.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/通过部署ACK虚拟节点组件创建ECI Pod.md)。
+-   您已成功连接到Kubernetes集群，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。
 
 ## 环境准备
 
@@ -16,9 +16,11 @@
 
 3.  在**阿里云应用**页签中，选择**ack-virtual-node**。
 
-4.  在应用目录 - ack-virtual-node中，单击**参数**，可以通过修改参数配置进行定制化，如下所示。
+4.  在Kubernetes菜单下，单击左侧导航栏中的**市场** \> **应用目录**， 在右侧选中**ack-virtual-node**。
 
-    ![应用目录](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0563659951/p65159.png)
+5.  在应用目录 - ack-virtual-node中，单击**参数**，可以通过修改参数配置进行定制化，如下所示。
+
+    ![应用目录](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0563659951/p65159.png)
 
     -   `ECI_VPC`：Kubernetes集群使用的VPC ID，需要替换成您当前集群使用的VPC ID。
     -   `ALIYUN_CLUSTERID`：Kubernetes集群ID，需要替换成您当前使用集群的ID。不允许为空或者设置为default。
@@ -107,13 +109,13 @@
 
 2.  登录[云解析DNS控制台](https://dns.console.aliyun.com/)。
 
-3.  在左侧导航栏中单击**PrivateZone**，在**全部Zone**页签，可看到在Zone中自动生成IP解析记录。
+3.  在左侧导航栏中单击**PrivateZone**，在**权威Zone**页签，可看到在Zone中自动生成IP解析记录。
 
-    ![Zone列表](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1563659951/p10241.png)
+    ![Zone列表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7694163161/p10241.png)
 
 4.  在目标Zone右侧单击**解析设置**，弹出解析设置详情页面。
 
-    ![解析设置](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1563659951/p65338.png)
+    ![解析设置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1563659951/p65338.png)
 
     **说明：** Zone里面的Record格式为`$svc.$ns`，对应相应的IP解析。解析规则如下：
 
