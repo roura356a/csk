@@ -1,6 +1,6 @@
 # Ingress概述
 
-本文介绍Ingress基本概念和工作原理。
+本文介绍Ingress基本概念、Ingress Controller工作原理和ACK的Ingress。
 
 ## Ingress基本概念
 
@@ -10,7 +10,7 @@ Ingress资源仅支持配置HTTP流量的规则，无法配置一些高级特性
 
 ## Ingress Controller工作原理
 
-为了使得Ingress资源正常工作，集群中必须要有个Ingress Controller来解析Ingress的转发规则。Ingress Controller收到请求，匹配Ingress转发规则转发到后端Service，而 Service转发到Pod，最终由Pod处理请求。Kubernetes中Service、Ingress与Ingress Controller有着以下关系：
+为了使得Ingress资源正常工作，集群中必须要有个Ingress Controller来解析Ingress的转发规则。Ingress Controller收到请求，匹配Ingress转发规则转发到后端Service，而Service转发到Pod，最终由Pod处理请求。Kubernetes中Service、Ingress与Ingress Controller有着以下关系：
 
 -   Service是后端真实服务的抽象，一个Service可以代表多个相同的后端服务。
 -   Ingress是反向代理规则，用来规定HTTP/HTTPS请求应该被转发到哪个Service上。例如根据请求中不同的Host和URL路径，让请求落到不同的 Service上。
@@ -18,16 +18,18 @@ Ingress资源仅支持配置HTTP流量的规则，无法配置一些高级特性
 
 Ingress Controller通过API Server获取Ingress资源的变化，动态地生成Load Balancer（例如Nginx）所需的的配置文件（例如nginx.conf），然后重新加载Load Balancer（例如执行`nginx -s load`重新加载Nginx。）来生成新的路由转发规则。
 
-![工作原理](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0804139061/p207789.png)
+![S2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4614073161/p241496.png)
 
 Ingress Controller可通过配置LoadBalancer类型的Service来创建SLB，因此可以从外部通过SLB访问到Kubernetes集群的内部服务。根据Ingress配置的不同规则来访问不同的服务。
 
-当前Kubernetes官方维护的是ingress-nginx，ACK基于社区版的ingress-nginx进行了优化。当在创建ACK集群时，您选择安装的ingress-nginx组件即为ACK定制版的ingress-nginx组件。
+## ACK的Ingress
+
+当前Kubernetes官方维护的是Nginx Ingress Controller，ACK基于社区版的Nginx Ingress Controller进行了优化。当在创建ACK集群时，您选择安装的Nginx Ingress Controller组件即为ACK定制版的Nginx Ingress Controller组件。
 
 **相关文档**  
 
 
-[配置Ingress](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/配置Ingress.md)
+[Ingress高级用法](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress高级用法.md)
 
 [路由配置说明](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/路由配置说明.md)
 
