@@ -11,8 +11,11 @@ keyword: [Windows节点池, 创建Windows节点池]
 
 **说明：**
 
+-   Windows操作系统的节点池仅支持Flannel网络，不支持Terway网络。
+
 -   默认情况下，每个集群中最多可包含100个节点。如果您需要添加更多节点，请提交工单申请，请参见[提交工单](https://workorder-intl.console.aliyun.com/console.htm)。
 -   添加已有云服务器时，请确保您的云服务器有EIP（专有网络），或者相应VPC已经配置了NAT网关。您需要确保相应节点能正常访问公网，否则，添加云服务器会失败。
+
 
 ## 操作步骤
 
@@ -26,9 +29,11 @@ keyword: [Windows节点池, 创建Windows节点池]
 
 5.  在节点池页面右上角，单击**创建节点池**。
 
+    您还可以在节点池页面右上角，单击**创建托管节点池**或者**自动弹性伸缩配置**创建托管版或者弹性节点池。
+
 6.  在创建节点池页面，设置创建节点池的配置项。
 
-    ![配置项](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9106659951/p95988.png)
+    ![配置项](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9106659951/p95988.png)
 
     有关配置项的详细说明，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。部分配置项说明如下：
 
@@ -36,12 +41,10 @@ keyword: [Windows节点池, 创建Windows节点池]
     -   操作系统：选择Windows操作系统。
     -   节点标签：为集群节点添加标签。
     -   ECS标签：为ECS实例添加标签。
-7.  单击**确定**。
+7.  单击**确定配置**。
 
     在节点池页面，如果节点池**状态**显示**初始化中**，则说明节点池正在创建中。创建完成后，**状态**显示为**已激活**。
 
-    ![nodepool](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9106659951/p95881.png)
+    ![nodepool](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9106659951/p95881.png)
 
-
-节点池创建完成后，在节点池页面找到目标节点池，单击**操作**列中的**详情**查看节点池详情，或者基于节点池对节点进行扩容。
 
