@@ -2,11 +2,17 @@
 
 This topic lists the latest changes to the operating system \(OS\) images provided by Container Service for Kubernetes \(ACK\).
 
+## January 2021
+
+|OS version|Kernel version|Release date|Description|
+|----------|--------------|------------|-----------|
+|aliyun\_2\_1903\_x64\_20G\_alibase\_20210120.vhd|kernel-4.19.91-22.2.al7|January 27, 2021|For more information, see [Release notes of Alibaba Cloud Linux 2](/intl.en-US/Images/Alibaba Cloud Linux 2/Release notes of Alibaba Cloud Linux 2.md).|
+
 ## December 2020
 
 |OS version|Kernel version|Release date|Description|
 |----------|--------------|------------|-----------|
-|centos\_7\_8\_x64\_20G\_alibase\_20200914.vhd|3.10.0-1127.19.1.el7.x86\_64|Dec 22, 2020|For more information, see [Release notes](/intl.en-US/Images/Public image/Release notes.md).|
+|centos\_7\_8\_x64\_20G\_alibase\_20200914.vhd|3.10.0-1127.19.1.el7.x86\_64|December 22, 2020|For more information, see [Release notes](/intl.en-US/Images/Public image/Release notes.md).|
 
 ## October 2020
 
