@@ -1,96 +1,72 @@
----
-keyword: [NAS直挂, 安全沙箱, 解决IO性能]
----
+# 安全沙箱的云盘直挂
 
-# 安全沙箱的NAS直挂
+您可以通过安全沙箱的云盘直挂功能，有效地解决IO性能问题。本文介绍安全沙箱云盘直挂的实现原理，并通过示例说明如何使用安全沙箱的云盘直挂功能。
 
-您可以通过安全沙箱的NAS直挂功能，有效地解决IO性能问题。本文介绍安全沙箱NAS直挂的实现原理，并通过示例说明如何使用安全沙箱的NAS直挂功能。
+-   [创建安全沙箱托管版集群](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱/创建安全沙箱集群/创建安全沙箱托管版集群.md)
+-   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)
 
--   [创建安全沙箱托管版集群](/intl.zh-CN/Kubernetes集群用户指南/安全沙箱/创建安全沙箱集群/创建安全沙箱托管版集群.md)
--   [通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)
+virtio-fs是一个共享的文件系统。容器服务Kubernetes版（ACK）安全沙箱使用virtio-fs可以把Volume、Secret、ConfigMap等共享到虚拟机GuestOS内，从而可以用原生的方式通过Volume挂载云盘。但这种方式下，云盘是挂载到主机上的，在容器内要经过virtio-fs才能读写主机上的云盘，由此会带来一些性能损耗。
 
-virtio-fs是一个共享的文件系统。容器服务Kubernetes版（ACK）安全沙箱使用virtio-fs可以把Volume、Secret、ConfigMap等共享到虚拟机GuestOS内，从而可以用原生的方式通过Volume挂载NAS。但这种方式下，NAS是挂载到主机上的，在容器内要经过virtio-fs读写主机上的NAS，由此会带来一些性能损耗。
+安全容器提供了安全沙箱云盘直挂的功能。该功能会先卸载主机上的云盘挂载点，然后在GuestOS内挂载云盘，最后把云盘bind mount到容器内，从而能够在容器内直接读写云盘，达到接近原生的性能。
 
-安全容器提供了安全沙箱NAS直挂的功能。该功能会先卸载主机上的NAS挂载点，然后在GuestOS内挂载NAS，最后把NAS bind mount到容器内，从而能够在容器内直接读写NAS，达到接近原生的性能。
-
-![直挂方案](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9856076061/p185928.png)
+![直挂方案](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9127076061/p186229.png)
 
 ## 实现原理
 
-![挂载原理](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0956076061/p95364.png)
+![实现原理](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2977076061/p186232.png)
 
-实现安全沙箱的NAS直挂功能的流程说明如下。
+实现安全沙箱的云盘直挂沙箱功能的流程说明如下。
 
 |步骤序号|说明|
 |----|--|
-|①|Kubelet请求CSI-Plugin挂载NAS卷。|
-|②|CSI-Plugin在主机挂载NAS。|
+|①|Kubelet请求CSI-Plugin挂载云盘。|
+|②|CSI-Plugin格式化云盘，然后在主机上挂载云盘。|
 |③|Kubelet请求Kangaroo-Runtime创建容器。|
-|④|Kangaroo-Runtime解析NAS挂载信息并传入GuestOS，同时卸载主机上的NAS。|
+|④|Kangaroo-Runtime解析云盘挂载信息并传给GuetOS，同时卸载主机上的云盘。|
 |⑤|Kangaroo-Runtime请求Agent创建容器。|
-|⑥|Agent把NAS挂载到GuestOS内。|
-|⑦|Agent把GuestOS上的NAS bind mount到容器内。|
+|⑥|Agent把云盘挂载到GuestOS内。|
+|⑦|Agent把GuestOS上的云盘bind mount到容器内。|
 
 ## 示例
 
-以下通过创建NAS实例及使用YAML模板创建资源对象举例说明如何在安全沙箱容器中挂载NAS卷。
+以下通过使用YAML模板创建资源对象举例说明如何在沙箱容器中挂载云盘。
 
-1.  创建一个NAS实例。具体操作，请参见[创建通用型NAS文件系统]()。
-
-    **说明：** NAS实例的VPC需要和集群的VPC一致。
-
-    获取到NAS实例挂载点地址，如下图**挂载命令**中的file-system-id.region.nas.aliyuncs.com即为挂载点地址。
-
-    ![NAS](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0606659951/p95499.png)
-
-    **说明：** file-system-id.region.nas.aliyuncs.com：表示挂载点地址。您可以在[NAS控制台](https://nas.console.aliyun.com/)中，单击模板文件系统名称，在**挂载使用**页面获取挂载点地址。
-
-2.  执行以下命令，使用模板创建资源对象。
+1.  执行以下命令，使用模板创建资源对象。
 
     ```
     cat <<EOF | kubectl create -f -
+    allowVolumeExpansion: true
+    apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+      name: alicloud-disk-ssd
+    parameters:
+      type: cloud_ssd
+    provisioner: diskplugin.csi.alibabacloud.com
+    reclaimPolicy: Delete
+    ---
     apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
-      name: nas-pvc-csi
+      name: disk-pvc-01
       namespace: default
     spec:
       accessModes:
-        - ReadWriteMany
+        - ReadWriteOnce
       resources:
         requests:
-          storage: 5Gi
-      selector:
-        matchLabels:
-          alicloud-pvname: nas-pv-csi
-    ---
-    apiVersion: v1
-    kind: PersistentVolume
-    metadata:
-      labels:
-        alicloud-pvname: nas-pv-csi
-      name: nas-pv-csi
-    spec:
-      accessModes:
-        - ReadWriteMany
-      capacity:
-        storage: 5Gi
-      csi:
-        driver: nasplugin.csi.alibabacloud.com
-        volumeAttributes:
-          options: noresvport,nolock
-          path: /csi
-          server: ${nas-server-address}
-          vers: "3"
-        volumeHandle: nas-pv-csi
-      persistentVolumeReclaimPolicy: Retain
+          storage: 25Gi
+      storageClassName: alicloud-disk-ssd
     ---
     apiVersion: apps/v1
     kind: Deployment
     metadata:
-      name: deploy-nas-csi
+      labels:
+        app: busybox
+      name: busybox
+      namespace: default
     spec:
-      replicas: 2
+      replicas: 1
       selector:
         matchLabels:
           app: busybox
@@ -99,43 +75,38 @@ virtio-fs是一个共享的文件系统。容器服务Kubernetes版（ACK）安�
           labels:
             app: busybox
           annotations:
-            storage.alibabacloud.com/enable_nas_passthrough: "true"
+            storage.alibabacloud.com/enable_ebs_passthrough: "true"
         spec:
-          runtimeClassName: runv
           containers:
             - name: busybox
               image: registry.cn-hangzhou.aliyuncs.com/acs/busybox:v1.29.2
-              command: 
+              command:
               - tail
               - -f
               - /dev/null
               volumeMounts:
-                - name: nas-pvc
-                  mountPath: "/data"
+                - mountPath: "/data"
+                  name: disk-pvc
+          dnsPolicy: ClusterFirst
           restartPolicy: Always
+          runtimeClassName: runv
           volumes:
-            - name: nas-pvc
+            - name: disk-pvc
               persistentVolumeClaim:
-                claimName: nas-pvc-csi
+                claimName: disk-pvc-01
     EOF
     ```
 
     **说明：**
 
-    -   您需要把模板中的`${nas-server-address}`替换成NAS实例挂载点地址。
+    默认Pod不启用云盘直挂功能，您需要在模板中通过Annotation开启云盘直通功能。
 
-        ```
-        server: ${nas-server-address}
-        ```
+    ```
+    annotations:
+            storage.alibabacloud.com/enable_ebs_passthrough: "true"
+    ```
 
-    -   默认Pod不启用NAS直挂功能，您需要在模板中通过Annotation开启NAS直通功能。
-
-        ```
-        annotations:
-                storage.alibabacloud.com/enable_nas_passthrough: "true"
-        ```
-
-3.  执行以下命令，进入Pod内验证挂载点类型。
+2.  执行以下命令，进入Pod内验证挂载点文件系统类型。
 
     ```
     kubectl get pods
@@ -146,9 +117,9 @@ virtio-fs是一个共享的文件系统。容器服务Kubernetes版（ACK）安�
     ```
 
     ```
-    mount | grep /data | grep nfs
+    mount | grep /data | grep -vi virtio_fs
     ```
 
-    如果执行命令后有内容，表明NAS直挂功能成功。
+    如果挂载类型不是virtio-fs，说明成功实现云盘直挂功能。
 
 
