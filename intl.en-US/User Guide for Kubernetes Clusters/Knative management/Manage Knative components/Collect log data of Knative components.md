@@ -69,6 +69,4 @@ Knative components include:
     -   In the IncludeLabel section, set io.kubernetes.container.name to the name of the controller.
 9.  In the **Log Query** section, click **Try Now** to view log collection results.
 
-    ![Query log data](../images/p127947.png)
-
 
