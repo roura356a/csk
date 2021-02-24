@@ -6,8 +6,6 @@ This topic describes how to pre-process Swarm Compose files.
 
     1.  Log on to the [Container Service for Swarm console](https://cs.console.aliyun.com). In the left-side navigation pane, click **Applications**. On the Applications page, find the application that you want to manage and click **Change Configuration** in the Actions column.
 
-        ![Change the specification](../images/p47976.png)
-
     2.  Copy the configurations and save them in a YAML file on an on-premises machine. In this topic, the file is named swarm-piggymetrics.yaml, which is the Swarm Compose file to be pre-processed.
 
 2.  Replace environment variables in the Swarm compose file with actual values.
@@ -15,9 +13,6 @@ This topic describes how to pre-process Swarm Compose files.
     The Container Service for Swarm console allows you to use a configuration file to replace variables in a Swarm Compose file with actual values. Kubernetes does not support this feature. Before you use Kompose to convert a Swarm Compose file, you must manually replace the dollar signs \(*$*\) in the Compose file with actual values. To replace variables in the Swarm Compose file, perform the following steps:
 
     1.  Log on to the [Container Service for Swarm console](https://cs.console.aliyun.com). In the left-side navigation pane, click **Configurations**. On the page that appears, select the region where the configuration file is deployed and find the configuration file.
-
-        ![Configurations](../images/p47977.png)
-
     2.  Replace the dollar signs \(*$*\) in the swarm-piggymetrics.yaml file with the actual values based on this configuration file.
 3.  Pre-process labels.
 
