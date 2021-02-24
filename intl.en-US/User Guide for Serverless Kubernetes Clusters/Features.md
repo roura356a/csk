@@ -24,7 +24,7 @@ The underlying compute resources of ECIs run Alibaba Cloud Linux2. ASK clusters 
 
 Pods are created based on ECIs and support multiple native Kubernetes features, including multiple container startup, environment variables, restart policies, health check commands, volume mounting, and pre-stop commands. You can run the `kubectl logs` command to view container logs and run the `kubectl exec` command to manage containers.
 
-ASK clusters support various annotations to extend the features of pods. For more information, see [ECI configurations](/intl.en-US/User Guide for Serverless Kubernetes Clusters/ECI Pod management/Overview.md).
+ASK clusters support various annotations to extend the features of pods. For more information, see [ECI overview](/intl.en-US/User Guide for Serverless Kubernetes Clusters/ECI Pod management/ECI overview.md).
 
 ## Workloads
 
@@ -43,7 +43,7 @@ By default, pods use the host network mode. Each pod must be assigned an elastic
     -   You can create LoadBalancer type Services.
     -   You cannot create NodePort type Services because ASK clusters do not support the features that are related to nodes.
 -   **Ingress**
-    -   ALB Ingress: allows you to forward traffic at Layer 7 based on Server Load Balancer \(SLB\) instances without deploying controllers. For more information, see [ingress-alb demo](https://github.com/AliyunContainerService/serverless-k8s-examples/tree/master/ingress-alb).
+    -   SLB Ingress: allows you to forward traffic at Layer 7 based on Server Load Balancer \(SLB\) instances without deploying controllers. For more information, see [ingress demo](https://github.com/AliyunContainerService/serverless-k8s-examples/tree/master/ingress-alb).
     -   NGINX Ingress: allows you to create NGINX Ingresses after nginx-ingress-controller is deployed. For more information, see [ingress-nginx demo](https://github.com/AliyunContainerService/serverless-k8s-examples/tree/master/ingress-nginx).
 -   **Service discovery**
 
@@ -68,7 +68,7 @@ You can mount disks of Alibaba Cloud or Network Attached Storage \(NAS\) file sy
 
 ## Log management
 
-In ASK clusters, stdout logs and text logs are collected from pods without the need to deploy Logtail as a DaemonSet. For more information, see [Collect logs by using Alibaba Cloud Log Service](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Log management/Collect logs by using Alibaba Cloud Log Service.md).
+In ASK clusters, stdout logs and text logs are collected from pods without the need to deploy Logtail as a DaemonSet. For more information, see [Collect logs through Log Service](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Log management/Collect logs through Log Service.md).
 
 ## ConfigMaps and Secrets
 
