@@ -4,9 +4,12 @@ keyword: [edge-license-server, 商业化软件, k8s]
 
 # edge-license-server
 
-edge-license-server组件是ACK集群中部署ACK商业化软件的必要组件，您必须首先安装该组件才能正常使用ACK商业化软件。本文介绍edge-license-server相关内容的最新动态。
+edge-license-server组件是ACK集群中部署ACK商业化软件的必要组件，您需首先安装该组件才能正常使用ACK商业化软件。本文介绍edge-license-server相关内容的最新动态。
 
-在使用edge-license-server组件所提供的License验证管理服务前，请务必在安装此组件前完成服务角色授权，[点击此处完成授权](https://ram.console.aliyun.com/#/role/authorize?request=%7B%22Requests%22%3A%7B%22request1%22%3A%7B%22RoleName%22%3A%22AliyunCSManagedLicenseRole%22%2C%22TemplateId%22%3A%22AliyunCSManagedLicenseRole%22%7D%7D%2C%22ReturnUrl%22%3A%22https%3A%2F%2Fcs.console.aliyun.com%2F%22%2C%22Service%22%3A%22CS%22%7D)。
+**说明：**
+
+-   如果您需要使用该组件所提供的License验证管理服务，请务必在安装此组件之前先[单击此处完成授权链接](https://ram.console.aliyun.com/role/authorization?request=%7B%22Services%22%3A%5B%7B%22Service%22%3A%22CS%22%2C%22Roles%22%3A%5B%7B%22RoleName%22%3A%22AliyunCSManagedLicenseRole%22%2C%22TemplateId%22%3A%22AliyunCSManagedLicenseRole%22%7D%5D%7D%5D%2C%22ReturnUrl%22%3A%22https%3A%2F%2Fcs.console.aliyun.com%2F%22%7D)并在弹出的页面中完成服务角色授权。
+-   如果您没有ACK商业化软件的使用需求，不建议安装此组件，以避免资源损耗。
 
 ## 2021年02月
 
