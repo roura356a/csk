@@ -1,10 +1,10 @@
 # Delete ARMS Prometheus and ACK Prometheus
 
-This topic describes how to delete Application Real-Time Monitoring Service \(ARMS\) Prometheus and Container Service for Kubernetes \(ACK\) Prometheus.
+This topic describes how to uninstall Application Real-Time Monitoring Service \(ARMS\) Prometheus and Container Service for Kubernetes \(ACK\) Prometheus.
 
 ## Procedure
 
-You can delete ARMS Prometheus and ACK Prometheus in the ACK console. All data of ARMS Prometheus and ACK Prometheus is deleted. The procedures for deleting ARMS Prometheus and ACK Prometheus are similar. In the following example, ARMS Prometheus is deleted.
+You can uninstall ARMS Prometheus and ACK Prometheus in the ACK console. All data of ARMS Prometheus and ACK Prometheus is uninstalled. The procedures for deleting ARMS Prometheus and ACK Prometheus are similar. In the following example, ARMS Prometheus is uninstalled.
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
@@ -16,7 +16,7 @@ You can delete ARMS Prometheus and ACK Prometheus in the ACK console. All data o
 
 5.  On the Helm page, find the component whose **Release Name** is arms-prom. Then, click **Delete** in the Actions column.
 
-    **Note:** If you want to delete ACK Prometheus, navigate to the Helm page and find the component whose **Release Name** is ack-prometheus-operator. Then, click **Delete** in the **Actions** column.
+    **Note:** If you want to uninstall ACK Prometheus, navigate to the Helm page and find the component whose **Release Name** is ack-prometheus-operator. Then, click **Delete** in the **Actions** column.
 
 6.  In the **Delete** dialog box, select **Clear Release Records** and click **OK**.
 
