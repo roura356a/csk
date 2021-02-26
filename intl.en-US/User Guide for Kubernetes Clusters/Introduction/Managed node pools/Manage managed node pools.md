@@ -1,10 +1,10 @@
 ---
-keyword: [managed node pool, create managed node pool, auto upgrading of node, auto repairing of node]
+keyword: [managed node pool, create managed node pool, node auto-upgrade, node auto-repair]
 ---
 
 # Manage managed node pools
 
-Managed node pools support auto upgrading and auto repairing. This provides centralized, managed, and operations and maintenance \(O&M\)-free lifecycle management on nodes. This topic describes how to create, scale out, clone, and delete a managed node pool.
+Managed node pools support node auto-upgrade and auto-repair. This provides a centralized, managed, and operations and maintenance \(O&M\)-free lifecycle management of nodes. This topic describes how to create, scale out, clone, and delete a managed node pool.
 
 -   Managed node pools are available for only professional managed Kubernetes cluster and only users in the whitelist. If you are not in the whitelist, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 -   A professional managed Kubernetes cluster is created. For more information, see [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Introduction/Create a professional managed Kubernetes cluster.md).
@@ -18,21 +18,22 @@ Managed node pools support auto upgrading and auto repairing. This provides cent
 
 ## Create a managed node pool
 
-1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click **Details** in the **Actions** column.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane, click **Node Pools**.
+4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node Pools**.
 
-5.  On the Node Pools page, click **Create Managed Node Pool**.
+5.  In the upper-right corner of the Node Pools page, click **Create Managed Node Pool**.
 
-6.  In the Create Managed Node Pool dialog box, configure the managed node pool.
+6.  In the Create Managed Node Pool dialog box, set the parameters of the managed node pool.
 
     For more information about the parameters, see [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Introduction/Create a professional managed Kubernetes cluster.md). The following list describes some of the parameters:
 
-    -   Maintenance Window: Set the time window for auto upgrading on the managed node pool. Click **Set** to go to the **Basic Information** tab of the details page of the cluster. In the Cluster Maintenance section, you can turn on **Maintenance Window** and modify the time window.
+    -   Maintenance Window: Set the time window for the auto upgrading of nodes in the managed node pool. Click **Set** to go to the **Basic Information** tab of the details page of the cluster. In the Cluster Maintenance section, you can turn on **Maintenance Window** and modify the time window.
+    -   Auto Scaling: Specify whether to enable auto scaling for nodes in the managed node pool. For more information, see [Auto scaling of nodes](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Auto scaling of nodes.md).
     -   Quantity: Specify the number of nodes that you want to add to the node pool. If you do not need to create a node, set this parameter to 0.
     -   Select the operating system for the nodes. Valid values: CentOS, Alibaba Cloud Linux, and Windows.
     -   Node Label: You can add labels to the specified nodes.
@@ -40,31 +41,49 @@ Managed node pools support auto upgrading and auto repairing. This provides cent
     -   Custom Resource Group: You can specify the resource group to which the nodes of the node pool belong.
 7.  Click **Confirm Order**.
 
-    On the Node Pools page, if the **Status** column of the node pool shows **Initializing** for the node pool, it indicates that the node pool is being created. After the managed node pool is created, the **Status** column shows **Active** for the managed node pool.
+    On the Node Pools page, if the **Status** column of the managed node pool shows **Initializing** for the node pool, it indicates that the node pool is being created. After the managed node pool is created, the **Status** column shows **Active** for the managed node pool.
 
 
-## Scale out a node pool
+## Upgrade a managed node pool
 
-You can scale out a managed node pool by adding nodes with attributes that are the sam as those of the existing nodes.
+If the operating system \(OS\) versions of nodes in a managed node pool is upgradable, you can upgrade the node pool.
+
+1.  Find the managed node pool that you want to upgrade and click **Upgrade** in the **Actions** column.
+
+2.  In the **Upgrade Node Pool** dialog box, set the following parameters.
+
+    |Parameter|Description|
+    |---------|-----------|
+    |Required Version|By default, **System Images** and **Container Runtime** are selected.    -   **System Images**: After you select this check box, the OS versions of all nodes are upgraded.
+    -   **Container Runtime**: After you select this check box, container runtime versions of all nodes are upgraded. |
+    |Maximum Unschedulable Nodes|Specifies the maximum number of nodes that are in the unschedulable state.|
+    |Additional Nodes|Specifies the number of additional nodes that are automatically added before the node pool is upgraded. These additional nodes are automatically removed after the node pool is upgraded. Additional nodes are used to host workloads from upgradable nodes when they are drained.|
+
+    **Note:** The sum of the values of **Maximum Unschedulable Nodes** and **Additional Nodes** equals the number of nodes that can be concurrently upgraded.
+
+
+## Scale out a managed node pool
+
+You can scale out a managed node pool by adding nodes with attributes that are the same as those of the existing nodes.
 
 1.  On the Node Pools page, find the node pool that you want to scale out and click **Scale Out** in the **Actions** column.
 
-2.  In the dialog box that appears, set **Nodes to Add**. You can select or enter the number of nodes to be added. Click **Submit**.
+2.  In the dialog box that appears, set **Nodes to Add**. You can select or enter the number of nodes to be added. Then, click **Submit**.
 
     **Note:** If you want to modify the configurations of the node pool, click **Modify Node Pool Settings**. For more information, see [Create a managed node pool](#section_s0g_nbe_bai).
 
-    On the Node Pools page, the **Status** column shows **Scaling** for the node pool. After the node pool is scaled, the **Status** column shows **Active** for the node pool.
+    On the Node Pools page, the **Status** column shows **Scaling** for the node pool when it is being scaled. After the scaling process is complete, the **Status** column shows **Active** for the node pool.
 
 
 ## Clone a node pool
 
-You can create a node pool by cloning an existing node pool. The new node pool has the same configurations as the cloned one.
+You can create a node pool by cloning an existing node pool. The new node pool has the same configurations as the existing one.
 
 1.  On the Node Pools page, find the node pool that you want to clone and click **Clone** in the **Actions** column.
 
 2.  In the dialog box that appears, enter a name for the new node pool, set the parameters, and click **Submit**.
 
-    On the Node Pools page, the **Status** column shows **Initializing** for the new node pool. After the cloning process is completed, the **Status** column shows **Active** for the new node pool.
+    On the Node Pools page, the **Status** column shows **Initializing** for the new node pool when it is being created. After the cloning process is complete, the **Status** column shows **Active** for the new node pool.
 
 
 ## Delete a node pool
@@ -93,6 +112,6 @@ To avoid service disruption caused by user errors, we recommend that you remove 
         -   node-id specifies the ID of the ECS instance where the node is deployed.
 4.  Go to the Node Pools page, find the node pool that you want to delete and click **Delete** in the **Actions** column.
 
-5.  In the **Delete Node Pool** message, click **Confirm**.
+5.  In the **Delete Node Pool** message, click **OK**.
 
 
