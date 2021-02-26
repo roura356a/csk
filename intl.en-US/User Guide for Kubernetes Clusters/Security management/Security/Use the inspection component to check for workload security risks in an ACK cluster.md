@@ -6,7 +6,7 @@ keyword: [inspection, workload configurations, security risks]
 
 This topic describes how to use the inspection component to check for real-time security risks of running applications in a Container Service for Kubernetes \(ACK\) cluster and how to view inspection reports.
 
-A managed or dedicated cluster of Kubernetes 1.14.8 or later is created. For more information, see [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md).
+A managed or dedicated cluster of Kubernetes 1.14.8 or later is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 
 ## Grant permissions to a RAM user
 
@@ -32,9 +32,9 @@ If you log on as a RAM user, you must authorize the RAM user to access the speci
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane, choose **Security** \> **Inspections**.
 
