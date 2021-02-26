@@ -8,12 +8,12 @@ edge-license-server组件是ACK集群中部署ACK商业化软件的必要组件�
 
 **说明：**
 
--   如果您需要使用该组件所提供的License验证管理服务，请务必在安装此组件之前先[单击此处完成授权链接](https://ram.console.aliyun.com/role/authorization?request=%7B%22Services%22%3A%5B%7B%22Service%22%3A%22CS%22%2C%22Roles%22%3A%5B%7B%22RoleName%22%3A%22AliyunCSManagedLicenseRole%22%2C%22TemplateId%22%3A%22AliyunCSManagedLicenseRole%22%7D%5D%7D%5D%2C%22ReturnUrl%22%3A%22https%3A%2F%2Fcs.console.aliyun.com%2F%22%7D)并在弹出的页面中完成服务角色授权。
+-   如果您需要使用该组件所提供的License验证管理服务，请务必在安装此组件之前先[单击此链接](https://ram.console.aliyun.com/role/authorization?request=%7B%22Services%22%3A%5B%7B%22Service%22%3A%22CS%22%2C%22Roles%22%3A%5B%7B%22RoleName%22%3A%22AliyunCSManagedLicenseRole%22%2C%22TemplateId%22%3A%22AliyunCSManagedLicenseRole%22%7D%5D%7D%5D%2C%22ReturnUrl%22%3A%22https%3A%2F%2Fcs.console.aliyun.com%2F%22%7D)并在弹出的页面中完成服务角色授权。
 -   如果您没有ACK商业化软件的使用需求，不建议安装此组件，以避免资源损耗。
 
 ## 2021年02月
 
-|版本号|镜像地址|变更时间|变更内容|
-|---|----|----|----|
-|v0.2.0-8aa5e14-aliyun|registry.aliyuncs.com/acs/edge-license-server:v0.2.0-8aa5e14-aliyun|2021年02月24日|在ACK集群中提供License验证服务。|
+|版本号|变更时间|变更内容|
+|---|----|----|
+|v0.2.0-8aa5e14-aliyun|2021年02月24日|在ACK集群中提供License验证服务。|
 
