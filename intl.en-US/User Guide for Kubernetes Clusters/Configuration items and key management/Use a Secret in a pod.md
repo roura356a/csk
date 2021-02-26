@@ -18,11 +18,11 @@ In this example, a Secret named secret-test is created.
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane, click **Workload**.
+4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
 5.  In the upper-right corner of the **Deployments** tab, click **Create from Template**.
 
@@ -82,15 +82,15 @@ You can use a YAML file to mount a Secret as a volume to a pod. A mounted Secret
 
 You can also mount a Secret as a volume to a pod in the Container Service for Kubernetes \(ACK\) console.
 
-1.  In the left-side navigation pane, click **Clusters**.
+1.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-2.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+2.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-3.  In the left-side navigation pane, click **Workload**.
+3.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
 4.  In the upper-right corner of the **Deployments** tab, click **Create from Image**.
 
-    For more information, see [Use an image to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Use an image to create a stateless application.md).
+    For more information, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Deploy a stateless application from an image.md).
 
 5.  On the **Basic Information** wizard page, set the parameters based on your requirements and click **Next**.
 
@@ -98,7 +98,7 @@ You can also mount a Secret as a volume to a pod in the Container Service for Ku
 
     The following figure shows the configuration of the volume.
 
-    ![Configure the volume](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4645359951/p49492.png)
+    ![Configure the volume](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4645359951/p49492.png)
 
 7.  On the **Advanced** wizard page, set the parameters based on your requirements and click **Create**.
 
@@ -144,23 +144,23 @@ You can use a YAML file to configure environment variables for a pod. In this ex
 
 You can also use a Secret to configure environment variables for a pod in the ACK console.
 
-1.  In the left-side navigation pane, click **Clusters**.
+1.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-2.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+2.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-3.  In the left-side navigation pane, click **Workload**.
+3.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
 4.  In the upper-right corner of the **Deployments** tab, click **Create from Image**.
 
-    For more information, see [Use an image to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Use an image to create a stateless application.md).
+    For more information, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Deploy a stateless application from an image.md).
 
 5.  On the **Basic Information** wizard page, set the parameters based on your requirements and click **Next**.
 
-6.  On the **Container** wizard page, click ![Environments](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7766105061/p49493.png) in the **Environments** section. In this example, select **Secret** from the Type drop-down list and select the Secret that is created in [Create a Secret](#section_yxv_25m_zs0) from the Value/ValueFrom drop-down list. After you select the Secret, you must specify the key of the key-value pair that you want to reference and also specify a name for the environment variable.
+6.  On the **Container** wizard page, click ![Environments](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7766105061/p49493.png) in the **Environments** section. In this example, select **Secret** from the Type drop-down list and select the Secret that is created in [Create a Secret](#section_yxv_25m_zs0) from the Value/ValueFrom drop-down list. After you select the Secret, you must specify the key of the key-value pair that you want to reference and also specify a name for the environment variable.
 
     The following figure shows the configurations.
 
-    ![Variable name](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4645359951/p49494.png)
+    ![Variable name](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4645359951/p49494.png)
 
 7.  On the **Advanced** wizard page, set the parameters based on your requirements and click **Create**.
 
