@@ -10,7 +10,7 @@ This topic describes how to register and manage an external Kubernetes cluster i
 
     1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-    2.  In the left-side navigation pane, click **Clusters**.
+    2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
     3.  In the upper-right corner of the Clusters page, click **Register Cluster**.
 
@@ -21,14 +21,14 @@ This topic describes how to register and manage an external Kubernetes cluster i
         |**Cluster Name**|Enter a name for the ACK cluster.
 
 **Note:** The name must be 1 to 63 characters in length. It can contain digits, letters, and hyphens \(-\). |
-        |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group to which the ACK cluster belongs. The name of the selected resource group appears on the page.
+        |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group to which the cluster belongs. The name of the selected resource group is displayed.
 
-![Resource Groups](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
-        |**Region**|Select a region to deploy the ACK cluster. |
+![Resource Group](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
+        |**Region**|Select the region where you want to create the cluster. |
         |**Zone**|Select a zone to deploy the cluster.|
         |**VPC**|You can select a virtual private cloud \(VPC\) and a VSwitch from the drop-down lists.|
         |**EIP**|Specify whether to bind an elastic IP address \(EIP\) to the cluster. If you select this check box, an EIP is automatically created and bound to the cluster.|
-        |**Log Service**|Specify whether to activate Log Service. You can select an existing Log Service project or create a Log Service project.If you select **Enable Log Service**, the Log Service plug-in is automatically installed in the cluster. For more information about how to set up Log Service when you create an application, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Log management/Use Log Service to collect container logs.md). |
+        |**Log Service**|Specify whether to activate Log Service. You can select an existing Log Service project or create a Log Service project.If you select **Enable Log Service**, the Log Service plug-in is automatically installed in the cluster. For more information about how to set up Log Service when you create an application, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md). |
         |**Deletion Protection**|Specify whether to enable deletion protection. If you select this check box, the cluster cannot be deleted in the console or by calling the API. This avoids user errors.|
         |**Labels**|Attach labels to nodes. Enter keys and values, and click **Add**.
 
@@ -45,7 +45,7 @@ This topic describes how to register and manage an external Kubernetes cluster i
 
         You can find the newly created cluster on the Clusters page.
 
-        ![Clusters](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2465359951/p48728.png)
+        ![Clusters](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2465359951/p48728.png)
 
 2.  Register an external Kubernetes cluster.
 
@@ -57,7 +57,7 @@ This topic describes how to register and manage an external Kubernetes cluster i
 
         For example, you can create an agent.yaml file and paste the copied code into the agent.yaml file. Then, run the `kubectl apply -f agent.yaml` command on an external cluster to perform registration.
 
-        ![Registration settings](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2465359951/p48732.png)
+        ![Registration settings](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2465359951/p48732.png)
 
     4.  Run the `kubectl get all -n kube-system` command on the external cluster to query the agent status.
 
@@ -86,5 +86,5 @@ In the left-side navigation pane of the details page of the cluster, click **Rel
 **Related topics**  
 
 
-[Overview of registered clusters in the ACK console](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Overview of registered clusters in the ACK console.md)
+[Introduction to registered external clusters](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Introduction to registered external clusters.md)
 
