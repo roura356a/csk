@@ -6,7 +6,7 @@ keyword: [secure HTTPS access, HTTPS access configuration]
 
 You can access applications in an Alibaba Cloud Container Service for Kubernetes \(ACK\) cluster by using multiple methods. For example, you can request `SLB instance IP address:Port`, `NodeIP:NodePort`, or the domain name of the application. By default, you cannot access an open source Kubernetes cluster over HTTPS. You can enable secure HTTPS access by performing operations in the ACK console and the SLB console. This topic describes how to configure a certificate to enable HTTPS access to an ACK cluster.
 
--   A managed Kubernetes cluster is created. For more information, see [Create a cluster of ACK Managed Edition](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a cluster of ACK Managed Edition.md).
+-   A managed Kubernetes cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 -   You are connected to the cluster by using SSH. For more information, see [Use SSH to connect to a cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use SSH to connect to an ACK cluster.md).
 -   A server certificate is created for the cluster after you log on to the master node. The server certificate includes a public key certificate and a private key. You can run the following commands to create a server certificate:
 
@@ -56,21 +56,21 @@ This method has the following features:
 -   Disadvantage: You must maintain the mappings between a large number of domain names and IP addresses.
 -   Scenario: The applications in your cluster can be accessed through only services of the LoadBalancer type.
 
-Before you configure HTTPS on the frontend SLB instance, a Tomcat application is created in the ACK cluster. You can access the application through a LoadBalancer service. For more information, see [Create a service](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Create a service.md).
+Before you configure HTTPS on the frontend SLB instance, a Tomcat application is created in the ACK cluster. You can access the application through a LoadBalancer service. For more information, see [Create a service](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Manage Services.md).
 
 Procedure
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane, click **Services**.
+4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
 
 5.  Select the namespace and service of the cluster, and click the public endpoint to access the application. The endpoint is in the `IP:Port` format.
 
-    ![Public endpoint](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3255359951/p13806.png)
+    ![Public endpoint](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3255359951/p13806.png)
 
 6.  Log on to the [SLB console](https://slb.console.aliyun.com/).
 
@@ -106,7 +106,7 @@ Procedure
 
     **Note:** If the authenticated domain name is listed in the certificate, you can access the application by using the domain name. `tcp:8080` is not deleted. Therefore, you can also access the application through `slb_ip:8080`.
 
-    ![Instance management](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3255359951/p13820.png)
+    ![Instance management](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3255359951/p13820.png)
 
 
 ## Configure the certificate on the ingress
@@ -132,17 +132,15 @@ Example:
 
 2.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-3.  In the left-side navigation pane, click **Clusters**.
+3.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-4.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+4.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-5.  In the left-side navigation pane, click **Ingresses**.
+5.  Select the namespace, and click **Create** in the upper-right corner.
 
-6.  Select the namespace, and click **Create** in the upper-right corner.
+6.  In the dialog box that appears, configure an ingress that can be accessed through HTTPS, and then click **Create**.
 
-7.  In the dialog box that appears, configure an ingress that can be accessed through HTTPS, and then click **Create**.
-
-    For more information, see [Create an ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Create an Ingress on the web UI.md). In this example, configure the following parameters:
+    For more information, see [Create an ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Create an Ingress.md). In this example, configure the following parameters:
 
     -   **Name**: Specify a name for the ingress.
     -   **Domain**: Enter the domain name that is specified in the preceding steps. This domain name must be the same as the domain name in the SSL certificate.
@@ -186,7 +184,7 @@ Example:
               servicePort: 8080
     ```
 
-8.  Return to the Ingresses page. The newly created ingress, its endpoint, and its domain name appear in the list. In this example, the domain name is `foo.bar.com`. You can also view the ingress on the details page.
+7.  Return to the Ingresses page. The newly created ingress, its endpoint, and its domain name appear in the list. In this example, the domain name is `foo.bar.com`. You can also view the ingress on the details page.
 
     **Note:** In this example, `foo.bar.com` is used as a test domain name. You must create a record in the hosts file.
 
@@ -194,12 +192,12 @@ Example:
     47.110.119.203 foo.bar.com#                           The IP address is the ingress endpoint.
     ```
 
-    ![domain](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9957005061/p180533.png)
+    ![domain](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9957005061/p180533.png)
 
-9.  Enter `https://foo.bar.com` in the address bar of a browser.
+8.  Enter `https://foo.bar.com` in the address bar of a browser.
 
     **Note:** You must access the domain name through HTTPS because you have created a TLS certificate. In this example, `foo.bar.com` is resolved on a local DNS server. You must use a domain name that has obtained an Internet Content Provider \(ICP\) license.
 
-    ![Use the ingress to access applications](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4255359951/p13837.png)
+    ![Use the ingress to access applications](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4255359951/p13837.png)
 
 
