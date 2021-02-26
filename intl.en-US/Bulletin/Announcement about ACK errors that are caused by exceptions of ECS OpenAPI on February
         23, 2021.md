@@ -66,5 +66,5 @@ If the preceding output is returned, it indicates that the pod may be assigned a
     -   If the pod is created from a Deployment or DaemonSet, you can directly delete the pod. Then, the system recreates the pod.
     -   If the pod is manually created, you must delete the pod and recreate it.
 
-**Note:** The preceding script is executed to reload the Terway plug-in on nodes where the pods cannot connect to the network. After the script is executed, you can perform the operations in **Step 1: Run the script to scan nodes** again to check whether the cluster works as expected. If the issue is still not solved,[Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
+**Note:** The preceding script is executed to reload the Terway plug-in on nodes where the pods cannot connect to the network. After the script is executed, you can perform the operations in **Step 1: Run the script to scan nodes** again to check whether the cluster works as expected. If the issue is still not solved, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 
