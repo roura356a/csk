@@ -6,7 +6,7 @@ keyword: [应用备份, 应用恢复, 跨集群恢复]
 
 ACK基于开源项目Velero开发了应用备份功能。该功能支持ACK集群和外部注册集群对应用和存储卷进行单集群和跨集群的备份和恢复。本文介绍如何对Kubernetes应用进行备份及恢复，以便于对您的集群应用及数据进行有效的保护。
 
--   该功能处于公测期。使用该功能前，您需要[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)[提交工单](https://workorder-intl.console.aliyun.com/console.htm)提交工单申请白名单。
+-   该功能处于公测期。使用该功能前，您需要[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)申请白名单。
 -   已创建Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)、[创建Kubernetes专有版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes专有版集群.md)或[注册外部Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/多云混合云管理/注册外部Kubernetes集群.md)。
 
     **说明：** 请确保您的Kubernetes集群版本大于1.10，否则影响该功能的使用。
@@ -84,7 +84,7 @@ ACK基于开源项目Velero开发了应用备份功能。该功能支持ACK集�
 
 2.  为托管集群RAM角色添加权限。
 
-    1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+    1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
     2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -92,7 +92,7 @@ ACK基于开源项目Velero开发了应用备份功能。该功能支持ACK集�
 
     4.  在集群信息页面单击**集群资源**页签，查看Worker RAM角色。
 
-    5.  登录[RAM控制台](https://ram.console.aliyun.com/)[RAM控制台](https://partners-intl.console.aliyun.com/#/ram)。
+    5.  登录[RAM控制台](https://ram.console.aliyun.com/)。
 
     6.  在控制台左侧导航栏单击**授权**。
 
@@ -140,7 +140,7 @@ ACK基于开源项目Velero开发了应用备份功能。该功能支持ACK集�
 
 ## 步骤二：安装应用备份组件
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -161,7 +161,7 @@ ACK基于开源项目Velero开发了应用备份功能。该功能支持ACK集�
 
 当前ACK应用备份使用阿里云OSS来对备份的数据进行存储。接下来为您介绍接入OSS基本流程。
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -178,13 +178,13 @@ ACK基于开源项目Velero开发了应用备份功能。该功能支持ACK集�
     |名称|备份仓库的名称，支持小写字母和数字。|
     |Bucket区域|OSS Bucket所在地域。|
     |Bucket名称|OSS Bucket的名称。|
-    |Bucket子目录|OSS Bucket的子目录\(非必填\)。|
+    |Bucket子目录|OSS Bucket的子目录（非必填）。|
     |网络模式|支持**公网**和**内网**。如果您的环境可以使用OSS内网端点进行数据传输，则选择内网，ACK默认使用公网传输。|
 
 
 ## 步骤四：创建备份任务
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -213,7 +213,7 @@ ACK基于开源项目Velero开发了应用备份功能。该功能支持ACK集�
 
 ## 步骤五：创建恢复任务
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
