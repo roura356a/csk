@@ -42,7 +42,7 @@ keyword: [kubernetes, k8s, 创建]
         |**Kubernetes版本**|使用默认的版本。 |
         |容器运行时
 
-|使用默认的Docker运行时。有关Docker运行时和安全沙箱运行时的区别，请参见[如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时与安全沙箱运行时？.md)。 |
+|使用Docker运行时。有关Docker运行时、Containerd运行时、和安全沙箱运行时的区别，请参见[如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？.md)。 |
         |**专有网络**|设置集群的网络。
 
 设置集群的网络，您可以选择普通VPC和共享VPC。
