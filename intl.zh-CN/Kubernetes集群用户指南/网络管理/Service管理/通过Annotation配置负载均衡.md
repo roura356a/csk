@@ -105,7 +105,7 @@
 
 -   指定负载均衡规格
 
-    负载均衡规格可参见[CreateLoadBalancer](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/负载均衡实例/CreateLoadBalancer.md)。通过该参数可以创建指定规格的SLB，或者更新已有SLB的规格。
+    负载均衡规格可参见[CreateLoadBalancer](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/负载均衡实例/CreateLoadBalancer.md)。通过该参数可以创建指定规格的SLB，或者更新已有SLB的规格。
 
     **说明：** 如果您通过SLB控制台修改SLB规格，可能会被CCM修改回原规格，请谨慎操作。
 
@@ -206,7 +206,7 @@
 
     -   仅支持公网类型的负载均衡实例。
 
-        其他限制，请参见[修改公网负载均衡实例的计费方式](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/负载均衡实例/ModifyLoadBalancerInstanceSpec.md)。
+        其他限制，请参见[修改公网负载均衡实例的计费方式](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/负载均衡实例/ModifyLoadBalancerInstanceSpec.md)。
 
     -   以下两项annotation必选。
 
@@ -448,7 +448,7 @@
 
 -   指定负载均衡所属的资源组
 
-    在[阿里云资源管理平台](https://resourcemanager.console.aliyun.com/)[阿里云资源管理平台](https://partner-intl.console.aliyun.com/#/resourcemanager)查询资源组ID，然后使用以下annotation为负载均衡实例指定资源组。
+    在[阿里云资源管理平台](https://resourcemanager.console.aliyun.com/)查询资源组ID，然后使用以下annotation为负载均衡实例指定资源组。
 
     **说明：** 资源组ID创建后不可被修改。
 
@@ -613,7 +613,7 @@
 
         **说明：**
 
-        在v1.9.3.164-g2105d2e-aliyun及之后版本，外部流量策略设置为**Local**模式的服务会自动根据Node上的Pod数量为Node设置权重，权重计算规则请参见[t2039653.md\#section\_7xa\_hpn\_yfw]()。
+        在v1.9.3.164-g2105d2e-aliyun及之后版本，外部流量策略设置为**Local**模式的服务会自动根据Node上的Pod数量为Node设置权重，权重计算规则请参见[Local模式下如何自动设置Node权重？](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Service管理/Service FAQ.md)。
 
     ```
     apiVersion: v1
@@ -693,7 +693,7 @@
 |internet|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-charge-type|string|取值可以是paybytraffic或者paybybandwidth。|paybytraffic|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id|string|负载均衡实例的ID。通过service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id指定您已有的SLB，默认情况下，使用已有的负载均衡实例，不会覆盖监听，如要强制覆盖已有监听，请配置service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners为true。|无|v1.9.3.81-gca19cd4-aliyun及以上版本|
-    |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-spec|string|负载均衡实例的规格。可参见：[CreateLoadBalancer](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/负载均衡实例/CreateLoadBalancer.md)。|无|v1.9.3及以上版本|
+    |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-spec|string|负载均衡实例的规格。可参见：[CreateLoadBalancer](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/负载均衡实例/CreateLoadBalancer.md)。|无|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-master-zoneid|string|主后端服务器的可用区ID。|无|v1.9.3.10-gfb99107-aliyun及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-slave-zoneid|string|备后端服务器的可用区ID。|无|v1.9.3.10-gfb99107-aliyun及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners|string|绑定已有负载均衡时，是否强制覆盖该SLB的监听。|false：不覆盖|v1.9.3.81-gca19cd4-aliyun及以上版本|
@@ -719,12 +719,12 @@
 
 默认情况下，取值为0，会话保持关闭。
 
-可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
+可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
 
 |0|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-sticky-session|string|是否开启会话保持。取值：on或off。**说明：** 仅对HTTP和HTTPS协议的监听生效。
 
-可参见：[CreateLoadBalancerHTTPListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md)和[CreateLoadBalancerHTTPSListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md)。
+可参见：[CreateLoadBalancerHTTPListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md)和[CreateLoadBalancerHTTPSListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md)。
 
 |off|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-sticky-session-type|string|cookie的处理方式。取值：     -   insert：植入Cookie。
@@ -733,12 +733,12 @@
 
     -   仅对HTTP和HTTPS协议的监听生效。
     -   当service.beta.kubernetes.io/alibaba-cloud-loadbalancer-sticky-session取值为on时，该参数必选。
-可参见：[CreateLoadBalancerHTTPListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md)和[CreateLoadBalancerHTTPSListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md)。
+可参见：[CreateLoadBalancerHTTPListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md)和[CreateLoadBalancerHTTPSListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md)。
 
 |无|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-cookie-timeout|string|Cookie超时时间。取值：1s~86400s。**说明：** 当service.beta.kubernetes.io/alibaba-cloud-loadbalancer-sticky-session为on且service.beta.kubernetes.io/alibaba-cloud-loadbalancer-sticky-session-type为insert时，该参数必选。
 
-可参见：[CreateLoadBalancerHTTPListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md)和[CreateLoadBalancerHTTPSListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md)。
+可参见：[CreateLoadBalancerHTTPListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md)和[CreateLoadBalancerHTTPSListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md)。
 
 |无|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-cookie|string|服务器上配置的Cookie名称。 长度为1~200个字符，只能包含ASCII英文字母和数字字符，不能包含逗号、分号或空格，也不能以$开头。
@@ -747,49 +747,49 @@
 
 当service.beta.kubernetes.io/alibaba-cloud-loadbalancer-sticky-session为on且service.beta.kubernetes.io/alibaba-cloud-loadbalancer-sticky-session-type为server时，该参数必选。
 
-可参见：[CreateLoadBalancerHTTPListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md)和[CreateLoadBalancerHTTPSListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md)。
+可参见：[CreateLoadBalancerHTTPListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/HTTP监听/CreateLoadBalancerHTTPListener.md)和[CreateLoadBalancerHTTPSListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/HTTPS监听/CreateLoadBalancerHTTPSListener.md)。
 
 |无|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-cert-id|string|阿里云上的证书ID。您需要在[SLB控制台](https://slb.console.aliyun.com/slb/cn-shenzhen/certs)先上传证书。|无|v1.9.3.164-g2105d2e-aliyun及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-flag|string|取值是on或off    -   TCP监听默认为on且不可更改。
     -   HTTP监听默认为off。
 |默认为off。TCP不需要改参数。因为TCP默认打开健康检查，用户不可设置。|v1.9.3及以上版本|
-    |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-type|string|健康检查类型，取值：tcp或http。 可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
+    |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-type|string|健康检查类型，取值：tcp或http。 可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
 
 |tcp|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-uri|string|用于健康检查的URI。 **说明：** 当健康检查类型为TCP模式时，无需配置该参数。
 
-可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
+可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
 
 |无|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-connect-port|string|健康检查使用的端口。取值： 1~65535。|无|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-healthy-threshold|string|健康检查连续成功多少次后，将后端服务器的健康检查状态由fail判定为success。 取值：2~10
 
-可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
+可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
 
 |3|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-unhealthy-threshold|string|健康检查连续失败多少次后，将后端服务器的健康检查状态由success判定为fail。取值： 2~10
 
-可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
+可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
 
 |3|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-interval|string|健康检查的时间间隔。 取值：1s~50s
 
-可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
+可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
 
 |2|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-connect-timeout|string|接收来自运行状况检查的响应需要等待的时间，适用于TCP模式。如果后端ECS在指定的时间内没有正确响应，则判定为健康检查失败。 取值：1s~300s
 
 **说明：** 如果service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-connect-timeout的值小于service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-interval的值，则service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-connect-timeout无效，超时时间为service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-interval的值。
 
-可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
+可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
 
 |5|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-timeout|string|接收来自运行状况检查的响应需要等待的时间，适用于HTTP模式。如果后端ECS在指定的时间内没有正确响应，则判定为健康检查失败。 取值：1s~300s
 
 **说明：** 如果service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-timeout的值小于service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-interval的值，则service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-timeout无效，超时时间为service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-interval的值。
 
-可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
+可参见：[CreateLoadBalancerTCPListener](/intl.zh-CN/传统型负载均衡CLB/CLB开发指南/API参考/TCP监听/CreateLoadBalancerTCPListener.md)。
 
 |5|v1.9.3及以上版本|
     |service.beta.kubernetes.io/alibaba-cloud-loadbalancer-health-check-domain|string|用于健康检查的域名。     -   $\_ip：后端服务器的私网IP。当指定了IP或该参数未指定时，负载均衡会使用各后端服务器的私网IP当做健康检查使用的域名。
