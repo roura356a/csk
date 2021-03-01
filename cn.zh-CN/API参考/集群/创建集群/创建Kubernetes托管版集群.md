@@ -162,7 +162,7 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 
 默认值：`ack.standard`。取值可以为空，为空时则创建标准托管集群。
 
-更多详情，请参见[t1913636.dita\#concept\_2558837](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/Kubernetes Pro版集群介绍.md)。 |
+更多详情，请参见[t1913636.dita\#concept\_2558837](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/ACK Pro版集群介绍.md)。 |
 |encryption\_provider\_key|String|否|0fe64791-55eb-4fc7-84c5-c6c7cdca\*\*\*\*|KMS密钥ID，使用该密钥对数据盘进行加密。更多详情，请参见[t22664.dita\#concept\_28935\_zh](/cn.zh-CN/产品简介/什么是密钥管理服务.md)。
 
 **说明：** 该功能只在专业托管版集群（ACK Pro版集群）中生效。 |
@@ -284,8 +284,10 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 -   `none`：表示启用现有的默认CPU亲和性方案。
 
 默认值：`none`。 |
-|runtime|[runtime](/cn.zh-CN/API参考/通用数据结构.md)|否|\{"name": "docker", "version": "19.03.5"\}|容器运行时，例如docker、Sandboxed-Container.runv等，通常为docker。runtime包括下面2个信息： -   `name`：容器运行时名称。
--   `version`：容器运行时版本。 |
+|runtime|[runtime](/cn.zh-CN/API参考/通用数据结构.md)|否|\{"name": "docker", "version": "19.03.5"\}|容器运行时，支持`containerd`、`docker`、`Sandboxed-Container.runv`三种运行时，默认为`docker`。runtime包括以下2个信息： -   `name`：容器运行时名称。
+-   `version`：容器运行时版本。
+
+有关容器运行时的选择，请参见[t1879872.dita\#task\_2455499](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时与安全沙箱运行时？.md)。 |
 |platform|String|否|CentOS|操作系统发行版。取值：
 
 -   `CentOS`
