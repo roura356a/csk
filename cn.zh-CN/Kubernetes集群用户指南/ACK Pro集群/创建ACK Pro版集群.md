@@ -50,14 +50,14 @@ ACK的Pro托管版集群相比原标准托管版集群进一步提升了集群�
 ![资源组](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png) |
         |**时区**|选择集群所要使用的时区。默认时区为浏览器所配置的时区。 |
         |**Kubernetes版本**|显示当前ACK支持的Kubernetes版本。 |
-        |**容器运行时**|支持**Docker**和**安全沙箱**。 |
+        |**容器运行时**|支持**Containerd**、**Docker**和**安全沙箱**。更多信息，请参见[如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？.md)。 |
         |**专有网络**|设置集群的网络，您可以选择普通VPC和共享VPC。
 
         -   共享VPC：VPC的所有者账号（资源所有者）可以将其账号下的VPC内的交换机资源共享给其组织内的其他账号使用。
         -   普通VPC：不具备共享功能的VPC。
 **说明：** Kubernetes集群仅支持专有网络。您可以在已有VPC列表中选择所需的VPC。如果没有您需要的专有网络，可以通过单击**创建专有网络**进行创建，请参见[使用专有网络](/cn.zh-CN/专有网络和交换机/使用专有网络.md)。 |
         |**虚拟交换机**|设置虚拟交换机。 |
-        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[t64408.md\#section\_k1z\_f1n\_lmh](/cn.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用Terway网络插件.md)。
+        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[Flannel与Terway对比](/cn.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用Terway网络插件.md)。
 
         -   Flannel：简单稳定的社区的Flannel CNI插件。但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
         -   Terway：阿里云容器服务自研的网络插件，将阿里云的弹性网卡分配给容器，支持Kubernetes的Network Policy来定义容器间的访问策略，支持对单个容器做带宽的限流。
@@ -93,7 +93,7 @@ ACK的Pro托管版集群相比原标准托管版集群进一步提升了集群�
 
 **说明：** **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。 |
         |**配置SNAT**|创建集群时，默认不开通公网。如果您选择的VPC不具备公网访问能力，选中**为专有网络配置SNAT**后，ACK将为您创建NAT网关并自动配置SNAT规则。 |
-        |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/cn.zh-CN/CLB用户指南/实例/实例概述.md)。
+        |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/cn.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/实例概述.md)。
 
 **说明：** 删除默认创建的SLB实例将会导致无法访问API Server。
 
