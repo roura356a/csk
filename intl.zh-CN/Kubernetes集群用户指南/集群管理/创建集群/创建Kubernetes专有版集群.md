@@ -47,17 +47,17 @@ Kubernetes专有版集群需要创建至少3个Master节点以保证高可用性
         |**资源组**|将鼠标悬浮于页面上方的**账号全部资源**，选择集群所在的资源组。这里显示选择的资源组。
 
 ![资源组](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png) |
-        |**Kubernetes版本**|选择Kubernetes版本。 |
+        |**Kubernetes版本**|显示当前ACK支持的Kubernetes版本。 |
         |**容器运行时**|使用默认的Docker运行时。|
         |**专有网络**|设置集群的网络，您可以选择普通VPC和共享VPC。
 
         -   共享VPC：VPC的所有者账号（资源所有者）可以将其账号下的VPC内的交换机资源共享给其组织内的其他账号使用。
         -   普通VPC：不具备共享功能的VPC。
-**说明：** Kubernetes集群仅支持专有网络。您可以在已有VPC列表中选择所需的VPC。如果没有您需要的专有网络，可以通过单击**创建专有网络**进行创建，请参见[创建专有网络](/intl.zh-CN/专有网络和交换机/管理专有网络/创建专有网络.md)。 |
+**说明：** Kubernetes集群仅支持专有网络。您可以在已有VPC列表中选择所需的VPC。如果没有您需要的专有网络，可以通过单击**创建专有网络**进行创建，请参见[使用专有网络](/intl.zh-CN/专有网络和交换机/使用专有网络.md)。 |
         |**虚拟交换机**|设置虚拟交换机。
 
-您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[创建交换机](/intl.zh-CN/专有网络和交换机/管理交换机/创建交换机.md)。 |
-        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[t64408.md\#section\_k1z\_f1n\_lmh](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用Terway网络插件.md)。
+您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[使用交换机](/intl.zh-CN/专有网络和交换机/使用交换机.md)。 |
+        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[Flannel与Terway对比](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用Terway网络插件.md)。
 
         -   Flannel：简单稳定的社区的Flannel CNI插件。但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
         -   Terway：阿里云容器服务自研的网络插件，将阿里云的弹性网卡分配给容器，支持Kubernetes的Network Policy来定义容器间的访问策略，支持对单个容器做带宽的限流。
@@ -93,7 +93,7 @@ Kubernetes专有版集群需要创建至少3个Master节点以保证高可用性
 
 **说明：** **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。 |
         |**配置SNAT**|创建集群时，默认不开通公网。如果您选择的VPC不具备公网访问能力，选中**为专有网络配置SNAT**后，ACK将为您创建NAT网关并自动配置SNAT规则。 |
-        |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/intl.zh-CN/传统型负载均衡CLB/用户指南/实例/实例概述.md)。
+        |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/intl.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/实例概述.md)。
 
 **说明：** 删除默认创建的SLB实例将会导致无法访问API Server。
 
@@ -218,7 +218,7 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
 
     |配置项|描述|
     |---|--|
-    |**Ingress**|设置是否安装Ingress组件。默认选中**安装Ingress组件**，请参见[配置Ingress](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/配置Ingress.md)。 |
+    |**Ingress**|设置是否安装Ingress组件。默认选中**安装Ingress组件**，请参见[Ingress高级用法](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress高级用法.md)。 |
     |**存储插件**|设置存储插件，支持Flexvolume和CSI。Kubernetes集群通过Pod可自动绑定阿里云云盘、NAS、OSS存储服务。请参见[存储管理-Flexvolume](/intl.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/概述.md)和[存储管理-CSI](/intl.zh-CN/Kubernetes集群用户指南/存储管理-CSI/概述.md)。 |
     |**监控插件**|设置是否启用云监控插件。默认选中**在ECS节点上安装云监控插件**。 |
     |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。默认选中**使用日志服务**。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[通过日志服务采集Kubernetes容器日志](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/通过日志服务采集Kubernetes容器日志.md)。
