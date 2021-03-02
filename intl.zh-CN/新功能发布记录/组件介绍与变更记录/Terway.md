@@ -10,6 +10,10 @@ keyword: Terway变更记录
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
+|v1.0.10.317-g0652857-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.317-g0652857-aliyun|2021年02月22日|-   修复Cilium Identity资源泄漏问题。
+-   修复偶现的有状态应用Pod IP管理问题。
+
+|此次升级不会对业务造成影响。 |
 |v1.0.10.309-g5314eee-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.309-g5314eee-aliyun|2021年02月05日|-   去除主动修复安全组规则的逻辑，只通过事件提示修复。
 -   修复节点在高负载情况下偶现的Pod IP被回收又重新分配问题。
 
