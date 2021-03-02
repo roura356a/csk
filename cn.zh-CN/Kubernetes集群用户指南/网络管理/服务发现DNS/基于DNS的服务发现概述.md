@@ -15,6 +15,10 @@ ACK集群使用CoreDNS负责集群的服务发现，您可以根据不同使用�
 -   关于ACK集群CoreDNS的详细配置说明，请参见[集群CoreDNS配置](/cn.zh-CN/Kubernetes集群用户指南/网络管理/服务发现DNS/ACK集群内DNS原理和配置说明.md)。
 -   关于如何使用CoreDNS提高ACK集群整体DNS查询性能，请参见[优化集群DNS性能](/cn.zh-CN/Kubernetes集群用户指南/网络管理/服务发现DNS/优化集群DNS性能.md)。
 
+**说明：**
+
+您还可以在ACK集群中部署Node Local DNS提升服务发现的稳定性和性能，Node Local DNS通过在集群节点上作为DaemonSet运行DNS缓存代理来提高集群DNS性能。关于如何在集群中部署Node Local DNS的具体步骤，请参见[在ACK集群中部署Node Local DNS]()。
+
 ## CoreDNS版本与集群Kubernetes版本关系
 
 ACK采用CoreDNS版本与集群Kubernetes版本绑定的策略。只有ACK集群升级时才会升级CoreDNS版本。CoreDNS版本与集群Kubernetes版本对照关系如下表。
@@ -53,4 +57,6 @@ options ndots:5
 [ACK集群内DNS原理和配置说明](/cn.zh-CN/Kubernetes集群用户指南/网络管理/服务发现DNS/ACK集群内DNS原理和配置说明.md)
 
 [优化集群DNS性能](/cn.zh-CN/Kubernetes集群用户指南/网络管理/服务发现DNS/优化集群DNS性能.md)
+
+[在ACK集群中部署Node Local DNS]()
 
