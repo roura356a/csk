@@ -10,8 +10,8 @@ When you create a cluster of Container Service for Kubernetes \(ACK\), note the 
 
 -   SLB instances that are created together with the ACK cluster support only the pay-as-you-go billing method.
 -   ACK clusters support only Virtual Private Cloud \(VPC\) networks.
--   By default, each account has specific quotas on cloud resources that can be created. You cannot create clusters if the quota limit is reached. Make sure that you have sufficient quotas before you create a cluster.
-    -   For more information about the quotas of clusters and nodes under each account, see [Quota limits on ACK](/intl.en-US/Product Introduction/Limits.md).
+-   Each Alibaba Cloud account has a limited amount of cloud resources. You cannot create a cluster if the remaining resources are insufficient. Make sure that you have sufficient resources before you create a cluster.
+    -   For more information about the maximum numbers of clusters and nodes that can be created with each account, see [Quota limits on ACK](/intl.en-US/Product Introduction/Limits.md).
 
         **Note:** By default, you can add up to 48 route entries to each VPC network in an ACK cluster. This means that you can deploy up to 48 nodes in an ACK cluster that uses Flannel. An ACK cluster that uses Terway is not subject to this limit. To increase the quota of route entries for a VPC network, [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 
@@ -25,9 +25,9 @@ When you create a cluster of Container Service for Kubernetes \(ACK\), note the 
 
 3.  In the upper-right corner of the Clusters page, click **Cluster Template**.
 
-4.  In the **Select Cluster Template** dialog box, select **Professional Managed Kubernetes Cluster** and click **Create**.
+4.  In the upper-right corner of the Clusters page, click **Cluster Templates**. In the Select Cluster Template dialog box, select **Professional Managed Kubernetes Cluster** and click **Create**.
 
-5.  On the **Managed Kubernetes** tab, configure the cluster.
+5.  On the **Managed Kubernetes** tab, set the required parameters.
 
     1.  Configure basic settings of the cluster.
 
@@ -44,15 +44,15 @@ Select **Professional** to create a professional managed Kubernetes cluster. |
 
 ![Resource Group](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
         |**Time Zone**|Select a time zone for the ACK cluster. By default, the time zone configured for your browser is selected. |
-        |**Kubernetes Version**|Select **1.14.8-aliyun.1** or **1.16.9-aliyun.1** for a standard managed Kubernetes cluster. Professional managed Kubernetes clusters support only version **1.16.9-aliyun.1**.|
+        |**Kubernetes Version**|You can select **1.14.8-aliyun.1** or **1.16.9-aliyun.1** for a standard managed Kubernetes cluster. Professional managed Kubernetes clusters support only **1.16.9-aliyun.1**.|
         |**Container Runtime**|**Docker** and **Sandboxed-Container** are supported. |
         |**VPC**|Select a virtual private cloud \(VPC\) to deploy the cluster. Shared VPCs and standard VPCs are supported.
 
         -   Shared VPC: The owner of a VPC \(resource owner\) can share vSwitches in the VPC under the account of the owner with other accounts in the same organization.
         -   Standard VPC: The owner of a VPC \(resource owner\) cannot share vSwitches in the VPC under the account of the owner with other accounts.
-**Note:** ACK clusters support only VPCs. You can select a VPC from the drop-down list. If no VPC is available, click **Create VPC** to create one. For more information, see [Create a VPC](/intl.en-US/VPCs and VSwitches/VPC management/Create a VPC.md). |
+**Note:** ACK clusters support only VPCs. You can select a VPC from the drop-down list. If no VPC is available, click **Create VPC** to create one. For more information, see [Create a VPC](/intl.en-US/VPCs and vSwitchs/Create a VPC.md). |
         |**VSwitch**|Select vSwitches. |
-        |**Network Plug-in**|Select a network plug-in. Both Flannel and Terway are supported. For more information, see [Flannel and Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Use Terway.md).
+        |**Network Plug-in**|Select a network plug-in. Both Flannel and Terway are supported. For more information, see [t64408.md\#section\_k1z\_f1n\_lmh](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Work with Terway.md).
 
         -   Flannel: a simple and stable Container Network Interface \(CNI\) plug-in that is developed by the Kubernetes community. Flannel provides a few simple features. However, it does not support standard Kubernetes network policies.
         -   Terway: a network plug-in that is developed by ACK. Terway allows you to assign elastic network interfaces \(ENIs\) of Alibaba Cloud to containers. It also allows you to customize Kubernetes network policies to control intercommunication among containers and implement bandwidth throttling on individual containers.
@@ -64,7 +64,7 @@ Select **Professional** to create a professional managed Kubernetes cluster. |
             -   If you select **Terway**, an ENI is shared among multiple pods. A secondary IP address of the ENI is assigned to each pod. |
         |**Pod CIDR Block**|If you set Network Plug-in to **Flannel**, you must set **Pod CIDR Block**.
 
-The CIDR block specified by **Pod CIDR Block** cannot overlap with that of the VPC or the CIDR blocks of existing ACK clusters in the VPC. After you create the cluster, you cannot modify the pod CIDR block. The Service CIDR block cannot overlap with the pod CIDR block. For more information about subnetting for ACK clusters, see [Assign CIDR blocks to resources in a Kubernetes cluster under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Assign CIDR blocks to resources in a Kubernetes cluster under a VPC.md). |
+The CIDR block specified by **Pod CIDR Block** cannot overlap with that of the VPC or the CIDR blocks of existing ACK clusters in the VPC. After you create the cluster, you cannot modify the pod CIDR block. The Service CIDR block cannot overlap with the pod CIDR block. For more information about subnetting for ACK clusters, see [Plan CIDR blocks for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan CIDR blocks for an ACK cluster.md). |
         |**Terway Mode**|If you select **Terway** for **Network Plug-in**, you must set **Terway Mode**.
 
         -   Select or clear **Assign One ENI to Each Pod**.
@@ -83,7 +83,7 @@ The CIDR block specified by **Pod CIDR Block** cannot overlap with that of the V
 -   The NetworkPolicy feature is available only when you clear Assign One ENI to Each Pod. By default, Assign One ENI to Each Pod is unselected.
 -   If you select Support for NetworkPolicy, you can use Kubernetes network policies to control communication among pods.
 -   If you clear Support for NetworkPolicy, you cannot use Kubernetes network policies to control communication among pods. This prevents Kubernetes network policies from posing heavy loads on the Kubernetes API server. |
-        |**Service CIDR**|Set **Service CIDR**. The CIDR block specified by **Service CIDR** cannot overlap with that of the VPC or the CIDR blocks of existing ACK clusters in the VPC. After you create the cluster, you cannot modify the Service CIDR block. In addition, the Service CIDR block cannot overlap with the pod CIDR block. For more information about subnetting for ACK clusters, see [Assign CIDR blocks to resources in a Kubernetes cluster under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Assign CIDR blocks to resources in a Kubernetes cluster under a VPC.md). |
+        |**Service CIDR**|Set **Service CIDR**. The CIDR block specified by **Service CIDR** cannot overlap with that of the VPC or the CIDR blocks of existing ACK clusters in the VPC. After you create the cluster, you cannot modify the Service CIDR block. In addition, the Service CIDR block cannot overlap with the pod CIDR block. For more information about subnetting for ACK clusters, see [Plan CIDR blocks for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan CIDR blocks for an ACK cluster.md). |
         |**IP Addresses per Node**|If you set Network Plug-in to **Flannel**, you must set **IP Addresses per Node**.
 
 **Note:** **IP Addresses per Node** specifies the maximum number of IP addresses that can be assigned to each node. We recommend that you use the default value. |
@@ -128,9 +128,9 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
 
 6.  Click **Next:Worker Configurations** to configure worker nodes.
 
-    1.  Set **Worker Instance**.
+    1.  Set the **Worker Instance** parameter.
 
-        -   If you select **Create Instance**, you must set the parameters as described in the following table.
+        -   If you select **Create Instance**, you must set the parameters listed in the following table.
 
             |Parameter|Description|
             |---------|-----------|
@@ -140,7 +140,9 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
             -   **Auto Renewal**: Specify whether to enable auto renewal. |
             |**Instance Type**|You can select multiple instance types. For more information, see [Instance families](/intl.en-US/Instance/Instance families.md). |
             |**Selected Types**|The selected instance types are displayed. |
-            |**Quantity**|Specify the number of worker nodes \(ECS instances\) to be created. |
+            |**Quantity**|Specify the number of worker nodes \(ECS instances\) to be created.
+
+**Note:** You can set **Quantity** to 0. When you create a professional managed Kubernetes cluster, you can set the number of worker nodes to zero. |
             |**System Disk**|**Enhanced SSDs**, **SSDs**, and **ultra disks** are supported.
 
 **Note:**
@@ -163,8 +165,8 @@ You can select higher performance levels for enhanced SSDs with larger storage c
                 -   **Password**: Enter the password that is used to log on to the nodes.
                 -   **Confirm Password**: Enter the password again. |
 
-        -   If you select **Add Existing Instance**, you must select ECS instances that are deployed in the region where the cluster is deployed. Then, set **Operating System**, **Logon Type**, and **Key Pair** based on the preceding settings.
-    2.  Configure advanced settings of worker nodes.
+        -   If you select **Add Existing Instance**, you must select ECS instances that are deployed in the region where you want to deploy the cluster. Then, set **Operating System**, **Logon Type**, and **Key Pair** based on the preceding settings.
+    2.  Configure advanced settings for worker nodes.
 
         |Parameter|Description|
         |---------|-----------|
@@ -200,7 +202,7 @@ For example, if the node IP address is 192.1xx.x.xx, the prefix is aliyun.com, t
     |**Monitoring Agents**|Specify whether to install the Cloud Monitor agent. By default, **Install CloudMonitor Agent on ECS Instance** and **Enable Prometheus Monitoring** are selected. After the Cloud Monitor agent is installed on ECS instance-based nodes, you can view monitoring data about the nodes in the Cloud Monitor console. |
     |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create a new one. By default, **Enable Log Service** is selected. When you create an application, you can perform a few simple steps to enable Log Service. For more information, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
 
-You can also select or clear **Collect Logs of Control Plane Components**. If you select this check box, logs of components on the ACK control plane are collected to the Log Service project under your account. For more information, see [t2020982.md\#]().
+You can also select or clear **Collect Logs of Control Plane Components**. If you select this check box, logs of components on the ACK control plane are collected to the Log Service project under your account. For more information, see [Collect log data of control plane components from a managed Kubernetes cluster]().
 
 **Note:** By default, **Collect Logs of Control Plane Components** is selected for a professional managed Kubernetes cluster.
 
@@ -212,13 +214,13 @@ By default, **Install node-problem-detector and Create Event Center** is selecte
 
 8.  Click **Next:Confirm Order**.
 
-9.  Read **Terms of Service** and select the check box, and click **Create Cluster**.
+9.  Read **Terms of Service**, select the check box, and then click **Create Cluster**.
 
-    **Note:** It requires about 10 minutes to create an ACK cluster that contains multiple nodes.
+    **Note:** It takes about 10 minutes to create a Kubernetes cluster that contains multiple nodes.
 
 
--   After the cluster is created, you can find the created cluster on the Clusters page in the console.
+-   After the cluster is created, you can view the created cluster on the Clusters page in the ACK console.
 -   Click **View Logs** in the **Actions** column. On the Log Information page, you can view cluster logs. To view detailed log information, click **Stack events**.
 
--   Click **Details** in the **Actions** column. On the details page, click the **Basic Information** tab to view basic information about the cluster and click the **Connection Information** tab to view information about how to connect to the cluster.
+-   Click **Details** in the **Actions** column. On the details page, click the **Basic Information** tab to view basic information about the cluster. You can also click the **Connection Information** tab to view information about how to connect to the cluster.
 
