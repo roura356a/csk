@@ -1,27 +1,27 @@
 ---
-keyword: [K8s, create a Kubernetes cluster, dedicated Kubernetes cluster]
+keyword: [Kubernetes, create a Kubernetes cluster, dedicated Kubernetes clusters]
 ---
 
 # Create a dedicated Kubernetes cluster
 
-A dedicated Kubernetes cluster contains at least three master nodes and several worker nodes. This ensures high availability and provides fine-grained management of clusters. You must manually size, maintain, and upgrade dedicated Kubernetes clusters. This topic describes how to create a dedicated Kubernetes cluster in the Container Service for Kubernetes \(ACK\) console.
+A dedicated Kubernetes cluster contains at least three master nodes. This ensures high availability and provides fine-grained management on clusters. You must manually size, maintain, and upgrade dedicated Kubernetes clusters. This topic describes how to create a dedicated Kubernetes cluster in the Container Service for Kubernetes \(ACK\) console.
 
 Resource Access Management \(RAM\) is activated in the [RAM console](https://ram.console.aliyun.com/). Auto Scaling \(ESS\) is activated in the [ESS console](https://essnew.console.aliyun.com).
 
 **Note:**
 
-When you use an ACK cluster, take note of the following limits:
+To use an ACK cluster, take note of the following limits:
 
--   Server Load Balancer \(SLB\) instances that are created together with the ACK cluster support only the pay-as-you-go billing method.
+-   Server Load Balancer \(SLB\) instances that are created along with an ACK cluster support only the pay-as-you-go billing method.
 -   ACK clusters support only virtual private clouds \(VPCs\).
--   By default, each account has specific quotas on cloud resources that can be created. You cannot create clusters if the quota limit is reached. To increase the quota limit of cloud resources for your account, submit a ticket.
-    -   By default, you can create up to 50 clusters across all regions under each account. You can deploy up to 100 nodes in each cluster. To increase the quotas of clusters or nodes,[submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
+-   By default, you can create only a limited amount of cloud resources with each Alibaba Cloud account. You cannot create clusters if the quotas are exhausted. To request a quota increase, submit a ticket.
+    -   By default, you can create up to 50 clusters across all regions with each account. Each cluster can contain up to 100 nodes. To increase the quota of clusters or nodes,[submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 
         **Note:** By default, you can add up to 48 route entries to the VPC where an ACK cluster is deployed. This means that you can configure up to 48 route entries for ACK clusters deployed in a VPC. To increase the quota of route entries for a VPC, submit a ticket.
 
-    -   By default, you can create up to 100 security groups under each account.
-    -   By default, you can create up to 60 pay-as-you-go SLB instances under each account.
-    -   By default, you can create up to 20 elastic IP addresses \(EIPs\) under each account.
+    -   By default, you can create up to 100 security groups with each account.
+    -   By default, you can create up to 60 pay-as-you-go SLB instances with each account.
+    -   By default, you can create up to 20 elastic IP addresses \(EIPs\) with each account.
 -   Limits on Elastic Compute Service \(ECS\) instances:
 
     The pay-as-you-go and subscription billing methods are supported.
@@ -53,11 +53,11 @@ When you use an ACK cluster, take note of the following limits:
 
         -   Shared VPC: The owner of a VPC \(resource owner\) can share vSwitches in the VPC under the account of the owner with other accounts in the same organization.
         -   Standard VPC: The owner of a VPC \(resource owner\) cannot share vSwitches in the VPC under the account of the owner with other accounts.
-**Note:** ACK clusters support only VPCs. You can select a VPC from the drop-down list. If no VPC is available, click **Create VPC** to create one. For more information, see [Create a VPC](/intl.en-US/VPCs and VSwitches/VPC management/Create a VPC.md). |
+**Note:** ACK clusters support only VPCs. You can select a VPC from the drop-down list. If no VPC is available, click **Create VPC** to create one. For more information, see [Create a VPC](/intl.en-US/VPCs and vSwitchs/Create a VPC.md). |
         |**VSwitch**|Select vSwitches.
 
-You can select up to three vSwitches that are deployed in different **zones**. If no vSwitch is available, click **Create VSwitch** to create one. For more information, see [Create a vSwitch](/intl.en-US/VPCs and VSwitches/VSwitch management/Create a VSwitch.md). |
-        |**Network Plug-in**|Select a network plug-in. Both Flannel and Terway are supported. For more information, see [Flannel and Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Use Terway.md).
+You can select up to three vSwitches that are deployed in different **zones**. If no vSwitch is available, click **Create VSwitch** to create one. For more information, see [Create a vSwitch](/intl.en-US/VPCs and vSwitchs/Create a VSwitch.md). |
+        |**Network Plug-in**|Select a network plug-in. Both Flannel and Terway are supported. For more information, see [t64408.md\#section\_k1z\_f1n\_lmh](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Work with Terway.md).
 
         -   Flannel: a simple and stable Container Network Interface \(CNI\) plug-in that is developed by the Kubernetes community. Flannel provides a few simple features. However, it does not support standard Kubernetes network policies.
         -   Terway: a network plug-in that is developed by ACK. Terway allows you to assign elastic network interfaces \(ENIs\) of Alibaba Cloud to containers. It also allows you to customize Kubernetes network policies to control intercommunication among containers and implement bandwidth throttling on individual containers.
@@ -69,7 +69,7 @@ You can select up to three vSwitches that are deployed in different **zones**. I
             -   If you select **Terway**, an ENI is shared among multiple pods. A secondary IP address of the ENI is assigned to each pod. |
         |**Pod CIDR Block**|If you set Network Plug-in to **Flannel**, you must set **Pod CIDR Block**.
 
-The CIDR block specified by **Pod CIDR Block** cannot overlap with that of the VPC or the CIDR blocks of existing ACK clusters in the VPC. After you create the cluster, you cannot modify the pod CIDR block. The Service CIDR block cannot overlap with the pod CIDR block. For more information about subnetting for ACK clusters, see [Assign CIDR blocks to resources in a Kubernetes cluster under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Assign CIDR blocks to resources in a Kubernetes cluster under a VPC.md). |
+The CIDR block specified by **Pod CIDR Block** cannot overlap with that of the VPC or the CIDR blocks of existing ACK clusters in the VPC. After you create the cluster, you cannot modify the pod CIDR block. The Service CIDR block cannot overlap with the pod CIDR block. For more information about subnetting for ACK clusters, see [Plan CIDR blocks for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan CIDR blocks for an ACK cluster.md). |
         |**Terway Mode**|If you select **Terway** for **Network Plug-in**, you must set **Terway Mode**.
 
         -   Select or clear **Assign One ENI to Each Pod**.
@@ -88,7 +88,7 @@ The CIDR block specified by **Pod CIDR Block** cannot overlap with that of the V
 -   The NetworkPolicy feature is available only when you clear Assign One ENI to Each Pod. By default, Assign One ENI to Each Pod is unselected.
 -   If you select Support for NetworkPolicy, you can use Kubernetes network policies to control communication among pods.
 -   If you clear Support for NetworkPolicy, you cannot use Kubernetes network policies to control communication among pods. This prevents Kubernetes network policies from posing heavy loads on the Kubernetes API server. |
-        |**Service CIDR**|Set **Service CIDR**. The CIDR block specified by **Service CIDR** cannot overlap with that of the VPC or the CIDR blocks of existing ACK clusters in the VPC. After you create the cluster, you cannot modify the Service CIDR block. In addition, the Service CIDR block cannot overlap with the pod CIDR block. For more information about subnetting for ACK clusters, see [Assign CIDR blocks to resources in a Kubernetes cluster under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Assign CIDR blocks to resources in a Kubernetes cluster under a VPC.md). |
+        |**Service CIDR**|Set **Service CIDR**. The CIDR block specified by **Service CIDR** cannot overlap with that of the VPC or the CIDR blocks of existing ACK clusters in the VPC. After you create the cluster, you cannot modify the Service CIDR block. In addition, the Service CIDR block cannot overlap with the pod CIDR block. For more information about subnetting for ACK clusters, see [Plan CIDR blocks for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan CIDR blocks for an ACK cluster.md). |
         |**IP Addresses per Node**|If you set Network Plug-in to **Flannel**, you must set **IP Addresses per Node**.
 
 **Note:** **IP Addresses per Node** specifies the maximum number of IP addresses that can be assigned to each node. We recommend that you use the default value. |
@@ -101,10 +101,10 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
 
         -   If you select this check box, an elastic IP address \(EIP\) is created and attached to an Internet-facing SLB instance. Port 6443 used by the API server is opened on master nodes. You can connect to and manage the ACK cluster by using kubeconfig over the Internet.
         -   If you clear this check box, no EIP is created. You can connect to and manage the ACK cluster only by using kubeconfig from within the VPC. |
-        |**SSH Logon**|To enable SSH logon, you must first select **Expose API Server with EIP**.
+        |**SSH Logon**|To enable Secure Shell \(SSH\) logon, you must first select **Expose API Server with EIP**.
 
         -   If you select this check box, you can access the cluster by using SSH.
-        -   If you clear this check box, you cannot access the cluster by using SSH or kubectl. If you want to access an ECS instance in the cluster by using SSH, you must manually attach an EIP to the instance and configure security group rules to open SSH port 22. For more information, see [Use SSH to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use SSH to connect to an ACK cluster.md). |
+        -   If you clear this check box, you cannot access the cluster by using SSH or kubectl. If you want to access an ECS instance in the cluster by using SSH, you must manually associate an EIP to the instance and configure security group rules to open SSH port 22. For more information, see [Use SSH to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use SSH to connect to an ACK cluster.md). |
         |**RDS Whitelist**|Set the Relational Database Service \(RDS\) whitelist. Add the IP addresses of nodes in the ACK cluster to the RDS whitelist.
 
 **Note:** To enable an RDS instance to access the ACK cluster, you must deploy the RDS instance in the VPC where the ACK cluster is deployed. |
@@ -150,14 +150,14 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
     -   **Duration**: You can select 1, 2, 3, or 6 months. If you require a longer duration, you can select 1 to 5 years.
     -   **Auto Renewal**: Specify whether to enable auto renewal. |
     |**Master Node Quantity**|Select the number of master nodes. You can create three or five master nodes.|
-    |**Instance Type**|Select an instance type for master nodes. For more information, see [Instance families](/intl.en-US/Instance/Instance families.md).|
+    |**Instance Type**|Select an instance type for the master nodes. For more information, see [Instance families](/intl.en-US/Instance/Instance families.md).|
     |**System Disk**|By default, system disks are mounted to master nodes. Enhanced SSDs, SSDs, and ultra disks are supported.**Note:** You can select **Enable Backup** to back up disk data. |
 
 6.  Click **Next:Worker Configurations** to configure worker nodes.
 
-    1.  Select instance types for worker nodes.
+    1.  Set worker nodes.
 
-        -   If you select **Create Instance**, you must set the parameters as described in the following table.
+        -   If you select **Create Instance**, you must set the parameters that are listed in the following table.
 
             |Parameter|Description|
             |---------|-----------|
@@ -218,10 +218,6 @@ For example, if the node IP address is 192.1xx.x.xx, the prefix is aliyun.com, t
     |**Monitoring Agents**|Specify whether to install the Cloud Monitor agent. By default, **Install CloudMonitor Agent on ECS Instance** is selected. |
     |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create a new one. By default, **Enable Log Service** is selected. When you create an application, you can perform a few simple steps to enable Log Service. For more information, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
 
-You can also select or clear **Collect Logs of Control Plane Components**. If you select this check box, logs of components on the ACK control plane are collected to the Log Service project under your account. For more information, see [t2020982.md\#]().
-
-**Note:** By default, **Collect Logs of Control Plane Components** is selected for a professional managed Kubernetes cluster.
-
 By default, **Install node-problem-detector and Create Event Center** is selected. You can also specify whether to **create Ingress dashboard** in the Log Service console. |
     |**Workflow Engine**|Specify whether to enable Alibaba Cloud Genomics Compute Service \(AGS\).
 
@@ -230,25 +226,25 @@ By default, **Install node-problem-detector and Create Event Center** is selecte
 
 8.  Click **Next:Confirm Order**.
 
-9.  Read Terms of Service and select the check box, and click **Create Cluster**.
+9.  Read Terms of Service, select the check box, and then click **Create Cluster**.
 
-    **Note:** It requires about 10 minutes to create an ACK cluster that consists of multiple nodes.
+    **Note:** It requires about 10 minutes to create a dedicated Kubernetes cluster that contains multiple nodes.
 
 
--   After the cluster is created, you can view the newly created cluster on the Clusters page in the console.
--   Click **View Logs** in the Actions column. On the Log Information page, you can view cluster logs. To view detailed log information, click **Stack events**.
+-   After the cluster is created, you can view the newly created cluster on the Clusters page in the ACK console.
+-   Click **View Logs** in the Actions column. On the Log Information page, you can view the cluster log. To view detailed log information, click **Stack events**.
 -   On the Clusters page, find the newly created cluster and click **Details** in the **Actions** column. On the details page of the cluster, click the **Basic Information** tab to view basic information about the cluster and click the **Connection Information** tab to view information about how to connect to the cluster.
 
     The following information is displayed:
 
-    -   **API Server Public Endpoint**: the IP address and port that the Kubernetes API server uses to provide services over the Internet. It allows you to manage the cluster by using kubectl or other tools on the client.
-    -   **API Server Internal Endpoint**: the IP address and port that the Kubernetes API server uses to provide services within the cluster. The endpoint belongs to the SLB instance that is bound to the cluster. Three master nodes work as the backend servers of the SLB instance.
-    -   **Testing Domain**: the domain name that is used for service tests. The suffix of the domain name is `<cluster_id>.<region_id>.alicontainer.com`.
+    -   **API Server Public Endpoint**: the IP address and port that the API server uses to provide services over the Internet. It allows you to manage the cluster by using kubectl or other tools on the client.
+    -   **API Server Internal Endpoint**: the IP address and port that the API server uses to provide services within the cluster. The endpoint belongs to the SLB instance that is bound to the cluster. Three master nodes work as the backend servers of the SLB instance.
+    -   **Testing Domain**: the domain name that is used to test Services. The suffix of the domain name is `<cluster_id>.<region_id>.alicontainer.com`.
 
         **Note:** To rebind the domain name, click **Rebind Domain Name**.
 
--   You can use kubectl and run the `kubectl get node` command to connect to the cluster and view information about the nodes in the cluster. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+-   You can [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md) and run the `kubectl get node` command to view information about the nodes in the cluster.
 
-![Node information](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6565359951/p9050.png)
+![Cluster information](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6565359951/p9050.png)
 
 
