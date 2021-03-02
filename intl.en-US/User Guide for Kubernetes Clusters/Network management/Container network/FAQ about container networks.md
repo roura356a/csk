@@ -2,15 +2,22 @@
 
 This topic provides answers to some commonly asked questions about container networks.
 
+-   [How do I resolve the issue that Flannel becomes incompatible with clusters of Kubernetes 1.16 or later after I manually upgrade Flannel?](#section_z0i_qcj_rz7)
+-   [How do I resolve the issue that a pod is not immediately ready for communication after it is started?](#section_g60_wqh_qtq)
+-   [How do I enable a pod to access the Service that is exposed on it?](#section_w3o_3as_8lq)
+-   [Which network plug-in should I choose for an ACK cluster, Terway or Flannel?](#section_ylr_ln7_pfe)
+-   [How do I plan the network of a cluster?](#section_8td_x8b_qez)
+-   [Can I use hostPorts to create port mappings in an ACK cluster?](#section_hlo_gm1_u0l)
+
 ## How do I solve the issue that Flannel becomes incompatible with clusters of Kubernetes 1.16 or later after I manually upgrade Flannel?
 
-Symptom:
+Issue:
 
 After a cluster is upgraded to v1.16 or later, the states of nodes in the cluster change to NotReady.
 
 Cause:
 
-You manually upgraded Flannel without updating the Flannel configuration. As a result, Kubelet cannot recognize Flannel.
+You manually upgraded Flannel without updating the Flannel configuration. As a result, kubelet cannot recognize Flannel.
 
 Solution:
 
@@ -37,9 +44,9 @@ Solution:
 
 ## How do I resolve the issue that a pod is not immediately ready for communication after it is started?
 
-Symptom:
+Issue:
 
-After a pod is started, the pod must wait a period of time before it is ready for communication.
+After a pod is started, you must wait for a period of time before the pod is ready for communication.
 
 Cause:
 
@@ -63,9 +70,9 @@ Solution:
 
     1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-    2.  In the left-side navigation pane, click **Clusters**.
+    2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-    3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+    3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
 
     4.  In the left-side navigation pane, choose **Operations** \> **Add-ons**.
 
@@ -82,7 +89,7 @@ Solution:
 
 ## How do I enable a pod to access the Service that is exposed on it?
 
-Symptom:
+Issue:
 
 Pods are not allowed to access Services that are exposed on them. When a pod accesses the Service that is exposed on it, the performance of the Service becomes unstable or scheduling errors may occur.
 
@@ -96,7 +103,7 @@ Solution:
 
     **Note:** We recommend that you use this method.
 
--   Recreate a cluster that uses the Terway network plug-in. For more information, see [Use Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Use Terway.md).
+-   Recreate a cluster that uses the Terway network plug-in. For more information, see [Work with Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Work with Terway.md).
 -   Modify the Flannel configuration, reinstall Flannel, and recreate the pod.
 
     **Note:** We recommend that you do not use this method because the configuration of Flannel may be overwritten if Flannel is upgraded.
@@ -128,9 +135,15 @@ The following introduction describes the Flannel and Terway network plug-ins for
 You can select one of the following network plug-ins when you create an ACK cluster:
 
 -   Flannel: a simple and stable Container Network Interface \(CNI\) plug-in developed by the Kubernetes community. You can use [Flannel](https://github.com/coreos/flannel) with Virtual Private Cloud \(VPC\) of Alibaba Cloud. This ensures that your clusters and containers run in a high-speed and stable network. However, Flannel provides only basic features and does not support standard Kubernetes network policies.
--   Terway: a network plug-in developed by ACK. Terway provides all the features of Flannel and allows you to assign Alibaba Cloud elastic network interfaces \(ENIs\) to containers. You can use Terway to define access control policies based on standard Kubernetes network policies for intercommunication among containers. Terway also supports bandwidth throttling on individual containers. If you do not need to use Kubernetes network policies, you can choose Flannel. In other cases, we recommend that you choose Terway. For more information about Terway, see [Use Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Use Terway.md).
+-   Terway: a network plug-in developed by ACK. Terway provides all the features of Flannel and allows you to attach Alibaba Cloud elastic network interfaces \(ENIs\) to containers. You can use Terway to define access control policies based on standard Kubernetes network policies for intercommunication among containers. Terway also supports bandwidth throttling on individual containers. If you do not want to use Kubernetes network policies, you can choose Flannel. In other cases, we recommend that you choose Terway. For more information about Terway, see [Work with Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Work with Terway.md).
 
 ## How do I plan the network of a cluster?
 
-When you create an ACK cluster, you must specify a VPC, vSwitches, CIDR blocks of pods, and CIDR blocks of Services. We recommend that you decide the IP address of each Elastic Compute Service \(ECS\) instance in the cluster, CIDR blocks of pods, and CIDR blocks of Services before you create an ACK cluster. For more information, see [Assign CIDR blocks to resources in a Kubernetes cluster under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Assign CIDR blocks to resources in a Kubernetes cluster under a VPC.md).
+When you create an ACK cluster, you must specify a VPC, vSwitches, CIDR blocks of pods, and CIDR blocks of Services. We recommend that you plan the IP address of each Elastic Compute Service \(ECS\) instance in the cluster, the CIDR blocks of Kubernetes pods, and the CIDR blocks of Services before you create an ACK cluster. For more information, see [Plan CIDR blocks for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan CIDR blocks for an ACK cluster.md).
+
+## Can I use hostPorts to create port mappings in an ACK cluster?
+
+-   No, you cannot use hostPorts to create port mappings in an ACK cluster.
+-   A pod in a VPC can be accessed by other cloud resources that are deployed in the same VPC through the endpoint of the pod in the VPC. Therefore, port mapping is not required.
+-   Only Services of the NodePort and LoadBalancer types can be exposed to the Internet.
 
