@@ -26,7 +26,7 @@ Ingress Controller通过API Server获取Ingress资源的变化，动态地生成
 
 **说明：** 为Ingress服务的SLB是由Controller完全托管的，您不能自己在SLB控制台上面进行配置，否则可能造成Ingress服务的异常。
 
-阿里云Serverless Kubernetes集群，基于[基于域名或URL路径进行转发](/intl.zh-CN/CLB教程专区/基于域名或URL路径进行转发.md)提供了托管的SLB Ingress Controller ，您无需承担额外的IaaS成本，云产品级别的容灾能力给您提供稳定的Ingress服务。
+阿里云Serverless Kubernetes集群，[基于域名或URL路径进行转发]()提供了托管的SLB Ingress Controller ，您无需承担额外的IaaS成本，云产品级别的容灾能力给您提供稳定的Ingress服务。
 
 -   在不指定SLB实例情况下，ASK会自动生成一个公网SLB实例。ASK不会自动生成私网SLB实例。
 -   公网SLB和私网SLB都只能通过Annotation指定SLB ID。
@@ -39,7 +39,7 @@ Ingress Controller通过API Server获取Ingress资源的变化，动态地生成
 **相关文档**  
 
 
-[通过Ingress提供7层服务访问](/intl.zh-CN/Serverless Kubernetes集群用户指南/网络管理/通过Ingress提供7层服务访问.md)
+[通过Ingress提供7层服务访问](/intl.zh-CN/Serverless Kubernetes集群用户指南/网络管理/SLB Ingress管理/通过Ingress提供7层服务访问.md)
 
 [Nginx Ingress概述](/intl.zh-CN/Serverless Kubernetes集群用户指南/网络管理/Nginx Ingress管理/Nginx Ingress概述.md)
 
