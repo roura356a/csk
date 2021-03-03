@@ -141,8 +141,6 @@ Click **View Logs** in the Actions column. On the Log Information page, you can 
 
 On the Clusters page, find the newly created cluster and click **Details** in the **Actions** column. On the details page of the cluster, you can click the **Basic Information** tab to view basic information about the cluster and click the **Connection Information** tab to view information about how to connect to the cluster.
 
-![Basic Information](../images/p135588.png)
-
 The following information is displayed.
 
 -   **API Server Public Endpoint**: the IP address and port that the API server uses to provide services over the Internet. It allows you to manage the cluster by using kubectl or other tools on your terminal devices.
