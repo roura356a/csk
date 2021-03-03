@@ -2,7 +2,7 @@
 
 通过执行`arc cs node attach <clusterid> --password <password> --instances '["<instanceid1>","<instanceid2>"]'`命令添加已有ECS实例至ACK集群。
 
-关于该命令的详细参数说明，请参见API文档[添加已有实例到集群](/cn.zh-CN/API参考/节点/添加已有实例到集群.md)。
+关于该命令的详细参数说明，请参见API文档[添加已有实例到集群](/intl.zh-CN/API参考/节点/添加已有实例到集群.md)。
 
 ## CLI示例
 
