@@ -186,7 +186,7 @@ For example, if the node IP address is 192.1xx.x.xx, the prefix is aliyun.com, t
     |**Monitoring Agents**|Specify whether to install the Cloud Monitor agent. By default, **Install CloudMonitor Agent on ECS Instance** and **Enable Prometheus Monitoring** are selected. After the Cloud Monitor agent is installed on ECS instance-based nodes, you can view monitoring data about the nodes in the Cloud Monitor console. |
     |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create a new one. By default, **Enable Log Service** is selected. When you create an application, you can perform a few simple steps to enable Log Service. For more information, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
 
-You can also select or clear **Collect Logs of Control Plane Components**. If you select this check box, logs of components on the ACK control plane are collected to the Log Service project under your account. For more information, see [Collect log data of control plane components from a managed Kubernetes cluster]().
+You can also select or clear **Collect Logs of Control Plane Components**. If you select this check box, logs of components on the ACK control plane are collected to the Log Service project under your account. For more information, see [Collect log data of control plane components from a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log data of control plane components from a managed Kubernetes cluster.md).
 
 **Note:** By default, **Collect Logs of Control Plane Components** is selected for a professional managed Kubernetes cluster.
 
@@ -200,7 +200,7 @@ By default, **Install node-problem-detector and Create Event Center** is selecte
 
 9.  Select **Terms of Service** and click **Create Cluster**.
 
-    **Note:** It takes approximately 10 minutes for the system to create a Kubernetes cluster that consists of multiple nodes.
+    **Note:** It takes approximately 10 minutes for the system to create a managed Kubernetes cluster that contains multiple nodes.
 
 
 -   After the cluster is created, you can find the created cluster on the Clusters page in the ACK console.
@@ -212,8 +212,6 @@ By default, **Install node-problem-detector and Create Event Center** is selecte
     ![Cluster log](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3565359951/p21426.png)
 
 -   Click **Details** in the **Actions** column. On the details page of the cluster, click the **Basic Information** tab to view basic information about the cluster and click the **Connection Information** tab to view information about how to connect to the cluster.
-
-    ![Basic Information](../images/p70040.png)
 
     The following information is displayed.
 
@@ -236,6 +234,6 @@ By default, **Install node-problem-detector and Create Event Center** is selecte
 
 -   You can [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md) and run the `kubectl get node` command to query information about the nodes in the cluster.
 
-    ![Cluster information](../images/p62530.png)
+    ![6](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6356574161/p245278.png)
 
 
