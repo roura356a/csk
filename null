@@ -1,47 +1,29 @@
-# Query detailed information about a cluster
+# 扩容集群
 
-You can run the arc-cs cluster get <clusterId\> command to query detailed information about a cluster of Container Service for Kubernetes \(ACK\).
+通过执行arc-cs cluster scaleout <clusterId\>命令增加集群节点的数量。
 
-For more information about the parameters of the command, see [Query a cluster](/intl.en-US/API Reference/Clusters/Query a cluster.md).
+关于该命令的详细参数说明，请参见API文档[扩容集群](/cn.zh-CN/API参考/集群/扩容集群/扩容集群.md)。
 
-## Command-line interface examples
+## CLI示例
 
-Sample request:
+请求示例：
 
 ```
-arc-cs cluster get cbfa079eb225c44e7bce86c626f0c****
+arc-cs cluster scaleout ca2ba6f61dd324235927bb21b2a4d**** 
+--count 2 
+--worker-instance-types '["ecs.se1ne.xlarge"]' 
+--worker-system-disk-category cloud_ssd 
+--worker-system-disk-size 120 
+--login-password Hello1234
 ```
 
-Sample response:
+返回结果示例：
 
 ```
 {
-  "clusterId": "cbfa079eb225c44e7bce86c626f0c****",
-  "clusterType": "Kubernetes",
-  "created": "2020-11-12T18:51:06+08:00",
-  "currentVersion": "1.11.5",
-  "deletionProtection": false,
-  "dockerVersion": "17.06.2-ce-5",
-  "externalLoadbalancerId": "lb-wz9gw2knznrpiv6sj****",
-  "instanceType": "ecs.se1ne.xlarge",
-  "name": "K8S-f5056244-24d4-11eb-b753-0242ac11****",
-  "networkMode": "vpc",
-  "regionId": "cn-shenzhen",
-  "resourceGroupId": "rg-acfmoiyerhu****",
-  "securityGroupId": "sg-wz97gjh27h6jgi41****",
-  "size": 5,
-  "state": "running",
-  "tags": [
-    {
-      "key": "ack.aliyun.com",
-      "value": "cbfa079eb225c44e7bce86c626f0c****"
-    }
-  ],
-  "updated": "2020-11-12T19:04:01+08:00",
-  "vpcId": "vpc-wz9rqhtseeylp71x7****",
-  "vswitchCidr": "",
-  "vswitchId": "vsw-wz999pkyv5ybw4ork****",
-  "zoneId": "cn-shenzhen-b"
+  "clusterId": "c644b367c5a834b18baf9c696bfb3****",
+  "requestId": "5E6E63A5-68B8-433E-AA3E-6A4BAA5D****",
+  "taskId": "T-5feae4e97720867d4d00****"
 }
 ```
 
