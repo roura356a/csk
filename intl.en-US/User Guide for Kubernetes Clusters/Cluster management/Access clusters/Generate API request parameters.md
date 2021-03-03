@@ -16,17 +16,15 @@ This topic describes how to generate API request parameters to create a Containe
 
     To generate API request parameters, you must first specify a set of required parameters.
 
-    -   For more information about the parameters that are required to create a dedicated Kubernetes cluster, see [t2021637.md\#]().
+    -   For more information about the parameters that are required to create a dedicated Kubernetes cluster, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md).
     -   For more information about the parameters that are required to create a managed Kubernetes cluster, see [Create a managed cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a managed cluster.md).
 6.  After you specify the required parameters, click **Generate API Request Parameters**.
 
     In the API Request Parameters dialog box, you can view the parameters that you have specified.
 
-    ![Generate API Request Parameters](../images/p64256.png)
-
 7.  Click **Copy** to copy the cluster configurations.
 
-    You can directly call the API to create an ACK cluster by using the copied cluster configurations. For more information, see [t2021637.md\#]() and [Create a managed cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a managed cluster.md).
+    You can directly call the API to create an ACK cluster by using the copied cluster configurations. For more information, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md) and [Create a managed cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a managed cluster.md).
 
     You can also use the copied cluster configurations to create an ACK cluster by using Alibaba Cloud command-line interface \(CLI\). For more information, see [Create a cluster](/intl.en-US/Use Container Service through CLI/Create a cluster.md).
 
