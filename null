@@ -1,18 +1,18 @@
-# 删除集群
+# Delete a cluster
 
-通过执行arc-cs cluster delete <clusterId\>命令删除集群，并释放集群所有节点资源。
+You can run the arc-cs cluster delete <clusterId\> command to delete a cluster and release all nodes in the cluster.
 
-关于该命令的详细参数说明，请参见API文档[删除集群](/intl.zh-CN/API参考/集群/删除集群.md)。
+For more information about the parameters of the command, see [Delete a cluster](/intl.en-US/API Reference/Clusters/Delete a cluster.md).
 
-## CLI示例
+## Command-line interface examples
 
-请求示例：
+Sample request:
 
 ```
 arc-cs cluster delete ca2ba6f61dd324235927bb21b2a4d****
 ```
 
-返回结果示例：
+Sample response:
 
-无。
+None.
 
