@@ -132,7 +132,7 @@ You can use the following methods to view the CCM version:
 
 3.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-4.  On the Clusters page, find the specific cluster, and choose **More** \> **Dashboard**in the Actions column of the cluster.
+4.  On the Clusters page, find the specific cluster, and choose **More** \> **Dashboard** in the Actions column of the cluster.
 
 5.  Click **CREATE** to create a service.
 
