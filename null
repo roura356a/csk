@@ -1,29 +1,34 @@
-# Scale out a cluster
+# 添加已有ECS实例
 
-You can run the arc-cs cluster scaleout <clusterId\> command to add nodes to a cluster.
+通过执行`arc cs node attach <clusterid> --password <password> --instances '["<instanceid1>","<instanceid2>"]'`命令添加已有ECS实例至ACK集群。
 
-For more information about the parameters of the command, see [Add worker nodes to a cluster](/intl.en-US/API Reference/Clusters/Expand a cluster/Add worker nodes to a cluster.md).
+关于该命令的详细参数说明，请参见API文档[添加已有实例到集群](/cn.zh-CN/API参考/节点/添加已有实例到集群.md)。
 
-## Command-line interface examples
+## CLI示例
 
-Sample request:
+请求示例：
 
 ```
-arc-cs cluster scaleout ca2ba6f61dd324235927bb21b2a4d**** 
---count 2 
---worker-instance-types '["ecs.se1ne.xlarge"]' 
---worker-system-disk-category cloud_ssd 
---worker-system-disk-size 120 
---login-password Hello1234
+arc cs node attach c8cfc598fc84a41d6af96965f34ed**** --password Hello**** --instances '["i-bp1bw9dno0jghymp****","i-bp1bw9dno0jghymp****"]'
 ```
 
-Sample response:
+返回结果示例：
 
 ```
 {
-  "clusterId": "c644b367c5a834b18baf9c696bfb3****",
-  "requestId": "5E6E63A5-68B8-433E-AA3E-6A4BAA5D****",
-  "taskId": "T-5feae4e97720867d4d00****"
+    "list": [
+        {
+            "code": "200",
+            "instanceId": "i-2zee3oiwcyoz7kwd****",
+            "message": "successful"
+        },
+        {
+            "code": "200",
+            "instanceId": "i-2ze0lgm3y6iylcbt****",
+            "message": "successful"
+        }
+    ],
+    "task_id": "T-5a544aff80282e39ea000039"
 }
 ```
 
