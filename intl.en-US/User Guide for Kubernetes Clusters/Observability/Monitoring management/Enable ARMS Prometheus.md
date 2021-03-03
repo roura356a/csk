@@ -89,7 +89,7 @@ You can enable ARMS Prometheus by using the following methods:
 
 2.  In the left-side navigation pane, choose **Marketplace** \> **App Catalog**.
 
-3.  On the App Catalog page, click the**Alibaba Cloud Apps** tab and click **ack-arms-prometheus**.
+3.  On the App Catalog page, click the **Alibaba Cloud Apps** tab and click **ack-arms-prometheus**.
 
 4.  On the App Catalog - ack-arms-prometheus page, click the **Parameters** tab.
 
@@ -106,7 +106,7 @@ You can enable ARMS Prometheus by using the following methods:
 
 ## Check the result
 
-Log on to the[Prometheus console](https://prometheus.console.aliyun.com/#/home) and click **Prometheus Monitoring** in the left-side navigation pane. Find the cluster for which you have enabled ARMS Prometheus and click a plug-in to view monitoring data in the dashboard.
+Log on to the [Prometheus console](https://prometheus.console.aliyun.com/#/home) and click **Prometheus Monitoring** in the left-side navigation pane. Find the cluster for which you have enabled ARMS Prometheus and click a plug-in to view monitoring data in the dashboard.
 
 ![deployment](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0255359951/p97179.png)
 
