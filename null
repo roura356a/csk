@@ -2,7 +2,7 @@
 
 通过执行arc-cs cluster delete <clusterId\>命令删除集群，并释放集群所有节点资源。
 
-关于该命令的详细参数说明，请参见API文档[删除集群](/cn.zh-CN/API参考/集群/删除集群.md)。
+关于该命令的详细参数说明，请参见API文档[删除集群](/intl.zh-CN/API参考/集群/删除集群.md)。
 
 ## CLI示例
 
