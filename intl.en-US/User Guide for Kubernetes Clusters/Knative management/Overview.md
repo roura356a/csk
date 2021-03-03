@@ -51,7 +51,7 @@ Knative supports third-party add-ons. The GitHub add-on component is supported. 
 Knative components can be deployed in standard managed Kubernetes clusters, standard dedicated Kubernetes clusters, and serverless Kubernetes \(ASK\) clusters. You can deploy Knative components by using the following methods:
 
 -   To deploy Knative components in ACK standard managed clusters and standard dedicated ACK clusters, see [Deploy Knative](/intl.en-US/User Guide for Kubernetes Clusters/Knative management/Manage Knative components/Deploy Knative.md).
--   You can deploy Knative components in serverless Kubernetes clusters. For more information, see [Deploy Knative in an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Knative management/Manage Knative components/One-click Deploy Knative in an ASK cluster.md).
+-   You can deploy Knative components in serverless Kubernetes clusters. For more information, see [Deploy Knative in an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Knative management/Component management/One-click Deploy Knative in an ASK cluster.md).
 
     **Note:** Make sure that the version of the cluster is 1.16 or later.
 
@@ -62,7 +62,6 @@ Knative is free of charge. However, you are charged for the cloud resources that
 
 -   [ECS billing overview](/intl.en-US/Pricing/Billing overview.md)
 -   [Billing overview](/intl.en-US/Pricing/Billing overview.md)
--   [SLB pay-as-you-go billing]()
 
 **Related topics**  
 
