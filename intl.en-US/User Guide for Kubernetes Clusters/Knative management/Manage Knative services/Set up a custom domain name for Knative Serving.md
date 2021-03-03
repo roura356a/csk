@@ -36,7 +36,7 @@ The following example demonstrates how to change the default domain name to a cu
 
 If you have deployed a Knative Service, Knative automatically updates all Knative Services and routes based on the ConfigMap.
 
-1.  Deploy a Knative Service. In this example, a Knative Service named helloworld-go is deployed. For more information, see [Use Knative to deploy serverless applications]().
+1.  Deploy a Knative Service. In this example, a Knative Service named helloworld-go is deployed. For more information, see [Create a Knative Service](/intl.en-US/User Guide for Kubernetes Clusters/Knative management/Manage Knative services/Create a Knative Service.md).
 
 2.  View the deployment result.
 
