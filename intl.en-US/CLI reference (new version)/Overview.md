@@ -204,18 +204,3 @@ This section describes how to use ARC. In the following examples, ACK cluster re
         ```
 
 
-## Use ARC to manage ACK resources.
-
-You can use ARC to manage ACK resources. The following table describes the common operations that can be performed by using ARC.
-
-|Operation|CLI command|Description|Scenario|
-|:--------|-----------|:----------|:-------|
-|[t2024792.md\#]()|`arc-cs cluster list`|Queries all ACK clusters that you have created.|Kubernetes clusters supported by ACK.|
-|[Query detailed information about a cluster](/intl.en-US/CLI reference (new version)/Query detailed information about a cluster.md)|`arc-cs cluster get <clusterId>`|Queries details about a cluster by cluster ID.|Kubernetes clusters supported by ACK.|
-|[t2024795.md\#]()|`arc-cs cluster create-kubernetes`|Creates a dedicated Kubernetes cluster and specifies the number of nodes in the cluster.|Dedicated Kubernetes clusters supported by ACK.|
-|[t2024796.md\#]()|`arc-cs cluster create-managed`|Creates a managed Kubernetes cluster.|Managed Kubernetes clusters supported by ACK.|
-|[t2024798.md\#]()|`arc-cs cluster create-ask`|Creates a serverless Kubernetes cluster.|Serverless Kubernetes clusters supported by ACK.|
-|[Scale out a cluster](/intl.en-US/CLI reference (new version)/Scale out a cluster.md)|`arc-cs cluster scaleout <clusterId>`|Adds nodes to a cluster.|Kubernetes clusters supported by ACK.|
-|[Add existing ECS instances to a cluster](/intl.en-US/CLI reference (new version)/Add existing ECS instances to a cluster.md)|`arc cs node attach <clusterid> --password <password> --instances '["<instanceid1>","<instanceid2>"]'`|Add existing ECS instances to a cluster.|Kubernetes clusters supported by ACK.|
-|[Delete a cluster](/intl.en-US/CLI reference (new version)/Delete a cluster.md)|`arc-cs cluster delete <clusterId>`|Deletes a cluster by cluster ID and releases all node resources in the cluster.|Kubernetes clusters supported by ACK.|
-
