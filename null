@@ -2,7 +2,7 @@
 
 通过执行arc-cs cluster scaleout <clusterId\>命令增加集群节点的数量。
 
-关于该命令的详细参数说明，请参见API文档[扩容集群](/cn.zh-CN/API参考/集群/扩容集群/扩容集群.md)。
+关于该命令的详细参数说明，请参见API文档[扩容集群](/intl.zh-CN/API参考/集群/扩容集群/扩容集群.md)。
 
 ## CLI示例
 
