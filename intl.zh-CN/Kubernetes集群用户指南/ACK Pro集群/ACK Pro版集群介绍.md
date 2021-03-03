@@ -28,14 +28,10 @@ ACK Pro版集群的计费详情，请参见[计费说明](/intl.zh-CN/产品定�
 
 ## 对比
 
-ACK Pro版集群和标准版集群的对比详情如下表。
+ACK Pro版集群和ACK专有版集群的对比详情如下表。
 
-**说明：** 原ACK托管版集群改称为标准版集群。
-
-|分类|功能|ACK托管版|
-|Pro版|标准版|
-|--|--|------|
-|----|---|
+|分类|功能|ACK Pro版集群|ACK专有版集群|
+|--|--|----------|--------|
 |集群规模|不涉及|最大5000节点|最大100节点（现有集群不受影响，可以升级到Pro版）|
 |SLA|不涉及|99.95%（支持赔付）|99.9%（不支持赔付）|
 |API Server|自动弹性伸缩机制|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)|
@@ -64,7 +60,7 @@ ACK Pro版集群和标准版集群的对比详情如下表。
     |华南1|深圳|cn-shenzhen|
     |华南2|河源|cn-heyuan|
     |西南1|成都|cn-chengdu|
-    |中国（香港）|香港|cn-hongkong|
+    |中国（香港）|中国香港|cn-hongkong|
     |日本|东京|ap-northeast-1|
     |新加坡|新加坡|ap-southeast-1|
     |澳大利亚|悉尼|ap-southeast-2|
