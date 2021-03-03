@@ -6,7 +6,7 @@ keyword: [指定已有SLB, 负载均衡型服务, loadbalancer service, 公开�
 
 通过阿里云负载均衡SLB（Server Load Balancer）暴露的服务（Service），在集群外可通过SLB域名或`<IP:服务端口>`的方式访问服务，在集群内可通过`<服务名:服务端口>`的方式访问服务。本文以Nginx应用为例，介绍如何通过使用已有SLB的服务来公开应用。
 
-已存在通过SLB控制台创建的SLB实例，且该实例与Kubernetes集群处于同一地域。如果没有创建，请参见[创建负载均衡实例](/cn.zh-CN/传统型负载均衡CLB/用户指南/实例/创建负载均衡实例.md)。
+已存在通过SLB控制台创建的SLB实例，且该实例与Kubernetes集群处于同一地域。如果没有创建，请参见[创建负载均衡实例](/cn.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/创建负载均衡实例.md)。
 
 如果您集群的Cloud Controller Manager（CCM）组件版本大于等于v1.9.3，对于指定已有SLB，CCM默认不再为该SLB处理监听。您可以通过设置`service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners: "true"`参数来启用监听配置，或者手动配置该SLB的监听规则。
 
@@ -21,6 +21,8 @@ keyword: [指定已有SLB, 负载均衡型服务, loadbalancer service, 公开�
     ```
     kubectl get pod -n kube-system -o yaml|grep image:|grep cloud-con|uniq
     ```
+
+
 
 
 ## 注意事项
@@ -59,7 +61,7 @@ keyword: [指定已有SLB, 负载均衡型服务, loadbalancer service, 公开�
 
         **说明：** 您可以在提交工单时，说明需要修改`slb_quota_backendservers_num`参数，提高每个SLB实例可以挂载的服务器数量。
 
-    更多SLB使用限制请参见[使用限制](/cn.zh-CN/传统型负载均衡CLB/用户指南/产品限制/使用限制.md)。查询负载均衡SLB配额，请参见[负载均衡SLB配额管理](https://slbnew.console.aliyun.com/slb/quota)。
+    更多SLB使用限制请参见[使用限制](/cn.zh-CN/传统型负载均衡CLB/CLB用户指南/产品限制/使用限制.md)。查询负载均衡SLB配额，请参见[负载均衡SLB配额管理](https://slbnew.console.aliyun.com/slb/quota)。
 
 
 ## 步骤一：部署示例应用
