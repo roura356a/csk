@@ -2,7 +2,7 @@
 
 You can call DescribeExternalAgent to obtain an agent to access the API server of a cluster. You can deploy the agent to a cluster. This allows you to access the API server of the cluster.
 
-For more information about cluster connection, see [Register an external Kubernetes cluster](https://help.aliyun.com/document_detail/~~121053~~).
+For more information about cluster connection, see [Register an external Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Register an external Kubernetes cluster.md).
 
 ## Debugging
 
