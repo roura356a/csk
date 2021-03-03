@@ -60,7 +60,7 @@ Use of OSS buckets:
     -   `alicloud-pvname`: the name of the PV. This parameter value must be used in the `selector` field of the PVC that is associated with the PV.
     -   `bucket`: the name of the bucket. Only buckets can be mounted to the ACK cluster. You cannot mount the subdirectories or files in a bucket to the ACK cluster.
     -   `url`: the endpoint of the OSS bucket. For more information, see [Regions and endpoints](/intl.en-US/Developer Guide/Endpoint/Regions and endpoints.md). To obtain the endpoint, log on to the OSS console. In the left-side navigation pane, click the name of the bucket that you want to view. The **Overview** page appears. In the Domain Names section, view the endpoints of the bucket in the **Endpoint** column.
-    -   `akId`: the AccessKey ID. Log on to the ACK console, move the pointer over the icon ![user](../images/p161100.png) in the upper-right corner of the page and select **AccessKey Management** from the shortcut menu. On the page that appears, create the **AccessKey ID** and **AccessKey secret**.
+    -   `akId`: the AccessKey ID. Log on to the ACK console, move the pointer over the icon ![user](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1571474161/p161100.png) in the upper-right corner of the page and select **AccessKey Management** from the shortcut menu. On the page that appears, create the **AccessKey ID** and **AccessKey secret**.
     -   `akSecret`: the AccessKey secret. To obtain the AccessKey secret, perform the steps described in `akId`.
     -   `otherOpts`: the custom parameters that are used to mount the OSS bucket. Set the value in the format of `-o *** -o ***`. For more information, see [t4872.md\#](/intl.en-US/Tools/ossfs/FAQ.md).
 2.  Run the following command to create a PV:
@@ -72,14 +72,15 @@ Use of OSS buckets:
 
 Verify the result
 
+In the left-side navigation pane of the ACK console, choose **Clusters** \> **Persistent Volumes**. On the Persistent Volumes tab, select the cluster where the PV is created. You can view the newly created PV.
+
+![Persistent Volumes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5845359951/p34869.png)
+
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 2.  Log on to the ACK console. In the left-side navigation pane, click **Clusters**.
 3.  On the Clusters page, find the cluster where the PV is created and click **Details** in the **Actions** column of the cluster.
 4.  In the left-side pane, click **Persistent Volumes**.
 5.  Click the **Persistent Volumes** tab to view the newly created PV.
-
-    ![PVs](../images/p161619.png)
-
 
 ## Create a PVC
 
@@ -110,6 +111,10 @@ Create a PVC for OSS. Set the `selector` field to search for the created PV. In 
     kubectl create -f pvc-oss.yaml
     ```
 
+
+In the left-side navigation pane of the ACK console, choose **Applications** \> **Persistent Volume Claims**. On the Persistent Volume Claims tab, select the cluster and namespace where the PVC is created. You can view the newly created PVC.
+
+![Persistent Volume Claims](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5845359951/p34871.png)
 
 Verify the result
 
@@ -172,6 +177,10 @@ Verify the result
     kubectl create -f oss-static.yaml d
     ```
 
+
+In the left-side navigation pane, choose **Applications** \> **Deployments**. On the Deployments page, select the cluster and namespace that you want to manage. You can view the newly created deployment.
+
+![Deployments](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6845359951/p34888.png)
 
 Verify the result
 
