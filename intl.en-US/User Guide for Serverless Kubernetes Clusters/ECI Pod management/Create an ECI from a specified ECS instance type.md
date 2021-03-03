@@ -8,7 +8,7 @@ In some scenarios, custom needs are required, such as GPU capabilities, enhanced
 
 ## Descriptions of ECS instance types
 
-For detailed information about ECI-specific ECS instance types, see the descriptions of ECS instance types. The unit price of an ECI is the same as that of the corresponding ECS instance. Both are billed on a per-second basis. For more information, see[ECS price calculator](https://www.alibabacloud.com/pricing-calculator#/add/980738/vm_intl/vm_intl).
+For detailed information about ECI-specific ECS instance types, see the descriptions of ECS instance types. The unit price of an ECI is the same as that of the corresponding ECS instance. Both are billed on a per-second basis. For more information, see [ECS price calculator](https://www.alibabacloud.com/pricing-calculator#/add/980738/vm_intl/vm_intl).
 
 You can check the ECS instance types supported in each region and zone in [Overview of ECS instance types available to purchase in each region and zone](https://ecs-buy.aliyun.com/instanceTypes#/instanceTypeByRegion). The following ECS instance families are supported:
 
