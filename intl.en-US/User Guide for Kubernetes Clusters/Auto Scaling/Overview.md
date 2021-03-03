@@ -17,15 +17,13 @@ The components for workload scaling and resource scaling can be used separately 
 
 ## Scaling components for ACK clusters
 
-![ESS](../images/p134711.png)
-
 **Components for workload scaling**
 
 |Component|Description|Scenario|Limit|Related topic|
 |---------|-----------|--------|-----|-------------|
 |HPA|Kubernetes is developed with built-in components. These components are mainly used for online applications.|Online workloads|HPA uses Deployments and StatefulSets to scale workloads.|[HPA](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/HPA.md)|
 |Vertical Pod Autoscaler \(VPA\)|An open source community component. VPA is mainly used for monolithic applications.|Monolithic applications|VPA is applicable to applications that cannot be horizontally scaled. In practical scenarios, VPA is used when pods are recovered from anomalies.|[Vertical pod autoscaling](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Vertical pod autoscaling.md)|
-|CronHPA|An open source component provided by ACK. CronHPA is applicable to applications whose resource usage changes periodically.|Periodically changing workloads|CronHPA uses Deployments and StatefulSets to scale workloads. CronHPA is also compatible with HPA. You can use CronHPA and HPA in combination to scale workloads.|[Implement cron HPA](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Implement cron HPA.md)|
+|CronHPA|An open source component provided by ACK. CronHPA is applicable to applications whose resource usage changes periodically.|Periodically changing workloads|CronHPA uses Deployments and StatefulSets to scale workloads. CronHPA is also compatible with HPA. You can use CronHPA and HPA in combination to scale workloads.|[CronHPA](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/CronHPA.md)|
 |Elastic-Workload|A component provided by ACK. ack-kubernetes-elastic-workload is used to scale workloads with a higher level of precision. For example, it can be applied when workloads are deployed in different zones.|Workloads that require precise scaling|ack-kubernetes-elastic-workload is applicable to online workloads that require precise scaling. For example, some pod replicas of a Deployment are scheduled to an ECS instance, and the remaining pod replicas are scheduled to ECIs.|[Deploy and use ack-kubernetes-elastic-workload in an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Deploy and use ack-kubernetes-elastic-workload in an ACK cluster.md)|
 
 **Components for resources scaling**
