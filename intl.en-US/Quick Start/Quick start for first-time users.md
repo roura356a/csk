@@ -47,16 +47,16 @@ Log on to the Alibaba Cloud official website with your Alibaba Cloud account and
 
 |Name|Description|
 |----|-----------|
-|[AliyunCSDefaultRole](#section_ju1_tsb_brp)|ACK assumes this role to access your resources in other cloud services when it manages ACK clusters. These cloud services include ECS, VPC, SLB, ESS, and Resource Orchestration Service \(ROS\).|
-|[AliyunCSManagedKubernetesRole](#section_j4k_173_ejk)|By default, a managed Kubernetes cluster assumes this role to access your resources in other cloud services. These cloud services include ECS, VPC, SLB, and Container Registry.|
-|[AliyunCSServerlessKubernetesRole](#section_6ht_wqj_yms)|By default, an ASK cluster assumes this role to access your resources in other cloud services. These cloud services include ECS, VPC, SLB, and Alibaba Cloud DNS PrivateZone.|
-|[AliyunCSKubernetesAuditRole](#section_rf2_r4h_mip)|The auditing feature of managed Kubernetes clusters and ASK clusters assumes this role to access your resources in Log Service.|
-|[AliyunCSManagedNetworkRole](#section_2xh_x0c_se3)|The network plug-in of managed Kubernetes clusters and ASK clusters assumes this role to access your resources in ECS and VPC.|
-|[AliyunCSManagedCsiRole](#section_ot3_h1u_t4i)|The storage plug-in of managed Kubernetes clusters and ASK clusters assumes this role to access your resources in ECS and NAS.|
-|[AliyunCSManagedCmsRole](#section_sdf_auf_nsx)|The monitoring component of managed Kubernetes clusters and ASK clusters assumes this role to access your resources in Cloud Monitor and Log Service.|
-|[AliyunCSManagedLogRole](#section_q0d_zoc_k5u)|The log component of managed Kubernetes clusters and ASK clusters assumes this role to access your resources in Log Service.|
-|[AliyunCSManagedVKRole](#section_1np_fxp_gl4)|The Virtual Kubelet component of ASK clusters assumes this role to access your resources in other cloud services. These cloud services include ECS, VPC, and Elastic Container Instance.|
-|[AliyunCSManagedArmsRole](#section_s8z_f50_zrm)|The application monitoring component of managed Kubernetes clusters and ASK clusters assumes this role to access your resources in Application Real-Time Monitoring Service \(ARMS\).|
+|[AliyunCSDefaultRole](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/ACK default roles.mdsection_ju1_tsb_brp)|ACK assumes this role to access your resources in other cloud services when it manages ACK clusters. These cloud services include ECS, VPC, SLB, ESS, and Resource Orchestration Service \(ROS\).|
+|[AliyunCSManagedKubernetesRole](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/ACK default roles.mdsection_j4k_173_ejk)|By default, a managed Kubernetes cluster assumes this role to access your resources in other cloud services. These cloud services include ECS, VPC, SLB, and Container Registry.|
+|[AliyunCSServerlessKubernetesRole](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/ACK default roles.md)|By default, an ASK cluster assumes this role to access your resources in other cloud services. These cloud services include ECS, VPC, SLB, and Alibaba Cloud DNS PrivateZone.|
+|[AliyunCSKubernetesAuditRole](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/ACK default roles.md)|The auditing feature of managed Kubernetes clusters and ASK clusters assumes this role to access your resources in Log Service.|
+|[AliyunCSManagedNetworkRole](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/ACK default roles.mdsection_2xh_x0c_se3)|The network plug-in of managed Kubernetes clusters and ASK clusters assumes this role to access your resources in ECS and VPC.|
+|[AliyunCSManagedCsiRole](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/ACK default roles.mdsection_ot3_h1u_t4i)|The storage plug-in of managed Kubernetes clusters and ASK clusters assumes this role to access your resources in ECS and NAS.|
+|[AliyunCSManagedCmsRole](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/ACK default roles.md)|The monitoring component of managed Kubernetes clusters and ASK clusters assumes this role to access your resources in Cloud Monitor and Log Service.|
+|[AliyunCSManagedLogRole](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/ACK default roles.mdsection_q0d_zoc_k5u)|The log component of managed Kubernetes clusters and ASK clusters assumes this role to access your resources in Log Service.|
+|[AliyunCSManagedVKRole](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/ACK default roles.mdsection_1np_fxp_gl4)|The Virtual Kubelet component of ASK clusters assumes this role to access your resources in other cloud services. These cloud services include ECS, VPC, and Elastic Container Instance.|
+|[AliyunCSManagedArmsRole](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/ACK default roles.md)|The application monitoring component of managed Kubernetes clusters and ASK clusters assumes this role to access your resources in Application Real-Time Monitoring Service \(ARMS\).|
 
 **Related topics**  
 
