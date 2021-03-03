@@ -24,34 +24,34 @@ post /api/v2/clusters/{ClusterId} http|https
 |count|Integer|No|3|The number of worker nodes that you want to add. |
 |worker\_instance\_charge\_type|String|No|PrePaid|The billing method of worker nodes. Valid values:
 
- -   PrePaid: subscription.
+-   PrePaid: subscription.
 -   PostPaid: pay-as-you-go.
 
- Default value: PostPaid. |
+Default value: PostPaid. |
 |worker\_period|Integer|No|1|The subscription duration of worker nodes. This parameter takes effect and is required only if worker\_instance\_charge\_type is set to PrePaid. If `worker_period_unit` is set to Month, valid values of worker\_period include 1, 2, 3, 6, and 12. |
 |worker\_period\_unit|String|No|Month|The unit of the subscription duration. This parameter is required if worker\_instance\_charge\_type is set to PrePaid. A value of Month specifies that the subscription duration is measured in months. |
 |worker\_auto\_renew|Boolean|No|true|Specifies whether to enable auto renewal for worker nodes. Valid values:
 
- -   true: enables auto renewal.
+-   true: enables auto renewal.
 -   false: disables auto renewal. |
 |worker\_auto\_renew\_period|Integer|No|6|The auto renewal period for worker nodes. This parameter takes effect and is required only if worker\_instance\_charge\_type is set to PrePaid and worker\_auto\_renew is set to true. If `worker_period_unit` is set to Month, valid values of worker\_auto\_renew\_period include 1, 2, 3, 6, and 12. |
 |worker\_system\_disk\_category|String|No|cloud\_efficiency|The system disk type of worker nodes. |
 |worker\_system\_disk\_size|Integer|No|120|The system disk size of a worker node. Unit: GiB. |
 |worker\_data\_disk|Boolean|No|true|Specifies whether to mount data disks to worker nodes. Valid values:
 
- -   true: mounts data disks.
+-   true: mounts data disks.
 -   false: does not mount data disks. |
 |key\_pair|String|No|secrity-key|The name of the key pair. You must set key\_pair or `login_password`. |
 |login\_password|String|No|Hello@1234|The SSH logon password. The password must be 8 to 30 characters in length and contain a minimum of three of the following character types: uppercase letters, lowercase letters, digits, and special characters. You must set login\_password or `key_pair`. |
 |cloud\_monitor\_flags|Boolean|No|true|Specifies whether to install the Cloud Monitor agent. |
 |cpu\_policy|String|No|none|The CPU management policy. For Kubernetes 1.12.6 and later, valid values of cpu\_policy include static and none. Default value: none. |
 |disable\_rollback|Boolean|No|true|Specifies whether to retain all resources if the operation fails. |
-|image\_id|String|No|""|The ID of the image. By default, a system image is used. You can also specify a custom image to replace the system image. For more information, see [Custom images](https://help.aliyun.com/document_detail/146647.html?spm=5176.2020520152.0.0.546b16ddPelyaG) . |
-|user\_data|String|No|""|The user data of the node. You can run batch or PowerShell scripts on Windows-based ECS instances. Before you perform Base64 encoding, make sure that the first line includes \[bat\] or \[powershell\]. Linux-based ECS instances support shell scripts. For more information about supported formats, see [User data formats](https://cloudinit.readthedocs.io/en/latest/topics/format.html) and [Prepare user data](https://help.aliyun.com/knowledge_detail/49121.html).
+|image\_id|String|No|""|The ID of the image. By default, a system image is used. You can also specify a custom image to replace the system image. For more information, see .[Use a custom image to create an ACK cluster](/intl.en-US/Best Practices/Migrate a self-built Kubernetes cluster to Container Service for Kubernetes/Use a custom image to create an ACK cluster.md) |
+|user\_data|String|No|""|The user data of the node. You can run batch or PowerShell scripts on Windows-based ECS instances. Before you perform Base64 encoding, make sure that the first line includes \[bat\] or \[powershell\]. Linux-based ECS instances support shell scripts. For more information about supported formats, see [User data formats](https://cloudinit.readthedocs.io/en/latest/topics/format.html) and [Prepare user data](/intl.en-US/Instance/Manage instances/User data/Prepare user data.md).
 
- If your script file is larger than 1 KB, we recommend that you upload the script to Object Storage Service \(OSS\) and pull the script through the internal endpoint of the OSS bucket.
+If your script file is larger than 1 KB, we recommend that you upload the script to Object Storage Service \(OSS\) and pull the script through the internal endpoint of the OSS bucket.
 
- You can run scripts to create a cluster or add nodes to a cluster. After requests are sent, you must check whether the execution of scripts succeeds. |
+You can run scripts to create a cluster or add nodes to a cluster. After requests are sent, you must check whether the execution of scripts succeeds. |
 |runtime|Object|No| |The runtime of containers. |
 |name|String|No|docker|The name of the container runtime. |
 |version|String|No|19.03.5|The version of the container runtime. |
