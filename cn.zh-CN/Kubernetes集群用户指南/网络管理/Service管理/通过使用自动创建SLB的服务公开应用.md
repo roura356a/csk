@@ -6,6 +6,8 @@ keyword: [自动创建SLB, 创建服务, 负载均衡型服务, loadbalancer ser
 
 当您没有可用的SLB时，Cloud Controller Manager（CCM）组件可以为LoadBalancer类型服务自动创建SLB，并对其进行管理。本文以Nginx应用为例，介绍如何通过使用自动创建SLB的服务来公开应用。
 
+
+
 ## 注意事项
 
 -   CCM只为`Type=LoadBalancer`类型的服务配置SLB。对于非LoadBalancer类型的服务，则不会为其配置负载均衡。
@@ -37,7 +39,7 @@ keyword: [自动创建SLB, 创建服务, 负载均衡型服务, loadbalancer ser
 
         **说明：** 您可以在提交工单时，说明需要修改`slb_quota_backendservers_num`参数，提高每个SLB实例可以挂载的服务器数量。
 
-    更多SLB使用限制请参见[使用限制](/cn.zh-CN/传统型负载均衡CLB/用户指南/产品限制/使用限制.md)。查询负载均衡SLB配额，请参见[负载均衡SLB配额管理](https://slbnew.console.aliyun.com/slb/quota)。
+    更多SLB使用限制请参见[使用限制](/cn.zh-CN/传统型负载均衡CLB/CLB用户指南/产品限制/使用限制.md)。查询负载均衡SLB配额，请参见[负载均衡SLB配额管理](https://slbnew.console.aliyun.com/slb/quota)。
 
 
 ## 步骤一：部署示例应用
