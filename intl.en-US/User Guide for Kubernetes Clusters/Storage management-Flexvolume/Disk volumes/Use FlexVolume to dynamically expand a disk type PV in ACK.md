@@ -6,43 +6,47 @@ keyword: [Kubernetes 1.16, dynamic expansion of disk type PVs]
 
 In Kubernetes 1.16, the feature to dynamically expand a disk type persistent volume \(PV\) is in public preview. Container Service for Kubernetes \(ACK\) allows you to dynamically expand a disk type PV by using FlexVolume in Kubernetes 1.16 and later. This topic describes how to dynamically expand a disk type PV by using FlexVolume.
 
-The **RAM role** of the cluster that you want to manage is granted the ResizeDisk permission. The procedure of granting the ResizeDisk permission to a RAM role varies based on the cluster type and the plug-in type.
+The **RAM role** of the cluster that you want to manage is granted the ResizeDisk permission. Grant the ResizeDisk permission to the RAM role of the cluster based on the type and plug-in of the cluster.
 
--   A dedicated cluster that has the CSI plug-in:
+-   A dedicated cluster that has the CSI plug-in installed:
     1.  Log on to the [ACK console](https://cs.console.aliyun.com).
     2.  In the left-side navigation pane, click **Clusters**.
     3.  On the Clusters page, find the cluster that you want to manage and click **Details** in the **Actions** column.
     4.  In the left-side navigation pane, click **Cluster Information**.
-    5.  Click the **Cluster Resources** tab and click the link next to **Master RAM Role**.
+    5.  Click the **Cluster Resources** tab and click the hyperlink next to **Master RAM Role**.
     6.  In the RAM console, grant the ResizeDisk permission to the RAM role. For more information, see [Modify a custom policy](/intl.en-US/Policy Management/Custom policies/Modify a custom policy.md).
 
         ![resizedisk](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9845359951/p101021.jpg)
 
--   A managed cluster or a dedicated cluster that has the FlexVolume plug-in:
+-   A managed cluster or a dedicated cluster that has the FlexVolume plug-in installed:
 
-    Perform the first four steps of the preceding procedure. On the management page of the cluster, click the Cluster Resources tab and click the link next to **Worker RAM Role**.
+    Repeat the first four steps of the preceding procedure. On the management page of the cluster, click the Cluster Resources tab and click the hyperlink next to **Worker RAM Role**.********
 
 
-PV expansion consists of the manual expansion of **PVs** and the automatic expansion of **file systems**. ACK allows you to expand both PVs and file systems without unmounting PVs from the host directory. However, to ensure the stability of file system expansion, stop application services and unmount the PV from the host directory first.
+You can choose to manually expand **PVs** or automatically expand **file systems**. ACK allows you to expand PVs and file systems without the need to unmount PVs from the host directory. However, to ensure the stability of the file system, we recommend that you stop the application service and unmound the PV from the host directory first.
 
-To meet different levels of stability requirements, ACK provides the following solutions for PV expansion:
+To meet different levels of stability requirements, Alibaba Cloud provides the following solutions for PV expansion:
 
--   Expand a PV without restarting the pod to which the PV is mounted. If you use this method, file system errors may occur if the cluster I/O is high.
--   Expand a PV during the restart of the pod to which the PV is mounted. To ensure data security during expansion, stop application services before expansion.
+-   Expand a PV without the need to restart the pod to which the PV is mounted. If the I/O throughput of the cluster is high when you use this method, a file system error may occur.
+-   Expand a PV during the restart of the pod to which the PV is mounted. To ensure data security, stop application services before you expand PVs.
 
-By default, ACK V1.16 and later support PV expansion without restarting the pod.
+For Kubernetes 1.16 and later, ACK allows you to expand PVs without the need to restart pods.
 
-## Notes
+## Usage notes
+
+-   **Limits**
+
+    You can dynamically expand only disk PVs that are smaller than 20,000 GiB.
 
 -   **Data backup**
 
     To avoid data loss caused by PV expansion errors, make sure that snapshots are created for the PV.
 
 -   **Scenarios**
-    -   You can enable dynamic expansion for a PV only if the StorageClassName parameter is specified for the PV.
-    -   ACK does not support expansion of inline volumes. Only PVs can be expanded.
-    -   ACK does not support dynamic expansion of basic disks.
-    -   The **AllowVolumeExpansion** field of a StorageClass is set to true. If you create a StorageClass, you must set this field to true.
+    -   You can dynamically expand only PVs that have the StorageClassName parameter specified.
+    -   ACK does not allow you to expand inline volumes. Inline volumes refer to volumes other than PVs and PVCs.
+    -   ACK does not allow you to dynamically expand basic disks.
+    -   The **allowVolumeExpansion** field of the StorageClass is set to true. You must manually set a StorageClass to true if it is manually declared. StorageClasses that are declared by ACK are automatically set to true.
 -   **Plug-in version**
 
     Make sure that the FlexVolume or CSI plug-in is upgraded to the latest version.
@@ -105,7 +109,7 @@ By default, ACK V1.16 and later support PV expansion without restarting the pod.
     d-wz9hpoifm43yn9zie6gl   20Gi       RWO            Delete           Bound      default/disk-ssd-web-0   alicloud-disk-available            65s
     ```
 
-2.  Make sure that the requirements described in the[Notes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Use CSI to expand PVs online in ACK.md) section are met. Then, run the following command to expand the PV:
+2.  Make sure that the requirements described in the [Usage notes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Use CSI to dynamically expand a disk PV in ACK.md) section are met. Then, run the following command to expand the PV:
 
     ```
     kubectl patch pvc disk-ssd-web-0 -p '{"spec":{"resources":{"requests":{"storage":"30Gi"}}}}'
@@ -157,9 +161,9 @@ By default, ACK V1.16 and later support PV expansion without restarting the pod.
 
 ## Expand a disk type PV after restarting a pod
 
-1.  Use kubectl to connect to a cluster. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+1.  Use kubectl to connect to a Kubernetes cluster. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
 
-    Assume that the pod that you want to manage is in the following state.
+    In this example, the pod that you want to manage is in the following state.
 
     Run the following command to query the information about the pod:
 
@@ -167,19 +171,19 @@ By default, ACK V1.16 and later support PV expansion without restarting the pod.
     kubectl get pod
     ```
 
-    The following command output appears:
+    The following output is returned:
 
     ```
     web-0         1/1     Running   0          42s
     ```
 
-    Run the following command to view the mounting status of the pod:
+    Run the following command to view the mounting state of the pod:
 
     ```
     kubectl exec web-0 df /data
     ```
 
-    The following command output appears:
+    The following output is returned:
 
     ```
     Filesystem     1K-blocks  Used Available Use% Mounted on
@@ -192,7 +196,7 @@ By default, ACK V1.16 and later support PV expansion without restarting the pod.
     kubectl get pvc
     ```
 
-    The following command output appears:
+    The following output is returned:
 
     ```
     NAME             STATUS   VOLUME                   CAPACITY   ACCESS MODES   STORAGECLASS              AGE
@@ -205,7 +209,7 @@ By default, ACK V1.16 and later support PV expansion without restarting the pod.
     kubectl get pv
     ```
 
-    The following command output appears:
+    The following output is returned:
 
     ```
     NAME                     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS     CLAIM                    STORAGECLASS              REASON   AGE
