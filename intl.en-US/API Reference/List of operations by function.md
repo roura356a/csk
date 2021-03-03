@@ -8,10 +8,7 @@ The following tables list the API operations available for use in Container Serv
 
 |API|Description|
 |---|-----------|
-|[Create a dedicated Kubernetes cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a dedicated Kubernetes cluster.md)
-
-|You can call CreateCluster to create a dedicated ACK cluster and add a specified number of nodes to the cluster.|
-|[Create a managed cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a managed Kubernetes cluster.md)
+|[Create a managed cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a managed cluster.md)
 
 |You can call CreateCluster to create a managed ACK cluster and add a specified number of nodes to the cluster.|
 |[Create a serverless cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a serverless cluster.md)
@@ -59,10 +56,10 @@ The following tables list the API operations available for use in Container Serv
 |[Delete a cluster](/intl.en-US/API Reference/Clusters/Delete a cluster.md)
 
 |You can call DeleteCluster to delete an ACK cluster by cluster ID and release all nodes in the cluster.|
-|[Modify the tags of a cluster](/intl.en-US/API Reference/Clusters/Modify the tags of a cluster.md)
+|[Modify the tags of a cluster](/intl.en-US/API Reference/Tag/Modify the tags of a cluster.md)
 
 |You can call ModifyClusterTags to modify tags of an ACK cluster.|
-|[Query tags of resources](/intl.en-US/API Reference/Clusters/Query tags of resources.md)
+|[ListTagResources](/intl.en-US/API Reference/Tag/ListTagResources.md)
 
 |You can call ListTagResources to query tags that are attached to one or more resources.|
 |[Query the details of a cluster version](/intl.en-US/API Reference/Clusters/Query the details of a cluster version.md)|You can call DescribeKubernetesVersionMetadata to query the details of a cluster version.|
@@ -74,9 +71,6 @@ The following tables list the API operations available for use in Container Serv
 |[Query nodes in a cluster](/intl.en-US/API Reference/Nodes/Query nodes in a cluster.md)
 
 |You can call DescribeClusterNodes to query nodes in an ACK cluster.|
-|[Remove nodes from a cluster](/intl.en-US/API Reference/Nodes/Remove nodes from a cluster.md)
-
-|You can call RemoveClusterNodes to remove nodes from an ACK cluster.|
 |[Add existing ECS instances to a cluster](/intl.en-US/API Reference/Nodes/Add existing ECS instances to a cluster.md)
 
 |You can call AttachInstances to add an existing Elastic Compute Service \(ECS\) instance to an ACK cluster.|
@@ -91,22 +85,22 @@ The following tables list the API operations available for use in Container Serv
 
 |API|Description|
 |---|-----------|
-|[Create a node pool](/intl.en-US/API Reference/Nodes/Node pools/Create a node pool.md)
+|[Create a node pool](/intl.en-US/API Reference/Node pools/Create a node pool.md)
 
 |You can call CreateClusterNodePool to create a node pool for a cluster.|
-|[Add nodes to a node pool](/intl.en-US/API Reference/Nodes/Node pools/Add nodes to a node pool.md)
+|[ScaleClusterNodePool](/intl.en-US/API Reference/Node pools/ScaleClusterNodePool.md)
 
 |You can call ScaleClusterNodePool to add nodes to a node pool.|
-|[Update node pool information](/intl.en-US/API Reference/Nodes/Node pools/Update node pool information.md)
+|[Update node pool information](/intl.en-US/API Reference/Node pools/Update node pool information.md)
 
 |You can call ModifyClusterNodePool to update the configuration of a node pool.|
-|[Query node pools](/intl.en-US/API Reference/Nodes/Node pools/Query node pools.md)
+|[Query node pools](/intl.en-US/API Reference/Node pools/Query node pools.md)
 
 |You can call DescribeClusterNodePools to query all node pools in an ACK cluster.|
-|[Query the details of a node pool](/intl.en-US/API Reference/Nodes/Node pools/Query the details of a node pool.md)
+|[Query the details of a node pool](/intl.en-US/API Reference/Node pools/Query the details of a node pool.md)
 
 |You can call DescribeClusterNodePoolDetail to query the details of a node pool in an ACK cluster.|
-|[Delete a node pool](/intl.en-US/API Reference/Nodes/Node pools/Delete a node pool.md)|You can call DeleteClusterNodepool to delete a node pool.|
+|[Delete a node pool](/intl.en-US/API Reference/Node pools/Delete a node pool.md)|You can call DeleteClusterNodepool to delete a node pool.|
 
 ## Upgrades
 
@@ -153,21 +147,18 @@ The following tables list the API operations available for use in Container Serv
 
 |API|Description|
 |---|-----------|
-|[Install add-ons for a cluster](/intl.en-US/API Reference/Add-ons/Install an add-on for a cluster.md)
+|[Install add-ons for a cluster](/intl.en-US/API Reference/Add-ons/Install add-ons for a cluster.md)
 
 |You can call InstallClusterAddons to install add-ons for an ACK cluster.|
-|[Query details of cluster add-ons](/intl.en-US/API Reference/Add-ons/Query details of cluster add-ons.md)
+|[Query details of cluster add-ons]()
 
 |You can call DescribeClusterAddonsVersion to query add-on versions in an ACK cluster.|
 |[Query supported add-ons](/intl.en-US/API Reference/Add-ons/Query supported add-ons.md)
 
 |You can call DescribeAddons to query information about add-ons in an ACK cluster.|
-|[Query the upgrade status of a cluster add-on](/intl.en-US/API Reference/Add-ons/Query the upgrade status of a cluster add-on.md)
-
-|You can call DescribeClusterAddonUpgradeStatus to query the upgrade status of an add-on in an ACK cluster.|
 |[Query the upgrade statuses of cluster add-ons](/intl.en-US/API Reference/Add-ons/Query the upgrade statuses of cluster add-ons.md)|You can call DescribeClusterAddonsUpgradeStatus to query the upgrade statuses of multiple add-ons.|
 |[Modify an add-on in a managed cluster](/intl.en-US/API Reference/Add-ons/Modify an add-on in a managed cluster.md)|You can call ModifyClusterConfiguration to modify ConfigMap data for a managed cluster. This allows you to modify the configuration of a cluster add-on.|
-|[Uninstall an add-on from a cluster](/intl.en-US/API Reference/Add-ons/Uninstall an add-on from a cluster.md)
+|[UnInstallClusterAddons](/intl.en-US/API Reference/Add-ons/UnInstallClusterAddons.md)
 
 |You can call UnInstallClusterAddons to uninstall an add-on from an ACK cluster.|
 
