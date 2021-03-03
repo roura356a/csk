@@ -1,18 +1,18 @@
-# 添加已有ECS实例
+# Add existing ECS instances to a cluster
 
-通过执行`arc cs node attach <clusterid> --password <password> --instances '["<instanceid1>","<instanceid2>"]'`命令添加已有ECS实例至ACK集群。
+You can run the following command to add existing Elastic Compute Service \(ECS\) instances to a Container Service for Kubernetes \(ACK\) cluster: `arc cs node attach <clusterid> --password <password> --instances '["<instanceid1>","<instanceid2>"]'`.
 
-关于该命令的详细参数说明，请参见API文档[添加已有实例到集群](/intl.zh-CN/API参考/节点/添加已有实例到集群.md)。
+For more information about this command, see [Add existing ECS instances to a cluster](/intl.en-US/API Reference/Nodes/Add existing ECS instances to a cluster.md).
 
-## CLI示例
+## Example by using Alibaba Cloud CLI
 
-请求示例：
+Sample request:
 
 ```
 arc cs node attach c8cfc598fc84a41d6af96965f34ed**** --password Hello**** --instances '["i-bp1bw9dno0jghymp****","i-bp1bw9dno0jghymp****"]'
 ```
 
-返回结果示例：
+Sample response:
 
 ```
 {
