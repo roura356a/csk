@@ -1,18 +1,18 @@
-# 查看集群详细信息
+# Query detailed information about a cluster
 
-通过执行arc-cs cluster get <clusterId\>命令查看您在容器服务中创建的集群详细信息。
+You can run the arc-cs cluster get <clusterId\> command to query detailed information about a cluster of Container Service for Kubernetes \(ACK\).
 
-关于该命令的详细参数说明，请参见API文档[查询集群信息](/intl.zh-CN/API参考/集群/查询集群信息.md)。
+For more information about the parameters of the command, see [Query a cluster](/intl.en-US/API Reference/Clusters/Query a cluster.md).
 
-## CLI示例
+## Command-line interface examples
 
-请求示例：
+Sample request:
 
 ```
 arc-cs cluster get cbfa079eb225c44e7bce86c626f0c****
 ```
 
-返回结果示例：
+Sample response:
 
 ```
 {
