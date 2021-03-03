@@ -49,9 +49,9 @@ Compared with open source Prometheus, ARMS Prometheus has the following benefits
 
 2.  In the left-side navigation pane, choose **Marketplace** \> **App Catalog**.
 
-3.  On the App Catalog page, click the**Alibaba Cloud Apps** tab and click **ack-arms-prometheus**.
+3.  On the App Catalog page, click the **Alibaba Cloud Apps** tab and click **ack-arms-prometheus**.
 
-4.  In the **Deploy** section of the App Catalog - ack-arms-prometheus page, select the cluster for which you want to enable Prometheus monitoring, and click **Create**.
+4.  In the **Deploy** section of the App Catalog - ack-arms-prometheus page, select the cluster for which you want to enable ARMS Prometheus, and click **Create**.
 
     **Note:** By default, **Namespace** and **Release Name** are set to **arms-prom**.
 
