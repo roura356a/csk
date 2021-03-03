@@ -2,7 +2,7 @@
 
 通过执行`arc cs node delete <instanceId> --release-node true --nodes '["<region>.<instanceIp1>","<region>.<instanceIp2>"]`命令移除ACK集群的节点。
 
-关于该命令的详细参数说明，请参见API文档[移除集群节点](/cn.zh-CN/API参考/节点/移除集群节点.md)。
+关于该命令的详细参数说明，请参见API文档[移除集群节点](/intl.zh-CN/API参考/节点/移除集群节点.md)。
 
 ## CLI示例
 
