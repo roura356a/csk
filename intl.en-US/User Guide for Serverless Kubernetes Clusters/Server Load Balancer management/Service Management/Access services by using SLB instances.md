@@ -2,7 +2,7 @@
 
 After you create a LoadBalancer service, you can access the service by using a Server Load Balancer \(SLB\) instance. For access requests from outside the cluster, you can use the domain name of the SLB instance and the service port, or use the IP address of the SLB instance and the service port. For access requests from within the cluster, you can use the service name and the service port. This topic describes how to access services by using SLB instances.
 
-You have read the considerations described in [Considerations for configuring a LoadBalancer service](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Considerations for configuring a LoadBalancer service.md).
+You have read the considerations described in [Considerations for configuring a LoadBalancer type Service](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Considerations for configuring a LoadBalancer type Service.md).
 
 Assume that the Cloud Controller Manager \(CCM\) version of your cluster is 1.9.3 or later, and you have specified an existing SLB instance for a service. By default, CCM does not configure listeners for the SLB instance. You can use the annotation `service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners: "true"` to enable CCM to configure listeners for the SLB instance. You can also manually configure listeners for the SLB instance.
 
@@ -130,7 +130,7 @@ You can use the following methods to view the CCM version:
 
 2.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-3.  In the left-side navigation pane, click **Clusters**.
+3.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 4.  On the Clusters page, find the specific cluster, and choose **More** \> **Dashboard**in the Actions column of the cluster.
 
@@ -155,11 +155,11 @@ You can use the following methods to view the CCM version:
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane, click **Workload**.
+4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
 5.  On the **Deployments** tab, click **Create from Template**.
 
