@@ -7,7 +7,7 @@ keyword: [scheduled scaling, CronHPA, Kubernetes, compatibility with HPA]
 To reduce resource wasting in some scenarios, Container Service for Kubernetes \(ACK\) provides the kubernetes-cronhpa-controller component to automatically scale resources based on predefined schedules. This topic describes how to use Cron Horizontal Pod Autoscaler \(CronHPA\) to scale your workload based on a schedule. It also describes how to enable CronHPA and Horizontal Pod Autoscaler \(HPA\) to interact without conflicts.
 
 -   An ACK cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
--   Helm 2.11.0 or later is installed on your on-premises machine. For more information, see [Install Helm](https://github.com/helm/helm?spm=a2c4g.11186623.2.28.36d61fa8fxvUaY) and [Manually upgrade Helm]().
+-   Helm 2.11.0 or later is installed on your on-premises machine. For more information, see [Install Helm](https://github.com/helm/helm?spm=a2c4g.11186623.2.28.36d61fa8fxvUaY).
 -   You are connected to the cluster by using kubectl before you run commands to perform the following operations. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
 
 kubernetes-cronhpa-controller is a Kubernetes HPA controller that scales a Kubernetes cluster based on a schedule that is similar to a crontab. You can use CronHPA with any Kubernetes object \(such as Deployment and StatefulSet\) whose subresources can be scaled. kubernetes-cronhpa-controller is an open source project on GitHub. For more information, see [kubernetes-cronhpa-controller](https://github.com/AliyunContainerService/kubernetes-cronhpa-controller).
@@ -119,7 +119,7 @@ Before you create and run CronHPA jobs for your application, you must make sure 
 
 **Scenario 1: Create CronHPA jobs when you create an application**
 
-In the **Scaling** section on the **Advanced** wizard page when you create an application, select **Enable** on the right side of **CronHPA** to create CronHPA jobs for the application. For more information about how to create an application, see [Use an image to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Use an image to create a stateless application.md) or [Deploy stateful applications from images](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Use an image to create a stateful application.md).
+In the **Scaling** section on the **Advanced** wizard page when you create an application, select **Enable** on the right side of **CronHPA** to create CronHPA jobs for the application. For more information about how to create an application, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Deploy a stateless application from an image.md) or [Deploy a stateful application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Deploy a stateful application from an image.md).
 
 ![cronhpa](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2431471161/p206611.png)
 
