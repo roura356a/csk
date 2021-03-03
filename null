@@ -1,15 +1,15 @@
-# 添加已有ECS实例
+# 移除集群节点
 
-通过执行`arc cs node attach <clusterid> --password <password> --instances '["<instanceid1>","<instanceid2>"]'`命令添加已有ECS实例至ACK集群。
+通过执行`arc cs node delete <instanceId> --release-node true --nodes '["<region>.<instanceIp1>","<region>.<instanceIp2>"]`命令移除ACK集群的节点。
 
-关于该命令的详细参数说明，请参见API文档[添加已有实例到集群](/intl.zh-CN/API参考/节点/添加已有实例到集群.md)。
+关于该命令的详细参数说明，请参见API文档[移除集群节点](/cn.zh-CN/API参考/节点/移除集群节点.md)。
 
 ## CLI示例
 
 请求示例：
 
 ```
-arc cs node attach c8cfc598fc84a41d6af96965f34ed**** --password Hello**** --instances '["i-bp1bw9dno0jghymp****","i-bp1bw9dno0jghymp****"]'
+arc cs node delete c8cfc598fc84a41d6af96965f34ed**** --release-node true --nodes '["cn-hangzhou.10.1.xxx.xxx","cn-hangzhou.10.1.xxx.xxx"]
 ```
 
 返回结果示例：
