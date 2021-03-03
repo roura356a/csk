@@ -8,7 +8,7 @@ This topic uses cluster swarm-piggymetrics-cluster as an example to describe how
 
 ## Create a Kubernetes cluster
 
-Create a Kubernetes cluster based on the configurations of cluster swarm-piggymetrics-cluster. For more information, see [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md). When you create the Kubernetes cluster, take note of the following limits:
+Create a Kubernetes cluster based on the configurations of cluster swarm-piggymetrics-cluster. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md). When you create the Kubernetes cluster, take note of the following limits:
 
 -   Select the same region and zone where cluster swarm-piggymetrics-cluster is deployed. This ensures successful migration of resources that cannot be migrated across regions, such as virtual private clouds \(VPCs\)
 -   Kubernetes clusters support only VPCs and do not support the classic network.
@@ -48,8 +48,8 @@ If cluster swarm-piggymetrics-cluster is deployed in the classic network, the cr
     -   If the ECS instances can access the RDS instance, go to the next step.
     -   If the ECS instances cannot access the RDS instance, the possible reasons include:
 
-        -   The IP addresses of the ECS instances failed to be added to the whitelist of the RDS instance. The IP addresses of the ECS instances in the created Kubernetes cluster failed to be added to the whitelist of the RDS instance. Log on to the [RDS console](https://rdsnew.console.aliyun.com), choose **RDS Instance** \> **Data Security**, and add the IP addresses of the ECS instances to the RDS whitelist again. For more information, see[Configure a whitelist for an ApsaraDB RDS for PostgreSQL instance](/intl.en-US/RDS PostgreSQL Database/Quick start/Configure a whitelist for an ApsaraDB RDS for PostgreSQL instance.md).
-        -   If the issue still exists, see [What do I do if I cannot connect an ECS instance to an ApsaraDB for RDS instance?](/intl.en-US/FAQs/Connections and Networks/Resolve the problem that cannot connect to the RDS instance.md).
+        -   The IP addresses of the ECS instances failed to be added to the whitelist of the RDS instance. The IP addresses of the ECS instances in the created Kubernetes cluster failed to be added to the whitelist of the RDS instance. Log on to the [RDS console](https://rdsnew.console.aliyun.com), choose **RDS Instance** \> **Data Security**, and add the IP addresses of the ECS instances to the RDS whitelist again. For more information, see [Configure a whitelist for an ApsaraDB RDS for PostgreSQL instance](/intl.en-US/RDS PostgreSQL Database/Quick start/Configure a whitelist for an ApsaraDB RDS for PostgreSQL instance.md).
+        -   If the issue still exists, see [What do I do if I cannot connect an ECS instance to an ApsaraDB for RDS instance?](/intl.en-US/FAQs/Connections and Networks/Resolve the issue that you cannot connect to an RDS instance.md).
         After you troubleshoot and fix the connection issue, log on to the [ECS console](https://ecs.console.aliyun.com/) again. Make sure that the ECS instances can access the RDS instance. Then, go to the next step.
 
 4.  Log on to the [OSS console](https://oss.console.aliyun.com/). Find the OSS bucket that is used by the Swarm cluster and view the endpoints for the classic network and VPCs.
