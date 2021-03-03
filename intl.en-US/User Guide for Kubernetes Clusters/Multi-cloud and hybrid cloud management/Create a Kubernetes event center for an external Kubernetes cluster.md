@@ -55,12 +55,12 @@ To send alerts only through DingTalk, set the value to **Node**.|
     **Note:** After you create a Kubernetes event center, a Logstore named k8s-event is automatically created in the associated project. Relevant dashboards and alerts are also created for the event center.
 
 
-After the configuration is complete, you can use the Kubernetes event center. For more information, see [Use a Kubernetes event center](https://help.aliyun.com/document_detail/150476.html?spm=a2c6h.12873639.0.0.53116056SIry63#title-sn5-lr5-dmk).
+After the configuration is complete, you can use the Kubernetes event center. For more information, see [Create and use a Kubernetes event center](/intl.en-US/Application/K8s Event Center/Create and use a Kubernetes event center.md).
 
 After the Kubernetes event center is created for the external Kubernetes cluster, you can check event overviews, viewing event details, check pod lifecycles, configure alerts, and customize queries by using the event center.
 
 **Related topics**  
 
 
-[Introduction to registered external clusters](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Introduction to registered external clusters.md)
+[Introduction to registering external clusters](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Introduction to registering external clusters.md)
 
