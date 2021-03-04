@@ -8,13 +8,15 @@ This topic describes how to use an image to deploy an NGINX application that is 
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
-5.  On the **Deployments** page, click **Create from Image**.
+5.  In the left-side navigation pane, choose **Workloads** \> **Deployments**. On the Deployments page, click **Create from Image** in the upper-right corner of the page.
 
-6.  On the **Basic Information** wizard page, configure the basic settings.
+6.  On the **Deployments** tab, click **Create from Image**.
+
+7.  On the **Basic Information** wizard page, configure the basic settings.
 
     ![Basic configuration](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8309301161/p10973.png)
 
@@ -30,9 +32,9 @@ This topic describes how to use an image to deploy an NGINX application that is 
 
     **Note:** **Deployments** is selected in this example. The default namespace is selected. You can select another **namespace**. The number of replicas equals the number of pods that are provisioned for the application.
 
-7.  Click **Next** to proceed to the **Container** wizard page.
+8.  Click **Next** to proceed to the **Container** wizard page.
 
-8.  Configure the containers.
+9.  Configure the containers.
 
     **Note:** At the top of the **Container** wizard page, click **Add Container** to add more containers for the application.
 
@@ -143,9 +145,9 @@ This topic describes how to use an image to deploy an NGINX application that is 
         -   Text Logs: specifies that logs in the specified path of the container are collected. In this example, /var/log/nginx is specified as the path. Wildcard characters can be used in this path. |
         |Custom Tag|You can also add tags. Tags are added to the logs of the container when the logs are collected. Log data with tags is easier to aggregate and filter.|
 
-9.  Set the preceding parameters based on your business requirements and click **Next**.
+10. Set the preceding parameters based on your business requirements and click **Next**.
 
-10. Configure advanced settings.
+11. Configure advanced settings.
 
     -   Access Control
 
@@ -205,7 +207,7 @@ This topic describes how to use an image to deploy an NGINX application that is 
 
         -   **Required**: Specify the rules that must be matched for a pod to be scheduled to a node. Required rules correspond to the requiredDuringSchedulingIgnoredDuringExecution affinity. A node must match the required rules before a pod can be scheduled to the node.
             -   **Namespace**: Specify a namespace rule. Pod affinity is scoped to namespaces because it is enforced based on the labels of pods
-            -   **Topological Domain**: Set the topologyKey. This specifies the key for the node label that the system uses to denote the topological domain. For example, if you set the parameter to`kubernetes.io/hostname`, topologies are determined by nodes. If you set the parameter to `beta.kubernetes.io/os`, topologies are determined by the operating systems of nodes.
+            -   **Topological Domain**: Set the topologyKey. This specifies the key for the node label that the system uses to denote the topological domain. For example, if you set the parameter to `kubernetes.io/hostname`, topologies are determined by nodes. If you set the parameter to `beta.kubernetes.io/os`, topologies are determined by the operating systems of nodes.
             -   **Selector**: Click Add to add pod labels.
             -   **View Applications**: Click **View Applications** and set the namespace and applications in the dialog box that appears. You can view the pod labels on the selected application and add the labels as selectors.
             -   Required Rules: Specify labels on existing applications, operators, and label values. In this example, the required rule specifies that the application to be created is scheduled to a host that runs applications with the `app:nginx` label.
@@ -224,9 +226,9 @@ This topic describes how to use an image to deploy an NGINX application that is 
     -   Labels and Annotations
         -   Pod Labels: Add a label to the pod. The label is used to identify the application.
         -   Pod Annotations: Add an annotation to the pod.
-11. Click **Create**.
+12. Click **Create**.
 
-12. After the application is created, you are redirected to the Complete page. You can find the resource objects under the application and click **View Details** to view application details.
+13. After the application is created, you are redirected to the Complete page. You can find the resource objects under the application and click **View Details** to view application details.
 
     ![View details](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0665359951/p10983.png)
 
@@ -236,11 +238,11 @@ This topic describes how to use an image to deploy an NGINX application that is 
 
     -   Click **Create** on the right side of **Services**. For more information, see [Manage Services](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Manage Services.md).
     -   Click **Create** on the right side of **Ingresses**. For more information, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Ingress configurations.md).
-13. Return to the details page of the cluster. In the left-side navigation pane, click **Ingresses**. You can find the created Ingress on the Ingresses page.
+14. Return to the details page of the cluster. In the left-side navigation pane, click **Ingresses**. You can find the created Ingress on the Ingresses page.
 
     ![Ingress rules](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0665359951/p10985.png)
 
-14. Enter the test domain name in the address bar of your browser and press Enter. The NGINX welcome page appears.
+15. Enter the test domain name in the address bar of your browser and press Enter. The NGINX welcome page appears.
 
     ![NGINX welcome page](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0665359951/p10986.png)
 
