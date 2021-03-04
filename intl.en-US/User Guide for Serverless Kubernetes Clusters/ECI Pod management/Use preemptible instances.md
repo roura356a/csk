@@ -1,5 +1,5 @@
 ---
-keyword: [preemptible instances, ECI Pod]
+keyword: [preemptible instances, ECI pod]
 ---
 
 # Use preemptible instances
@@ -17,17 +17,17 @@ A preemptible instance has a guaranteed period of one hour after it is created. 
 When you use a preemptible instance, we recommend that you follow these suggestions:
 
 -   When you set your bid, consider market price fluctuations. Only if your bid is higher than bids from other customers, the request is accepted and processed, and the created instance will not be released due to price fluctuations. In addition, you must submit the price based on the expected requirements of your workloads.
--   We recommend that you store important data in a storage medium that is not affected by the release of preemptible instances. For example, you can use a cloud disk that will not be released along with the preemptible instance, or choose external storage such as Network Attached Storage \(NAS\).
+-   We recommend that you store important data in a storage medium that is not affected by the release of preemptible instances. For example, you can use a cloud disk that will not be released along with the preemptible instance, or choose external storage such as Network-attached storage \(NAS\).
 
 You can create a preemptible instance in one of the following ways:
 
--   Specify the ECS instance type.
+-   Specify the type of Elastic Compute Service \(ECS\) instance.
 
     The preemptible instance is billed based on the market price and discount for a pay-as-you-go ECS instance of the specified instance type at the time of purchase.
 
 -   Specify CPU and memory specifications.
 
-    ECI automatically matches ECS instance types that meet the price requirement. The market price of the selected instance type is adopted as the base market price. Discounts are applied based on the base market price instead of the pay-as-you-go price of CPU/memory resources of the corresponding ECI. Specifying CPU and memory specifications is equivalent to specifying the ECS instance type.
+    ECI automatically matches ECS instance types that meet the price requirement. The market price of the selected instance type is adopted as the base market price. Discounts are applied based on the base market price instead of the pay-as-you-go price of CPU and memory resources of the corresponding ECI. Specifying CPU and memory specifications is equivalent to specifying the ECS instance type.
 
 
 ## Scenarios
@@ -83,7 +83,9 @@ Deployment example
           labels:
             app: nginx
           annotations:
-            k8s.aliyun.com/eci-use-specs : "2-4Gi"  #Replace the value with the ECS instance type that you want. k8s.aliyun.com/eci-spot-strategy: "SpotAsPriceGo"  #Bid based on the market price.
+            k8s.aliyun.com/eci-use-specs: "2-4Gi"  #Specify an ECS instance type or CPU and memory specifications based on requirements.
+            k8s.aliyun.com/eci-spot-strategy: "SpotAsPriceGo"  #A value of SpotAsPriceGo specifies a preemptible instance that is priced at the market price at the time of purchase.  
+        spec:
           containers:
           - name: nginx
             image: nginx:1.7.9
@@ -110,7 +112,10 @@ Deployment example
           labels:
             app: nginx
           annotations:
-            k8s.aliyun.com/eci-use-specs : "ecs.c5.large"  #Replace the value with the ECS instance type that you want. k8s.aliyun.com/eci-spot-strategy: "SpotWithPriceLimit"  #Set the highest bid. k8s.aliyun.com/eci-spot-price-limit: "0.250" #Set the highest bid within an hour.
+            k8s.aliyun.com/eci-use-specs: "ecs.c5.large"  #Specify an ECS instance type or CPU and memory specifications as needed.
+            k8s.aliyun.com/eci-spot-strategy: "SpotWithPriceLimit"  #A value of SpotWithPriceLimit specifies a preemptible instance with the highest hourly price.
+            k8s.aliyun.com/eci-spot-price-limit: "0.250" #The highest hourly price.
+        spec:
           containers:
           - name: nginx
             image: nginx:1.7.9
