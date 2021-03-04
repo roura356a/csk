@@ -12,13 +12,13 @@ You can collect Object Storage Service \(OSS\) events from MnsOss event sources 
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  On the details page of the cluster, choose **Application** \> **Knative**.
 
 5.  On the **Components** tab, find MnsOss and click **Deploy** in the **Actions** column.
 
-6.  In the**Deploy MnsOSS** dialog box, click **OK**.
+6.  In the **Deploy MnsOSS** dialog box, click **OK**.
 
 
 ## Step 2: Configure OSS event notification settings
@@ -200,7 +200,7 @@ Create a Knative Service to test whether the created MnsOss event source works a
 
 Create a trigger to subscribe to OSS events.
 
-1.  Create a file namedtrigger.yaml.
+1.  Create a file named trigger.yaml.
 
     ```
     apiVersion: eventing.knative.dev/v1alpha1
