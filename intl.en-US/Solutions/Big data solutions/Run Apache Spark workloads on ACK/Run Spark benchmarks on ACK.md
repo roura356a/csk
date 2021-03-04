@@ -26,7 +26,7 @@ Run the DataGeneration.scala command to generate 1 TB of data, and store the dat
       namespace: default
     spec:
       type: Scala
-      image: registry.cn-beijing.aliyuncs.com/yukong/ack-spark-benchmark:1.0.0
+      image: registry.cn-beijing.aliyuncs.com/yukong/ack-spark-benchmark:1.0.1
       sparkVersion: 2.4.5
       mainClass: com.aliyun.spark.benchmark.tpcds.DataGeneration
       mainApplicationFile: "local:///opt/spark/jars/ack-spark-benchmark-assembly-0.1.jar"
@@ -39,7 +39,7 @@ Run the DataGeneration.scala command to generate 1 TB of data, and store the dat
         # Data Format
         - "parquet"
         # Scale factor (in GB)
-        - "100000"
+        - "1000"
         # Generate data num partitions
         - "100"
         # Create the partitioned fact tables
@@ -102,7 +102,7 @@ The test results show that the Alluxio cache improves the query performance. The
         spec:
           type: Scala
           mode: cluster
-          image: registry.cn-beijing.aliyuncs.com/yukong/ack-spark-benchmark:1.0.0
+          image: registry.cn-beijing.aliyuncs.com/yukong/ack-spark-benchmark:1.0.1
           imagePullPolicy: Always
           sparkVersion: 2.4.5
           mainClass: com.aliyun.spark.benchmark.tpcds.BenchmarkSQL
@@ -179,7 +179,7 @@ The test results show that the Alluxio cache improves the query performance. The
         spec:
           type: Scala
           mode: cluster
-          image: registry.cn-beijing.aliyuncs.com/yukong/ack-spark-benchmark:1.0.0
+          image: registry.cn-beijing.aliyuncs.com/yukong/ack-spark-benchmark:1.0.1
           imagePullPolicy: Always
           sparkVersion: 2.4.5
           mainClass: com.aliyun.spark.benchmark.tpcds.BenchmarkSQL
@@ -322,5 +322,5 @@ The test results show that the Alluxio cache improves the query performance. The
     When you use Alluxio to accelerate data access for the first time, Spark reads data from OSS and caches the data in Alluxio. In this case, the read speed is slow. Therefore, we recommend that you run more benchmarks after the preceding step. In these tests, Spark reads data from the Alluxio hot cache.
 
 
-[Analyze test results]()
+[Analyze test results](/intl.en-US/Solutions/Big data solutions/Run Apache Spark workloads on ACK/Analyze test results.md)
 
