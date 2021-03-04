@@ -38,7 +38,7 @@ When you create an ACK cluster, you can choose one of the following network plug
 
 ## Step 1: Plan CIDR blocks
 
-When you create an ACK cluster, you must specify a VPC, vSwitches, the CIDR block of pods, and the CIDR block of Services. If you want to install the Terway plug-in, you must first create a VPC and two vSwitches in the VPC. The two vSwitches must be in the same zone. For more information about how to plan CIDR blocks for a cluster that uses Terway, see [Assign CIDR blocks to resources in a Kubernetes cluster under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Assign CIDR blocks to resources in a Kubernetes cluster under a VPC.md).
+When you create an ACK cluster, you must specify a VPC, vSwitches, the CIDR block of pods, and the CIDR block of Services. If you want to install the Terway plug-in, you must first create a VPC and two vSwitches in the VPC. The two vSwitches must be in the same zone. For more information about how to plan CIDR blocks for a cluster that uses Terway, see [Plan CIDR blocks for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan CIDR blocks for an ACK cluster.md).
 
 You can refer to the following table to assign CIDR blocks for a cluster that uses Terway.
 
@@ -95,13 +95,13 @@ To install Terway in a cluster and set up networks for the cluster, set the foll
 -   This option is available only when you clear Assign One ENI to Each Pod.
 -   If you select IPVLAN, IPVLAN and extended Berkeley Packet Filter \(eBPF\) are used for network virtualization when an ENI is shared among multiple pods. This improves network performance. Only the Alibaba Cloud Linux 2 operating system is supported.
 -   If you clear IPVLAN, policy-based routes are used for network virtualization when an ENI is shared among multiple pods. The CentOS 7 and Alibaba Cloud Linux 2 operating systems are supported. This is the default setting.
-**Note:** Before you select **Assign One ENI to Each Pod**,you must [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply for this feature to be enabled on your account.
+**Note:** To select the **Assign One ENI to Each Pod** option,you must [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply for this option to be available for your account.
 
     -   Select or clear **Support for NetworkPolicy**.
 
 -   The NetworkPolicy feature is available only when you clear Assign One ENI to Each Pod. By default, Assign One ENI to Each Pod is unselected.
 -   If you select Support for NetworkPolicy, you can use Kubernetes network policies to control communication among pods.
--   If you clear Support for NetworkPolicy, you cannot use Kubernetes network policies to control communication among pods. This prevents Kubernetes network policies from posing heavy loads on the Kubernetes API server.
+-   If you clear Support for NetworkPolicy, you cannot use Kubernetes network policies to control communication among pods. This prevents Kubernetes network policies from overloading on the Kubernetes API server.
 -   **Pod VSwitch**: Select the pod vSwitch created in [Step 1: Plan CIDR blocks](#section_2nd_fho_f25).
 -   **Service CIDR**: Use the default settings.
 
@@ -110,7 +110,7 @@ To install Terway in a cluster and set up networks for the cluster, set the foll
 
 [Overview](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Overview.md)
 
-[Assign CIDR blocks to resources in a Kubernetes cluster under a VPC](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Assign CIDR blocks to resources in a Kubernetes cluster under a VPC.md)
+[Plan CIDR blocks for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan CIDR blocks for an ACK cluster.md)
 
 [Create vSwitches for an ACK cluster that has Terway installed](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Create vSwitches for an ACK cluster that has Terway installed.md)
 
