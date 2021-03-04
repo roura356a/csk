@@ -214,7 +214,7 @@ ACK allows you to use multiple types of certificate to reinforce the security of
     tls-fanout      *             101.37.XX.XX     80        11s
     ```
 
-3.  After the secure Ingress is created, you must point the domain name to the IP address of the service or add mapping rules to the `hosts` file. For more information, see [\#section\_2en\_rfc\_98m](#section_2en_rfc_98m).
+3.  After the secure Ingress is created, you must point the domain name to the IP address of the service or add mapping rules to the `hosts` file.
 
     You can visit `http://foo.bar.com/foo` to access `http-svc1` and visit `http://foo.bar.com/bar` to access `http-svc2`.
 
