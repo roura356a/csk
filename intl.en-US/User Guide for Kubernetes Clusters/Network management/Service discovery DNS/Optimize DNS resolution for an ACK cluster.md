@@ -11,11 +11,11 @@ CoreDNS is a Domain Name System \(DNS\) resolver for Kubernetes clusters. CoreDN
 
 For more information about CoreDNS, see [CoreDNS](https://coredns.io/).
 
-## Adjust the number of CoreDNS pod replicas properly
+## Adjust the number of CoreDNS pods properly
 
-A proper ratio of CoreDNS pod replicas to nodes in a Kubernetes cluster improves the performance of service discovery for the cluster. We recommend that you set the ratio to 1:8.
+Setting a proper ratio of CoreDNS pods to nodes in a Kubernetes cluster improves the performance of service discovery for the cluster. We recommend that you set the ratio to 1:8.
 
--   If you do not need to expand your cluster on a large scale, you can run the following command to change the number of pod replicas:
+-   If you do not want to expand your cluster on a large scale, you can run the following command to change the number of pods:
 
     ```
     kubectl scale --replicas={target} deployment/coredns -n kube-system
@@ -23,7 +23,7 @@ A proper ratio of CoreDNS pod replicas to nodes in a Kubernetes cluster improves
 
     **Note:** Replace `{target}` with the required value.
 
--   If you need to expand your cluster on a large scale, you can use the following YAML template to create a Deployment. Then, you can use [cluster-proportional-autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-autoscaler) to dynamically scale the number of pod replicas. We recommend that you do not use Horizontal Pod Autoscaler \(HPA\) to scale the number of pods when the QPS, CPU usage, or memory usage of pods reaches the threshold. HPA cannot provide high performance in actual scenarios.
+-   If you want to expand your cluster on a large scale, you can use the following YAML template to create a Deployment. Then, you can use [cluster-proportional-autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-autoscaler) to dynamically scale the number of pods. We recommend that you do not use Horizontal Pod Autoscaler \(HPA\) to scale the number of pods when the QPS, CPU usage, or memory usage of pods reaches the threshold. HPA cannot meet the expected requirements.
 
     ```
     apiVersion: apps/v1
@@ -99,12 +99,12 @@ Before you use autopath, you must familiarize yourself with the four DNS policie
 -   **ClusterFirstWithHostNetwork**: This policy indicates that a pod in the host network uses the ClusterFirst policy. If you do not specify a policy for a pod, the pod uses the Default policy.
 -   **None**: This policy indicates that a pod ignores the DNS settings of the cluster. You must customize the DNS setting by setting the dnsConfig field.
 
-If the first resolution attempt fails, autopath splits the suffixes to make another attempt. The resolution is complete within 2 attempts \(one for an IPv4 address and one for an IPv6 address\).
+If the first resolution attempt fails, autopath splits the suffixes to make another attempt. The resolution is complete within two attempts \(one for an IPv4 address and one for an IPv6 address\).
 
 **Note:**
 
 -   For Kubernetes 1.16 and later, autopath is automatically enabled when you create a Kubernetes cluster. Earlier Kubernetes versions do not support this feature.
--   The autopath add-on reduces the CPU usage of the CoreDNS pod, but increases the memory usage of the pod. In a 1000-node and 10000-pod cluster, the CoreDNS pod consumes less than 100 MiB of memory.
+-   The autopath add-on reduces the CPU usage of the CoreDNS pods, but increases the memory usage of the pods. In a 1000-node and 10000-pod cluster, the CoreDNS pods consume less than 100 MiB of memory.
 
 **Use autopath**
 
@@ -118,14 +118,14 @@ NodeLocal DNSCache is deployed as a DaemonSet and runs a pod on each node of a K
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, choose **Marketplace** \> **App Catalog**.
+2.  In the left-side navigation pane of the ACK console, choose **Marketplace** \> **App Catalog**.
 
 3.  In the upper-right corner of the App Catalog page, enter ack-node-local-dns in the **Name** search bar and click the search icon to search for NodeLocal DNSCache.
 
 4.  Click **ack-node-local-dns** and specify the parameters on the **Parameters** tab.
 
-    |Parameter|Description|Default value|
-    |---------|-----------|-------------|
+    |Parameter|Description|Default|
+    |---------|-----------|-------|
     |upStreamIP|The IP address of a Service that uses the CoreDNS pod as the backend. NodeLocal DNSCache requests DNS resolution services from CoreDNS for domain names inside the cluster by sending DNS queries to this IP address. The value of this parameter must be an unused Service IP address. This parameter is required.|NULL|
     |kubeDnsIP|This parameter is required.The IP address of the virtual interface. NodeLocal DNSCache listens to DNS queries sent to the virtual interface IP address. This IP address determines how the CoreDNS pod is accessed. For more information, see [README](https://cs.console.aliyun.com/?spm=5176.181001.1396228.btn1cs.344a60dfTM90ou#/k8s/catalog/detail/incubator_ack-node-local-dns).|"169.254.20.10"|
     |clusterDomain|The base domain of the cluster.|"cluster.local"|
