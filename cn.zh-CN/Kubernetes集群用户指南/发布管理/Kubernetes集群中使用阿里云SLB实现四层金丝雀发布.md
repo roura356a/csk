@@ -1,11 +1,11 @@
 # Kubernetes集群中使用阿里云SLB实现四层金丝雀发布
 
-在Kubernetes集群中，对于通过TCP/UDP访问的服务来说，七层的Ingress不能很好地实现灰度发布的需求。这里我们就来介绍一下如何使用SLB来进行四层的金丝雀发布。
+在Kubernetes集群中，对于通过TCP/UDP访问的服务来说，七层的Ingress不能很好地实现灰度发布的需求。本文介绍如何使用SLB来进行四层的金丝雀发布。
 
 ## 前提条件
 
 -   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)
--   [通过SSH访问Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/管理与访问集群/通过SSH访问Kubernetes集群.md)
+-   [通过SSH访问Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过SSH访问Kubernetes集群.md)
 
 ## 步骤1 部署旧版本服务
 
@@ -19,7 +19,7 @@
 
 5.  选择**示例模板**，然后单击**创建**。
 
-    ![示例模板](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1395659951/p148094.png)
+    ![示例模板](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1395659951/p148094.png)
 
     本例是一个Nginx的编排，通过SLB对外暴露的服务。
 
@@ -69,13 +69,13 @@
 
 6.  单击**无状态**页签，可以看到创建的应用。
 
-    ![无状态应用列表](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2395659951/p148100.png)
+    ![无状态应用列表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2395659951/p148100.png)
 
     您也可以在集群管理左侧导航栏中，单击**服务**进行查看。
 
 7.  在**服务**页面，您可单击服务右侧的外部端点，进入Nginx默认欢迎页面，本示例中的Nginx欢迎页面会显示**old**，表示当前访问的服务对应后端old-nginx容器。
 
-    ![old](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2395659951/p9939.png)
+    ![old](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2395659951/p9939.png)
 
     为了方便展示多次发布的情况，建议登录Master节点，后面都将通过`curl`命令查看部署的效果。
 
@@ -103,9 +103,9 @@
 
 3.  在**无状态**页签，单击右上角的**使用模板创建**
 
-4.  选择**示例模板**，，然后单击**创建**。
+4.  选择**示例模板**，然后单击**创建**。
 
-    本示例是一个nginx的新版本的Deployment，其中的label，也是含有`app:nginx`标签。这个标签就是为了使用与旧版本Deployment相同的Nginx服务，这样就可以将对应的流量导入进来。
+    本示例是一个Nginx的新版本的Deployment，其中的labels，也是含有`app:nginx`标签。这个标签就是为了使用与旧版本Deployment相同的Nginx服务，这样就可以将对应的流量导入进来。
 
     本示例的编排模板如下。
 
@@ -139,7 +139,7 @@
 
 5.  单击**无状态**页签，您可看到名为new-nginx的Deployment。
 
-    ![部署列表](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2395659951/p9941.png)
+    ![部署列表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2395659951/p9941.png)
 
 6.  登录Master节点，执行curl命名，查看服务访问的情况。
 
@@ -158,7 +158,7 @@
     old
     ```
 
-    可看到五次访问到旧的服务，五次访问到新的服务。主要原因是Service对于流量请求是平均的负载均衡策略，而且新老Deployment均为一个pod，因此它们的流量百分比为1：1。
+    可看到五次访问到旧的服务，五次访问到新的服务。主要原因是Service对于流量请求是平均的负载均衡策略，而且新老Deployment均为一个Pod，因此它们的流量百分比为1：1。
 
 
 ## 步骤3 调整流量权重
@@ -173,13 +173,13 @@
 
 3.  选择命名空间，选择所需的Deployment，单击右侧的**伸缩**。
 
-    ![部署列表](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2395659951/p9942.png)
+    ![部署列表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2395659951/p9942.png)
 
 4.  在弹出的对话框中，设置所需容器组的数量，将其调整为4。
 
     **说明：** Kubernetes的Deployment资源默认的更新方式就是rollingUpdate，所以在更新过程中，会保证最小可服务的容器个数，该个数也可以在模板里面调整。
 
-    ![模板](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2395659951/p9943.png)
+    ![模板](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2395659951/p9943.png)
 
 5.  待部署完成后，登录Master节点，执行curl命名，查看效果。
 
