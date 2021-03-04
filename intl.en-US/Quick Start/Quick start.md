@@ -23,10 +23,10 @@ The following flowchart shows how to get started with ACK in steps.
     -   [Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md).
     -   [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md).
     -   [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Introduction/Create a professional managed Kubernetes cluster.md).
-    -   [Create a managed edge Kubernetes cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Create a managed edge cluster.md).
-    -   [Create a managed GPU cluster](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU management/Create heterogeneous computing clusters/Create a managed GPU cluster.md) and [Create a dedicated Kubernetes cluster with GPU capabilities](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU management/Create heterogeneous computing clusters/Create a dedicated GPU cluster for heterogeneous computing.md).
+    -   [Create a managed edge Kubernetes cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Create a managed edge Kubernetes cluster.md).
+    -   [Create a managed cluster with GPU-accelerated nodes](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU management/Create heterogeneous computing clusters/Create a managed cluster with GPU-accelerated nodes.md) and [Create a dedicated cluster with GPU-accelerated nodes](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU management/Create heterogeneous computing clusters/Create a dedicated cluster with GPU-accelerated nodes.md).
     -   [Create a managed Kubernetes cluster that runs sandboxed containers](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Create a security sandbox cluster/Create a managed Kubernetes cluster that runs sandboxed containers.md) and [Create a dedicated Kubernetes cluster that runs sandboxed containers](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Create a security sandbox cluster/Create a dedicated Kubernetes cluster that runs sandboxed containers.md).
-    -   [Create a managed Kubernetes cluster for confidential computing](/intl.en-US/User Guide for Kubernetes Clusters/TEE-based confidential computing/Create a managed Kubernetes cluster that supports confidential computing.md).
+    -   [Create a managed Kubernetes cluster for confidential computing](/intl.en-US/User Guide for Kubernetes Clusters/TEE-based confidential computing/Create a managed Kubernetes cluster for confidential computing.md).
 3.  Deploy an application by using an image or orchestration template.
 
     For more information, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Deploy a stateless application from an image.md) and [Use an orchestration template to create a Linux application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Use an orchestration template to create a Linux application.md).
@@ -58,7 +58,7 @@ The following flowchart shows how to get started with ACK in steps.
     -   [Vertical pod autoscaling](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Vertical pod autoscaling.md) |
     |    -   Monitoring management
 
-[Monitor application performance](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Monitor application performance.md), [Monitor application architecture](), [Event monitoring](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Event monitoring.md), [Enable ARMS Prometheus for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Enable ARMS Prometheus.md), and [Use Prometheus to monitor a Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Use Prometheus to monitor a Kubernetes cluster.md)
+[Monitor application performance](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Monitor application performance.md), [Event monitoring](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Event monitoring.md), [Enable ARMS Prometheus](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Enable ARMS Prometheus.md), and [Use Prometheus to monitor a Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Use Prometheus to monitor a Kubernetes cluster.md)
 
     -   Log management
 
@@ -85,7 +85,7 @@ The following flowchart shows how to get started with ACK in steps.
 
 -   **What can I do if I failed to create a cluster?**
 
-    You can view the cluster logs for troubleshooting. For more information, see[Failed to create a Kubernetes cluster](https://www.alibabacloud.com/help/doc-detail/148453.htm).
+    You can view the cluster logs for troubleshooting. For more information, see [Failed to create a Kubernetes cluster](https://www.alibabacloud.com/help/doc-detail/148453.htm).
 
 -   **How do I access Kubernetes workloads over the Internet?**
 
