@@ -6,7 +6,7 @@ keyword: [back up applications, restore applications, restore applications to a 
 
 Container Service for Kubernetes \(ACK\) integrates the open source tool Velero that allows you to back up and restore applications. ACK allows you to back up and restore applications and volumes in Kubernetes clusters and registered clusters. You can create and restore backups in the same cluster, or create backups in one cluster and restore backups to another cluster. This topic describes how to back up and restore application in Kubernetes clusters. This protects your applications from service interruption and data corruption.
 
--   This feature is in public preview. To use this feature, [Submit a ticket](https://selfservice.console.aliyun.com/ticket/createIndex)[Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm)Submit a ticket to be included in the whitelist.
+-   This feature is in public preview. To use this feature, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to be included in the whitelist.
 -   A Kubernetes cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md) or [Register an external Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Register an external Kubernetes cluster.md).
 
     **Note:** Make sure that the version of your Kubernetes cluster is 1.10 or later. Otherwise, this feature may not function as expected.
@@ -84,15 +84,15 @@ If your applications run in a managed Kubernetes cluster, you must grant require
 
 2.  Grant permissions to the Resource Access Management \(RAM\) role of the manage Kubernetes cluster.
 
-    1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+    1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-    2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+    2.  In the left-side navigation pane, click **Clusters**.
 
-    3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+    3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
     4.  On the details page of the cluster, click the **Cluster Resources** tab and view the worker role of the cluster.
 
-    5.  Log on to the [RAM console](https://ram.console.aliyun.com/)[RAM console](https://partners-intl.console.aliyun.com/#/ram).
+    5.  Log on to the [RAM console](https://ram.console.aliyun.com/).
 
     6.  In the left-side navigation pane, click **Grants**.
 
@@ -140,11 +140,11 @@ If your applications run in a registered cluster, you must create a RAM user for
 
 ## Step 2: Install the application backup component
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Operations** \> **Application Backup \(Public Preview\)**.
 
@@ -154,18 +154,18 @@ If your applications run in a registered cluster, you must create a RAM user for
 
     If the page in the following figure is displayed, it indicates that the component is installed.
 
-    ![Application backup component](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1135242161/p214169.png)
+    ![Application backup component](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2337284161/p214169.png)
 
 
 ## Step 3: Create a backup vault
 
 When you back up applications in an ACK cluster, related data is stored in an OSS bucket. The following content describes how to access an OSS bucket:
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Operations** \> **Application Backup \(Public Preview\)**.
 
@@ -184,11 +184,11 @@ When you back up applications in an ACK cluster, related data is stored in an OS
 
 ## Step 4: Create a backup task
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Operations** \> **Application Backup \(Public Preview\)**.
 
@@ -213,11 +213,11 @@ When you back up applications in an ACK cluster, related data is stored in an OS
 
 ## Step 5: Create a restoration task
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Operations** \> **Application Backup \(Public Preview\)**.
 
