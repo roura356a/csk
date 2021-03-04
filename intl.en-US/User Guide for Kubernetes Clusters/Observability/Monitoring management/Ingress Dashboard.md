@@ -13,7 +13,7 @@ You must install the Log Service component before you can use Ingress Dashboard 
 
 2.  In the **Projects** section, click the name of the project that you want to manage. The details page of the project appears. By default, a project for a Kubernetes cluster is named in the format of **k8s-log-\{cluster-id\}**.
 
-3.  On the page that appears, click the ![Dashboard](../images/p201103.png) icon on the left side of**nginx-ingress** on the **Logstores** tag.
+3.  On the page that appears, click the ![Dashboard](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7368284161/p201103.png) icon on the left side of **nginx-ingress** on the **Logstores** tag.
 
     **Note:** All Ingress access logs are stored in the **nginx-ingress** Logstore.
 
@@ -46,7 +46,7 @@ To enable ARMS when you create an application, perform the following steps:
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
@@ -73,7 +73,7 @@ To enable ARMS when you create an application, perform the following steps:
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  On the **Ingresses** page, click **Create** in the upper-right corner of the page.
 
