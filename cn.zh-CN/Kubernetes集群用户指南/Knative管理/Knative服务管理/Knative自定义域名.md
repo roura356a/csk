@@ -36,7 +36,7 @@
 
 如果您已经部署了应用，Knative会根据域名配置configmap，自动更新所有的Service和Route。
 
-1.  部署一个应用。以部署一个命名为helloworld-go的应用为例，请参见[部署Serving Hello World应用](/cn.zh-CN/Kubernetes集群用户指南/Knative管理/Knative服务管理/部署Serving Hello World应用.md)。
+1.  部署一个应用。以部署一个命名为helloworld-go的应用为例，请参见[快速部署Serverless应用](/cn.zh-CN/Kubernetes集群用户指南/Knative管理/Knative服务管理/快速部署Serverless应用.md)。
 
 2.  执行以下操作，查看部署结果。
 
