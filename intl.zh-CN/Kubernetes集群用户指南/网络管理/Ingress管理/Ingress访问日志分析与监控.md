@@ -100,7 +100,7 @@ Ingress概览报表主要展示当前Ingress的整体状态，主要包括以下
 
 -   整体架构状态（1天），包括PV、UV、流量、响应延迟、移动端占比和错误比例等。
 -   网站实时状态（1分钟），包括访问PV、访问UV、访问成功率、平均延迟、P95延迟和P99延迟等。
--   用户请求类信息（1天），包括1天访问PV对比、7天访问访问PV对比、地域分布、TOP访问省份、TOP访问城市、移动端占比和Android/IOS占比等。
+-   用户请求类信息（1天），包括1天访问PV对比、7天访问PV对比、地域分布、TOP访问省份、TOP访问城市、移动端占比和Android/IOS占比等。
 -   TOPURL统计（1小时），包括访问TOP10、延迟TOP10、5XX错误TOP10和404错误TOP10。
 
 ![ingress概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8973321161/p40696.png)
