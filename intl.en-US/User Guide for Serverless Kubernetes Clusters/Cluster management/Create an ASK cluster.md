@@ -35,7 +35,7 @@ For more information, see [Create a VPC](/intl.en-US/VPCs and vSwitchs/Create a 
 
 **Note:** After you select **Create VPC**, you can specify whether to automatically create a NAT gateway and configure SNAT entries for the NAT gateway. If you clear this check box, you must manually create a NAT gateway and configure SNAT entries to enable Internet access for the cluster. Otherwise, the cluster cannot access the Internet.
 
-For more information, see [Create a NAT gateway](). |
+For more information, see [Create NAT gateways](/intl.en-US/User Guide/Create NAT gateways.md). |
     |**Service CIDR**|Set **Service CIDR**. The CIDR block specified by **Service CIDR** cannot overlap with that of the VPC or those of the existing clusters in the VPC. The CIDR block cannot be modified after the cluster is created. The Service CIDR block cannot overlap with the pod CIDR block. For more information about subnetting for ACK clusters, see [Plan CIDR blocks for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan CIDR blocks for an ACK cluster.md). |
     |**Access to API Server**|By default, an internal-facing Server Load Balancer \(SLB\) instance is created for the cluster API server. You can modify the specifications of the SLB instance. For more information, see [Specification](/intl.en-US/Classic Load Balancer/User Guide/Instance/SLB instance overview.md).
 
