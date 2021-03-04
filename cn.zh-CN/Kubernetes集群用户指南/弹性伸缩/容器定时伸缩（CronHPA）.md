@@ -7,7 +7,7 @@ keyword: [定时扩容, cronhpa, kubernetes, 兼容HPA]
 应对资源浪费的场景，阿里云服务容器提供kubernetes-cronhpa-controller组件，实现资源定时扩容。本文介绍如何实现容器的定时伸缩，及介绍定时伸缩CronHPA兼容HPA的原理。
 
 -   您已创建一个容器服务Kubernetes集群，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
--   在本地计算机上安装Helm，请参见按照[Install Helm](https://github.com/helm/helm?spm=a2c4g.11186623.2.28.36d61fa8fxvUaY)，并确保Helm版本v2.11.0以上，请参见[手动升级Helm]()。
+-   在本地计算机上安装Helm，请参见按照[Install Helm](https://github.com/helm/helm?spm=a2c4g.11186623.2.28.36d61fa8fxvUaY)，并确保Helm版本v2.11.0以上。
 -   在本地使用命令前，您需要先设置[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。
 
 kubernetes-cronhpa-controller是一个Kubernetes HPA controller，按照类似Crontab的策略定时地对容器服务Kubernetes集群进行扩缩容。您可以把CronHorizontalPodAutoscaler（以下简称CronHPA）用在任何Kubernetes中定义的对象上，只要该对象支持伸缩子资源（如Deployment和StatefulSet）的[项目](https://github.com/AliyunContainerService/kubernetes-cronhpa-controller)已在GitHub开源。
@@ -261,6 +261,4 @@ spec:
 
 
 [容器水平伸缩（HPA）](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/容器水平伸缩（HPA）.md)
-
-[定时伸缩CronHPA兼容HPA]()
 
