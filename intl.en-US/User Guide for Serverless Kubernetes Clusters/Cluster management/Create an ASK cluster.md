@@ -19,14 +19,14 @@ This topic describes how to create a serverless Kubernetes \(ASK\) cluster in th
     |Parameter|Description|
     |---------|-----------|
     |**Cluster Name**|Enter a name for the cluster. **Note:** The name must be 1 to 63 characters in length, and can contain digits, letters, and hyphens \(-\). |
-    |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group to which the cluster belongs. The name of the selected resource group is displayed.
+    |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group to which the cluster belongs. The name of the selected resource group is displayed, as shown in the following figure.
 
-![Resource Group](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png)
+![Resource Groups](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png)
 
 Move the pointer over **All Resources** at the top of the page and select the resource group to which the cluster belongs. The name of the selected resource group appears.|
     |**Region**|Select the region where you want to deploy the ASK cluster.|
     |**Time Zone**|Select a time zone for the ACK cluster. By default, the time zone configured for your browser is selected. |
-    |**Kubernetes Version**|Select a Kubernetes version. |
+    |**Kubernetes Version**|The supported Kubernetes versions. |
     |**VPC**|Set the virtual private cloud \(VPC\) where you want to deploy the ASK cluster. Kubernetes clusters support only VPCs. You can select **Create VPC** or **Select Existing VPC**.     -   **Create VPC**: If you select this option, ACK automatically creates a VPC and a Network Address Translation \(NAT\) gateway in the VPC. ACK also configures Source Network Address Translation \(SNAT\) entries for the NAT gateway.
     -   **Select Existing VPC**: If you select this option, you must select a VPC from the VPC drop-down list and select vSwitches in the VSwitch section. If you want to enable Internet access, for example, to download container images from the Internet, you must configure a NAT gateway. We recommend that you upload container images to a Container Registry instance in the region where the cluster is deployed. This way, you can pull the images through the VPC.
 For more information, see [Create a VPC](/intl.en-US/VPCs and vSwitchs/Create a VPC.md). |
@@ -36,12 +36,12 @@ For more information, see [Create a VPC](/intl.en-US/VPCs and vSwitchs/Create a 
 **Note:** After you select **Create VPC**, you can specify whether to automatically create a NAT gateway and configure SNAT entries for the NAT gateway. If you clear this check box, you must manually create a NAT gateway and configure SNAT entries to enable Internet access for the cluster. Otherwise, the cluster cannot access the Internet.
 
 For more information, see [Create a NAT gateway](). |
-    |**Service CIDR**|Set **Service CIDR**. The CIDR block specified by **Service CIDR** cannot overlap with that of the VPC or the CIDR blocks of existing ACK clusters in the VPC. After you create the cluster, you cannot modify the Service CIDR block. In addition, the Service CIDR block cannot overlap with the pod CIDR block. For more information about subnetting for ACK clusters, see [Plan CIDR blocks for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan CIDR blocks for an ACK cluster.md). |
-    |**Access to API Server**|By default, an internal-facing Server Load Balancer \(SLB\) instance is created for the API server. You can modify the specifications of the SLB instance. For more information, see [Specification](/intl.en-US/Classic Load Balancer/User Guide/Instance/SLB instance overview.md).
+    |**Service CIDR**|Set **Service CIDR**. The CIDR block specified by **Service CIDR** cannot overlap with that of the VPC or those of the existing clusters in the VPC. The CIDR block cannot be modified after the cluster is created. The Service CIDR block cannot overlap with the pod CIDR block. For more information about subnetting for ACK clusters, see [Plan CIDR blocks for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Plan CIDR blocks for an ACK cluster.md). |
+    |**Access to API Server**|By default, an internal-facing Server Load Balancer \(SLB\) instance is created for the cluster API server. You can modify the specifications of the SLB instance. For more information, see [Specification](/intl.en-US/Classic Load Balancer/User Guide/Instance/SLB instance overview.md).
 
 **Note:** If you delete the SLB instance, you cannot access the API server.
 
-Select or clear **Expose API Server with EIP**. The ACK API server provides multiple HTTP-based RESTful APIs, which can be used to create, delete, modify, query, and monitor resources such as pods and Services.
+Select or clear **Expose API Server with EIP**. The ACK API server provides multiple HTTP-based RESTful APIs, which can be used to create, delete, modify, query, and monitor resources, such as pods and Services.
 
     -   If you select this check box, an elastic IP address \(EIP\) is created and attached to an Internet-facing SLB instance. Port 6443 used by the API server is opened on master nodes. You can connect to and manage the ACK cluster by using kubeconfig over the Internet.
     -   If you clear this check box, no EIP is created. You can connect to and manage the ACK cluster only by using kubeconfig from within the VPC.
