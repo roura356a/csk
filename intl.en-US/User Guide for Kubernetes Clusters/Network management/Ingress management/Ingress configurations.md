@@ -2,7 +2,7 @@
 
 Container Service for Kubernetes \(ACK\) provides reliable Ingress controller components. These components integrate with the Server Load Balancer \(SLB\) service and provide the flexible and reliable Ingress service for your ACK clusters.
 
-The following example shows an Ingress orchestration template. When you configure an Ingress in the ACK console, you must set annotations. In some cases, you must create dependencies. For more information, see [t16682.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Create an Ingress on the web UI.md), [Configure an Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Configure an Ingress.md), and [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). Ingresses support the Configmap configurations. For more information, see [Configmap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/).
+The following example shows an Ingress orchestration template. When you configure an Ingress in the ACK console, you must set annotations. In some cases, you must create dependencies. For more information, see [Create an Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Create an Ingress.md), [Configure an Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Configure an Ingress.md), and [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/). Ingresses support the Configmap configurations. For more information, see [Configmap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/).
 
 ```
 apiVersion: extensions/v1beta1
