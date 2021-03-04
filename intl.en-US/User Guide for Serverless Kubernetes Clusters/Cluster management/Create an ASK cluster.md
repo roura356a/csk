@@ -74,6 +74,4 @@ For more information, see [What is an EIP?](/intl.en-US/.md). |
 
 -   On the Clusters page, find the newly created cluster and click **Details** in the Actions column. On the details page, click the **Basic Information** tab to view basic information about the cluster and click the **Connection Information** tab to view information about how to connect to the cluster.
 
-    ![Basic information](../images/p135811.png)
-
 
