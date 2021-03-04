@@ -8,7 +8,7 @@ The Linux operating system generates a core dump file to store the memory status
 
 The signals whose Action is Core in the following figure can cause the Linux operating system to generate core dump files.
 
-![](../images/p107903.png)
+![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9505284161/p245406.png)
 
 ## Use the core dump feature in ECI
 
