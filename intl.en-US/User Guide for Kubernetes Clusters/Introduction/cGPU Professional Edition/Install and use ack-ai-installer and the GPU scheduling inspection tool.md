@@ -44,9 +44,11 @@ Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the upper-right corner of the App Catalog page, enter ack-ai-installer into the search bar and click the search icon. Find and click **ack-ai-installer**.
+2.  In the left-side navigation pane of the ACK console, choose **Marketplace** \> **App Catalog**.
 
-3.  On the App Catalog - ack-ai-installer page, select a cluster in the Deploy section to deploy ack-ai-installer and click **Create**.
+3.  In the upper-right corner of the App Catalog page, enter ack-ai-installer into the search bar and click the search icon. Find and click **ack-ai-installer**.
+
+4.  On the App Catalog - ack-ai-installer page, select a cluster in the Deploy section to deploy ack-ai-installer and click **Create**.
 
     After ack-ai-installer is installed, you are redirected to the details page of ack-ai-installer. You can view the plug-ins of ack-ai-installer.
 
@@ -55,7 +57,7 @@ Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster where ack-ai-installer is installed and click **Node Pools** in the **Actions** column.
 
@@ -69,16 +71,16 @@ Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU
     -   Operating System: Select an operating system for the nodes. Supported operating systems are CentOS, Aliyun Cloud Linux 2.x, and Windows.
     -   ECS Label: You can add labels to the ECS instances.
     -   Custom Resource Group: You can specify the resource group to which the nodes in the node pool belong.
-    -   Node Label: You can add labels to the nodes. For more information about node labels, see [t1998127.md\#]().
+    -   Node Label: You can add labels to the nodes. For more information about node labels, see [Description of labels for GPU-accelerated nodes](/intl.en-US/User Guide for Kubernetes Clusters/Introduction/Description of labels for GPU-accelerated nodes.md).
         -   Enable both GPU sharing and memory isolation.
 
-            Click ![Node Label](../images/p183919.png) on the right side of **Node Label**. Set **Key** to ack.node.gpu.schedule and set **Value** to cgpu.
+            Click ![Node Label](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3817284161/p183919.png) on the right side of **Node Label**. Set **Key** to ack.node.gpu.schedule and set **Value** to cgpu.
 
             **Note:** If you want to enable only GPU sharing for the node pool, set **Key** to ack.node.gpu.schedule and set **Value** to share for **Node Label**.
 
         -   Use the binpack algorithm to allocate GPUs to pods.
 
-            Click ![Node Label](../images/p183919.png) on the right side of **Node Label**. Set **Key** to ack.node.gpu.placement and set **Value** to binpack.
+            Click ![Node Label](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3817284161/p183919.png) on the right side of **Node Label**. Set **Key** to ack.node.gpu.placement and set **Value** to binpack.
 
 6.  Click **Confirm Order**.
 
