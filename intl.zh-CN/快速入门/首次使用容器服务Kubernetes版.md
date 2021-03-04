@@ -47,16 +47,16 @@ keyword: [容器服务ACK, k8s, 开通服务, 角色授权]
 
 |角色名称|角色说明|
 |----|----|
-|[AliyunCSDefaultRole](#section_ju1_tsb_brp)|ACK在集群管控操作中使用该角色访问您在ECS、VPC、SLB、ROS、ESS等服务中的资源。|
-|[AliyunCSManagedKubernetesRole](#section_j4k_173_ejk)|ACK托管版集群默认使用该角色来访问您在ECS、VPC、SLB、ACR等服务中的资源。|
-|[AliyunCSServerlessKubernetesRole](#section_6ht_wqj_yms)|ASK集群默认使用该角色来访问您在ECS、VPC、SLB、PVTZ等服务中的资源。|
-|[AliyunCSKubernetesAuditRole](#section_rf2_r4h_mip)|ACK托管版集群和ASK集群的审计功能使用该角色来访问您在SLS服务中的资源。|
-|[AliyunCSManagedNetworkRole](#section_2xh_x0c_se3)|ACK托管版集群和ASK集群的网络组件使用该角色访问您在ECS、VPC服务中的资源。|
-|[AliyunCSManagedCsiRole](#section_ot3_h1u_t4i)|ACK托管版集群和ASK集群的存储组件使用该角色访问您在ECS、NAS服务中的资源。|
-|[AliyunCSManagedCmsRole](#section_sdf_auf_nsx)|ACK托管版集群和ASK集群的监控组件使用该角色访问您在CMS、SLS服务中的资源。|
-|[AliyunCSManagedLogRole](#section_q0d_zoc_k5u)|ACK托管版集群和ASK集群的日志组件使用该角色访问您在SLS服务中的资源。|
-|[AliyunCSManagedVKRole](#section_1np_fxp_gl4)|ASK集群的Virtual Kubelet组件使用该角色访问您在ECS、VPC、ECI等服务中的资源。|
-|[AliyunCSManagedArmsRole](#section_s8z_f50_zrm)|ACK托管版集群和ASK集群的应用实时监控组件使用该角色访问您在ARMS服务中的资源。|
+|[AliyunCSDefaultRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.mdsection_ju1_tsb_brp)|ACK在集群管控操作中使用该角色访问您在ECS、VPC、SLB、ROS、ESS等服务中的资源。|
+|[AliyunCSManagedKubernetesRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.mdsection_j4k_173_ejk)|ACK托管版集群默认使用该角色来访问您在ECS、VPC、SLB、ACR等服务中的资源。|
+|[AliyunCSServerlessKubernetesRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)|ASK集群默认使用该角色来访问您在ECS、VPC、SLB、PVTZ等服务中的资源。|
+|[AliyunCSKubernetesAuditRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)|ACK托管版集群和ASK集群的审计功能使用该角色来访问您在SLS服务中的资源。|
+|[AliyunCSManagedNetworkRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.mdsection_2xh_x0c_se3)|ACK托管版集群和ASK集群的网络组件使用该角色访问您在ECS、VPC服务中的资源。|
+|[AliyunCSManagedCsiRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.mdsection_ot3_h1u_t4i)|ACK托管版集群和ASK集群的存储组件使用该角色访问您在ECS、NAS服务中的资源。|
+|[AliyunCSManagedCmsRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)|ACK托管版集群和ASK集群的监控组件使用该角色访问您在CMS、SLS服务中的资源。|
+|[AliyunCSManagedLogRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.mdsection_q0d_zoc_k5u)|ACK托管版集群和ASK集群的日志组件使用该角色访问您在SLS服务中的资源。|
+|[AliyunCSManagedVKRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.mdsection_1np_fxp_gl4)|ASK集群的Virtual Kubelet组件使用该角色访问您在ECS、VPC、ECI等服务中的资源。|
+|[AliyunCSManagedArmsRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)|ACK托管版集群和ASK集群的应用实时监控组件使用该角色访问您在ARMS服务中的资源。|
 
 **相关文档**  
 
