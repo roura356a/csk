@@ -13,7 +13,7 @@ Kubernetes是一个开源容器管理系统，可以提供应用发布、运维�
 在ACK上运行Spark应用具有以下优势：
 
 -   通过把Spark应用和依赖项打包成容器，您可享受容器的各种优点，解决Hadoop版本不匹配和兼容性问题，还可以给容器镜像打上标签控制版本。如果需要测试不同版本的Spark或者依赖项的话，选择对应的版本即可。
--   重用Kubernetes生态的各种组件，比如监控、日志。把Spark工作负载部署在已有的的Kubernetes基础设施中，能够快速开始工作，大大减少运维成本。
+-   重用Kubernetes生态的各种组件，比如监控、日志。把Spark工作负载部署在已有的Kubernetes基础设施中，能够快速开始工作，大大减少运维成本。
 -   支持多租户，可利用Kubernetes的Namespace和ResourceQuota做用户粒度的资源调度，利用Kubernetes的节点选择机制保证Spark工作负载得到专用的资源。另外，由于Driver Pods创建Executor Pods，您可以用Kubernetes Service Account控制权限，利用Role或者Cluster Role定义细粒度访问权限，安全地运行工作负载，避免受其他工作负载影响。
 -   把Spark和管理数据生命周期的应用运行在同一个集群中，可以使用单个编排机制构建端到端生命周期的解决方案，并能复制到其他区域部署，甚至是在私有化环境部署。
 
@@ -29,7 +29,7 @@ Kubernetes是一个开源容器管理系统，可以提供应用发布、运维�
 
     在大数据生态系统中，Alluxio位于数据驱动框架或应用（例如Apache Spark、Presto、Tensorflow、Apache HBase、Apache Hive、Apache Flink）和各种持久化存储系统（例如Amazon S3、Google Cloud Storage、OpenStack Swift、HDFS、GlusterFS、IBM Cleversafe、EMC ECS、Ceph、NFS 、Minio、Alibaba OSS）之间。 Alluxio统一了存储在这些不同存储系统中的数据，为其上层数据驱动型应用提供统一的客户端API和全局命名空间。
 
-    ![Alluxio](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0804359951/p158128.jpeg)
+    ![Alluxio](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0804359951/p158128.jpeg)
 
     Spark on ACK的大数据解决方案将会采用Alluxio通过缓存的方式加速Spark访问持久化存储系统中的数据。
 
