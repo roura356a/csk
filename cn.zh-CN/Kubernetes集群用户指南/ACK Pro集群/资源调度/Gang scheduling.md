@@ -6,7 +6,7 @@ keyword: [Gang scheduling, 资源调度, 协同调度]
 
 ACK基于新版的Kube-scheduler框架实现Gang scheduling的能力，解决原生调度器对于All-or-Nothing作业调度的问题。本文举例说明如何使用Gang scheduling能力。
 
--   您已创建ACK Pro版集群。具体步骤，请参见[创建Kubernetes Pro版集群](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建Kubernetes Pro版集群.md)。
+-   您已创建ACK Pro版集群。具体步骤，请参见[创建ACK Pro版集群](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
 
     **说明：** 目前Gang scheduling仅支持ACK Pro托管版集群。如果您需要专有版集群，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)申请白名单。
 
@@ -22,7 +22,7 @@ ACK基于新版的Kube-scheduler框架实现Gang scheduling的能力，解决原
 
 Gang scheduling是在并发系统中将多个相关联的进程调度到不同处理器上同时运行的策略，其最主要的原则是保证所有相关联的进程能够同时启动，防止部分进程的异常，导致整个关联进程组的阻塞。例如，您提交一个批量Job，这个批量Job包含多个任务，要么这多个任务全部调度成功，要么一个都调度不成功。这种All-or-Nothing调度场景，就被称作Gang scheduling。
 
-Kubernetes目前已经广泛的应用于在线服务编排，为了提升集群的的利用率和运行效率，ACK希望将Kubernetes作为一个统一的管理平台来管理在线服务和离线作业。但是由于调度器的限制，使得一些离线的工作负载无法迁移到Kubernetes。例如对于有All-or-Nothing特点的作业，它要求所有的任务在同一时间被调度，如果只是部分任务启动的话，启动的任务将持续等待剩余的任务被调度。在最坏的情况下，所有作业都处于挂起状态，从而导致死锁。为了解决这个问题，需要对调度器支持Gang scheduling。
+Kubernetes目前已经广泛的应用于在线服务编排，为了提升集群的利用率和运行效率，ACK希望将Kubernetes作为一个统一的管理平台来管理在线服务和离线作业。但是由于调度器的限制，使得一些离线的工作负载无法迁移到Kubernetes。例如对于有All-or-Nothing特点的作业，它要求所有的任务在同一时间被调度，如果只是部分任务启动的话，启动的任务将持续等待剩余的任务被调度。在最坏的情况下，所有作业都处于挂起状态，从而导致死锁。为了解决这个问题，需要对调度器支持Gang scheduling。
 
 ## 功能介绍
 
