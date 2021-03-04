@@ -3,7 +3,7 @@
 日志服务（Log Service，简称 LOG）是针对日志类数据的一站式服务。您无需开发就能快捷完成日志数据采集、消费、投递以及查询分析等功能。在Knative中结合日志服务，能有效提升对Serverless应用的运维能力。
 
 -   您已经开通日志服务，请参见[t17400.md\#](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/通过日志服务采集Kubernetes容器日志.md)。
--   您已经部署Knative Service服务，请参见[t474495.md\#](/intl.zh-CN/Kubernetes集群用户指南/Knative管理/Knative服务管理/部署Serving Hello World应用.md)。
+-   您已经部署Knative Service服务，请参见[快速部署Serverless应用](/intl.zh-CN/Kubernetes集群用户指南/Knative管理/Knative服务管理/快速部署Serverless应用.md)。
 
 ## 操作步骤
 
@@ -93,7 +93,7 @@
 
 4.  设置查询分析。
 
-    请参见[实时分析简介](/intl.zh-CN/查询与分析/实时分析简介.md)。
+    请参见[分析简介](/intl.zh-CN/查询与分析/分析简介.md)。
 
     为了便于查看，您可以通过**列设置**显示所需要的列。下图中的示例设置了level、msg和time这三列。
 
