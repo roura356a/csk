@@ -26,18 +26,18 @@ keyword: [Serverless集群, 创建Serverless]
 将鼠标悬浮于页面上方的**账号全部资源**，选择集群所在的资源组。这里显示选择的资源组。|
     |**地域**|选择集群所在的地域。|
     |**时区**|选择集群所要使用的时区。默认时区为浏览器所配置的时区。 |
-    |**Kubernetes版本**|选择Kubernetes版本。 |
+    |**Kubernetes版本**|显示当前ACK支持的Kubernetes版本。 |
     |**专有网络**|设置集群的网络。Kubernetes集群仅支持专有网络。支持**自动创建**和**使用已有**的VPC。     -   **自动创建**：集群会自动新建一个VPC，并在VPC中自动创建NAT网关以及配置SNAT规则。
     -   **使用已有**：您可以在已有VPC列表中选择所需的VPC和交换机。如需访问公网，例如下载容器镜像，要配置NAT网关，建议将容器镜像上传到集群所在区域的阿里云镜像服务，并通过内网VPC地址拉取镜像。
-详情请参见[创建专有网络](/cn.zh-CN/专有网络和交换机/管理专有网络/创建专有网络.md)。 |
+详情请参见[使用专有网络](/cn.zh-CN/专有网络和交换机/使用专有网络.md)。 |
     |**可用区**|选择集群所在的可用区。|
     |**NAT网关**|设置是否为专有网络创建NAT网关并配置SNAT规则。 仅当**专有网络**选择为**自动创建**时，需要设置该选项。
 
 **说明：** 若您选择**自动创建**VPC，可选择是否自动配置SNAT网关。若选择不自动配置SNAT，您可自行配置NAT网关实现VPC安全访问公网环境，并且手动配置SNAT，否则VPC内实例将不能正常访问公网。
 
-详情请参见[创建NAT网关]()。 |
+详情请参见[创建NAT网关实例](/cn.zh-CN/基本功能操作/创建NAT网关实例.md)。 |
     |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Kubernetes集群网络规划.md)。 |
-    |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/cn.zh-CN/传统型负载均衡CLB/用户指南/实例/实例概述.md)。
+    |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/cn.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/实例概述.md)。
 
 **说明：** 删除默认创建的SLB实例将会导致无法访问API Server。
 
@@ -50,8 +50,8 @@ keyword: [Serverless集群, 创建Serverless]
 
     -   PrivateZone：基于阿里云专有网络VPC环境的私有DNS服务。该服务允许您在自定义的一个或多个VPC中将私有域名映射到IP地址。
     -   CoreDNS：是一个灵活可扩展的DNS服务器，也是Kubernetes标准的服务发现组件。 |
-    |**Ingress**|设置是否安装Ingress组件。默认选中**安装Ingress组件**，请参见[配置Ingress](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/配置Ingress.md)。 |
-    |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。 不开启日志服务时，将无法使用集群审计功能。日志服务详情请参见[快速入门](/cn.zh-CN/快速入门/快速入门.md)。 |
+    |**Ingress**|设置是否安装Ingress组件。默认选中**安装Ingress组件**，请参见[Ingress高级用法](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress高级用法.md)。 |
+    |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。 不开启日志服务时，将无法使用集群审计功能。日志服务详情请参见[快速入门](/cn.zh-CN/.md)。 |
     |**Knative**|设置是否开启Knative。Knative是一款基于Kubernetes的Serverless框架，其目标是制定云原生、跨平台的Serverless编排标准，详细介绍请参见[概述](/cn.zh-CN/Serverless Kubernetes集群用户指南/Knative管理/概述.md)。|
     |**集群删除保护**|设置是否启用集群删除保护。为防止通过控制台或API误释放集群。|
     |**标签**|为集群绑定标签。输入键和对应的值，单击**添加**。
