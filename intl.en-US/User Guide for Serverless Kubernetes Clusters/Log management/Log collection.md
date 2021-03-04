@@ -8,27 +8,27 @@ ECI supports the log collection service. When you create an ECI through OpenAPI 
 
 Projects starting with eci-log-default-project- are default projects created by the system \(a default project is created for each region\).
 
-![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6449505061/p110734.png)
+![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6449505061/p110734.png)
 
 **Logstore**********
 
 The default Logstore starts with eci-log-default-log-store-. It stores standard output and error logs of ECIs and can meet the needs of most scenarios.
 
-![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6449505061/p110739.png)
+![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6449505061/p110739.png)
 
 **Machine group******
 
 The default machine group starts with eci-log-default-machine-group. If you enable the log collection service, ECIs are added to the default machine group. You can view the ECIs added to the machine group by checking the status of the machine group.
 
-![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6449505061/p110741.png)
+![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6449505061/p110741.png)
 
 **Configuration******
 
-The default Logtail configuration starts with eci-log-default-config. By default, the Logtail configuration is generated in simple mode. To configure advanced settings, log on to the console and customize settings.![](../images/p84492.png)
+The default Logtail configuration starts with eci-log-default-config. By default, the Logtail configuration is generated in simple mode. To configure advanced settings, log on to the console and customize settings.
 
 **Results******
 
-![](../images/p84493.png)
+![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5106284161/p245415.png)
 
 The preceding configurations are all default configurations and can meet the needs of most scenarios.
 
