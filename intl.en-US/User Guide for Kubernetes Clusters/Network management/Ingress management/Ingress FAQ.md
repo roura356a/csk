@@ -2,9 +2,17 @@
 
 This topic provides answers to some frequently asked questions about Ingresses.
 
-## Which Transport Layer Security \(SSL/TLS\) protocol versions are supported by Ingresses?
+-   [Which Secure Sockets Layer \(SSL\) or Transport Layer Security \(TLS\) protocol versions are supported by Ingresses?](#section_gsi_4n0_lsd)
+-   [Does Ingress pass Layer 7 request headers?](#section_i3e_5lj_47y)
+-   [Can ingress-nginx forward requests to HTTPS Services at the backend?](#section_ghy_7bv_ute)
+-   [Does Ingress pass client IP addresses at Layer 7?](#section_ril_3ys_j8u)
+-   [Does nginx-ingress-controller support HTTP Strict Transport Security \(HSTS\)?](#section_ycn_qs2_rb2)
+-   [Which rewrite rules are supported by ingress-nginx?](#section_l15_amm_2ht)
+-   [How do I fix the issue that Log Service cannot parse logs as normal after ingress-nginx-controller is upgraded?](#section_10k_mmd_5e0)
 
-By default, ingress-nginx supports only TLS 1.2. If the TLS protocol version that is used by a browser or mobile client is earlier than TLS 1.2, errors occur during handshakes between the client and ingress-nginx.
+## Which Secure Sockets Layer \(SSL\) or Transport Layer Security \(TLS\) protocol versions are supported by Ingresses?
+
+By default, ingress-nginx supports only TLS 1.2. If the TLS protocol version that is used by a browser or mobile client is earlier than TLS 1.2, errors may occur during handshakes between the client and ingress-nginx.
 
 If you want ingress-nginx to support more TLS protocol versions, run the following commands to add required configurations to the `nginx-configuration` ConfigMap in the kube-system namespace. For more information, see [TLS/HTTPS](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#default-tls-version-and-ciphers).
 
@@ -13,9 +21,9 @@ ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-EC
 ssl-protocols: "TLSv1 TLSv1.1 TLSv1.2 TLSv1.3"
 ```
 
-## Does Ingress pass through Layer 7 request headers?
+## Does Ingress pass Layer 7 request headers?
 
-By default, ingress-nginx passes through Layer 7 request headers. However, request headers that do not conform to HTTP rules are filtered out before they are forwarded to the backend Services. For example, the Mobile Version request header is filtered out. If you do not want to filter out these request headers, run the following command to add the required configurations to the nginx-configuration ConfigMap. For more information, see [ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-underscores-in-headers).
+By default, ingress-nginx passes Layer 7 request headers. However, request headers that do not conform to HTTP rules are filtered out before they are forwarded to the backend Services. For example, the Mobile Version request header is filtered out. If you do not want to filter out these request headers, run the following command to add the required configurations to the nginx-configuration ConfigMap. For more information, see [ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-underscores-in-headers).
 
 ```
 enable-underscores-in-headers: true
@@ -35,11 +43,11 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 ```
 
-## Does Ingress pass through client IP addresses at Layer 7?
+## Does Ingress pass client IP addresses at Layer 7?
 
-By default, ingress-nginx passes through client IP addresses at Layer 7 based on the configurations of X-Forward-For and X-Real-IP. However, if X-Forward-For and X-Real-IP are specified in a request header from a client, the backend server cannot obtain the real client IP address.
+By default, ingress-nginx adds the X-Forward-For and X-Real-IP header fields to carry client IP address. However, if the X-Forward-For and X-Real-IP header fields are already added to the request by a client, the backend server cannot obtain the client IP address.
 
-Run the following command to modify the `nginx-configuration` ConfigMap in the kube-system namespace. This allows ingress-nginx to pass through client IP addresses at Layer 7.
+Run the following command to modify the `nginx-configuration` ConfigMap in the kube-system namespace. This allows ingress-nginx to pass client IP addresses at Layer 7.
 
 ```
 compute-full-forwarded-for: "true"
@@ -51,9 +59,9 @@ For more information, see [Configure an ACK Ingress to pass through client IP ad
 
 ## Does nginx-ingress-controller support HTTP Strict Transport Security \(HSTS\)?
 
-By default, HSTS is enabled for nginx-ingress-controller. When a browser sends out a plain HTTP request for the first time, the response header from the backend server \(with HSTS enabled\) contains `Non-Authoritative-Reason: HSTS`. This indicates that the backend server supports HSTS. If the client also supports HSTS, the client will continue to send HTTPS requests after the first access attempt succeeds. The response body from the backend server contains the status code `307 Internal Redirect`, as shown in the following figure.
+By default, HSTS is enabled for nginx-ingress-controller. When a browser sends a plain HTTP request for the first time, the response header from the backend server \(with HSTS enabled\) contains `Non-Authoritative-Reason: HSTS`. This indicates that the backend server supports HSTS. If the client also supports HSTS, the client will continue to send HTTPS requests after the first access attempt succeeds. The response body from the backend server contains the status code `307 Internal Redirect`, as shown in the following figure.
 
-![1](../images/p202703.png)
+![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9511674161/p202703.png)
 
 If you do not want the client requests to be forwarded to HTTPS Services at the backend, you can disable HSTS for nginx-ingress-controller. For more information, see [HSTS](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#hsts).
 
@@ -68,7 +76,7 @@ Only simple rewrite rules are supported by ingress-nginx. For more information, 
 
 You can use other code snippets to add global configurations, as shown in the following figure. For more information, see [main-snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#main-snippet).
 
-![2](../images/p202783.png)
+![2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9511674161/p202783.png)
 
 ## How do I fix the issue that Log Service cannot parse logs as normal after ingress-nginx-controller is upgraded?
 
