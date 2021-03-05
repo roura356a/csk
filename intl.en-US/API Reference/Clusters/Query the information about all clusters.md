@@ -34,7 +34,7 @@ get /api/v1/clusters http|https
 |cluster\_id|String|"c3fb96524f9274b4495df0f12a6b5\*\*\*\*"|The ID of the cluster. |
 |cluster\_type|String|"Kubernetes"|The type of the cluster. Valid values:
 
- -   Kubernetes: a dedicated cluster.
+-   Kubernetes: a dedicated cluster.
 -   ManagedKubernetes: a standard managed cluster or a managed edge cluster.
 -   Ask: a standard serverless cluster. |
 |created|String|"2020-08-20T10:51:29+08:00"|The time when the cluster was created. |
@@ -45,7 +45,7 @@ get /api/v1/clusters http|https
 |docker\_version|String|"19.03.5"|The version of Docker. |
 |external\_loadbalancer\_id|String|"lb-2vcrbmlevo6kjpgch\*\*\*\*"|The ID of the SLB instance that is associated with the ingress of the cluster. |
 |init\_version|String|"1.16.9-aliyun.1"|The initial version of the cluster. |
-|master\_url|String|"\*\*\*"|The endpoints that are open for connections to the cluster. The endpoints include api\_server\_endpoint and dashboard\_endpoint. For more information, see [Use SSH to connect to a cluster](https://help.aliyun.com/document_detail/～～86491～～). |
+|master\_url|String|"\*\*\*"|The endpoints that are open for connections to the cluster. The endpoints include api\_server\_endpoint and dashboard\_endpoint. |
 |meta\_data|String|"\*\*\*"|The metadata of the cluster. |
 |name|String|"cluster-demo"|The name of the cluster. |
 |network\_mode|String|"vpc"|The network type of the cluster. Valid values: vpc and ipvs. |
@@ -53,7 +53,7 @@ get /api/v1/clusters http|https
 |private\_zone|Boolean|"false"|Indicates whether PrivateZone is enabled for the cluster. |
 |profile|String|"Default"|The identifier of the cluster. Valid values:
 
- -   Edge: a managed edge cluster.
+-   Edge: a managed edge cluster.
 -   Default: a cluster of another type instead of a managed edge cluster. |
 |region\_id|String|"cn-beijing"|The ID of the region where the cluster is deployed. |
 |resource\_group\_id|String|"rg-acfmyvw3wjm\*\*\*\*"|The ID of the resource group to which the cluster belongs. |
