@@ -18,7 +18,7 @@ keyword: Nginx Ingress
 -   Ingress是反向代理规则，用来规定HTTP/HTTPS请求应该被转发到哪个Service上。例如根据请求中不同的Host和URL路径，让请求落到不同的 Service上。
 -   Ingress Controller是一个反向代理程序，负责解析Ingress的反向代理规则。如果Ingress有增删改的变动，Ingress Controller会及时更新自己相应的转发规则，当Ingress Controller收到请求后就会根据这些规则将请求转发到对应的Service。
 
-Ingress Controller通过API Server获取Ingress资源的变化，动态地生成Load Balancer所需的的配置文件，然后依次生成新的路由转发规则。
+Ingress Controller通过API Server获取Ingress资源的变化，动态地生成Load Balancer所需的配置文件，然后依次生成新的路由转发规则。
 
 ![S2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4614073161/p241496.png)
 
@@ -31,7 +31,7 @@ Ingress Controller通过API Server获取Ingress资源的变化，动态地生成
 
 [Ingress基本操作](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress基本操作.md)
 
-[Ingress高级用法]()
+[Ingress高级用法](/intl.zh-CN/Serverless Kubernetes集群用户指南/网络管理/Nginx Ingress管理/Ingress高级用法.md)
 
-[SLB Ingress概述]()
+[SLB Ingress概述](/intl.zh-CN/Serverless Kubernetes集群用户指南/网络管理/SLB Ingress管理/SLB Ingress概述.md)
 
