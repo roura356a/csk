@@ -98,7 +98,7 @@ The feature is supported by professional managed Kubernetes clusters, standard m
 
 |All regions
 
-|[Configure the time zone for a cluster]()|
+|[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)|
 |ACK allows you to add tags on cloud disks, Network Attached Storage \(NAS\) file systems, and Log Service projects.|CSI and Logtail supports cloud disks, NAS file systems, and Log Service projects with tags. Cloud disks, NAS file systems, and Log Service projects that are created by ACK for a cluster are added with the tag of the cluster ID. This makes the allocation of resource fees easier.|All regions
 
 |None|
@@ -122,7 +122,7 @@ The feature is supported by professional managed Kubernetes clusters, standard m
 |ACK allows you to enable or disable the NetworkPolicy feature for Terway when you create a cluster.|You can specify whether to enable the NetworkPolicy feature for Terway when you create a cluster.|All regions
 
 |-   [Use network policies for access control](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Use network policies for access control.md)
--   [Optimize the performance of the NetworkPolicy feature for a large ACK cluster in Terway mode](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Best practices/Optimize the performance of the NetworkPolicy feature for a large ACK cluster in Terway
+-   [Improve the performance of the NetworkPolicy feature for a large ACK cluster in Terway mode](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Best practices/Improve the performance of the NetworkPolicy feature for a large ACK cluster in Terway
          mode.md) |
 |ACK supports periodic inspections for the security management of a cluster.|You can configure periodic inspection policies for a cluster on the Inspections page in the ACK console.|All regions
 
@@ -425,7 +425,7 @@ UK \(London\)
 -   One ENI for Multi-Pod: In this mode, you can deploy multiple pods on a node. The pods share the same ENI.
 
 |All regions|[t64408.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Container network/Work with Terway.md)|
-|ACK supports Knative.|Knative is a Kubernetes-based serverless framework. Knative creates a cloud native and cross-platform orchestration standard for serverless applications. Knative implements this standard by integrating the creation of containers \(or functions\), workload management \(auto scaling\), and event models. ACK supports Knative and allows you to install and upgrade the Build, Serving, and Eventing components. Note that you must deploy Istio before you use Knative. ACK also provides instructions to deploy sample applications, and best practices of tracing, monitoring, and logging applications.|All regions|[Overview](/intl.en-US/User Guide for Kubernetes Clusters/Knative management/Overview.md), [Use Knative to deploy serverless applications]()|
+|ACK supports Knative.|Knative is a Kubernetes-based serverless framework. Knative creates a cloud native and cross-platform orchestration standard for serverless applications. Knative implements this standard by integrating the creation of containers \(or functions\), workload management \(auto scaling\), and event models. ACK supports Knative and allows you to install and upgrade the Build, Serving, and Eventing components. Note that you must deploy Istio before you use Knative. ACK also provides instructions to deploy sample applications, and best practices of tracing, monitoring, and logging applications.|All regions|[Overview](/intl.en-US/User Guide for Kubernetes Clusters/Knative management/Overview.md), [Create a Knative Service](/intl.en-US/User Guide for Kubernetes Clusters/Knative management/Manage Knative services/Create a Knative Service.md)|
 |ACK allows you to search for pods by host IP or pod IP.|You can search for pods by node IP address or pod IP address. In the ACK console, choose **Applications** \> **Pods** and specify a node IP address or pod IP address to search for the pod.|All regions|-|
 
 ## May 2019
