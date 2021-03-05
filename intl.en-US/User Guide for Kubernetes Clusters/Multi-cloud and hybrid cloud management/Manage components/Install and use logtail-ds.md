@@ -8,13 +8,7 @@ Container Service for Kubernetes \(ACK\) clusters are integrated with Log Servic
 
 ## Step 1: Set permissions
 
-Before you can install the component in a register cluster, you must create the AccessKey information to authenticate your requests and enable access to cloud resources. Before you create the AccessKey information, you must create a Resource Access Management \(RAM\) user and grant the RAM user permissions to access cloud resources.
-
-1.  Create a RAM user.
-
-    For more information, see [Create a RAM user](/intl.en-US/RAM User Management/Create a RAM user.md).
-
-2.  Create a permission policy.
+1.  Create a permission policy.
 
     For more information, see [Create a custom policy](/intl.en-US/Policy Management/Custom policies/Create a custom policy.md).
 
@@ -83,14 +77,6 @@ Before you can install the component in a register cluster, you must create the 
     }
     ```
 
-3.  Grant permissions to the RAM user
-
-    For more information, see [Grant permissions to a RAM user](/intl.en-US/RAM User Management/Grant permissions to a RAM user.md).
-
-4.  Create the AccessKey information for the RAM user.
-
-    For more information, see [Obtain an AccessKey pair]().
-
 
 Run the following command to create the Secret that is required to use logtail-ds:
 
@@ -106,19 +92,17 @@ Replace `<your access key id>` and `<your access key secret>` in the preceding c
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  On the Clusters page, find the cluster that you want to manage and select **Manage System Components** from the **More** drop-down list in the **Actions** column.
+2.  On the Clusters page, find the cluster that you want to manage and choose **More** \> **Manage System Components** in the **Actions** column.
 
 3.  On the Add-ons page, find the **logtail-ds** component and click **Install** for the component.
 
 
 ## Step 3: Enable Log Service
 
-For more information, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Log management/Use Log Service to collect container logs.md).
+For more information, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
 
 **Related topics**  
 
 
 [Prerequisites](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Manage components/Prerequisites.md)
-
-[t13087.md\#]()
 
