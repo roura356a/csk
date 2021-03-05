@@ -11,7 +11,7 @@ The Container Service for Kubernetes \(ACK\) console provides rich features that
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
@@ -37,11 +37,9 @@ The Container Service for Kubernetes \(ACK\) console provides rich features that
 
     -   Change the version of the image that is used to deploy the NGINX application to 1.9.1.
 
-        ![Set the image](../images/p189750.png)
+        ![Set the image](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9030394161/p189750.png)
 
     After you create the NGINX application, you can view the application on the Deployments page.
-
-    ![Nginx](../images/p189752.jpg)
 
 
 ## Step 2: Release the NGINX application
@@ -50,7 +48,7 @@ The Container Service for Kubernetes \(ACK\) console provides rich features that
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
 
@@ -74,7 +72,7 @@ The Container Service for Kubernetes \(ACK\) console provides rich features that
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  On the Ingresses page, click **Create** in the upper-right corner of the page.
 
@@ -95,7 +93,7 @@ The Container Service for Kubernetes \(ACK\) console provides rich features that
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane, click **Cluster Information**.
 
