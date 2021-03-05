@@ -41,5 +41,5 @@ When the dry run mode is enabled, container images that fail to pass the signatu
 
 [kritis-validation-hook introduction](/intl.en-US/Release notes/System Component change Records/kritis-validation-hook release notes/kritis-validation-hook introduction.md)
 
-[t1884362.md\#](t1884362.md#)
+[Use kritis-validation-hook to automatically verify the signatures of container images](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Use kritis-validation-hook to automatically verify the signatures of container images.md)
 
