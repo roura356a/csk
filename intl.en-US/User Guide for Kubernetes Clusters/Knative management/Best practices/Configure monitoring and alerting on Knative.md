@@ -2,8 +2,8 @@
 
 This topic describes how to use Log Service to collect log data from Knative and configure alerts based on the collected log data.
 
--   A Knative Service is deployed. For more information, see [t474495.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Knative management/Manage Knative services/Use Knative to deploy a Hello World application.md).
--   You are connected to a master node in the cluster. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+-   Log Service is activated. For more information, see [t17400.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
+-   A Knative Service is deployed. For more information, see [Create a Knative Service](/intl.en-US/User Guide for Kubernetes Clusters/Knative management/Manage Knative services/Create a Knative Service.md).
 
 ## Procedure
 
