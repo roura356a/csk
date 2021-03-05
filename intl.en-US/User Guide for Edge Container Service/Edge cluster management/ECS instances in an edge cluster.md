@@ -71,7 +71,7 @@ To add a cloud management node, you can perform the following steps. ACK@Edge wi
 **Related topics**  
 
 
-[t1884276.md\#](t1884276.md#)
+[ACK@Edge overview](/intl.en-US/User Guide for Edge Container Service/ACK@Edge overview.md)
 
-[Create a managed edge cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Create a managed edge cluster.md)
+[Create a managed edge Kubernetes cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Create a managed edge Kubernetes cluster.md)
 
