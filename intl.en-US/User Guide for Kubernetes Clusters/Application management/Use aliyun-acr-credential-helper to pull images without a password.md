@@ -44,7 +44,7 @@ Before you use the aliyun-acr-credential-helper component to pull images, you mu
 
     1.  Log on to the [the ACK console](https://cs.console.aliyun.com).
 
-    2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+    2.  In the left-side navigation pane, click **Clusters**.
 
     3.  On the **Clusters** page, find your cluster and choose **More** \> **Manage System Components** in the Actions column.
 
@@ -54,7 +54,7 @@ Before you use the aliyun-acr-credential-helper component to pull images, you mu
 
     1.  Log on to the [the ACK console](https://cs.console.aliyun.com).
 
-    2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+    2.  In the left-side navigation pane, click **Clusters**.
 
     3.  On the **Clusters** page, find your cluster and click **Details** in the Actions column.
 
@@ -221,7 +221,7 @@ If you want to pull images under the current account, you must check whether the
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  On the **details** page of the cluster click the **Cluster Resources** tab. On the Cluster Resources tab, click the name of the **worker RAM role**.
 
