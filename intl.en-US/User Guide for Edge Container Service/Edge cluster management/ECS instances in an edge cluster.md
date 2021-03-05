@@ -44,7 +44,7 @@ To add a cloud management node, you can perform the following steps. ACK@Edge wi
 
     **Note:** Set the operating system to CentOS 7.6.
 
-2.  In [OpenAPI Explorer](https://api.aliyun.com/new?spm=a2c4g.11186623.2.21.5bd46938K9IM2W#/?product=CS&api=AttachInstances&params=%7B%22RegionId%22:%22default%22,%22ClusterId%22:%22cac25e4cd95ff45b79c5db00a0f2f6a40%22,%22RequestBody%22:%22%7B%5Cn%20%20%20%20%22password%22:%20%22Hello1234!%22,%5Cn%20%20%20%20%22tags%22:%5B%5D,%5Cn%20%20%20%20%22instances%22:%20%5B%5Cn%20%20%20%20%20%20%20%20%22i-uf65mbpn1x8x45jwavda%22%5Cn%20%20%20%20%5D%5Cn%7D%22%7D&tab=DEMO&lang=GO), call the AttachInstances operation to add the ECS instance to the cluster.
+2.  In [OpenAPI开发者门户](https://next.api.aliyun.com/api/CS/2015-12-15/OpenAckService?sdkStyle=dara), call the AttachInstances operation to add the ECS instance to the cluster.
 
     The following example shows a request body:
 
