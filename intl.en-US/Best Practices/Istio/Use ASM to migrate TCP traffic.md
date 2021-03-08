@@ -112,7 +112,7 @@ To deploy an application that has two versions, you must create two deployments 
             **Note:** The **External Traffic Policy** parameter appears only when you set the service type to **Node Port** or **Server Load Balancer**.
 
         -   **Port Mapping**: the mappings of the service and container ports. Set the **Name** parameter to tcp, the **Service Port** parameter to 9000, the **Container Port** parameter to 9000, and the **Protocol** parameter to TCP.
-        -   **Annotations**: the annotations of the service. You can set SLB parameters. For example, `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20` indicates that the service bandwidth is set to 20 Mbit/s. For more information, see [t16677.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Use annotations to configure SLB instances.md).
+        -   **Annotations**: the annotations of the service. You can set SLB parameters. For example, `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20` indicates that the service bandwidth is set to 20 Mbit/s. For more information, see [Use an automatically created SLB instance to expose an application](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Use an automatically created SLB instance to expose an application.md).
         -   **Label**: the one or more tags that you want to add to the service.
         After you create the service tcp-echo, it appears on the **Services** page.
 
