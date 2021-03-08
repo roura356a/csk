@@ -44,7 +44,7 @@ keyword: [云端管控节点, 边缘集群, 添加ECS节点]
 
     **说明：** 操作系统选择CentOS 7.6。
 
-2.  在[OpenAPI开发者门户](https://next.api.aliyun.com/api/CS/2015-12-15/OpenAckService?sdkStyle=dara)上使用AttachInstances API，添加ECS至集群。
+2.  在[OpenAPI Explorer](https://api.alibabacloud.com/#/?product=Ons)上使用AttachInstances API，添加ECS至集群。
 
     body参数如下：
 
