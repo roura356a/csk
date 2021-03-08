@@ -197,7 +197,7 @@ Destroy complete! Resources: 5 destroyed.
 **相关文档**  
 
 
-[阿里云OpenAPI Explorer](https://api.aliyun.com/#/cli?tool=Terraform&module=managed-kubernetes&namespace=terraform-alicloud-modules)
+[OpenAPI开发者门户](https://next.api.aliyun.com/api/CS/2015-12-15/CallbackClusterToken?sdkStyle=old&tab=DEBUG)
 
 [阿里云容器服务Terraform资源](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes)
 
