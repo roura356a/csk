@@ -74,7 +74,7 @@ The following tables list the API operations available for use in Container Serv
 |[Add existing ECS instances to a cluster](/intl.en-US/API Reference/Nodes/Add existing ECS instances to a cluster.md)
 
 |You can call AttachInstances to add an existing Elastic Compute Service \(ECS\) instance to an ACK cluster.|
-|[Generate a script to add a node to a managed edge cluster]()
+|[Generate a script to add a node to a managed edge cluster](/intl.en-US/API Reference/Nodes/Generate a script to add a node to a managed edge cluster.md)
 
 |You can call DescribeClusterAttachScripts to add an existing node to a managed edge cluster. This operation returns a unique and executable script. You can run the script on an existing node to add the node to a managed edge cluster.|
 |[Add existing ENS instances to a managed edge cluster]()
