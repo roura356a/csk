@@ -4,7 +4,7 @@ keyword: [Terraform, Kubernetes托管版集群]
 
 # 使用Terraform创建Kubernetes托管版集群
 
-Terraform是HashiCorp公司提供的一种开源工具，用于安全高效地预览，配置和管理云基础架构和资源，帮助开发者自动化地创建、更新和阿里云基础设施资源，并进行版本管理。本文介绍如何使用Terraform创建ACK的托管版Kubernetes集群。
+Terraform是HashiCorp公司提供的一种开源工具，用于安全高效地预览，配置和管理云基础架构和资源，帮助开发者自动化地创建、更新阿里云基础设施资源，并进行版本管理。本文介绍如何使用Terraform创建ACK的托管版Kubernetes集群。
 
 -   安装Terraform。
 
@@ -197,7 +197,7 @@ Destroy complete! Resources: 5 destroyed.
 **相关文档**  
 
 
-[阿里云OpenAPI Explorer](https://api.aliyun.com/#/cli?tool=Terraform&module=managed-kubernetes&namespace=terraform-alicloud-modules)
+[OpenAPI Explorer](https://api.alibabacloud.com/#/?product=Ons)
 
 [阿里云容器服务Terraform资源](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes)
 
