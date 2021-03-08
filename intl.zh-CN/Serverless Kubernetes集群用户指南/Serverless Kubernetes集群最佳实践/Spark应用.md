@@ -328,7 +328,7 @@ Spark镜像的尺寸较大，拉取的数目会比较慢，可以通过ImageCach
 
 
 
-当sparkApplication的的状态为succeed或者spark driver的Pod为completed的时候，可以查看日志获取结果。
+当sparkApplication的状态为succeed或者spark driver的Pod为completed的时候，可以查看日志获取结果。
 
 
 
