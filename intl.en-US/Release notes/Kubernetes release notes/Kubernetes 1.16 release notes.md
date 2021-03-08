@@ -4,11 +4,11 @@ Container Service for Kubernetes \(ACK\) strictly abides by the terms of the Cer
 
 ## Upgrade description
 
-ACK has upgraded the components of Kubernetes 1.16.6 to provide enhanced features.
+ACK has upgraded the components of Kubernetes 1.16 to provide enhanced features.
 
 |Core component|Version|Upgrade notes|
 |--------------|-------|-------------|
-|Kubernetes|1.16.9|Vulnerability CVE-2020-8555 is fixed in Kubernetes 1.16.9. For more information, see [Vulnerability fix: CVE-2020-8555](/intl.en-US/Bulletin/Security bulletins/Vulnerability fix: CVE-2020-8555.md).|
+|Kubernetes|1.16.9|Vulnerability CVE-2020-8555 is fixed in Kubernetes 1.16.9. For more information, see [Vulnerability fixed: CVE-2020-8555 in kube-controller-manager](/intl.en-US/Bulletin/Security bulletins/Vulnerability fixed: CVE-2020-8555 in kube-controller-manager.md).|
 |1.16.6|In Kubernetes 1.16, the built-in CoreDNS version is V1.6.2. Compared with CoreDNS 1.3.1 in Kubernetes 1.14. the new version has the following changes: -   The proxy plug-in is replaced with the forward plug-in, which offers higher performance.
 -   By default, the ready plug-in is enabled. It is used to check the readiness of containers.
 
