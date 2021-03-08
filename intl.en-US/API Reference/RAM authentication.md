@@ -1,6 +1,6 @@
 # RAM authentication
 
-Before you call an Alibaba Cloud API by using a Resource Access Management \(RAM\) user, you must use an Alibaba Cloud account to create a RAM policy with required permissions and attach it to the RAM user.
+Before you call an Alibaba Cloud API as a Resource Access Management \(RAM\) user, you must use an Alibaba Cloud account to create a RAM policy with required permissions and attach it to the RAM user.
 
 ## Authorize a RAM user to use cloud resources
 
@@ -14,20 +14,20 @@ An ARN uses the following format:
 acs:service-name:region:account-id:resource-relative-id
 ```
 
-An ARN contains the following parameters:
+Where:
 
--   acs: the abbreviation of Alibaba Cloud Service.
+-   acs: the abbreviation for Alibaba Cloud Service.
 -   service-name: the name of an Alibaba Cloud service. Examples: ecs, oss, and slb.
--   region: the region where the cloud resource is deployed. If this parameter is not supported by the cloud resource, you can replace this parameter with an asterisk \(\*\).
+-   region: the region where the cloud resource is deployed. If this parameter is not supported by the cloud resource, replace this parameter with an asterisk \(\*\).
 
 -   account-id: the ID of the account that owns the cloud resource. Example: 1234567890123456.
 
 -   resource-relative-id: the description of the cloud resource. The description varies based on the Alibaba Cloud service. For more information, see the documentation of Alibaba Cloud services.
 
-    For example, `acs:oss::1234567890123456:sample_bucket/file1.txt` indicates a cloud resource named sample\_bucket/file1.txt in Object Storage Service \(OSS\). `1234567890123456` indicates the ID of the account that owns the cloud resource.
+    For example, `acs:oss::1234567890123456:sample_bucket/file1.txt` indicates a resource named sample\_bucket/file1.txt in Object Storage Service \(OSS\). `1234567890123456` indicates the ID of the account that owns the cloud resource.
 
 
-## Authorization types on ACK
+## Authorize a RAM user to use ACK resources
 
 |Authorization type|ARN format|
 |------------------|----------|
@@ -52,7 +52,7 @@ An ARN contains the following parameters:
 
 The following table describes the mappings between the ACK API operations and the RAM actions.
 
-|API operation|RAM Action|Description|
+|API operation|RAM action|Description|
 |-------------|----------|-----------|
 |AttachInstances|AttachInstances|Adds existing Elastic Compute Service \(ECS\) instances to an ACK cluster.|
 |CancelClusterUpgrade|CancelK8sCluster|Cancels the upgrade of an ACK cluster.|
@@ -61,7 +61,7 @@ The following table describes the mappings between the ACK API operations and th
 |CreateKubernetesTrigger|GenerateTriggerHook|Creates an application trigger.|
 |CreateTemplate|CreateTemplate|Creates an application deployment template.|
 |DeleteCluster|DeleteCluster|Deletes an ACK cluster.|
-|DeleteClusterNodes|DeleteClusterNodes|Removes a cluster node and releases the ECS instance.|
+|DeleteClusterNodes|DeleteClusterNodes|Removes a node and releases the ECS instance.|
 |DeleteKubernetesTrigger|RevokeTriggers|Deletes an application trigger.|
 |DeleteTemplate|V2DeleteTemplateInfo|Deletes an application deployment template.|
 |DescribeAddons|Queryk8sComponentsVersion|Queries information about the components in an ACK cluster.|
@@ -72,21 +72,21 @@ The following table describes the mappings between the ACK API operations and th
 |DescribeClusterLogs|GetClusterLogs|Queries the logs of an ACK cluster.|
 |DescribeClusterNodes|DescribeClusterNodes|Queries the nodes in an ACK cluster.|
 |DescribeClusterResources|DescribeClusterResources|Queries all resources in an ACK cluster.|
-|DescribeClusters|GetClustersByUid and GetClusters|Queries all ACK clusters under your account.|
-|DescribeClustersV1|ListClusters|Queries all ACK clusters under your account.|
+|DescribeClusters|GetClustersByUid and GetClusters|Queries all ACK clusters that belong to your account.|
+|DescribeClustersV1|ListClusters|Queries all ACK clusters that belong to your account.|
 |DescribeClusterUserKubeconfig|GetUserConfig|Queries the kubeconfig file of an ACK cluster.|
 |DescribeClusterV2UserKubeconfig|GetUserConfig|Queries the kubeconfig file of an ACK cluster.|
-|DescribeExternalAgent|DescribeExternalClusterAgentDeployment|Queries the configuration of an agent that is used to register an external Kubernetes cluster.|
+|DescribeExternalAgent|DescribeExternalClusterAgentDeployment|Queries the configurations of the agent that is used to register an external Kubernetes cluster.|
 |DescribeTemplates|V2ListTemplates|Queries application deployment templates.|
 |DescribeUserQuota|GetUserQuota|Queries resource quotas of your account.|
-|GetKubernetesTrigger|GetK8sTrigger|Queries the details about an application trigger.|
+|GetKubernetesTrigger|GetK8sTrigger|Queries the details of an application trigger.|
 |GetUpgradeStatus|GetK8sClusterState|Queries the upgrade status of an ACK cluster.|
 |InstallClusterAddons|InstallK8sComponents|Installs a component in an ACK cluster.|
 |ModifyCluster|ModifyCluster|Modifies information about an ACK cluster.|
 |ModifyClusterTags|UpdateClusterTags|Modifies the labels of an ACK cluster.|
 |PauseClusterUpgrade|UpgradeCluster|Suspends the upgrade of an ACK cluster.|
 |PauseComponentUpgrade|PauseComponentUpgrade|Suspends the upgrade of a component.|
-|ReBindSecurityGroup|ReBindSecurityGroup|Rebinds an ACK cluster to a security group.|
+|ReBindSecurityGroup|ReBindSecurityGroup|Rebinds a security group to an ACK cluster.|
 |RemoveClusterNodes|DeleteClusterNode|Removes nodes from an ACK cluster.|
 |ResumeComponentUpgrade|ResumeComponentUpgrade|Resumes the upgrade of a component.|
 |ResumeUpgradeCluster|UpgradeCluster|Resumes the upgrade of an ACK cluster.|
@@ -96,4 +96,7 @@ The following table describes the mappings between the ACK API operations and th
 |UpdateK8sClusterUserConfigExpire|UpdateK8sClusterUserConfigExpire|Updates the expiration time of custom configurations.|
 |UpgradeCluster|UpgradeCluster|Upgrades an ACK cluster.|
 |UpgradeClusterAddons|UpgradeK8sComponents|Upgrades the components of an ACK cluster.|
+|DescribeUserPermission|GetUserPermissions|Queries the permissions that are granted to a RAM user to manage ACK clusters.|
+|GrantPermissions|GrantPermission|Grants permissions to all RAM users to manage ACK clusters.|
+|GrantUsersPermissions|GrantPermission|Grants permissions to specified RAM users to manage ACK clusters.|
 
