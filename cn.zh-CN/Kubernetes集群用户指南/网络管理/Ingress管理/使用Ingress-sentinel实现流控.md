@@ -13,14 +13,10 @@ ACK提供了Ingress-sentinel流控功能，通过Ingress-sentinel流控功能可
 
 ## 使用限制
 
--   仅支持在深圳、北京、上海、张家口、杭州五个地区使用Ingress-sentinel流控功能。
--   开启Ingress-sentinel流控功能，会消耗一定的系统资源。如果您使用的是4核8 GB机器，建议按照以下要求配置流控规则：
-    -   QPS上限为10000。
-    -   流控的规则数（即关注的流控对象，默认是Host ）上限为2000。
+开启Ingress-sentinel流控功能，会消耗一定的系统资源。您使用的机器需要符合一定的配置，以下为配置说明：
 
-        您可以在[AHAS控制台](https://ahas.console.aliyun.com)对流控规则数做详细的配置，支持域名、正则表达式等。
-
-    -   请求接口的RT值不小于10 ms。
+-   最低配置：CPU为1000m Core，内存为2048 MiB。
+-   建议配置：CPU为4000m Core及以上，内存为8192 MiB及以上。
 
 ## 开启Ingress-sentinel流控功能
 
@@ -34,22 +30,38 @@ ACK提供了Ingress-sentinel流控功能，通过Ingress-sentinel流控功能可
 
 5.  在配置项页面名称搜索框中搜索nginx-configuration，找到nginx-configuration，然后单击nginx-configuration**操作**列的**编辑**。
 
-6.  自定义应用名称，方便区分。
+6.  自定义应用名称。
 
     在**编辑**面板单击**添加**，设置**名称**为sentinel-params ，**值**为--app=demo-k8s-2020。
 
     **说明：** --app=demo-k8s-2020字段中demo-k8s-2020为应用名称，您可以根据实际需求替换应用名称。
 
-7.  开启Ingress-sentinel流控功能。
+7.  如果您的集群所在地域不属于深圳、北京、上海、张家口、杭州，则还需要配置证书。
+
+    单击**添加**，设置**名称**为sentinel-params ，**值**为--app=demo-k8s --license=xxx。
+
+    **说明：** 关于获取License的更多信息，请参见[查看License](/cn.zh-CN/流量防护/应用防护/参考信息/查看License.md)。
+
+8.  如果您希望接收到超过流控配置上限的请求时，系统能够返回HTTP 429错误码（表示请求数过多）。则您可以配置流控HTTP返回码。
+
+    单击**添加**，设置**名称**为sentinel-block-action，**值**为=429。
+
+    **说明：** 如果您想要自定义HTTP错误码，可以根据实际需求修改429。
+
+9.  开启Ingress-sentinel流控功能。
+
+    **说明：** 接入Ingress-sentinel流控功能后默认不会触发流控，只有配置开启流控规则，并且请求流量超过流控规则限制后才会触发流控。
 
     单击**添加**，设置**名称**为use-sentinel，**值**为true。然后单击**确定**。
 
 
 ## 配置流控规则
 
-登录[AHAS控制台](https://ahas.console.aliyun.com)，在控制台左侧导航栏选择**流量防护** \> **Nginx防护**，单击目标应用卡片，根据实际需求配置流控规则。具体操作请参见[配置流控规则](/cn.zh-CN/流量防护/应用防护/配置规则/配置流控规则.md)、[配置隔离规则](/cn.zh-CN/流量防护/应用防护/配置规则/配置隔离规则.md)或[配置熔断规则](/cn.zh-CN/流量防护/应用防护/配置规则/配置熔断规则.md)。
+登录[AHAS控制台](https://ahas.console.aliyun.com)，在控制台左侧导航栏选择**流量防护** \> **Nginx防护**，单击目标应用卡片，可以看到应用名称对应的流控监控窗口。具体操作请参见[配置流控规则](/cn.zh-CN/流量防护/应用防护/配置规则/配置流控规则.md)、[配置隔离规则](/cn.zh-CN/流量防护/应用防护/配置规则/配置隔离规则.md)或[配置熔断规则](/cn.zh-CN/流量防护/应用防护/配置规则/配置熔断规则.md)。
 
-规则配置完成后，您可以在应用概览页面实时查看流控指标。
+![流控窗口](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5792825161/p247227.png)
+
+如果您需要配置更详细的流控规则，请参见[管理API](/cn.zh-CN/流量防护/Nginx防护/管理API.md) 和[配置流控规则](/cn.zh-CN/流量防护/Nginx防护/配置流控规则.md)。规则配置完成后，您可以在应用概览页面实时查看流控指标。
 
 ![流控指标](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3105911161/p227294.png)
 
