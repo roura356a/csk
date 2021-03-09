@@ -6,6 +6,29 @@ keyword: [CCM, 变更记录]
 
 本文为您介绍了CCM（Cloud Controller Manager）相关内容的最新动态。
 
+## 2021年03月
+
+|版本号|镜像地址|变更时间|变更内容|
+|---|----|----|----|
+|v1.9.3.372-gcf3535b-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.372-gcf3535b-aliyun|2021年03月08日|新功能：
+
+-   支持为虚拟服务器组添加集群外ECS。
+-   复用已有SLB时，默认为该SLB添加`kubernetes.reused.by.user`的标签。
+
+优化：
+
+-   调整Service并发处理线程数量，优化Service处理速度。
+-   优化virtual-kubelet节点处理逻辑，忽略由virtual-kubelet节点状态变化引发的Service同步。
+-   排除节点的标签`service.beta.kubernetes.io/exclude-node`已被废弃，请使用新标签`service.alibabacloud.com/exclude-node`代替。
+-   复用已有SLB时增加资源组校验，注解中的资源组ID需要与该SLB的资源组ID一致，否则复用失败。
+-   优化事件（Events）内容，提升可读性。
+-   优化新版本与老版本注解的优先级配置，如果Service上同时存在新版本和老版本的同名注解时，新版本注解优先生效。
+
+缺陷修复：
+
+-   修复因节点配置缺失导致的路由删除失败问题。
+-   优化节点初始化逻辑，修复污点（Taint）缺失问题。在节点初始化过程中，避免业务Pod调度到路由未创建的节点上。 |
+
 ## 2020年12月
 
 |版本号|镜像地址|变更时间|变更内容|
@@ -50,7 +73,7 @@ keyword: [CCM, 变更记录]
 -   新增Prometheus Metrics（ccm\_node\_latencies\_duration\_milliseconds、ccm\_route\_latencies\_duration\_milliseconds、ccm\_slb\_latencies\_duration\_milliseconds），用于透出CCM同步时延信息。
 -   支持以Event方式透出Service与LoadBalancer同步过程。
 -   改进：
-    -   优化Local模式下（设定Service的externalTrafficPolicy=Local）权重计算方式，使Pod间负载更加均衡，详情请参见[t2039653.md\#section\_7xa\_hpn\_yfw]()。
+    -   优化Local模式下（设定Service的externalTrafficPolicy=Local）权重计算方式，使Pod间负载更加均衡，详情请参见[Local模式下如何自动设置Node权重？](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Service管理/Service FAQ.md)。
 
     -   优化云产品API调用，提升效率、降低限流风险。
     -   当节点有service.beta.kubernetes.io/exclude-node标签时，删除节点时不再删除关联路由。
