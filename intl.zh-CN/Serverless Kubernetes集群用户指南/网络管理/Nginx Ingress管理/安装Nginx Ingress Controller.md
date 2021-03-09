@@ -17,7 +17,7 @@ keyword: 安装Nginx Ingress Controller
 -   2个2核4 GiB的ECI实例：用于部署服务。
 -   1个SLB：SLB实例类型可以是公网或者私网，SLB实例规格您可以按需选择。
 
-![S8](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7040674161/p245306.png)
+![S8](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4205525161/p245306.png)
 
 **方式二：在组件管理页面安装Nginx Ingress Controll**
 
