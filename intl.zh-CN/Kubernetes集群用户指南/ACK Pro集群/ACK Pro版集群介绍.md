@@ -34,7 +34,7 @@ ACK Pro版集群和ACK专有版集群的对比详情如下表。
 |--|--|----------|--------|
 |集群规模|不涉及|最大5000节点|最大100节点（现有集群不受影响，可以升级到Pro版）|
 |SLA|不涉及|99.95%（支持赔付）|99.9%（不支持赔付）|
-|API Server|自动弹性伸缩机制|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)|
+|API Server|自定义参数设置|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)|
 |可用性监控|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)|
 |etcd|高频冷热备机制，异地容灾|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)|
 |可观测性监控指标|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)|
