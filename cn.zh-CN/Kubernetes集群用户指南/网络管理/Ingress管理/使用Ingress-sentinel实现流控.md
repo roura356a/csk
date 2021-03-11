@@ -8,6 +8,7 @@ ACK提供了Ingress-sentinel流控功能，通过Ingress-sentinel流控功能可
 
 -   [开通AHAS](/cn.zh-CN/快速入门/开通AHAS.md)
 -   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)
+-   请确保ACK集群中的Ingress Controller运行正常，且不低于0.44.0版本。
 
 应用高可用服务AHAS（Application High Availability Service）提供了应用架构探测感知，故障注入式高可用能力评测和流控降级高可用防护三大核心能力，其中针对Nginx的流控降级高可用防护功能已集成到ACK提供的Ingress-Nginx-Controller中，您可用根据实际需求开启该功能，查看流控数据。
 
