@@ -2,7 +2,7 @@
 
 本文汇总网络管理中容器网络、Service和Ingress的常见问题。
 
-## 容器管理FAQ
+## 容器网络FAQ
 
 -   [手动升级了Flannel镜像版本后，如何解决无法兼容1.16以上版本集群的问题？](/cn.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/容器网络FAQ.md)
 -   [如何解决Pod启动后存在时延的问题？](/cn.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/容器网络FAQ.md)
@@ -29,7 +29,6 @@
 **CCM升级相关**
 
 -   [CCM升级失败如何处理？](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Service管理/Service FAQ.md)
--   [为何ACK控制台无法查看CCM升级检查报告？](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Service管理/Service FAQ.md)
 
 **使用已有SLB常见问题**
 
