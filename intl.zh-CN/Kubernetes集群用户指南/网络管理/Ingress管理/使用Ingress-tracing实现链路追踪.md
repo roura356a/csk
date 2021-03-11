@@ -17,13 +17,17 @@ ACK提供了Ingress-tracing链路追踪功能，通过Ingress-tracing链路追�
 
 1.  登录[链路追踪Tracing Analysis控制台](https://tracing-sg.console.aliyun.com/)。
 
-2.  在左侧导航栏单击**集群配置**。
+2.  在控制台页面顶部选择地域。
 
-3.  在集群配置页面上单击**接入点信息**页签，在集群信息区域打开**显示Token**开关。
+    **说明：** 地域需要与[步骤二：在Ingress中开启链路追踪服务](#section_1sj_zks_0mv)的ACK集群保持一致。
 
-4.  在客户端采集工具区域单击**Zipkin**。
+3.  在左侧导航栏单击**集群配置**。
 
-5.  在下方表格的相关信息列中，单击接入点信息末尾的复制图标。
+4.  在集群配置页面上单击**接入点信息**页签，在集群信息区域打开**显示Token**开关。
+
+5.  在客户端采集工具区域单击**Zipkin**。
+
+6.  在下方表格的相关信息列中，单击接入点信息末尾的复制图标。
 
     **说明：** 建议选择v1版本接入点。
 
@@ -46,7 +50,9 @@ ACK提供了Ingress-tracing链路追踪功能，通过Ingress-tracing链路追�
 
     根据使用的链路追踪方式，需要配置不同的字段，本文采用zipkin来提供链路追踪服务。
 
-    在**编辑**面板单击**添加**，设置**名称**为zipkin-collector-host ，**值**为[步骤一：获取接入点信息](#section_8f8_sdn_c03)获取的接入点信息。该接入点信息需要去掉HTTP，并在末尾加上问号。例如接入点信息为`http://tracing-analysis-dc-hz-internal.aliyuncs.com/adapt_******_******/api/v2/spans`，则输入的值为`tracing-analysis-dc-hz-internal.aliyuncs.com/adapt_******_******/api/v2/spans？`。
+    在**编辑**面板单击**添加**，设置**名称**为zipkin-collector-host ，**值**为[步骤一：获取接入点信息](#section_8f8_sdn_c03)获取的接入点信息。
+
+    **说明：** 该接入点信息需要去掉HTTP，并在末尾加上问号。例如接入点信息为`http://tracing-analysis-dc-hz-internal.aliyuncs.com/adapt_******_******/api/v1/spans`，则输入的值为`tracing-analysis-dc-hz-internal.aliyuncs.com/adapt_******_******/api/v1/spans？`。
 
 7.  开启链路追踪服务。
 
