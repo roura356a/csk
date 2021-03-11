@@ -1,25 +1,25 @@
 # Overview
 
-Container Service can automatically bind Kubernetes pods to Alibaba Cloud disks, Network Attached Storage \(NAS\), and Object Storage Service \(OSS\).
+Clusters of Container Service for Kubernetes \(ACK\) can be automatically bound to Alibaba Cloud disks, Apsara File Storage NAS \(NAS\) file systems, and Object Storage Service \(OSS\) buckets that are mounted to pods.
 
-Currently, the Container Storage Interface \(CSI\) driver supports both static and dynamic volumes. The following table describes the support for static and dynamic volumes by each storage service.
+The Container Storage Interface \(CSI\) driver supports both static and dynamic volumes. The following table describes the support for static and dynamic volumes by each storage service.
 
 |Alibaba Cloud storage|Static volume|Dynamic volume|
 |---------------------|-------------|--------------|
-|Alibaba Cloud disk|Static volumes attached through the CSI driver are supported. You can use a static volume by creating a persistent volume \(PV\) and a persistent volume claim \(PVC\).
+|Alibaba Cloud disk|The CSI driver supports mounting an Alibaba Cloud disk as a static volume.You can mount an Alibaba Cloud disk by using a persistent volume \(PV\) and a persistent volume claim \(PVC\).
 
-|Supported|
-|Alibaba Cloud NAS|Static volumes attached through the CSI driver are supported. You can use a static volume by creating a PV and a PVC.
+|The CSI driver supports mounting an Alibaba Cloud disk as a dynamic volume.|
+|NAS file system|The CSI driver supports mounting a NAS file system as a static volume.You can mount a NAS file system by using a PV and a PVC.
 
-|Supported|
-|Alibaba Cloud OSS|Static volumes attached through the CSI driver are supported. You can use a static volume by creating a PV and a PVC.
+|The CSI driver does not support mounting a NAS file system as a dynamic volume.|
+|OSS bucket|The CSI driver supports mounting an OSS bucket as a static volume.You can mount an OSS bucket by using a PV and a PVC.
 
-|Not supported|
+|The CSI driver does not support mounting an OSS bucket as a dynamic volume.|
 
-## Supported versions
+## Kubernetes versions
 
--   When Kubernetes 1.14 or a later version is used, the FlexVolume and CSI plug-ins are supported.
--   If you select the CSI driver when creating a cluster, set the kubelet parameter `enable-controller-attach-detach` to true.
+-   FlexVolume and CSI are available for clusters of Kubernetes 1.14 and later.
+-   If you select the CSI driver when you create an ACK cluster, set `enable-controller-attach-detach` to true for kubelet.
 
 The regions supported by the CSI driver are the same as those available for Kubernetes 1.14.
 
