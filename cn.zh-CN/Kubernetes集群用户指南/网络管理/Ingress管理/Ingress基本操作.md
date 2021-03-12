@@ -12,7 +12,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
 
 **创建Ingress**
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -24,7 +24,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
 
 6.  配置路由规则。
 
-    路由规则是指授权入站到达集群服务的规则，支持HTTP或HTTPS规则，配置项包括域名（虚拟主机名称）、URL路径、服务名称、端口配置和路由权重等。详细的信息请参见[路由配置说明](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/路由配置说明.md)。
+    路由规则是指授权入站到达集群服务的规则，支持HTTP或HTTPS规则，配置项包括域名（虚拟主机名称）、URL路径、服务名称、端口配置和路由权重等。
 
     本例中配置添加一条复杂的路由规则，配置集群默认的测试域名和虚拟主机名称，展示基于域名的路由服务。
 
@@ -54,7 +54,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
             -   权重设置：设置该路径下多个服务的权重。服务权重采用相对值计算方式，默认值为100，如本例中所示，新旧两个版本的服务权重值都是50，则表示两个服务的权重比例都是50%。
 7.  配置TLS。
 
-    选中**开启**TLS，配置安全的路由服务。具体请参见[Ingress支持](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/配置Ingress.md)。
+    选中**开启**TLS，配置安全的路由服务。具体请参见[Ingress支持](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress高级用法.md)。
 
     -   您可选择使用已有密钥。
         1.  登录Master节点，创建tls.key和tls.crt。
@@ -128,7 +128,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
 
 **查看Ingress**
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -143,7 +143,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
 
 **更新Ingress**
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -158,7 +158,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
 
 **删除Ingress**
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
