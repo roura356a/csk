@@ -12,7 +12,7 @@ An Ingress is a Kubernetes resource object that is used to enable external acces
 
 **Create an Ingress**
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
@@ -24,7 +24,7 @@ An Ingress is a Kubernetes resource object that is used to enable external acces
 
 6.  Configure Ingress rules.
 
-    Ingress rules are used to manage external access to Services in the cluster. Ingress rules can be HTTP or HTTPS rules. You can configure the following items in Ingress rules: domain name \(virtual hostname\), URL path, Service name, port, and weight. For more information, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Ingress configurations.md).
+    Ingress rules are used to manage external access to Services in the cluster. Ingress rules can be HTTP or HTTPS rules. You can configure the following items in Ingress rules: domain name \(virtual hostname\), URL path, Service name, port, and weight.
 
     In this example, a complex rule is added to configure Services for the default domain name and virtual hostname of the cluster. Traffic routing is based on domain names.
 
@@ -128,7 +128,7 @@ An Ingress is a Kubernetes resource object that is used to enable external acces
 
 **View an Ingress**
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
@@ -143,7 +143,7 @@ An Ingress is a Kubernetes resource object that is used to enable external acces
 
 **Update an Ingress**
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
@@ -158,7 +158,7 @@ An Ingress is a Kubernetes resource object that is used to enable external acces
 
 **Delete an Ingress**
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
