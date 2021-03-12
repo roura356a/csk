@@ -10,17 +10,19 @@ A serverless Kubernetes \(ASK\) cluster is created. For more information, see [C
 
 ## Step 1: Configure the basic information of the application
 
-1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
+1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
-2.  In the left-side navigation pane, click **Serverless Clusters**.
+2.  In the left-side navigation pane, choose **Applications** \> **Deployments**. In the upper-right corner of the Deployments page, click **Create from Image**.
 
-3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column.
+3.  In the left-side navigation pane, click **Serverless Clusters**.
 
-4.  In the left-side navigation pane, click **Workload**.
+4.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column.
 
-5.  On the **Deployments** tab, click **Create from Image**.
+5.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
-6.  On the Basic Information wizard page, configure the basic settings.
+6.  On the **Deployments** tab, click **Create from Image**.
+
+7.  On the Basic Information wizard page, configure the basic settings.
 
     |Parameter|Description|
     |---------|-----------|
@@ -30,7 +32,7 @@ A serverless Kubernetes \(ASK\) cluster is created. For more information, see [C
     |Labels|The labels attached to the application.|
     |Annotations|The annotations added to the application.|
 
-7.  Click **Next**. Proceed to the **Container** wizard page.
+8.  Click **Next**. Proceed to the **Container** wizard page.
 
 
 ## Step 2: Configure containers for the application
@@ -46,7 +48,7 @@ On the **Container** wizard page, set the configurations of the containers for t
     |Image Name|To select a Docker image or an image from Container Registry \(ACR\), click **Select Image**. In the dialog box that appears, select an image and click **OK**.You can also enter the address of a private image registry. The registry address must be in the following format: `domainname/namespace/imagename:tag`. |
     |Image Version|Click **Select Image Version** and select an image version. If you do not specify an image version, the latest image version is used.|
     |**Always Pull Images**: If you do not select this check box, ACK caches the pulled image. This improves the efficiency of deploying applications. If the specified image version is the same as the cached image version, ACK creates the application from the cached image. Therefore, when you update the application code, if you do not change the image version for reasons such as to support the upper-layer workloads, the previously cached image is used. If you select this check box, ACK pulls the image from the repository each time the application is deployed. This ensures that the latest image and code are used.|
-    |**Set Image Pull Secret**: Click **Set Image Pull Secret** to set a secret for pulling images. You must set the secret if you need to pull the image from a private repository. For more information, see [Use an image Secret](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Use an image Secret.md).|
+    |**Set Image Pull Secret**: Click **Set Image Pull Secret** to set a secret for pulling images. You must set the secret if you need to pull the image from a private repository. For more information, see [Use an image secret](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Use an image secret.md).|
     |Required Resources|The amount of CPU and memory resources that are reserved for this application. These resources are exclusive to the container. This prevents the application from becoming unavailable when other services or processes compete for resources.|
     |Container Start Parameter|    -   stdin: specifies that start parameters defined in the console are imported to the Linux system.
     -   tty: specifies that start parameters defined in a virtual terminal are imported to the console. |
@@ -164,7 +166,7 @@ On the **Advanced** wizard page, configure access control, scaling configuration
 
     -   Create an Ingress: On the right side of **Ingress**, click **Create** and configure the Ingress.
 
-        For more information about the parameters that are required to create an Ingress, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Ingress configurations.md).
+        For more information about the parameters that are required to create an Ingress, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Basic operations of an Ingress.md).
 
         **Note:** When you deploy an application from an image, you can create an Ingress for only one Service. In this example, a virtual hostname is specified as the testing domain. You must add a mapping to the hosts file for this domain in the following format: External endpoint of the Ingress + domain name of the Ingress. In actual scenarios, use a domain name that has obtained an ICP number.
 
@@ -175,7 +177,7 @@ On the **Advanced** wizard page, configure access control, scaling configuration
         |Parameter|Description|
         |---------|-----------|
         |Name|Enter a name for the Ingress. In this example, enter nginx-ingress.|
-        |Rules|Ingress rules are used to manage inbound traffic to Services in a cluster. For more information, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Ingress configurations.md).        -   **Domain**: Enter the domain name of the Ingress. In this example, testing domain name `foo.bar.com` is used.
+        |Rules|Ingress rules are used to manage inbound traffic to Services in a cluster. For more information, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Basic operations of an Ingress.md).        -   **Domain**: Enter the domain name of the Ingress. In this example, testing domain name `foo.bar.com` is used.
         -   **Path**: Enter the URL for accessing the Service. The default path is the root path /. In this example, the default path is used. Each path is associated with a backend Service. SLB instances forward traffic to backend Services only when inbound requests match the domain name and path.
         -   **Service**: Select a Service and corresponding port. In this example, nginx-svc is selected.
         -   Select **EnableTLS** to enable Transport Layer Security \(TLS\) and configure secure routing. For more information, see [Configure an Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Configure an Ingress.md). |
@@ -212,11 +214,11 @@ On the **Complete** wizard page, you can view the newly created application.
 
 1.  On the **Complete** wizard page, click **View Details**. On the Deployments tab, you can find the newly created application named serverless-app-svc.
 
-    ![Deployment list](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/1163182061/p10257.png)
+    ![Deployment list](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1163182061/p10257.png)
 
 2.  In the left-side navigation pane of the details page of the cluster, click **Services**
 
-    ![Service list](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/1163182061/p10258.png)
+    ![Service list](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1163182061/p10258.png)
 
 3.  To visit the NGINX welcome page, you can use your browser to access the external endpoint of the Service.
 
