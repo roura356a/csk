@@ -6,17 +6,19 @@ You can use an image to deploy a stateless application. This topic describes how
 
 ## Step 1: Configure basic settings
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
-5.  On the **Deployments** page, click **Create from Image**.
+5.  In the left-side navigation pane, choose **Applications** \> **Deployments**. On the Deployments page, click **Create from Image** in the upper-right corner of the page.
 
-6.  On the **Basic Information** wizard page, configure the basic settings.
+6.  On the **Deployments** tab, click **Create from Image**.
+
+7.  On the **Basic Information** wizard page, configure the basic settings.
 
     ![Basic configuration](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8309301161/p10973.png)
 
@@ -25,14 +27,14 @@ You can use an image to deploy a stateless application. This topic describes how
     |Name|The name of the application.|
     |Namespace|The namespace where you want to deploy the application. The default namespace is automatically selected. You can select another namespace.|
     |Replicas|The number of pods that are provisioned for the application. Default value: 2.|
-    |Type|The type of application. You can select **Deployments**, **StatefulSets**, **Jobs**, ******Cron Jobs**, or **DaemonSets**.|
+    |Type|The type of application. You can select **Deployments**, **StatefulSets**, **Jobs**, **Cron Jobs**, or **DaemonSets**.|
     |Label|Add a label to the application. The label is used to identify the application.|
     |Annotations|Add an annotation to the application.|
     |Synchronize Timezone|Specify whether to synchronize the time zone between nodes and containers.|
 
     **Note:** **Deployments** is selected in this example.
 
-7.  Click **Next**.
+8.  Click **Next**.
 
     The **Container** wizard page appears.
 
@@ -203,7 +205,7 @@ On the **Advanced** wizard page, you can configure the settings of access contro
 
     -   To create an Ingress, click **Create** on the right side of **Ingresses**. In the Create dialog box, set the parameters.
 
-        For more information about the parameters that are required to create an Ingress, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Ingress configurations.md).
+        For more information about the parameters that are required to create an Ingress, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Basic operations of an Ingress.md).
 
         **Note:** When you deploy an application from an image, you can create an Ingress for only one Service. In this example, the name of a virtual host is used as the test domain name. You must add the following entry to the hosts file to map the domain name to the IP address of the Ingress. The entry is in the format of <Ingress external endpoint\> + <Ingress domain name\>. In practical scenarios, use a domain name that has obtained an Internet Content Provider \(ICP\) number.
 
@@ -214,7 +216,7 @@ On the **Advanced** wizard page, you can configure the settings of access contro
         |Parameter|Description|
         |---------|-----------|
         |Name|Enter a name for the Ingress. In this example, nginx-ingress is used.|
-        |Rules|Ingress rules that are used to enable access to a specified Service in a cluster. For more information, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Ingress configurations.md).        -   **Domain**: Enter the domain name of the Ingress. In this example, the test domain name `foo.bar.com` is used.
+        |Rules|Ingress rules that are used to enable access to a specified Service in a cluster. For more information, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Basic operations of an Ingress.md).        -   **Domain**: Enter the domain name of the Ingress. In this example, the test domain name `foo.bar.com` is used.
         -   **Path**: Enter the Service URL. The default path is the root path /. The default path is used in this example. Each path is associated with a backend Service. SLB forwards traffic to a backend Service only when inbound requests match the domain name and path.
         -   **Service**: Set the Service name and port. In this example, nginx-svc is used.
         -   Select **EnableTLS** to enable TLS. For more information, see [Configure an Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Configure an Ingress.md). |
@@ -314,6 +316,8 @@ After the application is created, you are redirected to the **Complete** page.
 
 
 ## Related operations
+
+Choose **Applications** \> **Deployments**. On the Deployments page, click the name of the application that you want to manage or click **Details** in the **Actions** column. On the details page of the application, you can **edit**, **scale**, **redeploy**, and **refresh** the application. You can also **view the YAML file** of the application.
 
 In the left-side navigation pane, click **Clusters**. On the Clusters page, click the name of the cluster that you want to manage or click **Details** in the **Actions** column. In the left-side navigation pane, click **Workloads** and Deployments. On the Deployments page, click the name of the application that you want to manage or click **Details** in the **Actions** column. On the details page of the application, you can **edit**, **scale**, **redeploy**, and **refresh** the application. You can also **view the YAML file** of the application.
 
