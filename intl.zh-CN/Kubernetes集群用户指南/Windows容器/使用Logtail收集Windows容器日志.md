@@ -225,7 +225,7 @@ keyword: [Windows节点, Logtail, 应用日志信息采集]
 
 ## 示例说明
 
-在Windows节点上添加Logtail后，使用以下应用模板部署添加的Logtail。
+在Windows节点上添加Logtail后，使用以下应用模板检验添加的Logtail。
 
 ```
 apiVersion: extensions/v1beta1
@@ -263,5 +263,5 @@ spec:
         value: windows
 ```
 
-成功部署示例应用后，您可查看日志信息。详细步骤，请参见[查询分析日志](/intl.zh-CN/查询与分析/查询分析日志.md)。
+成功部署示例应用后，您可查看日志信息。详细步骤，请参见[查询和分析日志](/intl.zh-CN/查询与分析/查询和分析日志.md)。
 
