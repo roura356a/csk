@@ -19,7 +19,7 @@ StatefulSet包括以下特性：
 
 ## 操作步骤
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -56,7 +56,7 @@ StatefulSet包括以下特性：
         |配置项|描述|
         |---|--|
         |镜像名称|        -   您可以单击**选择镜像**，选择所需的镜像并单击**确定**。本例中为官方Nginx镜像，可以在**搜索**页签中，选择**Docker镜像**，然后在文本框中输入nginx进行搜索。
-            -   容器镜像服务：在**容器镜像服务**页签中，可以选择托管在容器镜像服务ACR中的镜像。需要选择镜像所属地域，以及镜像服务实例。关于ACR的更多信息，请参见[ACR 企业版概述]()。
+            -   容器镜像服务：在**容器镜像服务**页签中，可以选择托管在容器镜像服务ACR中的镜像。需要选择镜像所属地域，以及镜像服务实例。关于ACR的更多信息，请参见[容器镜像服务企业版概述]()。
 
 **说明：** 您可以在**容器镜像服务**页签，根据名称搜索托管在容器镜像服务ACR中的镜像。
 
@@ -187,7 +187,7 @@ StatefulSet包括以下特性：
         |配置项|描述|
         |---|--|
         |服务（Service）|在**服务（Service）**右侧，单击**创建**设置**创建服务**的配置项。配置项的详情，请参见[管理服务](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Service管理/管理服务.md)。本例中服务类型选择**ClusterIP**。|
-        |路由（Ingress）|在**路由（Ingress）**右侧，单击**创建**。在弹出的对话框中，为后端Pod配置路由规则。详细的路由配置信息，请参见[路由配置说明](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/路由配置说明.md)。**说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在Hosts中添加一条记录。在实际工作场景中，请使用备案域名。
+        |路由（Ingress）|在**路由（Ingress）**右侧，单击**创建**。在弹出的对话框中，为后端Pod配置路由规则。详细的路由配置信息，请参见[创建Ingress](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress基本操作.md)。**说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在Hosts中添加一条记录。在实际工作场景中，请使用备案域名。
 
         ```
 101.37.224.146   foo.bar.com    #即ingress的IP
@@ -199,7 +199,7 @@ StatefulSet包括以下特性：
 
         在**伸缩配置**区域，配置是否开启**指标伸缩**和**定时伸缩**，从而满足应用在不同负载下的需求。
 
-        ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0952419061/p10978.png)
+        ![伸缩配置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0952419061/p10978.png)
 
         -   容器服务支持容器组的指标伸缩，即根据容器CPU和内存资源占用情况自动调整容器组数量。
 
@@ -304,4 +304,6 @@ StatefulSet包括以下特性：
     statefulset
     ```
 
+
+想要了解更多信息，参见[Kubernetes有状态服务-StatefulSet使用最佳实践](https://yq.aliyun.com/articles/629007?spm=a2c4e.11163080.searchblog.9.54472ec1NC0KbK)。
 
