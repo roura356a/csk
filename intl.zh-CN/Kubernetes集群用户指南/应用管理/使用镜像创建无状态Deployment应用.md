@@ -6,7 +6,7 @@
 
 ## 步骤一：配置应用基本信息
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -204,7 +204,7 @@
 
     -   配置路由（Ingress）：在**路由（Ingress）**右侧，单击**创建**设置后端Pod的路由规则。
 
-        详细的路由配置信息，请参见[路由配置说明](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/路由配置说明.md)。
+        详细的路由配置信息，请参见[配置路由信息](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress基本操作.md)。
 
         **说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在hosts文件中添加一条域名映射（<Ingress外部端点\> + <Ingress域名\>）。在实际工作场景中，请使用备案域名。
 
@@ -215,7 +215,7 @@
         |配置项|描述|
         |---|--|
         |名称|输入路由的名称。本例为nginx-ingress。|
-        |规则|路由规则是指授权入站到达集群服务的规则。详情请参见[路由配置说明](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/路由配置说明.md)。        -   **域名**：输入Ingress域名。本例中使用测试域名`foo.bar.com`。
+        |规则|路由规则是指授权入站到达集群服务的规则。详情请参见[配置路由信息](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress基本操作.md)。        -   **域名**：输入Ingress域名。本例中使用测试域名`foo.bar.com`。
         -   **路径**：指定服务访问的URL路径，默认为根路径/，本例中不做配置。每个路径 （path）都关联一个backend（服务），在阿里云SLB将流量转发到backend之前，所有的入站请求都要先匹配域名和路径。
         -   **服务**：选择服务的名称和对应端口。本例中为nginx-svc.
         -   **开启TLS**：配置安全的路由服务。具体可参见[Ingress高级用法](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress高级用法.md)。 |
