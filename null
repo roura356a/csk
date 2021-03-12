@@ -8,7 +8,7 @@ keyword: [Descheduler组件, 调度优化]
 
 ## 前提条件
 
--   已创建ACK集群（版本不低于1.14）。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
+-   已创建ACK集群（版本不低于1.14）。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
 -   已安装Helm3。具体操作，请参见[Install Helm](https://github.com/helm/helm)。
 -   已安装[kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)命令行工具。
 
