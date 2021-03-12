@@ -4,7 +4,7 @@ This topic describes how to use an image to deploy an NGINX application that is 
 
 [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
@@ -164,7 +164,7 @@ This topic describes how to use an image to deploy an NGINX application that is 
         |Parameter|Description|
         |---------|-----------|
         |Services|Click **Create** on the right side of **Services**. In the Create Service dialog box, set the parameters. For more information about the parameters that are required to create a Service, see [Manage Services](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Manage Services.md). **Cluster IP** is selected in this example.|
-        |Ingresses|Click **Create** on the right side of **Ingresses**. In the Create dialog box, set the parameters. For more information about the parameters that are required to create an Ingress, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Ingress configurations.md).**Note:** When you deploy an application from an image, you can create an Ingress for only one Service. In this example, the name of a virtual host is specified as the test domain name. You must add a mapping rule for this domain name to the hosts file, as shown in the following code block. In practical scenarios, use a domain name that has obtained an Internet Content Provider \(ICP\) number.
+        |Ingresses|Click **Create** on the right side of **Ingresses**. In the Create dialog box, set the parameters. For more information about the parameters that are required to create an Ingress, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Basic operations of an Ingress.md).**Note:** When you deploy an application from an image, you can create an Ingress for only one Service. In this example, the name of a virtual host is specified as the test domain name. You must add a mapping rule for this domain name to the hosts file, as shown in the following code block. In practical scenarios, use a domain name that has obtained an Internet Content Provider \(ICP\) number.
 
         ```
 101.37.224.146   foo.bar.com    #The IP address of the Ingress.
@@ -237,7 +237,7 @@ This topic describes how to use an image to deploy an NGINX application that is 
     **Note:** You can also perform the following steps to create Ingresses and Services: In the **Access Control** section:
 
     -   Click **Create** on the right side of **Services**. For more information, see [Manage Services](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Manage Services.md).
-    -   Click **Create** on the right side of **Ingresses**. For more information, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Ingress configurations.md).
+    -   Click **Create** on the right side of **Ingresses**. For more information, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Basic operations of an Ingress.md).
 14. Return to the details page of the cluster. In the left-side navigation pane, click **Ingresses**. You can find the created Ingress on the Ingresses page.
 
     ![Ingress rules](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0665359951/p10985.png)
