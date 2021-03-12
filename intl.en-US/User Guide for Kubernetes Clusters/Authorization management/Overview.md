@@ -1,37 +1,98 @@
+---
+keyword: [RAM authorization, RBAC authorization, ACK cluster authorization]
+---
+
 # Overview
 
-This topic describes the authorization mechanisms that are used to control the access to Container Service for Kubernetes \(ACK\) clusters and how to authorize RAM users to access resources in an ACK cluster.
+The authorization mechanism of Container Service for Kubernetes \(ACK\) consists of Resource Access Management \(RAM\) authorization and role-based access control \(RBAC\) authorization. This topic describes RAM authorization and RBAC authorization and how to perform these authorizations.
 
-You can authorize a user by using Resource Access Management \(RAM\) and role-based access control \(RBAC\).
+## RAM authorization
 
-## Attach a RAM policy
+In scenarios where RAM is used to manage enterprise account systems, operations and maintenance \(O&M\) engineers frequently manage cloud resources as RAM users. By default, a RAM user is not authorized to call the APIs of cloud resources. To allow a RAM user to call the API, you must grant the required permissions to the RAM user.
 
-RAM policies control the access to the management APIs of a cluster. If you want to manage the visibility of a cluster or scale a cluster, [attach a RAM policy](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Create a custom RAM policy.md) to a RAM user. For more information, see [Create a custom RAM policy](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Create a custom RAM policy.md).
+If you want to scale a cluster, add nodes to a cluster, or access the cluster as a RAM user, you must [grant the required permissions to the RAM user](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Create a custom RAM policy.md). For more information, see [Create a custom RAM policy](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Create a custom RAM policy.md).
 
-## Assign an RBAC role
+You can perform RAM authorization by using the following methods:
 
-You can use the RBAC mechanism to grant users the permission to call the API server of an ACK cluster. For more information, see [Authorization overview](https://kubernetes.io/zh/docs/reference/access-authn-authz/authorization/). You can assign the following default roles to a RAM user in ACK:
+-   Attach system policies: You can use this method to grant read and write permissions on all clusters that belong to the current Alibaba Cloud account. To grant a RAM user the permissions to manage all clusters that belong to the current Alibaba Cloud account, we recommend that you attach system policies to the RAM user. For more information about how to attach system policies to a RAM user, see [Grant permissions to a RAM user](/intl.en-US/RAM User Management/Grant permissions to a RAM user.md).
 
-|Role|RBAC-based permissions on one cluster|
-|----|-------------------------------------|
-|Administrator|The read and write permissions on resources in all namespaces.|
-|O&M engineer|The read and write permissions on visible resources in all namespaces and the read-only permission on nodes, persistent volumes \(PVs\), namespaces, and quotas.|
-|Developer|The read and write permissions on visible resources in one or all namespaces.|
-|Restricted user|The read-only permission on visible resources in one or all namespaces.|
-|Custom role|Different cluster roles have different permissions. Before you grant a role to a RAM user, make sure that all permissions of the selected role are required by the RAM user.|
+    The following table describes the commonly used system policies for ACK. You can select the system policies based on your requirements.
 
-**Note:** Before you use RBAC to authorize a RAM user, attach a RAM policy to the RAM user to define the read and write permissions on the ACK cluster.
+    |Policy|Description|
+    |------|-----------|
+    |AliyunCSFullAccess|Allows a RAM user to fully control all ACK clusters that belong to the current Alibaba Cloud account.|
+    |AliyunVPCReadOnlyAccess|Allows a RAM user to specify a virtual private cloud \(VPC\) when the RAM user creates a cluster.|
+    |AliyunECSReadOnlyAccess|Allows a RAM user to add existing nodes to a specified cluster and view the details of nodes.|
+    |AliyunContainerRegistryFullAccess|Allows a RAM user to fully control the images of all workloads that belong to the current Alibaba Cloud account.|
+    |AliyunLogReadOnlyAccess|Allows a RAM user to specify an existing Log Service project to store auditing logs when the RAM user creates a cluster and views the inspection details of a specified cluster.|
+    |AliyunAHASReadOnlyAccess|Allows a RAM user to enable the cluster topology feature.|
+    |AliyunRAMFullAccess|Allows a RAM user to manage the authorization of all RAM users of the current Alibaba Cloud account.|
+    |AliyunYundunSASReadOnlyAccess|Allows a RAM user to view the runtime monitoring data of a specified cluster.|
+    |AliyunARMSReadOnlyAccess|Allows a RAM user to view the Prometheus monitoring state of a specified cluster.|
+    |AliyunKMSReadOnlyAccess|Allows a RAM user to enable Secret encryption when the RAM user creates a professional managed Kubernetes cluster.|
 
-## Procedure
+-   Attach custom policies: You can use this method to implement fine-grained access control on cloud resources for a RAM user. If a RAM user requires custom development by using SDKs, you can use this method to grant the RAM user the permissions to call specified API operations.
 
-![Authorization process map](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7135359951/p49552.png)
+    For more information about how to attach custom policies to a RAM user for cluster-level access control, see [Create a custom RAM policy](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Create a custom RAM policy.md).
 
-If you do not have a RAM user, create one. For more information, see [Create a RAM user](/intl.en-US/RAM User Management/Create a RAM user.md). Before you use a RAM user to log on to the ACK console, perform the following operations:
+    For example, if a RAM user requires read permissions on a specified Object Storage Service \(OSS\) bucket, you can create a custom policy based on the following content and attach it to the RAM user.
 
-1.  Configure a RAM policy. For more information, see [Create a custom RAM policy](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Create a custom RAM policy.md).
-2.  Configure user permissions based on the RBAC model. For more information, see [Assign RBAC roles to a RAM user](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Assign RBAC roles to a RAM user.md).
-3.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com) as a RAM user.
+    ```
+    {
+        "Version": "1",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                          "oss:ListBuckets",
+                          "oss:GetBucketStat",
+                          "oss:GetBucketInfo",
+                          "oss:GetBucketTagging",
+                          "oss:GetBucketAcl" 
+                          ],    
+                "Resource": "acs:oss:*:*:*"
+            },
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "oss:ListObjects",
+                    "oss:GetBucketAcl"
+                ],
+                "Resource": "acs:oss:*:*:myphotos"
+            },
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "oss:GetObject",
+                    "oss:GetObjectAcl"
+                ],
+                "Resource": "acs:oss:*:*:myphotos/*"
+            }
+        ]
+    }
+    ```
 
-    If you have assigned roles to the Alibaba Cloud account, you can log on the ACK console to perform operations as a RAM user. Otherwise, assign a role to the RAM user first. For more information, see [Quick start for first-time users](/intl.en-US/Quick Start/Quick start for first-time users.md).
 
+## RBAC authorization
+
+If a RAM user requires permissions to manage Kubernetes resources in a specified cluster, you need to go to the Authorizations page of the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com) console and grant the RAM user resource-level permissions, such as the permissions to view information about pods and nodes.
+
+You can assign the following predefined roles to a RAM user. For more information, see [Assign RBAC roles to a RAM user](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Assign RBAC roles to a RAM user.md).
+
+|Role|Permission|
+|----|----------|
+|Administrator|Read and write permissions on resources in all namespaces.|
+|O&M engineer|Read and write permissions on visible resources in the console in all namespaces and read-only permissions on nodes, persistent volumes \(PVs\), namespaces, and quotas.|
+|Developer|Read and write permissions on visible resources in the console in a specified namespace or all namespaces.|
+|Restricted user|Read-only permission on visible resources in the console in a specified namespace or all namespaces.|
+|Custom role|The permissions of a custom role are determined by the cluster role that you select for it. Before you select a cluster role, check the permissions of the cluster role and make sure that you grant only the required permissions to the RAM user.|
+
+**Related topics**  
+
+
+[FAQ about authorization](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/FAQ about authorization.md)
+
+[ACK default roles](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/ACK default roles.md)
+
+[The service linked role for ACK](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/The service linked role for ACK.md)
 
