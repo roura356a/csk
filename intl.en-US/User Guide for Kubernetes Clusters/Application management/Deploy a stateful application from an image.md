@@ -19,11 +19,11 @@ StatefulSets provide the following features:
 
 ## Procedure
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
@@ -38,7 +38,7 @@ StatefulSets provide the following features:
     |Name|The name of the application.|
     |Namespace|The namespace where you want to deploy the application. The default namespace is automatically selected. You can select another namespace.|
     |Replicas|The number of pods that are provisioned for the application.|
-    |Type|The type of application. You can select **Deployments**, **StatefulSets**, **Jobs**, ******Cron Jobs**, or **DaemonSets**.|
+    |Type|The type of application. You can select **Deployments**, **StatefulSets**, **Jobs**, **Cron Jobs**, or **DaemonSets**.|
     |Label|Add a label to the application. The label is used to identify the application.|
     |Annotations|Add an annotation to the application.|
     |Synchronize Timezone|Specify whether to synchronize the time zone between nodes and containers.|
@@ -183,7 +183,7 @@ StatefulSets provide the following features:
         |Parameter|Description|
         |---------|-----------|
         |Services|Click **Create** on the right side of **Service**. In the **Create Service** dialog box, set the parameters. For more information about the parameters that are required to create a Service, see [Manage Services](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Manage Services.md). **Cluster IP** is selected in this example.|
-        |Ingresses|Click **Create** on the right side of **Ingresses**. In the Create dialog box, set the parameters. For more information about the parameters that are required to create an Ingress, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Ingress configurations.md).**Note:** When you deploy an application from an image, you can create an Ingress for only one Service. In this example, the name of a virtual host is used as the test domain name. You must add the following entry to the hosts file to map the domain name to the IP address of the Ingress. In practical scenarios, use a domain name that has obtained an Internet Content Provider \(ICP\) number.
+        |Ingresses|Click **Create** on the right side of **Ingresses**. In the Create dialog box, set the parameters. For more information about the parameters that are required to create an Ingress, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Basic operations of an Ingress.md).**Note:** When you deploy an application from an image, you can create an Ingress for only one Service. In this example, the name of a virtual host is used as the test domain name. You must add the following entry to the hosts file to map the domain name to the IP address of the Ingress. In practical scenarios, use a domain name that has obtained an Internet Content Provider \(ICP\) number.
 
         ```
 101.37.224.146   foo.bar.com    # The IP address of the Ingress.
@@ -266,6 +266,8 @@ StatefulSets provide the following features:
 
 ## Related operations
 
+Choose **Applications** \> **StatefulSets**. On the StatefulSets page, click the name of the application that you want to manage or click **Details** in the **Actions** column. On the details page of the application, you can **edit**, **scale**, **redeploy**, and **refresh** the application. You can also **view the YAML file** of the application.
+
 In the left-side navigation pane, click **Clusters**. On the Clusters page, click the name of the cluster that you want to manage or click **Applications** in the **Actions** column. In the left-side navigation pane, click **Workloads** and **StatefulSets**. On the StatefulSets page, click the name of the application that you want to manage or click **Details** in the **Actions** column. On the details page of the application, you can **edit**, **scale**, **redeploy**, and **refresh** the application. You can also **view the YAML file** of the application.
 
 -   Edit: On the details page of the application, click **Edit** in the upper-right corner of the page to modify the configurations of the application.
@@ -302,4 +304,6 @@ Log on to a master node and perform the following commands to test the persisten
     statefulset
     ```
 
+
+想要了解更多信息，参见[Kubernetes有状态服务-StatefulSet使用最佳实践](https://yq.aliyun.com/articles/629007?spm=a2c4e.11163080.searchblog.9.54472ec1NC0KbK)。
 
