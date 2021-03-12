@@ -1,127 +1,243 @@
 ---
-keyword: [守护进程集, DaemonSet, K8s]
+keyword: [Descheduler组件, 调度优化]
 ---
 
-# 创建守护进程集DaemonSet
+# 使用Descheduler组件对Pod进行调度优化
 
-DaemonSet保证在每个节点上都运行一个容器副本，常用来部署一些集群的日志、监控或者其他系统管理应用。本文介绍如何在ACK中创建守护进程集DaemonSet。
+为了解决实际运行中集群资源无法充分利用或浪费的问题，可以使用Descheduler组件对集群的Pod进行调度优化，使部分不合理Pod能够重新调度到合适的位置上。本文介绍如何配置使用Descheduler组件。
 
-## 通过控制台创建DaemonSet
+## 前提条件
 
-**使用镜像创建DaemonSet**
+-   已创建ACK集群（版本不低于1.14）。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
+-   已安装Helm3。具体操作，请参见[Install Helm](https://github.com/helm/helm)。
+-   已安装[kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)命令行工具。
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+## 操作步骤
 
-2.  在控制台左侧导航栏中，单击**集群**。
+1.  使用Helm安装Descheduler。
 
-3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
+    1.  执行以下命令，以Helm方式添加Descheduler的Chart仓库。
 
-4.  在集群管理页左侧导航栏中，选择**工作负载** \> **守护进程集**。
+        ```
+        helm repo add descheduler https://kubernetes-sigs.github.io/descheduler/
+        ```
 
-5.  在**守护进程集**页面右上角，单击**使用镜像创建**。
+        预期输出：
 
-6.  设置创建DaemonSet的参数。
+        ```
+        "descheduler" has been added to your repositories
+        ```
 
-    1.  在**应用基本信息**配置向导页面设置应用基本信息。关于参数的详细描述，请参见[步骤一：配置应用基本信息](/intl.zh-CN/Kubernetes集群用户指南/应用管理/使用镜像创建无状态Deployment应用.md)。
+    2.  执行以下命令，安装Descheduler。
 
-    2.  在**容器配置**配置向导页面设置容器信息。关于参数的详细描述，请参见[步骤二：配置容器](/intl.zh-CN/Kubernetes集群用户指南/应用管理/使用镜像创建无状态Deployment应用.md)。
+        ```
+        helm install descheduler --namespace kube-system descheduler/descheduler
+        ```
 
-    3.  在**高级配置**配置向导页面完成DaemonSet的高级参数的设置。
+        预期输出：
 
-        DaemonSet会忽略节点的不可调度状态，您可以通过设置节点亲和性、应用亲和性、调度容忍来指定Pod只运行在指定的节点上。关于参数的详细描述，请参见[步骤三：完成高级配置](/intl.zh-CN/Kubernetes集群用户指南/应用管理/使用镜像创建无状态Deployment应用.md)。
+        ```
+        NAME: descheduler
+        LAST DEPLOYED: Thu Mar  4 19:29:23 2021
+        NAMESPACE: kube-system
+        STATUS: deployed
+        REVISION: 1
+        TEST SUITE: None
+        NOTES:
+        Descheduler installed as a cron job.
+        ```
 
-7.  单击**创建**。
+        **说明：** 默认安装的Descheduler镜像可能由于网络原因出现拉取超时，可以使用阿里云镜像仓库中的`registry.cn-hangzhou.aliyuncs.com/carsnow/descheduler:v0.20.0`替换原有的镜像。
 
-    成功创建守护进程集后，在守护进程集列表中可以查看新创建的守护进程集。
+2.  确认安装状态。
 
-
-**使用模板创建DaemonSet**
-
-1.  在**守护进程集**页面右上角，单击**使用模板创建**。
-
-2.  在创建页面，在**模板**区域编辑模板信息。
-
-3.  在**模板**区域下方，单击**创建**。
-
-    成功创建守护进程集后，在守护进程集列表中可以查看新创建的守护进程集。
-
-
-## 通过kubectl命令行创建DaemonSet
-
-在使用kubectl创建DaemonSet前，您需要下载kubectl并使用kubectl命令连接集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。
-
-DaemonSet会忽略节点的无法调度状态，您可以设置以下参数指定Pod运行在指定的节点上：
-
-|参数|描述|
-|--|--|
-|nodeSelector|只调度到匹配指定标签的节点上。|
-|nodeAffinity|设置节点亲和性。根据节点标签将Pod调度到指定节点上，但支持更丰富的节点匹配策略。|
-|podAffinity|设置Pod亲和性。根据Pod的标签来选择节点，仅调度到满足条件的Pod所在节点。|
-
-本文以创建一个名为fluentd-elasticsearch的DaemonSet为例，说明如何使用Kubectl创建DaemonSet。
-
-1.  保存以下YAML内容至daemonset.yaml文件中。
+    在Chart安装完成后，默认会在`kube-system`的`namespace`下部署执行周期为两分钟的Cronjob。
 
     ```
-    apiVersion: apps/v1
-    kind: DaemonSet
-    metadata:
-      name: fluentd-elasticsearch
-      namespace: kube-system
-      labels:
-        k8s-app: fluentd-logging
-    spec:
-      selector:
-        matchLabels:
-          name: fluentd-elasticsearch
-      template:
+    kubectl get cronjob -n kube-system
+    ```
+
+    预期输出：
+
+    ```
+    NAME          SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+    descheduler   */2 * * * *   False     0        21s             47h
+    ```
+
+3.  查看当前的调度策略（DeschedulerPolicy）。
+
+    ```
+    kubectl describe cm descheduler -n kube-system
+    ```
+
+    预期输出：
+
+    ```
+    Name:         descheduler
+    Namespace:    kube-system
+    Labels:       app.kubernetes.io/instance=descheduler
+                  app.kubernetes.io/managed-by=Helm
+                  app.kubernetes.io/name=descheduler
+                  app.kubernetes.io/version=0.20.0
+                  helm.sh/chart=descheduler-0.20.0
+    Annotations:  meta.helm.sh/release-name: descheduler
+                  meta.helm.sh/release-namespace: kube-system
+    Data
+    ====
+    policy.yaml:
+    ----
+    apiVersion: "descheduler/v1alpha1"
+    kind: "DeschedulerPolicy"
+    strategies:
+      "RemoveDuplicates":
+         enabled: true
+      "RemovePodsViolatingInterPodAntiAffinity":
+         enabled: true
+      "LowNodeUtilization":
+         enabled: true
+         params:
+           nodeResourceUtilizationThresholds:
+             thresholds:
+               "cpu" : 20
+               "memory": 20
+               "pods": 20
+             targetThresholds:
+               "cpu" : 50
+               "memory": 50
+               "pods": 50
+      "RemovePodsHavingTooManyRestarts":
+         enabled: true
+         params:
+           podsHavingTooManyRestarts:
+             podRestartThreshold: 100
+             includingInitContainers: true
+    Events:  <none>
+    ```
+
+    关于`strategies`中策略的含义，请参见[Descheduler](https://github.com/kubernetes-sigs/descheduler)。
+
+4.  查看调度策略修改前的调度效果。
+
+    1.  部署测试Deployment。
+
+        nginx.yaml的命令示例如下所示。
+
+        ```
+        apiVersion: apps/v1 # for versions before 1.8.0 use apps/v1beta1
+        kind: Deployment
         metadata:
+          name: nginx-deployment-basic
           labels:
-            name: fluentd-elasticsearch
+            app: nginx
         spec:
-          tolerations:
-          # this toleration is to have the daemonset runnable on master nodes
-          # remove it if your masters can't run pods
-          - key: node-role.kubernetes.io/master
-            effect: NoSchedule
-          containers:
-          - name: fluentd-elasticsearch
-            image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
-            resources:
-              limits:
-                memory: 200Mi
-              requests:
-                cpu: 100m
-                memory: 200Mi
-            volumeMounts:
-            - name: varlog
-              mountPath: /var/log
-            - name: varlibdockercontainers
-              mountPath: /var/lib/docker/containers
-              readOnly: true
-          terminationGracePeriodSeconds: 30
-          volumes:
-          - name: varlog
-            hostPath:
-              path: /var/log
-          - name: varlibdockercontainers
-            hostPath:
-              path: /var/lib/docker/containers
-    ```
+          replicas: 3
+          selector:
+            matchLabels:
+              app: nginx
+          template:
+            metadata:
+              labels:
+                app: nginx
+            spec:
+              containers:
+              - name: nginx
+                image: nginx:1.7.9 # replace it with your exactly <image_name:tags>
+                ports:
+                - containerPort: 80
+        ```
 
-2.  执行以下命令创建DaemonSet。
+        执行以下命令部署Deployment nginx.yaml。
 
-    ```
-    kubectl create -f daemonset.yaml
-    ```
+        ```
+        kubectl apply -f nginx.yaml
+        ```
 
-    当输出`daemonset.apps/fluentd-elasticsearch created`时，则说明成功创建守护进程集DaemonSet。
+        预期输出：
 
+        ```
+        deployment.apps/nginx-deployment-basic created
+        ```
 
-## 相关操作
+    2.  等待两分钟后，执行以下命令，查看Pod分布节点。
 
-创建完守护进程集后，您可以进行以下操作：
+        ```
+        kubectl get pod -o wide | grep nginx
+        ```
 
--   在守护进程集名称右侧的**操作**列中，单击**详情**查看守护进程集的基本信息，包括容器组、访问方式、事件、日志等。
--   在守护进程集名称右侧的**操作**列中，选择**更多** \> **查看Yaml**、**更多** \> **删除**，查看守护进程集的YAML信息和删除守护进程集。
+        预期输出：
+
+        ```
+        NAME                          READY   STATUS     RESTARTS   AGE    IP               NODE                         NOMINATED NODE   READINESS GATES
+        nginx-deployment-basic-**1    1/1     Running    0          36s    172.25.XXX.XX1   cn-hangzhou.172.16.XXX.XX2   <none>           <none>
+        nginx-deployment-basic-**2    1/1     Running    0          11s    172.25.XXX.XX2   cn-hangzhou.172.16.XXX.XX3   <none>           <none>
+        nginx-deployment-basic-**3    1/1     Running    0          36s    172.25.XXX.XX3   cn-hangzhou.172.16.XXX.XX3   <none>           <none>
+        ```
+
+        从以上预期输出可以得出，`nginx-deployment-basic-**2`及`nginx-deployment-basic-**3`都被调度到`cn-hangzhou.172.16.XXX.XX3`节点。
+
+5.  修改调度策略。
+
+    为了防止多个调度策略影响调度效果，修改[步骤3](#step_aly_k85_ulh)中的configmap，只保留RemoveDuplicates策略。
+
+    **说明：** RemoveDuplicates策略是指尽可能保障有副本控制器的Pod，可以水平分布到不同的节点上。
+
+6.  查看调度策略修改后的调度效果。
+
+    1.  部署新的调度策略。
+
+        newPolicy.yaml的命令示例如下所示。
+
+        ```
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          name: descheduler
+          namespace: kube-system
+          labels:
+            app.kubernetes.io/instance: descheduler
+            app.kubernetes.io/managed-by: Helm
+            app.kubernetes.io/name: descheduler
+            app.kubernetes.io/version: 0.20.0
+            helm.sh/chart: descheduler-0.20.0  
+          annotations:
+            meta.helm.sh/release-name: descheduler
+            meta.helm.sh/release-namespace: kube-system
+        data: 
+          policy.yaml: |-
+            apiVersion: "descheduler/v1alpha1"
+            kind: "DeschedulerPolicy"
+            strategies:
+              "RemoveDuplicates":
+                 enabled: true
+        ```
+
+        执行以下命令部署Deployment newPolicy.yaml。
+
+        ```
+        kubectl apply -f newPolicy.yaml
+        ```
+
+        预期输出：
+
+        ```
+        deployment.apps/nginx-deployment-basic created
+        ```
+
+    2.  等待两分钟后，执行以下命令，查看Pod分布节点。
+
+        ```
+        kubectl get pod -o wide | grep nginx
+        ```
+
+        预期输出：
+
+        ```
+        NAME                          READY   STATUS     RESTARTS   AGE      IP               NODE                         NOMINATED NODE   READINESS GATES
+        nginx-deployment-basic-**1    1/1     Running    0          8m26s    172.25.XXX.XX1   cn-hangzhou.172.16.XXX.XX2   <none>           <none>
+        nginx-deployment-basic-**2    1/1     Running    0          8m1s     172.25.XXX.XX2   cn-hangzhou.172.16.XXX.XX1   <none>           <none>
+        nginx-deployment-basic-**3    1/1     Running    0          8m26s    172.25.XXX.XX3   cn-hangzhou.172.16.XXX.XX3   <none>           <none>
+        ```
+
+        从以上预期输出可以得出，`nginx-deployment-basic-**2`被Descheduler重新调度到`cn-hangzhou.172.16.XXX.XX1`节点，三个Pod被分散到三个不同的Node节点，实现了副本之间在不同节点的均衡分布。
+
 
