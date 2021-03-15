@@ -25,7 +25,6 @@ This topic describes the advantages of Container Service for Kubernetes \(ACK\) 
 |All-in-one container management|-   Application management:
     -   Supports phased release, blue-green release, application monitoring, and application autoscaling.
     -   Provides a built-in application store that allows you to deploy applications with a few clicks by using Helm.
-    -   Supports Service Catalog to simplify cloud service integration.
 -   Repository \([Alibaba Cloud Container Registry]()\):
 
     -   Provides high availability and high concurrency of image pull requests.
@@ -44,7 +43,7 @@ This topic describes the advantages of Container Service for Kubernetes \(ACK\) 
     -   Heterogeneous computing resources: GPU ECS instances, NPU ECS instances, and FPGA ECS instances
     -   Bare metal computing resources: ECS Bare Metal \(EBM\) instances
     -   Serverless computing resources: ACK virtual nodes
-    -   Edge nodes: [Alibaba Cloud Container Service for Kubernetes@Edge \(ACK@Edge\)](/intl.en-US/User Guide for Edge Container Service/Managed edge cluster overview.md) supports centralized management of cloud and edge nodes and unified application release. It increases the release efficiency by three times.
+    -   Edge nodes: [Alibaba Cloud Container Service for Kubernetes@Edge \(ACK@Edge\)](/intl.en-US/User Guide for Edge Container Service/ACK@Edge overview.md) supports centralized management of cloud and edge nodes and unified application release. It increases the release efficiency by three times.
 -   The following billing methods are supported:
     -   Preemptible instances
     -   Subscription
