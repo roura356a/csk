@@ -188,6 +188,12 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 
 默认值：`true`。 |
 |rds\_instances|rds\_instances|否|rm-2zev748xi27xc\*\*\*\*|RDS实例名称。|
+|**cluster\_spec**|String|否|ack.pro.small|托管版集群类型，面向托管集群。取值：-   `ack.pro.small`：专业托管集群，即：ACK@Edge Pro版集群。
+-   `ack.standard`：标准托管集群，即ACK@Edge标准版集群。
+
+默认值：`ack.standard`。取值可以为空，为空时则创建边缘标准版集群。
+
+更多信息，请参见[ACK@Edge Pro版集群介绍](/intl.zh-CN/边缘容器服务ACK@Edge用户指南/ACK Edge Pro版集群/ACK@Edge Pro版集群介绍.md)。 |
 
 ## 响应体语法
 
