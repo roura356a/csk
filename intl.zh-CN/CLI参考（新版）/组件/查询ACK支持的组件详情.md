@@ -158,7 +158,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "name: ack-kubernetes-cronhpa-controller\nintroduction:\n  zh: 使用 ack-kubernetes-cronhpa-controller 实现应用负载定时伸缩\n  en: ask-kubernetes-cronhpa-controller is a kubernetes cron horizontal pod autoscaler controller using crontab like scheme.\ndoc:\n  zh: https://www.alibabacloud.com/help/zh/doc-detail/151557.htm\n  en: https://www.alibabacloud.com/help/en/doc-detail/151557.htm\nchangelog:\n  zh: https://www.alibabacloud.com/help/zh/doc-detail/151557.htm\n  en: https://www.alibabacloud.com/help/en/doc-detail/151557.htm\nkeywords:\n- cronhpa\n- hpa\n- namespace:kube-system\n- releaseName:arms-prom\n- category:ops\n",
+      "description": "name: ack-kubernetes-cronhpa-controller\nintroduction:\n  zh: 使用ack-kubernetes-cronhpa-controller实现应用负载定时伸缩。\n  en: ask-kubernetes-cronhpa-controller is a kubernetes cron horizontal pod autoscaler controller using crontab like scheme.\ndoc:\n  zh: https://www.alibabacloud.com/help/zh/doc-detail/151557.htm\n  en: https://www.alibabacloud.com/help/en/doc-detail/151557.htm\nchangelog:\n  zh: https://www.alibabacloud.com/help/zh/doc-detail/151557.htm\n  en: https://www.alibabacloud.com/help/en/doc-detail/151557.htm\nkeywords:\n- cronhpa\n- hpa\n- namespace:kube-system\n- releaseName:arms-prom\n- category:ops\n",
       "properties": null
     },
     "ack-node-problem-detector": {
@@ -168,7 +168,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "name: ack-node-problem-detector\nintroduction:\n  zh: 节点故障检测以及上报至事件中心的插件\ndoc:\n  zh: https://help.aliyun.com/document_detail/178479.htm\nchangelog:\n  zh: https://help.aliyun.com/document_detail/178479.htm\ndescription: this chart  aims to make various node problems visible to the upstream layers in cluster management stack,and  told people where is the problem on time.\nappVersion: \"0.8.0\"\nversion: 1.2.1\nkubeVersion: \">=1.8.0-0\"\nkeywords:\n  - ack-node-problem-detector\n  - eventer\n  - namespace:kube-system\n  - releaseName:ack-node-problem-detector\n  - category:ops\nhome: https://github.com/AliyunContainerService/node-problem-detector\nmaintainers:\n  - name: carson\n    email: wb-gq555900@alibaba-inc.com\n  - name: 莫源\n    email: zhongwei.lzw@alibaba-inc.com",
+      "description": "name: ack-node-problem-detector\nintroduction:\n  zh: 节点故障检测以及上报至事件中心的插件。\ndoc:\n  zh: https://help.aliyun.com/document_detail/178479.htm\nchangelog:\n  zh: https://help.aliyun.com/document_detail/178479.htm\ndescription: this chart  aims to make various node problems visible to the upstream layers in cluster management stack,and  told people where is the problem on time.\nappVersion: \"0.8.0\"\nversion: 1.2.1\nkubeVersion: \">=1.8.0-0\"\nkeywords:\n  - ack-node-problem-detector\n  - eventer\n  - namespace:kube-system\n  - releaseName:ack-node-problem-detector\n  - category:ops\nhome: https://github.com/AliyunContainerService/node-problem-detector\nmaintainers:\n  - name: carson\n    email: wb-gq555900@alibaba-inc.com\n  - name: 莫源\n    email: zhongwei.lzw@alibaba-inc.com",
       "properties": null
     },
     "aesm": {
@@ -228,7 +228,7 @@ arc-cs addon get  --region cn-beijing
       "required": "true",
       "config": "",
       "value": "",
-      "description": "name: alicloud-monitor-controller\nintroduction:\n  zh: 监控应用容器的生命周期和状态变化\n  en: Monitoring application containers' lifecycle and state changes\ndoc:\n  zh: https://help.aliyun.com/document_detail/176514.html\n  en:\nchangelog:\n  zh: https://help.aliyun.com/document_detail/176514.html\n  en:\nkeywords:\n- namespace: kube-system\n- releaseName: alicloud-monitor-controller",
+      "description": "name: alicloud-monitor-controller\nintroduction:\n  zh: 监控应用容器的生命周期和状态变化。\n  en: Monitoring application containers' lifecycle and state changes\ndoc:\n  zh: https://help.aliyun.com/document_detail/176514.html\n  en:\nchangelog:\n  zh: https://help.aliyun.com/document_detail/176514.html\n  en:\nkeywords:\n- namespace: kube-system\n- releaseName: alicloud-monitor-controller",
       "properties": null
     },
     "aliyun-acr-credential-helper": {
@@ -238,7 +238,7 @@ arc-cs addon get  --region cn-beijing
       "required": "true",
       "config": "",
       "value": "",
-      "description": "name: aliyun-acr-credential-helper\nintroduction: \n  zh: 使用 aliyun-acr-credential-helper 进行镜像拉取\n  en: Using aliyun-acr-credential-helper to implement private image pulling without credential setting\ndoc:         \n  zh: https://help.aliyun.com/document_detail/159750.html?spm=5176.10695662.1996646101.searchclickresult.dede56d4WTiNdU\n  en: https://www.alibabacloud.com/help/doc-detail/144049.htm?spm=a2c63.p38356.b99.38.be135889E2TbLg\nchangelog:   \n  zh: https://help.aliyun.com/document_detail/177224.htm·\n  en: \nkeywords:\n- private image\n- namespace:kube-system\n- releaseName: aliyun-acr-credential-helper",
+      "description": "name: aliyun-acr-credential-helper\nintroduction: \n  zh: 使用aliyun-acr-credential-helper进行镜像拉取。\n  en: Using aliyun-acr-credential-helper to implement private image pulling without credential setting\ndoc:         \n  zh: https://help.aliyun.com/document_detail/159750.html?spm=5176.10695662.1996646101.searchclickresult.dede56d4WTiNdU\n  en: https://www.alibabacloud.com/help/doc-detail/144049.htm?spm=a2c63.p38356.b99.38.be135889E2TbLg\nchangelog:   \n  zh: https://help.aliyun.com/document_detail/177224.htm·\n  en: \nkeywords:\n- private image\n- namespace:kube-system\n- releaseName: aliyun-acr-credential-helper",
       "properties": null
     },
     "aliyun-log-controller": {
@@ -258,7 +258,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "\nintroduction:\n  zh: 使用 appcenter 管理多集群应用\n  en: Using appcenter to manage applications in multiple clusters\ndoc:\n  zh: https://help.aliyun.com/document_detail/169921.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/176183.html\n",
+      "description": "\nintroduction:\n  zh: 使用appcenter管理多集群应用。\n  en: Using appcenter to manage applications in multiple clusters\ndoc:\n  zh: https://help.aliyun.com/document_detail/169921.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/176183.html\n",
       "properties": null
     },
     "arms-prometheus": {
@@ -268,7 +268,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "appVersion: 1.0.3\ndescription: ARMS Prometheus Operator\nhome: https://www.aliyun.com/product/arms\nicon: logo.png\nintroduction:\n- 使用 ARMS Prometheus 实现容器服务集群监控\n- Using ARMS Prometheus to implement ACK cluster monitoring\ndoc:\n- https://help.aliyun.com/document_detail/161304.html\n- https://www.alibabacloud.com/help/doc-detail/161304.html\nchangelog:\n- https://help.aliyun.com/document_detail/161820.html\n- https://www.alibabacloud.com/help/doc-detail/161820.html\nkeywords:\n- arms\n- prometheus\n- namespace:arms-prom\n- releaseName:arms-prom\n- category:ops\nname: ack-arms-prometheus\nversion: 0.1.5\n",
+      "description": "appVersion: 1.0.3\ndescription: ARMS Prometheus Operator\nhome: https://www.aliyun.com/product/arms\nicon: logo.png\nintroduction:\n- 使用ARMS Prometheus实现容器服务集群监控。\n- Using ARMS Prometheus to implement ACK cluster monitoring\ndoc:\n- https://help.aliyun.com/document_detail/161304.html\n- https://www.alibabacloud.com/help/doc-detail/161304.html\nchangelog:\n- https://help.aliyun.com/document_detail/161820.html\n- https://www.alibabacloud.com/help/doc-detail/161820.html\nkeywords:\n- arms\n- prometheus\n- namespace:arms-prom\n- releaseName:arms-prom\n- category:ops\nname: ack-arms-prometheus\nversion: 0.1.5\n",
       "properties": null
     },
     "cloud-controller-manager": {
@@ -278,7 +278,7 @@ arc-cs addon get  --region cn-beijing
       "required": "true",
       "config": "",
       "value": "",
-      "description": "\nname: Cloud Controller Manager\nintroduction:\n  zh: 使用Cloud Controller Manager为k8s应用创建负载均衡，管理节点路由条目\n  en: Using Cloud Controller Manager to create load balancers for k8s applications and manage node route entries\ndoc:\n  zh: https://help.aliyun.com/document_detail/181518.html\n  en: https://www.alibabacloud.com/help/doc-detail/86531.htm\nchangelog:\n  zh: https://help.aliyun.com/document_detail/94925.html\n  en: https://www.alibabacloud.com/help/doc-detail/94925.htm\n",
+      "description": "\nname: Cloud Controller Manager\nintroduction:\n  zh: 使用Cloud Controller Manager为k8s应用创建负载均衡，管理节点路由条目。\n  en: Using Cloud Controller Manager to create load balancers for k8s applications and manage node route entries\ndoc:\n  zh: https://help.aliyun.com/document_detail/181518.html\n  en: https://www.alibabacloud.com/help/doc-detail/86531.htm\nchangelog:\n  zh: https://help.aliyun.com/document_detail/94925.html\n  en: https://www.alibabacloud.com/help/doc-detail/94925.htm\n",
       "properties": null
     },
     "coredns": {
@@ -338,7 +338,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "\nintroduction:\n  zh: 使用 gatekeeper 管理和应用 OPA 策略\n  en: Using gatekeeper to manage and apply OPA policy\ndoc:\n  zh: https://help.aliyun.com/document_detail/180803.html\n  en: https://www.alibabacloud.com/help/doc-detail/180803.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/180804.html\n  en: https://www.alibabacloud.com/help/doc-detail/180804.html\n",
+      "description": "\nintroduction:\n  zh: 使用gatekeeper管理和应用OPA策略。\n  en: Using gatekeeper to manage and apply OPA policy\ndoc:\n  zh: https://help.aliyun.com/document_detail/180803.html\n  en: https://www.alibabacloud.com/help/doc-detail/180803.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/180804.html\n  en: https://www.alibabacloud.com/help/doc-detail/180804.html\n",
       "properties": null
     },
     "kritis-validation-hook": {
@@ -348,7 +348,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "\nintroduction:\n  zh: 使用 kritis-validation-hook 实现验证镜像签名\n  en: Using kritis-validation-hook to verifying image signature\ndoc:\n  zh: https://help.aliyun.com/document_detail/157328.html\n  en: https://www.alibabacloud.com/help/doc-detail/157328.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/157327.html\n  en: https://www.alibabacloud.com/help/doc-detail/157327.html\n",
+      "description": "\nintroduction:\n  zh: 使用kritis-validation-hook实现验证镜像签名。\n  en: Using kritis-validation-hook to verifying image signature\ndoc:\n  zh: https://help.aliyun.com/document_detail/157328.html\n  en: https://www.alibabacloud.com/help/doc-detail/157328.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/157327.html\n  en: https://www.alibabacloud.com/help/doc-detail/157327.html\n",
       "properties": null
     },
     "kube-flannel-ds": {
@@ -388,7 +388,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "\nName: ACK Migrate Controller\nintroduction:\n  zh: \"使用 migrate controller(velero) 备份恢复集群应用\"\n  en: \"Using migrate controller to backup and restore applications in kubernetes clusters\"\nchangelog: \n- https://www.aliyun.com/\n",
+      "description": "\nName: ACK Migrate Controller\nintroduction:\n  zh: \"使用migrate controller(velero)备份恢复集群应用。\"\n  en: \"Using migrate controller to backup and restore applications in kubernetes clusters\"\nchangelog: \n- https://www.aliyun.com/\n",
       "properties": null
     },
     "nginx-ingress-controller": {
@@ -408,7 +408,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "\nintroduction:\n  zh: 使用 progressive-delivery-tool 管理应用灰度发布\n  en: Using progressive-delivery-tool to manage applications‘s canary delivery strategy\ndoc:\n  zh: https://help.aliyun.com/document_detail/181383.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/181393.html\n",
+      "description": "\nintroduction:\n  zh: 使用progressive-delivery-tool管理应用灰度发布。\n  en: Using progressive-delivery-tool to manage applications‘s canary delivery strategy\ndoc:\n  zh: https://help.aliyun.com/document_detail/181383.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/181393.html\n",
       "properties": null
     },
     "resource-controller": {
@@ -428,7 +428,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "name: sandboxed-container-controller\nhome: \nicon: \nintroduction: #必填\n  zh: sandboxed-container-controller,可以帮助在安全沙箱中实现NAS/云盘直挂\n  en: sandboxed-container-controller can help to achive nas and cloud disk pass through in ack sandboxed container.\ndoc:  \n  zh: https://help.aliyun.com/document_detail/160311.html\n  en: https://help.aliyun.com/document_detail/160311.html\nchangelog:    #必填\n  zh: https://help.aliyun.com/document_detail/160311.html\n  en: https://help.aliyun.com/document_detail/160311.html\nkeywords:\n- Sandboxed-Container\n- namespace:kube-system\n- releaseName:sandboxed-container-controller\n- category:Sandboxed-Container",
+      "description": "name: sandboxed-container-controller\nhome: \nicon: \nintroduction: #必填\n  zh: sandboxed-container-controller，可以帮助在安全沙箱中实现NAS/云盘直挂。\n  en: sandboxed-container-controller can help to achive nas and cloud disk pass through in ack sandboxed container.\ndoc:  \n  zh: https://help.aliyun.com/document_detail/160311.html\n  en: https://help.aliyun.com/document_detail/160311.html\nchangelog:    #必填\n  zh: https://help.aliyun.com/document_detail/160311.html\n  en: https://help.aliyun.com/document_detail/160311.html\nkeywords:\n- Sandboxed-Container\n- namespace:kube-system\n- releaseName:sandboxed-container-controller\n- category:Sandboxed-Container",
       "properties": null
     },
     "sandboxed-container-helper": {
@@ -438,7 +438,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "name: sandboxed-container-helper\nhome: \nicon: \nintroduction: #必填\n  zh: sandboxed-container-helper是针对ACK全沙箱容器的诊断运维工具\n  en: sandboxed-container-helper is a operation tool dedicated for ack sandboxed container\ndoc:  \n  zh: https://help.aliyun.com/document_detail/165057.html\n  en: https://help.aliyun.com/document_detail/165057.html\nchangelog:    #必填\n  zh: https://help.aliyun.com/document_detail/165057.html\n  en: https://help.aliyun.com/document_detail/165057.html\nkeywords:\n- Sandboxed-Container\n- namespace:kube-system\n- releaseName:sandboxed-container-helper\n- category:Sandboxed-Container",
+      "description": "name: sandboxed-container-helper\nhome: \nicon: \nintroduction: #必填\n  zh: sandboxed-container-helper是针对ACK全沙箱容器的诊断运维工具。\n  en: sandboxed-container-helper is a operation tool dedicated for ack sandboxed container\ndoc:  \n  zh: https://help.aliyun.com/document_detail/165057.html\n  en: https://help.aliyun.com/document_detail/165057.html\nchangelog:    #必填\n  zh: https://help.aliyun.com/document_detail/165057.html\n  en: https://help.aliyun.com/document_detail/165057.html\nkeywords:\n- Sandboxed-Container\n- namespace:kube-system\n- releaseName:sandboxed-container-helper\n- category:Sandboxed-Container",
       "properties": null
     },
     "security-inspector": {
@@ -448,7 +448,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "\nintroduction:\n  zh: 使用 security-inspector 实现集群安全扫描\n  en: Using security-inspector to scan security risks\ndoc:\n  zh: https://help.aliyun.com/document_detail/173306.html\n  en: https://www.alibabacloud.com/help/doc-detail/173306.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/173307.html\n  en: https://www.alibabacloud.com/help/doc-detail/173307.html\n",
+      "description": "\nintroduction:\n  zh: 使用security-inspector实现集群安全扫描。\n  en: Using security-inspector to scan security risks\ndoc:\n  zh: https://help.aliyun.com/document_detail/173306.html\n  en: https://www.alibabacloud.com/help/doc-detail/173306.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/173307.html\n  en: https://www.alibabacloud.com/help/doc-detail/173307.html\n",
       "properties": null
     },
     "sgx-device-plugin": {
@@ -458,7 +458,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "name: sgx-device-plugin\nhome: \nicon: \nintroduction: #必填\n  zh: sgx-device-plugin,可以让您更容易的在容器中使用Intel SGX.\n  en: sgx-device-plugin, making it easier to run SGX applications inside a container.\ndoc:  \n  zh: https://help.aliyun.com/document_detail/177706.html\n  en: https://help.aliyun.com/document_detail/177706.html\nchangelog:    #必填\n  zh: https://help.aliyun.com/document_detail/177706.html\n  en: https://help.aliyun.com/document_detail/177706.html\nkeywords:\n- Intel\n- SGX\n- device-plugin\n- namespace:kube-system\n- releaseName:sgx-device-plugin\n- category:ACK-TEE",
+      "description": "name: sgx-device-plugin\nhome: \nicon: \nintroduction: #必填\n  zh: sgx-device-plugin，可以让您更容易的在容器中使用Intel SGX。\n  en: sgx-device-plugin, making it easier to run SGX applications inside a container.\ndoc:  \n  zh: https://help.aliyun.com/document_detail/177706.html\n  en: https://help.aliyun.com/document_detail/177706.html\nchangelog:    #必填\n  zh: https://help.aliyun.com/document_detail/177706.html\n  en: https://help.aliyun.com/document_detail/177706.html\nkeywords:\n- Intel\n- SGX\n- device-plugin\n- namespace:kube-system\n- releaseName:sgx-device-plugin\n- category:ACK-TEE",
       "properties": null
     },
     "terway": {
