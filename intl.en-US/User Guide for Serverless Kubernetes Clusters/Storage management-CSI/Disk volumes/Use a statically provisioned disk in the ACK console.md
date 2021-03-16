@@ -7,7 +7,7 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
 
 ## Create a PV
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane, click **Serverless Clusters**.
 
@@ -30,7 +30,7 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
 
 ## Create a PVC
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane, click **Serverless Clusters**.
 
@@ -46,7 +46,7 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
     -   **Name**: Enter a name for the PVC. The name must be unique in the namespace.
     -   **Allocation Mode**: In this example, Existing Volumes is selected.
 
-        **Note:** If no PV is created, you can set **Allocation Mode** to **Create Volume**, and set the parameters to create a PV. For more information, see [\#d6e22](#d6e22).
+        **Note:** If no PV is created, you can set **Allocation Mode** to **Create Volume**, and set the parameters to create a PV. For more information, see [Create a PV](#section_qop_mue_s8h).
 
     -   **Existing Volumes**: Click **Select PV**, find the PV that you want to use, and then click **Select** in the Actions column.
     -   **Capacity**: Set the capacity of the PV.
@@ -61,7 +61,7 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
 
 ## Deploy an application
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane, click **Serverless Clusters**.
 
@@ -80,7 +80,7 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
     |Name|The name of the application.|
     |Namespace|The namespace where you want to deploy the application. The default namespace is automatically selected. You can select another namespace.|
     |Replicas|The number of pods that are provisioned for the application. Default value: 2.|
-    |Type|The type of application. You can select **Deployments**, **StatefulSets**, **Jobs**, ******Cron Jobs**, or **DaemonSets**.|
+    |Type|The type of application. You can select **Deployments**, **StatefulSets**, **Jobs**, **Cron Jobs**, or **DaemonSets**.|
     |Label|Add a label to the application. The label is used to identify the application.|
     |Annotations|Add an annotation to the application.|
     |Synchronize Timezone|Specify whether to synchronize the time zone between nodes and containers.|
@@ -93,7 +93,7 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
 
 8.  Set the container parameters.
 
-    This example shows how to set the volume parameters. For more information about other parameters, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Deploy a stateless application from an image.md).
+    This example shows how to set the volume parameters. For more information about other parameters, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateless application from an image.md).
 
     You can add local volumes and cloud volumes.
 
