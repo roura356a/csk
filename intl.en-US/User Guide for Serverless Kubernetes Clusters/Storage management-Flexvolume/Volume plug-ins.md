@@ -16,7 +16,7 @@ Serverless Kubernetes \(ASK\) clusters support the FlexVolume and Container Stor
 
 |For more information about FlexVolume, see [Overview](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Overview.md).
 
-For more information about how to upgrade FlexVolume, see [Manage system components](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Upgrade cluster/Manage system components.md). |
+For more information about how to upgrade FlexVolume, see [Manage system components](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Upgrade cluster/Manage system components.md). |
 |CSI|CSI is recommended by the Kubernetes community. The CSI plug-in used in ASK clusters supports the features of the open source CSI version. CSI consists of the following parts: -   CSI-Plugin: allows you to mount and unmount volumes. By default, ASK allows you to mount Alibaba Cloud disks and Apsara File Storage NAS \(NAS\) file systems as volumes.
 -   CSI-Provisioner: automatically mounts disks and NAS file systems as volumes.
 
