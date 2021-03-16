@@ -83,7 +83,7 @@ This topic describes how to use disks to create dynamically provisioned persiste
     |Name|The name of the application.|
     |Namespace|The namespace where you want to deploy the application. The default namespace is automatically selected. You can select another namespace.|
     |Replicas|The number of pods that are provisioned for the application. Default value: 2.|
-    |Type|The type of application. You can select **Deployments**, **StatefulSets**, **Jobs**, ******Cron Jobs**, or **DaemonSets**.|
+    |Type|The type of application. You can select **Deployments**, **StatefulSets**, **Jobs**, **Cron Jobs**, or **DaemonSets**.|
     |Label|Add a label to the application. The label is used to identify the application.|
     |Annotations|Add an annotation to the application.|
     |Synchronize Timezone|Specify whether to synchronize the time zone between nodes and containers.|
@@ -92,7 +92,7 @@ This topic describes how to use disks to create dynamically provisioned persiste
 
 7.  Configure containers.
 
-    This example provides further details about the parameters in the Volume section. For more information about other parameters, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Deploy a stateless application from an image.md).
+    This example provides further details about the parameters in the Volume section. For more information about other parameters, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateless application from an image.md).
 
     Local storage and cloud storage are supported.
 
