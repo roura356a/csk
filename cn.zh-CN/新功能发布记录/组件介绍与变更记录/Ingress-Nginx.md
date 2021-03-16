@@ -6,7 +6,7 @@
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
-|v0.44.0.1-5e842447b-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/aliyun-ingress-controller:v0.44.0.1-5e842447b-aliyun|2020年03月08日|-   默认开启Validating Admission Webhook。
+|v0.44.0.1-5e842447b-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/aliyun-ingress-controller:v0.44.0.1-5e842447b-aliyun|2021年03月08日|-   默认开启Validating Admission Webhook。
 -   针对`service-weight`这个注解配置的值做合法性检查。
 -   长连接和短连接性能提升20%~50%。
 -   集成AHAS Sentinel能力。
