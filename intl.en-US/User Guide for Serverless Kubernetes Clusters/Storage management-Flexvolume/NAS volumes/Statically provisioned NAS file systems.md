@@ -7,7 +7,7 @@ keyword: [statically provisioned volumes, NAS, FlexVolume]
 You can use the FlexVolume plug-in provided by Alibaba Cloud to use Apsara File Storage NAS in Container Service for Kubernetes \(ACK\). This topic describes how to use a statically provisioned NAS volume.
 
 -   Upgrade the FlexVolume plug-in to the latest version.
--   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+-   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
 
 The FlexVolume plug-in allows you to use a NAS file system as a volume. You can also use a NAS file system to create a PV and a PVC.
 
