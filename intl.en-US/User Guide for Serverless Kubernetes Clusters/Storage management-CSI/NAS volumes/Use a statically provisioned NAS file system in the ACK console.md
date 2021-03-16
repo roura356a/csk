@@ -12,7 +12,7 @@ This topic describes how to use a static NAS volume in the Container Service for
 
 ## Create a PV
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane, click **Serverless Clusters**.
 
@@ -44,7 +44,7 @@ This topic describes how to use a static NAS volume in the Container Service for
 
 ## Create a PVC
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane, click **Serverless Clusters**.
 
@@ -71,7 +71,7 @@ This topic describes how to use a static NAS volume in the Container Service for
 
 ## Deploy an application
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane, click **Serverless Clusters**.
 
@@ -90,7 +90,7 @@ This topic describes how to use a static NAS volume in the Container Service for
     |Name|The name of the application.|
     |Namespace|The namespace where you want to deploy the application. The default namespace is automatically selected. You can select another namespace.|
     |Replicas|The number of pods that are provisioned for the application. Default value: 2.|
-    |Type|The type of application. You can select **Deployments**, **StatefulSets**, **Jobs**, ******Cron Jobs**, or **DaemonSets**.|
+    |Type|The type of application. You can select **Deployments**, **StatefulSets**, **Jobs**, **Cron Jobs**, or **DaemonSets**.|
     |Label|Add a label to the application. The label is used to identify the application.|
     |Annotations|Add an annotation to the application.|
     |Synchronize Timezone|Specify whether to synchronize the time zone between nodes and containers.|
@@ -101,7 +101,7 @@ This topic describes how to use a static NAS volume in the Container Service for
 
 8.  Configure the container parameters.
 
-    This example describes how to configure the volume parameters. For more information about other parameters, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Deploy a stateless application from an image.md).
+    This example describes how to configure the volume parameters. For more information about other parameters, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateless application from an image.md).
 
     You can add local volumes and cloud volumes.
 
