@@ -2,12 +2,12 @@
 
 The Container Service for Kubernetes \(ACK\) console provides rich features that allow you to manage and maintain ACK clusters and applications. This topic describes how to deploy an NGINX application, configure an Ingress, and query logs in the ACK console.
 
--   Create an ACK cluster. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+-   Create an ACK cluster. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 -   Enable Log Service and activate Logtail. For more information, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
 
 ## Step 1: Deploy an NGINX application
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
@@ -44,7 +44,7 @@ The Container Service for Kubernetes \(ACK\) console provides rich features that
 
 ## Step 2: Release the NGINX application
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
@@ -62,13 +62,13 @@ The Container Service for Kubernetes \(ACK\) console provides rich features that
     |Type|Set **Type** to **Cluster IP**.|
     |Backend|Select **nginx-deployment-basic** from the drop-down list.|
     |Port Mapping|Enter a name for the port. Set **Service Port** to 80, **Container Port** to 80, and **Protocol** to **TCP**.|
-    |Annotations|Add one or more annotations to the Service and configure Server Load Balancer \(SLB\) parameters. For example, the annotation `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20` specifies that the maximum bandwidth of the Service is 20 Mbit/s. This limits the amount of traffic that flows through the Service. For more information, see [Use annotations to configure SLB instances](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Use annotations to configure SLB instances.md).|
+    |Annotations|Add one or more annotations to the Service and configure Server Load Balancer \(SLB\) parameters. For example, the annotation `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20` specifies that the maximum bandwidth of the Service is 20 Mbit/s. This limits the amount of traffic that flows through the Service. For more information, see [Use annotations to configure SLB instances](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Use annotations to configure SLB instances.md).|
     |Label|Add one or more labels to the Service.|
 
 
 ## Step 3: Create an Ingress
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
@@ -78,7 +78,7 @@ The Container Service for Kubernetes \(ACK\) console provides rich features that
 
 5.  In the **Create** dialog box, set the required parameters and click **Create**.
 
-    The following lists key parameters. For more information about how to configure other parameters, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Basic operations of an Ingress.md).
+    The following lists key parameters. For more information about how to configure other parameters, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Basic operations of an Ingress.md).
 
     -   Name: Enter a name for the Ingress. The name is set to ingress-demo in this example.
     -   Rules: Enter a custom domain name in the **Domain** field and enter the path /nginx in the **Path** field. Set Name in the Services section to the name of the Service that you created in [Step 2: Release the NGINX application](#section_cr5_ms8_nof) and use the automatically matched port 80 for **Port**.
@@ -89,7 +89,7 @@ The Container Service for Kubernetes \(ACK\) console provides rich features that
 
 ## Step 4: View the access log of the NGINX application
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
