@@ -2,11 +2,11 @@
 
 You can use an image to deploy a stateless application. This topic describes how to use an image to deploy a stateless NGINX application in the Container Service for Kubernetes \(ACK\) console.
 
-[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)
+[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)
 
 ## Step 1: Configure basic settings
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
@@ -14,9 +14,11 @@ You can use an image to deploy a stateless application. This topic describes how
 
 4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
-5.  On the **Deployments** tab, click **Create from Image**.
+5.  In the left-side navigation pane, choose **Applications** \> **Deployments**. On the Deployments page, click **Create from Image** in the upper-right corner of the page.
 
-6.  On the **Basic Information** wizard page, configure the basic settings.
+6.  On the **Deployments** tab, click **Create from Image**.
+
+7.  On the **Basic Information** wizard page, configure the basic settings.
 
     ![Basic configuration](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8309301161/p10973.png)
 
@@ -32,7 +34,7 @@ You can use an image to deploy a stateless application. This topic describes how
 
     **Note:** **Deployments** is selected in this example.
 
-7.  Click **Next**.
+8.  Click **Next**.
 
     The **Container** wizard page appears.
 
@@ -68,7 +70,7 @@ On the **Container** wizard page, configure the settings of the image, resources
         -   **Never**: ACK uses only local images.
 **Note:** If you select **Image Pull Policy**, no image pull policy is applied for the deployment of the application.
 
-    -   To pull the image without a secret, click **Set Image Pull Secret** to set a secret for pulling images. For more information, see [Use aliyun-acr-credential-helper to pull images without a password](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Use aliyun-acr-credential-helper to pull images without a password.md). |
+    -   To pull the image without a secret, click **Set Image Pull Secret** to set a secret for pulling images. For more information, see [Use aliyun-acr-credential-helper to pull images without a password](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Image/Use aliyun-acr-credential-helper to pull images without a password.md). |
     |Resource Limit|You can specify an upper limit for the CPU, memory, and ephemeral storage resources that the container can consume. This prevents the container from occupying an excessive amount of resources.|
     |Required Resources|The amount of CPU and memory resources that are reserved for this application. These resources are exclusive to the container. This prevents the application from becoming unavailable when other Services or processes occupy these resources.|
     |Container Start Parameter|    -   stdin: specifies that start parameters defined in the console are sent to the Linux system.
@@ -198,12 +200,12 @@ On the **Advanced** wizard page, you can configure the settings of access contro
         |External Traffic Policy|        -   Local: routes network traffic to only the node where the Service is deployed.
         -   Cluster: routes network traffic to pods on other nodes.
 **Note:** The **External Traffic Policy** parameter is available only when you set Type to **Node Port** or **Server Load Balancer**. |
-        |Annotations|Add one or more annotations to the Service to modify the configuration of the SLB instance. For example, `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20` specifies that the maximum bandwidth of the Service is 20 Mbit/s. This limits the amount of traffic that flows through the Service. For more information, see [Use annotations to configure SLB instances](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Use annotations to configure SLB instances.md).|
+        |Annotations|Add one or more annotations to the Service to modify the configuration of the SLB instance. For example, `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20` specifies that the maximum bandwidth of the Service is 20 Mbit/s. This limits the amount of traffic that flows through the Service. For more information, see [Use annotations to configure SLB instances](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Use annotations to configure SLB instances.md).|
         |Label|Add one or more labels to the Service.|
 
     -   To create an Ingress, click **Create** on the right side of **Ingresses**. In the Create dialog box, set the parameters.
 
-        For more information about the parameters that are required to create an Ingress, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Basic operations of an Ingress.md).
+        For more information about the parameters that are required to create an Ingress, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Basic operations of an Ingress.md).
 
         **Note:** When you deploy an application from an image, you can create an Ingress for only one Service. In this example, the name of a virtual host is used as the test domain name. You must add the following entry to the hosts file to map the domain name to the IP address of the Ingress. The entry is in the format of <Ingress external endpoint\> + <Ingress domain name\>. In practical scenarios, use a domain name that has obtained an Internet Content Provider \(ICP\) number.
 
@@ -214,10 +216,10 @@ On the **Advanced** wizard page, you can configure the settings of access contro
         |Parameter|Description|
         |---------|-----------|
         |Name|Enter a name for the Ingress. In this example, nginx-ingress is used.|
-        |Rules|Ingress rules that are used to enable access to a specified Service in a cluster. For more information, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Basic operations of an Ingress.md).        -   **Domain**: Enter the domain name of the Ingress. In this example, the test domain name `foo.bar.com` is used.
+        |Rules|Ingress rules that are used to enable access to a specified Service in a cluster. For more information, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Basic operations of an Ingress.md).        -   **Domain**: Enter the domain name of the Ingress. In this example, the test domain name `foo.bar.com` is used.
         -   **Path**: Enter the Service URL. The default path is the root path /. The default path is used in this example. Each path is associated with a backend Service. SLB forwards traffic to a backend Service only when inbound requests match the domain name and path.
         -   **Service**: Set the Service name and port. In this example, nginx-svc is used.
-        -   Select **EnableTLS** to enable TLS. For more information, see [Configure an Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Configure an Ingress.md). |
+        -   Select **EnableTLS** to enable TLS. For more information, see [Configure an Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Configure an Ingress.md). |
         |Weight|Set the weights of the Services that are associated with the Ingress. Each weight is calculated as a relative value. Default value: 100.|
         |Canary Release|After a canary release rule is configured, only requests that match the rule are routed to the new release of the Service. If the weight of the Service is less than 100%, requests that match the rule are routed to this Service based on the weight. ACK supports multiple traffic splitting methods, which are applicable to various scenarios, such as canary releases and A/B testing. These methods include:        -   Traffic splitting based on request headers
         -   Traffic splitting based on cookies
@@ -315,6 +317,8 @@ After the application is created, you are redirected to the **Complete** page.
 
 ## Related operations
 
+Choose **Applications** \> **Deployments**. On the Deployments page, click the name of the application that you want to manage or click **Details** in the **Actions** column. On the details page of the application, you can **edit**, **scale**, **redeploy**, and **refresh** the application. You can also **view the YAML file** of the application.
+
 In the left-side navigation pane, click **Clusters**. On the Clusters page, click the name of the cluster that you want to manage or click **Details** in the **Actions** column. In the left-side navigation pane, click **Workloads** and Deployments. On the Deployments page, click the name of the application that you want to manage or click **Details** in the **Actions** column. On the details page of the application, you can **edit**, **scale**, **redeploy**, and **refresh** the application. You can also **view the YAML file** of the application.
 
 -   Edit: On the details page of the application, click **Edit** in the upper-right corner of the page to modify the configurations of the application.
@@ -325,7 +329,7 @@ In the left-side navigation pane, click **Clusters**. On the Clusters page, clic
 
 ## Documentation
 
--   [Deploy a stateful application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Deploy a stateful application from an image.md)
+-   [Deploy a stateful application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateful application from an image.md)
 -   [Use an orchestration template to create a Linux application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Use an orchestration template to create a Linux application.md)
--   [Use annotations to configure SLB instances](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Use annotations to configure SLB instances.md)
+-   [Use annotations to configure SLB instances](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Use annotations to configure SLB instances.md)
 
