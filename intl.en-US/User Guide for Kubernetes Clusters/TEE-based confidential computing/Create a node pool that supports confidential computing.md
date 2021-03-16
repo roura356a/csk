@@ -6,7 +6,7 @@ keyword: [confidential computing, create a node pool]
 
 You can create a node pool that supports confidential computing for a Container Service for Kubernetes \(ACK\) cluster. The node pool functions as a Trusted Execution Environment \(TEE\) that can protect your code and sensitive data from being sniffed or compromised when the code or data is in use. This topic describes how to create a node pool that supports confidential computing.
 
--   A managed Kubernetes cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md). The created cluster must meet the following requirements:
+-   A managed Kubernetes cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md). The created cluster must meet the following requirements:
     -   The network plug-in is Flannel.
     -   The container runtime is Docker.
 -   The cluster is deployed in a region where you can purchase ECS Bare Metal instances of the ecs.ebmhfg5.2xlarge type.
@@ -15,15 +15,19 @@ TEE-based confidential computing for ACK is powered by Intel \(R\) Software Guar
 
 ## Procedure
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
-2.  In the left-side navigation pane, click **Clusters**. On the Clusters page, find the cluster in which you want to create a node pool and click **Node Pools** in the **Actions** column.
+2.  Go to the Node Pools page.
 
-3.  On the Node Pools page, click **Create Node Pool**.
+    -   In the left-side navigation pane, choose **Clusters** \> **Clusters**. On the Clusters page, find the cluster in which you want to create a node pool and click **Node Pools** in the **Actions** column.
+    -   In the left-side navigation pane, choose **Clusters** \> **Node Pools**. In the upper-left corner of the Node Pools page, select the cluster in which you want to create a node pool from the Cluster drop-down list.
+3.  In the left-side navigation pane, click **Clusters**. On the Clusters page, find the cluster in which you want to create a node pool and click **Node Pools** in the **Actions** column.
 
-4.  In the Create Node Pool dialog box, configure the node pool.
+4.  On the Node Pools page, click **Create Node Pool**.
 
-    For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md). The following table describes the parameters that are required to create a confidential computing node pool.
+5.  In the Create Node Pool dialog box, configure the node pool.
+
+    For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md). The following table describes the parameters that are required to create a confidential computing node pool.
 
     |Parameter|Description|
     |---------|-----------|
@@ -36,9 +40,11 @@ TEE-based confidential computing for ACK is powered by Intel \(R\) Software Guar
     |**Node Label**|You can add labels to nodes in the node pool.|
     |**ECS Label**|You can add labels to the selected ECS instances.|
 
-5.  Click **OK**.
+6.  Click **OK**.
 
     On the Node Pools page, if the **state** of the node pool is **Initializing**, it indicates that the system is creating the node pool.
+
+    ![Initializing](../images/p132691.png)
 
     On the **Clusters** page, find the cluster and click **View Logs** in the **Actions** column. On the Log Information page, you can view the log data of the newly created node pool that supports confidential computing.
 
