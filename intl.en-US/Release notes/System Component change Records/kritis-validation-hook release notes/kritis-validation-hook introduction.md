@@ -6,7 +6,7 @@ keyword: [kritis-validation-hook, signature verification, container images]
 
 kritis-validation-hook is a key component that is used to verify image signatures. You can use signature verification to ensure that only images signed by trusted authorities are deployed. This reduces the risk of malicious code execution. This topic provides examples on how kritis-validation-hook is used to verify signatures.
 
-Based on the open source project [kritis](https://github.com/grafeas/kritis), kritis-validation-hook is integrated with[Alibaba Cloud Container Registry \(ACR\)](https://www.alibabacloud.com/zh/product/container-registry)to verify the signatures of images that are signed by [Key Management Service \(KMS\)](https://www.alibabacloud.com/zh/products/kms). kritis-validation-hook is integrated with[Security Center](https://www.alibabacloud.com/zh/products/threat-detection), KMS, and ACR to implement automated image signing and signature verification. This allows you to build a secure environment for clusters. For more information about how to enable signature verification for container images, see [Use kritis-validation-hook to automatically verify the signatures of container images](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Use kritis-validation-hook to automatically verify the signatures of container images.md).
+Based on the open source project [kritis](https://github.com/grafeas/kritis), kritis-validation-hook is integrated with [阿里云容器镜像服务ACR](https://www.aliyun.com/product/acr)[Alibaba Cloud Container Registry \(ACR\)](https://www.alibabacloud.com/zh/product/container-registry)[阿里云密钥管理服务KMS](https://www.aliyun.com/product/kms)to verify the signatures of images that are signed by [Key Management Service \(KMS\)](https://www.alibabacloud.com/zh/products/kms). kritis-validation-hook is integrated with [云安全中心](https://www.aliyun.com/product/sas)[Security Center](https://www.alibabacloud.com/zh/products/threat-detection), KMS, and ACR to implement automated image signing and signature verification. This allows you to build a secure environment for clusters. For more information about how to enable signature verification for container images, see [Use kritis-validation-hook to automatically verify the signatures of container images](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Image/Use kritis-validation-hook to automatically verify the signatures of container images.md).
 
 ## Permissions
 
@@ -19,7 +19,7 @@ cr:ListMetadataOccurrences
 
 If you want to grant the RAM role the preceding permissions, perform the following steps:
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
@@ -219,5 +219,5 @@ kritis-validation-hook will be integrated with other Alibaba Cloud services to p
 
 [Release notes](/intl.en-US/Release notes/System Component change Records/kritis-validation-hook release notes/Release notes.md)
 
-[Use kritis-validation-hook to automatically verify the signatures of container images](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Use kritis-validation-hook to automatically verify the signatures of container images.md)
+[Use kritis-validation-hook to automatically verify the signatures of container images](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Image/Use kritis-validation-hook to automatically verify the signatures of container images.md)
 
