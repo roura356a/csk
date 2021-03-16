@@ -17,11 +17,11 @@ In the Container Service for Kubernetes \(ACK\) console, you can create an appli
 
 6.  On the **Basic Information** wizard page, configure the basic settings.
 
-    For more information, see [Configure basic settings](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Deploy a stateless application from an image.md).
+    For more information, see [Configure basic settings](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateless application from an image.md).
 
     ![Basic settings](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8309301161/p10973.png)
 
-7.  On the **Container** wizard page, select an image and configure a data volume based on cloud storage. Cloud disks, NAS file systems, and Object Storage Service \(OSS\) buckets can be specified as cloud storage. In this example, select the pvc-disk PVC and click **Next**. For more information, see [Configure the containers](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Deploy a stateless application from an image.md).
+7.  On the **Container** wizard page, select an image and configure a data volume based on cloud storage. Cloud disks, NAS file systems, and Object Storage Service \(OSS\) buckets can be specified as cloud storage. In this example, select the pvc-disk PVC and click **Next**. For more information, see [Configure the containers](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateless application from an image.md).
 
 8.  On the **Advanced** wizard page, create a service for the test-nginx application and click **Create**.
 
