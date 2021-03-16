@@ -60,7 +60,7 @@ This topic describes how to use a static NAS volume in the Container Service for
     |---------|-----------|
     |**PVC Type**|You can select Cloud Disk, NAS, or OSS. In this example, select NAS.|
     |**Name**|The name of the persistent volume claim \(PVC\). The name must be unique in the namespace.|
-    |**Allocation Mode**|In this example, select Existing Volumes.**Note:** If no PV is created, you can set **Allocation Mode** to **Create Volume**. For information about how to configure PV parameters, see [\#d10e27](#d10e27). |
+    |**Allocation Mode**|In this example, select Existing Volumes.**Note:** If no PV is created, you can set **Allocation Mode** to **Create Volume**. For information about how to configure PV parameters, see [Create a PV](#section_rtl_zf3_vxy). |
     |**Existing Volumes**|Click **Select PV**. Find the PV that you want to use and click **Select** in the Actions column.|
     |**Capacity**|The capacity of the PVC.**Note:** The capacity of the PVC cannot exceed the capacity of the PV to be bound to this PVC. |
 
