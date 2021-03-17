@@ -10,7 +10,7 @@ For more information about OPA, see [Open Policy Agent](https://www.openpolicyag
 
 ## Architecture
 
-![1](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6334479951/p165176.png)
+![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6334479951/p165176.png)
 
 ## Examples
 
@@ -41,12 +41,12 @@ You can use gatekeeper to constrain pod deployments in specified namespaces base
               properties:
                 labels:
                   type: array
-                  items: string
+                  items:
+                    type: string
       targets:
         - target: admission.k8s.gatekeeper.sh
           rego: |
             package k8srequiredlabels
-    
             violation[{"msg": msg, "details": {"missing_labels": missing}}] {
               provided := {label | input.review.object.metadata.labels[label]}
               required := {label | label := input.parameters.labels[_]}
@@ -54,7 +54,6 @@ You can use gatekeeper to constrain pod deployments in specified namespaces base
               count(missing) > 0
               msg := sprintf("you must provide labels: %v", [missing])
             }
-    
     EOF
     ```
 
