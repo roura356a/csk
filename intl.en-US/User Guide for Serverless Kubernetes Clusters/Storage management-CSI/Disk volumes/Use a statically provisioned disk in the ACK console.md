@@ -101,8 +101,6 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
     -   **Add PVC**: You can add cloud volumes.
     Mount the disk volume that is created in this example to the /tmp path of the container. After the disk volume is mounted, container data that is generated in the /tmp path is saved to the disk volume.
 
-    ![](../images/p68586.png)
-
 9.  Set other parameters and click **Create**.
 
     After you create the application, you can use the disk volume to store application data.
