@@ -9,7 +9,7 @@ keyword: [昊天cGPU, 托管Prometheus监控, GPU资源隔离]
 -   GPU集群为标准专有版，且Kubernetes版本不低于1.16。
 -   [开通和升级ARMS](/cn.zh-CN/快速入门/开通和升级ARMS.md)。
 -   使用主账号登录[RAM控制台](https://ram.console.aliyun.com/)，为主账号授权arms-prometheus功能。
--   GPU硬件为telsa P4、telsa P100、 telsa T4或telsa v100（16 GB）。
+-   GPU硬件为Tesla P4、Tesla P100、 Tesla T4或Tesla v100（16 GB）。
 
 推动人工智能不断向前的动力来自于强大的算力、海量的数据和优化的算法，而Nvidia GPU是最流行的异构算力提供者，是高性能深度学习的基石。GPU的价格不菲，从使用率的角度来看，模型预测场景下，应用独占GPU模式会造成计算资源的浪费。共享GPU模式可以提升资源利用率，但需要考虑如何达到成本和QPS平衡的最优，以及如何保障应用的SLA。
 
@@ -25,7 +25,7 @@ keyword: [昊天cGPU, 托管Prometheus监控, GPU资源隔离]
 
     插件安装过程需要2分钟左右。安装插件完毕后，**已安装插件**列中将显示全部已安装的插件。
 
-5.  通过命令行部署以下示例应用，详情请参见[t17653.md\#section\_wko\_o92\_co2](/cn.zh-CN/Kubernetes集群用户指南/应用/工作负载/使用镜像创建无状态Deployment应用.md)。
+5.  通过命令行部署以下示例应用，详情请参见[通过命令管理应用](/cn.zh-CN/Kubernetes集群用户指南/应用/工作负载/创建无状态工作负载Deployment.md)。
 
     ```
     apiVersion: apps/v1beta1
