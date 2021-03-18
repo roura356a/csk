@@ -6,11 +6,11 @@ keyword: [安装共享GPU资源, GPU资源查询工具, 共享调度]
 
 ACK提供了GPU共享调度能力，服务于共享单GPU的模型预测场景，同时也可以通过Nvidia驱动内核态保障GPU显存的隔离。本文介绍如何在GPU节点上安装共享GPU组件和GPU资源查询工具，实现GPU的调度和隔离能力。
 
--   创建ACK Pro集群。ACK Pro集群的实例规格类型需要设置为**异构计算GPU/FPGA/NPU**，其他配置请参见[创建Kubernetes Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建Kubernetes Pro版集群.md)。
+-   创建ACK Pro集群。ACK Pro集群的实例规格类型需要设置为**异构计算GPU/FPGA/NPU**，其他配置请参见[创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
 
     **说明：** 仅支持在ACK Pro集群安装共享GPU组件，如果您使用的是专有版集群，您可以[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请白名单。
 
--   [通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   [通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 -   共享GPU组件的安装没有地域限制，但是目前只有以下地域支持GPU显存隔离能力。如果您需要使用显存隔离能力，请确保集群所在地域在此范围内。
 
     |地域|地域ID|
@@ -38,7 +38,7 @@ ACK提供了GPU共享调度能力，服务于共享单GPU的模型预测场景�
 |Nvidia驱动版本|418.87.01及以上版本|
 |Docker版本|19.03.5|
 |操作系统|CentOS 7.6、CentOS 7.7、Ubuntu 16.04和Ubuntu 18.04，Aliyun Cloud Linux 2.x|
-|支持显卡|Telsa P4、Telsa P100、 Telsa T4和Telsa v100（16 GB）|
+|支持显卡|Tesla P4、Tesla P100、 Tesla T4和Tesla v100（16 GB）|
 
 ## 步骤一：安装共享GPU组件
 
@@ -65,7 +65,7 @@ ACK提供了GPU共享调度能力，服务于共享单GPU的模型预测场景�
 
 5.  在创建节点池页面，设置创建节点池的配置项。
 
-    关于配置项的详细说明，请参见[创建Kubernetes Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建Kubernetes Pro版集群.md)。部分配置项说明如下：
+    关于配置项的详细说明，请参见[创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。部分配置项说明如下：
 
     -   数量：设置节点池初始节点数量。如不需要创建节点，可以填写为0。
     -   操作系统：选择节点的操作系统，包括CentOS、Alibaba Cloud Linux 2.x、Windows。
@@ -87,13 +87,13 @@ ACK提供了GPU共享调度能力，服务于共享单GPU的模型预测场景�
 
 ## 步骤三：添加GPU节点
 
-完成创建节点池后，您还可以在节点池中添加GPU节点。添加GPU节点时，您需要将实例规格类型设置为**异构计算GPU/FPGA/NPU**。具体操作，请参见[添加已有节点](/intl.zh-CN/Kubernetes集群用户指南/节点管理/添加已有节点.md)或[扩容节点池](/intl.zh-CN/Kubernetes集群用户指南/节点管理/节点池管理/扩容节点池.md)。
+完成创建节点池后，您还可以在节点池中添加GPU节点。添加GPU节点时，您需要将实例规格类型设置为**异构计算GPU/FPGA/NPU**。具体操作，请参见[添加已有节点](/intl.zh-CN/Kubernetes集群用户指南/节点与节点池/节点/添加已有节点.md)或[扩容节点池](/intl.zh-CN/Kubernetes集群用户指南/节点与节点池/节点池/扩容节点池.md)。
 
 **说明：** 如果您添加节点池时已经创建GPU节点，您可以跳过此步骤。
 
 ## （可选）步骤四：安装和使用GPU资源查询工具
 
-1.  配置kubeconfig文件。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。
+1.  配置kubeconfig文件。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 
 2.  下载kubectl-inspect-cgpu。
 
