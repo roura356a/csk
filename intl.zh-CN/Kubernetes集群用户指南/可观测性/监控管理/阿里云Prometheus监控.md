@@ -55,7 +55,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 **通过配置集群参数开启Prometheus监控。**
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -74,7 +74,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 **通过ACK控制台Prometheus监控开启Prometheus监控。**
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -87,7 +87,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 **通过ACK控制台应用目录开启阿里云Prometheus监控。**
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，选择**市场** \> **应用目录**。
 
@@ -108,7 +108,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 ## 查看Prometheus监控大盘
 
-1.  登录[ARMS控制台](https://arms.console.aliyun.com/#/home)[ARMS控制台](https://arms-ap-southeast-1.console.aliyun.com/#/home)。
+1.  登录[ARMS控制台](https://arms-ap-southeast-1.console.aliyun.com/#/home)。
 
 2.  在控制台左侧导航栏，单击**Promethues监控**。
 
@@ -127,7 +127,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 **说明：** 如需将钉钉机器人添加为联系人，则需要先获取钉钉机器人的地址。具体操作，请参见[t152339.dita\#concept\_106247\_zh](/intl.zh-CN/大盘和报警/设置钉钉机器人报警.md)。
 
-1.  登录[ARMS控制台](https://arms.console.aliyun.com/#/home)[ARMS控制台](https://arms-ap-southeast-1.console.aliyun.com/#/home)。
+1.  登录[ARMS控制台](https://arms-ap-southeast-1.console.aliyun.com/#/home)。
 
 2.  在控制台左侧导航栏，选择**报警管理** \> **联系人管理**。
 
@@ -137,7 +137,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 4.  配置报警规则。
 
-    1.  登录[Prometheus控制台](https://prometheus.console.aliyun.com/#/home)[Prometheus控制台](https://prometheus.console.aliyun.com/#/home)Prometheus控制台。
+    1.  登录[Prometheus控制台](https://prometheus.console.aliyun.com/#/home)。
 
     2.  在控制台左侧导航栏选择**监控列表**，单击**K8s**列目标集群名称。
 
@@ -147,7 +147,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
         关于PromQL语句的配置，请参见[快速创建ARMS报警](/intl.zh-CN/快速入门/快速创建ARMS报警.md)。
 
-    **说明：** 报警规则也可在[ARMS控制台](https://arms.console.aliyun.com/#/home)[ARMS控制台](https://arms-ap-southeast-1.console.aliyun.com/#/home)的**报警管理** \> **报警策略管理** 进行管理。
+    **说明：** 报警规则也可在[ARMS控制台](https://arms-ap-southeast-1.console.aliyun.com/#/home)的**报警管理** \> **报警策略管理** 进行管理。
 
     **验证结果**
 
@@ -162,7 +162,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 通过给Deployment Pod Template加入Annotations的方式自定义监控，阿里云ARMS应用监控组件将会使ARMS Prometheus监控自动获取Pod自定义指标。
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -208,7 +208,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 7.  配置自定义指标。
 
-    1.  登录[Prometheus控制台](https://prometheus.console.aliyun.com/#/home)[Prometheus控制台](https://prometheus.console.aliyun.com/#/home)Prometheus控制台。
+    1.  登录[Prometheus控制台](https://prometheus.console.aliyun.com/#/home)。
 
     2.  在控制台左侧导航栏选择**监控列表**，单击**K8s**列目标集群名称。
 
@@ -233,7 +233,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 通过ServiceMonitor方式自定义指标监控在部署的时候不需要配置annotations，但是要给service对象添加标签。
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -265,7 +265,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
     3.  在**类型**中选择**负载均衡**型服务及**公网访问**。
 
-    4.  在**关联**中选择[步骤4](#d8e517)创建的应用。
+    4.  在**关联**中选择[步骤4](#step_fez_f3e_d8s)创建的应用。
 
     5.  添加标签。
 
@@ -279,7 +279,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 6.  使Prometheus获得服务Scape Endpioint。
 
-    1.  登录[Prometheus控制台](https://prometheus.console.aliyun.com/#/home)[Prometheus控制台](https://prometheus.console.aliyun.com/#/home)Prometheus控制台。
+    1.  登录[Prometheus控制台](https://prometheus.console.aliyun.com/#/home)。
 
     2.  在控制台左侧导航栏选择**监控列表**，单击**K8s**列目标集群名称。
 
