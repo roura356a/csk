@@ -15,17 +15,13 @@ TEE-based confidential computing for ACK is powered by Intel \(R\) Software Guar
 
 ## Procedure
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  Go to the Node Pools page.
+2.  In the left-side navigation pane, click **Clusters**. On the Clusters page, find the cluster in which you want to create a node pool and click **Node Pools** in the **Actions** column.
 
-    -   In the left-side navigation pane, choose **Clusters** \> **Clusters**. On the Clusters page, find the cluster in which you want to create a node pool and click **Node Pools** in the **Actions** column.
-    -   In the left-side navigation pane, choose **Clusters** \> **Node Pools**. In the upper-left corner of the Node Pools page, select the cluster in which you want to create a node pool from the Cluster drop-down list.
-3.  In the left-side navigation pane, click **Clusters**. On the Clusters page, find the cluster in which you want to create a node pool and click **Node Pools** in the **Actions** column.
+3.  On the Node Pools page, click **Create Node Pool**.
 
-4.  On the Node Pools page, click **Create Node Pool**.
-
-5.  In the Create Node Pool dialog box, configure the node pool.
+4.  In the Create Node Pool dialog box, configure the node pool.
 
     For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md). The following table describes the parameters that are required to create a confidential computing node pool.
 
@@ -40,11 +36,9 @@ TEE-based confidential computing for ACK is powered by Intel \(R\) Software Guar
     |**Node Label**|You can add labels to nodes in the node pool.|
     |**ECS Label**|You can add labels to the selected ECS instances.|
 
-6.  Click **OK**.
+5.  Click **OK**.
 
     On the Node Pools page, if the **state** of the node pool is **Initializing**, it indicates that the system is creating the node pool.
-
-    ![Initializing](../images/p132691.png)
 
     On the **Clusters** page, find the cluster and click **View Logs** in the **Actions** column. On the Log Information page, you can view the log data of the newly created node pool that supports confidential computing.
 
