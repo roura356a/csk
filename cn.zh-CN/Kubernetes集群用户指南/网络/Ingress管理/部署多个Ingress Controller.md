@@ -9,7 +9,7 @@ keyword: [部署独立的Nginx Ingress Controller, 容器服务Kubernetes集群]
 -   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
 -   [通过SSH访问Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过SSH访问Kubernetes集群.md)
 
-上文介绍了如何调整阿里云容器服务Kubernetes集群中默认的Nginx Ingress Controller配置使用私网SLB实例，请参见[部署Ingress Controller使用私网SLB](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/部署Ingress Controller使用私网SLB.md)。文中提到的两种模式可以满足大部分需求场景。但对于一些特殊场景，例如：集群内有部分公网服务需要通过公网Ingress方式来对外暴露提供访问，但是又有部分内网服务仅仅只希望对同VPC内非Kubernetes集群内的服务提供访问，而又不允许能被公网访问到，您可以通过部署两套独立的Nginx Ingress Controller服务，其前端绑定不同网络类型的SLB实例来满足这类需求场景。
+您可以通过调整阿里云容器服务Kubernetes集群中默认的Nginx Ingress Controller配置，使用私网SLB实例。更多信息，请参见[部署Ingress Controller使用私网SLB](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/部署Ingress Controller使用私网SLB.md)，文中提到的两种模式可以满足大部分需求场景。但对于一些特殊场景，例如，集群内有部分公网服务需要通过公网Ingress方式来对外暴露提供访问，但是又有部分私网服务仅仅只希望对同VPC内非Kubernetes集群内的服务提供访问，而又不允许能被公网访问到，您可以通过部署两套独立的Nginx Ingress Controller服务，其前端绑定不同网络类型的SLB实例来满足这类需求场景。
 
 ![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9063659951/p81390.png)
 
