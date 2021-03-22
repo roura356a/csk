@@ -101,7 +101,7 @@ AI Dashboard提供三种访问方式（Sshuttle，SSL VPN及Ingress）。云原�
 2.  执行以下命令，启动Sshuttle代理功能，且指定要访问的SSH跳板机，以及待访问集群节点的IP地址。
 
     -   集群节点IP地址：192.168.100.70。
-    -   跳板机的公网IP访问地址:：39.96.XX.XX。
+    -   跳板机的公网IP访问地址：39.96.XX.XX。
     ```
     sudo sshuttle -r jack@39.96.XX.XX 192.168.100.0/24 -vv
     ```
