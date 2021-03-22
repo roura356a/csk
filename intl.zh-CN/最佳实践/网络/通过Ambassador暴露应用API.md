@@ -7,7 +7,7 @@ Ambassador Edge Stack（AES）是一个基于Envoy Proxy实现的高性能的Ing
 
 ## 步骤一：部署AES
 
-1.  部署AES。
+1.  执行以下命令部署AES。
 
     ```
     kubectl apply -f https://www.getambassador.io/yaml/aes-crds.yaml
@@ -16,7 +16,7 @@ Ambassador Edge Stack（AES）是一个基于Envoy Proxy实现的高性能的Ing
     kubectl -n ambassador wait --for condition=available --timeout=90s deploy -lproduct=aes
     ```
 
-2.  确认AES部署成功。
+2.  执行以下命令确认AES部署成功。
 
     ```
     kubectl get pod -n ambassador
@@ -35,7 +35,7 @@ Ambassador Edge Stack（AES）是一个基于Envoy Proxy实现的高性能的Ing
 
 ## 步骤二：暴露应用API
 
-1.  创建一个测试应用及对应的Service。
+1.  使用以下YAML示例创建一个测试应用及对应的Service。
 
     ```
     cat <<-EOF | kubectl apply -f -
@@ -174,5 +174,5 @@ Ambassador Edge Stack（AES）是一个基于Envoy Proxy实现的高性能的Ing
 
 [Ambassador Edge Stack](https://www.getambassador.io/docs/latest/tutorials/getting-started/)
 
-[使用Ambassador Edge Stack管理Ingress资源](/intl.zh-CN/Kubernetes集群用户指南/网络/网络管理最佳实践/使用Ambassador Edge Stack管理Ingress资源.md)
+[使用Ambassador Edge Stack管理Ingress资源](/intl.zh-CN/最佳实践/网络/使用Ambassador Edge Stack管理Ingress资源.md)
 
