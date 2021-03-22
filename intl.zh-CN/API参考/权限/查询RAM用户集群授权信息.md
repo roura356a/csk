@@ -51,7 +51,7 @@ Content-Type:application/json
 
  -   `cluster`：集群维度。
 -   `namespace`：命名空间维度。
--   `console`：前端展示 。 |
+-   `console`：前端展示。 |
 |role\_name|String|view|自定义角色名称，当授权自定义角色时，该字段为指定的自定义集群管理角色名称。 |
 |role\_type|String|admin|预置的角色类型，取值：
 
