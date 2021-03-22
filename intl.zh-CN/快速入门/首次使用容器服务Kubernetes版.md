@@ -29,7 +29,7 @@ keyword: [容器服务ACK, k8s, 开通服务, 角色授权]
 |----|----|----|----|
 |VPC专有网络|[https://www.alibabacloud.com/product/vpc](https://www.alibabacloud.com/product/vpc)|必选项|用于构建集群网络环境和路由规则|
 |NAT网关服务|[https://www.alibabacloud.com/product/nat](https://www.alibabacloud.com/product/nat)|必选项|用于为集群开启公网访问和公网镜像拉取|
-|SLB负责均衡|[https://www.alibabacloud.com/product/server-load-balancer](https://www.alibabacloud.com/product/server-load-balancer)|必选项|用于为集群创建负载均衡|
+|SLB负载均衡|[https://www.alibabacloud.com/product/server-load-balancer](https://www.alibabacloud.com/product/server-load-balancer)|必选项|用于为集群创建负载均衡|
 |ESS弹性伸缩服务|[https://www.alibabacloud.com/product/auto-scaling](https://www.alibabacloud.com/product/auto-scaling)|必选项|用于为集群创建Worker节点和实现自动伸缩|
 |ACR容器镜像服务|[https://www.alibabacloud.com/product/container-registry](https://www.alibabacloud.com/product/container-registry)|建议项|用于云原生资产的安全托管和全生命周期管理|
 |ECI弹性容器实例|[https://www.alibabacloud.com/products/elastic-container-instance](https://www.alibabacloud.com/products/elastic-container-instance)|建议项|用于部署ASK Serverless集群|
@@ -47,27 +47,27 @@ keyword: [容器服务ACK, k8s, 开通服务, 角色授权]
 
 |角色名称|角色说明|
 |----|----|
-|[AliyunCSDefaultRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.mdsection_ju1_tsb_brp)|ACK在集群管控操作中使用该角色访问您在ECS、VPC、SLB、ROS、ESS等服务中的资源。|
-|[AliyunCSManagedKubernetesRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.mdsection_j4k_173_ejk)|ACK托管版集群默认使用该角色来访问您在ECS、VPC、SLB、ACR等服务中的资源。|
-|[AliyunCSServerlessKubernetesRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)|ASK集群默认使用该角色来访问您在ECS、VPC、SLB、PVTZ等服务中的资源。|
-|[AliyunCSKubernetesAuditRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)|ACK托管版集群和ASK集群的审计功能使用该角色来访问您在SLS服务中的资源。|
-|[AliyunCSManagedNetworkRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.mdsection_2xh_x0c_se3)|ACK托管版集群和ASK集群的网络组件使用该角色访问您在ECS、VPC服务中的资源。|
-|[AliyunCSManagedCsiRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.mdsection_ot3_h1u_t4i)|ACK托管版集群和ASK集群的存储组件使用该角色访问您在ECS、NAS服务中的资源。|
-|[AliyunCSManagedCmsRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)|ACK托管版集群和ASK集群的监控组件使用该角色访问您在CMS、SLS服务中的资源。|
-|[AliyunCSManagedLogRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.mdsection_q0d_zoc_k5u)|ACK托管版集群和ASK集群的日志组件使用该角色访问您在SLS服务中的资源。|
-|[AliyunCSManagedVKRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.mdsection_1np_fxp_gl4)|ASK集群的Virtual Kubelet组件使用该角色访问您在ECS、VPC、ECI等服务中的资源。|
-|[AliyunCSManagedArmsRole](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)|ACK托管版集群和ASK集群的应用实时监控组件使用该角色访问您在ARMS服务中的资源。|
+|[AliyunCSDefaultRole](/intl.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.mdsection_ju1_tsb_brp)|ACK在集群管控操作中使用该角色访问您在ECS、VPC、SLB、ROS、ESS等服务中的资源。|
+|[AliyunCSManagedKubernetesRole](/intl.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.mdsection_j4k_173_ejk)|ACK托管版集群默认使用该角色来访问您在ECS、VPC、SLB、ACR等服务中的资源。|
+|[AliyunCSServerlessKubernetesRole](/intl.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.md)|ASK集群默认使用该角色来访问您在ECS、VPC、SLB、PVTZ等服务中的资源。|
+|[AliyunCSKubernetesAuditRole](/intl.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.md)|ACK托管版集群和ASK集群的审计功能使用该角色来访问您在SLS服务中的资源。|
+|[AliyunCSManagedNetworkRole](/intl.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.mdsection_2xh_x0c_se3)|ACK托管版集群和ASK集群的网络组件使用该角色访问您在ECS、VPC服务中的资源。|
+|[AliyunCSManagedCsiRole](/intl.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.mdsection_ot3_h1u_t4i)|ACK托管版集群和ASK集群的存储组件使用该角色访问您在ECS、NAS服务中的资源。|
+|[AliyunCSManagedCmsRole](/intl.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.md)|ACK托管版集群和ASK集群的监控组件使用该角色访问您在CMS、SLS服务中的资源。|
+|[AliyunCSManagedLogRole](/intl.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.mdsection_q0d_zoc_k5u)|ACK托管版集群和ASK集群的日志组件使用该角色访问您在SLS服务中的资源。|
+|[AliyunCSManagedVKRole](/intl.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.mdsection_1np_fxp_gl4)|ASK集群的Virtual Kubelet组件使用该角色访问您在ECS、VPC、ECI等服务中的资源。|
+|[AliyunCSManagedArmsRole](/intl.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.md)|ACK托管版集群和ASK集群的应用实时监控组件使用该角色访问您在ARMS服务中的资源。|
 
 **相关文档**  
 
 
 [入门指引](/intl.zh-CN/快速入门/入门指引.md)
 
-[容器服务默认角色](/intl.zh-CN/Kubernetes集群用户指南/授权管理/容器服务默认角色.md)
+[容器服务默认角色](/intl.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.md)
 
 [快速创建Kubernetes托管版集群](/intl.zh-CN/快速入门/基础入门/快速创建Kubernetes托管版集群.md)
 
 [使用镜像快速创建无状态Deployment应用](/intl.zh-CN/快速入门/基础入门/使用镜像快速创建无状态Deployment应用.md)
 
-[使用镜像创建有状态StatefulSet应用](/intl.zh-CN/Kubernetes集群用户指南/应用管理/使用镜像创建有状态StatefulSet应用.md)
+[创建有状态工作负载StatefulSet](/intl.zh-CN/Kubernetes集群用户指南/应用/工作负载/创建有状态工作负载StatefulSet.md)
 
