@@ -28,10 +28,10 @@ ACK Pro版集群的计费详情，请参见[计费说明](/cn.zh-CN/产品定价
 
 ## 对比
 
-ACK Pro版集群和ACK专有版集群的对比详情如下表。
+ACK Pro版托管版集群和ACK标准托管版集群的对比详情如下表。
 
-|分类|功能|ACK Pro版集群|ACK专有版集群|
-|--|--|----------|--------|
+|分类|功能|ACK Pro托管版集群|ACK标准托管版集群|
+|--|--|------------|----------|
 |集群规模|不涉及|最大5000节点|最大100节点（现有集群不受影响，可以升级到Pro版）|
 |SLA|不涉及|99.95%（支持赔付）|99.9%（不支持赔付）|
 |API Server|自定义参数设置|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)|
@@ -41,9 +41,13 @@ ACK Pro版集群和ACK专有版集群的对比详情如下表。
 |Kube-scheduler|[Gang scheduling调度策略](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/资源调度/Gang scheduling.md)|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)|
 |[CPU拓扑感知调度](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/资源调度/CPU拓扑感知调度.md)|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)|
 |[GPU拓扑感知调度](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/GPU拓扑感知调度/GPU拓扑感知调度背景概述.md)|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)|
-|[共享GPU专业版调度](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/共享GPU专业版/共享GPU专业版概述.md)|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)仅支持共享GPU普通版调度。详细信息，请参见[共享GPU概述](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/共享GPU专业版/共享GPU专业版概述.md) |
+|[共享GPU专业版调度](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/共享GPU专业版/共享GPU专业版概述.md)|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)|
 |安全管理|开放高级版（支持数据加密，请参见[使用阿里云KMS进行Secret的落盘加密](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/使用阿里云KMS进行Secret的落盘加密.md)）|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)|
 |托管节点池|[托管节点池](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/托管节点池/托管节点池概述.md)|![支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9668261161/p232205.png)|![不支持](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8180361161/p232208.png)|
+
+**说明：**
+
+ACK专有版集群仅支持共享GPU普通版调度。详细信息，请参见[共享GPU概述](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/共享GPU专业版/共享GPU专业版概述.md)。
 
 ## 开服地域
 
