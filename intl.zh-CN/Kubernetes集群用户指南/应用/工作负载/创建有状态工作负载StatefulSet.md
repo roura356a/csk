@@ -12,14 +12,14 @@ StatefulSet包括以下特性：
 
 |场景|说明|
 |--|--|
-|Pod一致性|包含次序（启动、停止次序）、网络一致性。此一致性与Pod相关，与被调度到哪个node节点无关。|
+|Pod一致性|包含次序（启动、停止次序）、网络一致性。此一致性与Pod相关，与被调度到哪个Node节点无关。|
 |稳定的持久化存储|通过VolumeClaimTemplate为每个Pod创建一个PV。删除、减少副本，不会删除相关的卷。|
 |稳定的网络标志|Pod的hostname模式为：`（statefulset名称）−（序号）`。|
 |稳定的次序|对于N个副本的StatefulSet，每个Pod都在 \[0，N）的范围内分配一个数字序号，且是唯一的。|
 
 ## 操作步骤
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -147,7 +147,7 @@ StatefulSet包括以下特性：
 
         支持增加本地存储和云存储声明（PVC）。
 
-        -   **本地存储**：支持主机目录（hostpath）、配置项（configmap）、保密字典（secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息参见[volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。
+        -   **本地存储**：支持主机目录（HostPath）、配置项（ConfigMap）、保密字典（Secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息参见[volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。
         -   **云存储声明（PVC）**：支持云存储。
         本例中配置了一个云存储类型的数据卷声明disk-ssd，将其挂载到容器的/tmp路径下。
 
@@ -199,8 +199,6 @@ StatefulSet包括以下特性：
 
         在**伸缩配置**区域，配置是否开启**指标伸缩**和**定时伸缩**，从而满足应用在不同负载下的需求。
 
-        ![伸缩配置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0952419061/p10978.png)
-
         -   容器服务支持容器组的指标伸缩，即根据容器CPU和内存资源占用情况自动调整容器组数量。
 
             **说明：** 若要启用自动伸缩，您必须为容器设置所需资源，否则容器自动伸缩无法生效。
@@ -212,7 +210,7 @@ StatefulSet包括以下特性：
             |最大副本数量|该应用可扩容的容器数量上限。|
             |最小副本数量|该应用可缩容的容器数量下限。|
 
-        -   容器服务支持容器组的定时伸缩，即定时地对容器服务Kubernetes集群进行扩缩容。关于定时伸缩的详细说明，请参见[创建定时伸缩CronHPA任务](/intl.zh-CN/Kubernetes集群用户指南/弹性伸缩/容器定时伸缩（CronHPA）.md)。
+        -   容器服务支持容器组的定时伸缩，即定时地对容器服务Kubernetes集群进行扩缩容。开启定时伸缩前，您需要先安装ack-kubernetes-cronhpa-controller。关于定时伸缩的详细说明，请参见[创建定时伸缩CronHPA任务](/intl.zh-CN/Kubernetes集群用户指南/弹性伸缩/容器定时伸缩（CronHPA）.md)。
     -   调度设置
 
         您可设置升级方式、节点亲和性、应用亲和性和应用非亲和性，详情请参见[Affinity and anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/?spm=a2c4g.11186623.2.31.3fdd30dfnyevPx#affinity-and-anti-affinity)。
@@ -263,37 +261,39 @@ StatefulSet包括以下特性：
 
         ![验证服务伸缩](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5975659951/p12438.png)
 
-    2.  单击左侧导航栏中的**存储卷** \> **存储声明**，您可发现，随着应用扩容，会随着Pod创建新的云存储卷。缩容后，已创建的PV/PVC不会删除。
+    2.  单击左侧导航栏中的**存储卷** \> **存储声明**，您可发现，随着应用扩容，会随着Pod创建新的云存储卷。缩容后，已创建的PV和PVC不会删除。
 
 
-## 相关操作
-
-在左侧导航栏单击**集群**，单击目标集群名称或目标集群**操作**列下的**应用管理**，在集群管理页左侧导航栏中选择**工作负载**，单击**有状态**页签，在有状态页面单击目标应用名称或目标应用**操作**列下的**详情**，在应用详情页面您可以**编辑**、**伸缩**、**查看Yaml**、**重新部署**、**刷新**应用。
-
--   编辑：在应用详情页面单击**编辑**，您可以修改应用信息。
--   伸缩：在应用详情页面单击**伸缩**，您可以修改所需容器组数量。
--   查看Yaml：在应用详情页面单击**查看Yaml**，您可以**更新**、**下载**、**另存为**Yaml文件。
--   重新部署：在应用详情页面单击**重新部署**，您可以重新部署应用。
--   刷新：在应用详情页面单击**刷新**，您可以刷新应用。
+## 验证持久化存储特性
 
 连接到Master节点，执行以下命令，验证持久化存储特性。
 
-1.  在云盘中创建临时文件：
+1.  执行以下命令在云盘中创建临时文件。
 
     ```
-    kubectl exec nginx-1 ls /tmp            #列出该目录下的文件lost+found
+    kubectl exec nginx-1 ls /tmp            #列出该目录下的文件lost+found。
     
-    kubectl exec nginx-1 touch /tmp/statefulset         #增加一个临时文件statefulset
+    kubectl exec nginx-1 touch /tmp/statefulset         #增加一个临时文件statefulset。
     
     kubectl exec nginx-1 ls /tmp
+    ```
+
+    预期输出：
+
+    ```
     lost+found
     statefulset
     ```
 
-2.  删除Pod，验证数据持久性：
+2.  执行以下命令删除Pod，验证数据持久性。
 
     ```
     kubectl delete pod nginx-1
+    ```
+
+    预期输出：
+
+    ```
     pod"nginx-1" deleted
     ```
 
@@ -301,9 +301,22 @@ StatefulSet包括以下特性：
 
     ```
     kubectl exec nginx-1 ls /tmp                         #数据持久化存储lost+found
+    ```
+
+    预期输出：
+
+    ```
     statefulset
     ```
 
 
-想要了解更多信息，参见[Kubernetes有状态服务-StatefulSet使用最佳实践](https://yq.aliyun.com/articles/629007?spm=a2c4e.11163080.searchblog.9.54472ec1NC0KbK)。
+## 相关操作
+
+在左侧导航栏单击**集群**，单击目标集群名称或目标集群**操作**列下的**应用管理**，在集群管理页左侧导航栏中选择**工作负载** \> **有状态**，在有状态页面单击目标应用名称或目标应用**操作**列下的**详情**，在应用详情页面您可以**编辑**、**伸缩**、**查看Yaml**、**重新部署**、**刷新**应用。
+
+-   编辑：在应用详情页面单击**编辑**，您可以修改应用信息。
+-   伸缩：在应用详情页面单击**伸缩**，您可以修改所需容器组数量。
+-   查看Yaml：在应用详情页面单击**查看Yaml**，您可以**更新**、**下载**、**另存为**Yaml文件。
+-   重新部署：在应用详情页面单击**重新部署**，您可以重新部署应用。
+-   刷新：在应用详情页面单击**刷新**，您可以刷新应用。
 
