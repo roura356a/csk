@@ -48,7 +48,7 @@ ack-virtual-node是基于社区开源项目Virtual Kubelet，扩展了对Aliyun 
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
-|v1.0.0.2-aliyun|registry-vpc.$RegionId.aliyuncs.com/acs/virtual-nodes-eci:v1.0.0.2-aliyun|2020年03月12日|-   使用Statefulset部署virtual-nodes-eci controller，方便修改副本数量以创建多个VK虚拟节点，支持更大规模ECI Pod。
+|v1.0.0.2-aliyun|registry-vpc.$RegionId.aliyuncs.com/acs/virtual-nodes-eci:v1.0.0.2-aliyun|2020年03月12日|-   使用StatefulSet部署virtual-nodes-eci controller，方便修改副本数量以创建多个VK虚拟节点，支持更大规模ECI Pod。
 -   节点名字变更为virtual-node-eci-$n。
 -   支持访问ClusterIP Service。
 -   支持Spot可抢占实例类型。
