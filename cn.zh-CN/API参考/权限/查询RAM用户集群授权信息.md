@@ -51,7 +51,7 @@ Content-Type:application/json
 
  -   `cluster`：集群维度。
 -   `namespace`：命名空间维度。
--   `console`：前端展示 。 |
+-   `console`：前端展示。 |
 |role\_name|String|view|自定义角色名称，当授权自定义角色时，该字段为指定的自定义集群管理角色名称。 |
 |role\_type|String|admin|预置的角色类型，取值：
 
@@ -119,7 +119,7 @@ Content-Type:application/json
 
 -   [SDK](https://next.api.aliyun.com/api-tools/sdk/CS?version=2015-12-15&)
 
-    阿里云为您提供多种语言的SDK，帮助您快速通过API集成阿里云的产品和服务，推荐您使用SDK调用API，已免除您手动签名验证，详情请参见SDK参考文档链接。
+    阿里云为您提供多种语言的SDK，帮助您快速通过API集成阿里云的产品和服务，推荐您使用SDK调用API，已免除您手动签名验证。
 
 -   [OpenAPI Explorer](https://next.api.aliyun.com/api/CS/2015-12-15/DescribeUserPermission)
 
