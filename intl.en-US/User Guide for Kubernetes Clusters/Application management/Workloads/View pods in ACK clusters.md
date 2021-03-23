@@ -1,12 +1,12 @@
 ---
-keyword: [pods, pods, smallest deployable computing unit, pod logs]
+keyword: [pod, pods, smallest deployable computing unit, pod logs]
 ---
 
 # View pods in ACK clusters
 
-Pods are the smallest computing units that you can create, deploy, and manage in Kubernetes. A pod is a runtime instance where an independent application runs. Each pod contains one or more containers that are tightly coupled. You can view and mange pods in a cluster of Alibaba Cloud Container Service for Kubernetes \(ACK\) in the ACK console.
+Pods are the smallest computing units that you can create, deploy, and manage in Kubernetes. A pod is a runtime instance where an independent application runs. Each pod contains one or more containers that are tightly coupled. You can view and manage pods in a Container Service for Kubernetes \(ACK\) cluster in the ACK console.
 
-## View pod details
+## View details of pods
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
@@ -14,19 +14,19 @@ Pods are the smallest computing units that you can create, deploy, and manage in
 
 3.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
-4.  View pod details
+4.  View details of pods
 
-    -   Click the **Pods** tab. On the Pods tab, find the target pod, and click **View Details** on the right side of the page.
-    -   Click the tab of the target workload type. On the target tab, find and click the target application or click **Details** on the right side of the page.
-    You can also view pods in the corresponding services. In the left-side navigation pane, click **Services**. On the Services page, find and click the target service. In the target workload section, click the target application. On the target application page, click the Pods tab to view the pods.
+    -   Click the **Pods** tab. On the Pods tab, find the pod that you want to view, and click **View Details** on the right side.
+    -   Click the tab of the workload type that you want to manage. On the tab of the selected workload type, find and click the application that you want to manage or click **Details** on the right side.
+    You can also view pods in the corresponding Services. In the left-side navigation pane, click **Services**. On the Services page, find and click the Service that you want to manage. In the workload section, click the application that you want to manage. On the application page, click the Pods tab to view the pods.
 
-    **Note:** You can update or delete pods on the Pods tab. We recommend that you use Deployments to manage pods if they are created by Deployments.
+    **Note:** You can modify or delete pods on the Pods tab. We recommend that you use Deployments to manage pods if they are created by Deployments.
 
 
 ## View pod logs
 
 You can view pod logs by using the following methods:
 
--   Navigate to the **Pods** tab, find the target pod, and click **Logs** on the right side of the page to view the pod logs.
--   Navigate to the tab of the target workload type, find the target application, and select **Logs** from the **More** drop-down list in the Actions column to view the pod logs.
+-   Navigate to the **Pods** tab, find the pod that you want to manage, and click **Logs** on the right side to view the pod logs.
+-   Navigate to the tab of the corresponding workload type and find the application that you want to manage. In the **Actions** column, choose **More** \> **Logs**.
 
