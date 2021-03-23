@@ -2,7 +2,7 @@
 
 You can call this operation to create a cluster of Container Service for Kubernetes \(ACK\) and specify the number of nodes in the ACK cluster.
 
-For more information about the API operation, see [t2021637.md\#]() and [Create a managed cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a managed cluster.md).
+For more information about the API operation, see [Create a managed cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a managed cluster.md).
 
 ## API request and response formats
 
