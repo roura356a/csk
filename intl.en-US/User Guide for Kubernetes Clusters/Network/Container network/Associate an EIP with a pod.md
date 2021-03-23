@@ -25,7 +25,7 @@ You must configure and grant EIP-related permissions to the cluster that uses Te
 
 1.  Grant EIP-related permissions to the Resource Access Management \(RAM\) role of the cluster that uses Terway.
 
-    1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+    1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
     2.  In the left-side navigation pane, click **Clusters**.
 
@@ -63,7 +63,7 @@ You must configure and grant EIP-related permissions to the cluster that uses Te
     "vpc:ReleaseEipAddress"
     ```
 
-    1.  On the [RAM role AliyunCSManagedNetworkRole](https://ram.console.aliyun.com/roles/AliyunCSManagedNetworkRole)[RAM role AliyunCSManagedNetworkRole](https://partners-intl.aliyun.com/roles/AliyunCSManagedNetworkRole) page, find the policy and click **Add Permissions** on the right side of the page.
+    1.  On the [RAM role AliyunCSManagedNetworkRole](https://ram.console.aliyun.com/roles/AliyunCSManagedNetworkRole) page, find the policy and click **Add Permissions** on the right side of the page.
 
     2.  In the Add Permissions panel, click **+ Create Policy** in the **Select Policy** section to create a custom policy.
 
@@ -145,7 +145,7 @@ You can add annotations to the configurations of a pod to create or associate an
     -   Add the following annotation to specify the bandwidth for the EIP. The default EIP bandwidth is 5 Mbit/s.
 
         ```
-        k8s.aliyun.com/eip-bandwidth: 5M
+        k8s.aliyun.com/eip-bandwidth: 5
         ```
 
 -   **Specify an existing EIP**
