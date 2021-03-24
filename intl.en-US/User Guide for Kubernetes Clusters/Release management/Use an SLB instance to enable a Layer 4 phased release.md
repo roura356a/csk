@@ -4,14 +4,14 @@ In a Kubernetes cluster, a Layer 7 ingress does not support TCP or UDP services.
 
 ## Prerequisites
 
--   A cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
--   A master node is connected by using SSH. For more information, see [Use SSH to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use SSH to connect to an ACK cluster.md).
+-   A cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+-   A master node is connected by using SSH. For more information, see [Use SSH to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use SSH to connect to an ACK cluster.md).
 
 ## Step 1: Create a deployment
 
-1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Applications** in the **Actions** column. On the page that appears, click the **Deployments** tab.
 
@@ -97,7 +97,7 @@ In a Kubernetes cluster, a Layer 7 ingress does not support TCP or UDP services.
 
 ## Step 2: Update the deployment to roll out a new service version
 
-1.  In the left-side navigation pane, click **Clusters**.
+1.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 2.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Applications** in the **Actions** column. On the page that appears, click the **Deployments** tab.
 
@@ -165,7 +165,7 @@ Assume that you have implemented a phased release based on an SLB instance. To e
 
 **Note:** Assume that the old and new versions are available. To check whether traffic is routed based on the weighted routing rules, use curl to send requests in parallel. If you send a small number of requests, the command output may show that traffic is not routed based on the weighted routing rules. Therefore, we recommend that you use curl to send a large number of requests. In this example, 10 requests are sent.
 
-1.  In the left-side navigation pane, click **Clusters**.
+1.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 2.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Applications** in the **Actions** column. On the page that appears, click the **Deployments** tab.
 
