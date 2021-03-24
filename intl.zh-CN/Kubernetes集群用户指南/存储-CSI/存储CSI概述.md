@@ -8,7 +8,7 @@ keyword: [容器存储, CSI, 存储架构]
 
 ## ACK容器存储概览
 
-![overview](../images/p251924.png "ACK存储架构图")
+![overview](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2841936161/p251924.png)
 
 容器服务ACK支持Pod自动绑定阿里云云盘、NAS、 OSS、CPFS、本地卷等存储服务，每种存储卷的主要特点及应用场景如下表。
 
@@ -87,7 +87,7 @@ ACK不同集群形态与各存储服务能力的对应关系如下表。
 |在线变配（Resize）|✔️|❌|❌|❌|❌|✔️|❌|
 |快照（Snapshot）|✔️|✔️|❌|❌|❌|✔️|✔️|
 |容器IO监控|✔️|❌|❌|❌|❌|✔️|❌|
-|文件系统|支持XFS、 Ext4、dBFS|支持XFS、 Ext4|❌|❌|NTFS|支持XFS、 Ext4|支持XFS、 Ext4|
+|文件系统|支持XFS、 Ext4、dBFS|支持XFS、 Ext4|❌|❌|支持NTFS|支持XFS、 Ext4|支持XFS、 Ext4|
 |块、裸设备|✔️|❌|❌|❌|❌|✔️|❌|
 |快照恢复|✔️|✔️|❌|❌|❌|✔️|✔️|
 |云盘队列设置|✔️|❌|❌|❌|❌|✔️|❌|
