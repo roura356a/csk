@@ -1,0 +1,66 @@
+---
+keyword: [alicloud-monitor-controller, 变更版本]
+---
+
+# alicloud-monitor-controller
+
+alicloud-monitor-controller是阿里云容器服务Kubernetes版提供对接云监控的系统组件。当创建、变更、删除应用的时候，alicloud-monitor-controller会自动同步应用元数据到云监控，从而实现应用的容器监控。此外alicloud-monitor-controller还提供设置报警模板的功能，开发者可以通过控制台开启该功能。
+
+## 变更记录
+
+v1.4.0-49ff2362-aliyun
+
+-   支持采集Windows节点池与Linux节点池混部场景。
+-   支持调整多档位的弹性灵敏度，目前支持15s、20s、30s、60s四个档位。
+-   修复应用滚动更新时HPA误弹的问题。
+
+## 问题诊断
+
+**云监控无应用分组**
+
+请按照以下方式进行预检查：
+
+-   检查kube-system命名空间下alicloud-monitor-controller的Pod是否正常运行。
+-   检查组件版本，如果组件的版本与当前最新的版本存在差异，建议升级组件版本。
+-   检查组件对应的日志，查看是否存在网络超时、SDK调用报错等问题。
+
+按上述说明检查后，没有发现问题，请按照以下工单模板[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)。
+
+工单模板
+
+1.  是否已更新至最新版本。
+
+    是
+
+2.  组件日志是否存在SDK调用流控等异常问题，如存在异常请删除Pod。
+
+    未发现，重启未恢复
+
+3.  工单内附完整alicloud-monitor-controller日志。
+
+    上传日志详情压缩包
+
+
+**云监控应用分组无数据**
+
+请按照以下方式进行预检查。
+
+检查应用分组中实例名称是否与应用的Pod名称相对应：
+
+-   如果实例名称异常，请按照上述云监控无应用分组的检查方法进行检查。
+-   如果实例名称正常，则检查kube-system命名空间下的metrics-server的Pod是否正常运行，检查日志是否正常稳定输出。如果日志中出现`Successful write 164190 bytes metrics to monitor server`，则表明日志正常稳定输出。
+
+按上述说明检查后，没有发现问题，请按照以下工单模板[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)。
+
+工单模板
+
+1.  检查分组中实例的名称是否与应用的Pod一致。
+
+    是
+
+2.  检查kube-system下的metrics-server组件是否可以正确输出日志。
+
+    是
+
+3.  提供集群ID，应用名称，Pod名称。
+
