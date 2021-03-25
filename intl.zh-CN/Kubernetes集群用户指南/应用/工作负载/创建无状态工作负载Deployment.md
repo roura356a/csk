@@ -14,7 +14,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 **步骤一：配置应用基本信息**
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -142,7 +142,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 6.  在**数据卷**区域，增加本地存储或云存储声明PVC（Persistent Volume Claim）。
 
-    -   本地存储：支持主机目录（hostpath）、配置项（configmap）、保密字典（secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息，请参见[volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。
+    -   本地存储：支持主机目录（HostPath）、配置项（ConfigMap）、保密字典（Secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息，请参见[volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。
     -   云存储声明（PVC）：支持挂载云存储。
     本例中配置了一个云存储类型的数据卷声明disk-ssd，将其挂载到容器的/tmp路径下。
 
@@ -245,8 +245,6 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 2.  在**伸缩配置**区域，配置是否开启**指标伸缩**和**定时伸缩**，从而满足应用在不同负载下的需求。
 
-    ![scaling](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0952419061/p10978.png)
-
     -   容器服务支持容器组的指标伸缩，即根据容器CPU和内存资源占用情况自动调整容器组数量。
 
         **说明：** 若要启用自动伸缩，您必须为容器设置所需资源，否则容器自动伸缩无法生效。
@@ -258,7 +256,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
         |最大副本数量|该应用可扩容的容器数量上限。|
         |最小副本数量|该应用可缩容的容器数量下限。|
 
-    -   容器服务支持容器组的定时伸缩，即定时地对容器服务Kubernetes集群进行扩缩容。关于定时伸缩的详细说明，请参见[创建定时伸缩CronHPA任务](/intl.zh-CN/Kubernetes集群用户指南/弹性伸缩/容器定时伸缩（CronHPA）.md)。
+    -   容器服务支持容器组的定时伸缩，即定时地对容器服务Kubernetes集群进行扩缩容。开启定时伸缩前，需先安装ack-kubernetes-cronhpa-controller组件。关于定时伸缩的详细说明，请参见[创建定时伸缩CronHPA任务](/intl.zh-CN/Kubernetes集群用户指南/弹性伸缩/容器定时伸缩（CronHPA）.md)。
 3.  在**调度设置**区域，设置升级方式、节点亲和性、应用亲和性和应用非亲和性，更多信息，请参见[Affinity and anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/?spm=a2c4g.11186623.2.31.3fdd30dfnyevPx#affinity-and-anti-affinity)。
 
     **说明：** 亲和性调度依赖节点标签和Pod标签。您可使用内置的标签进行调度；也可预先为节点、Pod配置相关的标签。
@@ -359,7 +357,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 本例演示如何通过一个编排模板创建Nginx应用，包含一个Deployment和Service，后端Deployment会创建Pod资源对象，Service会绑定到后端Pod上，形成一个完整的Nginx应用。
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -367,17 +365,15 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 4.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**。
 
-5.  单击控制台左侧导航栏中的**应用** \> **无状态**。
+5.  在无状态（Deployment）页面，单击右上角的**使用模板创建**。
 
-6.  在无状态（Deployment）页面，单击右上角的**使用模板创建**。
+6.  对模板进行相关配置，完成配置后单击**创建**。
 
-7.  对模板进行相关配置，完成配置后单击**创建**。
-
-    -   **集群**：选择目标集群。资源对象将部署在该集群内。
     -   **命名空间**：选择资源对象所属的命名空间，默认是Default。除了节点、持久化存储卷等底层计算资源以外，大多数资源对象需要作用于命名空间。
     -   **示例模板**：阿里云容器服务提供了多种资源类型的Kubernetes YAML示例模板，让您快速部署资源对象。您可以根据Kubernetes YAML编排的格式要求自主编写，来描述您想定义的资源类型。
     -   **添加部署**：您可通过此功能快速定义一个YAML模板。
     -   **使用已有模板**：您可将已有编排模板导入到模板配置页面。
+    -   **保存模板**：您可以保存设置好的编排模板。
     下面是一个Nginx应用的示例编排，基于容器服务内置的编排模板。通过该编排模板，即可快速创建一个属于Nginx应用的Deployment。
 
     **说明：** 容器服务支持Kubernetes YAML编排，支持通过`---`符号将资源对象分隔，从而通过一个模板创建多个资源对象。
@@ -424,7 +420,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
        type: LoadBalancer        ##本例中将type从Nodeport修改为LoadBalancer。
     ```
 
-8.  单击**创建**后。会提示部署状态信息。
+7.  单击**创建**后。会提示部署状态信息。
 
 
 ## 通过命令管理应用
@@ -461,7 +457,7 @@ nginx-2721357637-d****                 1/1       Running   1          9h
 
 您在使用私有镜像创建应用时，为了保障镜像安全，通常需要为镜像设置密钥。通过容器服务控制台，您可方便地将私有镜像库的身份认证信息通过docker-registry类型的Secret传入到Kubernetes中。
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
