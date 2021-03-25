@@ -11,7 +11,7 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Volumes** \> **Persistent Volumes**.
 
@@ -34,7 +34,7 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Volumes** \> **Persistent Volumes**.
 
@@ -65,11 +65,11 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
-5.  On the **Deployments** page, click **Create from Image**.
+5.  On the **Deployments** tab, click **Create from Image**.
 
 6.  On the **Basic Information** wizard page, configure the basic settings.
 
@@ -80,7 +80,7 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
     |Name|The name of the application.|
     |Namespace|The namespace where you want to deploy the application. The default namespace is automatically selected. You can select another namespace.|
     |Replicas|The number of pods that are provisioned for the application. Default value: 2.|
-    |Type|The type of application. You can select **Deployments**, **StatefulSets**, **Jobs**, ******Cron Jobs**, or **DaemonSets**.|
+    |Type|The type of application. You can select **Deployments**, **StatefulSets**, **Jobs**, **Cron Jobs**, or **DaemonSets**.|
     |Label|Add a label to the application. The label is used to identify the application.|
     |Annotations|Add an annotation to the application.|
     |Synchronize Timezone|Specify whether to synchronize the time zone between nodes and containers.|
@@ -93,7 +93,7 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
 
 8.  Set the container parameters.
 
-    This example shows how to set the volume parameters. For more information about other parameters, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Deploy a stateless application from an image.md).
+    This example shows how to set the volume parameters. For more information about other parameters, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateless application from an image.md).
 
     You can add local volumes and cloud volumes.
 
