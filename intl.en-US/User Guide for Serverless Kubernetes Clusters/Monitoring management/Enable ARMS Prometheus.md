@@ -1,3 +1,7 @@
+---
+keyword: ARMS Prometheus
+---
+
 # Enable ARMS Prometheus
 
 You can view metrics on the predefined dashboards of a serverless Kubernetes \(ASK\) cluster through Application Real-Time Monitoring Service \(ARMS\) Prometheus. This topic describes how to enable ARMS Prometheus in ASK.
@@ -56,5 +60,5 @@ Compared with open source Prometheus, ARMS Prometheus has the following benefits
     **Note:** By default, **Namespace** and **Release Name** are set to **arms-prom**.
 
 
-In the left-side navigation pane, click **Serverless Clusters**. On the Clusters page, click the name of the cluster for which you want to enable ARMS Prometheus or click **Details** in the **Actions** column. In the upper-right corner of the **Overview** tab, click **Prometheus Monitoring** to go to the ARMS Prometheus console. On the **Dashboards** page, find the cluster and click the installed components to view metrics on dashboards.
+In the left-side navigation pane, click **Clusters**. On the Clusters page, click the name of the cluster for which you want to enable ARMS Prometheus or click **Details** in the **Actions** column. In the upper-right corner of the **Overview** tab, click **Prometheus Monitoring** to go to the ARMS Prometheus console. On the **Dashboards** page, find the cluster and click the installed components to view metrics on dashboards.
 
