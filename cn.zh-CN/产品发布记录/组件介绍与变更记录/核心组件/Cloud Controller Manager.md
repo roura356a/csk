@@ -10,7 +10,7 @@ keyword: [CCM, 变更记录]
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
-|v1.9.3.376-g5c84e19-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.376-g5c84e19-aliyun|2021年03月08日|新功能：
+|v1.9.3.378-g42eac35-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.378-g42eac35-aliyun|2021年03月08日|新功能：
 
 -   支持为虚拟服务器组添加集群外ECS。
 -   复用已有SLB时，默认为该SLB添加`kubernetes.reused.by.user`的标签。
