@@ -9,7 +9,7 @@
 ## 请求语法
 
 ```
-GET /k8s/ClusterId/user_config?PrivateIpAddress=Boolean HTTP/1.1 
+GET /k8s/ClusterId/user_config?PrivateIpAddress=Boolean&TemporaryDurationMinutes=Long HTTP/1.1
 Content-Type:application/json
 ```
 
@@ -27,14 +27,22 @@ Content-Type:application/json
 -   `false`：仅获取公网连接凭据。
 
  默认值：`false`。 |
+|TemporaryDurationMinutes|Long|否|15|临时kubeconfig有效期，单位：分钟。取值范围：15（15分钟）～4320（3天）。
+
+ **说明：**
+
+-   当设置该参数时，将返回具有指定有效期限的集群访问配置，具体过期时间通过返回的`expiration`字段的值确定。
+-   当不设置该参数时，将返回长期有效的集群访问配置。 |
 
 ## 响应体语法
 
 ```
-HTTP/1.1 200
+HTTP/1.1 200 OK
 Content-Type:application/json
+
 {
-  "config" : "String"
+  "config" : "String",
+  "expiration" : "String"
 }
 ```
 
@@ -43,13 +51,15 @@ Content-Type:application/json
 |参数名称|类型|示例|说明|
 |----|--|--|--|
 |config|String|apiVersion: v1\*\*\*\*|集群访问配置。关于如何查看访问集群配置信息，请参见[配置集群凭据](~~86494~~)。 |
+|expiration|String|2024-03-10T09:56:17Z|kubeconfig的过期时间。格式：RFC3339格式的UTC时间。 |
 
 ## 获取集群kubeconfig接口示例
 
 请求示例
 
 ```
-GET /k8s/c5b5e80b0b64a4bf6939d2d8fbbc5****/user_config?PrivateIpAddress=true HTTP/1.1 
+GET /k8s/c5b5e80b0b64a4bf6939d2d8fbbc5****/user_config?PrivateIpAddress=true&TemporaryDurationMinutes=15 HTTP/1.1
+Host:cs.aliyuncs.com
 Content-Type:application/json
 ```
 
@@ -65,23 +75,9 @@ Content-Type:application/xml
 apiVersion: v1
 clusters:
 - cluster:
-    server: https://192.168.0.**:6443
-    certificate-authority-data: ***
-  name: kubernetes
-contexts:
-- context:
-    cluster: kubernetes
-    user: "kubernetes-admin"
-  name: kubernetes-admin-c23421cfa74454bc8b37163fd19af****
-current-context: kubernetes-admin-c23421cfa74454bc8b37163fd19af****
-kind: Config
-preferences: {}
-users:
-- name: "kubernetes-admin"
-  user:
-    client-certificate-data: ***
-    client-key-data: ***
+...
 </config>
+<expiration>2021-03-25T10:01:20Z</expiration>
 ```
 
 `JSON`格式
@@ -91,7 +87,8 @@ HTTP/1.1 200 OK
 Content-Type:application/json
 
 {
-  "config" : "\napiVersion: v1\nclusters:\n- cluster:\n    server: https://192.168.0.**:6443\n    certificate-authority-data: ***\n  name: kubernetes\ncontexts:\n- context:\n    cluster: kubernetes\n    user: \"kubernetes-admin\"\n  name: kubernetes-admin-c23421cfa74454bc8b37163fd19af****\ncurrent-context: kubernetes-admin-c23421cfa74454bc8b37163fd19af****\nkind: Config\npreferences: {}\nusers:\n- name: \"kubernetes-admin\"\n  user:\n    client-certificate-data: ***\n    client-key-data: ***\n"
+  "config" : "\napiVersion: v1\nclusters:\n- cluster:\n...\n",
+  "expiration" : "2021-03-25T10:01:20Z"
 }
 ```
 
@@ -103,7 +100,7 @@ Content-Type:application/json
 
 -   [SDK](https://next.api.aliyun.com/api-tools/sdk/CS?version=2015-12-15&)
 
-    阿里云为您提供多种语言的SDK，帮助您快速通过API集成阿里云的产品和服务，推荐您使用SDK调用API，已免除您手动签名验证，详情请参见SDK参考文档链接。
+    阿里云为您提供多种语言的SDK，帮助您快速通过API集成阿里云的产品和服务，推荐您使用SDK调用API，已免除您手动签名验证。
 
 -   [OpenAPI Explorer](https://next.api.aliyun.com/api/CS/2015-12-15/DescribeClusterUserKubeconfig)
 
