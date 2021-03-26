@@ -1,3 +1,7 @@
+---
+keyword: [流水线构建, 搭建Jenkins环境]
+---
+
 # 在ASK上快速搭建Jenkins环境及执行流水线构建
 
 本文主要演示如何在阿里云Serverless Kubernetes服务（ASK）上快速搭建Jenkins持续集成环境，并基于提供的应用示例快速完成应用源码编译、镜像构建和推送以及应用部署的流水线。
@@ -5,7 +9,7 @@
 您已完成以下操作：
 
 -   [创建Serverless Kubernetes集群](/cn.zh-CN/Serverless Kubernetes集群用户指南/快速入门/创建Serverless Kubernetes集群.md)
--   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)
+-   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)
 
 ## 部署Jenkins
 
@@ -16,9 +20,9 @@
     cd jenkins-on-serverless
     ```
 
-2.  完成jenkins\_home持久化配置。
+2.  完成`jenkins_home`持久化配置。
 
-    Serverless Kubernetes目前不支持云盘，如需持久化jenkins\_home，您可以挂载nfs volume，修改serverless-k8s-jenkins-deploy.yaml文件，取消以下字段注释并配置您的nfs信息：
+    Serverless Kubernetes目前不支持云盘，如需持久化`jenkins_home`，您可以挂载`nfs volume`，修改serverless-k8s-jenkins-deploy.yaml文件，取消以下字段注释并配置您的nfs信息：
 
     ```
     #volumeMounts:
@@ -52,20 +56,20 @@
 
         ![外部端点](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6748649951/p141997.png)
 
-    6.  在Jenkins登录页面，输入用户名和密码。默认用户名和密码均为admin，请于登录后进行修改。
+    6.  在Jenkins登录页面，输入用户名和密码。默认用户名和密码均为**admin**，请于登录后进行修改。
 
         ![Jenkins登录页面](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6748649951/p38516.png)
 
 
 ## 创建集群证书和镜像仓库证书，构建和部署示例应用
 
-1.  配置Kubernetes Cloud，动态创建slave pod。
+1.  配置Kubernetes Cloud，动态创建Slave Pod。
 
     1.  在左侧导航栏中，选择**系统管理**。
 
     2.  在右侧的Manage Jenkins页面，单击**系统设置**。
 
-    3.  在**Cloud**区域中，填写KubeConfig中的API server URL作为**Kubernetes URL**。
+    3.  在**Cloud**区域中，填写KubeConfig中的API Server URL作为**Kubernetes URL**。
 
         ![Kubernetes URL](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6748649951/p38521.png)
 
@@ -118,7 +122,7 @@
 
     2.  在左侧导航栏中，选择**Build with Parameters**。
 
-    3.  根据自己的镜像仓库信息修改构建参数，并填写KubeConfig中的API server URL作为**api\_server\_url**。本示例中源码仓库分支为serverless，镜像为**registry.cn-beijing.aliyuncs.com/haoshuwei/jenkins-java-demo:serverless**， 请根据提示信息进行替换。
+    3.  根据自己的镜像仓库信息修改构建参数，并填写KubeConfig中的API Server URL作为**api\_server\_url**。本示例中源码仓库分支为Serverless，镜像为**registry.cn-beijing.aliyuncs.com/haoshuwei/jenkins-java-demo:serverless**， 请根据提示信息进行替换。
 
         ![api_server_url](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6748649951/p38622.png)
 
