@@ -1,8 +1,12 @@
+---
+keyword: [服务发现, 云解析PrivateZone]
+---
+
 # Serverless集群基于云解析PrivateZone的服务发现
 
 阿里云Serverless Kubernetes已经支持服务发现功能，目前支持Intranet service、Headless service、ClusterIP service。
 
--   需要先开通云解析PrivateZone，在云解析DNS控制台中开通。
+-   需要先开通云解析PrivateZone，在[云解析DNS控制台](https://dns.console.aliyun.com/)中开通。
 -   [创建Serverless Kubernetes集群](/cn.zh-CN/Serverless Kubernetes集群用户指南/快速入门/创建Serverless Kubernetes集群.md)。
 -   您已成功连接到Kubernetes集群，参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Serverless Kubernetes集群用户指南/集群/管理和访问集群/通过kubectl连接Kubernetes集群.md)。
 
@@ -84,9 +88,9 @@
 
 3.  登录[云解析DNS控制台](https://dns.console.aliyun.com/)。
 
-4.  在左侧导航栏中，单击**PrivateZone**进入**全部Zone**页签。
+4.  在控制台左侧导航栏中，单击**PrivateZone**，选择**权威Zone**页签。
 
-5.  选中目标Zone，单击**解析设置**，弹出解析设置详情页面。
+5.  选中目标Zone，单击目标Zone右侧**操作**列下的**解析设置**。
 
     **说明：** Zone里面的Record格式为`$svc.$ns`，对应相应的IP解析。解析规则如下：
 
@@ -97,6 +101,6 @@
 
     -   长域名访问：`$svc.$ns.svc.cluster.local.$clusterId`，通过这种方式也可以访问其他集群中同步到PrivateZone的Service。
     -   短域名访问：您可以通过`$svc`访问本Namespace下的Service，通过`$svc.$ns`访问其他Namespace中的Service。
-    更多信息请参见[serverless-k8s-examples](https://github.com/AliyunContainerService/serverless-k8s-examples)。
+    更多信息，请参见[serverless-k8s-examples](https://github.com/AliyunContainerService/serverless-k8s-examples)。
 
 
