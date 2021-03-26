@@ -1,3 +1,7 @@
+---
+keyword: 公网访问集群API Server
+---
+
 # 通过公网访问集群API Server
 
 您可以使用弹性公网IP EIP（Elastic IP Address）暴露ASK集群的API Server。使用EIP暴露集群API Server后，您将获得从公网访问集群API Server的能力。本文介绍如何在创建集群时绑定EIP。
