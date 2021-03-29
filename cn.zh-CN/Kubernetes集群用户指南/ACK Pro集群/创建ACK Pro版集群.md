@@ -16,7 +16,7 @@ ACK的Pro托管版集群相比原标准托管版集群进一步提升了集群�
 -   随集群一同创建的负载均衡实例只支持按量付费的方式。
 -   Kubernetes集群仅支持专有网络VPC。
 -   每个账号默认可以创建的云资源有一定的配额，如果超过配额创建集群会失败。请在创建集群前确认您的配额。
-    -   每个账户可创建的集群数和节点数的详细信息，请参见[容器服务Kubernetes版配额限制](/cn.zh-CN/产品简介/使用限制.md)。
+    -   每个账户可创建的集群数和节点数的详细信息，请参见[t16032.md\#section\_sm4\_by2\_chb](/cn.zh-CN/产品简介/使用限制.md)。
 
         **说明：** 每个账户初始默认状况下VPC路由条目不超过48条，意味着您的Kubernetes集群的网络模式是Flannel时，集群的节点数最大不能超过48个（网络模式是Terway则不受该影响）。如集群需要更多节点数，您需要先对目标VPC[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)，申请提高配额 。
 
@@ -48,7 +48,6 @@ ACK的Pro托管版集群相比原标准托管版集群进一步提升了集群�
         |**资源组**|将鼠标悬浮于页面上方的**账号全部资源**，选择集群所在的资源组。这里显示选择的资源组。
 
 ![资源组](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png) |
-        |**时区**|选择集群所要使用的时区。默认时区为浏览器所配置的时区。 |
         |**Kubernetes版本**|显示当前ACK支持的Kubernetes版本。 |
         |**容器运行时**|支持**Containerd**、**Docker**和**安全沙箱**。更多信息，请参见[如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？.md)。
 
@@ -59,7 +58,7 @@ ACK的Pro托管版集群相比原标准托管版集群进一步提升了集群�
         -   普通VPC：不具备共享功能的VPC。
 **说明：** Kubernetes集群仅支持专有网络。您可以在已有VPC列表中选择所需的VPC。如果没有您需要的专有网络，可以通过单击**创建专有网络**进行创建，请参见[使用专有网络](/cn.zh-CN/专有网络和交换机/使用专有网络.md)。 |
         |**虚拟交换机**|设置虚拟交换机。 |
-        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[Flannel与Terway对比](/cn.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用Terway网络插件.md)。
+        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[Flannel与Terway对比](/cn.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/使用Terway网络插件.md)。
 
         -   Flannel：简单稳定的社区的Flannel CNI插件。但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
         -   Terway：阿里云容器服务自研的网络插件，将阿里云的弹性网卡分配给容器，支持Kubernetes的Network Policy来定义容器间的访问策略，支持对单个容器做带宽的限流。
@@ -71,7 +70,7 @@ ACK的Pro托管版集群相比原标准托管版集群进一步提升了集群�
             -   网络插件选择**Terway**时，会使用弹性网卡的辅助IP分配给Pod，一个Pod占用一个弹性网卡辅助IP地址。 |
         |**Pod网络CIDR**|网络插件选择**Flannel**时，需要配置**Pod网络CIDR**。
 
-**Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Kubernetes集群网络规划.md)。 |
+**Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。 |
         |**Terway模式**|设置**网络插件**为**Terway**时，需要配置**Terway模式**：
 
         -   设置是否选中**Pod独占弹性网卡以获得最佳性能**
@@ -90,7 +89,7 @@ ACK的Pro托管版集群相比原标准托管版集群进一步提升了集群�
 -   只在弹性网卡共享模式下支持选中，默认不选中。
 -   如果选中，集群支持使用Kubernetes的NetworkPolicy策略对Pod进行网络控制。
 -   如果不选中，集群将不会支持使用Kubernetes的NetworkPolicy策略对Pod进行网络控制，这样将不存在网络策略对Kubernetes的API Server产生过大的负载。 |
-        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Kubernetes集群网络规划.md)。 |
+        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。 |
         |**节点IP数量**|如果您选择的网络模式为**Flannel**，您需设置**节点IP数量**。
 
 **说明：** **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。 |
@@ -107,12 +106,12 @@ ACK的Pro托管版集群相比原标准托管版集群进一步提升了集群�
 
 **说明：** 允许白名单RDS访问Kubernetes集群，RDS必须在当前集群的VPC内。 |
         |**安全组**|支持选择**自动创建普通安全组**、**自动创建企业级安全组**、**选择已有安全组**。有关安全组的详细内容，请参见[安全组概述](/cn.zh-CN/安全/安全组/安全组概述.md)。 |
-        |**Secret落盘加密**|在ACK Pro托管集群中，选中**选择KMS密钥**可以使用在阿里云密钥管理服务KMS（Key Management Service）中创建的密钥加密Kubernetes Secret密钥。设置Secret落盘加密的详情，请参见[使用阿里云KMS进行Secret的落盘加密](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/使用阿里云KMS进行Secret的落盘加密.md)。|
 
     2.  完成集群高级选项配置。
 
         |配置项|描述|
         |---|--|
+        |**时区**|选择集群所要使用的时区。默认时区为浏览器所配置的时区。 |
         |**kube-proxy代理模式**|支持iptables和IPVS两种模式。
 
         -   iptables：成熟稳定的kube-proxy代理模式，Kubernetes service的服务发现和负载均衡使用iptables规则配置，但性能一般，受规模影响较大，适用于集群存在少量的Service。
@@ -130,7 +129,8 @@ ACK的Pro托管版集群相比原标准托管版集群进一步提升了集群�
 
 **说明：** 默认域名为**cluster.local**，可自定义域名。域名由两段组成，每段不超过63个字符，且只能使用大小写字母和数字，不能为空。 |
         |**自定义证书SAN**|在集群API Server服务端证书的SAN（Subject Alternative Name）字段中添加自定义的IP或域名，以实现对客户端的访问控制。 |
-        |**服务账户令牌卷投影**|开启**服务账户令牌卷投影**功能以降低在Pod中使用Service Account遇到的安全性问题，可使得kubelet支持基于Pod粒度的Token签发，并且支持Token audience和过期时间的配置。详情请参见[部署服务账户令牌卷投影](/cn.zh-CN/Kubernetes集群用户指南/安全管理/部署服务账户令牌卷投影.md) |
+        |**服务账户令牌卷投影**|开启**服务账户令牌卷投影**功能以降低在Pod中使用Service Account遇到的安全性问题，可使得kubelet支持基于Pod粒度的Token签发，并且支持Token audience和过期时间的配置。详情请参见[部署服务账户令牌卷投影](/cn.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/部署服务账户令牌卷投影.md) |
+        |**Secret落盘加密**|在ACK Pro托管集群中，选中**选择KMS密钥**可以使用在阿里云密钥管理服务KMS（Key Management Service）中创建的密钥加密Kubernetes Secret密钥。设置Secret落盘加密的详情，请参见[使用阿里云KMS进行Secret的落盘加密](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/使用阿里云KMS进行Secret的落盘加密.md)。|
         |**集群删除保护**|设置是否启用集群删除保护。为防止通过控制台或API误释放集群。 |
 
 6.  单击**下一步：Worker配置**，完成Worker节点配置。
@@ -171,7 +171,7 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
 
 等保加固会禁止Root用户通过SSH远程登录。您可通过ECS控制台使用VNC方式登录系统创建可使用SSH的普通用户。具体操作，请参见[通过密码认证登录Linux实例](/cn.zh-CN/实例/连接实例/使用VNC连接实例/通过密码认证登录Linux实例.md)。
 
-关于等保加固的详细信息，请参见[ACK等保加固使用说明](/cn.zh-CN/Kubernetes集群用户指南/集群管理/ACK等保加固使用说明.md)。
+关于等保加固的详细信息，请参见[ACK等保加固使用说明](/cn.zh-CN/Kubernetes集群用户指南/集群/ACK等保加固使用说明.md)。
 
             -   CentOS 7.x
 
@@ -192,7 +192,7 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
 
 **说明：** 为防止通过控制台或API误释放集群节点，默认启用实例保护。 |
         |**实例自定义数据**|请参见[生成实例自定义数据](/cn.zh-CN/实例/管理实例/使用实例自定义数据/生成实例自定义数据.md)。 |
-        |**自定义镜像**|允许您选择一个自定义ECS镜像。选择自定义镜像后，集群所有节点将基于此镜像进行部署 。有关创建自定义镜像操作，请参见[使用自定义镜像创建Kubernetes集群](/cn.zh-CN/最佳实践/集群/使用自定义镜像创建Kubernetes集群.md)。
+        |**自定义镜像**|允许您选择一个自定义ECS镜像。选择自定义镜像后，集群所有节点将基于此镜像进行部署 。有关创建自定义镜像操作，请参见[使用自定义镜像创建Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/使用自定义镜像创建Kubernetes集群.md)。
 
 **说明：**
 
@@ -215,8 +215,8 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
 
     |配置项|描述|
     |---|--|
-    |**Ingress**|设置是否安装Ingress组件。默认选中**安装Ingress组件**，请参见[Ingress高级用法](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress高级用法.md)。 |
-    |**存储插件**|设置存储插件，支持Flexvolume和CSI。Kubernetes集群通过Pod可自动绑定阿里云云盘、NAS、OSS存储服务。请参见[存储管理-Flexvolume](/cn.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/概述.md)和[存储管理-CSI](/cn.zh-CN/Kubernetes集群用户指南/存储管理-CSI/概述.md)。 |
+    |**Ingress**|设置是否安装Ingress组件。默认选中**安装Ingress组件**，请参见[Ingress高级用法](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress高级用法.md)。 |
+    |**存储插件**|设置存储插件，支持Flexvolume和CSI。Kubernetes集群通过Pod可自动绑定阿里云云盘、NAS、OSS存储服务。请参见[存储管理-Flexvolume](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/概述.md)和[存储管理-CSI](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/存储CSI概述.md)。 |
     |**监控插件**|设置是否启用云监控插件。默认选中**在ECS节点上安装云监控插件**和**使用Prometheus监控服务**，前者用于在云监控控制台查看所创建ECS实例的监控信息。 |
     |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。默认选中**使用日志服务**。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[通过日志服务采集Kubernetes容器日志](/cn.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/通过日志服务采集Kubernetes容器日志.md)。
 
