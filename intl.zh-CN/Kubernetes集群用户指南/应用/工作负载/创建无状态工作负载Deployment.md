@@ -101,12 +101,16 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
     -   变量名称：设置环境变量名称。
     -   变量/变量引用：设置变量引用的值。
-4.  在**健康检查**区域，根据需要开启**存活检查**和**就绪检查**。
+4.  在**健康检查**区域，根据需要开启**存活检查**、**就绪检查**及**启动探测**。
 
-    更多信息，请参见[Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)。
+    更多信息，请参见[配置存活、就绪和启动探测器](https://kubernetes.io/zh/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)。
 
     -   存活检查（Liveness）：用于检测何时重启容器。
     -   就绪检查（Readiness）：确定容器是否已经就绪，且可以接受流量。
+    -   启动探测（Startup Probes）：用于检测何时启动容器。
+
+        **说明：** 仅Kubernetes集群1.18及之后版本支持启动探测。
+
     |请求类型|配置说明|
     |----|----|
     |HTTP请求|即向容器发送一个HTTP Get请求，支持的参数包括：    -   协议：HTTP/HTTPS。
