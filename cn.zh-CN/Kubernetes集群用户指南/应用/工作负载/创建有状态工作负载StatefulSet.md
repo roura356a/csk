@@ -1,3 +1,7 @@
+---
+keyword: [有状态工作负载, StatefulSet]
+---
+
 # 创建有状态工作负载StatefulSet
 
 阿里云容器服务Kubernetes版ACK（Container Service for Kubernetes）集群支持通过界面创建StatefultSet类型的应用，满足您快速创建有状态应用的需求。本例中将创建一个Nginx的有状态应用，并演示StatefulSet应用的特性。
@@ -108,7 +112,11 @@ StatefulSet包括以下特性：
         -   变量/变量引用：设置变量引用的值。
     -   健康检查
 
-        支持存活检查（liveness）和就绪检查（Readiness）。存活检查用于检测何时重启容器；就绪检查确定容器是否已经就绪，且可以接受流量。关于健康检查的更多信息，请参见[Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)。
+        支持存活检查（liveness）、就绪检查（Readiness）和启动探测（Startup Probes）。存活检查用于检测何时重启容器；就绪检查确定容器是否已经就绪，且可以接受流量；启动探测用于检测何时启动容器。
+
+        **说明：** 仅Kubernetes集群1.18及之后版本支持启动探测。
+
+        关于健康检查的更多信息，请参见[配置存活、就绪和启动探测器](https://kubernetes.io/zh/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)。
 
         |请求类型|配置说明|
         |----|----|
