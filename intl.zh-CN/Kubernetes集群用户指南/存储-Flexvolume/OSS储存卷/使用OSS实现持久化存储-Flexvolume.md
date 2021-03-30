@@ -1,3 +1,7 @@
+---
+keyword: [阿里云对象存储服务, OSS, 持久化存储]
+---
+
 # 使用OSS实现持久化存储-Flexvolume
 
 当容器发生宕机故障时，有状态服务容器存储的业务数据存在着丢失和不可靠等风险。使用持久化存储可以解决该问题。本文介绍如何使用OSS实现持久化存储。
@@ -62,7 +66,7 @@ OSS使用方式：
     -   `url`：OSS Bucket的访问域名（Endpoint），请参见[访问域名和数据中心](/intl.zh-CN/开发指南/访问域名（Endpoint）/访问域名和数据中心.md)。也可以在OSS管理控制台查询：登录OSS管理控制台，在左侧导航栏选择目标Bucket，在**概览**页面的访问域名区域，查看**Endpoint（地域节点）**。
     -   `akId`：AccessKey ID。在容器服务管理控制台，单击右上角![user](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7685659951/p161100.png)，选择**AccessKey 管理**，设置**AccessKey ID**和**AccessKey Secret**。
     -   `akSecret`：AccessKey Secret。获取方法同`akId`。
-    -   `otherOpts`：挂载OSS时支持定制化参数，格式为：`-o *** -o ***`，请参见[t4872.md\#](/intl.zh-CN/常用工具/ossfs/常见问题.md)。
+    -   `otherOpts`：挂载OSS时支持定制化参数，格式为：`-o *** -o ***`。
 2.  执行以下命令，创建PV。
 
     ```
@@ -72,15 +76,10 @@ OSS使用方式：
 
 **预期结果：**
 
-在Kubernetes菜单下，单击左侧导航栏的**集群** \> **存储卷**，进入存储卷列表页面，选择目标集群，可以看到刚刚创建的PV。
-
-![存储卷列表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7685659951/p34869.png)
-
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 2.  在控制台左侧导航栏中，单击**集群**。
 3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
-4.  在集群管理页左侧导航栏中，单击**存储卷**。
-5.  单击**存储卷**页签，可以看到刚刚创建的PV。
+4.  在集群管理页左侧导航栏中，选择**存储** \> **存储卷**，可以看到刚刚创建的PV。
 
     ![存储卷](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8685659951/p161619.png)
 
@@ -115,17 +114,12 @@ OSS使用方式：
     ```
 
 
-在Kubernetes菜单下，单击左侧导航栏的**应用** \> **存储声明**，进入存储声明列表页面，选择目标集群和命名空间，可以看到刚刚创建的PVC。
-
-![存储声明列表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8685659951/p34871.png)
-
 **预期结果：**
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 2.  在控制台左侧导航栏中，单击**集群**。
 3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
-4.  在集群管理页左侧导航栏中，单击**存储卷**。
-5.  单击**存储声明**页签，可以看到刚刚创建的PVC。
+4.  在集群管理页左侧导航栏中，选择**存储** \> **存储卷**，可以看到刚刚创建的PVC。
 
     ![PVC](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8685659951/p161622.png)
 
@@ -184,17 +178,12 @@ OSS使用方式：
     ```
 
 
-在Kubernetes菜单下，单击左侧导航栏的**应用** \> **部署**，进入部署列表页面，选择目标集群和命名空间，可以看到刚刚创建的deployment。
-
-![部署列表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8685659951/p34888.png)
-
 **预期结果：**
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 2.  在控制台左侧导航栏中，单击**集群**。
 3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**应用管理**。
-4.  在集群管理页左侧导航栏中，单击**工作负载**。
-5.  单击**无状态**页签，可以看到刚刚创建的Deployment。
+4.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**，可以看到刚刚创建的Deployment。
 
     ![Deployment](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8685659951/p161689.png)
 
@@ -207,7 +196,7 @@ OSS使用方式：
     kubectl get pod
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME                             READY   STATUS    RESTARTS   AGE
@@ -234,7 +223,7 @@ OSS使用方式：
     kubectl exec oss-static-66fbb85b67-dqbl2 ls /data | grep tmpfile
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     tmpfile
@@ -246,7 +235,7 @@ OSS使用方式：
     kubectl delete pod oss-static-66fbb85b67-dqbl2
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     pod "oss-static-66fbb85b67-dqbl2" deleted
@@ -258,7 +247,7 @@ OSS使用方式：
     kubectl get pod -w -l app=nginx
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME                             READY   STATUS    RESTARTS   AGE
@@ -279,7 +268,7 @@ OSS使用方式：
     kubectl get pod
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME                             READY   STATUS    RESTARTS   AGE
@@ -292,7 +281,7 @@ OSS使用方式：
     kubectl exec oss-static-66fbb85b67-zlvmw ls /data | grep tmpfile
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     tmpfile
