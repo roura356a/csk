@@ -2,9 +2,9 @@
 
 您可以使用镜像快速创建一个可公网访问的Nginx应用。
 
-[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)
+[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -57,7 +57,7 @@
             -   **仅使用本地镜像（Never）**：仅使用本地镜像。
 **说明：** 当您选中**镜像拉取策略**时，默认不设置镜像拉取策略。
 
-        -   单击**设置镜像密钥**，您可以实现免密拉取镜像，详情请参见[使用免密组件拉取容器镜像](/intl.zh-CN/Kubernetes集群用户指南/应用管理/使用免密组件拉取容器镜像.md)。 |
+        -   单击**设置镜像密钥**，您可以实现免密拉取镜像。具体操作，请参见[使用免密组件拉取容器镜像](/intl.zh-CN/Kubernetes集群用户指南/应用/镜像/使用免密组件拉取容器镜像.md)。 |
         |资源限制|可指定该应用所能使用的资源上限，包括CPU、内存和ephemeral-storage三种资源，防止占用过多资源。其中，CPU资源的单位为millicores，即一个核的千分之一；内存的单位为MiB；ephemeral-storage的单位为GiB。|
         |所需资源|即为该应用预留资源额度，包括CPU和内存两种资源，即容器独占该资源，防止因资源不足而被其他服务或进程争夺资源，导致应用不可用。|
         |容器启动项|        -   stdin：将控制台输入发送到容器。
@@ -91,7 +91,7 @@
         -   变量/变量引用：设置变量引用的值。
     -   健康检查
 
-        支持存活检查（liveness）和就绪检查（Readiness）。存活检查用于检测何时重启容器；就绪检查确定容器是否已经就绪，且可以接受流量。关于健康检查的更多信息，请参见[Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)。
+        支持存活检查（liveness）、就绪检查（Readiness）和启动探测。存活检查用于检测何时重启容器；就绪检查确定容器是否已经就绪，且可以接受流量；启动探测用于检测容器内应用是否启动。关于健康检查的更多信息，请参见[Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)。
 
         |请求类型|配置说明|
         |----|----|
@@ -169,8 +169,8 @@
 
         |配置项|描述|
         |---|--|
-        |服务（Service）|在**服务（Service）**右侧，单击**创建**设置创建服务配置项。配置项的详情，请参见[管理服务](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Service管理/管理服务.md)。本例中服务类型选择**ClusterIP**。|
-        |路由（Ingress）|在**路由（Ingress）**右侧，单击**创建**。在弹出的对话框中，为后端Pod配置路由规则。详细的路由配置信息，请参见[路由配置说明](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress基本操作.md)。**说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在hosts中添加一条记录。在实际工作场景中，请使用备案域名。
+        |服务（Service）|在**服务（Service）**右侧，单击**创建**设置创建服务配置项。配置项的详情，请参见[管理服务](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/管理服务.md)。本例中服务类型选择**ClusterIP**。|
+        |路由（Ingress）|在**路由（Ingress）**右侧，单击**创建**。在弹出的对话框中，为后端Pod配置路由规则。详细的路由配置信息，请参见[路由配置说明](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress基本操作.md)。**说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在hosts中添加一条记录。在实际工作场景中，请使用备案域名。
 
         ```
 101.37.224.146   foo.bar.com    #即ingress的IP
@@ -242,8 +242,8 @@
 
     **说明：** 您也可以通过以下操作创建路由与服务。在**访问方式**页签：
 
-    -   单击**服务（Service）**右侧的**创建**，也可以进行服务创建，请参见[管理服务](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Service管理/管理服务.md)。
-    -   单击**路由（Ingress）**右侧的**创建**，进行路由的创建，请参见[创建路由](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress基本操作.md)。
+    -   单击**服务（Service）**右侧的**创建**，也可以进行服务创建，请参见[管理服务](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/管理服务.md)。
+    -   单击**路由（Ingress）**右侧的**创建**，进行路由的创建，请参见[创建路由](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress基本操作.md)。
 14. 单击左侧导航栏的**路由**，可以看到路由列表下出现一条规则。
 
     ![路由规则](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4054404061/p10985.png)
