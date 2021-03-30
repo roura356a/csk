@@ -4,7 +4,7 @@ keyword: [ACK Windows nodes, SMB, storage resource, Kubernetes]
 
 # Mount SMB file systems to Windows containers
 
-You can use Server Message Block \(SMB\) file systems of Apsara File Storage NAS \(NAS\) as the storage resources for Windows containers that run in a Container Service for Kubernetes \(ACK\) cluster. This topic describes how to mount SMB file systems to Windows containers.
+You can mount Server Message Block \(SMB\) file systems of Apsara File Storage NAS \(NAS\) to Windows containers that run in a Container Service for Kubernetes \(ACK\) cluster. This topic describes how to mount SMB file systems to Windows containers.
 
 -   [Create a node pool that runs Windows](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a node pool that runs Windows.md).
 -   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
@@ -12,7 +12,7 @@ You can use Server Message Block \(SMB\) file systems of Apsara File Storage NAS
 
 ## Step 1: Deploy the FlexVolume plug-in
 
-For more information, see the "[Deploy the FlexVolume plug-in in the ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Mount Alibaba Cloud disks to Windows containers.md)" section of the Mount Alibaba Cloud disks to Windows containers topic.
+For more information, see the [Deploy the FlexVolume plug-in in the ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Mount Alibaba Cloud disks to Windows containers.md) section of the Mount Alibaba Cloud disks to Windows containers topic.
 
 ## Step 2: Create a PV and a PVC
 
@@ -39,9 +39,9 @@ For more information, see the "[Deploy the FlexVolume plug-in in the ACK cluster
     ```
 
 
-## Step 3: Create an application
+## Step 3: Deploy an application
 
-1.  Use the following YAML template to create an application.
+1.  Use the following YAML template to deploy an application.
 
     ```
     apiVersion: extensions/v1beta1
