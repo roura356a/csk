@@ -6,9 +6,9 @@ keyword: [定时扩容, cronhpa, kubernetes, 兼容HPA]
 
 应对资源浪费的场景，阿里云服务容器提供kubernetes-cronhpa-controller组件，实现资源定时扩容。本文介绍如何实现容器的定时伸缩，及介绍定时伸缩CronHPA兼容HPA的原理。
 
--   您已创建一个容器服务Kubernetes集群，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
+-   您已创建一个容器服务Kubernetes集群，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   在本地计算机上安装Helm，请参见按照[Install Helm](https://github.com/helm/helm?spm=a2c4g.11186623.2.28.36d61fa8fxvUaY)，并确保Helm版本v2.11.0以上。
--   在本地使用命令前，您需要先设置[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   在本地使用命令前，您需要先设置[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 
 kubernetes-cronhpa-controller是一个Kubernetes HPA controller，按照类似Crontab的策略定时地对容器服务Kubernetes集群进行扩缩容。您可以把CronHorizontalPodAutoscaler（以下简称CronHPA）用在任何Kubernetes中定义的对象上，只要该对象支持伸缩子资源（如Deployment和StatefulSet）的[项目](https://github.com/AliyunContainerService/kubernetes-cronhpa-controller)已在GitHub开源。
 
@@ -86,7 +86,7 @@ Field name   | Mandatory? | Allowed values  | Allowed special characters
 
 4.  在集群管理页左侧导航栏中，选择**运维管理** \> **组件管理**。
 
-5.  在组件管理页面的**核心组件**页签的**其他**区域，找到**ack-kubernetes-cronhpa-controller**，然后单击**安装**。
+5.  在组件管理页面单击**其他**页签，找到**ack-kubernetes-cronhpa-controller**，然后单击**安装**。
 
 
 **方式二：通过系统组件管理入口安装CronHPA组件。**
@@ -99,7 +99,7 @@ Field name   | Mandatory? | Allowed values  | Allowed special characters
 
 4.  在集群列表页面，选择目标集群，并在目标集群右侧**操作**列下，选择**更多** \> **系统组件管理**。
 
-5.  在组件管理页面的**核心组件**页签的**其他**区域，找到**ack-kubernetes-cronhpa-controller**，然后单击**安装**。
+5.  在组件管理页面单击**其他**页签，找到**ack-kubernetes-cronhpa-controller**，然后单击**安装**。
 
 
 **方式三：通过应用目录入口安装CronHPA组件。**
@@ -119,7 +119,7 @@ Field name   | Mandatory? | Allowed values  | Allowed special characters
 
 **场景一：在创建应用时创建CronHPA任务。**
 
-在创建应用的**高级配置**页面的**伸缩配置**区域，选中**定时伸缩**右侧**开启**为应用创建定时伸缩任务。关于创建应用的详细步骤，请参见[使用镜像创建无状态Deployment应用](/cn.zh-CN/Kubernetes集群用户指南/应用管理/使用镜像创建无状态Deployment应用.md)或者[使用镜像创建有状态StatefulSet应用](/cn.zh-CN/Kubernetes集群用户指南/应用管理/使用镜像创建有状态StatefulSet应用.md)。
+在创建应用的**高级配置**页面的**伸缩配置**区域，选中**定时伸缩**右侧**开启**为应用创建定时伸缩任务。关于创建应用的详细步骤，请参见[创建无状态工作负载Deployment](/cn.zh-CN/Kubernetes集群用户指南/应用/工作负载/创建无状态工作负载Deployment.md)或者[创建有状态工作负载StatefulSet](/cn.zh-CN/Kubernetes集群用户指南/应用/工作负载/创建有状态工作负载StatefulSet.md)。
 
 ![cronhpa](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1047219061/p206611.png)
 
