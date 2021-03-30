@@ -1,3 +1,7 @@
+---
+keyword: [云盘动态存储卷, 持久化存储]
+---
+
 # 使用云盘动态存储卷实现持久化存储-Flexvolume
 
 当容器发生宕机故障时，有状态服务容器存储的业务数据存在着丢失和不可靠等风险。使用持久化存储可以解决该问题。本文介绍如何使用云盘动态存储卷实现持久化存储。
@@ -97,9 +101,7 @@ zoneid: cn-hangzhou-a,cn-hangzhou-b,cn-hangzhou-c
     ```
 
 
-在目标集群的页面下单击左侧导航栏的**存储卷**，选择**存储声明**页签，进入存储声明页面，可以看到该PVC绑定的存储类型为`StorageClass`中声明的alicloud-disk-ssd-hangzhou-b，并且关联存储卷。
-
-![存储声明](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4685659951/p99211.png)
+在目标集群的页面下单击左侧导航栏的**存储** \> **存储声明**，可以看到该PVC绑定的存储类型为`StorageClass`中声明的alicloud-disk-ssd-hangzhou-b，并且关联存储卷。
 
 ## 创建应用
 
@@ -140,7 +142,7 @@ zoneid: cn-hangzhou-a,cn-hangzhou-b,cn-hangzhou-c
     ```
 
 
-在目标集群页面下单击左侧导航栏的**工作负载**，选择**无状态**页签，进入无状态页面，可以看到刚刚创建的Deployment。
+在目标集群页面下单击左侧导航栏的**工作负载** \> **无状态**，可以看到刚刚创建的Deployment。
 
 ![deployment](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4685659951/p99209.png)
 
@@ -152,7 +154,7 @@ zoneid: cn-hangzhou-a,cn-hangzhou-b,cn-hangzhou-c
     kubectl get pod | grep dynamic
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     nginx-dynamic-5c74594ccb-zl9pf     2/2     Running     0          3m
@@ -164,7 +166,7 @@ zoneid: cn-hangzhou-a,cn-hangzhou-b,cn-hangzhou-c
     kubectl exec nginx-dynamic-5c74594ccb-zl9pf df | grep data
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     /dev/vdh        20511312    45080  20449848   1% /data
@@ -176,7 +178,7 @@ zoneid: cn-hangzhou-a,cn-hangzhou-b,cn-hangzhou-c
     kubectl exec nginx-dynamic-5c74594ccb-zl9pf ls /data
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     lost+found
@@ -194,7 +196,7 @@ zoneid: cn-hangzhou-a,cn-hangzhou-b,cn-hangzhou-c
     kubectl exec nginx-dynamic-5c74594ccb-zl9pf ls /data
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     dynamic
@@ -207,7 +209,7 @@ zoneid: cn-hangzhou-a,cn-hangzhou-b,cn-hangzhou-c
     kubectl delete pod nginx-dynamic-5c74594ccb-zl9pf
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     pod "nginx-dynamic-5c74594ccb-zl9pf" deleted
@@ -219,7 +221,7 @@ zoneid: cn-hangzhou-a,cn-hangzhou-b,cn-hangzhou-c
     kubectl get pod -w -l app=nginx
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME                               READY   STATUS    RESTARTS   AGE
@@ -241,7 +243,7 @@ zoneid: cn-hangzhou-a,cn-hangzhou-b,cn-hangzhou-c
     kubectl get pod 
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME                               READY   STATUS      RESTARTS   AGE
@@ -254,7 +256,7 @@ zoneid: cn-hangzhou-a,cn-hangzhou-b,cn-hangzhou-c
     kubectl exec nginx-dynamic-5c74594ccb-45sd4 ls /data
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     dynamic
