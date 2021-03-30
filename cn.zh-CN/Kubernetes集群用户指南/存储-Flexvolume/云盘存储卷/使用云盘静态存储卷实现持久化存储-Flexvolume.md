@@ -1,3 +1,7 @@
+---
+keyword: [云盘静态存储卷, 持久化存储]
+---
+
 # 使用云盘静态存储卷实现持久化存储-Flexvolume
 
 当容器发生宕机故障时，有状态服务容器存储的业务数据存在着丢失和不可靠等风险。使用持久化存储可以解决该问题。本文介绍如何使用云盘静态存储卷实现持久化存储。
@@ -66,8 +70,7 @@
     1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
     2.  在控制台左侧导航栏中，单击**集群**。
     3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
-    4.  在集群管理页左侧导航栏中，单击**存储卷**。
-    5.  单击**存储卷**页签，可以看到刚刚创建的PV。
+    4.  在集群管理页左侧导航栏中，单击**存储** \> **存储卷**，可以看到刚刚创建的PV。
 
         ![创建PV](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3123319951/p158148.png)
 
@@ -103,11 +106,8 @@
     1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
     2.  在控制台左侧导航栏中，单击**集群**。
     3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
-    4.  在集群管理页左侧导航栏中，单击**存储卷**。
-    5.  单击**存储声明**页签，可以看到刚刚创建的PVC。
-
-        ![创建PVC](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4123319951/p158149.png)
-
+    4.  在集群管理页左侧导航栏中，单击**存储** \> **存储声明**。
+    5.  在**存储声明**页面，可以看到刚刚创建的PVC。
 
 ## 创建应用
 
@@ -151,12 +151,9 @@
 
     1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
     2.  在控制台左侧导航栏中，单击**集群**。
-    3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**应用管理**。
-    4.  在集群管理页左侧导航栏中，单击**工作负载**。
-    5.  单击**无状态**页签，可以看到刚刚创建的静态应用。
-
-        ![创建应用](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4123319951/p158151.png)
-
+    3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
+    4.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**。
+    5.  在**无状态**页面，可以看到刚刚创建的静态应用。
 
 ## 静态云盘的持久化存储
 
@@ -165,6 +162,8 @@
     ```
     kubectl get pod | grep static
     ```
+
+    预期输出：
 
     ```
     nginx-static-78c7dcb9d7-g****   2/2     Running     0          32s
@@ -176,6 +175,8 @@
     kubectl exec nginx-static-78c7dcb9d7-g**** df | grep data
     ```
 
+    预期输出：
+
     ```
     /dev/vdf        20511312    45080  20449848   1% /data
     ```
@@ -185,6 +186,8 @@
     ```
     kubectl exec nginx-static-78c7dcb9d7-g**** ls /data
     ```
+
+    预期输出：
 
     ```
     lost+found
@@ -202,6 +205,8 @@
     kubectl exec nginx-static-78c7dcb9d7-g**** ls /data
     ```
 
+    预期输出：
+
     ```
     static
     lost+found
@@ -213,6 +218,8 @@
     kubectl delete pod nginx-static-78c7dcb9d7-g****
     ```
 
+    预期输出：
+
     ```
     pod "nginx-static-78c7dcb9d7-g****" deleted
     ```
@@ -222,6 +229,8 @@
     ```
     kubectl get pod -w -l app=nginx
     ```
+
+    预期输出：
 
     ```
     NAME                            READY   STATUS            RESTARTS   AGE
@@ -244,6 +253,8 @@
     kubectl get pod
     ```
 
+    预期输出：
+
     ```
     NAME                            READY   STATUS      RESTARTS   AGE
     nginx-static-78c7dcb9d7-h****   2/2     Running     0          14s
@@ -254,6 +265,8 @@
     ```
     kubectl exec nginx-static-78c7dcb9d7-h6brd ls /data
     ```
+
+    预期输出：
 
     ```
     static
