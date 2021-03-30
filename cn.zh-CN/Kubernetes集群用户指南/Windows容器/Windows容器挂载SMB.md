@@ -7,8 +7,8 @@ keyword: [ACK Windows节点, SMB, 存储资源, Kubernetes]
 您可以在ACK Windows容器上使用SMB存储资源。本文介绍如何在Windows容器上使用SMB。
 
 -   [创建Windows节点池](/cn.zh-CN/Kubernetes集群用户指南/Windows容器/创建Windows节点池.md)。
--   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。
--   在NAS控制台创建一个与集群在相同的VPC的SMB存储盘，并创建挂载点。有关具体操作步骤，请参见[Windows系统挂载SMB文件系统]()。
+-   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   在NAS控制台创建一个与集群在相同的VPC的SMB存储盘，并创建挂载点。具体操作，请参见[Windows系统挂载SMB文件系统]()。
 
 ## 步骤一：部署插件
 
@@ -30,9 +30,13 @@ keyword: [ACK Windows节点, SMB, 存储资源, Kubernetes]
     |user|集群节点的登录用户名，推荐使用workshop\\administrator。|
     |password|集群节点的登录密码。|
 
-2.  执行`kubectl get pvc |grep pvc-smb`查看创建的PVC。
+2.  执行以下命令查看创建的PVC。
 
-    输出：
+    ```
+    kubectl get pvc |grep pvc-smb
+    ```
+
+    预期输出：
 
     ```
     pvc-smb                    Bound    pv-smb                   5Gi        RWX                                         24h
@@ -83,9 +87,13 @@ keyword: [ACK Windows节点, SMB, 存储资源, Kubernetes]
               claimName: pvc-smb
     ```
 
-2.  执行`kubectl get pod`查看应用状态。
+2.  执行以下命令查看应用状态。
 
-    输出：
+    ```
+    kubectl get pod
+    ```
+
+    预期输出：
 
     ```
     NAME                        READY   STATUS    RESTARTS   AGE
