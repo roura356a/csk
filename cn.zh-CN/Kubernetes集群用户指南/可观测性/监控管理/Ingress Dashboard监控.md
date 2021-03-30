@@ -19,7 +19,7 @@
 
 4.  单击**nginx-ingress**下的**可视化仪表盘**，查看所有Ingress的分析报表。
 
-    Ingress Dashboard包含Ingress概览、Ingress异常检测中心、Ingress访问中心、Ingress蓝绿发布中心、Ingress监控中心5个预置图表。以下重点介绍Ingress概览和Ingress蓝绿发布中心。关于其他预置图表的详细信息请参见[Ingress访问日志分析与监控](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress访问日志分析与监控.md)。
+    Ingress Dashboard包含Ingress概览、Ingress异常检测中心、Ingress访问中心、Ingress蓝绿发布中心、Ingress监控中心5个预置图表。以下重点介绍Ingress概览和Ingress蓝绿发布中心。关于其他预置图表的详细信息请参见[Ingress访问日志分析与监控](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress访问日志分析与监控.md)。
 
     **Ingress概览**
 
@@ -75,11 +75,13 @@
 
 3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-4.  在**路由**页面单击**创建**。
+4.  在集群管理页左侧导航栏中，选择**服务与路由** \> **路由**。
 
-5.  在**创建**对话框中设置路由，然后单击**创建**。
+5.  在**路由**页面单击**创建**。
 
-    关于设置路由的详细操作，请参见[Ingress基本操作](/cn.zh-CN/Kubernetes集群用户指南/网络管理/Ingress管理/Ingress基本操作.md)。
+6.  在**创建**对话框中设置路由，然后单击**创建**。
+
+    关于设置路由的详细操作，请参见[Ingress基本操作](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress基本操作.md)。
 
 
 ## 步骤四：使用Ingress Dashboard与ARMS进行联动排查
