@@ -57,11 +57,13 @@ keyword: [昊天cGPU, 托管Prometheus监控, GPU资源隔离]
                 nvidia.com/gpu: 1
     ```
 
-    部署成功后，查看应用的状态，可以知道应用的名称是app-3g-v1-0。
+    部署成功后，执行以下命令，查看应用的状态，可以知道应用的名称是app-3g-v1-0。
 
     ```
     kubectl get po
     ```
+
+    预期输出：
 
     ```
     NAME          READY   STATUS    RESTARTS   AGE
@@ -85,19 +87,13 @@ keyword: [昊天cGPU, 托管Prometheus监控, GPU资源隔离]
 
     3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**应用管理**。
 
-    4.  在集群管理页左侧导航栏中，单击**节点管理**。
+    4.  在集群管理页左侧导航栏中，选择**节点管理** \> **节点**。
 
-    5.  在**节点管理**页面，单击页面右上角**标签与污点管理**。
+    5.  在**节点管理**页面，单击右上角**标签与污点管理**。
 
-    6.  在左侧导航栏中，选择**集群** \> **节点**。
+    6.  在**标签与污点管理**页面中，批量选择Worker节点，然后单击**添加标签**。
 
-    7.  在**节点列表**页面中，选择所需的集群，然后单击页面右上角的**标签管理**。
-
-    8.  在**标签与污点管理**页面中，批量选择Worker节点，然后单击**添加标签**。
-
-    9.  在**添加**对话框中，填写指定的标签名称和值（标签的名称为cgpu，值为true），单击**确定**。
-
-        ![添加标签](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4875659951/p101645.png)
+    7.  在**添加**对话框中，填写指定的标签名称和值（标签的名称为cgpu，值为true），单击**确定**。
 
         **说明：** 如果某个Worker节点设置了标签为cgpu=true，那么该节点将不再拥有独享gpu资源**nvidia.com/gpu**；如果该节点需要关闭gpu共享功能，请设置标签cgpu的值为false，同时该节点将重新拥有独享gpu资源**nvidia.com/gpu**。
 
@@ -105,17 +101,21 @@ keyword: [昊天cGPU, 托管Prometheus监控, GPU资源隔离]
 
     1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
-    2.  在左侧导航栏中，选择**市场** \> **应用目录**，然后在右侧单击**ack-cgpu**。
+    2.  在控制台左侧导航栏中，选择**市场** \> **应用目录**。
 
-    3.  在右侧的**创建**面板中选择前提条件中创建的集群和命名空间，并单击**创建**。
+    3.  在应用目录页面搜索ack-cgpu，然后单击ack-cgpu。
 
-    4.  登录Master节点并执行以下命令查看GPU资源。
+    4.  在右侧的**创建**面板中选择前提条件中创建的集群和命名空间，并单击**创建**。
+
+    5.  登录Master节点并执行以下命令查看GPU资源。
 
         登录Master节点相关步骤，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 
         ```
         kubectl inspect cgpu
         ```
+
+        预期输出：
 
         ```
         NAME                       IPADDRESS      GPU0(Allocated/Total)  GPU Memory(GiB)
@@ -169,6 +169,8 @@ keyword: [昊天cGPU, 托管Prometheus监控, GPU资源隔离]
         kubectl inspect cgpu -d
         ```
 
+        预期输出：
+
         ```
         NAME:       cn-hangzhou.192.168.2.167
         IPADDRESS:  192.168.2.167
@@ -189,6 +191,11 @@ keyword: [昊天cGPU, 托管Prometheus监控, GPU资源隔离]
 
         ```
         kubectl exec -it app-3g-v1-0 nvidia-smi
+        ```
+
+        预期输出：
+
+        ```
         Mon Apr 13 01:33:10 2020
         +-----------------------------------------------------------------------------+
         | NVIDIA-SMI 418.87.01    Driver Version: 418.87.01    CUDA Version: 10.1     |
@@ -205,8 +212,15 @@ keyword: [昊天cGPU, 托管Prometheus监控, GPU资源隔离]
         |  GPU       PID   Type   Process name                             Usage      |
         |=============================================================================|
         +-----------------------------------------------------------------------------+
-        
+        ```
+
+        ```
         kubectl exec -it app-3g-v1-1 nvidia-smi
+        ```
+
+        预期输出：
+
+        ```
         Mon Apr 13 01:36:07 2020
         +-----------------------------------------------------------------------------+
         | NVIDIA-SMI 418.87.01    Driver Version: 418.87.01    CUDA Version: 10.1     |
@@ -229,18 +243,30 @@ keyword: [昊天cGPU, 托管Prometheus监控, GPU资源隔离]
 
         可以看到该GPU被使用的显存资源为两个容器之和，即6396 MiB，因此cGPU资源已经实现了按容器隔离的效果。如果此时登录到容器内尝试申请更多的GPU资源，会直接报出显存分配失败的错误。
 
-        ```
-        kubectl exec -it app-3g-v1-1 bash
-        root@app-3g-v1-1:/# cuda_malloc -size=1024
-        cgpu_cuda_malloc starting...
-        Detected 1 CUDA Capable device(s)
-        
-        Device 0: "Tesla V100-SXM2-16GB"
-          CUDA Driver Version / Runtime Version          10.1 / 10.1
-          Total amount of global memory:                 4301 MBytes (4509925376 bytes)
-        Try to malloc 1024 MBytes memory on GPU 0
-        CUDA error at cgpu_cuda_malloc.cu:119 code=2(cudaErrorMemoryAllocation) "cudaMalloc( (void**)&dev_c, malloc_size)"
-        ```
+        1.  执行以下命令，登录到节点。
+
+            ```
+            kubectl exec -it app-3g-v1-1 bash
+            ```
+
+        2.  执行以下命令， 查看GPU的使用情况。
+
+            ```
+            cuda_malloc -size=1024
+            ```
+
+            预期输出：
+
+            ```
+            gpu_cuda_malloc starting...
+            Detected 1 CUDA Capable device(s)
+            
+            Device 0: "Tesla V100-SXM2-16GB"
+              CUDA Driver Version / Runtime Version          10.1 / 10.1
+              Total amount of global memory:                 4301 MBytes (4509925376 bytes)
+            Try to malloc 1024 MBytes memory on GPU 0
+            CUDA error at cgpu_cuda_malloc.cu:119 code=2(cudaErrorMemoryAllocation) "cudaMalloc( (void**)&dev_c, malloc_size)"
+            ```
 
 
 您可以通过[ARMS控制台](https://arms-intl.console.aliyun.com/)，从应用和节点两个维度来监控GPU的使用量。
@@ -298,6 +324,8 @@ keyword: [昊天cGPU, 托管Prometheus监控, GPU资源隔离]
     kubectl get pod
     ```
 
+    预期输出：
+
     ```
     NAME          READY   STATUS             RESTARTS   AGE
     app-3g-v1-0   1/1     Running            0          7h35m
@@ -312,6 +340,8 @@ keyword: [昊天cGPU, 托管Prometheus监控, GPU资源隔离]
     ```
     kubectl logs app-6g-v1-0
     ```
+
+    预期输出：
 
     ```
     CUDA error at cgpu_cuda_malloc.cu:119 code=2(cudaErrorMemoryAllocation) "cudaMalloc( (void**)&dev_c, malloc_size)"
