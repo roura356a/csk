@@ -12,7 +12,7 @@ keyword: [kubernetes, k8s, 创建]
 
 本示例将演示如何快速创建一个Kubernetes集群，部分配置采用默认或最简配置。
 
-有关集群的使用限制和说明，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
+有关集群的使用限制和说明，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
@@ -38,7 +38,6 @@ keyword: [kubernetes, k8s, 创建]
 ![资源组](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png)
 
 本文默认选择**账号全部资源**。 |
-        |**时区**|选择集群所要使用的时区。默认时区为浏览器所配置的时区。 |
         |**Kubernetes版本**|使用默认的版本。 |
         |容器运行时
 
@@ -53,11 +52,11 @@ keyword: [kubernetes, k8s, 创建]
         |**虚拟交换机**|设置虚拟交换机。
 
 您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[使用交换机](/intl.zh-CN/专有网络和交换机/使用交换机.md)。 |
-        |**网络插件**|默认选择Flannel。有关Flannel和Terway的详情，请参见[t64408.md\#section\_k1z\_f1n\_lmh](/intl.zh-CN/Kubernetes集群用户指南/网络管理/容器网络CNI/使用Terway网络插件.md)。 |
+        |**网络插件**|默认选择Flannel。有关Flannel和Terway的详情，请参见[t64408.md\#section\_k1z\_f1n\_lmh](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/使用Terway网络插件.md)。 |
         |**Pod网络CIDR**|网络插件选择**Flannel**时，需要配置**Pod网络CIDR**。
 
-**Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Kubernetes集群网络规划.md)。 |
-        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Kubernetes集群网络规划.md)。 |
+**Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/intl.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。 |
+        |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/intl.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。 |
         |**节点IP数量**|默认选择64。**节点IP数量**是指可分配给一个节点的IP数量。 |
         |**配置SNAT**|默认选中**为专有网络配置SNAT网关**。
 
@@ -82,7 +81,7 @@ keyword: [kubernetes, k8s, 创建]
 本文默认选择**自动创建企业级安全组**。 |
         |高级配置项
 
-|本文默认不配置集群的高级参数。有关集群的高级配置项详情，请参见[集群高级选项配置](/intl.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。|
+|本文默认不配置集群的高级参数。有关集群的高级配置项详情，请参见[集群高级选项配置](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。|
 
     2.  单击**下一步：Worker配置**，并完成**Worker配置**。
 
@@ -108,31 +107,23 @@ keyword: [kubernetes, k8s, 创建]
             -   **确认密码**：确认设置的节点登录密码。 |
         |Worker节点高级配置项
 
-|本文默认不配置集群的高级参数。有关集群的高级配置项详情，请参见[集群高级选项配置](/intl.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。|
+|本文默认不配置集群的高级参数。有关集群的高级配置项详情，请参见[集群高级选项配置](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。|
 
     3.  单击**下一步：组件配置**，并完成**组件配置**。
 
         |参数|描述|
         |--|--|
         |**Ingress**|默认选中**安装Ingress组件**，**负载均衡类型**选择**公网**。 |
-        |**存储插件**|默认选择**CSI**。有关Flexvolume和CSI存储插件的详情，请参见[存储插件说明](/intl.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/存储插件说明.md)。 |
+        |**存储插件**|默认选择**CSI**。有关Flexvolume和CSI存储插件的详情，请参见[存储插件说明](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/存储插件说明.md)。 |
         |**监控插件**|设置是否启用云监控插件。默认选中**在ECS节点上安装云监控插件**和**使用Prometheus监控服务**，前者用于在云监控控制台查看所创建ECS实例的监控信息。
 
 本文默认不安装云监控插件。 |
         |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。默认选中**使用日志服务**。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[通过日志服务采集Kubernetes容器日志](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/通过日志服务采集Kubernetes容器日志.md)。
 
-您可以设置是否选中**收集控制平面组件日志**，该功能从ACK控制层收集托管集群控制平面组件日志到您账号中的SLS日志服务的Log Project中。更多信息，请参见[收集托管集群控制平面组件日志](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/收集托管集群控制平面组件日志.md)。
-
-**说明：** ACK Pro托管集群默认选中**收集控制平面组件日志**。
-
 默认选中**安装node-problem-detector并创建事件中心**。您可以选择是否在日志服务控制台中**创建Ingress Dashboard**。
 
 本文默认使用日志服务。 |
-        |**工作流引擎**|设置是否使用AGS。
-
-        -   如果选中AGS，则创建集群时系统自动安装AGS工作流插件。
-        -   如果不选中，则需要手动安装AGS工作流插件，请参见[AGS命令行帮助]()。
-本文默认不选中**AGS**。 |
+        |**控制平面组件日志**|选中**开启**，将从ACK控制层收集托管集群控制平面组件日志到您账号中的SLS日志服务的Log Project中。更多信息，请参见[收集托管集群控制平面组件日志](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/收集托管集群控制平面组件日志.md)。 |
 
     4.  单击**下一步：确认配置**。
 
