@@ -1,6 +1,6 @@
 # 使用Helm简化应用部署
 
-本文档介绍Helm的基本概念和使用方式，演示在阿里云的Kubernetes集群上利用Helm来部署示例应用WordPress和Spark。
+本文档介绍Helm的基本概念和使用方式，演示如何在阿里云的Kubernetes集群上利用Helm来部署示例应用WordPress和Spark。
 
 -   通过Helm部署应用之前，利用阿里云容器服务来创建Kubernetes集群。参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 
@@ -35,20 +35,11 @@ Helm采用客户端/服务器架构，由如下组件组成：
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
-2.  登录[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+2.  在控制台左侧导航栏中，选择**市场** \> **应用目录**。
 
-3.  单击左侧导航栏中的**市场** \> **应用目录**，进入应用目录列表页面。
+3.  在**阿里云应用**页签中，选择一个Chart（本示例选择**ack-wordpress-sample**），单击该Chart，进入Chart详情页面。
 
-4.  在**阿里云应用**页签选择一个chart（本示例选择WordPress），单击该chart，进入chart详情页面。
-
-5.  在页面右侧，填写部署的基本信息。
-
-    -   **集群**：应用要部署到的集群。
-    -   **命名空间**：选择命名空间。默认为default。
-    -   **发布名称**：填写应用发布的名称。
-    ![部署基本信息](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0085659951/p10397.png)
-
-6.  单击**参数**，对配置进行修改。
+4.  单击**参数**页签，对配置进行修改。
 
     本示例中使用云盘的动态数据卷绑定一个PVC，参见[云盘存储卷使用说明](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/云盘存储卷/云盘存储卷使用说明.md)。
 
@@ -56,16 +47,23 @@ Helm采用客户端/服务器架构，由如下组件组成：
 
     ![修改参数配置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0085659951/p10398.png)
 
-7.  配置完成后，单击**创建**，部署成功后，默认进入该应用的发布页面。
+5.  在页面右侧，填写部署的基本信息，然后单击**创建**。
 
-8.  在控制台左侧导航栏单击**集群**，单击目标集群**操作**列的**应用管理**，在集群管理页左侧导航栏中单击**服务**，找到对应的服务，您可获取http/https外部端点的地址。
+    -   **集群**：应用要部署到的集群。
+    -   **命名空间**：选择命名空间。默认为default。
+    -   **发布名称**：填写应用发布的名称。
+    ![部署基本信息](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0085659951/p10397.png)
 
-9.  单击外部端点的访问地址，进入WordPress博客发布页面。
+6.  在集群管理页左侧导航栏中，选择**服务与路由** \> **服务**。
+
+7.  在服务列表中，找到对应的服务，获取HTTP和HTTPS外部端点的地址，然后单击外部端点的访问地址，进入WordPress博客发布页面。
+
+    **说明：** 访问外部端点前，请确保您已在安全组中添加外部端点的端口。
 
 
 ## 通过命令行部署应用
 
-通过命令行部署应用时，您可以SSH登录Kubernetes集群（Helm CLI已自动安装并已配置Repository）进行操作，参见[t16642.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过SSH访问Kubernetes集群.md)。您也可以在本地安装配置kubectl和Helm CLI。
+通过命令行部署应用时，您可以SSH登录Kubernetes集群（Helm CLI已自动安装并已配置Repository）进行操作，参见[通过SSH访问Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过SSH访问Kubernetes集群.md)。您也可以在本地安装配置kubectl和Helm CLI。
 
 本示例以在本地安装配置kubectl和Helm CLI并部署WordPress和Spark应用为例进行说明。
 
@@ -91,7 +89,7 @@ Helm采用客户端/服务器架构，由如下组件组成：
         helm install --name wordpress-test stable/wordpress
         ```
 
-        **说明：** 阿里云Kubernetes服务提供块存储（云盘）的动态存储卷支持，您需要预先创建一个云盘存储卷。
+        **说明：** ACK提供块存储（云盘）的动态存储卷支持，您需要预先创建一个云盘存储卷。
 
         得到以下的结果。
 
@@ -103,7 +101,7 @@ Helm采用客户端/服务器架构，由如下组件组成：
         ...
         ```
 
-    2.  执行以下命令查看WordPress的release和service。
+    2.  执行以下命令查看WordPress的发布版本和Service。
 
         ```
         helm list
@@ -124,14 +122,14 @@ Helm采用客户端/服务器架构，由如下组件组成：
 
         通过上面的URL，可以在浏览器上看到熟悉的WordPress站点。
 
-        也可以根据Charts的说明，利用如下命令获得WordPress站点的管理员用户和密码。
+        也可以根据Charts的说明，利用以下命令获得WordPress站点的管理员用户和密码。
 
         ```
         echo Username: user
         echo Password: $(kubectl get secret --namespace default wordpress-test-wordpress -o jsonpath="{.data.wordpress-password}" | base64 --decode)
         ```
 
-    5.  如需彻底删除WordPress应用，可输入如下命令。
+    5.  如需彻底删除WordPress应用，可输入以下命令。
 
         ```
         helm delete --purge wordpress-test
