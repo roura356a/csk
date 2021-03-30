@@ -116,11 +116,11 @@ Content-Type:application/json
 -   `ExternalKubernetes`：注册至ACK的外部集群。 |
 |kubernetes\_version|String|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。
 
-目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[t1960241.dita\#task\_1960241](/intl.zh-CN/新功能发布记录/Kubernetes版本发布说明/Kubernetes版本发布概览.md)。 |
+目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[t1960241.dita\#task\_1960241](/intl.zh-CN/产品发布记录/Kubernetes版本发布说明/Kubernetes版本发布概览.md)。 |
 |runtime|[runtime](/intl.zh-CN/API参考/通用数据结构.md)|否|\{"name": "docker", "version": "19.03.5"\}|容器运行时，支持`containerd`、`docker`、`Sandboxed-Container.runv`三种运行时，默认为`docker`。runtime包括以下2个信息： -   `name`：容器运行时名称。
 -   `version`：容器运行时版本。
 
-有关容器运行时的选择，请参见[t1879872.dita\#task\_2455499](/intl.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时与安全沙箱运行时？.md)。 |
+有关容器运行时的选择，请参见[t1879872.dita\#task\_2455499](/intl.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？.md)。 |
 |vpcid|String|是|vpc-2zeik9h3ahvv2zz95\*\*\*\*|集群使用的专有网络，创建集群时必须为集群提供。 |
 |pod\_vswitch\_ids|Array of String|否|vsw-2ze97jwri7cei0mpw\*\*\*\*|Pod虚拟交换机列表，您需要为每一个节点虚拟交换机指定至少一个相同可用区的Pod虚拟交换机并且不能跟节点`vswitch`重复，建议选择网段掩码不大于19的虚拟交换机。
 
@@ -150,7 +150,7 @@ Content-Type:application/json
 -   true：将为您创建NAT网关并自动配置SNAT规则，若您集群内的节点、应用等需要访问公网需要设置为`true`。
 -   false：不为您创建NAT网关及SNAT规则。这种模式下，集群内节点及应用将不能访问公网。
 
-**说明：** 如果创建集群时未开启，后续业务需要访问公网，可[t1936294.dita\#task\_1936294](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/如何为已有集群开启SNAT？.md)。
+**说明：** 如果创建集群时未开启，后续业务需要访问公网，可[t1936294.dita\#task\_1936294](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/为已有集群开启SNAT公网访问能力.md)。
 
 默认值：true。 |
 |endpoint\_public\_access|Boolean|否|true|是否开启公网访问。通过EIP暴露API Server，实现集群公网访问。
@@ -185,10 +185,10 @@ Content-Type:application/json
 |custom\_san|String|否|cs.aliyun.com|自定义证书SAN，多个IP或域名以英文逗号（,）分隔。 |
 |service\_account\_issuer|String|否|kubernetes.default.svc|ServiceAccount是Pod和集群`apiserver`通讯的访问凭证。而`service-account-issuer`是`serviceaccount token`中的签发身份，即`token payload`中的`iss`字段。
 
-关于`ServiceAccount`更多详情，请参见[t1881266.dita\#task\_2460323](/intl.zh-CN/Kubernetes集群用户指南/安全管理/部署服务账户令牌卷投影.md)。 |
+关于`ServiceAccount`更多详情，请参见[t1881266.dita\#task\_2460323](/intl.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/部署服务账户令牌卷投影.md)。 |
 |api\_audiences|String|否|kubernetes.default.svc|ServiceAccount是Pod和集群`apiserver`通讯的访问凭证，而`api-audiences`是合法的请求`token`身份，用于`apiserver`服务端认证请求`token`是否合法。支持配置多个`audienc`e，通过英文逗号（,）分割。
 
-关于`ServiceAccount`更多详情，请参见[t1881266.dita\#task\_2460323](/intl.zh-CN/Kubernetes集群用户指南/安全管理/部署服务账户令牌卷投影.md)。 |
+关于`ServiceAccount`更多详情，请参见[t1881266.dita\#task\_2460323](/intl.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/部署服务账户令牌卷投影.md)。 |
 |image\_id|String|否|m-bp16z7xko3vvv8gt\*\*\*\*|节点自定义镜像，默认使用系统镜像。当选择自定义镜像时，将取代默认系统镜像。请参见[t1849273.dita\#task\_2362493](/intl.zh-CN/最佳实践/自建Kubernetes迁移ACK/使用自定义镜像创建ACK集群.md)。 |
 |rds\_instances|Array of String|否|rm-2zev748xi27xc\*\*\*\*|RDS实例名称。 |
 |tags|Array of [tag](/intl.zh-CN/API参考/通用数据结构.md)|否| |节点标签。标签定义规则：
@@ -266,7 +266,7 @@ Content-Type:application/json
 
 默认值：`3`。 |
 |master\_vswitch\_ids|Array of String|是|vsw-2ze3ds0mdip0hdz8i\*\*\*\*|虚拟交换ID。 |
-|master\_instance\_types|Array of String|是|ecs.n4.xlarge|Master节点实例类型。 |
+|master\_instance\_types|Array of String|是|ecs.n4.xlarge|Master节点实例类型。关于ECS实例规格的具体介绍，请参见[实例规格族](/intl.zh-CN/实例/实例规格族.md)。 |
 |master\_system\_disk\_category|String|是|cloud\_ssd|Master节点系统盘类型，取值：
 
 -   `cloud_efficiency`：高效云盘。
