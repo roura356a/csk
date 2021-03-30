@@ -2,18 +2,18 @@
 
 This topic describes how to use YAML templates to install volume plug-ins provided by Container Service for Kubernetes \(ACK\).
 
-**Note:** If your ACK cluster was created before February 6, 2018, you must install the volume plug-ins before using volumes. If your ACK cluster was created after February 6, 2018, you can directly use volumes. You do not need to install the volume plug-ins.
+**Note:** If your ACK cluster was created before February 6, 2018, you must install the volume plug-ins before you can use volumes. If your ACK cluster was created after February 6, 2018, you can directly use volumes. You do not need to install the volume plug-ins.
 
 ## Prerequisites
 
--   [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md)
--   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md)
+-   [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)
+-   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md)
 
 ## Limits
 
 Only the CentOS 7 operating system is supported.
 
-## Considerations
+## Precautions
 
 -   To use FlexVolume, set the `--enable-controller-attach-detach` parameter to false for kubelet. By default, this parameter is set to false for ACK clusters.
 -   Install the FlexVolume plug-in in the kube-system namespace.
@@ -22,13 +22,13 @@ Only the CentOS 7 operating system is supported.
 
 On the master node:
 
--   Run the following command to generate several lists of pods in the Running state. The number of lists is determined by the number of nodes.
+-   Run the following command to generate several lists of pods that are in the Running state. The number of lists is determined by the number of nodes.
 
     ```
     kubectl get pod -n kube-system | grep flexvolume
     ```
 
--   Run the following command to generate a list of pods in the Running state:
+-   Run the following command to generate a list of pods that are in the Running state:
 
     ```
     kubectl get pod -n kube-system | grep alicloud-disk-controller
@@ -121,7 +121,7 @@ spec:
 
 By default, the disk controller is installed in ACK clusters.
 
-If the disk controller is not installed in your cluster, you can install it by using the following YAML template:
+If FlexVolume is not installed in your cluster, you can install it by using the following YAML template:
 
 ```
 ---
@@ -179,7 +179,7 @@ spec:
       - operator: Exists
       priorityClassName: system-node-critical
       nodeSelector:
-         node-role.kubernetes.io/master: &quot;&quot;
+         node-role.kubernetes.io/master: 
       serviceAccount: admin
       serviceAccountName: admin
       containers:
