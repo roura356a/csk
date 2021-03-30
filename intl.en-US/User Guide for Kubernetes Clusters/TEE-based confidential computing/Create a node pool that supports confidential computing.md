@@ -23,26 +23,32 @@ TEE-based confidential computing for ACK is powered by Intel \(R\) Software Guar
 
 4.  In the Create Node Pool dialog box, configure the node pool.
 
-    For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md). The following table describes the parameters that are required to create a confidential computing node pool.
+    For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md). The following table describes the parameters that are required to create a node pool that supports confidential computing.
 
     |Parameter|Description|
     |---------|-----------|
-    |**Confidential Computing**|Select **Enable** to enable confidential computing.|
-    |**Container Runtime**|You must select Docker.|
-    |**Auto Scaling**|Specify whether to enable Auto Scaling \(ESS\). If you enable ESS, the node pool automatically scales based on resource consumption.|
-    |**Instance Type**|Select **ECS Bare Metal Instance** and select **ecs.ebmhfg5.2xlarge** as the **instance type**.**Note:** You can select multiple instance types. Only the **ecs.ebmhfg5.2xlarge** instance type supports confidential computing. If the stock of ecs.ebmhfg5.2xlarge instances is insufficient, you can select another instance type. However, the node pool does not support confidential computing in this case. |
+    |**Confidential Computing**|Select **Enable** to enable confidential computing.![Confidential computing](../images/p132594.png) |
+    |**Container Runtime**|Only containerd and Docker runtimes are supported.**Note:** The Containerd runtime is in public preview. To use Containerd, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply for it to be available for your account. |
+    |**Auto Scaling**|Specify whether to enable auto scaling. If you enable auto scaling, the node pool automatically scales based on resource consumption.|
+    |**Instance Type**|Select **ECS Bare Metal Instance** and select **ecs.ebmhfg5.2xlarge** as the **instance type**.**Note:** You can select multiple instance types. Only the **ecs.ebmhfg5.2xlarge** instance type supports confidential computing. If the stock of ecs.ebmhfg5.2xlarge instances is insufficient, you can select another instance type. However, the node pool does not support confidential computing in this case.
+
+![Instance Type](../images/p132689.png) |
     |**Quantity**|Specify the initial number of nodes in the node pool. If you do not want to create nodes in the node pool, set this parameter to 0.|
     |**Operating System**|You can select only the Aliyun Linux operating system.|
     |**Node Label**|You can add labels to nodes in the node pool.|
     |**ECS Label**|You can add labels to the selected ECS instances.|
 
-5.  Click **OK**.
+5.  Click **Confirm Order**.
 
     On the Node Pools page, if the **state** of the node pool is **Initializing**, it indicates that the system is creating the node pool.
 
-    On the **Clusters** page, find the cluster and click **View Logs** in the **Actions** column. On the Log Information page, you can view the log data of the newly created node pool that supports confidential computing.
+    On the **Clusters** page, find the cluster and click **View Logs** in the **Actions** column. On the page that appears, you can view the log data of the newly created node pool that supports confidential computing.
 
-    After the node pool is created, the node pool changes to the **Active****state**.
+    ![Cluster log](../images/p132697.png)
+
+    After the node pool is created, the **state** of the node pool changes to **Active**.
+
+    ![Active](../images/p132698.png)
 
 
 After the node pool that supports confidential computing is created, you can create and deploy Intel\(R\) SGX applications. For more information, see [Use the Intel SGX SDK to develop and build an application](/intl.en-US/User Guide for Kubernetes Clusters/TEE-based confidential computing/Use the Intel SGX SDK to develop and build an application.md).
