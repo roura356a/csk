@@ -1,5 +1,5 @@
 ---
-keyword: [Arena, k8s集群, 多用户, 存储]
+keyword: [Arena, K8s集群, 多用户, 存储]
 ---
 
 # Arena在多用户场景下的最佳实践
@@ -8,7 +8,7 @@ keyword: [Arena, k8s集群, 多用户, 存储]
 
 请确保您已完成以下操作：
 
--   创建一个ACK集群。详情请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
+-   创建一个ACK集群。详情请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   在ACK集群同VPC下，创建一个操作系统为Linux的ECS实例。具体操作步骤请参见[使用向导创建实例](/intl.zh-CN/实例/创建实例/使用向导创建实例.md)。
 
     本示例中，ECS实例被称为Client机器。Client机器作为Arena的工作站，提交作业至ACK集群。
@@ -42,7 +42,7 @@ keyword: [Arena, k8s集群, 多用户, 存储]
 -   目标一：您需要为当前ACK集群创建两个分组dev1和dev2，并且为这两个分组各添加一个用户bob和tom。
 -   目标二：每个用户只能通过自己的账号和密码登录到Client机器，使用自己环境下的Arena。
 -   目标三：bob和tom只对自己提交的作业可见，以及进行管理。
--   目标四：按组划分Worker节点GPU、CPU、 MEM资源 （注：仅Worker节点的计算资源才能被Arena作业使用）。
+-   目标四：按组划分Worker节点GPU、CPU、MEM资源 （注：仅Worker节点的计算资源才能被Arena作业使用）。
 -   目标五：创建组内共享的数据卷，和组与组之间全局共享的数据卷。
 
 |组名|用户|GPU|CPU|MEM|共享数据卷|
@@ -60,7 +60,7 @@ keyword: [Arena, k8s集群, 多用户, 存储]
 
     1.  通过kubectl连接ACK集群。
 
-        使用kubectl命令连接ACK集群时，您需要安装kubectl客户端工具和配置供集群管理员admin操作ACK集群的KubeConfig文件。有关具体的操作步骤，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。
+        使用kubectl命令连接ACK集群时，您需要安装kubectl客户端工具和配置供集群管理员admin操作ACK集群的KubeConfig文件。有关具体的操作步骤，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 
         **说明：** 要求kubectl的版本大于或等于1.10。
 
@@ -105,7 +105,9 @@ keyword: [Arena, k8s集群, 多用户, 存储]
     kubectl get serviceaccount -n dev2
     ```
 
-    ![namespace serviceacount](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9783572061/p173703.png)
+    预期输出：
+
+    ![namespace serviceacount](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9783572061/p173703.png)
 
 
 ## 步骤二：为用户配置Arena的使用环境
@@ -137,7 +139,9 @@ keyword: [Arena, k8s集群, 多用户, 存储]
     mkdir -p /home/tom/.kube/ && cp tom.config /home/tom/.kube/config
     ```
 
-    ![config](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8631672061/p173803.png)
+    预期输出：
+
+    ![config](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8631672061/p173803.png)
 
     完成上述操作后，用户使用自己的账号登录Client机器后，就可以使用Arena自动连接正确的集群环境。至此，本文示例已完成[目标一](#li_s36_5go_gcm)和[目标二](#li_b62_eoa_lit)。
 
@@ -162,7 +166,9 @@ keyword: [Arena, k8s集群, 多用户, 存储]
         kubectl apply -f dev2_roles.yaml
         ```
 
-        ![ROLE](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0123672061/p173962.png)
+        预期输出：
+
+        ![ROLE](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0123672061/p173962.png)
 
         集群管理员可以通过以下命令查看集群中不同Namespace下的角色。
 
@@ -173,7 +179,7 @@ keyword: [Arena, k8s集群, 多用户, 存储]
 
         如出现下图所示内容，即完成了角色创建操作。
 
-        ![role](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1123672061/p173966.png)
+        ![role](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1123672061/p173966.png)
 
 2.  为用户配置在集群内的权限（赋权）。
 
@@ -192,7 +198,9 @@ keyword: [Arena, k8s集群, 多用户, 存储]
         kubectl apply -f tom_rolebindings.yaml
         ```
 
-        ![rolebinding](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3625182061/p173986.png)
+        预期输出：
+
+        ![rolebinding](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3625182061/p173986.png)
 
     2.  集群管理员通过以下命令查看集群中不同Namespace下对不同用户的角色赋权情况。
 
@@ -203,7 +211,7 @@ keyword: [Arena, k8s集群, 多用户, 存储]
 
         如出现下图所示内容，即完成了权限绑定操作。
 
-        ![role created](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3625182061/p173991.png)
+        ![role created](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3625182061/p173991.png)
 
         至此，本文示例已完成了上述的前三个目标任务。
 
@@ -239,7 +247,9 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
     kubectl describe resourcequotas dev2-compute-resources -n dev2
     ```
 
-    ![quota](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3625182061/p174046.png)
+    预期输出：
+
+    ![quota](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3625182061/p174046.png)
 
     至此，本文完成了上述的[目标四](#li_db9_ab1_imr)的按照组划分ACK集群计算资源。
 
@@ -258,15 +268,15 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
 
     1.  创建PV。
 
-        分别创建4个PV。有关创建PV的具体操作步骤，请参见[创建PV](/intl.zh-CN/Kubernetes集群用户指南/存储管理-CSI/NAS存储卷/通过控制台使用NAS静态存储卷.md)。department1-public-dev1和department1-public-dev2是用于dev1和dev2两组分别共享部门department1的数据。dev1-public，dev2-public是用于dev1和dev2各自组内共享数据。创建PV的参数配置如下图所示。
+        分别创建4个PV。有关创建PV的具体操作步骤，请参见[创建PV]()。department1-public-dev1和department1-public-dev2是用于dev1和dev2两组分别共享部门department1的数据。dev1-public，dev2-public是用于dev1和dev2各自组内共享数据。创建PV的参数配置如下图所示。
 
-        ![PV](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6337182061/p174088.png)
+        ![PV](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6337182061/p174088.png)
 
         **说明：** 设置挂载点时，选择上步骤创建NAS实例时创建的挂载点。
 
     2.  创建PVC。
 
-        使用上步创建的PV，分别创建PVC。有关创建PVC的具体操作步骤，请参见[创建PVC](/intl.zh-CN/Kubernetes集群用户指南/存储管理-CSI/NAS存储卷/通过控制台使用NAS静态存储卷.md)。
+        使用上步创建的PV，分别创建PVC。有关创建PVC的具体操作步骤，请参见[创建PVC]()。
 
         完成创建PVC后，可以看到在命名空间dev1下给dev1组分配部门和小组两级共享的NAS数据卷：department1-public-dev1和dev1-public。在命名空间dev2下给dev2组分配部门和小组两级共享的NAS数据卷：department1-public-dev2和dev2-public。
 
@@ -282,7 +292,9 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
     arena data list -n dev2
     ```
 
-    ![check](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3599282061/p174112.png)
+    预期输出：
+
+    ![check](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3599282061/p174112.png)
 
     至此，本文已经完成了所有目标。接下来本文将会以bob和tom账户进行登录使用Arena。
 
@@ -301,7 +313,9 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
     arena data list
     ```
 
-    ![result](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4599282061/p174151.png)
+    预期输出：
+
+    ![result](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4599282061/p174151.png)
 
 2.  执行以下命令提交一个需要1张GPU卡的训练作业。
 
@@ -321,7 +335,9 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
     arena list
     ```
 
-    ![bob](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4599282061/p174177.png)
+    预期输出：
+
+    ![bob](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4599282061/p174177.png)
 
 4.  执行以下命令再提交一个一张GPU卡的训练作业。
 
@@ -337,9 +353,9 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
 
     由于本文示例只给dev1组分配了一张GPU卡，所以预期这个作业不会被调度起来。
 
-    ![result](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4599282061/p174148.png)
+    ![result](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4599282061/p174148.png)
 
-    ![reason](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4599282061/p174150.png)
+    ![reason](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4599282061/p174150.png)
 
     可以看到，虽然整个集群还有剩余资源，但是由于bob所在的组只被分配了一张GPU卡资源，并且当前已经有了一个作业占用了资源，所以bob后续的提交的作业就会被暂停。
 
@@ -356,7 +372,9 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
     arena data list
     ```
 
-    ![tom job](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4599282061/p174157.png)
+    预期输出：
+
+    ![tom job](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4599282061/p174157.png)
 
 2.  执行以下命令列出当前用户提交的作业。
 
@@ -366,7 +384,7 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
 
     此时看不到bob提交的作业。
 
-    ![list](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4599282061/p174176.png)
+    ![list](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4599282061/p174176.png)
 
 3.  执行以下命令提交一个需要1张GPU卡的训练作业。
 
@@ -404,7 +422,9 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
     arena list
     ```
 
-    ![result](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4599282061/p174181.png)
+    预期输出：
+
+    ![result](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4599282061/p174181.png)
 
 
 ## 执行结果
