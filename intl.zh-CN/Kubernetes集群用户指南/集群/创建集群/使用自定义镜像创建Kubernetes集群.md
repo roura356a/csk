@@ -1,3 +1,7 @@
+---
+keyword: [自定义镜像, 创建Kubernetes集群]
+---
+
 # 使用自定义镜像创建Kubernetes集群
 
 随着云原生时代的到来，用户应用、业务上云的需求也越来越多，不同的业务场景对容器平台的需求也不尽相同，其中一个非常重要的需求就是使用自定义镜像创建Kubernetes集群。本文主要为您介绍如何使用自定义镜像创建Kubernetes集群。
@@ -5,7 +9,7 @@
 确定要使用自定义镜像前，您需要了解容器服务对于自定义镜像的一些要求。
 
 -   基础镜像推荐使用容器服务使用的最新的基础镜像，因为该镜像不仅可以满足部署Kubernetes集群的需求，同时也是经过容器服务团队严格测试的镜像。自定义镜像需要满足如下几点：
-    -   需要满足阿里云cloud-init的要求，请参见[安装cloud-init](/intl.zh-CN/镜像/自定义镜像/导入镜像/安装cloud-init.md)。
+    -   需要满足阿里云cloud-init的要求。更多信息，请参见[安装cloud-init](/intl.zh-CN/镜像/自定义镜像/导入镜像/安装cloud-init.md)。
     -   需要开启sshd server，且使用默认端口22。
     -   使用阿里云NTP Server进行NTP时间同步。
 -   若需使用自定义镜像请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请。
@@ -82,8 +86,8 @@ ACK-image-builder项目基于开源工具[HashiCorp Packer](https://www.packer.i
 
     |参数|描述|
     |--|--|
-    |access\_key|您的AccessKeyID|
-    |secret\_key|您的AccessKeySecret|
+    |access\_key|您的AccessKey ID|
+    |secret\_key|您的AccessKey Secret|
     |region|创建自定义镜像时使用临时资源的地域|
     |image\_name|自定义镜像的名称|
     |source\_image|基础镜像的名称，可以从阿里云公共镜像列表获得|
@@ -168,17 +172,15 @@ ACK-image-builder项目基于开源工具[HashiCorp Packer](https://www.packer.i
 
     2.  在控制台左侧导航栏中，单击**集群**。
 
-    3.  在集群列表页面中，单击页面右上角的**创建集群**。
+    3.  在集群列表页面中，单击页面右上角的**集群模板**。
 
-    4.  在Kubernetes菜单下，单击左侧导航栏的**集群** \> **集群**，进入集群列表页面。
+    4.  在弹出的选择集群模板中，选择**标准专有集群**页面，单击**创建**。请参见[创建Kubernetes专有版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
 
-    5.  在弹出的选择集群模板中，选择**标准专有集群**页面，单击**创建**。请参见[创建Kubernetes专有版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
+    5.  配置集群创建需要的相关基础信息后，单击下方的**显示高级选项**，在**自定义镜像**中单击**选择**。
 
-    6.  配置集群创建需要的相关基础信息后，单击下方的**显示高级选项**，在**自定义镜像**中单击**选择**。
+    6.  在选择自定义镜像页面，在目标镜像右侧单击**使用**。
 
-    7.  在选择自定义镜像页面，在目标镜像右侧单击**使用**。
-
-    8.  配置完成后，单击**创建集群**。
+    7.  配置完成后，单击**创建集群**。
 
         待集群创建完成后，该集群就是使用了自定义镜像，后续的扩容等均会使用该镜像。
 
