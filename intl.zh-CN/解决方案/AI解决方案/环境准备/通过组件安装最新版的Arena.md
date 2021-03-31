@@ -6,7 +6,7 @@ keyword: [Arena, 机器学习, 轻量级解决方案]
 
 Arena是基于Kubernetes的机器学习轻量级解决方案，支持数据准备，模型开发，模型训练，模型预测的完整生命周期，提升数据科学家工作效率。同时和阿里云的基础云服务深度集成，支持GPU共享、CPFS等服务，可以运行阿里云优化的深度学习框架，最大化使用阿里云异构设备的性能和成本的效益。
 
--   创建包含GPU的Kubernetes集群。具体操作，请参见[创建托管GPU集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU管理/创建异构计算集群/创建托管GPU集群.md)或[创建专有GPU集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU管理/创建异构计算集群/创建专有GPU集群.md)。
+-   创建包含GPU的Kubernetes集群。具体操作，请参见[创建托管GPU集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/创建异构计算集群/创建托管GPU集群.md)或[创建专有GPU集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/创建异构计算集群/创建专有GPU集群.md)。
 -   集群节点可以访问公网。
 
 ## 步骤一：安装Arena组件
@@ -22,9 +22,9 @@ Arena是基于Kubernetes的机器学习轻量级解决方案，支持数据准�
 
 ## 步骤二：配置Arena客户端
 
-如果您使用的是专有版集群，以SSH方式登录到专有版集群的管理节点上，然后直接执行arena命令。有关使用SSH方式登录集群具体步骤，请参见[通过SSH访问Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过SSH访问Kubernetes集群.md)。
+如果您使用的是专有版集群，以SSH方式登录到专有版集群的管理节点上，然后直接执行arena命令。有关使用SSH方式登录集群具体步骤，请参见[通过SSH访问Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过SSH访问Kubernetes集群.md)。
 
-如果您使用的是托管版集群，需使用kubectl命令行工具先连接集群，以确保kubeconfig文件在机器上的正确位置是$HOME/.kube/config，具体步骤请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。然后配置Arena客户端，具体操作步骤如下。
+如果您使用的是托管版集群，需使用kubectl命令行工具先连接集群，以确保kubeconfig文件在机器上的正确位置是$HOME/.kube/config，具体步骤请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。然后配置Arena客户端，具体操作步骤如下。
 
 **说明：** 您可以通过执行命令`kubectl get nodes`判断kubeconfig文件是否正确配置。
 
@@ -126,6 +126,8 @@ Arena是基于Kubernetes的机器学习轻量级解决方案，支持数据准�
           "python /app/main.py"
     ```
 
+    预期输出：
+
     ```
     configmap/firstjob-tfjob created
     configmap/firstjob-tfjob labeled
@@ -149,6 +151,8 @@ Arena是基于Kubernetes的机器学习轻量级解决方案，支持数据准�
     arena get firstjob
     ```
 
+    预期输出：
+
     ```
     STATUS: SUCCEEDED
     NAMESPACE: default
@@ -163,6 +167,8 @@ Arena是基于Kubernetes的机器学习轻量级解决方案，支持数据准�
     ```
     arena logs --tail=10 firstjob
     ```
+
+    预期输出：
 
     ```
     Accuracy at step 910: 0.9694
