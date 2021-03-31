@@ -1,3 +1,7 @@
+---
+keyword: [自定义镜像, 创建ACK集群]
+---
+
 # 使用自定义镜像创建ACK集群
 
 在ACK迁移业务场景中，如无特殊需求，我们推荐您使用ACK默认的系统镜像及其他系统服务。
@@ -26,7 +30,7 @@ ack-image-builder项目基于开源工具[HashiCorp Packer](https://www.packer.i
 
 2.  定义Packer 模板。
 
-    使用Packer创建自定义镜像时，需要创建一个 JSON 格式的模板文件。在该模板文件中，您需要指定创建自定义镜像的 [Alicloud Image Builder（生成器）](https://www.packer.io/docs/builders/alicloud-ecs.html)和[Provisioners（配置器）](https://www.packer.io/docs/provisioners/index.html)。
+    使用Packer创建自定义镜像时，需要创建一个JSON格式的模板文件。在该模板文件中，您需要指定创建自定义镜像的[Alicloud Image Builder（生成器）](https://www.packer.io/docs/builders/alicloud-ecs.html)和[Provisioners（配置器）](https://www.packer.io/docs/provisioners/index.html)。
 
     ```
     {
@@ -210,7 +214,7 @@ grub2-set-default $grub_num
     nameserver 100.XX.XX.138
     ```
 
--   修改/etc/resolve.conf后必须锁定文件， 不然ECS实例重启后cloud-init会刷新文件恢复默认设置，示例如下：
+-   修改/etc/resolve.conf后必须锁定文件，不然ECS实例重启后cloud-init会刷新文件恢复默认设置，示例如下：
 
     ```
     cat scripts/updateDNS.sh
@@ -263,7 +267,7 @@ grub2-set-default $grub_num
 
 1.  将相关系统组件容器镜像打tar包存储在镜像中。
 
-    本例中，假设您创建的集群使用Terway网络、CSI存储插件，镜像用于cn-hangzhou区域的集群，则预加载脚本示例如下：
+    本例中，假设您创建的集群使用Terway网络、CSI存储插件，镜像用于cn-hangzhou地域的集群，则预加载脚本示例如下：
 
     ```
     cat scripts/prepare-images.sh
@@ -336,11 +340,11 @@ grub2-set-default $grub_num
 
 为了节约创建集群的时间，以及降低出错概率，您可以先创建一个无Worker节点的专有版集群或者选择2个Worker节点的托管版集群，然后选择自定义镜像进行集群扩容 ，并进行验证。
 
-1.  创建一个基于ACK默认系统镜像的3Masters+0Worker或者5Masters+0Worker的集群。请参见[创建Kubernetes专有版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes专有版集群.md)。
+1.  创建一个基于ACK默认系统镜像的3Masters+0Worker或者5Masters+0Worker的集群。请参见[创建Kubernetes专有版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
 
-    **说明：** 如果您创建的是托管版Kubernetes集群，需要至少选择2个Worker节点。请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
+    **说明：** 如果您创建的是托管版Kubernetes集群，需要至少选择2个Worker节点。请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 
-2.  选择自定义镜像进行集群扩容，请参见[扩容集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/扩容集群.md)。
+2.  选择自定义镜像进行集群扩容，请参见[扩容集群](/cn.zh-CN/Kubernetes集群用户指南/集群/扩容集群.md)。
 
     如若需要在自定义镜像节点添加到ACK集群后运行其他初始化脚本，可以选择填写实例自定义数据。
 
