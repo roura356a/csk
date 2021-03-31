@@ -74,6 +74,12 @@ keyword: 创建托管GPU集群
 
             -   在这两种模式下，节点上可以运行的Pod数均受节点的弹性网卡和辅助IP的配额限制。
             -   当专有网络选择共享VPC时，网络插件仅支持Terway。 |
+        |**节点IP数量**|如果您选择的网络模式为**Flannel**，您需设置**节点IP数量**。
+
+**说明：**
+
+        -   **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。
+        -   根据您所选择的专有网络和节点IP数量，ACK将为您推荐可用的Pod网络CIDR和Service CIDR，并给出相应配置下集群内可允许部署的主机数量以及每台主机可容纳的Pod数量。请您根据集群规模的实际需求，在推荐配置的基础上进行修改。 |
         |**Pod网络CIDR**|网络插件选择**Flannel**时，需要配置**Pod网络CIDR**。 **Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/intl.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。 |
         |**Terway模式**|网络插件选择**Terway**时，需要配置**Terway模式**。 配置**Terway模式**，需选择是否选中**Pod独占弹性网卡以获得最佳性能**。
 
@@ -81,7 +87,6 @@ keyword: 创建托管GPU集群
         -   没有选中**Pod独占弹性网卡以获得最佳性能**，使用弹性网卡的辅助IP分配给Pod，一个Pod占用一个弹性网卡辅助IP地址。
 **说明：** 当前只有白名单用户可使用该功能。[提交工单](https://selfservice.console.aliyun.com/ticket/scene/ecs/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%20ECS/detail)申请使用。 |
         |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/intl.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。|
-        |**节点IP数量**|如果您选择的网络模式为**Flannel**，您需设置**节点IP数量**。 **说明：** **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。 |
         |**配置SNAT**|设置是否为专有网络配置SNAT网关。         -   如果您使用的VPC中当前已有NAT网关，容器服务会使用已有的NAT网关。
         -   如果VPC中没有NAT网关，系统会默认自动为您创建一个NAT网关。如果您不希望系统自动创建NAT网关，可以取消选中页面下方的**为专有网络配置SNAT**。此时您需要自行配置NAT网关实现VPC安全访问公网环境，或者手动配置SNAT，否则VPC内实例将不能正常访问公网，会导致集群创建失败。 |
         |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/intl.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/实例概述.md)。
@@ -116,7 +121,9 @@ keyword: 创建托管GPU集群
         |**集群本地域名**|设置是否配置集群本地域名。
 
 **说明：** 默认域名为**cluster.local**，可自定义域名。域名由两段组成，每段不超过63个字符，且只能使用大小写字母和数字，不能为空。 |
-        |**自定义证书SAN**|在集群API Server服务端证书的SAN（Subject Alternative Name）字段中添加自定义的IP或域名，以实现对客户端的访问控制。 |
+        |**自定义证书SAN**|在集群API Server服务端证书的SAN（Subject Alternative Name）字段中添加自定义的IP或域名，以实现对客户端的访问控制。
+
+具体操作，请参见[自定义托管集群API Server证书SAN](/intl.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/自定义托管集群API Server证书SAN.md)。 |
         |**服务账户令牌卷投影**|开启**服务账户令牌卷投影**功能以降低在Pod中使用Service Account遇到的安全性问题，可使得kubelet支持基于Pod粒度的Token签发，并且支持Token audience和过期时间的配置。详情请参见[部署服务账户令牌卷投影](/intl.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/部署服务账户令牌卷投影.md) |
         |**集群删除保护**|设置是否启用集群删除保护。为防止通过控制台或API误释放集群。 |
 
