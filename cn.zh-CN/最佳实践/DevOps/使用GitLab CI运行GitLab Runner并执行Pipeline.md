@@ -1,3 +1,7 @@
+---
+keyword: [GitLab CI, 运行GitLab Runner, 执行Pipeline]
+---
+
 # 使用GitLab CI运行GitLab Runner并执行Pipeline
 
 本文主要演示如何在Kubernetes集群中安装、注册GitLab Runner，添加Kubernetes类型的Executor来执行构建，并以此为基础完成一个Java源码示例项目从编译构建、镜像打包到应用部署的CICD过程。
@@ -35,11 +39,11 @@
         4.  在左侧导航栏中，选择**Settings** \> **CI / CD**。
         5.  单击**Runners**右侧的**Expand**。
 
-            ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1663659951/p38533.png)
+            ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1663659951/p38533.png)
 
         6.  获取URL和registration token信息。
 
-            ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2663659951/p38535.png)
+            ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2663659951/p38535.png)
 
     2.  获取Group Runners的注册信息。
         1.  在顶部导航栏中，选择**Groups** \> **Your groups**。
@@ -47,21 +51,21 @@
         3.  在左侧导航栏中，选择**Settings** \> **CI / CD**。
         4.  单击**Runners**右侧的**Expand**。
 
-            ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2663659951/p38536.png)
+            ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2663659951/p38536.png)
 
         5.  获取URL和registration token信息。
 
-            ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2663659951/p38537.png)
+            ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2663659951/p38537.png)
 
     3.  获取Shared Runners的注册信息。
 
         **说明：** 只有管理员有权限执行此步操作。
 
-        1.  在顶部导航栏中，单击![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2663659951/p38538.png)进入Admin Area页面。
+        1.  在顶部导航栏中，单击![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2663659951/p38538.png)进入Admin Area页面。
         2.  在左侧导航栏中，选择**Overview** \> **Runners**。
         3.  获取URL和registration token信息。
 
-            ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2663659951/p38539.png)
+            ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2663659951/p38539.png)
 
 2.  执行以下命令获取并修改GitLab Runner的Helm Chart。
 
@@ -155,6 +159,8 @@
         helm package .
         ```
 
+        预期输出：
+
         ```
         Successfully packaged chart and saved it to: /root/gitlab/gitlab-runner/gitlab-runner-0.1.37.tgz
         ```
@@ -167,7 +173,7 @@
 
     查看相关的deployment/pod是否成功启动。若成功启动，则可在GitLab上看到注册成功的GitLab Runner，如下图所示。
 
-    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2663659951/p38540.png)
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2663659951/p38540.png)
 
 
 ## 缓存配置
@@ -204,7 +210,7 @@ cat >>/home/gitlab-runner/.gitlab-runner/config.toml <<EOF
 3.  在左侧导航栏中，选择**Settings** \> **CI / CD**。
 4.  单击**Variables**右侧的**Expand**。添加GitLab Runner可用的环境变量。本示例中，添加以下三个变量。
 
-    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2663659951/p38541.png)
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2663659951/p38541.png)
 
     -   REGISTRY\_USERNAME：镜像仓库用户名。
     -   REGISTRY\_PASSWORD：镜像仓库密码。
@@ -325,9 +331,9 @@ variables:
 
 提交.gitlab-ci.yml文件后，Project gitlab-java-demo会自动检测到这个文件并执行Pipeline， 如下图所示。
 
-![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2663659951/p38542.png)
+![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2663659951/p38542.png)
 
-![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2663659951/p38543.png)
+![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2663659951/p38543.png)
 
 ## 访问服务
 
@@ -336,6 +342,8 @@ variables:
 ```
  kubectl -n gitlab get svc 
 ```
+
+预期输出：
 
 ```
 NAME        TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)        AGE
