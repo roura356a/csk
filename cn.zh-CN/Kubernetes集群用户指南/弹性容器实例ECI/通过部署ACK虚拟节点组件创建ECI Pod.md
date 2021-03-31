@@ -6,7 +6,7 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
 虚拟节点（Virtual Node）实现了Kubernetes与弹性容器实例ECI的无缝连接，让Kubernetes集群轻松获得极大的弹性能力，而不必受限于集群的节点计算容量。您可以灵活动态的按需创建ECI Pod，免去集群容量规划的麻烦。本文主要介绍虚拟节点和ECI，通过ack-virtual-node组件如何部署虚拟节点及如何创建ECI Pod。
 
--   您需要创建一个Kubernetes托管版或者专有版集群（高于1.14版本）。详情请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)或[创建Kubernetes专有版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes专有版集群.md)。
+-   您需要创建一个Kubernetes托管版或者专有版集群（高于1.14版本）。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)或[创建Kubernetes专有版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
 -   您需要开通弹性容器实例服务。登录[弹性容器实例控制台](https://eci.console.aliyun.com/)开通相应的服务。
 -   您需要确认集群所在区域在ECI支持的地域列表内。登录[弹性容器实例控制台](https://eci.console.aliyun.com/)查看已经支持的地域和可用区。
 
@@ -47,7 +47,7 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
 5.  在**组件管理**页面，选择**ack-virtual-node**组件，然后单击**安装**。
 
-    这时会以集群默认虚拟交换机和安全组作为ack-virtual-node的初始ECI配置参数。如果需要修改ECI配置参数，请参考[相关操作](#section_9ec_223_45i)。
+    这时会以集群默认虚拟交换机和安全组作为ack-virtual-node的初始ECI配置参数。如果需要修改ECI配置参数，请参见[相关操作](#section_9ec_223_45i)。
 
     ![组件管理ack-virtual-node组件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2220361161/p232042.png)
 
@@ -68,9 +68,7 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
     **命名空间**已设定为kube-system，**发布名称**已设定为ack-virtual-node。
 
-5.  在应用目录-ack-virtual-node页面，单击**参数**页签，配置虚拟节点参数，然后单击右侧创建页面的**创建**。
-
-    ![创建插件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4106659951/p47256.png)
+5.  在应用目录-ack-virtual-node页面，单击**参数**页签，配置虚拟节点参数。
 
     |参数|描述|获取路径|
     |--|--|----|
@@ -83,18 +81,26 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
 虚拟交换机支持多可用区。因此，这里可以填写多个vSwitch，例如`ECI_VSWITCH: "vsw-xxxxxxx1, vsw-xxxxxxx2, vsw-xxxxxxx3"`。 |
     |ECI\_SECURITY\_GROUP|安全组ID|您可以在节点列表单击某个节点，在**本实例安全组**页签的**安全组列表**区域中，获取安全组ID的值。|
-    |ECI\_ACCESS\_KEY|用户AccessKey ID|请参见[获取AccessKey]()。请授权RAM的**AliyunECIFullAccess**策略，详情请参见[子账号鉴权]()。 |
-    |ECI\_SECRET\_KEY|用户AccessKey Secret|请参见[获取AccessKey]()。请授权RAM的**AliyunECIFullAccess**策略，详情请参见[子账号鉴权]()。 |
+    |ECI\_ACCESS\_KEY|用户AccessKey ID|请参见[获取AccessKey]()。请授权RAM的**AliyunECIFullAccess**策略。更多信息，请参见[子账号鉴权]()。 |
+    |ECI\_SECRET\_KEY|用户AccessKey Secret|请参见[获取AccessKey]()。请授权RAM的**AliyunECIFullAccess**策略。更多信息，请参见[子账号鉴权]()。 |
 
-6.  执行以下命令查看**virtual-node-controller**部署状态。更多信息，请参见[在CloudShell上通过kubectl管理Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/在CloudShell上通过kubectl管理Kubernetes集群.md)。
+6.  在应用目录-ack-virtual-node页面右侧的创建页面，选择目标集群。
 
-    执行命令：
+    **命名空间**已设定为kube-system，**发布名称**已设定为ack-virtual-node，然后单击**创建**。
+
+    ![创建插件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4106659951/p47256.png)
+
+7.  查看**virtual-node-controller**部署状态。
+
+    更多信息，请参见[在CloudShell上通过kubectl管理Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/在CloudShell上通过kubectl管理Kubernetes集群.md)。
+
+    执行以下命令查看**virtual-node-controller**部署状。
 
     ```
     kubectl -n kube-system get deploy ack-virtual-node-controller
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME                     READY   AGE
@@ -110,51 +116,59 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
 -   **配置Pod标签**。
 
-    给Pod添加label alibabacloud.com/eci=true，Pod将以ECI方式运行，其节点是虚拟节点，示例如下：
+    给Pod添加标签`alibabacloud.com/eci=true`，Pod将以ECI方式运行，其节点是虚拟节点，示例如下：
 
-    执行命令：
+    1.  执行以下命令给Pod添加标签。
 
-    ```
-    kubectl run nginx --image nginx -l alibabacloud.com/eci=true
-    ```
+        ```
+        kubectl run nginx --image nginx -l alibabacloud.com/eci=true
+        ```
 
-    ```
-    kubectl get pod -o wide|grep virtual-kubelet
-    ```
+    2.  执行以下命令查看Pod。
 
-    返回结果如下：
+        ```
+        kubectl get pod -o wide|grep virtual-kubelet
+        ```
 
-    ```
-    nginx-7fc9f746b6-r4xgx     0/1     ContainerCreating   0          20s   192.168.*.*   virtual-kubelet        <none>           <none>
-    ```
+        预期输出：
 
--   **配置Namespace标签**。
+        ```
+        nginx-7fc9f746b6-r4xgx     0/1     ContainerCreating   0          20s   192.168.XX.XX   virtual-kubelet        <none>           <none>
+        ```
 
-    给Pod所在的命名空间添加label alibabacloud.com/eci=true，Pod将以ECI方式运行，其节点是虚拟节点，示例如下：
+-   **配置命名空间标签**。
 
-    执行命令：
+    给Pod所在的命名空间添加标签`alibabacloud.com/eci=true`，Pod将以ECI方式运行，其节点是虚拟节点，示例如下：
 
-    ```
-    kubectl create ns vk
-    ```
+    1.  执行以下命令创建虚拟节点。
 
-    ```
-    kubectl label namespace vk alibabacloud.com/eci=true
-    ```
+        ```
+        kubectl create ns vk
+        ```
 
-    ```
-    kubectl -n vk run nginx --image nginx
-    ```
+    2.  执行以下命令给Pod所在的命名空间添加标签。
 
-    ```
-    kubectl -n vk get pod -o wide|grep virtual-kubelet
-    ```
+        ```
+        kubectl label namespace vk alibabacloud.com/eci=true
+        ```
 
-    返回结果如下：
+    3.  执行以下命令让命名空间中的Pod调度到虚拟节点上。
 
-    ```
-    nginx-6f489b847d-vgj4d      1/1     Running             0          1m   192.168.*.*   virtual-kubelet        <none>           <none>
-    ```
+        ```
+        kubectl -n vk run nginx --image nginx
+        ```
+
+    4.  执行以下命令查看Pod。
+
+        ```
+        kubectl -n vk get pod -o wide|grep virtual-kubelet
+        ```
+
+        预期输出：
+
+        ```
+        nginx-6f489b847d-vgj4d      1/1     Running             0          1m   192.168.XX.XX   virtual-kubelet        <none>           <none>
+        ```
 
 
 ## 相关操作
@@ -165,7 +179,7 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
 虚拟节点Controller的配置决定了其调度ECI Pod的行为和ECI运行环境配置，包括虚拟交换机和安全组配置等。您可以根据需要灵活的修改Controller配置，修改配置后不会影响已经运行的ECI Pod，会立即生效于新建的ECI Pod。
 
-执行以下代码修改虚拟节点Controller配置的方法如下。
+执行以下命令修改虚拟节点Controller的配置。
 
 ```
 kubectl -n kube-system edit deployment ack-virtual-node-controller
