@@ -6,8 +6,8 @@ keyword: [TensorFlow, 单机训练, 共享存储系统, Arena]
 
 本文展示如何使用Arena提交TensorFlow的单机训练作业，并通过TensorBoard可视化查看训练作业。
 
--   [创建包含GPU的Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU管理/GPU资源调度/Kubernetes GPU集群支持GPU调度.md)。
--   [集群节点可以访问公网](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过公网访问集群API Server.md)。
+-   [创建包含GPU的Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU资源调度/Kubernetes GPU集群支持GPU调度.md)。
+-   [集群节点可以访问公网](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过公网访问集群API Server.md)。
 -   [已经安装最新版的Arena](/cn.zh-CN/解决方案/AI解决方案/环境准备/通过组件安装最新版的Arena.md)。
 -   已给集群配置了Arena使用的PVC，并且PVC已填充本文使用的数据集，详情请参见[配置NAS共享存储](/cn.zh-CN/解决方案/AI解决方案/环境准备/配置NAS共享存储.md)（或者[配置CPFS共享存储](/cn.zh-CN/解决方案/AI解决方案/环境准备/配置CPFS共享存储.md)）。
 
@@ -18,6 +18,8 @@ keyword: [TensorFlow, 单机训练, 共享存储系统, Arena]
     ```
     arena top node
     ```
+
+    预期输出：
 
     ```
     NAME                       IPADDRESS     ROLE    STATUS  GPU(Total)  GPU(Allocated)
@@ -52,6 +54,8 @@ keyword: [TensorFlow, 单机训练, 共享存储系统, Arena]
         "python code/tensorflow-sample-code/tfjob/docker/mnist/main.py --log_dir /mnist_data/tf_data/logs  --data_dir /mnist_data/tf_data/"
     ```
 
+    预期输出：
+
     ```
     configmap/tf-git-tfjob created
     configmap/tf-git-tfjob labeled
@@ -82,7 +86,7 @@ training-data  ReadWriteMany                      35m
 如果没有可用的PVC，您可创建PVC。详情请参见[配置NAS共享存储](/cn.zh-CN/解决方案/AI解决方案/环境准备/配置NAS共享存储.md)。
 
 |无|
-    |--tensorboard|可选|为训练任务开启一个TensoBoard服务，用作数据可视化，您可以结合--logdir指定TensorBoard要读取的event路径。不指定该参数，则不开启TensorBoard服务。|无|
+    |--tensorboard|可选|为训练任务开启一个TensorBoard服务，用作数据可视化，您可以结合--logdir指定TensorBoard要读取的event路径。不指定该参数，则不开启TensorBoard服务。|无|
     |--logdir|可选|需要结合--tensorboard一起使用，该参数表示TensorBoard需要读取event数据的路径。|/training\_logs|
 
     **说明：** 如果您使用非公开Git代码库，则可以使用以下命令。
@@ -105,6 +109,8 @@ training-data  ReadWriteMany                      35m
     arena list
     ```
 
+    预期输出：
+
     ```
     NAME    STATUS   TRAINER  AGE  NODE
     tf-git  RUNNING  TFJOB    20s  192.1xx.x.xx
@@ -115,6 +121,8 @@ training-data  ReadWriteMany                      35m
     ```
     arena top job
     ```
+
+    预期输出：
 
     ```
     NAME    GPU(Requests)  GPU(Allocated)  STATUS   TRAINER  AGE  NODE
@@ -134,6 +142,8 @@ training-data  ReadWriteMany                      35m
     arena top node
     ```
 
+    预期输出：
+
     ```
     NAME                       IPADDRESS     ROLE    STATUS  GPU(Total)  GPU(Allocated)
     cn-huhehaote.192.1xx.x.xx  192.1xx.x.xx  master  ready   0           0
@@ -152,6 +162,8 @@ training-data  ReadWriteMany                      35m
     ```
     arena get tf-git
     ```
+
+    预期输出：
 
     ```
     STATUS: SUCCEEDED
@@ -185,13 +197,15 @@ training-data  ReadWriteMany                      35m
 
     将步骤6中获取的TensorBoard的web服务地址http://192.16x.x.xx:31619，拷贝至浏览器地址栏，显示效果如下图。
 
-    ![tensorboard](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5704359951/p134899.png)
+    ![tensorboard](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5704359951/p134899.png)
 
 8.  执行以下命令获取作业日志信息。
 
     ```
     arena logs tf-git
     ```
+
+    预期输出：
 
     ```
     WARNING:tensorflow:From code/tensorflow-sample-code/tfjob/docker/mnist/main.py:120: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
@@ -211,6 +225,8 @@ training-data  ReadWriteMany                      35m
     ```
     arena logs tf-git -t 5
     ```
+
+    预期输出：
 
     ```
     Accuracy at step 9970: 0.9834
