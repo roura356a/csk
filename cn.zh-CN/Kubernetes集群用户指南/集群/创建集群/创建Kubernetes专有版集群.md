@@ -69,6 +69,12 @@ Kubernetes专有版集群需要创建至少3个Master节点以保证高可用性
             -   在Terway模式下，节点上可以运行的Pod数均受节点的弹性网卡和辅助IP的配额限制。
             -   当专有网络选择共享VPC时，网络插件仅支持Terway。
             -   网络插件选择**Terway**时，会使用弹性网卡的辅助IP分配给Pod，一个Pod占用一个弹性网卡辅助IP地址。 |
+        |**节点IP数量**|如果您选择的网络模式为**Flannel**，您需设置**节点IP数量**。
+
+**说明：**
+
+        -   **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。
+        -   根据您所选择的专有网络和节点IP数量，ACK将为您推荐可用的Pod网络CIDR和Service CIDR，并给出相应配置下集群内可允许部署的主机数量以及每台主机可容纳的Pod数量。请您根据集群规模的实际需求，在推荐配置的基础上进行修改。 |
         |**Pod网络CIDR**|网络插件选择**Flannel**时，需要配置**Pod网络CIDR**。
 
 **Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。 |
@@ -91,9 +97,6 @@ Kubernetes专有版集群需要创建至少3个Master节点以保证高可用性
 -   如果选中，集群支持使用Kubernetes的NetworkPolicy策略对Pod进行网络控制。
 -   如果不选中，集群将不会支持使用Kubernetes的NetworkPolicy策略对Pod进行网络控制，这样将不存在网络策略对Kubernetes的API Server产生过大的负载。 |
         |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。 |
-        |**节点IP数量**|如果您选择的网络模式为**Flannel**，您需设置**节点IP数量**。
-
-**说明：** **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。 |
         |**配置SNAT**|创建集群时，默认不开通公网。如果您选择的VPC不具备公网访问能力，选中**为专有网络配置SNAT**后，ACK将为您创建NAT网关并自动配置SNAT规则。 |
         |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/cn.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/实例概述.md)。
 
@@ -239,6 +242,8 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
 
 默认选中**安装node-problem-detector并创建事件中心**。您可以选择是否在日志服务控制台中**创建Ingress Dashboard**。 |
     |**工作流引擎**|设置是否使用AGS。
+
+**说明：** 当前只有白名单用户可以使用该功能。
 
     -   如果选中AGS，则创建集群时系统自动安装AGS工作流插件。
     -   如果不选中，则需要手动安装AGS工作流插件，请参见[AGS命令行帮助](/cn.zh-CN/基因计算服务AGS用户指南/AGS工作流/AGS命令行帮助.md)。 |
