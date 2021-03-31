@@ -68,6 +68,12 @@ ACK的Pro托管版集群相比原标准托管版集群进一步提升了集群�
             -   在Terway模式下，节点上可以运行的Pod数均受节点的弹性网卡和辅助IP的配额限制。
             -   当专有网络选择共享VPC时，网络插件仅支持Terway。
             -   网络插件选择**Terway**时，会使用弹性网卡的辅助IP分配给Pod，一个Pod占用一个弹性网卡辅助IP地址。 |
+        |**节点IP数量**|如果您选择的网络模式为**Flannel**，您需设置**节点IP数量**。
+
+**说明：**
+
+        -   **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。
+        -   根据您所选择的专有网络和节点IP数量，ACK将为您推荐可用的Pod网络CIDR和Service CIDR，并给出相应配置下集群内可允许部署的主机数量以及每台主机可容纳的Pod数量。请您根据集群规模的实际需求，在推荐配置的基础上进行修改。 |
         |**Pod网络CIDR**|网络插件选择**Flannel**时，需要配置**Pod网络CIDR**。
 
 **Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。 |
@@ -90,9 +96,6 @@ ACK的Pro托管版集群相比原标准托管版集群进一步提升了集群�
 -   如果选中，集群支持使用Kubernetes的NetworkPolicy策略对Pod进行网络控制。
 -   如果不选中，集群将不会支持使用Kubernetes的NetworkPolicy策略对Pod进行网络控制，这样将不存在网络策略对Kubernetes的API Server产生过大的负载。 |
         |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。 |
-        |**节点IP数量**|如果您选择的网络模式为**Flannel**，您需设置**节点IP数量**。
-
-**说明：** **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。 |
         |**配置SNAT**|创建集群时，默认不开通公网。如果您选择的VPC不具备公网访问能力，选中**为专有网络配置SNAT**后，ACK将为您创建NAT网关并自动配置SNAT规则。 |
         |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/cn.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/实例概述.md)。
 
@@ -130,7 +133,7 @@ ACK的Pro托管版集群相比原标准托管版集群进一步提升了集群�
 **说明：** 默认域名为**cluster.local**，可自定义域名。域名由两段组成，每段不超过63个字符，且只能使用大小写字母和数字，不能为空。 |
         |**自定义证书SAN**|在集群API Server服务端证书的SAN（Subject Alternative Name）字段中添加自定义的IP或域名，以实现对客户端的访问控制。
 
-具体操作，请参见[自定义托管集群API Server证书SAN]()。 |
+具体操作，请参见[自定义托管集群API Server证书SAN](/cn.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/自定义托管集群API Server证书SAN.md)。 |
         |**服务账户令牌卷投影**|开启**服务账户令牌卷投影**功能以降低在Pod中使用Service Account遇到的安全性问题，可使得kubelet支持基于Pod粒度的Token签发，并且支持Token audience和过期时间的配置。详情请参见[部署服务账户令牌卷投影](/cn.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/部署服务账户令牌卷投影.md) |
         |**Secret落盘加密**|在ACK Pro托管集群中，选中**选择KMS密钥**可以使用在阿里云密钥管理服务KMS（Key Management Service）中创建的密钥加密Kubernetes Secret密钥。设置Secret落盘加密的详情，请参见[使用阿里云KMS进行Secret的落盘加密](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/使用阿里云KMS进行Secret的落盘加密.md)。|
         |**集群删除保护**|设置是否启用集群删除保护。为防止通过控制台或API误释放集群。 |
