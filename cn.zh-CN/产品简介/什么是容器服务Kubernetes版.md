@@ -17,7 +17,7 @@ ACK包含了专有版Kubernetes（Dedicated Kubernetes）、托管版Kubernetes�
 |主要特点|您需要自行创建Master节点及Worker节点。|您只需创建Worker节点，Master节点由ACK创建并托管。|您无需创建Master节点及Worker节点。|
 |可以对集群基础设施进行更细粒度的控制，需要自行规划、维护、升级服务器集群。|简单、低成本、高可用，无需管理Master节点。|无需管理任何节点，可直接启动应用程序。|
 |收费方式|集群管理免费，但需要承担Master节点、Worker节点以及其他基础资源的费用。|-   标准版：集群管理免费，但需要承担Worker节点以及其他基础资源的费用。
--   [Pro版](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/Kubernetes Pro版集群介绍.md)：按照集群数量或者包年包月方式收费。
+-   [Pro版](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/ACK Pro版集群介绍.md)：按照集群数量或者包年包月方式收费。
 
 |按容器实例的使用资源量和时长（秒）计费。|
 |应用场景|适用于所有场景。|适用于所有场景。|适用于批量任务、突发扩容，以及CI/CD测试。|
@@ -39,7 +39,7 @@ ACK包含了专有版Kubernetes（Dedicated Kubernetes）、托管版Kubernetes�
     -   集群升级：一键升级K8s版本，统一管理系统组件升级。
     -   节点池管理：支持节点池生命周期管理，支持在同一集群中配置不同规格的节点池，例如交换机、运行时、OS、安全组等。
     -   [弹性伸缩](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/弹性伸缩概述.md)：通过控制台一键垂直扩缩容来快速应对业务波动，同时支持服务级别的亲和性策略和横向扩展。
-    -   [多集群管理](/cn.zh-CN/Kubernetes集群用户指南/多云混合云管理/多云混合云概述.md)：支持线下IDC和多云多区域的集群统一接入实现混合云应用管理。
+    -   [多集群管理](/cn.zh-CN/Kubernetes集群用户指南/多云混合云/多云混合云概述.md)：支持线下IDC和多云多区域的集群统一接入实现混合云应用管理。
     -   授权管理：支持RAM授权和RBAC权限管理。
 -   应用管理
     -   应用创建：支持多种类型应用，从镜像、模版的创建，支持环境变量、应用健康、数据盘、日志等相关配置。
@@ -50,13 +50,13 @@ ACK包含了专有版Kubernetes（Dedicated Kubernetes）、托管版Kubernetes�
     -   应用目录：支持应用目录，简化云服务集成。
     -   [应用中心](/cn.zh-CN/Kubernetes集群用户指南/应用中心/应用中心概述.md)：应用部署后，以统一的视角展现整体应用的拓扑结构，同时对于持续部署等场景进行统一的版本管理与回滚。
 -   存储与网络
-    -   [存储插件](/cn.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/存储插件说明.md)：支持Flexvolume以及CSI。
+    -   [存储插件](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/存储插件说明.md)：支持Flexvolume以及CSI。
     -   存储卷和存储声明：
         -   支持创建块存储、NAS、OSS、CPFS类型的存储卷。
         -   支持持久化存储卷声明（PVC）挂接存储卷。
         -   支持存储卷的动态创建和迁移。
         -   支持以脚本方式查看和更新存储卷和存储声明。
-    -   [网络路由](/cn.zh-CN/Kubernetes集群用户指南/网络管理/网络概述.md)：
+    -   [网络路由](/cn.zh-CN/Kubernetes集群用户指南/网络/网络概述.md)：
         -   支持VPC Flannel模式、Terway容器网络。
         -   支持定义Sevice和Pod的CIDR。
         -   支持NetworkPolicy。
@@ -64,8 +64,8 @@ ACK包含了专有版Kubernetes（Dedicated Kubernetes）、托管版Kubernetes�
 -   运维与安全
     -   监控：支持集群、节点、应用、容器实例层面的监控；支持prometheus插件。
     -   日志：支持集群日志查看；支持应用日志采集；支持容器实例日志查看。
-    -   [安全中心](/cn.zh-CN/Kubernetes集群用户指南/安全管理/安全中心/使用运行时刻安全监控.md)：支持运行时刻的安全策略管理，应用安全配置巡检和运行时刻的安全监控和告警，提升容器安全整体纵深防御能力。
-    -   [安全沙箱](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱管理/安全沙箱概述.md)：可以让应用运行在一个轻量虚拟机沙箱环境中，拥有独立的内核，具备更好的安全隔离能力。适用于不可信应用隔离、故障隔离、性能隔离、多用户间负载隔离等场景。
+    -   [安全中心](/cn.zh-CN/Kubernetes集群用户指南/安全/容器应用安全/使用运行时刻安全监控.md)：支持运行时刻的安全策略管理，应用安全配置巡检和运行时刻的安全监控和告警，提升容器安全整体纵深防御能力。
+    -   [安全沙箱](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱/安全沙箱概述.md)：可以让应用运行在一个轻量虚拟机沙箱环境中，拥有独立的内核，具备更好的安全隔离能力。适用于不可信应用隔离、故障隔离、性能隔离、多用户间负载隔离等场景。
     -   [机密计算](/cn.zh-CN/Kubernetes集群用户指南/ACK-TEE机密计算/ACK-TEE机密计算介绍.md)：基于Intel SGX提供的可信应用或用于交付和管理机密计算应用的云原生一站式机密计算平台，帮助您保护数据使用中的安全性、完整性和机密性。机密计算可以让您把重要的数据和代码放在一个特殊的可信执行加密环境。
 
 ## 产品架构
@@ -90,7 +90,7 @@ ACK包含了专有版Kubernetes（Dedicated Kubernetes）、托管版Kubernetes�
 
 ## ACK用户交流群
 
-如果您使用ACK过程中有任何疑问，欢迎使用钉钉扫描下面二维码加入钉钉交流群。
+如果您使用ACK过程中有任何疑问，欢迎使用钉钉扫描下面二维码或者[点击链接](https://wx-in-i.dingtalk.com/invite-page/weixin.html?bizSource=____source____&corpId=ding525815e01f9272bdffe93478753d9884&inviterUid=E65E079410B2BD4C6B2F679C0AD92F4C&encodeDeptId=A9AB13812C0717AD03A6AD1004DA0487)加入钉钉交流群。
 
-![ACK用户大群二维码](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1192471161/p233033.png)
+![ACK用户大群二维码](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8160817161/p233033.png)
 
