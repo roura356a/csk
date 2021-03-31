@@ -53,11 +53,18 @@ keyword: [kubernetes, k8s, 创建]
 
 您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[使用交换机](/cn.zh-CN/专有网络和交换机/使用交换机.md)。 |
         |**网络插件**|默认选择Flannel。有关Flannel和Terway的详情，请参见[t64408.md\#section\_k1z\_f1n\_lmh](/cn.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/使用Terway网络插件.md)。 |
+        |**节点IP数量**|默认选择64。
+
+如果您选择的网络模式为**Flannel**，您需设置**节点IP数量**。
+
+**说明：**
+
+        -   **节点IP数量**是指可分配给一个节点的IP数量，建议保持默认值。
+        -   根据您所选择的专有网络和节点IP数量，ACK将为您推荐可用的Pod网络CIDR和Service CIDR，并给出相应配置下集群内可允许部署的主机数量以及每台主机可容纳的Pod数量。请您根据集群规模的实际需求，在推荐配置的基础上进行修改。 |
         |**Pod网络CIDR**|网络插件选择**Flannel**时，需要配置**Pod网络CIDR**。
 
 **Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。 |
         |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。 |
-        |**节点IP数量**|默认选择64。**节点IP数量**是指可分配给一个节点的IP数量。 |
         |**配置SNAT**|默认选中**为专有网络配置SNAT网关**。
 
 创建集群时，默认不开通公网。如果您选择的VPC不具备公网访问能力，选中**为专有网络配置SNAT**后，ACK将为您创建NAT网关并自动配置SNAT规则。 |
