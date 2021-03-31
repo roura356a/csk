@@ -1,3 +1,7 @@
+---
+keyword: [StatefulSet, 持久化存储]
+---
+
 # 实现StatefulSet持久化存储的最佳实践-Flexvolume
 
 有状态服务StatefulSet支持通过VolumeClaimTemplate为每个Pod创建PV和PVC。并且删除和减少Pod时，不会删除StatefulSet的PV和PVC。本文为您介绍如何通过VolumeClaimTemplate实现StatefulSet持久化存储。
@@ -24,8 +28,8 @@
 
 ## 前提条件
 
--   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)
--   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)
+-   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
+-   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)
 
 ## 部署StatefulSet服务
 
@@ -97,6 +101,8 @@
     kubectl get pod -w -l app=nginx
     ```
 
+    预期输出：
+
     ```
     NAME         READY   STATUS    RESTARTS   AGE
     web-0        0/1     Pending   0          0s
@@ -115,6 +121,8 @@
     kubectl get pod
     ```
 
+    预期输出：
+
     ```
     NAME                          READY   STATUS    RESTARTS   AGE
     web-0                         1/1     Running   0          6m
@@ -126,6 +134,8 @@
     ```
     kubectl get pvc
     ```
+
+    预期输出：
 
     ```
     NAME             STATUS   VOLUME                   CAPACITY   ACCESS MODES   STORAGECLASS        AGE
@@ -144,6 +154,8 @@
     kubectl scale sts web --replicas=3
     ```
 
+    预期输出：
+
     ```
     statefulset.apps/web scaled
     ```
@@ -153,6 +165,8 @@
     ```
     kubectl get pod
     ```
+
+    预期输出：
 
     ```
     NAME                          READY   STATUS    RESTARTS   AGE
@@ -166,6 +180,8 @@
     ```
     kubectl get pvc
     ```
+
+    预期输出：
 
     ```
     NAME             STATUS   VOLUME                   CAPACITY   ACCESS MODES   STORAGECLASS        AGE
@@ -183,6 +199,8 @@
     kubectl scale sts web --replicas=2
     ```
 
+    预期输出：
+
     ```
     statefulset.apps/web scaled
     ```
@@ -192,6 +210,8 @@
     ```
     kubectl get pod
     ```
+
+    预期输出：
 
     ```
     NAME                          READY   STATUS    RESTARTS   AGE
@@ -206,6 +226,8 @@
     ```
     kubectl get pvc
     ```
+
+    预期输出：
 
     ```
     NAME             STATUS   VOLUME                   CAPACITY   ACCESS MODES   STORAGECLASS        AGE
@@ -225,6 +247,8 @@
     kubectl scale sts web --replicas=3
     ```
 
+    预期输出：
+
     ```
     statefulset.apps/web scaled
     ```
@@ -234,6 +258,8 @@
     ```
     kubectl get pod
     ```
+
+    预期输出：
 
     ```
     NAME                          READY   STATUS    RESTARTS   AGE
@@ -247,6 +273,8 @@
     ```
     kubectl get pvc
     ```
+
+    预期输出：
 
     ```
     NAME             STATUS   VOLUME                   CAPACITY   ACCESS MODES   STORAGECLASS        AGE
@@ -266,6 +294,8 @@
     kubectl describe pod web-1 | grep ClaimName
     ```
 
+    预期输出：
+
     ```
     ClaimName:  disk-ssd-web-1
     ```
@@ -276,6 +306,8 @@
     kubectl delete pod web-1
     ```
 
+    预期输出：
+
     ```
     pod "web-1" deleted
     ```
@@ -285,6 +317,8 @@
     ```
     kubectl get pod
     ```
+
+    预期输出：
 
     ```
     NAME                          READY   STATUS    RESTARTS   AGE
@@ -301,6 +335,8 @@
     kubectl get pvc
     ```
 
+    预期输出：
+
     ```
     NAME             STATUS   VOLUME                   CAPACITY   ACCESS MODES   STORAGECLASS        AGE
     disk-ssd-web-0   Bound    d-2zegw7et6xc96nbojuoo   20Gi       RWO            alicloud-disk-ssd   1h
@@ -315,6 +351,8 @@
     ```
     kubectl get pod -w -l app=nginx
     ```
+
+    预期输出：
 
     ```
     NAME    READY   STATUS    RESTARTS   AGE
@@ -340,6 +378,8 @@
     kubectl exec web-1 ls /data
     ```
 
+    预期输出：
+
     ```
     lost+found
     ```
@@ -356,6 +396,8 @@
     kubectl exec web-1 ls /data
     ```
 
+    预期输出：
+
     ```
     lost+found
     statefulset
@@ -367,6 +409,8 @@
     kubectl delete pod web-1
     ```
 
+    预期输出：
+
     ```
     pod "web-1" deleted
     ```
@@ -376,6 +420,8 @@
     ```
     kubectl exec web-1 ls /data
     ```
+
+    预期输出：
 
     ```
     lost+found
