@@ -10,21 +10,29 @@ SNAT可以为VPC内无公网IP的ECS实例或集群提供访问互联网的代�
 
 ## 操作步骤
 
-1.  登录[NAT网关管理控制台](https://vpc.console.aliyun.com/nat)。
+为已有集群开启SNAT公网访问能力的流程图及对应操作步骤如下。
 
-2.  在左侧导航栏，单击**NAT网关**。
+![创建SNAT](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9263117161/p259133.png)
 
-3.  在**NAT网关**页面，单击**创建NAT网关**。
+1.  创建NAT网关。
 
-    创建NAT网关的参数说明，请参见[创建NAT网关]()。
+    1.  登录[NAT网关管理控制台](https://vpc.console.aliyun.com/nat)。
 
-    **说明：** 创建NAT网关时，地域和VPC的配置需要和集群的保持一致。
+    2.  在左侧导航栏，单击**NAT网关**。
 
-4.  在左侧导航栏，选择**弹性公网IP** \> **弹性公网IP**，然后在**弹性公网IP**页面，单击**购买弹性公网IP**。
+    3.  在**NAT网关**页面，单击**创建NAT网关**。
+
+        创建NAT网关的参数说明，请参见[创建NAT网关]()。
+
+        **说明：** 创建NAT网关时，地域和VPC的配置需要和集群的保持一致。
+
+2.  创建弹性公网IP。
+
+    在左侧导航栏，选择**弹性公网IP** \> **弹性公网IP**，然后在**弹性公网IP**页面，单击**购买弹性公网IP**。
 
     如果您已经有弹性公网IP的话，可以跳过这一步。
 
-5.  绑定弹性公网IP到对应的NAT网关。
+3.  绑定弹性公网IP到对应的NAT网关。
 
     1.  在**NAT网关**页面，选择目标NAT网关，然后在其右侧选择**![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4475659951/p140355.png)** \> **绑定弹性公网IP**。
 
@@ -32,7 +40,7 @@ SNAT可以为VPC内无公网IP的ECS实例或集群提供访问互联网的代�
 
     3.  单击**确定**。
 
-6.  配置SNAT规则。
+4.  为NAT网关创建SNAT条目。
 
     1.  在**NAT网关**页面，选择目标NAT网关，然后在其右侧，单击**管理**。
 
@@ -57,9 +65,13 @@ SNAT可以为VPC内无公网IP的ECS实例或集群提供访问互联网的代�
 ![Terway网络](../images/p255209.png "Terway网络") |
         |**选择公网IP地址**|选择用来提供互联网访问的公网IP。|
 
-    配置SNAT规则之后，集群就开启了SNAT。您可以在[NAT网关管理控制台](https://vpc.console.aliyun.com/nat)看到NAT网关的详细信息，包括SNAT使用的EIP。
+    创建SNAT条目并配置SNAT规则之后，集群就开启了SNAT。您可以在[NAT网关管理控制台](https://vpc.console.aliyun.com/nat)看到NAT网关的详细信息，包括SNAT使用的弹性公网IP。下图为Terway网络模式下开启了SNAT公网访问的NAT网关实例。
 
-    ![NAT](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4475659951/p140370.png)
+    ![NAT](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0787117161/p140370.png)
+
+    单击NAT网关名称，在对应NAT网关实例的**SNAT管理**页签中，查看并确认已绑定了正确的集群所用虚拟交换机。下图为Terway网络模式下创建的SNAT条目信息。
+
+    ![snat](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1687517161/p259134.png)
 
 
 登录到集群的节点上，然后访问公网，查看网络正常，数据包无丢失。
