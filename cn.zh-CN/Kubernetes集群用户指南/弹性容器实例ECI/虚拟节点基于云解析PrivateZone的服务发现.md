@@ -1,3 +1,7 @@
+---
+keyword: [虚拟节点, 云解析PrivateZone, 服务发现]
+---
+
 # 虚拟节点基于云解析PrivateZone的服务发现
 
 阿里云Kubernetes集群的虚拟节点已经支持服务发现功能，目前支持Intranet service、Headless service、ClusterIP service。
