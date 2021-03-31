@@ -6,8 +6,8 @@ keyword: [TensorFlow, 分布式训练, 共享存储系统, Arena]
 
 本文展示如何使用Arena提交TensorFlow基于PS-Worker模式的分布式训练作业，并通过TensorBoard可视化查看训练作业。
 
--   [创建包含GPU的Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU管理/GPU资源调度/Kubernetes GPU集群支持GPU调度.md)。
--   [集群节点可以访问公网](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过公网访问集群API Server.md)。
+-   [创建包含GPU的Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU资源调度/Kubernetes GPU集群支持GPU调度.md)。
+-   [集群节点可以访问公网](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过公网访问集群API Server.md)。
 -   [已经安装最新版的Arena](/intl.zh-CN/解决方案/AI解决方案/环境准备/通过组件安装最新版的Arena.md)。
 -   已给集群配置了Arena使用的PVC，并且PVC已填充本文使用的数据集，详情请参见[配置NAS共享存储](/intl.zh-CN/解决方案/AI解决方案/环境准备/配置NAS共享存储.md)（或者[配置CPFS共享存储](/intl.zh-CN/解决方案/AI解决方案/环境准备/配置CPFS共享存储.md)）。
 
@@ -18,6 +18,8 @@ keyword: [TensorFlow, 分布式训练, 共享存储系统, Arena]
     ```
     arena top node
     ```
+
+    预期输出：
 
     ```
     NAME                       IPADDRESS     ROLE    STATUS  GPU(Total)  GPU(Allocated)
@@ -53,6 +55,8 @@ keyword: [TensorFlow, 分布式训练, 共享存储系统, Arena]
                   --logdir=/mnist_data/tf_data/logs \
                   "python code/tensorflow-sample-code/tfjob/docker/mnist/main.py --log_dir /mnist_data/tf_data/logs  --data_dir /mnist_data/tf_data/"
     ```
+
+    预期输出：
 
     ```
     configmap/tf-dist-tfjob created
@@ -111,6 +115,8 @@ training-data  ReadWriteMany                      35m
     arena list
     ```
 
+    预期输出：
+
     ```
     NAME     STATUS     TRAINER  AGE  NODE
     tf-dist  RUNNING    TFJOB    58s  192.1xx.x.xx
@@ -122,6 +128,8 @@ training-data  ReadWriteMany                      35m
     ```
     arena top job
     ```
+
+    预期输出：
 
     ```
     NAME     GPU(Requests)  GPU(Allocated)  STATUS     TRAINER  AGE  NODE
@@ -142,6 +150,8 @@ training-data  ReadWriteMany                      35m
     arena top node
     ```
 
+    预期输出：
+
     ```
     NAME                       IPADDRESS     ROLE    STATUS  GPU(Total)  GPU(Allocated)
     cn-huhehaote.192.1xx.x.xx  192.1xx.x.xx  master  ready   0           0
@@ -160,6 +170,8 @@ training-data  ReadWriteMany                      35m
     ```
     arena get tf-dist
     ```
+
+    预期输出：
 
     ```
     STATUS: RUNNING
@@ -195,13 +207,15 @@ training-data  ReadWriteMany                      35m
 
     将步骤6中获取的TensorBoard的web服务地址http://192.1xx.x.xx:31870，拷贝至浏览器地址栏，显示效果如下图。
 
-    ![tf](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6704359951/p135005.png)
+    ![tf](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6704359951/p135005.png)
 
 8.  执行以下命令获取作业日志信息。
 
     ```
     arena logs tf-dist
     ```
+
+    预期输出：
 
     ```
     WARNING:tensorflow:From code/tensorflow-sample-code/tfjob/docker/mnist/main.py:120: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
@@ -223,8 +237,9 @@ training-data  ReadWriteMany                      35m
     arena get tf-dist
     ```
 
+    预期输出：
+
     ```
-    # 输出：
     STATUS: SUCCEEDED
     NAMESPACE: default
     PRIORITY: N/A
@@ -239,12 +254,15 @@ training-data  ReadWriteMany                      35m
     http://192.16x.x.xx:31870
     ```
 
+    执行以下命令获取作业日志。
+
     ```
     arena logs tf-dist -i tf-dist-worker-1
     ```
 
+    预期输出：
+
     ```
-    # 输出：
     WARNING:tensorflow:From code/tensorflow-sample-code/tfjob/docker/mnist/main.py:120: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
     Instructions for updating:
     ...
@@ -262,6 +280,8 @@ training-data  ReadWriteMany                      35m
     ```
     arena logs tf-dist -t 5
     ```
+
+    预期输出：
 
     ```
     Accuracy at step 9970: 0.9834
