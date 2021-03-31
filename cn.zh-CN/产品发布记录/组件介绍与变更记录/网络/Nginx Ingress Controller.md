@@ -35,13 +35,16 @@ Ingress Controller通过API Server获取Ingress资源的变化，动态地生成
 |v0.44.0.1-5e842447b-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/aliyun-ingress-controller:v0.44.0.1-5e842447b-aliyun|2021年03月08日|-   默认开启Validating Admission Webhook。
 -   针对`service-weight`这个注解配置的值做合法性检查。
 -   长连接和短连接性能提升20%~50%。
--   集成AHAS Sentinel能力。
+-   集成AHAS Sentinel能力。更多信息，请参见[使用Ingress-sentinel实现流控](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/使用Ingress-sentinel实现流控.md)。
 -   支持OCSP stapling。
 -   升级LuaJIT到2.1.0版本。
 -   升级Nginx到1.19.6版本。
 -   升级Alpine镜像到3.13版本。
 -   修复OpenSSL CVE。
--   默认启用TLSv1.3。
+-   默认启用TLS 1.3版本。
+
+**说明：** HTTPS默认只支持TLS 1.2和TLS 1.3版本。如果需要支持TLS 1.0和TLS 1.1版本，请参见[Ingress支持哪些SSL/TLS版本？](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress FAQ.md)。
+
 -   要求Kubernetes版本为v1.16及以上。
 -   同步更新到社区0.44.0版本。更多信息，请参见[社区Changelog](https://github.com/kubernetes/ingress-nginx/blob/master/Changelog.md)。
 
