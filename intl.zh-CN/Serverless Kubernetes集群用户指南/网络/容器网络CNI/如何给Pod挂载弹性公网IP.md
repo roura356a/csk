@@ -1,3 +1,7 @@
+---
+keyword: 挂载弹性公网IP
+---
+
 # 如何给Pod挂载弹性公网IP
 
 本文主要为您介绍如何在Serverless Kubernetes或虚拟节点中给Pod挂载EIP。
@@ -12,6 +16,11 @@
 
 -   创建一个[Serverless Kubernetes集群](/intl.zh-CN/Serverless Kubernetes集群用户指南/快速入门/创建Serverless Kubernetes集群.md)或在Kubernetes集群创建一个[部署虚拟节点Chart](/intl.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/通过部署ACK虚拟节点组件创建ECI Pod.md)。
 -   请确保该集群的安全组已开放相关端口（本示例中需要开放80端口）。
+
+**说明：**
+
+-   需要升级vk到v1.0.0.7-aliyun的版本支持。
+-   挂载弹性公网IP仅支持创建容器组时设置，更新容器组时添加或修改相关设置无效。
 
 ## 操作步骤
 
@@ -29,7 +38,7 @@
 
 5.  在Kubernetes菜单下，单击左侧导航栏中的**应用** \> **无状态**，进入无状态（Deployment）页面。
 
-6.  单击**无状态**页签，然后单击**使用模板创建**，选择示例模板或自定义，然后单击**创建**。
+6.  在**无状态**页面，单击**使用模板创建**，选择示例模板或自定义，然后单击**创建**。
 
     您可以使用如下YAML示例模板创建Pod。本例中，通过指定k8s.aliyun.com/eci-with-eip为true，Serverless Kubernetes服务和虚拟节点会自动为此Pod分配一个EIP，并且绑定到Pod上。
 
@@ -39,7 +48,8 @@
     metadata:
       name: nginx
       annotations:
-        "**k8s.aliyun.com/eci-with-eip**": "**true**"
+        k8s.aliyun.com/eci-with-eip: "true"
+      # k8s.aliyun.com/eip-bandwidth: '5' #注意：指定带宽不需要带单位
     spec:
       containers:
       - image: registry-vpc.cn-hangzhou.aliyuncs.com/jovi/nginx:alpine
@@ -57,7 +67,7 @@
     -   您可以通过Annotation k8s.aliyun.com/eip-bandwidth指定EIP的带宽，默认值为5，单位为M。
     -   您也可以通过Annotation k8s.aliyun.com/eip-common-bandwith-package-id让EIP绑定共享带宽。
     -   如果您创建的是Deployment，那么Deployment中的每一个Pod都将会被挂载不同的EIP，请谨慎使用此操作。
-7.  单击**容器组**页签，查看容器组的状态。
+7.  在集群管理页左侧导航栏中，选择**工作负载** \> **容器组**，查看容器组的状态。
 
 8.  在目标容器组右侧单击**编辑**，弹出编辑YAML文件。
 
@@ -70,6 +80,31 @@
     ![nginx欢迎页](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3563659951/p51465.png)
 
     **说明：** 此方式中EIP为动态分配，其生命周期与Pod相同，当删除Pod时，动态分配的EIP也会一并删除。
+
+10. 如果需要为ECI指定线路，需设置`k8s.aliyun.com/eip-isp`。
+
+    ISP字段表示线路类型，默认为`BGP`，更多信息，请参见[AllocateEipAddressPro](ISP字段表示线路类型，默认为BGP，更多信息，请参见AllocateEipAddressPro。)。
+
+    YAML样例模板如下：
+
+    ```
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: nginx
+      annotations:
+        k8s.aliyun.com/eci-with-eip: "true"
+        k8s.aliyun.com/eip-isp: "BGP"
+    spec:
+      containers:
+      - image: registry-vpc.cn-hangzhou.aliyuncs.com/jovi/nginx:alpine
+        name: nginx
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+      restartPolicy: OnFailure
+    ```
 
 
 ## 方法二：指定弹性公网IP实例ID
@@ -88,7 +123,7 @@
 
 6.  在Kubernetes菜单下，单击左侧导航栏中的**应用** \> **无状态**，进入无状态（Deployment）页面。
 
-7.  单击**无状态**页签，然后单击**使用模板创建**，选择示例模板或自定义，然后单击**创建**。
+7.  **无状态**页面，然后单击**使用模板创建**，选择示例模板或自定义，然后单击**创建**。
 
     您可以使用如下YAML示例模板创建Pod。本例中，通过指定Pod的Annonation k8s.aliyun.com/eci-eip-instanceid为EIP实例ID。
 
@@ -98,7 +133,7 @@
     metadata:
       name: nginx
       annotations:
-        "**k8s.aliyun.com/eci-eip-instanceid**": "**<youreipInstanceId\>**"
+        "k8s.aliyun.com/eci-eip-instanceid": "<youreipInstanceId>"
     spec:
       containers:
       - image: registry-vpc.cn-hangzhou.aliyuncs.com/jovi/nginx:alpine
@@ -111,9 +146,11 @@
       restartPolicy: OnFailure
     ```
 
-    **说明：** `<youreipInstanceId>`需要替换成步骤1中获取的EIP实例ID。
+    **说明：**
 
-8.  单击**容器组**页签，查看容器组的状态。
+    -   `<youreipInstanceId>`需要替换成步骤1中获取的EIP实例ID。
+    -   如果同时设置了自动分配弹性公网EIP和指定弹性公网IP实例ID，则手动指定的EIP无效。
+8.  在集群管理页左侧导航栏中，选择**工作负载** \> **容器组**，查看容器组的状态。
 
 9.  在浏览器中输入http://ip地址，您可访问nginx欢迎页。
 
