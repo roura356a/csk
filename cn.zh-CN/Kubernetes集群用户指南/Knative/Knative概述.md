@@ -66,9 +66,9 @@ Knative本身不收取管理费用，但在使用过程中所创建的云服务�
 
 ## Knative交流群
 
-如果您对于Knative有任何疑问，欢迎使用钉钉扫描二维码或者搜索群号（23302777）加入钉钉交流群。
+如果您对于Knative有任何疑问，欢迎使用钉钉扫描二维码或者[点击链接](https://wx-in-i.dingtalk.com/invite-page/weixin.html?bizSource=____source____&corpId=ding525815e01f9272bdffe93478753d9884&inviterUid=E65E079410B2BD4C6B2F679C0AD92F4C&encodeDeptId=C41FAA99179E3AFA8B464DF4EBED111F)加入钉钉交流群。
 
-![交流群](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5626324161/p210838.png)
+![交流群](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5599717161/p210838.png)
 
 ## 更多信息
 
