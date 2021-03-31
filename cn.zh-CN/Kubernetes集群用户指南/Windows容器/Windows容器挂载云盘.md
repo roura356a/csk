@@ -7,7 +7,7 @@ keyword: [ACK Windows节点, 云盘, 存储资源, Kubernetes]
 您可以在ACK Window容器上使用云盘存储资源。本文介绍如何在Windows容器上使用云盘。
 
 -   [创建Windows节点池](/cn.zh-CN/Kubernetes集群用户指南/Windows容器/创建Windows节点池.md)
--   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/管理与访问集群/通过kubectl连接Kubernetes集群.md)
+-   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)
 
 ## 操作步骤
 
@@ -17,7 +17,7 @@ keyword: [ACK Windows节点, 云盘, 存储资源, Kubernetes]
 
         使用以下模板创建YAML文件在集群中部署Flexvolume组件，创建Windows环境下的StorageClass，以及更新集群中默认安装的alicloud-disk-controller，使其支持Windows云盘PV的创建。
 
-        Flexvolume是Kubernetes支持的一种存储插件扩展方式。详情请参见[存储插件说明](/cn.zh-CN/Kubernetes集群用户指南/存储管理-Flexvolume/存储插件说明.md)。
+        Flexvolume是Kubernetes支持的一种存储插件扩展方式。更多信息，请参见[存储插件说明](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/存储插件说明.md)。
 
 
 
@@ -81,9 +81,13 @@ keyword: [ACK Windows节点, 云盘, 存储资源, Kubernetes]
                   storage: 20Gi
         ```
 
-    如果存储组件成功部署，执行命令`kubectl get pv`会看到自动创建的PV。
+    如果存储组件成功部署，执行以下命令可看到自动创建的PV。
 
-    返回结果如下：
+    ```
+    kubectl get pv
+    ```
+
+    预期输出：
 
     ```
     NAME                     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM              STORAGECLASS        REASON   AGE
