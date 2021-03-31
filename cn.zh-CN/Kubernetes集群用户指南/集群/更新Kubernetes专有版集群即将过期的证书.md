@@ -1,11 +1,15 @@
+---
+keyword: [更新即将过期的证书, Kubernetes专有版集群]
+---
+
 # 更新Kubernetes专有版集群即将过期的证书
 
-本文介绍如何更新Kubernetes专有版集群即将过期的证书。您可以通过控制台操作，也可以通过命令行自动化一键式更新所有节点证书，也可以手动更新master和Worker节点证书。
+本文介绍如何更新Kubernetes专有版集群即将过期的证书。您可以通过控制台操作，也可以通过命令行自动化一键式更新所有节点证书，也可以手动更新Master和Worker节点证书。
 
 ## 前提条件
 
--   您已经成功创建一个Kubernetes集群，参见[创建Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
--   您已通过kubectl连接集群，参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   您已经成功创建一个Kubernetes集群。具体操作，请参见[创建Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
+-   您已通过kubectl连接集。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 
 ## 控制台更新所有节点证书
 
@@ -94,7 +98,7 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
 
 2.  获取集群Master节点个数和hostname：
 
-    -   方法一：
+    -   方法一：通过命令行
 
         执行以下命令：
 
@@ -104,7 +108,7 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
 
         ![nodes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4575659951/p21548.png)
 
-    -   方法二：
+    -   方法二：通过控制台
 
         1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
         2.  在控制台左侧导航栏中，单击**集群**。
