@@ -20,7 +20,7 @@ ack-autoscaling-placeholder为集群的自动扩展提供了缓冲区，它适�
 
     1.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-    2.  在集群管理页面的左侧导航栏中，单击**发布**。
+    2.  在集群管理页面的左侧导航栏中，选择**应用** \> **Helm**。
 
     3.  找到**ack-autoscaling-placeholder**，然后单击其右侧的**更新**。
 
@@ -61,6 +61,8 @@ ack-autoscaling-placeholder为集群的自动扩展提供了缓冲区，它适�
         ```
         kubectl apply -f priorityClass.yaml
         ```
+
+        预期输出：
 
         ```
         apiVersion: scheduling.k8s.io/v1
@@ -111,9 +113,9 @@ ack-autoscaling-placeholder为集群的自动扩展提供了缓冲区，它适�
 
         从下图可以看到，实际工作负载由于Pod配置了高优先级的PriorityClass。当节点资源不足时，会将占位容器placeHolder进行驱逐，此时占位容器placeHolder处于Pending状态。由于集群开通了自动伸缩，此状态会触发ACK集群进行扩容。实现了工作负载的**秒级弹出**。
 
-        ![pending](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8102021061/p170802.png)
+        ![pending](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8102021061/p170802.png)
 
-        ![run](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9102021061/p170803.png)
+        ![run](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9102021061/p170803.png)
 
 
 ## 实现原理
