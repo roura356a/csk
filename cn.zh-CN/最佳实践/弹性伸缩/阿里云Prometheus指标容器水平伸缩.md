@@ -12,7 +12,7 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
 
 1.  部署阿里云Prometheus监控组件。
 
-    有关部署阿里云Prometheus的详细步骤，请参见[开启阿里云Prometheus监控](/cn.zh-CN/Kubernetes集群用户指南/监控管理/托管阿里云Prometheus监控.md)。
+    有关部署阿里云Prometheus的详细步骤，请参见[开启阿里云Prometheus监控](/cn.zh-CN/Kubernetes集群用户指南/可观测性/监控管理/阿里云Prometheus监控.md)。
 
 2.  部署alibaba-cloud-metrics-adapter组件。
 
@@ -29,11 +29,9 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
 
     2.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-    3.  在集群管理页左侧导航栏中，单击**工作负载**。
+    3.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**。
 
-    4.  在**无状态**页签，单击**使用模板创建**。
-
-        ![prometheus](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0640580061/p169565.png)
+    4.  在**无状态**页面，单击**使用模板创建**。
 
     5.  在使用模板创建页面，部署以下YAML文件创建一个应用及对应的Service，然后单击**创建**。
 
@@ -89,9 +87,9 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
 
     3.  在目标集群右侧的**操作**列单击**设置**。
 
-    4.  在**服务发现**页签，单击**添加ServiceMonitor**。
+    4.  在**服务发现**页签选择ServiceMonitor页签，单击**添加ServiceMonitor**。
 
-    5.  拷贝以下YAML文件，然后单击**确定**。
+    5.  复制以下YAML文件，然后单击**确定**。
 
         ```
         apiVersion: monitoring.coreos.com/v1
@@ -125,7 +123,7 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
 
     3.  找到alibaba-cloud-metrics-adapter，并单击右侧的**更新**。
 
-    4.  拷贝[alibaba-cloud-metrics-adapter](https://github.com/AliyunContainerService/alibaba-cloud-metrics-adapter/blob/master/docs/metrics/arms_prometheus.md)中完整的YAML文件内容，然后单击**更新**。
+    4.  复制[alibaba-cloud-metrics-adapter](https://github.com/AliyunContainerService/alibaba-cloud-metrics-adapter/blob/master/docs/metrics/arms_prometheus.md)中完整的YAML文件内容，然后单击**更新**。
 
         以下为部分YAML文件内容。
 
@@ -186,9 +184,13 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
     kubectl get apiservice
     ```
 
+    预期输出：
+
     ```
     v1beta1.custom.metrics.k8s.io          kube-system/ack-alibaba-cloud-metrics-adapter-custom-service     True        73m
     ```
+
+    执行以下命令查看apiService指标详情。
 
     ```
     kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/pods/*/http_requests_per_second" | jq .
@@ -245,9 +247,13 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
     ab -c 50 -n 2000 ClusterIP(sample-app):8080
     ```
 
+    执行以下命令查看HPA详情。
+
     ```
     kubectl get hpa sample-app
     ```
+
+    预期输出：
 
     ```
     NAME         REFERENCE               TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
@@ -257,7 +263,7 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
 
 ## adapter配置文件详解
 
-上述步骤8中[修改alibaba-cloud-metrics-adapter配置](#step_j8i_w1p_mpy)涉及到的adapter的配置主要分为4个：
+上述步骤[修改alibaba-cloud-metrics-adapter配置](#step_j8i_w1p_mpy)涉及到的adapter的配置主要分为4个：
 
 -   Discovery
 
