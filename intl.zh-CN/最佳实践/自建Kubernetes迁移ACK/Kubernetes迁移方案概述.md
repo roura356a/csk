@@ -1,3 +1,7 @@
+---
+keyword: [自建Kubernetes迁移, 迁移方案]
+---
+
 # Kubernetes迁移方案概述
 
 本文整体简单介绍下如何通过6个步骤，将自建Kubernetes集群平滑迁移到阿里云Kubernetes集群，并尽量确保迁移期间对业务无影响。
@@ -10,7 +14,7 @@
 
 1.  阿里云Kubernetes集群资源配置。
 
-    由运维人员完成阿里云Kubernetes集群创建及集群维度资源配置，降低开发人员应用迁移复杂度。详情请参见[创建Kubernetes专有版集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes专有版集群.md)。
+    由运维人员完成阿里云Kubernetes集群创建及集群维度资源配置，降低开发人员应用迁移复杂度。详情请参见[创建Kubernetes专有版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
 
     集群创建和配置过程中，以下配置项为必选。
 
