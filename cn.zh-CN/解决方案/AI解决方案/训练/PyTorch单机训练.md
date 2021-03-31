@@ -6,8 +6,8 @@ keyword: [PyTorch, 单机训练, 共享存储系统, Arena]
 
 本文展示如何使用Arena提交PyTorch的单机训练作业，并通过TensorBoard可视化查看训练作业。
 
--   [创建包含GPU的Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU管理/GPU资源调度/Kubernetes GPU集群支持GPU调度.md)。
--   [集群节点可以访问公网](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过公网访问集群API Server.md)。
+-   [创建包含GPU的Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU资源调度/Kubernetes GPU集群支持GPU调度.md)。
+-   [集群节点可以访问公网](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过公网访问集群API Server.md)。
 -   [已经安装最新版的Arena](/cn.zh-CN/解决方案/AI解决方案/环境准备/通过组件安装最新版的Arena.md)。
 -   已给集群配置了Arena使用的PVC，并且PVC已填充本文使用的数据集，详情请参见[配置NAS共享存储](/cn.zh-CN/解决方案/AI解决方案/环境准备/配置NAS共享存储.md)（或者[配置CPFS共享存储](/cn.zh-CN/解决方案/AI解决方案/环境准备/配置CPFS共享存储.md)）。
 
@@ -18,6 +18,8 @@ keyword: [PyTorch, 单机训练, 共享存储系统, Arena]
     ```
     arena top node
     ```
+
+    预期输出：
 
     ```
     NAME                       IPADDRESS     ROLE    STATUS  GPU(Total)  GPU(Allocated)
@@ -51,6 +53,8 @@ keyword: [PyTorch, 单机训练, 共享存储系统, Arena]
         --logdir=/mnist_data/pytorch_data/logs \
         "python /root/code/mnist-pytorch/mnist.py --epochs 10 --backend nccl --dir /mnist_data/pytorch_data/logs --data /mnist_data/pytorch_data/"
     ```
+
+    预期输出：
 
     ```
     configmap/pytorch-git-pytorchjob created
@@ -105,6 +109,8 @@ training-data  ReadWriteMany                      35m
     arena list
     ```
 
+    预期输出：
+
     ```
     NAME         STATUS     TRAINER     AGE  NODE
     pytorch-git  RUNNING    PYTORCHJOB  19s  192.1xx.x.xx
@@ -117,6 +123,8 @@ training-data  ReadWriteMany                      35m
     ```
     arena top job
     ```
+
+    预期输出：
 
     ```
     NAME         GPU(Requests)  GPU(Allocated)  STATUS     TRAINER     AGE  NODE
@@ -138,6 +146,8 @@ training-data  ReadWriteMany                      35m
     arena top node
     ```
 
+    预期输出：
+
     ```
     NAME                       IPADDRESS     ROLE    STATUS  GPU(Total)  GPU(Allocated)
     cn-huhehaote.192.1xx.x.xx  192.1xx.x.xx  master  ready   0           0
@@ -156,6 +166,8 @@ training-data  ReadWriteMany                      35m
     ```
     arena get pytorch-git
     ```
+
+    预期输出：
 
     ```
     STATUS: SUCCEEDED
@@ -189,7 +201,7 @@ training-data  ReadWriteMany                      35m
 
     将步骤6中获取的TensorBoard的web服务地址http://192.16x.x.xx:30171，拷贝至浏览器地址栏，显示效果如下图。
 
-    ![pytorch单机](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7704359951/p135067.png)
+    ![pytorch单机](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7704359951/p135067.png)
 
     **说明：** 本文PyTorch示例代码，默认每10次epoch写入event信息。如果您修改了--epochs参数，请修改为10的整数倍，否则无法在TensorBoard上看到数据。
 
@@ -198,6 +210,8 @@ training-data  ReadWriteMany                      35m
     ```
     arena logs pytorch-git
     ```
+
+    预期输出：
 
     ```
     WORLD_SIZE: 1, CURRENT_RANK: 0
@@ -218,6 +232,8 @@ training-data  ReadWriteMany                      35m
     ```
     arena logs pytorch-git -t 5
     ```
+
+    预期输出：
 
     ```
     Train Epoch: 10 [58880/60000 (98%)] loss=0.0098
