@@ -1,10 +1,14 @@
+---
+keyword: [搭建Jenkins环境, 流水线作业]
+---
+
 # 快速搭建Jenkins环境并完成流水线作业
 
 本文主要演示如何在阿里云Kubernetes服务上快速搭建Jenkins持续集成环境，并基于提供的示例快速完成应用源码编译、应用镜像构建、推送以及应用部署的流水线。
 
 ## 前提条件
 
--   已创建Kubernetes集群。具体操作步骤，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
+-   已创建Kubernetes集群。具体操作步骤，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   已安装[kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)命令行工具。
 
 ## 步骤一：部署Jenkins
@@ -58,7 +62,7 @@
 
         ![Credentials](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4055414161/p38458.png)
 
-        在添加凭据前，先在Kubernetes集群的集群信息页面的**连接信息**，找到**配置集群凭据**中提供的**KubeConfig**。有关更多详情，请参见[配置集群凭据](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。
+        在添加凭据前，先在Kubernetes集群的集群信息页面的**连接信息**，找到**配置集群凭据**中提供的**KubeConfig**。有关更多详情，请参见[配置集群凭据](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 
         ![配置集群凭据](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0663659951/p38453.png)
 
