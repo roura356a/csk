@@ -1,9 +1,13 @@
+---
+keyword: [WDL工作流, AGS]
+---
+
 # 创建WDL工作流
 
 WDL（Workflow Description Language）是由Broad Institute开发的一种流程开发语言，简单易用，能够有效的提高生物信息工作流的构建效率。本文介绍如何通过AGS在ACK集群上编写并执行WDL工作流。
 
--   已创建ACK集群，详细介绍请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
--   已拥有一个或多个存储服务（NAS存储卷或者符合NFS协议的文件存储、OSS存储），用于存储输入数据和输出结果，详细介绍请参见[使用NAS动态存储卷](/cn.zh-CN/Kubernetes集群用户指南/存储管理-CSI/NAS存储卷/使用NAS动态存储卷.md)。
+-   已创建ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
+-   已拥有一个或多个存储服务（NAS存储卷或者符合NFS协议的文件存储、OSS存储），用于存储输入数据和输出结果。具体操作，请参见[使用NAS动态存储卷](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/使用NAS动态存储卷.md)。
 
 ## 在ACK上运行WDL的优势
 
@@ -28,7 +32,7 @@ WDL（Workflow Description Language）是由Broad Institute开发的一种流程
 
 2.  在控制台左侧导航栏中，选择**市场** \> **应用目录**。
 
-3.  在应用目录页面右侧搜索框中搜索ack-ags-wdl，找到ack-ags-wdl，然后单击ack-ags-wdl。
+3.  在应用目录页面右侧搜索框中搜索ack-ags-wdl，然后单击ack-ags-wdl。
 
 4.  在应用目录 - ack-ags-wdl页面单击**参数**页签。
 
@@ -187,15 +191,13 @@ osspvcs:
 
     在应用目录 - ack-ags-wdl页面右侧选择集群和命名空间，设置发布名称，单击**创建**。
 
-    **说明：**
-
     执行以下命令，返回的结果显示cromwellcli、cromwellserver、tesk-api三个组件正常运行，说明部署成功。
 
     ```
     kubectl get pods -n wdl
     ```
 
-    系统输出类似如下结果。
+    预期输出：
 
     ```
     NAME                                READY   STATUS      RESTARTS   AGE
@@ -282,7 +284,7 @@ osspvcs:
     ags config init
     ```
 
-    系统输出类似如下结果。
+    预期输出：
 
     ```
     Please input your AccessKeyID
@@ -301,7 +303,7 @@ osspvcs:
     ags wdl run resource/bwa.wdl resource/bwa.json --watch #watch参数可以让该命令进行一个同步等待，直到该任务成功或失败。
     ```
 
-    系统输出类似如下结果。
+    预期输出：
 
     ```
     INFO[0000] bd747360-f82c-4cd2-94e0-b549d775f1c7 Submitted
@@ -318,7 +320,7 @@ osspvcs:
             ags wdl explain bd747360-f82c-4cd2-94e0-b549d775f1c7
             ```
 
-            系统输出如下结果。
+            预期输出：
 
             ```
             INFO[0000] bd747360-f82c-4cd2-94e0-b549d775f1c7 Running
@@ -332,7 +334,7 @@ osspvcs:
             ags wdl query bd747360-f82c-4cd2-94e0-b549d775f1c7
             ```
 
-            系统输出如下结果。
+            预期输出：
 
             ```
             INFO[0000] bd747360-f82c-4cd2-94e0-b549d775f1c7 {"calls":{"end":"0001-01-01T00:00:00.000Z","executionStatus":null,"inputs":null,"start":"0001-01-01T00:00:00.000Z"},"end":"0001-01-01T00:00:00.000Z","id":"b3aa1563-6278-4b2e-b525-a2ccddcbb785","inputs":{"wf_WGS.Reads":"/ags-wdl-nas/c.tar.gz"},"outputs":{},"start":"2020-10-10T09:34:56.022Z","status":"Running","submission":"2020-10-10T09:34:49.989Z"}
@@ -346,7 +348,7 @@ osspvcs:
         ags wdl abort bd747360-f82c-4cd2-94e0-b549d775f1c7
         ```
 
-        系统输出如下结果。
+        预期输出：
 
         ```
         INFO[0000] bd747360-f82c-4cd2-94e0-b549d775f1c7 Aborting
@@ -359,7 +361,7 @@ osspvcs:
 
 1.  创建wa.wdl文件和bwa.json文件。
 
-    -   bwa.wdl文件示例
+    -   bwa.wdl文件示例：
 
         ```
         task bwa_mem_tool {
@@ -400,7 +402,7 @@ osspvcs:
         }
         ```
 
-    -   bwa.json文件示例
+    -   bwa.json文件示例：
 
         ```
         {
@@ -420,7 +422,7 @@ osspvcs:
     docker run -e CROMWELL_SERVER=192.16*.*.** -e CROMWELL_PORT=30384 registry.cn-beijing.aliyuncs.com/tes-wes/cromwellcli:v1 run resources/bwa.wdl resources/bwa.json
     ```
 
-    系统输出类似如下结果。
+    预期输出：
 
     ```
     -------------Cromwell Links-------------
