@@ -17,6 +17,11 @@ keyword: 挂载弹性公网IP
 -   创建一个[Serverless Kubernetes集群](/intl.zh-CN/Serverless Kubernetes集群用户指南/快速入门/创建Serverless Kubernetes集群.md)或在Kubernetes集群创建一个[部署虚拟节点Chart](/intl.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/通过部署ACK虚拟节点组件创建ECI Pod.md)。
 -   请确保该集群的安全组已开放相关端口（本示例中需要开放80端口）。
 
+**说明：**
+
+-   需要升级vk到v1.0.0.7-aliyun的版本支持。
+-   挂载弹性公网IP仅支持创建容器组时设置，更新容器组时添加或修改相关设置无效。
+
 ## 操作步骤
 
 您可以通过以下两种方法给Pod挂载弹性公网IP。
@@ -43,7 +48,8 @@ keyword: 挂载弹性公网IP
     metadata:
       name: nginx
       annotations:
-        "**k8s.aliyun.com/eci-with-eip**": "**true**"
+        k8s.aliyun.com/eci-with-eip: "true"
+      # k8s.aliyun.com/eip-bandwidth: '5' #注意：指定带宽不需要带单位
     spec:
       containers:
       - image: registry-vpc.cn-hangzhou.aliyuncs.com/jovi/nginx:alpine
@@ -75,6 +81,31 @@ keyword: 挂载弹性公网IP
 
     **说明：** 此方式中EIP为动态分配，其生命周期与Pod相同，当删除Pod时，动态分配的EIP也会一并删除。
 
+10. 如果需要为ECI指定线路，需设置`k8s.aliyun.com/eip-isp`。
+
+    ISP字段表示线路类型，默认为`BGP`，更多信息，请参见[AllocateEipAddressPro](ISP字段表示线路类型，默认为BGP，更多信息，请参见AllocateEipAddressPro。)。
+
+    YAML样例模板如下：
+
+    ```
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: nginx
+      annotations:
+        k8s.aliyun.com/eci-with-eip: "true"
+        k8s.aliyun.com/eip-isp: "BGP"
+    spec:
+      containers:
+      - image: registry-vpc.cn-hangzhou.aliyuncs.com/jovi/nginx:alpine
+        name: nginx
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+      restartPolicy: OnFailure
+    ```
+
 
 ## 方法二：指定弹性公网IP实例ID
 
@@ -102,7 +133,7 @@ keyword: 挂载弹性公网IP
     metadata:
       name: nginx
       annotations:
-        "**k8s.aliyun.com/eci-eip-instanceid**": "**<youreipInstanceId\>**"
+        "k8s.aliyun.com/eci-eip-instanceid": "<youreipInstanceId>"
     spec:
       containers:
       - image: registry-vpc.cn-hangzhou.aliyuncs.com/jovi/nginx:alpine
@@ -115,8 +146,10 @@ keyword: 挂载弹性公网IP
       restartPolicy: OnFailure
     ```
 
-    **说明：** `<youreipInstanceId>`需要替换成步骤1中获取的EIP实例ID。
+    **说明：**
 
+    -   `<youreipInstanceId>`需要替换成步骤1中获取的EIP实例ID。
+    -   如果同时设置了自动分配弹性公网EIP和指定弹性公网IP实例ID，则手动指定的EIP无效。
 8.  在集群管理页左侧导航栏中，选择**工作负载** \> **容器组**，查看容器组的状态。
 
 9.  在浏览器中输入http://ip地址，您可访问nginx欢迎页。
