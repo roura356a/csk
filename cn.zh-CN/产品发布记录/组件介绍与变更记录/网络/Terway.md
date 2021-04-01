@@ -61,7 +61,11 @@ Terway网络插件是ACK自研的容器网络接口（CNI）插件，基于阿�
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
-|v1.0.10.280-gdc2cb6c-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.280-gdc2cb6c-aliyun|2020年12月25日|-   增加Terway主动检查、修复ENI安全组的配置。
+|v1.0.10.280-gdc2cb6c-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.280-gdc2cb6c-aliyun|2020年12月25日|-   增加Terway的主动检查，包括：
+    -   ENI和ENI的辅助IP。
+    -   安全组的一致性。
+    -   Pod网络空间配置。
+    -   Host网络配置。
 -   增加IPVLAN模式下对主机网络栈路由的支持。
 
 |此次升级不会对业务造成影响。 |
