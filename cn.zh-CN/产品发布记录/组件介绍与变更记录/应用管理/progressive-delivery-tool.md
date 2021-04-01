@@ -20,7 +20,7 @@ progressive-delivery-tool是一个可以为您提供应用渐进式灰度发布�
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
-|v1.0.3.7-ea68c41-aliyun|registry..cn-hangzho.aliyuncs.com/acs/appcenter-installer:v1.0.3.7-ea68c41-aliyun|2020年11月23日|支持手动发布。|无|
+|v1.0.3.7-ea68c41-aliyun|registry..cn-hangzhou.aliyuncs.com/acs/appcenter-installer:v1.0.3.7-ea68c41-aliyun|2020年11月23日|支持手动发布。|无|
 
 **2020年08月**
 
