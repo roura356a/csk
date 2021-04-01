@@ -134,7 +134,7 @@ keyword: [指定已有SLB, 负载均衡型服务, loadbalancer service, 公开�
 
 6.  在创建服务对话框中，设置服务的相关参数。
 
-    ![service](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6843329061/p206514.png)
+    ![service](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4013627161/p206514.png)
 
     |参数|描述|
     |--|--|
