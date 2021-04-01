@@ -6,7 +6,22 @@ keyword: [CCM, 变更记录]
 
 本文为您介绍了CCM（Cloud Controller Manager）相关内容的最新动态。
 
-## 2021年03月
+## 组件介绍
+
+Cloud Controller Manager提供Kubernetes与阿里云基础产品的对接能力，例如CLB、VPC等。目前CCM的功能包括管理负载均衡、跨节点通信等：
+
+-   管理负载均衡
+
+    当Service的类型设置为`Type=LoadBalancer`时，CCM组件会为该Service创建或配置阿里云负载均衡CLB，包括含CLB、监听、后端服务器组等资源。当Service对应的后端Endpoint或者集群节点发生变化时，CCM会自动更新CLB的后端虚拟服务器组。关于更新规则，请参见[Service的负载均衡配置注意事项](/cn.zh-CN/Kubernetes集群用户指南/网络/Service管理/Service的负载均衡配置注意事项.md)。此外，CCM还提供了许多注解（Annotation），支持云上丰富的负载均衡能力。详细的使用方式，请参见[通过Annotation配置负载均衡](/cn.zh-CN/Kubernetes集群用户指南/网络/Service管理/通过Annotation配置负载均衡.md)。
+
+-   实现跨节点通信
+
+    当集群网络组件为Flannel时，CCM组件负责打通容器与节点间网络，实现容器跨节点通信。CCM会将节点的Pod网段信息写入VPC的路由表中，从而实现跨节点的容器通信。该功能无需配置，安装即可使用。
+
+
+## 变更记录
+
+**2021年03月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -29,21 +44,21 @@ keyword: [CCM, 变更记录]
 -   修复因节点配置缺失导致的路由删除失败问题。
 -   优化节点初始化逻辑，修复污点（Taint）缺失问题。在节点初始化过程中，避免业务Pod调度到路由未创建的节点上。 |
 
-## 2020年12月
+**2020年12月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
 |v1.9.3.339-g9830b58-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.339-g9830b58-aliyun|2020年12月18日|-   支持为LoadBalancer类型Service添加Hash值，以保证CCM重启时在Service未做修改的情况下，仅同步虚拟服务器组后端，不再同步LoadBalancer配置及监听配置。
 -   优化SLB OpenAPI调用，降低被限流风险。 |
 
-## 2020年09月
+**2020年09月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
 |v1.9.3.316-g8daf1a9-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.316-g8daf1a9-aliyun|2020年09月29日|-   修复偶发性SLB虚拟服务器组未更新问题。
 -   更新健康检查端口（从10252变更为10258）。 |
 
-## 2020年08月
+**2020年08月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -63,7 +78,7 @@ keyword: [CCM, 变更记录]
 -   更新监听，将会同步更新虚拟服务器组。
 -   优化SLB API，减少SLB创建时间。 |
 
-## 2020年06月
+**2020年06月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -81,7 +96,7 @@ keyword: [CCM, 变更记录]
     -   修复更新Service时，无法通过annotation设置persistence timeout为0的问题。
     -   修复更新Service时，无法通过annotation设置bandwidth为100的问题。 |
 
-## 2020年03月
+**2020年03月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -94,7 +109,7 @@ keyword: [CCM, 变更记录]
 
     -   更换VPC路由查询接口为DescribeRouteEntryList，避免短时间内查询数百量级条目时存在的性能问题。 |
 
-## 2019年12月
+**2019年12月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -109,7 +124,7 @@ keyword: [CCM, 变更记录]
 -   CCM不再为节点元数据添加Nat IP，修复了API Server到kubelet偶发性访问不通的问题。
 -   变更监听配置时，仅在监听状态为inactive时调用start listener OpenAPI，避免引起OpenAPI限流问题。 |
 
-## 2019年11月
+**2019年11月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -119,7 +134,7 @@ keyword: [CCM, 变更记录]
 -   修复因并发导致的重复创建虚拟服务器组的问题。
 -   修复因缓存导致的设置Node权重时产生脏数据的问题。 |
 
-## 2019年09月
+**2019年09月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -130,14 +145,14 @@ keyword: [CCM, 变更记录]
 -   支持在Terway网络模式下，通过annotation：service.beta.kubernetes.io/backend-type："eni"将Pod直接挂载到SLB后端，提升网络转发性能。
 -   支持Local模式下（即设定service的externalTrafficPolicy=Local），Service自动根据Node上的Pod数量为Node设置权重。 |
 
-## 2019年04月
+**2019年04月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
 |v1.9.3.105-gfd4e547-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/cloud-controller-manager-amd64:v1.9.3.105-gfd4e547-aliyun|2019年04月15日|-   支持VPC多路由表。允许通过配置文件的方式为集群配置多个路由表。
 -   修复HTTP协议配置更新不生效的问题。 |
 
-## 2019年03月
+**2019年03月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -145,7 +160,7 @@ keyword: [CCM, 变更记录]
 -   CCM支持用户自定义Kubernetes节点名称。不再强依赖Kubernetes NodeName。
 -   修复CCM 1.8.4版本与Kubernetes 1.11.5版本的兼容性问题。请升级CCM到最新版本。 |
 
-## 2018年12月
+**2018年12月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -157,7 +172,7 @@ keyword: [CCM, 变更记录]
     -   不支持跨集群复用SLB。
 -   操作VPC路由表方式由并行改为串行方式，修复了触发VPC限流问题。 |
 
-## 2018年08月
+**2018年08月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
@@ -169,7 +184,7 @@ keyword: [CCM, 变更记录]
 -   在指定已有SLB时，支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners覆盖式处理原有SLB上的监听。
 -   支持通过annotation：service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth为创建的按带宽付费的SLB指定带宽值。其中多个Listener共享该带宽。 |
 
-## 2018年06月
+**2018年06月**
 
 |版本号|镜像地址|变更时间|变更内容|
 |---|----|----|----|
