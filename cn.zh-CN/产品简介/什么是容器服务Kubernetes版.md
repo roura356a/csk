@@ -49,6 +49,7 @@ ACK包含了专有版Kubernetes（Dedicated Kubernetes）、托管版Kubernetes�
     -   应用发布：支持灰度发布和蓝绿发布。
     -   应用目录：支持应用目录，简化云服务集成。
     -   [应用中心](/cn.zh-CN/Kubernetes集群用户指南/应用中心/应用中心概述.md)：应用部署后，以统一的视角展现整体应用的拓扑结构，同时对于持续部署等场景进行统一的版本管理与回滚。
+    -   应用备份和恢复：支持对Kubernetes应用进行备份和恢复。更多信息，请参见[对Kubernetes集群应用进行备份和恢复](/cn.zh-CN/Kubernetes集群用户指南/应用/对Kubernetes集群应用进行备份和恢复.md)。
 -   存储与网络
     -   [存储插件](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/存储插件说明.md)：支持Flexvolume以及CSI。
     -   存储卷和存储声明：
