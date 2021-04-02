@@ -14,8 +14,8 @@ The following table lists the ACK cluster configurations.
 
 |Cluster type|Standard dedicated cluster|
 |------------|--------------------------|
-|ECS instances|-   Instance type: ecs.d1ne.6xlarge
--   Aliyun Linux 2.1903
+|Elastic Compute Service \(ECS\) instance|-   Instance type: ecs.d1ne.6xlarge
+-   Alibaba Cloud Linux 2.1903
 -   CPU: 24 cores
 -   Memory: 96 GB
 -   Disk size: 5,500 GB. Disk type: HDD. |
@@ -39,7 +39,7 @@ The following table lists the ACK cluster configurations.
 
 ## Test results
 
-The following table lists the time consumed by the tests based on each benchmark. The queries are performed on 1 TB of data one after another.
+The following table lists the amount of time consumed by the tests based on each benchmark. The queries are performed on 1 TB of data one after another.
 
 |Benchmark|Total time consumed by 104 queries \(Unit: minutes\)|
 |---------|----------------------------------------------------|
@@ -47,13 +47,13 @@ The following table lists the time consumed by the tests based on each benchmark
 |Spark with Alluxio Cold|145|
 |Spark with Alluxio Warm|137|
 
-The following figure shows the time consumed by each query.
+The following figure shows the amount of time consumed by each query.
 
-![1](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9835780061/p161690.jpeg)
+![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9835780061/p161690.jpeg)
 
 ## Conclusions
 
-The test results show that the query performance is improved after the Alluxio cache is used. When Alluxio is used for the first time, the query performance is not high because Alluxio has to cache data from OSS. However, the performance is greatly improved in later tests.
+The test results show that the query performance is improved after the Alluxio cache is used. The first time Alluxio is used, the query performance is not high because Alluxio has to cache data from Object Storage Service \(OSS\). The query performance will be greatly improved in subsequent tests.
 
-[Troubleshooting]()
+[Troubleshooting](/intl.en-US/Solutions/Big data solutions/Run Apache Spark workloads on ACK/Troubleshooting.md)
 
