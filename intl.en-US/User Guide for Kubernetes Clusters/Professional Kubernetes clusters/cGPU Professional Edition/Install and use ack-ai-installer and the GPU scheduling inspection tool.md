@@ -6,9 +6,9 @@ keyword: [install cGPU, GPU scheduling inspection tool, GPU sharing]
 
 Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU\) sharing based on cGPU. You can use cGPU to share one GPU in model inference scenarios. In addition, the NVIDIA kernel driver ensures that the GPU memory allocated to each container is isolated from the other containers. This topic describes how to install ack-ai-installer and the GPU scheduling inspection tool on a GPU-accelerated node. You can use them to implement GPU sharing and memory isolation.
 
--   A professional managed Kubernetes cluster is created. When you create the cluster, you must select the instance types for **heterogeneous computing**, including GPU-accelerated, FPGA-accelerated, and NPU-accelerated instances. For more information about other cluster parameters, see [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Create a professional managed Kubernetes cluster.md).
+-   A professional managed Kubernetes cluster is created. When you create the cluster, you must select a **Heterogeneous Computing** instance family, including GPU-accelerated, FPGA-accelerated, and NPU-accelerated instances. For more information about other cluster parameters, see [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Create a professional managed Kubernetes cluster.md).
 
-    **Note:** You can install ack-ai-installer in only professional managed Kubernetes clusters. To install ack-ai-installer in dedicated Kubernetes clusters, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to add your account to the whitelist.
+    **Note:** You can install ack-ai-installer in only professional managed Kubernetes clusters. If you want to install ack-ai-installer in dedicated Kubernetes clusters, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to be added to the whitelist.
 
 -   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
 -   You can install ack-ai-installer on nodes that are deployed in all regions. However, only regions in the following table support GPU memory isolation. If you require GPU memory isolation, make sure that the region where your cluster is deployed is included in the following table.
@@ -29,16 +29,16 @@ Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU
     |US \(Silicon Valley\)|us-west-1|
 
 
-## Limits
+## Usage notes
 
-|Item|Supported versions|
-|----|------------------|
+|Item|Supported version|
+|----|-----------------|
 |Kubernetes|V1.18.8 and later|
 |Helm|V3.0 and later|
 |NVIDIA driver|V418.87.01 and later|
 |Docker|19.03.5|
 |Operating system|CentOS 7.6, CentOS 7.7, Ubuntu 16.04 and 18.04, and Aliyun Cloud Linux 2.x.|
-|GPU|Tesla P4, Tesla P100, Tesla T4, and Tesla V100 \(16 GB\)|
+|GPU|Telsa P4, Telsa P100, Telsa T4, and Telsa V100 \(16 GB\)|
 
 ## Step 1: Install ack-ai-installer
 
@@ -46,9 +46,9 @@ Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU
 
 2.  In the left-side navigation pane of the ACK console, choose **Marketplace** \> **App Catalog**.
 
-3.  In the upper-right corner of the App Catalog page, enter ack-ai-installer into the search bar and click the search icon. Find and click **ack-ai-installer**.
+3.  In the upper-right corner of the App Catalog page, enter ack-ai-installer into the search bar, click the search icon, and then click the **ack-ai-installer** card.
 
-4.  On the App Catalog - ack-ai-installer page, select a cluster in the Deploy section to deploy ack-ai-installer and click **Create**.
+4.  On the App Catalog - ack-ai-installer page, select the cluster where you want to deploy ack-ai-installer in the Deploy section and click **Create**.
 
     After ack-ai-installer is installed, you are redirected to the details page of ack-ai-installer. You can view the plug-ins of ack-ai-installer.
 
@@ -68,7 +68,7 @@ Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU
     For more information, see [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Create a professional managed Kubernetes cluster.md). The following list describes some of the parameters:
 
     -   Quantity: Specify the initial number of nodes in the node pool. If you do not need to create nodes in the node pool, set this parameter to 0.
-    -   Operating System: Select an operating system for the nodes. Supported operating systems are CentOS, Aliyun Cloud Linux 2.x, and Windows.
+    -   Operating System: Select an operating system for the nodes. Supported operating systems include CentOS, Aliyun Cloud Linux 2.x, and Windows.
     -   ECS Label: You can add labels to the ECS instances.
     -   Custom Resource Group: You can specify the resource group to which the nodes in the node pool belong.
     -   Node Label: You can add labels to the nodes. For more information about node labels, see [Description of labels for GPU-accelerated nodes](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Description of labels for GPU-accelerated nodes.md).
@@ -87,9 +87,9 @@ Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU
 
 ## Step 3: Add GPU-accelerated nodes
 
-After the node pool is created, you can add GPU-accelerated nodes to the node pool. When you add GPU-accelerated nodes, you must select the instance types for **heterogeneous computing**, including GPU-accelerated, FPGA-accelerated, and NPU-accelerated instances. For more information, see [Add existing ECS instances to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node/Add existing ECS instances to an ACK cluster.md) or [Scale out a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Scale out a node pool.md).
+After the node pool is created, you can add GPU-accelerated nodes to the node pool. When you add GPU-accelerated nodes, you must select a **Heterogeneous Computing** instance family, including GPU-accelerated, FPGA-accelerated, and NPU-accelerated instances. For more information, see [Add existing ECS instances to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node/Add existing ECS instances to an ACK cluster.md) or [Scale out a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Scale out a node pool.md).
 
-**Note:** If you have already added GPU-accelerated nodes to the node pool when you create the node pool, skip this step.
+**Note:** If you have already added GPU-accelerated nodes to the node pool when you created the node pool, skip this step.
 
 ## Step 4 \(optional\): Install and use the GPU scheduling inspection tool
 
@@ -109,13 +109,13 @@ After the node pool is created, you can add GPU-accelerated nodes to the node po
         wget http://aliacs-k8s-cn-beijing.oss-cn-beijing.aliyuncs.com/gpushare/kubectl-inspect-cgpu-darwin -O /usr/local/bin/kubectl-inspect-cgpu
         ```
 
-3.  Run the following command to make kubectl-inspect-cgpu executable:
+3.  Run the following command to grant kubectl-inspect-cgpu execution permissions:
 
     ```
     chmod +x /usr/local/bin/kubectl-inspect-cgpu
     ```
 
-4.  Run the following command to query GPU usage in the cluster:
+4.  Run the following command to query the GPU usage of the cluster:
 
     ```
     kubectl inspect cgpu
