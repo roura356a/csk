@@ -4,16 +4,16 @@ keyword: [Ambassador Edge Stack, CRD, Envoy Proxy]
 
 # Use AES to manage Ingresses
 
-Ambassador Edge Stack \(AES\) is built on Envoy Proxy. It can function as a high-performance API gateway and Ingress controller for Kubernetes clusters. AES functions as a control plane that translates Kubernetes custom resources to Envoy configurations for Envoy to handle requests. AES is integrated with rate limiting, request identification, load balancing, and observability. This topic describes how to use AES to manage Ingresses.
+Ambassador Edge Stack \(AES\) is built on Envoy Proxy. It can function as a high-performance API gateway and Ingress controller for Kubernetes clusters. AES functions as a control plane that translates Kubernetes custom resources into Envoy configurations for Envoy to handle requests. AES is integrated with rate limiting, request identification, load balancing, and observability. This topic describes how to use AES to manage Ingresses.
 
 -   [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 -   [Install and set up kubectl](https://kubernetes.io/docs/tasks/kubectl/install/?spm=a2c4g.11186623.2.11.1c924c9f2tNE6y).
 
-## Deploy AES in ACK clusters
+## Deploy AES in your Kubernetes cluster
 
-By default, AES is not deployed in clusters of Alibaba Cloud Container Service for Kubernetes \(ACK\). You need to manually deploy AES in ACK clusters. The following example describes how to deploy AES in an ACK clusters by using a YAML file. For more information about how to deploy AES in other ways, see [AES official documentation](https://www.getambassador.io/).
+By default, Container Service for Kubernetes does not deploy AES in Kubernetes clusters. You must manually deploy AES in Kubernetes clusters. The following example shows how to deploy AES in a Kubernetes clusters by using a YAML file. For more information about deployment methods, see the [AES documents](https://www.getambassador.io/).
 
-1.  Run the following commands to deploy AES in an ACK cluster:
+1.  Run the following commands to deploy AES in a Kubernetes cluster:
 
     ```
     kubectl apply -f https://www.getambassador.io/yaml/aes-crds.yaml && \
@@ -22,7 +22,7 @@ By default, AES is not deployed in clusters of Alibaba Cloud Container Service f
     kubectl -n ambassador wait --for condition=available --timeout=90s deploy -lproduct=aes
     ```
 
-    If the following output is printed, AES is deployed:
+    The following output indicates that AES is deployed:
 
     ```
     customresourcedefinition.apiextensions.k8s.io/authservices.getambassador.io created
@@ -85,7 +85,7 @@ By default, AES is not deployed in clusters of Alibaba Cloud Container Service f
 
 ## Verify that AES functions as an Ingress controller
 
-To verify that AES functions as an Ingress controller, you need to create a Deployment.
+To verify that AES functions as an Ingress controller, you must create a Deployment.
 
 1.  Use the following template to create a Deployment:
 
@@ -149,7 +149,7 @@ To verify that AES functions as an Ingress controller, you need to create a Depl
     EOF
     ```
 
-    The following Mapping resource is equivalent to the preceding Ingress resource. For more information about how to use custom resources in AES, see [AES official documentation](https://www.getambassador.io/docs/latest/topics/running/ingress-controller/).
+    The following Mapping resource is equivalent to the preceding Ingress resource. For more information about how to use custom resource definitions \(CRDs\) in AES, see the [AES documents](https://www.getambassador.io/docs/latest/topics/running/ingress-controller/).
 
     ```
     cat > quote-backend.yaml <<-EOF
@@ -163,7 +163,7 @@ To verify that AES functions as an Ingress controller, you need to create a Depl
     EOF
     ```
 
-3.  Run the following command to query the IP address of the target cluster:
+3.  Run the following command to query the IP address of the cluster:
 
     ```
     kubectl get -n ambassador service ambassador -o "go-template={{range .status.loadBalancer.ingress}}{{or .ip .hostname}}{{end}}"
@@ -172,10 +172,10 @@ To verify that AES functions as an Ingress controller, you need to create a Depl
 4.  Run the following command to verify that AES functions as an Ingress controller:
 
     ```
-    curl -k https://{{AMBASSADOR_IP}}/backend/    # Replace the value of AMBASSADOR_IP with the obtained IP address.
+    curl -k https://{{AMBASSADOR_IP}}/backend/    # Replace the value of AMBASSADOR_IP with the cluster IP address that you have obtained. 
     ```
 
-    If the following output is printed, this indicates that AES functions as an Ingress controller:
+    The following output indicates that AES functions as an Ingress controller:
 
     ```
       {
