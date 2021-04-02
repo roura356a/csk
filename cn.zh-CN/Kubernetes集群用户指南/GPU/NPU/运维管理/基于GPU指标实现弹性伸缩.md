@@ -69,7 +69,7 @@ Kubernetes提供了External Metrics机制，该机制可以对接阿里云Promet
             spec:
               containers:
               - name: bert-container
-                image: registry.cn-beijing.aliyuncs.com/yukong/bert-intent-detection:1.0.1
+                image: registry.cn-hangzhou.aliyuncs.com/ai-samples/bert-intent-detection:1.0.1
                 ports:
                 - containerPort: 80
                 resources:
