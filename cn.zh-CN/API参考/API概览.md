@@ -66,7 +66,6 @@
 |调用ListTagResources，查询可见的资源标签关系。|
 |[查询Kubernetes版本详情](/cn.zh-CN/API参考/集群/查询Kubernetes版本详情.md)|调用DescribeKubernetesVersionMetadata查询支持的Kubernetes版本的详细信息。|
 |[查询任务详情](/cn.zh-CN/API参考/集群/查询任务详情.md)|调用DescribeTaskInfo根据任务ID查询任务执行详情。|
-|[查询用户事件](/cn.zh-CN/API参考/集群/查询用户事件.md)|调用DescribeEvents查询用户操作事件。|
 
 ## 权限
 
@@ -144,9 +143,12 @@
 
 |API|描述|
 |---|--|
-|[创建编排模板](/cn.zh-CN/API参考/应用/创建编排模板.md)|调用CreateTemplate创建一个模板。|
-|[查询所有编排模板](/cn.zh-CN/API参考/应用/查询所有编排模板.md)|调用DescribeTemplates查询编排模板。|
-|[查询编排模板详情](/cn.zh-CN/API参考/应用/查询编排模板详情.md)|调用DescribeTemplateAttribute查看指定模板的详细信息。|
+|[创建编排模板](/cn.zh-CN/API参考/应用/创建编排模板.md)
+
+|调用CreateTemplate创建一个模板。|
+|[查询所有编排模板](/cn.zh-CN/API参考/应用/查询所有编排模板.md)
+
+|调用DescribeTemplates查询编排模板。|
 |[更新编排模板](/cn.zh-CN/API参考/应用/更新编排模板.md)
 
 |调用UpdateTemplate更新一个编排模板。|
@@ -156,6 +158,7 @@
 |[创建触发器](/cn.zh-CN/API参考/应用/创建触发器.md)|调用CreateKubernetesTrigger为应用创建触发器。|
 |[查询触发器](/cn.zh-CN/API参考/应用/查询触发器.md)|调用GetKubernetesTrigger查询指定应用触发器。|
 |[删除触发器](/cn.zh-CN/API参考/应用/删除触发器.md)|调用DeleteKubernetesTrigger删除应用触发器。|
+|[查询编排模板详情](/cn.zh-CN/API参考/应用/查询编排模板详情.md)|调用DescribeTemplateAttribute查看指定模板的详细信息。|
 
 ## 组件
 
