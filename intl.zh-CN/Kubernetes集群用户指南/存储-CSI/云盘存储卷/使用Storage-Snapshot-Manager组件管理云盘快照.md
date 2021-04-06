@@ -457,7 +457,7 @@ storage-snapshot-manager插件启动后，系统会自动检查当前集群中�
         -   pvcSelector：快照策略覆盖的PVC，通过PVC Labels指定。
         -   retentionDays：自动快照创建保留天数，当为`-1`时表示永久保存。repeatOnce不支持该参数。
         -   snapshotSchedule.repeatWeekdays：一周内自动创建快照的时间点（天），可设置为\[1~7\]。
-        -   snapshotSchedule.timePoints：一天内自动创建快照的时间点（小时）,可设置为 \[0~23\]。
+        -   snapshotSchedule.timePoints：一天内自动创建快照的时间点（小时），可设置为 \[0~23\]。
         在集群创建VolumeSnapshotPolicy实例时，系统会在对应ECS服务上自动创建快照策略。
 
 5.  查看定时快照策略是否生效。
