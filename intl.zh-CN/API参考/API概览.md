@@ -66,15 +66,16 @@
 |调用ListTagResources，查询可见的资源标签关系。|
 |[查询Kubernetes版本详情](/intl.zh-CN/API参考/集群/查询Kubernetes版本详情.md)|调用DescribeKubernetesVersionMetadata查询支持的Kubernetes版本的详细信息。|
 |[查询任务详情](/intl.zh-CN/API参考/集群/查询任务详情.md)|调用DescribeTaskInfo根据任务ID查询任务执行详情。|
+|[查询用户事件](/intl.zh-CN/API参考/集群/查询用户事件.md)|调用DescribeEvents查询用户操作事件。|
 
 ## 权限
 
 |API|描述|
 |---|--|
-|[查询RAM用户集群授权信息]()
+|[查询RAM用户集群授权信息](/intl.zh-CN/API参考/权限/查询RAM用户集群授权信息.md)
 
 |调用DescribeUserPermission查询指定RAM用户的集群授权信息。|
-|[全量更新RAM用户集群授权信息]()
+|[全量更新RAM用户集群授权信息](/intl.zh-CN/API参考/权限/全量更新RAM用户集群授权信息.md)
 
 |调用GrantPermissions全量更新RAM用户集群授权信息。|
 
@@ -102,22 +103,22 @@
 
 |API|描述|
 |---|--|
-|[创建节点池](/intl.zh-CN/API参考/节点/节点池/创建节点池.md)
+|[创建节点池](/intl.zh-CN/API参考/节点池/创建节点池.md)
 
 |调用CreateClusterNodePool为集群创建节点池。|
-|[扩容节点池](/intl.zh-CN/API参考/节点/节点池/扩容节点池.md)
+|[扩容节点池](/intl.zh-CN/API参考/节点池/扩容节点池.md)
 
 |调用ScaleClusterNodePool扩容节点池节点。|
-|[修改节点池配置](/intl.zh-CN/API参考/节点/节点池/修改节点池配置.md)
+|[修改节点池配置](/intl.zh-CN/API参考/节点池/修改节点池配置.md)
 
 |调用ModifyClusterNodePool更新节点配置。|
-|[查询节点池列表](/intl.zh-CN/API参考/节点/节点池/查询节点池列表.md)
+|[查询节点池列表](/intl.zh-CN/API参考/节点池/查询节点池列表.md)
 
 |调用DescribeClusterNodePools查询集群内所有节点池详情。|
-|[查询节点池详情](/intl.zh-CN/API参考/节点/节点池/查询节点池详情.md)
+|[查询节点池详情](/intl.zh-CN/API参考/节点池/查询节点池详情.md)
 
 |调用DescribeClusterNodePoolDetail查询集群指定节点池详情。|
-|[删除节点池](/intl.zh-CN/API参考/节点/节点池/删除节点池.md)|调用DeleteClusterNodepool删除节点池。|
+|[删除节点池](/intl.zh-CN/API参考/节点池/删除节点池.md)|调用DeleteClusterNodepool删除节点池。|
 
 ## 升级
 
@@ -143,12 +144,9 @@
 
 |API|描述|
 |---|--|
-|[创建编排模板](/intl.zh-CN/API参考/应用/创建编排模板.md)
-
-|调用CreateTemplate创建一个模板。|
-|[查询所有编排模板](/intl.zh-CN/API参考/应用/查询所有编排模板.md)
-
-|调用DescribeTemplates查询编排模板。|
+|[创建编排模板](/intl.zh-CN/API参考/应用/创建编排模板.md)|调用CreateTemplate创建一个模板。|
+|[查询所有编排模板](/intl.zh-CN/API参考/应用/查询所有编排模板.md)|调用DescribeTemplates查询编排模板。|
+|[查询编排模板详情](/intl.zh-CN/API参考/应用/查询编排模板详情.md)|调用DescribeTemplateAttribute查看指定模板的详细信息。|
 |[更新编排模板](/intl.zh-CN/API参考/应用/更新编排模板.md)
 
 |调用UpdateTemplate更新一个编排模板。|
@@ -158,7 +156,6 @@
 |[创建触发器](/intl.zh-CN/API参考/应用/创建触发器.md)|调用CreateKubernetesTrigger为应用创建触发器。|
 |[查询触发器](/intl.zh-CN/API参考/应用/查询触发器.md)|调用GetKubernetesTrigger查询指定应用触发器。|
 |[删除触发器](/intl.zh-CN/API参考/应用/删除触发器.md)|调用DeleteKubernetesTrigger删除应用触发器。|
-|[查询编排模板详情](/intl.zh-CN/API参考/应用/查询编排模板详情.md)|调用DescribeTemplateAttribute查看指定模板的详细信息。|
 
 ## 组件
 
