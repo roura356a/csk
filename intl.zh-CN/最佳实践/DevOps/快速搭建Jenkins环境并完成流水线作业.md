@@ -128,7 +128,7 @@ keyword: [搭建Jenkins环境, 流水线作业]
             registry.cn-beijing.aliyuncs.com/acs-sample/jenkins-slave-maven:3.3.9-jdk-8-alpine
             ```
 
-    10. 配置kaniko的镜像仓库权限。根据实际情况配置环境变量及Secret卷，示例配置如下图。
+    10. 配置Kaniko的镜像仓库权限。根据实际情况配置环境变量及Secret卷，示例配置如下图。
 
         ![kaniko配置镜像仓库权限](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0663659951/p38466.png)
 
@@ -299,7 +299,7 @@ stage('Image Build And Publish'){
 ```
 
 **说明：** kaniko工具构建容器镜像可以不依赖Docker Daemon进程，在用户态空间完成镜像构建和推送，更安全可靠。 |
-|kubectl用于部署K8s应用。**说明：** 在Kubectl部署K8s应用前需要先创建一个名称为k8sCertAuth的集群证书。
+|Kubectl用于部署K8s应用。**说明：** 在Kubectl部署K8s应用前需要先创建一个名称为k8sCertAuth的集群证书。
 
 ```
 stage('Deploy to Kubernetes') {
