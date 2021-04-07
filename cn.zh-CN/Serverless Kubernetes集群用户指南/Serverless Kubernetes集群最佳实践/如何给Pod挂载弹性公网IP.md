@@ -64,7 +64,7 @@ keyword: 挂载弹性公网IP
 
     **说明：**
 
-    -   您可以通过Annotation k8s.aliyun.com/eip-bandwidth指定EIP的带宽，默认值为5，单位为M。
+    -   您可以通过Annotation k8s.aliyun.com/eip-bandwidth指定EIP的带宽，默认值为5，单位为Mbps。
     -   您也可以通过Annotation k8s.aliyun.com/eip-common-bandwith-package-id让EIP绑定共享带宽。
     -   如果您创建的是Deployment，那么Deployment中的每一个Pod都将会被挂载不同的EIP，请谨慎使用此操作。
 7.  在集群管理页左侧导航栏中，选择**工作负载** \> **容器组**，查看容器组的状态。
