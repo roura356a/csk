@@ -4,13 +4,15 @@
 
 ## 获取集群访问凭证kubeconfig
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)，在集群列表中，选择您要操作的集群，在右侧操作栏中单击**管理**。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
-    ![集群管理](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2096359951/p96471.png)
+2.  在控制台左侧导航栏中，单击**集群**。
 
-2.  在集群管理信息页面您可以看到集群访问凭证（**kubeconfig**），将**kubeconfig**文件保存到本地。
+3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-3.  从kubeconfig文件中提取ca、key和apiserver信息，命令如下。
+4.  单击**连接信息**页签，查看集群访问凭证（**kubeconfig**），将**kubeconfig**文件保存到本地。
+
+5.  从kubeconfig文件中提取ca、key和apiserver信息，命令如下。
 
     ```
     cat  ./kubeconfig |grep client-certificate-data | awk -F ' ' '{print $2}' |base64 -d > client-cert.pem
