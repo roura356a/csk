@@ -6,11 +6,11 @@ keyword: [配置巡检, Workload配置, 安全隐患]
 
 本文将介绍如何使用配置巡检功能来扫描集群中Workload配置的安全隐患和介绍巡检报告相关信息，帮助您实时了解当前状态下运行应用的配置是否有安全隐患。
 
-您已通过容器服务Kubernetes版接入一个注册的kubernetes集群。具体操作，请参见[创建注册集群并接入本地数据中心集群](/intl.zh-CN/Kubernetes集群用户指南/多云混合云/创建注册集群并接入本地数据中心集群.md)。
+您已经成功创建一个Kubernetes 1.14.8或以上版本的托管版或专有版集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 
-## RAM用户授权
+## 子账号RAM授权
 
-如果您当前使用的是RAM用户，请先完成日志服务指定logproject的RAM授权，否则会出现权限不足的情况，详细介绍请参见[RAM自定义授权场景](/intl.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。
+如果您当前使用的是子账号，请先完成日志服务指定logproject的RAM授权，否则会出现权限不足的情况，详细介绍请参见[RAM自定义授权场景](/intl.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。
 
 ```
 {
@@ -38,7 +38,7 @@ keyword: [配置巡检, Workload配置, 安全隐患]
 
 4.  在集群管理页左侧导航栏选择**安全管理** \> **配置巡检**。
 
-5.  在**安装组件**下方单击**开始安装**，然后单击**开始使用配置巡检**。如果您已经安装组件请忽略此步骤。
+5.  如果您未安装巡检组件的话，在**安装巡检组件**下方单击**开始安装**，然后单击**开始使用配置巡检**。如果您已经安装请忽略此步骤。
 
 6.  在配置巡检页面右上方，单击**立即执行巡检**。
 
@@ -54,7 +54,7 @@ keyword: [配置巡检, Workload配置, 安全隐患]
 -   直观展示工作负载的巡检**通过项**和**风险项**数量。
 -   在检查结果页面展示巡检结果的各个检查项的通过状态、检查项详细说明以及加固建议。
 -   支持为工作负载设置检查项白名单。
--   支持以**命名空间**、**工作负载类别**、**是否有风险**等条件对结果进行过滤查询。
+-   支持**按命名空间**、**工作负载类别**、**是否有风险**等条件对结果进行过滤查询。
 
 ## 巡检报告
 
@@ -68,17 +68,17 @@ keyword: [配置巡检, Workload配置, 安全隐患]
 
 |检查项名称|检查的内容及安全风险|修复建议|
 |-----|----------|----|
-|hostNetworkSet|通过检查Workload的Pod Spec中是否配置了hostNetwork：true，检查是否配置了共享使用主机的网络命名空间。如果配置了，存在Pod中容器攻击主机网络、嗅探主机网络数据的风险。|修改Pod Spec，删除hostNetwork字段。
+|hostNetworkSet|通过检查Workload的Pod Spec中是否配置了hostNetwork：true，检查是否配置了共享使用主机的网络namespace。如果配置了，存在Pod中容器攻击主机网络、嗅探主机网络数据的风险。|修改Pod Spec，删除hostNetwork字段。
 
 示例：
 
 ![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9195659951/p129766.png) |
-|hostIPCSet|通过检查Workload的Pod Spec中是否配置了hostIPC：true，检查是否配置了共享使用主机的IPC命名空间。如果配置了，存在Pod中容器攻击主机上进程、嗅探主机上进程数据的风险。|修改Pod Spec，删除hostIPC字段。
+|hostIPCSet|通过检查Workload的Pod Spec中是否配置了hostIPC：true，检查是否配置了共享使用主机的IPC namespace。如果配置了，存在Pod中容器攻击主机上进程、嗅探主机上进程数据的风险。|修改Pod Spec，删除hostIPC字段。
 
 示例：
 
 ![2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9195659951/p129768.png) |
-|hostPIDSet|通过检查Workload的Pod Spec中是否配置了hostPID：true，检查是否配置了共享使用主机的PID命名空间。如果配置了，存在Pod中容器攻击主机上进程、采集主机上进程数据的风险。|修改Pod Spec，删除hostPID字段。 示例：
+|hostPIDSet|通过检查Workload的Pod Spec中是否配置了hostPID：true，检查是否配置了共享使用主机的PID namespace。如果配置了，存在Pod中容器攻击主机上进程、采集主机上进程数据的风险。|修改Pod Spec，删除hostPID字段。 示例：
 
 ![3](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9195659951/p129769.png) |
 |hostPortSet|通过检查Workload的Pod Spec中是否配置了hostPort，检查是否配置了把容器中监听的端口映射到主机指定端口上。如果配置了，存在挤占主机可用端口以及被非预期的请求方请求容器端口的风险。|修改Pod Spec，删除hostPort字段。 示例：
@@ -127,7 +127,7 @@ keyword: [配置巡检, Workload配置, 安全隐患]
 |livenessProbeMissing|通过检查Workload的Pod Spec中是否未配置livenessProbe，检查是否未配置检测容器内应用是否出现异常需要重启容器的探针。如果未配置，存在在容器内应用异常需要重启容器才能恢复时未及时重启导致业务异常的风险。|修改Pod Spec，增加livenessProbe字段。 示例：
 
 ![17](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1295659951/p129784.png) |
-|tagNotSpecified|通过检查Workload的Pod Spec中的image字段的值是否未包含镜像tag或者使用了latest作为镜像tag，检查是否未配置运行容器时使用指定tag的容器镜像。如果未配置，存在在运行容器时运行了非预期的容器镜像版本导致业务异常的风险。|修改Pod Spec，修改image字段，使用指定的镜像tag并且不要使用latest作为镜像tag。 示例：
+|tagNotSpecified|通过检查Workload的Pod Spec中的image字段的值是否未包含镜像Tag或者使用了latest作为镜像Tag，检查是否未配置运行容器时使用指定Tag的容器镜像。如果未配置，存在在运行容器时运行了非预期的容器镜像版本导致业务异常的风险。|修改Pod Spec，修改image字段，使用指定的镜像Tag并且不要使用latest作为镜像Tag。 示例：
 
 ![18](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1295659951/p129785.png) |
 |anonymousUserRBACBinding|通过检查集群内的RBAC（Role-based access control）绑定找出配置了匿名用户访问权限的配置项。如果配置了允许匿名用户访问集群资源的配置项，则存在被恶意匿名用户窃取集群敏感信息、攻击和入侵集群的风险。|修改扫描出来的RBAC绑定，根据实际情况删除允许匿名用户访问集群资源的权限配置项。示例：
