@@ -21,7 +21,7 @@ keyword: [cGPU组件, 安装GPU隔离模块, kubectl-inspect-cgpu]
 |Nvidia驱动版本|418.87.01及以上版本|
 |Docker版本|19.03.5|
 |操作系统|CentOS 7.6、CentOS 7.7、Ubuntu 16.04和Ubuntu 18.04|
-|支持显卡|Tesla P4、Tesla P100、 Tesla T4和Tesla v100（16 GB）|
+|支持显卡|Tesla P4、Tesla P100、 Tesla T4和Tesla v100|
 
 ## 步骤一：为带有GPU设备的节点打标签
 
