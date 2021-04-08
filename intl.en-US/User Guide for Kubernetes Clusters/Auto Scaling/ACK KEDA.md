@@ -226,9 +226,9 @@ Run the following command to query jobs:
 watch -n 1 kubectl get job -n mongodb-test
 ```
 
-![Job](../images/p230844.png)
+![Job](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5401887161/p230844.png)
 
 Verify that five jobs are created. Log on to MongoDB and check the inserted data. Verify that the state of each data entry that you inserted is changed from `waiting` to `finished`.
 
-![Database](../images/p230845.png)
+![Database](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5401887161/p230845.png)
 
