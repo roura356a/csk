@@ -38,7 +38,7 @@ Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU
 |NVIDIA driver|V418.87.01 and later|
 |Docker|19.03.5|
 |Operating system|CentOS 7.6, CentOS 7.7, Ubuntu 16.04 and 18.04, and Aliyun Cloud Linux 2.x.|
-|GPU|Telsa P4, Telsa P100, Telsa T4, and Telsa V100 \(16 GB\)|
+|GPU|Telsa P4, Telsa P100, Telsa T4, and Telsa V100|
 
 ## Step 1: Install ack-ai-installer
 
@@ -57,7 +57,7 @@ Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+2.  In the left-side navigation pane, click **Clusters**.
 
 3.  On the Clusters page, find the cluster where ack-ai-installer is installed and click **Node Pools** in the **Actions** column.
 
