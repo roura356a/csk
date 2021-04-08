@@ -21,7 +21,7 @@ Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU
 |NVIDIA driver|418.87.01 and later|
 |Docker|19.03.5|
 |Operating system|CentOS 7.6, CentOS 7.7, Ubuntu 16.04, and Ubuntu 18.04|
-|Graphics card|Tesla P4, Tesla P100, Tesla T4, and Tesla V100 \(16 GB\)|
+|Graphics card|Tesla P4, Tesla P100, Tesla T4, and Tesla V100 \( 16 GB\)|
 
 ## Step 1: Label the nodes on which GPU devices are installed
 
@@ -31,7 +31,7 @@ Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU
 
 3.  On the Nodes page, select the cluster that you want to manage and click **Manage Labels and Taints** in the upper-right corner of the page.
 
-4.  In the left-side navigation pane of the ACK console, click **Clusters**.
+4.  In the left-side navigation pane, click **Clusters**.
 
 5.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
