@@ -6,11 +6,6 @@ keyword: [容器水平伸缩, HPA, 弹性伸缩]
 
 ACK支持在控制台界面上快速创建支持HPA的应用，实现容器资源的弹性伸缩。您也可通过定义HPA（Horizontal Pod Autoscaling）的YAML来进行配置。
 
-请确保您已完成以下操作：
-
--   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
--   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)
-
 ## 通过容器服务控制台创建HPA应用
 
 阿里云容器服务已经集成了HPA，您可以简便地通过容器服务控制台进行创建。您可以在创建应用的时候创建HPA，也可以在已有应用的基础上开启HPA。
@@ -79,7 +74,7 @@ ACK支持在控制台界面上快速创建支持HPA的应用，实现容器资�
 8.  单击**确定**。
 
 
-## 通过kubectl命令进行
+## 通过kubectl命令创建HPA应用
 
 您也可通过编排模板来手动创建HPA，并将其绑定到要伸缩的Deployment对象上，通过kubectl命令实现容器自动伸缩配置。
 
