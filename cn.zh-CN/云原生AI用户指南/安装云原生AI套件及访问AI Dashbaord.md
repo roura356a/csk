@@ -44,8 +44,10 @@ AI Dashboard提供三种访问方式（Sshuttle，SSL VPN及Ingress）。云原�
 
     ![K-AI-2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8804787161/p237448.png)
 
-    **说明：** AI-Dashboard控制台使用**公网域名**访问时，请注意控制访问范围。
+    **说明：**
 
+    -   AI-Dashboard控制台使用**公网域名**访问时，请注意控制访问范围。
+    -   AI-Dashboard控制台选择**私网**网络类型访问时，在**提示**对话框中选中**私网IP**。
 2.  单击**提示**对话框中的授权策略链接。
 
     1.  在**RAM角色管理**页面中，选择**权限管理**页签，单击目标授权策略名称。
