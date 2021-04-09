@@ -9,7 +9,7 @@ AI Dashboard提供三种访问方式（Sshuttle，SSL VPN及Ingress）。云原�
 -   已创建ACK Pro版集群，且在组件配置页面，需要选中**监控插件**和**日志服务**。具体操作，请参见[创建ACK Pro版集群](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
 -   ACK Pro托管版集群的Kubernetes版本不低于1.18。
 -   配置Sshuttle访问方式需要满足以下条件：
-    -   集群有一台启动SSH，且公网可访问的跳板机。具体操作，请参见[如何为已有集群开启SNAT](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/如何为已有集群开启SNAT？.md)。
+    -   集群有一台启动SSH，且公网可访问的跳板机。具体操作，请参见[如何为已有集群开启SNAT](/cn.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/为已有集群开启SNAT公网访问能力.md)。
     -   跳板机的Python版本不低于3.6。
     -   已获取跳板机的用户名和密码。
     -   Sshuttle是最低成本VPN方案，是基于SSH搭建的。建议在集群安全组中开启IP白名单的安全规则，限制可以访问的IP范围。具体操作，请参见[只允许实例访问外部特定IP地址](https://help.aliyun.com/document_detail/25475.html?spm=5176.2020520101securityGroupDetail.0.dexternal.2d004df5d6w9mV#specifyIpAccess)。
@@ -42,7 +42,9 @@ AI Dashboard提供三种访问方式（Sshuttle，SSL VPN及Ingress）。云原�
 
 1.  在云原生AI套件一键部署页面选中**AI-Dashboard控制台**时，会弹出下图所示的**提示**对话框。
 
-    ![K-AI-2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4064306161/p237448.png)
+    ![K-AI-2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8804787161/p237448.png)
+
+    **说明：** AI-Dashboard控制台使用**公网域名**访问时，请注意控制访问范围。
 
 2.  单击**提示**对话框中的授权策略链接。
 
@@ -79,14 +81,25 @@ AI Dashboard提供三种访问方式（Sshuttle，SSL VPN及Ingress）。云原�
 
 您可以通过四种方式访问AI-Dashboard，这四种访问方式优缺点对比如下所示：
 
-|访问方式|优点|缺点|
-|----|--|--|
-|Sshuttle|配置简单|访问稳定性一般|
-|SSL VPN|稳定|对集群网段有要求，配置略复杂|
-|私网Ingress|配置简单|需要您打通局域网和集群VPC网络|
-|公网Ingress|配置简单|暴露集群，存在安全风险|
+|访问方式|网络类型|优点|缺点|
+|----|----|--|--|
+|公网Ingress|公网|配置简单|暴露集群，存在安全风险。|
+|Sshuttle|私网|配置简单，成本低|访问稳定性一般。|
+|SSL VPN|私网|稳定|对集群网段有要求，配置略复杂。|
+|私网Ingress|私网|配置简单|需要您打通局域网和集群VPC网络。|
 
-**方式一：使用Sshuttle访问AI-Dashboard**
+**方式一：使用公网Ingress访问AI-Dashboard**
+
+1.  在云原生AI套件一键部署页面选中**AI-Dashboard控制台**，在**提示**对话框中，选中**公网域名（需要安装公网Ingress）**。更多相关操作，请参见[部署云原生AI套件](#section_2al_4w3_dpd)。
+
+    ![ai15](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7777787161/p261809.png)
+
+2.  **云原生AI套件**部署完成后，在云原生AI套件的组件列表页面上可以看到AI-Dashboard访问地址，直接通过该地址访问即可。
+
+    ![ai16](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7777787161/p261830.png)
+
+
+**方式二：使用Sshuttle访问AI-Dashboard**
 
 1.  执行以下命令，在OS X操作系统中安装Sshuttle。
 
@@ -109,14 +122,14 @@ AI Dashboard提供三种访问方式（Sshuttle，SSL VPN及Ingress）。云原�
 3.  在地址栏中输入AI-Dashboard访问地址，例如：`http://192.168.100.70:31101/`。
 
 
-**方式二：使用SSL VPN访问AI-Dashboard**
+**方式三：使用SSL VPN访问AI-Dashboard**
 
 -   使用VPN网关的SSL-VPN功能从客户端远程访问AI-Dashboard。具体操作，请参见[在经典网络中使用SSL VPN](/cn.zh-CN/最佳实践/在经典网络中使用SSL VPN/Mac客户端.md)。
 -   -   如果您使用Linux操作系统访问AI-Dashboard，具体操作，请参见[步骤四：配置客户端](/cn.zh-CN/最佳实践/在经典网络中使用SSL VPN/Linux客户端.md)。
 -   如果您使用OS X操作系统访问AI-Dashboard，具体操作，请参见[步骤四：客户端配置](/cn.zh-CN/最佳实践/在经典网络中使用SSL VPN/Mac客户端.mdsection_qdz_j4g_xdb)。
 -   如果您使用Windows操作系统访问AI-Dashboard，具体操作，请参见[步骤四：客户端配置](/cn.zh-CN/最佳实践/在经典网络中使用SSL VPN/Windows客户端.md)。
 
-**方式三：使用私网Ingress访问AI-Dashboard**
+**方式四：使用私网Ingress访问AI-Dashboard**
 
 为了控制AI-Dashboard的访问范围，可以利用阿里云增强版Ingress插件，配置只能由VPC内部访问的Ingress。更多关于Ingress的内容，请参考[Ingress概述](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress概述.md)。
 
@@ -202,42 +215,5 @@ AI Dashboard提供三种访问方式（Sshuttle，SSL VPN及Ingress）。云原�
     ```
 
     从以上输出的信息，可以知道局域网访问集群私网Ingress的AI-Dashboard成功。
-
-
-**方式四：使用公网Ingress访问AI-Dashboard**
-
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
-
-2.  在控制台左侧导航栏中，单击**集群**。
-
-3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
-
-4.  在集群管理页左侧导航栏中，选择**服务与路由** \> **路由**。
-
-5.  命名空间选择**kube-ai**。
-
-    ![K-AI-4](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6896484161/p237961.png)
-
-6.  单击**创建**，在弹出的**创建**对话框中填写**名称**，**域名**等信息，**服务**选择**ai-dashboard-admin-ui**，单击**创建**。
-
-    路由创建成功后，在路由页面的**规则**列可获取到已创建路由的访问地址。
-
-    ![22](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4064306161/p251383.png)
-
-7.  修改被绑定RAM应用的回调地址。
-
-    **说明：** 回调地址为目标路由**规则**列下链接，地址模板为：http://<域名\>/login/aliyun。
-
-    1.  云账号登录[RAM控制台](https://ram.console.aliyun.com/)。
-
-    2.  在左侧导航栏，单击**OAuth应用管理（公测中）**。
-
-    3.  选择**企业应用**页签，单击包含目标集群ID的应用名称链接。
-
-    4.  单击**编辑基本信息**。
-
-    5.  在**创建应用**面板的**回调地址**文本框中修改RAM应用的回调地址。
-
-8.  在集群管理页的**路由**页面，单击目标路由**规则**列下链接即可访问AI-Dashboard。
 
 
