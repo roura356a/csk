@@ -6,7 +6,10 @@ keyword: [Knative, 基于流量灰度发布服务]
 
 Knative提供了基于流量的灰度发布能力，您可以根据流量百分比灰度发布服务。本文介绍如何在Knative中基于流量灰度发布服务。
 
-[开启Knative](/cn.zh-CN/Serverless Kubernetes集群用户指南/Knative/Knative组件管理/开启Knative.md)
+部署Knative：
+
+-   如果是ACK集群，关于部署Knative具体操作，请参见[部署Knative](/cn.zh-CN/Kubernetes集群用户指南/Knative/Knative组件管理/一键部署Knative.md)。
+-   如果是ASK集群，关于部署Knative具体操作，请参见[开启Knative](/cn.zh-CN/Serverless Kubernetes集群用户指南/Knative/Knative组件管理/开启Knative.md)。
 
 ## 步骤一：创建服务
 
