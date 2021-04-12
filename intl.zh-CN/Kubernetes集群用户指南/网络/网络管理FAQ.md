@@ -11,6 +11,8 @@
 -   [如何规划集群网络？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
 -   [ACK是否支持hostPort的端口映射？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
 -   [ACK集群是否支持VPC多路由表？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
+-   [如何查看集群的网络类型？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
+-   [如何查看集群中使用的云资源？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
 
 ## Service FAQ
 
