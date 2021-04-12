@@ -1,6 +1,10 @@
+---
+keyword: [网络策略, Network Policy, k8s]
+---
+
 # 使用网络策略（Network Policy）
 
-本文介绍如何使用阿里云容器服务Kubernetes版集群的网络策略（Network Policy）。
+Kubernetes网络策略（Network Policy）提供基于策略的网络控制。如果您希望在IP地址或者端口层面控制网络流量，您可以为集群中特定应用使用网络策略。本文介绍如何使用阿里云容器服务Kubernetes版集群的网络策略。
 
 您已完成以下操作：
 
@@ -21,7 +25,7 @@
     预期输出：
 
     ```
-    deployment.apps/nginx created
+    pod/nginx created
     ```
 
     ```
@@ -32,11 +36,11 @@
 
     ```
     NAME                     READY   STATUS    RESTARTS   AGE
-    nginx-64f497f8fd-z****   1/1     Running   0          45s
+    nginx                    1/1     Running   0          45s
     ```
 
     ```
-    kubectl expose deployment nginx --port=80
+    kubectl expose pod nginx --port=80
     ```
 
     预期输出：
@@ -53,8 +57,8 @@
 
     ```
     NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
-    kubernetes   ClusterIP   172.XX.XX.1     <none>        443/TCP   3h
-    nginx        ClusterIP   172.XX.XX.48    <none>        80/TCP    10s
+    kubernetes   ClusterIP   172.XX.XX.1     <none>        443/TCP   30m
+    nginx        ClusterIP   172.XX.XX.48    <none>        80/TCP    12s
     ```
 
 2.  执行以下命令，创建名称为Busybox的Pod，访问[步骤1](#step_av6_77t_0ze)创建的Nginx服务。
@@ -66,8 +70,8 @@
     预期输出：
 
     ```
-    kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl create instead.
     If you don't see a command prompt, try pressing enter.
+    / #
     ```
 
     ```
@@ -77,14 +81,16 @@
     预期输出：
 
     ```
-    Connecting to nginx (172.XX.XX.48:80)
-    index.html           100% |***************************************************************************************************|   612  0:00:00 ETA
+    Connecting to nginx (172.21.x.114:80)
+    saving to 'index.html'
+    index.html           100% |****************************************************************************************************************************************************|   612  0:00:00 ETA
+    'index.html' saved
     ```
 
 
-## 通过Network Policy限制服务只能被带有特定label的应用访问
+## 通过Network Policy限制服务只能被带有特定标签的应用访问
 
-1.  执行以下命令，创建policy.yaml文件。
+1.  使用以下YAML模板并执行命令`vim policy.yaml`，创建名为policy.yaml文件。
 
     ```
     vim policy.yaml
@@ -104,7 +110,7 @@
               access: "true"
     ```
 
-2.  执行以下命令，根据步骤1的policy.yaml文件创建Network Policy。
+2.  执行以下命令，根据上述的policy.yaml文件创建Network Policy。
 
     ```
     kubectl apply -f policy.yaml 
@@ -146,8 +152,10 @@
     预期输出：
 
     ```
-    Connecting to nginx (172.19.8.48:80)
-    index.html           100% |***************************************************************************************************|   612  0:00:00 ETA
+    Connecting to nginx (172.21.x.114:80)
+    saving to 'index.html'
+    index.html           100% |****************************************************************************************************************************************************|   612  0:00:00 ETA
+    'index.html' saved
     ```
 
     连接Nginx的进度为100%时，说明请求成功，可以正常访问Nginx服务。
@@ -218,8 +226,8 @@
 
     访问失败的原因是：
 
-    -   配置的nginx服务只能被带有特定label即`access=true`的应用访问。
-    -   访问SLB的IP地址，是从外部访问Kubernetes，与通过Network Policy限制服务只能被带有特定Label的应用访问不同。
+    -   配置的Nginx服务只能被带有特定标签即`access=true`的应用访问。
+    -   访问SLB的IP地址，是从外部访问Kubernetes，与通过Network Policy限制服务只能被带有特定标签的应用访问不同。
     解决方法：修改Network Policy，增加允许访问的来源IP地址段。
 
 3.  执行以下命令，查看本地的IP地址。
@@ -339,6 +347,7 @@
       - to:
         - ipBlock:
             cidr: 0.0.0.0/0
+        - namespaceSelector: {}
         ports:
         - protocol: UDP
           port: 53
@@ -458,9 +467,9 @@
     deny-public-net                   <none>                1m
     ```
 
-3.  执行以下命令，为特殊Label的Pod允许访问公网。
+3.  执行以下命令，为特殊标签的Pod设置允许访问公网。
 
-    示例Label设置为`public-network=true`。
+    示例标签设置为`public-network=true`。
 
     ```
     vim allow-specify-label.yaml
@@ -506,7 +515,7 @@
     deny-public-net                   <none>                 3m
     ```
 
-4.  执行以下命令验证无特殊Label的Pod不能访问公网。
+4.  执行以下命令验证无特殊标签的Pod不能访问公网。
 
     ```
     kubectl run -it --namespace test-np --rm --image busybox  busybox-intranet
@@ -519,7 +528,7 @@
     预期输出：
 
     ```
-    PING aliyun.com (106.11.248.146): 56 data bytes
+    PING aliyun.com (106.11.2xx.xxx): 56 data bytes
     ^C
     --- aliyun.com ping statistics ---
     9 packets transmitted, 0 packets received, 100% packet loss
@@ -527,9 +536,9 @@
 
     显示0 packets received时，说明访问失败。
 
-    **说明：** 访问失败的原因是：由于通过deny-public-net的Network Policy规则限制了test-np的这个命名空间下的Pod的默认的公网访问，所以它下面启动的默认label的Pod无法访问公网。
+    **说明：** 访问失败的原因是：由于通过deny-public-net的Network Policy规则限制了test-np的这个命名空间下的Pod的默认的公网访问，所以它下面启动的默认标签的Pod无法访问公网。
 
-5.  执行以下命令验证带有public-network=true
+5.  执行以下命令验证带有public-network=true的Pod可以访问服务。
 
     ```
     kubectl run -it --namespace test-np --labels public-network=true --rm --image busybox  busybox-internet
@@ -542,10 +551,10 @@
     预期输出：
 
     ```
-    PING aliyun.com (106.11.172.56): 56 data bytes
-    64 bytes from 106.11.172.56: seq=0 ttl=47 time=4.235 ms
-    64 bytes from 106.11.172.56: seq=1 ttl=47 time=4.200 ms
-    64 bytes from 106.11.172.56: seq=2 ttl=47 time=4.182 ms
+    PING aliyun.com (106.11.1xx.xx): 56 data bytes
+    64 bytes from 106.11.1xx.xx: seq=0 ttl=47 time=4.235 ms
+    64 bytes from 106.11.1xx.xx: seq=1 ttl=47 time=4.200 ms
+    64 bytes from 106.11.1xx.xx: seq=2 ttl=47 time=4.182 ms
     ^C
     --- aliyun.com ping statistics ---
     3 packets transmitted, 3 packets received, 0% packet loss
