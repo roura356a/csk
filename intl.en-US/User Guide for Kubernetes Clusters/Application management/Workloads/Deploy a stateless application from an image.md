@@ -18,8 +18,6 @@ You can deploy a stateless application from an image. This topic describes how t
 
 6.  On the **Basic Information** wizard page, configure basic settings.
 
-    ![Basic configuration](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8309301161/p10973.png)
-
     |Parameter|Description|
     |---------|-----------|
     |Name|The name of the application.|
@@ -45,14 +43,12 @@ On the **Container** wizard page, configure the settings of the image, resources
 
 1.  In the **General** section, configure the basic settings of the container.
 
-    ![General settings](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7045359951/p12305.png)
-
     |Parameter|Description|
     |---------|-----------|
     |Image Name|    -   To use a Docker image or an image from Container Registry, click **Select Image**. In the dialog box that appears, select an image and click **OK**. In this example, an NGINX image is selected. On the **Search** tab, you can select **Docker Images** from the drop-down list, enter NGINX in the search bar, and then click Search.
         -   Alibaba Cloud Container Registry: On the **Alibaba Cloud Container Registry** tab, you can select an image from Container Registry. You must specify the region and Container Registry instance of the image. For more information about Container Registry, see [What is Container Registry Enterprise Edition?]().
 
-**Note:** On the **Alibaba Cloud Container Registry** tab, you can enter an image name to search for an image in Container Registry.
+**Note:** On the **Alibaba Cloud Container Registry** tab, you can search images by name in Container Registry.
 
         -   Docker Official Images: On the **Docker Official Images** tab, you can select a Docker image.
         -   Favorite Images: On the **Favorite Images** tab, you can select a Docker image that you have specified as one of your favorite images.
@@ -86,7 +82,7 @@ On the **Container** wizard page, configure the settings of the image, resources
 
     You can set environment variables in key-value pairs for pods. Environment variables are used to apply pod configurations to containers. For more information, see [Pod variables](https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/?spm=0.0.0.0.8VJbrE).
 
-    -   Type: the type of environment variable. You can select **Custom**, **ConfigMaps**, **Secret**, **Value/ValueFrom**, or **ResourceFieldRef**. If you select ConfigMaps or Secret as the type of environment variable, all values in the selected ConfigMaps or Secret are passed to the container environment variables. In this example, Secret is selected.
+    -   Type: the type of environment variable. You can select **Custom**, **ConfigMaps**, **Secret**, **Value/ValueFrom**, or **ResourceFieldRef**. If you select ConfigMaps or Secret as the type of environment variable, all values in the selected ConfigMap or Secret are passed to the container environment variables. In this example, Secret is selected.
 
         Select **Secret** from the Type drop-down list and select a Secret from the **Value/ValueFrom** drop-down list. All values in the selected Secret are passed to the environment variable.
 
@@ -184,7 +180,7 @@ On the **Advanced** wizard page, you can configure the settings of access contro
         |Parameter|Description|
         |---------|-----------|
         |Name|The name of the Service. In this example, nginx-svc is used.|
-        |Type|Select one of the following types: **Cluster IP** is selected in this example.         -   **Cluster IP**: enables access to the Service by using an internal IP address of the cluster. If you select this type, the Service is accessible only within the cluster. This is the default type.
+        |Type|Select one of the following types. **Cluster IP** is selected in this example.         -   **Cluster IP**: enables access to the Service by using an internal IP address of the cluster. If you select this type, the Service is accessible only within the cluster. This is the default type.
 
 **Note:** The **Headless Service** check box is available only when you set Type to **Cluster IP**.
 
@@ -234,13 +230,11 @@ The following parameters are required:        -   **Services**: the Service to b
         -   **Type**: the type of matching rule, such as Header, Cookie, and Query.
         -   **Name** and **Match Value**: user-defined request parameters that are specified in key-value pairs.
         -   **Matching Rule**: Regular expressions and exact matches are supported. |
-        |Annotations|        -   Click **Rewrite Annotation** to add a rewrite annotation for the Ingress. For example, `nginx.ingress.kubernetes.io/rewrite-target：/` specifies that /path is redirected to the root path /. The root path can be recognized by the backend Service.
+        |Annotations|        -   Click **Rewrite Annotation** to add a rewrite annotation for the Ingress. For example, `nginx.ingress.kubernetes.io/rewrite-target:/` specifies that /path is redirected to the root path /. The root path can be recognized by the backend Service.
         -   You can also click **Add**, and enter the name and value of an annotation. For more information, see [Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/). |
         |Label|Add one or more labels to describe the Ingress.|
 
     You can find the created Service and Ingress in the **Access Control** section. You can click **Update** or **Delete** to change the configurations.
-
-    ![Update or delete the Ingress](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0665359951/p10982.png)
 
 2.  In the **Scaling** section, specify whether to enable **HPA** and **CronHPA**. Horizontal Pod Autoscaler \(HPA\) enables the application to run at different load levels.
 
@@ -258,7 +252,7 @@ The following parameters are required:        -   **Services**: the Service to b
         |Min. Replicas|Specify the minimum number of replicated pods that must run.|
 
     -   CronHPA can scale an ACK cluster at a scheduled time. For more information about CronHPA, see [Create CronHPA jobs](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/CronHPA.md).
-3.  In the **Scheduling** section, you can set the following parameters: Update Method, Node Affinity, Pod Affinity, Pod Anti Affinity, and Toleration. For more information, see [Affinity and anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/?spm=a2c4g.11186623.2.31.3fdd30dfnyevPx#affinity-and-anti-affinity).
+3.  In the **Scheduling** section, you can set the following parameters: Update Method, Node Affinity, Pod Affinity, and Pod Anti Affinity. For more information, see [Affinity and anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/?spm=a2c4g.11186623.2.31.3fdd30dfnyevPx#affinity-and-anti-affinity).
 
     **Note:** During pod scheduling, the labels of a node and a pod determine the affinities of the node and pod. You can configure node affinity and pod affinity by selecting preset labels or by manually adding labels.
 
@@ -321,13 +315,36 @@ On the **Complete** wizard page, you can check the deployed application.
 
 ## What to do next
 
-In the left-side navigation pane, click **Clusters**. On the Clusters page, click the name of the cluster that you want to manage or click **Details** in the **Actions** column. In the left-side navigation pane, click **Workloads** and Deployments. On the Deployments page, click the name of the application that you want to manage or click **Details** in the **Actions** column. On the details page of the application, you can **edit**, **scale**, **redeploy**, and **refresh** the application. You can also **view the YAML file** of the application.
+**View details about the stateless application**
 
--   Edit: On the details page of the application, click **Edit** in the upper-right corner of the page to modify the configurations of the application.
--   Scale: On the details page of the application, click **Scale** in the upper-right corner of the page to scale the application to a required number of pods.
--   View the YAML file: On the details page of the application, click **View in YAML** in the upper-right corner of the page. You can **update** and **download** the YAML file. You can also **save** the YAML file as a template.
--   Redeploy: On the details page of the application, click **Redeploy** in the upper-right corner of the page to redeploy the application.
--   Refresh: On the details page of the application, click **Refresh** in the upper-right corner of the page to update the application details.
+In the left-side navigation pane, click **Clusters**. On the Clusters page, find the cluster where the application is deployed. Then, click the name of the cluster or click **Details** in the **Actions** column. In the left-side navigation pane of the details page, click **Workloads** and Deployments. On the Deployments page, click the name of the application or click **Details** in the **Actions** column. On the details page of the application, you can **edit**, **scale**, **redeploy**, and **refresh** the application. You can also **view the YAML file** of the application.
+
+|Operation|Description|
+|---------|-----------|
+|**Edit**|On the details page of the application, click **Edit** in the upper-right corner of the page to modify the configurations of the application.|
+|**Scale**|On the details page of the application, click **Scale** in the upper-right corner of the page to scale the application to the required number of pods.|
+|**View in YAML**|On the details page of the application, click **View in YAML** in the upper-right corner of the page. You can **update** and **download** the YAML file. You can also **save** the YAML file as a template.|
+|**Redeploy**|On the details page of the application, click **Redeploy** in the upper-right corner of the page to redeploy the application.|
+|**Refresh**|Refresh: On the details page of the application, click **Refresh** in the upper-right corner of the page to update the application details.|
+
+**Configure the stateless application**
+
+On the Deployments page, find the application and click **More** in the **Actions** column. Then, you can perform the operations listed in the following table to manage the application.
+
+|Operation|Description|
+|---------|-----------|
+|**View in YAML**|View the YAML file of the application.|
+|**Redeploy**|Redeploy the application.|
+|**Edit Label**|Add labels to the application.|
+|**Node Affinity**|Set node affinity rules for the application. For more information, see [Scheduling](#step_cev_rgj_vck).|
+|**Scaling**|Set scaling rules for the application. For more information, see [HPA](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/HPA.md) and [CronHPA](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/CronHPA.md).|
+|**Toleration**|Set toleration rules for the application. For more information, see [Scheduling](#step_cev_rgj_vck).|
+|**Upgrade Policy**|Set an upgrade policy for the application. The following policies are supported:-   **Rolling Upgrade**: Current pods are replaced by new pods in batches.
+-   **OnDelete**: Current pods are stopped before they are replaced by new pods. |
+|**Clone**|Clone the container configuration of the application.|
+|**Roll Back**|Roll back the application to a previous version.|
+|**Logs**|View the log data of the application.|
+|**Delete**|Delete the application.|
 
 ## References
 
