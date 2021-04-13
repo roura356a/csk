@@ -51,17 +51,15 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
 
 ![资源组](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png) |
         |**Kubernetes版本**|显示当前ACK支持的Kubernetes版本。 |
-        |**容器运行时**|支持**Containerd**、**Docker**和**安全沙箱**。更多信息，请参见[如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？.md)。
-
-**说明：** Containerd运行时目前在公测阶段，如您需使用请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)开放Containerd运行时白名单。 |
+        |**容器运行时**|支持**Containerd**、**Docker**和**安全沙箱**。更多信息，请参见[如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？.md)。 |
         |**专有网络**|设置集群的网络，您可以选择普通VPC和共享VPC。
 
         -   共享VPC：VPC的所有者账号（资源所有者）可以将其账号下的VPC内的交换机资源共享给其组织内的其他账号使用。
         -   普通VPC：不具备共享功能的VPC。
-**说明：** Kubernetes集群仅支持专有网络。您可以在已有VPC列表中选择所需的VPC。如果没有您需要的专有网络，可以通过单击**创建专有网络**进行创建，请参见[使用专有网络](/cn.zh-CN/专有网络和交换机/使用专有网络.md)。 |
+**说明：** Kubernetes集群仅支持专有网络。您可以在已有VPC列表中选择所需的VPC。如果没有您需要的专有网络，可以通过单击**创建专有网络**进行创建，请参见[创建专有网络](/cn.zh-CN/专有网络和交换机/使用专有网络.md)。 |
         |**虚拟交换机**|设置虚拟交换机。
 
-您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[使用交换机](/cn.zh-CN/专有网络和交换机/使用交换机.md)。 |
+您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[创建交换机](/cn.zh-CN/专有网络和交换机/使用交换机.md)。 |
         |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[Flannel与Terway对比](/cn.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/使用Terway网络插件.md)。
 
         -   Flannel：简单稳定的社区的Flannel CNI插件。但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
@@ -90,7 +88,7 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
 -   只在弹性网卡共享模式下支持选中，默认不选中。
 -   如果选中，集群支持使用Kubernetes的NetworkPolicy策略对Pod进行网络控制。
 -   如果不选中，集群将不会支持使用Kubernetes的NetworkPolicy策略对Pod进行网络控制，这样将不存在网络策略对Kubernetes的API Server产生过大的负载。 |
-        |**Pod虚拟交换机**|网络插件选择Terway时，您需要为Pod分配IP的虚拟交换机。每个Pod虚拟交换机分别对应一个Worker实例的虚拟交换机。 |
+        |**Pod虚拟交换机**|网络插件选择Terway时，您需要为Pod分配IP的虚拟交换机。每个Pod虚拟交换机分别对应一个Worker实例的虚拟交换机，Pod虚拟交换机和Worker实例的虚拟交换机的可用区需一致。 |
         |**节点IP数量**|如果您选择的网络模式为**Flannel**，您需设置**节点IP数量**。
 
 **说明：**
