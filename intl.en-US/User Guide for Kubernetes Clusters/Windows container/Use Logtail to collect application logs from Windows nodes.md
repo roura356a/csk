@@ -1,19 +1,19 @@
 ---
-keyword: [Windows node, Logtail, application log collection]
+keyword: [Windows node, Logtail, collect application logs]
 ---
 
 # Use Logtail to collect application logs from Windows nodes
 
 You can use Logtail to collect application logs from Windows nodes. This topic describes how to use Logtail to collect application logs from Windows nodes.
 
--   A Container Service for Kubernetes \(ACK\) cluster is created and **Enable Log Service** is selected when you created the cluster. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+-   A Container Service for Kubernetes \(ACK\) cluster is created and **Enable Log Service** is selected when you create the cluster. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 -   A Windows node pool is created. For more information, see [Create a node pool that runs Windows](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a node pool that runs Windows.md).
 
 ## Deploy Logtail on a Windows node
 
-1.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+1.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
 
-2.  Run the following command to deploy a DaemonSet on a Windows node:
+2.  Run the following command to deploy Logtail as a DaemonSet on a Windows node:
 
     ```
     apiVersion: apps/v1
@@ -173,8 +173,8 @@ You can use Logtail to collect application logs from Windows nodes. This topic d
                 fieldRef:
                   apiVersion: v1
                   fieldPath: status.hostIP
-            # Replace <cn-hangzhou> in the following image registry with the actual region where the cluster is deployed.
-            image: registry-vpc.cn-hangzhou.aliyuncs.com/acs/logtail-windows:v1.0.18  
+            # Replace <cn-hangzhou> in the following registry address with the ID of the region where the cluster is deployed.
+            image: registry-vpc.cn-hangzhou.aliyuncs.com/acs/logtail-windows:v1.0.19  
             imagePullPolicy: IfNotPresent
             resources:
               limits:
@@ -220,12 +220,12 @@ You can use Logtail to collect application logs from Windows nodes. This topic d
         type: RollingUpdate
     ```
 
-    **Note:** Logtail can collect only stdout files and import them to Log Service. Logtail will soon support log file collection.
+    **Note:** Logtail can collect only stdout files and deliver them to Log Service. In later versions, you can use Logtail to collect log files.
 
 
-## Examples
+## Example
 
-After Logtail is deployed on the Windows node, use the following template to deploy a sample application to test Logtail and verify that it works as expected:
+After Logtail is deployed on the Windows node, use the following template to deploy a sample application to verify that Logtail works as expected:
 
 ```
 apiVersion: extensions/v1beta1
@@ -263,5 +263,5 @@ spec:
         value: windows
 ```
 
-After the preceding application is deployed, you can view the log data. For more information, see [Query logs](/intl.en-US/Index and query/Query logs.md).
+After the application is deployed, you can view the log data. For more information, see [Query logs](/intl.en-US/Index and query/Query logs.md).
 
