@@ -8,8 +8,6 @@ Containerd是一个工业级标准的容器运行时，可以在宿主机中管�
 
 关于Containerd运行时与其他运行时的对比详情，请参见[如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？](/intl.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？.md)。
 
-**说明：** 目前Containerd运行时处于公测阶段，如您需使用Containerd运行时，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)[提交工单](https://workorder-intl.console.aliyun.com/console.htm)提交工单。
-
 ## 2021年03月
 
 |版本号|变更时间|变更内容|变更影响|
@@ -23,5 +21,5 @@ Containerd是一个工业级标准的容器运行时，可以在宿主机中管�
 
 [Docker运行时发布记录](/intl.zh-CN/产品发布记录/运行时发布记录/Docker运行时发布记录.md)
 
-[安全沙箱运行时变更记录](/intl.zh-CN/产品发布记录/运行时发布记录/安全沙箱运行时变更记录.md)
+[安全沙箱运行时发布记录](/intl.zh-CN/产品发布记录/运行时发布记录/安全沙箱运行时发布记录.md)
 
