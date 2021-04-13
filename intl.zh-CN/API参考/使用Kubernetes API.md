@@ -15,8 +15,8 @@
 5.  从kubeconfig文件中提取ca、key和apiserver信息，命令如下。
 
     ```
-    cat  ./kubeconfig |grep client-certificate-data | awk -F ' ' '{print $2}' |base64 -d > client-cert.pem
-    cat  ./kubeconfig |grep client-key-data | awk -F ' ' '{print $2}' |base64 -d > client-key.pem
+    cat  ./kubeconfig |grep client-certificate-data | awk -F ' ' '{print $2}' |base64 -d > ./client-cert.pem
+    cat  ./kubeconfig |grep client-key-data | awk -F ' ' '{print $2}' |base64 -d > ./client-key.pem
     APISERVER=`cat  ./kubeconfig |grep server | awk -F ' ' '{print $2}'`
     ```
 
@@ -26,7 +26,7 @@
 执行以下命令查看当前集群中所有Namespaces。
 
 ```
-curl --cert client-cert.pem --key client-key.pem -k $APISERVER/api/v1/namespaces
+curl --cert ./client-cert.pem --key ./client-key.pem -k $APISERVER/api/v1/namespaces
 ```
 
 -   常用的Pod相关操作。
