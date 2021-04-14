@@ -1,37 +1,35 @@
 ---
-keyword: [弹性节点池, 注册集群, 使用限制]
+keyword: [elastic node pool, external Kubernetes cluster, limits]
 ---
 
-# 注册集群弹性节点池使用要求
+# Limits on elastic node pools for external Kubernetes clusters
 
-注册集群弹性节点池用于管理一组云服务器（ECS节点）资源。您可以通过节点池统一为您自建或其他公有云的Kubernetes集群扩容ECS节点，也可以统一管理节点的标签和污点。本文介绍注册集群弹性节点池的使用要求。
+You can use elastic node pools to manage a set of Elastic Compute Service \(ECS\) instances for external Kubernetes clusters. You can add ECS instance-based nodes from elastic node pools to self-managed Kubernetes clusters or Kubernetes clusters that are provided by other cloud service providers. You can also use node pools to manage the labels and taints of nodes in node pools. This topic describes the limits on elastic node pools for external Kubernetes clusters.
 
-## Kubernetes版本要求
+## Kubernetes versions
 
-注册集群弹性节点池要求您自建或其他公有云的Kubernetes集群版本大于等于v1.16.9。
+Kubernetes 1.16.9 or later is used for the self-managed Kubernetes clusters or Kubernetes clusters that are provided by other cloud service providers.
 
-## 集群节点添加模式要求
+## Modes in which nodes are added to the cluster
 
-注册集群弹性节点池要求您自建或其他公有云的Kubernetes集群支持使用[Bootstrap Token](https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/#bootstrap-tokens-overview)以[kubeadm join](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-join/)的方式添加节点。
+You must use a [bootstrap token](https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/#bootstrap-tokens-overview) and run the [kubeadm join](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-join/) command to add a node to a self-managed Kubernetes cluster or Kubernetes cluster that is provided by other cloud service providers.
 
-使用kubeadm命令访问配置项[cluster-info](https://kubernetes.io/docs/reference/setup-tools/kubeadm/implementation-details/#create-the-public-cluster-info-configmap)可以与集群建立连接。您可以执行以下命令查看**kube-public**命名空间下是否存在**cluster-info**的配置项（ConfigMap）来判断是否满足此项使用限制条件。
+You can run kubeadm commands to access the [cluster-info](https://kubernetes.io/docs/reference/setup-tools/kubeadm/implementation-details/#create-the-public-cluster-info-configmap) ConfigMap. This allows you to connect to the cluster. You can run the following command to check whether the **cluster-info** ConfigMap exists in the **kube-public** namespace:
 
 ```
 kubectl -n kube-public get configmap
 ```
-
-预期输出：
 
 ```
 NAME           DATA   AGE
 cluster-info   4      3h56m
 ```
 
-## VPC网络要求
+## VPC connections
 
-注册集群弹性节点池要求您自建或其他公有云的Kubernetes集群网络与容器服务ACK注册集群的VPC网络互通。您可以通过云企业网产品服务实现网络互通。更多信息，请参见[教程概览]()。
+The self-managed Kubernetes cluster or Kubernetes cluster provided by other cloud service providers can be connected to the virtual private cloud \(VPC\) where the ACK cluster for registration is deployed. You can use Cloud Enterprise Network \(CEN\) to establish the connection. For more information, see [Overview]().
 
-## 网络插件类型要求
+## Network plug-ins
 
-注册集群弹性节点池要求您自建或其他公有云的Kubernetes集群网络插件为Flannel VxLAN、Calico BGP peer、Calico BGP node-to-node mesh。如果您使用的是其他网络插件类型，请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)咨询和确认。
+The self-managed Kubernetes cluster or Kubernetes cluster that is provided by other cloud service providers must use the following network plug-ins: Flannel VxLAN, Calico BGP peer, and Calico BGP node-to-node mesh. If you want to use other network plug-ins, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) for confirmation.
 
