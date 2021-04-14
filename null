@@ -15,9 +15,9 @@ keyword: [logtail, migrate-controller, AK授权, 必读]
 
 ## Logtail组件
 
-有关Logtail组件安装和使用的详情，请参见[安装和使用Logtail](/cn.zh-CN/Kubernetes集群用户指南/多云混合云/弹性节点池/安装和使用Logtail.md)。
+有关Logtail组件安装和使用的详情，请参见[安装和使用Logtail](/intl.zh-CN/Kubernetes集群用户指南/多云混合云/弹性节点池/安装和使用Logtail.md)。
 
 ## Migrate Controller组件
 
-有关Migrate Controller安装和使用的详情，请参见[安装Migrate Controller](/cn.zh-CN/Kubernetes集群用户指南/多云混合云/组件管理/安装Migrate Controller.md)。
+有关Migrate Controller安装和使用的详情，请参见[安装Migrate Controller](/intl.zh-CN/Kubernetes集群用户指南/多云混合云/组件管理/安装Migrate Controller.md)。
 
