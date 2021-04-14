@@ -1,12 +1,18 @@
+---
+keyword: [创建应用, 无状态, Deployment, 镜像]
+---
+
 # 使用镜像快速创建无状态Deployment应用
 
 您可以使用镜像快速创建一个可公网访问的Nginx应用。
 
-[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
-
 ## 体验实验室
 
 为了帮助您快速上手本教程，ACK为您提供了可以动手操作的交互式实验环境。如您需要体验，请访问[使用kubectl部署web应用到k8s集群](https://start.aliyun.com/handson/Tn0HcdCZ/deploy_2_ack_by_kubectl)。
+
+## 前提条件
+
+已创建一个ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 
 ## 操作步骤
 
