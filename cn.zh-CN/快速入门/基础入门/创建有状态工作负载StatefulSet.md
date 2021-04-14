@@ -17,9 +17,13 @@ StatefulSet包括以下特性：
 |稳定的网络标志|Pod的hostname模式为：`（statefulset名称）−（序号）`。|
 |稳定的次序|对于N个副本的StatefulSet，每个Pod都在 \[0，N）的范围内分配一个数字序号，且是唯一的。|
 
+## 体验实验室
+
+为了帮助您快速上手本教程，ACK为您提供了可以动手操作的交互式实验环境。如您需要体验，请访问[使用kubectl进行StatefulSet应用部署](https://start.aliyun.com/handson/Tn0HcdCZ/deploy_statefulset_by_kubectl)。
+
 ## 操作步骤
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
