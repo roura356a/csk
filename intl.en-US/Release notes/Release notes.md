@@ -17,7 +17,7 @@ This topic lists the latest changes to Container Service for Kubernetes \(ACK\).
 |[Enable ARMS Prometheus](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Enable ARMS Prometheus.md)|
 |Custom parameter|Custom parameters are supported for the API server and Kubernetes controller manager \(KCM\) components in professional managed Kubernetes clusters. This meets the requirements for custom parameters of cluster control components in production environments.|All regions
 
-|[t2025933.md\#]()|
+|[Customize the settings of control plane components in professional managed Kubernetes clusters](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Customize the settings of control plane components in professional managed Kubernetes clusters.md)|
 |Log collection|Logs of control components, such as the API server, KCM, and kube-scheduler, can be collected. To enable log collection, select Collect Logs of Control Plane Components when you create a cluster. This helps you monitor the cluster status and detect anomalies in the cluster.
 
 |All regions
@@ -33,7 +33,7 @@ This topic lists the latest changes to Container Service for Kubernetes \(ACK\).
 |[Overview of edge node pools](/intl.en-US/User Guide for Edge Container Service/Cell-based management at the edge/Manage edge node pools/Overview of edge node pools.md)|
 |Elastic node pool|Node pools are supported in registered external Kubernetes clusters. You can use a node pool to manage a set of Elastic Compute Service \(ECS\) instances with the same attributes. You can also add them to a self-managed Kubernetes cluster or a Kubernetes cluster that is deployed in the public cloud of a third-party cloud service providers. This allows you to schedule resources in the cloud, data centers, and self-managed Kubernetes clusters in a unified, more flexible, and more cost-effective manner.|All regions
 
-|[Limits on elastic node pools for external Kubernetes clusters](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Elastic node pools/Limits on elastic node pools for external Kubernetes clusters.md)|
+|[Configure auto scaling](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of registered clusters/Configure auto scaling.md)|
 |Application backup|The application backup feature is released. This feature supports and meets the critical requirement for data security in Kubernetes clusters where an increasing number of applications are deployed. You can use application backups to restore applications that are accidentally disrupted for a long period of time. Different from the traditional node and disk backup, the application backup feature is used to back up applications and the relevant data, resource objects, and configurations. You can also use this feature to back up all resources in a namespace. This feature is available in ACK clusters and registered external Kubernetes clusters. You can use this feature to back up applications, volumes, and persistent volumes \(PVs\) in a cluster, and also restore backups to other clusters.|All regions
 
 |[Back up and restore applications in Kubernetes clusters](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Back up and restore applications in Kubernetes clusters.md)|
@@ -143,7 +143,7 @@ The feature is supported by professional managed Kubernetes clusters, standard m
 |-------|-----------|----------------|----------|
 |New region|ACK is available in the China \(Ulanqab\) region.|All regions
 
-|[ACK Pro overview](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/ACK Pro overview.md)|
+|[Introduction](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Introduction.md)|
 |SMB|Server Message Block \(SMB\) file systems can be mounted to a container that runs Windows. In the NAS console, you can create an SMB file system in the VPC where the cluster is deployed. You can also create a mount target for the file system. You must use the FlexVolume plug-in to mount an SMB file system.|All regions
 
 |[Mount SMB file systems to Windows containers](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Mount SMB file systems to Windows containers.md)|
@@ -160,7 +160,7 @@ The feature is supported by professional managed Kubernetes clusters, standard m
          mode.md) |
 |Periodic inspection|Periodic inspection policies can be configured for a cluster on the Inspections page in the ACK console.|All regions
 
-|[Use the inspection component to check for security risks in workloads of an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Manage components/Use the inspection component to check for workload security risks in an ACK cluster.md)|
+|[Use the inspection component to check for security risks in workloads of an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Security/Use the inspection component to check for workload security risks in an ACK cluster.md)|
 |Cluster auditing|The cluster auditing feature can be enabled or disabled on the Cluster Auditing page in the ACK console.|All regions
 
 |[Enable cluster auditing](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Security/Enable cluster auditing.md)|
@@ -172,7 +172,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 
 |All regions
 
-|-   [Install and use logtail-ds](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Manage components/Install and use logtail-ds.md)
+|-   [Install and use logtail-ds](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Elastic node pools/Install and use logtail-ds.md)
 -   [Install migrate-controller](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Manage components/Install migrate-controller.md) |
 |Sandboxed-Container 2.0|Sandboxed-Container is upgraded to V2.0. Sandboxed-Container 2.0 has the following benefits:-   Sandboxed-Container is a container runtime that is developed by Alibaba Cloud on top of lightweight virtual machines. Compared with Sandboxed-Container 1.0, Sandboxed-Container 2.0 supports more lightweight and efficient deployment and simplifies the architecture and maintenance of ACK clusters.
 -   Sandboxed-Container 2.0 reduces the resource overheads by 90% and improves the startup speed of sandboxed containers by three times.
@@ -209,7 +209,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 |All regions
 
 |[Work with Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md)|
-|New region|Professional managed clusters are available in the China \(Beijing\), China \(Shenzhen\), Germany \(Frankfurt\), Indonesia \(Jakarta\), and China East 2 Finance \(on Alibaba Finance Cloud\) regions.|China \(Beijing\), China \(Shenzhen\), Germany \(Frankfurt\), Indonesia \(Jakarta\), and China East 2 Finance \(on Alibaba Finance Cloud\)|[ACK Pro overview](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/ACK Pro overview.md)|
+|New region|Professional managed clusters are available in the China \(Beijing\), China \(Shenzhen\), Germany \(Frankfurt\), Indonesia \(Jakarta\), and China East 2 Finance \(on Alibaba Finance Cloud\) regions.|China \(Beijing\), China \(Shenzhen\), Germany \(Frankfurt\), Indonesia \(Jakarta\), and China East 2 Finance \(on Alibaba Finance Cloud\)|[Introduction](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Introduction.md)|
 |ACK@Edge|ACK@Edge is released for commercial use. ACK@Edge is a cloud-managed solution that is provided by ACK to coordinate cloud and edge computing.|All regions
 
 |None|
@@ -225,7 +225,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 
 |All regions
 
-|[ACK Pro overview](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/ACK Pro overview.md)|
+|[Introduction](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Introduction.md)|
 |New region|ASK clusters are available in the Japan \(Tokyo\) and Indonesia \(Jakarta\) regions.|Japan \(Tokyo\) and Indonesia \(Jakarta\)|[Introduction](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Introduction.md)|
 |CCM|CCM is upgraded to V1.9.3.313-g748f81e-aliyun. The following features are provided:-   Supports deletion protection for SLB instances. By default, deletion protection is enabled for newly created SLB instances.
 -   Supports modification protection for the configurations of SLB instances. By default, modification protection is enabled for the configurations of newly created SLB instances.
@@ -246,7 +246,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 |None|
 |Cluster registration|Cluster registration is supported. During daily O&M, you may need to deploy multiple clusters in the cloud and data centers. In some scenarios, you may even deploy clusters in the clouds of different cloud service providers. In these cases, you can register external Kubernetes clusters in the ACK console. This allows you to manage external Kubernetes clusters in the console and reduce O&M costs.|All regions
 
-|[Overview of registered clusters](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Overview of registered clusters.md)|
+|[Overview of registered clusters](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of registered clusters/Overview of registered clusters.md)|
 |Workload management|Redeployment and rollback of workloads are supported. ACK provides features on the workload management page in the ACK console, such as application redeployment and rollback. This makes it more convenient to manage your workloads.|All regions
 
 |[Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateless application from an image.md)|
@@ -277,7 +277,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 |Feature|Description|Supported region|References|
 |-------|-----------|----------------|----------|
 |AGS|Alibaba Cloud Genomics Service \(AGS\) is released for commercial use. AGS is an ACK-based big data compute service provided by Alibaba Cloud for users in the biotechnology industry. AGS provides efficient, elastic, and reliable services. AGS is faster in computing and more cost-effective than traditional methods. AGS uses the pay-as-you-go billing method and charges you based on the number of successful API calls in the backend. To submit a computing task, you need only to run a command to call the AGS API on the client. This process is counted as one API call.|All regions|[Overview](/intl.en-US/User Guide for Genomics Service/Overview.md)|
-|Dynamic volume|Online scale-out of dynamic volumes without restarting pods is supported for Kubernetes 1.16 and later.|All regions|[Use CSI to dynamically expand a disk PV in ACK](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Use CSI to dynamically expand a disk PV in ACK.md)|
+|Dynamic volume|Online scale-out of dynamic volumes without restarting pods is supported for Kubernetes 1.16 and later.|All regions|[Use CSI to dynamically expand a disk volume in ACK](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Use CSI to dynamically expand a disk volume in ACK.md)|
 |Ingress controller|Multiple Ingress controllers can be deployed in a Kubernetes cluster. An Ingress is an important entry for Layer 7 services. If you create only one Ingress for a cluster, the routing performance may encounter a bottleneck. If an Ingress allows inbound access through a public network and private network at the same time, security risks exist. To solve these issues, ACK provides a Helm chart for the Ingress controller when only one Ingress is used. The name of the Helm chart is ack-ingress-nginx. You can deploy multiple Ingress controllers from App Catalog. You can use YAML files to configure access to Internet-facing and internal-facing SLB instances separately.|All regions|[Deploy Ingresses in a high-reliability architecture](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Deploy Ingresses in a high-reliability architecture.md)|
 |New region|ASK is available in the India \(Mumbai\) region.|India \(Mumbai\)|[Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md)|
 
@@ -426,7 +426,7 @@ Australia \(Sydney\)
 |Feature|Description|Supported region|References|
 |-------|-----------|----------------|----------|
 |Managed edge Kubernetes cluster|Managed edge Kubernetes clusters are released for public preview. You can add edge nodes or ENS nodes to managed edge Kubernetes clusters. This type of cluster supports edge computing and manages edge nodes and ENS nodes to reduce O&M costs. This type of cluster also supports autonomous edges and networks to meet the requirements in different edge computing scenarios. You can select this type of cluster on the cluster template page.|China site \(aliyun.com\)|-|
-|Multi-cluster management|The multi-cluster management feature is released for public preview. You can select **Register Kubernetes Cluster** on the cluster template page to add Kubernetes clusters from data centers and other public clouds to the ACK console. Then, you can deploy applications to these clusters in the console. You can manage hybrid cloud clusters and clusters that are deployed across multiple clouds. After you add self-managed clusters from data centers to ACK, you can manage these clusters by using the O&M feature that is provided by ACK.|China site \(aliyun.com\)|[Create a cluster registration proxy and register an on-premises cluster](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Create a cluster registration proxy and register an on-premises cluster.md)|
+|Multi-cluster management|The multi-cluster management feature is released for public preview. You can select **Register Kubernetes Cluster** on the cluster template page to add Kubernetes clusters from data centers and other public clouds to the ACK console. Then, you can deploy applications to these clusters in the console. You can manage hybrid cloud clusters and clusters that are deployed across multiple clouds. After you add self-managed clusters from data centers to ACK, you can manage these clusters by using the O&M feature that is provided by ACK.|China site \(aliyun.com\)|[Create a cluster registration proxy and register an on-premises cluster](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of registered clusters/Create a cluster registration proxy and register an on-premises cluster.md)|
 |New region|Managed Kubernetes clusters are available on the Alibaba Cloud Japan site. -   Saves resources.
 
 You do not need to create master nodes in a managed Kubernetes cluster. If you use another type of cluster, you must create at least three master nodes.
