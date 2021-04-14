@@ -1,12 +1,20 @@
+---
+keyword: [工作负载, 有状态, StatefulSet]
+---
+
 # 创建有状态工作负载StatefulSet
 
 阿里云容器服务Kubernetes版ACK（Container Service for Kubernetes）集群支持通过界面创建StatefultSet类型的应用，满足您快速创建有状态应用的需求。本例中将创建一个Nginx的有状态应用，并演示StatefulSet应用的特性。
+
+## 前提条件
 
 使用镜像创建有状态StatefulSet应用前，请确保您已经进行以下操作：
 
 -   [创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
 -   [创建持久化存储卷声明](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/创建持久化存储卷声明.md)
 -   [通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)
+
+## 背景信息
 
 StatefulSet包括以下特性：
 
@@ -19,7 +27,7 @@ StatefulSet包括以下特性：
 
 ## 操作步骤
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -304,6 +312,4 @@ StatefulSet包括以下特性：
     statefulset
     ```
 
-
-想要了解更多信息，参见[Kubernetes有状态服务-StatefulSet使用最佳实践](https://yq.aliyun.com/articles/629007?spm=a2c4e.11163080.searchblog.9.54472ec1NC0KbK)。
 
