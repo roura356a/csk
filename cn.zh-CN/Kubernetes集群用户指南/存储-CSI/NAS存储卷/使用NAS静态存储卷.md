@@ -42,7 +42,7 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
     **说明：**
 
     -   `driver`：驱动类型。本例中取值为`nasplugin.csi.alibabacloud.com`，表示使用阿里云NAS CSI插件。
-    -   `volumeHandle`：配置PV的名称。
+    -   `volumeHandle`：配置PV的名称。若需要同时使用多个PV，则各个PV中该值必须不一致。
     -   `server`：NAS挂载点。
     -   `path`：挂载子目录，极速NAS需要以/share开头。
     -   `vers`：挂载NAS数据卷的NFS协议版本号，推荐使用v3；极速类型NAS只支持v3。
