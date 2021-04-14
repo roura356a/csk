@@ -1,23 +1,24 @@
 ---
-keyword: [logtail, migrate-controller, AK授权, 必读]
+keyword: [Logtail, migrate-controller, authentication based on AccessKey information, prerequisites]
 ---
 
-# 组件安装必读
+# Prerequisites
 
-在注册集群中安装阿里云组件前，您需要阅读本文内容。
+This topic describes the requirements that must be met before you install Alibaba Cloud components in a registered cluster.
 
-由于注册集群中的集群节点可能位于IDC内，也可能位于其他云厂商的托管平台上，在注册集群中安装某些阿里云组件（如Logtail组件需要访问阿里云日志服务，Migrate-Controller组件需要访问阿里云对象存储服务）时需要配置AK信息。
+The nodes of a registered cluster may be located in an on-premises data center or hosted by other cloud providers. You can install specific Alibaba Cloud components in the registered cluster. For example, you can install the logtail-ds component to enable access to Alibaba Cloud Log Service, and install the migrate-controller component to enable access to Alibaba Cloud Object Storage Service \(OSS\). Before you can install the components in the cluster, you must create the AccessKey information to authenticate your requests.
 
-为了保证您的AK信息只在集群内安全使用，降低泄露风险，需要您先在注册集群中使用AK信息部署一个名为alibaba-addon-secret的Secret资源。根据组件不同，您需要进行以下操作：
+To ensure the secure use of your AccessKey information only within the registered cluster and minimize the risk of leakage, you must first use the AccessKey information to deploy a Secret named alibaba-addon-secret in the registered cluster. Based on the type of component, you must:
 
--   请为您的子账号AK授权不同的安全策略。
--   请在对应组件要求的命名空间下（例如Logtail组件使用kube-system命名空间，Migrate-Controller组件使用velero命名空间）创建alibaba-addon-secretSecret资源。
+-   Attach the required security policies to your Resource Access Management \(RAM\) user by using the AccessKey information.
+-   Create a Secret named alibaba-addon-secret in the namespace that is required by the component. For example, the logtail-ds component uses the kube-system namespace and the migrate-controller component uses the velero namespace.
 
-## Logtail组件
+## logtail-ds
 
-有关Logtail组件安装和使用的详情，请参见[安装和使用Logtail](/intl.zh-CN/Kubernetes集群用户指南/多云混合云/弹性节点池/安装和使用Logtail.md)。
+1.  For more information about how to install and use logtail-ds, see [Install and use logtail-ds](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Elastic node pools/Install and use logtail-ds.md).
 
-## Migrate Controller组件
 
-有关Migrate Controller安装和使用的详情，请参见[安装Migrate Controller](/intl.zh-CN/Kubernetes集群用户指南/多云混合云/组件管理/安装Migrate Controller.md)。
+## migrate-controller
+
+For more information about how to install and use migrate-controller, see [Install migrate-controller](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Manage components/Install migrate-controller.md).
 
