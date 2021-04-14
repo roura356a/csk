@@ -33,5 +33,5 @@ cluster-info   4      3h56m
 
 ## 网络插件类型要求
 
-注册集群弹性节点池要求您自建或其他公有云的Kubernetes集群网络插件为Flannel VxLAN、Calico BGP peer、Calico BGP node-to-node mesh。如果您使用的是其他网络插件类型，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)咨询和确认。
+注册集群弹性节点池要求您自建或其他公有云的Kubernetes集群网络插件为Flannel VxLAN、Calico BGP peer、Calico BGP node-to-node mesh。如果您使用的是其他网络插件类型，请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)咨询和确认。
 
