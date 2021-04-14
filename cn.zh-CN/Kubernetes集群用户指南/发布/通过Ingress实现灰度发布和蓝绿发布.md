@@ -6,15 +6,19 @@ keyword: [Ingress Controller, 灰度发布, 蓝绿发布, AB测试]
 
 当对服务进行版本更新升级时，需要使用到滚动升级、分批暂停发布、蓝绿发布以及灰度发布等发布方式。本文将介绍在ACK集群中如何通过Ingress Controller来实现应用服务的灰度发布。
 
-[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
+## 体验实验室
+
+为了帮助您快速上手本教程，ACK为您提供了可以动手操作的交互式实验环境。如您需要体验，请访问[通过Ingress进行灰度发布](https://start.aliyun.com/handson/Tn0HcdCZ/grap_publish_by_ingress)。
+
+## 前提条件
+
+您已创建一个ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
+
+## 背景信息
 
 灰度及蓝绿发布是为新版本创建一个与老版本完全一致的生产环境，在不影响老版本的前提下，按照一定的规则把部分流量切换到新版本，当新版本试运行一段时间没有问题后，将用户的全量流量从老版本迁移至新版本。
 
 其中AB测试就是一种灰度发布方式，一部分用户继续使用老版本的服务，将一部分用户的流量切换到新版本，如果新版本运行稳定，则逐步将所有用户迁移到新版本。
-
-## 体验实验室
-
-为了帮助您快速上手本教程，ACK为您提供了可以动手操作的交互式实验环境。如您需要体验，请访问[通过Ingress进行灰度发布](https://start.aliyun.com/handson/Tn0HcdCZ/grap_publish_by_ingress)。
 
 ## 应用场景
 
