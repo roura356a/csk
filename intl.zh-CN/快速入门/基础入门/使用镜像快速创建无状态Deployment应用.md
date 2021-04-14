@@ -1,8 +1,14 @@
+---
+keyword: [创建应用, 无状态, Deployment, 镜像]
+---
+
 # 使用镜像快速创建无状态Deployment应用
 
 您可以使用镜像快速创建一个可公网访问的Nginx应用。
 
-[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
+## 前提条件
+
+已创建一个ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 
 ## 操作步骤
 
