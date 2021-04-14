@@ -1,41 +1,37 @@
-# 手动扩容弹性节点池
+# Manually scale out an elastic node pool
 
-ACK注册集群弹性节点池用于管理一组云服务器（ECS节点）资源。您可以通过节点池统一为您自建或其他公有云的Kubernetes集群扩容ECS节点，也可以统一管理节点的标签和污点。当您线下集群资源不够的时候，可以通过扩容弹性节点池增加资源。本文介绍如何手动扩容弹性节点池。
+You can use elastic node pools that are provided by Container Service for Kubernetes \(ACK\) to manage a set of Elastic Compute Service \(ECS\) instances for external Kubernetes clusters. You can add ECS instance-based nodes from elastic node pools to self-managed Kubernetes clusters or Kubernetes clusters that are provided by other cloud service providers. You can also use node pools to manage the labels and taints of nodes in node pools. If the computing resources are insufficient in an external Kubernetes cluster, you can add computing resources to the elastic node pool that is used by the cluster. This topic describes how to manually scale out an elastic node pool.
 
-[创建注册集群弹性节点池]()
+[Create an elastic node pool for an external Kubernetes cluster]()
 
-## 注意事项
+## Prerequisites
 
-在您扩容ACK注册集群前，请注意以下几点：
+Before you scale out an elastic node pool for an external Kubernetes cluster, take note of the following limits:
 
--   默认情况下，每个集群中最多可包含100个节点。如果您需要添加更多节点，请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)。
--   添加已有云服务器时，请确保您专有网络中的ECS实例绑定了一个弹性公网IP（EIP），或者相应的VPC已经配置了NAT网关。您需要确保相应节点能正常访问公网，否则添加云服务器会失败。
+-   By default, you can deploy up to 100 nodes in an ACK cluster. To increase the quota, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
+-   Before you add an existing ECS instance to an ACK cluster, make sure that an elastic IP address \(EIP\) is assigned to the ECS instance, or a Network Address Translation \(NAT\) gateway is created in the virtual private cloud \(VPC\) where the ECS instance is deployed. This ensures that the ECS instance can access the Internet. Otherwise, the ECS instance cannot be added to the cluster.
 
-## 操作步骤
+## Procedure
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  在控制台左侧导航栏中，单击**集群**。
+2.  In the left-side navigation pane, click **Clusters**.
 
-3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  在集群管理页左侧导航栏中，选择**节点管理** \> **节点池**。
+4.  Find the node pool that you want to scale out, click **Scale Out** in the **Actions** column.
 
-5.  在目标节点池右侧的**操作**列中，单击**扩容**。
+5.  In the dialog box that appears, set **Nodes to Add** to the number of nodes that you want to add and click **Submit**.
 
-6.  在节点池对话框的**扩容数量**调整框中，输入要增加的节点数，然后单击**提交**。
+    **Note:** If you want to modify the configurations of the node pool, click **Modify Node Pool Settings**. For more information, see [Create an elastic node pool for an external Kubernetes cluster]().
 
-    **说明：** 如果您需要修改节点池配置，展开**修改节点池配置**。关于参数的详细信息，请参见[创建注册集群弹性节点池]()。
-
-    在节点池页面，节点池**状态**刚开始显示为**伸缩中**。扩容完成后，**状态**会显示为**已激活**。
+    On the Node Pools page, the **Status** column that the initial state of the node pool is **Scaling**. After the node pool is scaled out, the **Status** column shows that the state of the node pool is **Active**.
 
 
-## 查看扩容节点详情
+## View details about the scaled node pool
 
-1.  在集群管理页左侧导航栏中，选择**节点管理** \> **节点池**。
+1.  On the Node Pools page, find the scaled node pool and click **Details** in the Actions column.
 
-2.  在节点池列表中，单击目标节点池右侧的**详情**。
-
-3.  在节点池详情页面下方的**节点管理**页签中，查看节点池中扩容节点的详细信息。
+2.  Click the **Nodes** tab at the bottom of the page to view detailed information about the newly added nodes.
 
 
