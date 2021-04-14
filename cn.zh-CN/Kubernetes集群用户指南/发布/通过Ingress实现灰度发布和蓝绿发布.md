@@ -12,6 +12,10 @@ keyword: [Ingress Controller, 灰度发布, 蓝绿发布, AB测试]
 
 其中AB测试就是一种灰度发布方式，一部分用户继续使用老版本的服务，将一部分用户的流量切换到新版本，如果新版本运行稳定，则逐步将所有用户迁移到新版本。
 
+## 体验实验室
+
+为了帮助您快速上手本教程，ACK为您提供了可以动手操作的交互式实验环境。如您需要体验，请访问[通过Ingress进行灰度发布](https://start.aliyun.com/handson/Tn0HcdCZ/grap_publish_by_ingress)。
+
 ## 应用场景
 
 **基于客户端请求的流量切分场景**
