@@ -1,12 +1,24 @@
+---
+keyword: [工作负载, 有状态, StatefulSet]
+---
+
 # 创建有状态工作负载StatefulSet
 
 阿里云容器服务Kubernetes版ACK（Container Service for Kubernetes）集群支持通过界面创建StatefultSet类型的应用，满足您快速创建有状态应用的需求。本例中将创建一个Nginx的有状态应用，并演示StatefulSet应用的特性。
+
+## 体验实验室
+
+为了帮助您快速上手本教程，ACK为您提供了可以动手操作的交互式实验环境。如您需要体验，请访问[使用kubectl进行StatefulSet应用部署](https://start.aliyun.com/handson/Tn0HcdCZ/deploy_statefulset_by_kubectl)。
+
+## 前提条件
 
 使用镜像创建有状态StatefulSet应用前，请确保您已经进行以下操作：
 
 -   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
 -   [创建持久化存储卷声明](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/创建持久化存储卷声明.md)
 -   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)
+
+## 背景信息
 
 StatefulSet包括以下特性：
 
@@ -16,10 +28,6 @@ StatefulSet包括以下特性：
 |稳定的持久化存储|通过VolumeClaimTemplate为每个Pod创建一个PV。删除、减少副本，不会删除相关的卷。|
 |稳定的网络标志|Pod的hostname模式为：`（statefulset名称）−（序号）`。|
 |稳定的次序|对于N个副本的StatefulSet，每个Pod都在 \[0，N）的范围内分配一个数字序号，且是唯一的。|
-
-## 体验实验室
-
-为了帮助您快速上手本教程，ACK为您提供了可以动手操作的交互式实验环境。如您需要体验，请访问[使用kubectl进行StatefulSet应用部署](https://start.aliyun.com/handson/Tn0HcdCZ/deploy_statefulset_by_kubectl)。
 
 ## 操作步骤
 
