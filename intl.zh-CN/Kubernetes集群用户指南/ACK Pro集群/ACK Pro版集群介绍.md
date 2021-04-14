@@ -32,7 +32,7 @@ ACK Pro版托管版集群和ACK标准托管版集群的对比详情如下表。
 
 |分类|功能|ACK Pro托管版集群|ACK标准托管版集群|
 |--|--|------------|----------|
-|集群规模|不涉及|默认配额最大1000节点。您可[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请最大5000节点。
+|集群规模|不涉及|默认配额最大1000节点。您可[到配额平台提交申请](https://quotas.console.aliyun.com/products/csk/quotas)至最大5000节点。
 
 |最大100节点（现有集群不受影响，可以升级到Pro版）|
 |SLA|不涉及|99.95%（支持赔付）|99.9%（不支持赔付）|
