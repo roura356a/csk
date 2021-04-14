@@ -1,69 +1,69 @@
 ---
-keyword: [k8s, 多云混合云, 最佳安全实践]
+keyword: [K8s, multi-cloud and hybrid cloud, best security practices]
 ---
 
-# 多云混合云安全特性
+# Security of multi-cloud and hybrid cloud deployment
 
-阿里云容器服务Kubernetes版ACK和阿里云服务网格ASM提供的多云混合云方案具有统一的集群管理，动态弹性和服务治理能力。在注册外部Kubernetes集群时，ACK Register Agent组件提供了多集群的管理能力，同时提供了在外部集群上应用的部署和生命周期管理能力。本文主要介绍ACK和ASM服务在实现多云混合云方案中进行外部集群注册和管理过程中的最佳安全实践。
+ACK and service mesh provide solutions for multi-cloud and hybrid cloud deployment. These solutions offer the capabilities of cluster management, elastic scaling, and service governance. When you register external Kubernetes clusters, you can use ACK Register Agent to manage these clusters. This component also allows you to deploy applications in external Kubernetes clusters and manage the lifecycle of these applications. This topic provides a best practice for ensuring the security of external cluster management and registration when you use Container Service for Kubernetes \(ACK\) and service mesh to build a multi-cloud or hybrid cloud environment.
 
-## 组件说明
+## Components
 
-|组件名称|组件功能|
-|----|----|
-|ACK Console|ACK容器服务管理控制台。|
-|ACK Register Agent|ACK集群注册Agent，以deployment形式部署在指定外部集群中，用于接收ACK集群注册代理组件的请求并转发给对应的K8s API Server，同时接收K8s API Server的返回并发送给ACK集群注册代理组件。|
-|ACK Stub|ACK集群注册代理组件，部署在容器服务管控侧，每一个注册外部集群都会部署一个与之对应的Stub代理组件，用于代理转发ACK管控组件和指定外部集群中注册Agent组件之间的请求。|
-|K8s API Server|注册集群中运行的K8s API Server组件。|
+|Component|Description|
+|---------|-----------|
+|ACK Console|The ACK console for cluster and service management.|
+|ACK Register Agent|ACK Register Agent is an agent that runs on Deployments within an external Kubernetes cluster. ACK Register Agent receives requests from ACK Stub and forwards them to the Kubernetes API Server. ACK Register Agent also receives responses from the API Server and forwards them to ACK Stub.|
+|ACK Stub|ACK Stub is a cluster registration proxy deployed on Alibaba Cloud. ACK launches ACK Stub for all external Kubernetes clusters registered in the ACK console. ACK Stub forwards requests between the ACK console and ACK Register Agent in external Kubernetes clusters.|
+|K8s API Server|The API Server runs in an external Kubernetes cluster.|
 
-## 连接架构
+## Architecture of connections
 
-通过ACK Stub和ACK Register Agent组件，可以将您在ACK控制台上的请求下发到指定的外部集群API server，其中Register Agent组件会以Deployment双实例的形式部署在指定的外部集群中，并且和ACK管控平台中的Stub代理组件连通。Agent组件通过下图中的流程将请求发送到您指定的API server。
+In an architecture where ACK Stub and ACK Register Agent are used, requests from the ACK console are sent to the API Server in an external Kubernetes cluster. ACK Register Agent runs on Deployments that create two pod replicas within the external Kubernetes cluster. ACK Register Agent is connected to ACK Stub that is deployed in the ACK console. The following figure shows how ACK Register Agent forwards requests to the API Server within an external Kubernetes cluster.
 
-![连接架构](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3206659951/p128607.png)
+![Architecture of connections](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4196767061/p128607.png)
 
-当用户完成外部集群注册流程后，ACK Register Agent组件会完成部署并与ACK管控侧建立TLS 1.2的长链接。对于已授权用户或授权后的ACK管控服务，ACK Console组件通过链路向指定的外部集群发送请求，请求会首先发送到Stub代理组件，然后请求被转发到对应的Agent，并最终由Agent组件将请求发送到外部API server。API server在收到请求后，会经过认证（Authentication）、鉴权（Authorization）和准入控制（Admission control）流程，在完成审计后返回请求。请求返回的路径同样经由Agent，Stub代理组件并最终返回给ACK管控服务。所有请求在链路上都经过了认证鉴权流程，保证了集群访问的安全可控。
+After you register an external Kubernetes cluster in the ACK console, ACK Register Agent is deployed in the external Kubernetes cluster. Then, a two-way persistent connection is established between ACK Stub and ACK Register Agent over Transport Layer Security \(TLS\) 1.2. Requests from authorized users or ACK management services are first sent to ACK Stub through the TLS connection, and then forwarded to ACK Register Agent, and finally delivered to the API Server. After the API Server receives the requests, the API Server first performs authentication, authorization check, and admission control, then audits the requests, and finally returns responses. Responses are returned through the same TLS connection. They pass through ACK Register Agent and ACK Stub, and finally reach the ACK console. All requests sent to the external Kubernetes cluster through the connection are authenticated and verified. This ensures that the external Kubernetes cluster is accessed in a secure way.
 
-## 组件访问安全
+## Security of intercommunication among components
 
-架构所有组件之间的访问均需要经过认证授权，所有访问目标都是经过安全校验后的合法对象，保证数据只在可信的对象之间传输。
+Authentication and authorization check are required for intercommunication among all components. All components to be accessed must pass security check. This ensures that data is transmitted among only trusted components.
 
-![组件访问认证架构](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3206659951/p128690.png)
+![Architecture of authentication and authorization check for components](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4196767061/p128690.png)
 
-在认证上，访问组件之间通过RAM账号的登录认证和组件之间的双向TLS认证，保证所有访问链接数据在传输过程中的TLS加密。而鉴权采用基于阿里云RAM服务的访问控制和x509证书校验中的白名单机制。
+Authentication is based on the credentials of Resource Access Management \(RAM\) users and two-way TLS certification. Data is encrypted by TLS during transmission. Authorization check is based on RAM and the TLS \(x509\) certificate whitelisting.
 
-## 请求链路安全
+## Security of request transmission
 
-在多云混合云管理请求链路上的所有访问凭证均包含了请求者的身份信息，包括用户使用阿里云容器服务下发的访问凭证和容器服务内部组件访问凭证，以保证所有发送到外部集群API server的请求都能够经过鉴权和审计处理。
+All credentials contained in requests that are sent through the TLS connection carry the identity information of the users that send the requests. The user identity information includes the credential issued by ACK to access an external cluster and the internal credential required to access ACK components. This ensures that all requests sent to the API Server are authenticated and audited.
 
-**终端用户请求链路**
+**Security of user request transmission**
 
-所有终端用户的请求都需要使用ACK管控签发的带有用户身份的集群访问凭证，对于外部集群的访问流程如下图所示。
+All user requests sent to external Kubernetes clusters must carry credentials issued by the ACK console. The credentials contain the user identity information. The following figure shows how a request with a credential is forwarded to an external cluster.
 
-![终端用户请求链路](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3206659951/p128695.png)
+![Security of user request transmission](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4196767061/p128695.png)
 
-在阿里云平台侧，集群的管理人员可以通过RAM访问控制策略配置指定终端用户对外部集群的控制权限。经过RAM鉴权的用户可以在容器服务控制台获取指定外部集群的访问凭证，该访问凭证会作为认证凭据在Stub和Agent组件处认证，且组件间所有的访问链路都经过TLS加密。在Agent组件完成认证后，会将用户访问凭证中的身份信息作为请求目标API server的身份扮演header，在API server中会根据接收到的用户身份完成认证，鉴权和请求审计等操作。
+Cluster administrators on Alibaba Cloud can use permission policies of RAM to control access from users to external clusters. Authorized RAM users can obtain credentials that are required to access external clusters from the ACK console. The credentials are provided to ACK Stub and ACK Register Agent for authentication. Data transmission among components is encrypted by TLS. After ACK Register Agent verifies the credential, the user identity carried in the credential is encapsulated into the impersonation headers of the request for the destination API Server to authenticate the request. The API Server performs authentication, authorization check, and admission control based on the received credential and user identity, and then audits the request.
 
-**服务组件请求链路**
+**Security of service request transmission**
 
-ACK和ASM服务内部组件访问外部API server的请求链路与终端用户访问链路类似，首先管控组件会使用集群注册时下发的Agent组件访问证书发起请求，在Stub和Agent组件完成请求认证后，经由Agent以身份扮演的方式向目标API server作7层代理转发，最终在API server完成请求的RBAC鉴权和审计。整个请求链路均经过了加密保证数据传输的安全性。
+Requests from ACK and service mesh to the external API Server are transmitted in the same way as user requests. The ACK console sends a request that carries the credential required for ACK Register Agent to authenticate the request. Then, the request is authenticated by ACK Stub and ACK Register Agent and forwarded to the destination API Server. During this process, ACK Register Agent impersonates the user identity in the request and forwards the request to the API Sever over Layer 7. Finally, the API Server performs authentication with Role-Based Access Control \(RBAC\) and then audits the request. Data transmission is encrypted by TLS from end to end.
 
-![服务组件请求链路](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3206659951/p128705.png)
+![Security of service request transmission](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4196767061/p128705.png)
 
-## 集群内部安全
+## Internal security of clusters
 
-Agent组件请求在目标集群API server中的请求流程如下图所示。
+The following figure shows how a request from ACK Register Agent is processed by an API Server.
 
-![Agent请求](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3206659951/p128707.png)
+![Requests from ACK Register Agent](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4196767061/p128707.png)
 
-在集群API server内部，首先会在认证阶段校验请求凭据的合法性。
+After the API Server receives the request, the API Server first checks whether the credential of the request is valid.
 
--   如果请求凭据不是一个合法的凭据，则API server会直接返回401的认证失败错误。
--   如果认证通过，API server会查看请求是否有指定格式的身份扮演header，如果存在的话会以指定的身份扮演身份去进行下一段的鉴权流程。
+-   If the credential is invalid, the API Server returns a 401 error, which indicates that the request failed the authentication.
+-   If the request passes the authentication, the API Server checks whether the request contains valid impersonation headers. If the request contains valid impersonation headers, the request is passed to the next round with the impersonated user identity.
 
-在鉴权流程中，API server会判断传入的用户身份是否有对目标资源的指定操作权限。
+Then, the API Server checks whether the impersonated user identity is granted the required permissions on the cluster.
 
--   如果鉴权失败，则API server返回403的鉴权失败错误。
--   如果鉴权成功，则经过审计流程后返回请求结果。
+-   If the request fails the authorization check, the API Server returns a 403 error, which indicates that the user identity is not authorized.
+-   If the request passes the authorization check, the API Server returns a response after it audits the request.
 
-Agent组件是Go语言编写的代理转发和集群注册组件，代码的编写和发布均经过了阿里云相关团队的安全审核。与此同时，指定集群的管理员也需要根据Kubernetes相关的最佳安全实践规范保护集群节点的安全性，通过对基础设施和应用相关的安全配置保障Agent组件和集群的安全性。
+ACK Register Agent is a forward proxy and cluster registration component written in the Go programming language. The coding and publishing of ACK Register Agent are audited by Alibaba Cloud to ensure security. The administrators of registered external clusters must ensure the security of cluster nodes by following the best practices for Kubernetes security. They can ensure the security of ACK Register Agent and external clusters by using security configurations related to the infrastructure and applications.
 
