@@ -6,8 +6,12 @@ keyword: [Helm CLI, WordPress]
 
 本文介绍如何通过Helm CLI部署WordPress应用。
 
--   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)
+-   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
 -   [安装和设置Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+
+## 体验实验室
+
+为了帮助您快速上手本教程，ACK为您提供了可以动手操作的交互式实验环境。如您需要体验，请访问[通过HelmCLI部署wordpress](https://start.aliyun.com/handson/Tn0HcdCZ/deploy_wordpress_by_helm)。
 
 ## 安装配置阿里云CLI和kubectl
 
