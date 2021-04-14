@@ -87,5 +87,5 @@ keyword: [ACK专有版集群, Kubernetes集群迁移, Pro集群]
 
 ## 相关文档
 
-您还可以迁移ACK标准托管版集群至Pro托管版集群。具体操作，请参见[\#task\_2010778](#task_2010778)。
+您还可以迁移ACK标准托管版集群至Pro托管版集群。具体操作，请参见[热迁移ACK标准托管集群至Pro托管集群](/cn.zh-CN/Kubernetes集群用户指南/集群/热迁移ACK标准托管集群至Pro托管集群.md)。
 
