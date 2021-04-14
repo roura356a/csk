@@ -113,7 +113,7 @@ After you complete the preceding steps, perform the following operations to inst
 
 2.  In the left-side navigation pane, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and select **Manage System Components** from the **More** drop-down list in the **Actions** column.
+3.  On the Clusters page, find the cluster that you want to manage and choose **More** \> **Manage System Components** in the **Actions** column.
 
 4.  On the **Add-ons** page, find the **migrate-controller** component and click **Install**.
 
@@ -158,9 +158,7 @@ You must create a resource of the BackupStorageLocation type in an OSS bucket. T
 **Related topics**  
 
 
-[Prerequisites](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Manage components/Prerequisites.md)
-
-[migrate-controller](/intl.en-US/Release notes/System Component change Records/migrate-controller.md)
+[migrate-controller](/intl.en-US/Release notes/System Component change Records/Other SQL statements/migrate-controller.md)
 
 [Use migrate-controller to back up and restore applications](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Manage components/Use migrate-controller to back up and restore applications.md)
 
