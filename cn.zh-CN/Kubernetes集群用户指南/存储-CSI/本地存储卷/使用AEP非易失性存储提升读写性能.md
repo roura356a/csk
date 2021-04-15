@@ -25,7 +25,7 @@ keyword: [AEP, 非易失性存储卷]
 
 2.  部署YAML文件挂载存储卷和运行FIO测试。
 
-    -   通过`kubectl exec`进入测试容器内部，运行fio测试PMEM-LVM卷的写性能。。
+    -   通过`kubectl exec`进入测试容器内部，运行fio测试PMEM-LVM卷的写性能。
 
         ```
         mount | grep csi
