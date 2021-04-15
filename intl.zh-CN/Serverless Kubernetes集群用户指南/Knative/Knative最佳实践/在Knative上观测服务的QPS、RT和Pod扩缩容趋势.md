@@ -66,6 +66,8 @@ keyword: [Knative, 观测服务, QPS、RT和Pod扩缩容趋势]
         |httpRequest.status|long|status|
         |httpRequest.revisionName|text|revision|
 
+        ![K13](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9418748161/p264340.png)
+
 
 ## 配置QPS统计
 
