@@ -21,7 +21,7 @@ ASK支持定时弹性功能，可以通过定时弹性提前规划资源数量�
       name: cron-autoscaler
       namespace: default
     data:
-      jobs:
+      jobs: |
        - name: "workday"
          schedule: "* * 1-5"
          timeseries:
