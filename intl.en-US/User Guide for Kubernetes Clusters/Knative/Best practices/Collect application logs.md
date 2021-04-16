@@ -2,7 +2,7 @@
 
 Log Service is an all-in-one service to manage log data. Log Service allows you to collect, consume, ship, query, and analyze log data without development work. After Log Service is enabled on Knative, you can manage and maintain serverless applications with higher efficiency.
 
--   Log Service is activated. For more information, see [t17400.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
+-   Log Service is activated. For more information, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
 -   A Knative Service is deployed. For more information, see [t474495.md\#]().
 
 ## Procedure
