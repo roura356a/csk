@@ -168,7 +168,7 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
               certificate: ""
               enable: false
               key: ""
-            #2. 这里填入arms-prometheus的地址
+            #2. 这里填入阿里云Prometheus控制的地址。
             url: http://arms-prometheus-proxy.aliyun.com:9090/api/v1/prometheus/8cba801fff65546a3012e9a6843afd/1240538168824185/ce63742a509f948dda8ef18e75e703356/cn-shenzhen
           ramRoleType: __ACK_RAM_ROLE_TYPE__
           replicas: 1
