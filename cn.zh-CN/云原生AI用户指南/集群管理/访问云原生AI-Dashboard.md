@@ -27,7 +27,7 @@ AI-Dashboard提供四种访问方式（Sshuttle，SSL VPN、私网Ingress和公�
 
 **方式一：使用公网Ingress访问AI-Dashboard**
 
-1.  在云原生AI套件一键部署页面选中**AI-Dashboard控制台**，在**提示**对话框中，选中**公网域名（需要安装公网Ingress）**。更多相关操作，请参见[\#section\_2al\_4w3\_dpd](#section_2al_4w3_dpd)。
+1.  在云原生AI套件一键部署页面选中**AI-Dashboard控制台**，在**提示**对话框中，选中**公网域名（需要安装公网Ingress）**。更多相关操作，请参见[安装云原生AI套件](/cn.zh-CN/云原生AI用户指南/安装云原生AI套件.md)。
 
     ![ai15](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7777787161/p261809.png)
 
