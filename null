@@ -1,23 +1,23 @@
 ---
-keyword: ECI弹性调度
+keyword: ECI elastic scheduling
 ---
 
-# 使用ECI弹性调度
+# Use ECI elastic scheduling
 
-ECI弹性调度是阿里云提供的弹性调度策略。您可以在部署服务时通过添加Annotations来申明只使用ECS或ECI弹性资源，或者是在ECS资源不足时自动申请ECI资源。通过ECI弹性调度可以满足您在不同工作负载的场景下对弹性资源的不同需求。
+Elastic Container Instance \(ECI\) elastic scheduling is an elastic scheduling strategy provided by Alibaba Cloud. You can add annotations to specify the resources that you want to use when you deploy applications. You can use only Elastic Compute Service \(ECS\) instances or elastic container instances, or automatically request elastic container instances when ECS resources are insufficient. ECI elastic scheduling can meet your resource requirements in different workload scenarios.
 
--   已创建ACK Pro版集群，且集群的Kubernetes版本不低于1.18。具体操作步骤，请参见[创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
--   已在ACK Pro版集群中部署**ack-virtual-node**。具体操作，请参见[ACK使用ECI]()。
+-   A professional Kubernetes cluster is created and the Kubernetes version is 1.18 or later. For more information, see [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Create a professional managed Kubernetes cluster.md).
+-   The **ack-virtual-node** component is installed in the cluster. For more information, see [Use Elastic Container Instance in ACK clusters]().
 
-## 操作步骤
+## Procedure
 
-**说明：** 您可以通过添加Annotations来申明弹性资源的类型。`alibabacloud.com/burst-resource`的取值有以下选择：
+**Note:** You can add annotations to specify the type of resource that you want to use. The `alibabacloud.com/burst-resource` annotation can be set to one of the following values:
 
--   默认不填Annotations时：只使用集群现有的ECS资源。
--   **eci**：当前集群ECS资源不足时，使用ECI弹性资源。
--   **eci\_only**: 只使用ECI弹性资源，不使用集群的ECS资源。
+-   If the value is left empty, only existing ECS resources in the cluster are used. This is the default value.
+-   **eci**: Elastic container instances are used when the ECS resources in the cluster are insufficient.
+-   **eci\_only**: Only elastic container instances are used. The ECS resources in the cluster are not used.
 
-1.  创建并拷贝以下内容到nginx-deployment.yaml文件中。
+1.  Create the nginx-deployment.yaml file and copy the following content to the file:
 
     ```
     apiVersion: apps/v1
@@ -35,7 +35,7 @@ ECI弹性调度是阿里云提供的弹性调度策略。您可以在部署服�
         metadata:
           name: nginx
           annotations:
-            alibabacloud.com/burst-resource: eci #添加注解，选择弹性调度的资源类型。
+            alibabacloud.com/burst-resource: eci # This annotation specifies the type of resource that you want to use.
           labels:
             app: nginx
         spec:
@@ -49,7 +49,7 @@ ECI弹性调度是阿里云提供的弹性调度策略。您可以在部署服�
                 cpu: 2
     ```
 
-2.  执行以下命令，创建使用ECI弹性调度的Pod。
+2.  Run the following command to create pods that use elastic container instances:
 
     ```
     kubectl apply -f nginx-deployment.yaml
