@@ -93,9 +93,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 3.  在应用目录页面的**阿里云应用**页签中，搜索并单击**ack-arms-prometheus**。
 
-4.  在应用目录 - ack-arms-prometheus页面，单击**参数**页签。
-
-5.  在应用目录 - ack-arms-prometheus右侧的**创建**区域中，选择目标集群，然后单击**创建**。
+4.  在应用目录 - ack-arms-prometheus右侧的**创建**区域中，选择目标集群，然后单击**创建**。
 
     **说明：** **命名空间**和**发布名称**默认为**arms-prom**。
 
@@ -106,19 +104,17 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 ![arm-prom](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5816545161/p248613.png)
 
-## 查看Prometheus监控大盘
+## 查看阿里云Prometheus Grafana大盘
 
-1.  登录[ARMS控制台](https://arms.console.aliyun.com/#/home)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
-2.  在控制台左侧导航栏，单击**Promethues监控**。
+2.  在控制台左侧导航栏中，单击**集群**。
 
-3.  在监控列表中单击已安装监控插件的目标集群。
+3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-    ![ARMS控制台查看](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5816545161/p245256.png)
+4.  在集群管理页左侧导航栏中，选择**运维管理** \> **Prometheus监控**。
 
-4.  在**大盘列表**中单击需要查看的大盘，即可跳转至对应的Grafana监控图表。
-
-    ![大盘详情](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8075574161/p245261.png)
+5.  在**Promethues监控**页面，单击需要查看的Grafana监控大盘名，即可查看相应的监控数据。
 
 
 ## 配置Prometheus监控报警
@@ -131,19 +127,21 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 2.  在控制台左侧导航栏，选择**报警管理** \> **联系人管理**。
 
-3.  在**联系人**页签，单击右上角的**新建联系人**。
+3.  在**联系人**页签，单击右上角的**新建联系人**。配置联系人信息，然后单击**确认**。
 
     ![新建联系人](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6096674161/p245266.png)
 
 4.  配置报警规则。
 
-    1.  登录[Prometheus控制台](https://prometheus.console.aliyun.com/#/home)。
+    1.  登录[ARMS控制台](https://arms.console.aliyun.com/#/home)。
 
-    2.  在控制台左侧导航栏选择**监控列表**，单击**K8s**列目标集群名称。
+    2.  在控制台左侧导航栏单击**Prometheus监控**。
 
-    3.  在左侧导航栏单击**报警配置**。
+    3.  在Prometheus监控页面单击**K8s**列目标集群名称。
 
-    4.  在报警规则说明列表单击对应报警**操作**列的**编辑**，输入PromQL语句配置报警规则，配置完成后单击**确定**。或者单击**开启**可直接开启预置的报警规则。
+    4.  在左侧导航栏单击**报警配置**。
+
+    5.  在报警规则说明列表单击对应报警**操作**列的**编辑**，输入PromQL语句配置报警规则，配置完成后单击**确定**。或者单击**开启**可直接开启预置的报警规则。
 
         关于PromQL语句的配置，请参见[快速创建ARMS报警](/cn.zh-CN/快速入门/快速创建ARMS报警.md)。
 
@@ -208,11 +206,13 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 7.  配置自定义指标。
 
-    1.  登录[Prometheus控制台](https://prometheus.console.aliyun.com/#/home)。
+    1.  登录[ARMS控制台](https://arms.console.aliyun.com/#/home)。
 
-    2.  在控制台左侧导航栏选择**监控列表**，单击**K8s**列目标集群名称。
+    2.  在控制台左侧导航栏单击**Prometheus监控**。
 
-    3.  在左侧导航栏单击**设置**， 然后在右侧区域单击**Targets\(beta\)**页签，可以看到自定义的指标已经配置成功。
+    3.  在Prometheus监控页面，单击**K8s**列目标集群名称。
+
+    4.  在左侧导航栏单击**设置**， 然后在右侧区域单击**Targets\(beta\)**页签，可以看到自定义的指标已经配置成功。
 
         ![自定义指标](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9068535161/p245360.png)
 
@@ -231,7 +231,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 **方式二：通过ServiceMonitor自定义指标监控**
 
-通过ServiceMonitor方式自定义指标监控在部署的时候不需要配置annotations，但是要给service对象添加标签。
+通过ServiceMonitor方式自定义指标监控在部署的时候不需要配置Annotations，但是要给Service对象添加标签。
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
