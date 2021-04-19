@@ -69,7 +69,7 @@ alibabacloud.com/sandboxed-container: Sandboxed-Container.runv
 
 |无|
 |存储插件|支持CSI Plugin|支持CSI Plugin|支持CSI Plugin|无|
-|容器RootFS|支持OverlayFS|支持OverlayFS|支持DeviceMapper|无|
+|容器RootFS|支持OverlayFS|支持OverlayFS|支持配置磁盘Quota的OverlayFS|无|
 
 ## 运行时部署结构对比
 
