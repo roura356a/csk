@@ -136,10 +136,15 @@ keyword: [Helm CLI, WordPress]
 
     ```
     kubectl get secret --namespace default wordpress-ack-wordpress-sample -o jsonpath="{.data.wordpress-password}" | base64 --decode
+    ```
+
+    预期输出：
+
+    ```
     K*****X**7
     ```
 
-3.  在地址栏中输入IP地址访问WordPress应用，然后使用用户名admin和访问密码登录admin界面。
+3.  在地址栏中输入`<IP地址>/login`访问WordPress应用，然后使用用户名admin和访问密码登录admin界面。
 
     ![36](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4780208061/p200143.png)
 
