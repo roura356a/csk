@@ -1,18 +1,18 @@
 ---
-keyword: [OSS, 静态存储, k8s]
+keyword: [OSS, 静态存储, K8s]
 ---
 
 # 使用OSS静态存储卷
 
-对象存储OSS（Object Storage Service）是阿里云提供的海量、安全、低成本、高持久的云存储服务。本文为您介绍如何通过YAML的方式使用OSS静态存储卷。
+对象存储OSS（Object Storage Service）是阿里云提供的海量、安全、低成本、高持久的云存储服务。本文为您介绍如何通过命令行及控制台的方式使用OSS静态存储卷。
 
 [创建存储空间](/cn.zh-CN/快速入门/控制台快速入门/创建存储空间.md)。
 
 **说明：** 相同地域的OSS Bucket可以使用内网地址进行挂载。
 
-## 通过kubectl命令行的方式使用云盘静态存储卷
+## 通过kubectl命令行的方式使用OSS静态存储卷
 
-通过kubectl命令行的方式使用云盘静态存储卷前，请确保您可以使用kubectl命令链接集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+通过kubectl命令行的方式使用OSS静态存储卷前，请确保您可以使用kubectl命令链接集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 
 **步骤一：创建静态PV及PVC**
 
@@ -173,7 +173,7 @@ spec:
             claimName: oss-pvc
 ```
 
-## 通过控制台的方式使用云盘静态存储卷
+## 通过控制台的方式使用OSS静态存储卷
 
 **步骤一：创建PV**
 
