@@ -3,7 +3,7 @@
 This topic describes how to use a YAML template with the Alibaba Cloud Container Storage Interface \(CSI\) plug-in to mount a cloud disk as a static volume.
 
 -   A Container Service for Kubernetes \(ACK\) cluster is created and the CSI plug-in is deployed in the cluster.
--   A cloud disk that is charged on a pay-as-you-go basis is created. For more information, see [Create a disk](/intl.en-US/Block Storage/Cloud disks/Create a cloud disk/Create a pay-as-you-go disk.md).
+-   A cloud disk that is charged on a pay-as-you-go basis is created. For more information, see [Create a disk](/intl.en-US/Block Storage/Cloud disks/Create a cloud disk/Create a disk.md).
 
 ## Create a static PV and a PVC
 
@@ -11,7 +11,7 @@ After you create a cloud disk in the Elastic Compute Service \(ECS\) console, re
 
 You can only use a YAML template to create a CSI persistent volume \(PV\) object in the ACK console.
 
-1.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+1.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
 
 2.  Use the following template to create a static PV and a persistent volume claim \(PVC\):
 
@@ -122,5 +122,5 @@ You can only use a YAML template to create a CSI persistent volume \(PV\) object
     ```
 
 
-You can also mount a cloud disk as a static volume in the ACK console. For more information, see [Use a disk in the ACK console](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Use a disk in the ACK console.md).
+You can also mount a cloud disk as a static volume in the ACK console. For more information, see [Mount a cloud disk as a static volume by using a YAML template](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Mount a cloud disk as a static volume by using a YAML template.md).
 
