@@ -9,11 +9,11 @@ virtio-fs is a shared file system. The Sandboxed-Container runtime provided by C
 
 Sandboxed containers allow you to directly mount disks. This method first unmounts disk mount targets from the host. Then, the disk is mounted to the guest operating system before the system creates a bind mount for the disk. This way, applications in the container can directly write data to and read data from the disk without performance degradation.
 
-![Mount a disk to a sandboxed container](../images/p186229.png)
+![Mount a disk to a sandboxed container](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4549988161/p186229.png)
 
 ## How a disk is mounted to a sandboxed container
 
-![How a disk is mounted to a sandboxed container](../images/p186232.png)
+![How a disk is mounted to a sandboxed container](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4549988161/p186232.png)
 
 A disk is mounted to a sandboxed container in the following process.
 
