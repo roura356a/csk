@@ -93,6 +93,6 @@ Before you can upload diagnostic logs from nodes to an Object Storage Service \(
 
     -   Clear **Upload to OSS**, and click **OK**.
 
-        If you clear **Upload to OSS**, you do not need to grant the nodes the write permissions on the specified directory in OSS. You can log on to[ECS Console](https;//parnters-intl.console.aliyun.com/#/ecs) and choose **Maintenance and Monitoring** \> **ECS Cloud Assistant** \> **Command Execution Result** to view relevant diagnostic logs.
+        If you clear **Upload to OSS**, you do not need to grant the nodes the write permissions on the specified directory in OSS. You can log on to [ECS Console](https;//parnters-intl.console.aliyun.com/#/ecs) and choose **Maintenance and Monitoring** \> **ECS Cloud Assistant** \> **Command Execution Result** to view relevant diagnostic logs.
 
 
