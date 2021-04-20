@@ -57,13 +57,13 @@ You can enable ARMS Prometheus by using the following methods:
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+2.  In the left-side navigation pane, click **Clusters**.
 
 3.  In the upper-right corner of the Clusters page, click **Create Kubernetes Cluster**.
 
 4.  Select the cluster template that you want to use and configure parameters for the new cluster. On the **Component Configurations**page, select **Enable Prometheus Monitoring**.
 
-    For more information about how to create a cluster, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+    For more information about how to create a cluster, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 
     **Note:** By default, **Enable Prometheus Monitoring** is selected when you create a cluster.
 
@@ -74,9 +74,9 @@ You can enable ARMS Prometheus by using the following methods:
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+2.  In the left-side navigation pane, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the cluster management page, choose **Operations** \> **Prometheus Monitoring**.
 
@@ -139,6 +139,4 @@ If you delete only the namespace of ARMS Prometheus, resource settings may be re
 
 
 [View Prometheus Monitoring metrics]()
-
-[Configure a data collection rule for Prometheus Monitoring]()
 
