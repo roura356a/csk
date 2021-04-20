@@ -157,5 +157,3 @@ spec:
             claimName: oss-pvc
 ```
 
-You can also provision an OSS bucket as a staic PV in the console. For more information, see [Use an OSS bucket in the ACK console](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/OSS volumes/Use an OSS bucket in the ACK console.md).
-
