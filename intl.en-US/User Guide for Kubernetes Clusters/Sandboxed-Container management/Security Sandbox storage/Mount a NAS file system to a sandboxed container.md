@@ -13,7 +13,7 @@ virtio-fs is a shared file system. Container Service for Kubernetes \(ACK\) allo
 
 Sandboxed containers allow you to directly mount NAS file systems. This method first unmounts NAS mount targets from the host. The NAS file system is mounted to the guest operating system. Then, the system creates a bind mount for the NAS file system. This way, applications in the container can directly write data to and read data from the NAS file system without performance degradation.
 
-![Mount a NAS file system to a sandboxed container](../images/p185928.png)
+![Mount a NAS file system to a sandboxed container](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4540098161/p185928.png)
 
 ## How a NAS file system is mounted to a sandboxed container
 
