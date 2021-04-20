@@ -8,7 +8,7 @@ This topic describes how to use Arena in a multi-tenancy scenario by completing 
 
 Before you start, make sure that the following operations are performed:
 
--   A Container Service for Kubernetes \(ACK\) cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+-   A Container Service for Kubernetes \(ACK\) cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 -   An Elastic Compute Service \(ECS\) instance that runs Linux is created in the virtual private cloud \(VPC\) where the ACK cluster is deployed. For more information, see [Create an instance by using the wizard](/intl.en-US/Instance/Create an instance/Create an instance by using the wizard.md).
 
     In this example, the ECS instance functions as a client. The client is used as an Arena workstation to submit jobs to the ACK cluster.
@@ -60,7 +60,7 @@ For security purposes, we recommend that you do not install Arena, run Arena, or
 
     1.  Use kubectl to connect to the ACK cluster.
 
-        Before you use kubectl, you must install kubectl on the client and modify the kubeconfig file to allow administrators to manage the ACK cluster. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+        Before you use kubectl, you must install kubectl on the client and modify the kubeconfig file to allow administrators to manage the ACK cluster. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
 
         **Note:** The version of kubectl must be 1.10 or later.
 
@@ -252,13 +252,13 @@ To complete [Task 5](#li_9tk_kye_uqc), you must create two types of shared volum
 
 1.  Create a NAS file system.
 
-    Log on to the [Apsara File Storage NAS console](https://nasnext.console.aliyun.com/overview), create a NAS file system, and add a mount target. For more information, see [Configure a shared NAS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared NAS volume for training jobs.md).
+    Log on to the [Apsara File Storage NAS console](https://nasnext.console.aliyun.com/overview), create a NAS file system, and add a mount target. For more information, see [Configure a shared NAS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared NAS volume.md).
 
 2.  Create persistent volumes \(PVs\) and persistent volume claims \(PVCs\) for the ACK cluster.
 
     1.  Create PVs.
 
-        Create four PVs. For more information about how to create a PV, see [Create a PV](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/Use a static NAS volume in the ACK console.md). Volume department1-public-dev1 is used to share data of department1 to users in dev1, and volume department1-public-dev2 is used to share data of department1 to users in dev2. Volume dev1-public is used to share data to only users in dev1, and volume dev2-public is used to share data to only users in dev2. The following figure shows the configurations of the PVs.
+        Create four PVs. For more information about how to create a PV, see [Create a PV](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/Mount a NAS file system as a static PV by using YAML files.md). Volume department1-public-dev1 is used to share data of department1 to users in dev1, and volume department1-public-dev2 is used to share data of department1 to users in dev2. Volume dev1-public is used to share data to only users in dev1, and volume dev2-public is used to share data to only users in dev2. The following figure shows the configurations of the PVs.
 
         ![PV](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4381205061/p174088.png)
 
@@ -266,7 +266,7 @@ To complete [Task 5](#li_9tk_kye_uqc), you must create two types of shared volum
 
     2.  Create PVCs.
 
-        Create a PVC for each newly created PV. For more information about how to create a PVC, see [Create a PVC](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/Use a static NAS volume in the ACK console.md).
+        Create a PVC for each newly created PV. For more information about how to create a PVC, see [Create a PVC](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/Mount a NAS file system as a static PV by using YAML files.md).
 
         After the PVCs are created, you can find that department1-public-dev1 and dev1-public exist in dev1, and department1-public-dev2 and dev2-public exist in dev2.
 
