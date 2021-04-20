@@ -35,11 +35,11 @@ keyword: [监控集群侧存储资源, storage-operator组件安装]
 
     若提示组件未安装，请先单击**开始安装**完成组件安装。
 
-5.  单击**k8s csi cluster**监控大盘页签，进入csi-plugin组件集群侧的监控大盘，查看监控信息。
+5.  单击**CSI Cluster**监控大盘页签，进入csi-plugin组件集群侧的监控大盘，查看监控信息。
 
-    ![K8s csi cluster](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8459795161/p251927.png)
+    ![K8s csi cluster](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7555888161/p251927.png)
 
-    K8s CSI Cluster监控大盘指标说明如下所示：
+    CSI Cluster监控大盘指标说明如下所示：
 
     |指标名称|说明|显示维度|
     |----|--|----|
