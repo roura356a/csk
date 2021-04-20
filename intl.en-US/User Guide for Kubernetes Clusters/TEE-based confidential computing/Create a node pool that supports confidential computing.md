@@ -27,12 +27,12 @@ TEE-based confidential computing for ACK is powered by Intel \(R\) Software Guar
 
     |Parameter|Description|
     |---------|-----------|
-    |**Confidential Computing**|Select **Enable** to enable confidential computing.![Confidential computing](../images/p132594.png) |
-    |**Container Runtime**|Only containerd and Docker runtimes are supported.**Note:** The Containerd runtime is in public preview. To use Containerd, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply for it to be available for your account. |
+    |**Confidential Computing**|Select **Enable** to enable confidential computing.![Confidential computing](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6834098161/p132594.png) |
+    |**Container Runtime**|Only containerd and Docker runtimes are supported.**Note:** The containerd runtime is in public preview. To use containerd, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply for it to be available for your account. |
     |**Auto Scaling**|Specify whether to enable auto scaling. If you enable auto scaling, the node pool automatically scales based on resource consumption.|
     |**Instance Type**|Select **ECS Bare Metal Instance** and select **ecs.ebmhfg5.2xlarge** as the **instance type**.**Note:** You can select multiple instance types. Only the **ecs.ebmhfg5.2xlarge** instance type supports confidential computing. If the stock of ecs.ebmhfg5.2xlarge instances is insufficient, you can select another instance type. However, the node pool does not support confidential computing in this case.
 
-![Instance Type](../images/p132689.png) |
+![Instance Type](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6834098161/p132689.png) |
     |**Quantity**|Specify the initial number of nodes in the node pool. If you do not want to create nodes in the node pool, set this parameter to 0.|
     |**Operating System**|You can select only the Aliyun Linux operating system.|
     |**Node Label**|You can add labels to nodes in the node pool.|
@@ -44,11 +44,11 @@ TEE-based confidential computing for ACK is powered by Intel \(R\) Software Guar
 
     On the **Clusters** page, find the cluster and click **View Logs** in the **Actions** column. On the page that appears, you can view the log data of the newly created node pool that supports confidential computing.
 
-    ![Cluster log](../images/p132697.png)
+    ![Cluster log](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6834098161/p132697.png)
 
     After the node pool is created, the **state** of the node pool changes to **Active**.
 
-    ![Active](../images/p132698.png)
+    ![Active](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6834098161/p132698.png)
 
 
 After the node pool that supports confidential computing is created, you can create and deploy Intel\(R\) SGX applications. For more information, see [Use the Intel SGX SDK to develop and build an application](/intl.en-US/User Guide for Kubernetes Clusters/TEE-based confidential computing/Use the Intel SGX SDK to develop and build an application.md).
