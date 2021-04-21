@@ -174,5 +174,3 @@ Ambassador Edge Stack \(AES\) includes a high-performance Ingress controller and
 
 [Ambassador Edge Stack](https://www.getambassador.io/docs/latest/tutorials/getting-started/)
 
-[Use AES to manage Ingresses](/intl.en-US/User Guide for Kubernetes Clusters/Network/Best practices/Use AES to manage Ingresses.md)
-
