@@ -122,12 +122,12 @@ Perform the following steps to build a staging environment for LDAP:
 
         1.  In the left-side navigation pane, click **Create new entry here**. On the Create Object page, click **Generic: Organisational Unit**, and then click **Create Object**.
 
-            ![unit](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8826369951/p141650.png)
+            ![unit](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8826369951/p141650.png)
 
         2.  Enter a name for the organization and click **Create Object**. In this example, the organization name is dev.
         3.  In the left-side navigation pane, click the newly created ou=dev. On the ou=dev page, click **Create a child entry**, and then click **Courier Mail: Account**. Set the parameters and click **Create Object**.
 
-            ![Account](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8826369951/p141660.png)
+            ![Account](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8826369951/p141660.png)
 
             **Note:** The default name of the created account may contain extra space characters. We recommend that you delete the space characters.
 
@@ -222,7 +222,7 @@ Perform the following steps to import the organizations and accounts from LDAP t
 
     6.  In the **Create IdP** pane, enter the IdP name, click **Upload** to upload the IDaaS SAML meta profile, and then click **OK**.
 
-        ![SSO](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8826369951/p141774.png)
+        ![SSO](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8826369951/p141774.png)
 
     7.  Create a RAM role, specify **IdP** as the trusted entity of the RAM role, and add the AliyunRAMFullAccess permission. For more information, see [Create a RAM role for a trusted IdP](/intl.en-US/RAM Role Management/Create a RAM role/Create a RAM role for a trusted IdP.md).
 
