@@ -14,7 +14,7 @@ When you create a cluster, select **Enable Log service** to activate Logtail. Yo
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+2.  In the left-side navigation pane, click **Clusters**.
 
 3.  On the Clusters page, click **Create Kubernetes Cluster** in the upper-right corner. For more information, see [Create a cluster]().
 
@@ -26,11 +26,11 @@ When you create a cluster, select **Enable Log service** to activate Logtail. Yo
 
     -   Select an existing project.
 
-        ![Select an existing project](../images/p148932.png)
+        ![Select an existing project](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7002998161/p148932.png)
 
     -   Create a project. By default, the system names the project in the format of `k8s-log-{ClusterID}`. ClusterID indicates the unique ID of the cluster to be created.
 
-        ![Create a project](../images/p148933.png)
+        ![Create a project](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7002998161/p148933.png)
 
 7.  After you set the parameters, click **Create Cluster** in the lower-right corner. In the message that appears, click **OK**.
 
@@ -41,7 +41,7 @@ When you create a cluster, select **Enable Log service** to activate Logtail. Yo
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+2.  In the left-side navigation pane, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -66,7 +66,7 @@ You can configure Log Service to collect container logs when you create an appli
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+2.  In the left-side navigation pane, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
