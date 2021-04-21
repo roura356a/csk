@@ -68,12 +68,12 @@
 
 * 阿里云CloudShell
 
-  您可以通过阿里云提供的CloudShell来管理Kubernetes集群。具体操作，请参见[在CloudShell上通过kubectl管理Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/在CloudShell上通过kubectl管理Kubernetes集群.md)。
+  您可以通过阿里云提供的CloudShell来管理Kubernetes集群。具体操作，请参见[在CloudShell上通过kubectl管理Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/在CloudShell上通过kubectl管理Kubernetes集群.md)。
   
 
 * kubectl客户端
 
-  您可以通过kubectl客户端在本地计算机来访问远端的Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。
+  您可以通过kubectl客户端在本地计算机来访问远端的Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
   
 
 
@@ -88,10 +88,10 @@
 |        不支持的功能         |          说明           |               推荐替代方案               |
 |-----------------------|-----------------------|------------------------------------|
 | HostPath              | 挂载本地宿主机文件到容器中         | 使用emptyDir或者NAS文件存储                |
-| HostNetwork           | 将宿主机端口映射到容器中          | 使用type=LoadBalancer的负载均衡           |
-| DaemonSet             | 在容器所在宿主机上部署Static Pod | 通过sidecar形式在pod中部署多个镜像             |
+| HostNetwork           | 将宿主机端口映射到容器上          | 使用type=LoadBalancer的负载均衡           |
+| DaemonSet             | 在容器所在宿主机上部署Static Pod | 通过sidecar形式在Pod中部署多个镜像             |
 | Privileged权限          | 容器拥有privileged权限      | 使用Security Context为Pod添加Capability |
-| type=NodePort的Service | 通过宿主机端口映射到容器端口        | 使用type=LoadBalancer的负载均衡           |
+| type=NodePort的Service | 将宿主机端口映射到容器上          | 使用type=LoadBalancer的负载均衡           |
 
 
 
@@ -110,7 +110,7 @@
 
   
 
-* Serverless Kubernetes和Kubernetes+虚拟节点扩展支持负载均衡，即配置type=LoadBalancer的Service。更多信息，请参见[访问控制概述](https://help.aliyun.com/document_detail/85979.html?spm=a2c4g.11186623.6.643.53be555cua9npz)。
+* Serverless Kubernetes和Kubernetes+虚拟节点扩展支持负载均衡，即配置type=LoadBalancer的Service。更多信息，请参见[配置负载均衡](/cn.zh-CN/Serverless Kubernetes集群用户指南/网络/Service管理/通过Annotation配置负载均衡.md)。
 
   以下为yaml示例：
 
