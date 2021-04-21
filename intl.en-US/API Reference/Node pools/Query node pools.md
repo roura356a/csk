@@ -1,322 +1,527 @@
-# Query node pools
+# 
 
-You can call DescribeClusterNodePools to query node pools in a cluster.
 
-## Debugging
 
-[OpenAPI Explorer automatically calculates the signature value. For your convenience, we recommend that you call this operation in OpenAPI Explorer. OpenAPI Explorer dynamically generates the sample code of the operation for different SDKs.](https://api.aliyun.com/#product=CS&api=DescribeClusterNodePools&type=ROA&version=2015-12-15)
 
-## Request parameter types
 
-This operation uses only common request parameters. For more information, see Common parameters.
+## 
 
-## Request syntax
 
-```
-get /clusters/{ClusterId}/nodepools http|https
-```
 
-## Request parameters
 
-|Parameter|Type|Required|Example|Description|
-|---------|----|--------|-------|-----------|
-|ClusterId|String|Yes|cc0f87de0b8fb403f86e10e204f83\*\*\*\*|The ID of the cluster. |
 
-## Response parameters
-
-|Parameter|Type|Example|Description|
-|---------|----|-------|-----------|
-|nodepools|Array of nodepools| |A list of node pools. |
-|auto\_scaling|Object| |The configuration of auto scaling. |
-|eip\_bandwidth|Long|"5"|The peak bandwidth of the elastic IP address \(EIP\). |
-|eip\_internet\_charge\_type|String|"\*\*\*"|The billing method of the EIP. |
-|enable|Boolean|"true"|Indicates whether auto scaling is enabled for the node pool. |
-|health\_check\_type|String|"\*\*\*"|The health check method of the nodes for auto scaling. |
-|max\_instances|Long|"10"|The maximum number of the Elastic Compute Service \(ECS\) instances. |
-|min\_instances|Long|"2"|The minimum number of ECS instances. |
-|type|String|"cpu"|The type of auto scaling. |
-|kubernetes\_config|Object| |The configuration of the cluster. |
-|cms\_enabled|Boolean|"true"|Indicates whether Cloud Monitor is enabled. |
-|cpu\_policy|String|"none"|The CPU management policy. Valid values: static and none. |
-|labels|Array of labels| |The tags of the ECS instance. |
-|key|String|"k-aa"|The key of the tag. |
-|value|String|"v-aa"|The value of the tag. |
-|node\_name\_mode|String|"nodeip"|The naming rule of the node. |
-|overwrite\_hostname|Boolean|"false"|Indicates whether the host name is overwritten. |
-|runtime|String|"docker"|The name of the container runtime. |
-|runtime\_version|String|"19.03.5"|The version of the container runtime. |
-|taints|Array of taints| |The taints of the node. |
-|effect|String|"NoSca"|The scheduling policy. |
-|key|String|"k-bb"|The key of the taint. |
-|value|String|"v-bb"|The value of the taint. |
-|user\_data|String|"\*\*\*"|The user data of the node. |
-|nodepool\_info|Object| |The information about the node pool. |
-|created|String|"2020-09-27T19:14:09.156823496+08:00"|The time when the node pool was created. |
-|is\_default|Boolean|"true"|Indicates whether the node pool is the default node pool. |
-|name|String|"default-nodepool"|The name of the node pool. |
-|nodepool\_id|String|"np615c0e0966124216a0412e10afe0\*\*\*\*"|The ID of the node pool. |
-|region\_id|String|"cn-beijing"|The ID of the region. |
-|resource\_group\_id|String|"\*\*\*"|The ID of the resource group. |
-|type|String|"ess"|The type of the node. |
-|updated|String|"2020-09-27T20:37:46+08:00"|The time when the cluster was updated. |
-|scaling\_group|Object| |The configuration of the scaling group. |
-|auto\_renew|Boolean|"false"|Indicates whether auto renewal is enabled for the nodes. Valid values:````
-
- -   true: Auto renewal is enabled.
--   false: Auto renewal is disabled. |
-|auto\_renew\_period|Long|"0"|The auto renewal period for nodes. Valid values: 1, 2, 3, 6, and 12.`` |
-|data\_disks|Array of data\_disks| |The configuration of data disks. |
-|category|String|"cloud\_efficiency"|The type of data disks. Valid values:
-
- -   cloud\_efficiency: ultra disks.
--   cloud\_ssd: SSDs. |
-|encrypted|String|"false"|Indicates whether data disks are encrypted. |
-|size|Long|"40"|The size of a data disk. |
-|image\_id|String|"aliyun\_2\_1903\_x64\_20G\_alibase\_20200529.vhd"|The ID of the custom image. |
-|instance\_charge\_type|String|"PostPaid"|The billing method of the nodes. Valid values:
-
- -   PrePaid: subscription.
--   PostPaid: pay-as-you-go.
-
- Default value: PostPaid. |
-|instance\_types|Array of String|"ecs.n4.large"|The ECS instance types of nodes. |
-|multi\_az\_policy|String|"BALANCE"|The scaling policy for the multi-zone scaling group. |
-|period|Long|"0"|The subscription duration of nodes. Valid values: 1, 2, 3, 6, and 12. |
-|period\_unit|String|"\*"|The unit of the subscription duration. A value of Month indicates that the subscription duration is measured in months. |
-|platform|String|"AliyunLinux"|The release version of the operating system. Valid values:
-
- CentOS
-
- AliyunLinux
-
- Windows
-
- WindowsCore |
-|ram\_policy|String|"KubernetesWorkerRole-021dc54f-929b-437a-8ae0-34c24d3e\*\*\*\*"|The name of the RAM role. |
-|rds\_instances|Array of String| |The RDS instances. |
-|scaling\_group\_id|String|"\*\*\*"|The ID of the scaling group. |
-|scaling\_policy|String|"release"|The policy for auto scaling. |
-|security\_group\_id|String|"sg-2ze1iuk12m2sb4c4\*\*\*\*"|The ID of the security group. |
-|system\_disk\_category|String|"cloud\_efficiency"|The type of the system disk. Valid values:
-
- -   cloud\_efficiency: an ultra disk.
--   cloud\_ssd: an SSD. |
-|system\_disk\_size|Long|"120"|The size of the system disk. |
-|tags|Array of tags| |The tags of the nodes. |
-|key|String|"k-cc"|The key of the tag. |
-|value|String|"v-cc"|The value of the tag. |
-|vswitch\_ids|Array of String| |The IDs of VSwitches. |
-|worker\_hpc\_cluster\_id|String|"\*\*\*"|The ID of the high-performance computing cluster. |
-|status|Object| |The status of the node pool. |
-|failed\_nodes|Long|"0"|The number of failed nodes. |
-|healthy\_nodes|Long|"3"|The number of healthy nodes. |
-|initial\_nodes|Long|"0"|The number of nodes that are initializing. |
-|offline\_nodes|Long|"0"|The number of offline nodes. |
-|removing\_nodes|Long|"0"|The number of nodes that are being removed. |
-|serving\_nodes|Long|"3"|The number of running nodes. |
-|state|String|"active"|The status of the node pool. |
-|total\_nodes|Long|"3"|The total number of nodes. |
-|tee\_config|Object| |The configuration of confidential computing. |
-|tee\_enable|Boolean|"false"|Indicates whether confidential computing is enabled for the node pool. |
-
-## Examples
-
-Sample requests
+## 
 
 ```
-POST /clusters/{ClusterId}/nodepools HTTP/1.1
+GET /clusters/ClusterId/nodepools HTTP/1.1 
+Content-Type:application/json
+```
+
+
+
+## 
+
+||||||
+|--|--|--|--|--|
+|ClusterId|String||cc0f87de0b8fb403f86e10e204f83\*\*\*\*| |
+
+
+
+## 
+
+```
+HTTP/1.1 200
+Content-Type:application/json
 {
-    "ClusterId":"c61da77e8bfbc4c4c999af2b51b65****"
+  "nodepools" : [ {
+    "auto_scaling" : {
+      "eip_bandwidth" : Long,
+      "is_bond_eip" : Boolean,
+      "eip_internet_charge_type" : "String",
+      "enable" : Boolean,
+      "max_instances" : Long,
+      "min_instances" : Long,
+      "type" : "String"
+    },
+    "kubernetes_config" : {
+      "cms_enabled" : Boolean,
+      "cpu_policy" : "String",
+      "labels" : [ {
+        "key" : "String",
+        "value" : "String"
+      } ],
+      "runtime" : "String",
+      "runtime_version" : "String",
+      "taints" : [ {
+        "key" : "String",
+        "value" : "String",
+        "effect" : "String"
+      } ],
+      "user_data" : "String"
+    },
+    "nodepool_info" : {
+      "created" : "String",
+      "is_default" : Boolean,
+      "name" : "String",
+      "nodepool_id" : "String",
+      "region_id" : "String",
+      "resource_group_id" : "String",
+      "type" : "String",
+      "updated" : "String"
+    },
+    "scaling_group" : {
+      "auto_renew" : Boolean,
+      "auto_renew_period" : Long,
+      "data_disks" : [ {
+        "category" : "String",
+        "size" : Long,
+        "encrypted" : "String",
+        "auto_snapshot_policy_id" : "String"
+      } ],
+      "image_id" : "String",
+      "instance_charge_type" : "String",
+      "instance_types" : [ "String" ],
+      "multi_az_policy" : "String",
+      "on_demand_base_capacity" : Long,
+      "on_demand_percentage_above_base_capacity" : Long,
+      "spot_instance_pools" : Long,
+      "spot_instance_remedy" : Boolean,
+      "compensate_with_on_demand" : Boolean,
+      "period" : Long,
+      "period_unit" : "String",
+      "platform" : "String",
+      "ram_policy" : "String",
+      "spot_strategy" : "String",
+      "spot_price_limit" : [ {
+        "instance_type" : "String",
+        "price_limit" : "String"
+      } ],
+      "rds_instances" : [ "String" ],
+      "scaling_group_id" : "String",
+      "scaling_policy" : "String",
+      "security_group_id" : "String",
+      "system_disk_category" : "String",
+      "system_disk_size" : Long,
+      "tags" : [ {
+        "key" : "String",
+        "value" : "String"
+      } ],
+      "vswitch_ids" : [ "String" ],
+      "login_password" : "String",
+      "key_pair" : "String"
+    },
+    "status" : {
+      "failed_nodes" : Long,
+      "healthy_nodes" : Long,
+      "initial_nodes" : Long,
+      "offline_nodes" : Long,
+      "removing_nodes" : Long,
+      "serving_nodes" : Long,
+      "state" : "String",
+      "total_nodes" : Long
+    },
+    "tee_config" : {
+      "tee_enable" : Boolean
+    },
+    "management" : {
+      "enable" : Boolean,
+      "auto_repair" : Boolean,
+      "upgrade_config" : {
+        "auto_upgrade" : Boolean,
+        "surge" : Long,
+        "surge_percentage" : Long,
+        "max_unavailable" : Long
+      }
+    }
+  } ]
 }
 ```
 
-Sample success responses
 
-`XML` format
+
+## 
+
+|||||
+|--|--|--|--|
+|nodepools|Array| | |
+|auto\_scaling|object| | |
+|eip\_bandwidth|Long|5| |
+|is\_bond\_eip|Boolean|true|
+
+ -   -    |
+|eip\_internet\_charge\_type|String|PayByBandwidth|
+
+ -   -    |
+|enable|Boolean|true|
+
+ -   -    |
+|max\_instances|Long|10| |
+|min\_instances|Long|2| |
+|type|String|cpu|
+
+ -   -   -   -    |
+|kubernetes\_config|object| | |
+|cms\_enabled|Boolean|true|
+
+ -   -    |
+|cpu\_policy|String|none|
+
+ -   -    |
+|labels|Array of [tag](/intl.en-US/API Reference/Commonly used parameters.md)| | |
+|runtime|String|docker| |
+|runtime\_version|String|19.03.5| |
+|taints|Array of [taint](/intl.en-US/API Reference/Commonly used parameters.md)| | |
+|user\_data|String|IyEvYmluL3NoCmVjaG8gIkhlbGxvIEFD\*\*\*\*| |
+|nodepool\_info|object| | |
+|created|String|2020-09-27T19:14:09.156823496+08:00| |
+|is\_default|Boolean|true|
+
+ -   -    |
+|name|String|default-nodepool|
+
+  |
+|nodepool\_id|String|np615c0e0966124216a0412e10afe0\*\*\*\*| |
+|region\_id|String|cn-beijing| |
+|resource\_group\_id|String|rg-acfmyvw3wjm\*\*\*\*| |
+|type|String|ess| |
+|updated|String|2020-09-27T20:37:46+08:00| |
+|scaling\_group|object| | |
+|auto\_renew|Boolean|false|
+
+ -   -    |
+|auto\_renew\_period|Long|0|
+
+  |
+|data\_disks|Array of [data\_disk](/intl.en-US/API Reference/Commonly used parameters.md)| | |
+|image\_id|String|aliyun\_2\_1903\_x64\_20G\_alibase\_20200529.vhd| |
+|instance\_charge\_type|String|PostPaid|
+
+ -   -    |
+|instance\_types|Array of String|ecs.n4.large| |
+|multi\_az\_policy|String|COST\_OPTIMIZED|
+
+ -   -   **Note:**
+
+-    |
+|on\_demand\_base\_capacity|Long|0| |
+|on\_demand\_percentage\_above\_base\_capacity|Long|20| |
+|spot\_instance\_pools|Long|5| |
+|spot\_instance\_remedy|Boolean|false|
+
+ -   -    |
+|compensate\_with\_on\_demand|Boolean|true|
+
+ -   -    |
+|period|Long|0|
+
+  |
+|period\_unit|String|Month|
+
+  |
+|platform|String|AliyunLinux|
+
+ -   `CentOS`
+-   `AliyunLinux`
+-   `Windows`
+-   `WindowsCore` |
+|ram\_policy|String|KubernetesWorkerRole-021dc54f-929b-437a-8ae0-34c24d3e\*\*\*\*| |
+|spot\_strategy|String|NoSpot|
+
+ -   -   -   
+  |
+|spot\_price\_limit|Array| | |
+|instance\_type|String|ecs.c6.large| |
+|price\_limit|String|0.39| |
+|rds\_instances|Array of String|rm-xxx| |
+|scaling\_group\_id|String|asg-2ze8n5qw4atggut8\*\*\*\*| |
+|scaling\_policy|String|release|
+
+ -   -    |
+|security\_group\_id|String|sg-2ze1iuk12m2sb4c4\*\*\*\*| |
+|system\_disk\_category|String|cloud\_efficiency|
+
+ -   -    |
+|system\_disk\_size|Long|120|
+
+  |
+|tags|Array of [tag](/intl.en-US/API Reference/Commonly used parameters.md)| |
+
+ -   -    |
+|vswitch\_ids|Array of String|vsw-2ze3ds0mdip0hdz8i\*\*\*\*| |
+|login\_password|String|\*\*\*\*\*\*|
+
+  |
+|key\_pair|String|pro-nodepool|
+
+  |
+|status|object| | |
+|failed\_nodes|Long|0| |
+|healthy\_nodes|Long|3| |
+|initial\_nodes|Long|0| |
+|offline\_nodes|Long|0| |
+|removing\_nodes|Long|0| |
+|serving\_nodes|Long|3| |
+|state|String|active|
+
+ -   -   -   -   -    |
+|total\_nodes|Long|3| |
+|tee\_config|object| | |
+|tee\_enable|Boolean|false|
+
+ -   -    |
+|management|object| | |
+|enable|Boolean|true|
+
+ -   -    |
+|auto\_repair|Boolean|true|
+
+ -   -    |
+|upgrade\_config|object| | |
+|auto\_upgrade|Boolean|true|
+
+ -   -    |
+|surge|Long|5| |
+|surge\_percentage|Long|50| |
+|max\_unavailable|Long|1|
+
+  |
+
+
+
+## 
+
+
 
 ```
+GET /clusters/cc0f87de0b8fb403f86e10e204f83****/nodepools HTTP/1.1 
+Content-Type:application/json
+```
+
+
+
+
+
+```
+HTTP/1.1 200 OK
+Content-Type:application/xml
+
 <nodepools>
-      <tee_config>
-            <tee_enable>false</tee_enable>
-      </tee_config>
-      <scaling_group>
-            <instance_types>ecs.n4.large</instance_types>
-            <scaling_group_id>***</scaling_group_id>
-            <auto_renew_period>0</auto_renew_period>
-            <period>0</period>
-            <period_unit>*</period_unit>
-            <security_group_id>sg-2ze1iuk12m2sb4c4****</security_group_id>
-            <multi_az_policy>BALANCE</multi_az_policy>
-            <system_disk_size>120</system_disk_size>
-            <platform>AliyunLinux</platform>
-            <tags>
-                  <value>v-cc</value>
-                  <key>k-cc</key>
-            </tags>
-            <worker_hpc_cluster_id>***</worker_hpc_cluster_id>
-            <data_disks>
-                  <encrypted>false</encrypted>
-                  <size>40</size>
-                  <category>cloud_efficiency</category>
-            </data_disks>
-            <ram_policy>KubernetesWorkerRole-021dc54f-929b-437a-8ae0-34c24d3e****</ram_policy>
-            <auto_renew>false</auto_renew>
-            <instance_charge_type>PostPaid</instance_charge_type>
-            <system_disk_category>cloud_efficiency</system_disk_category>
-            <rds_instances>rds-xxx</rds_instances>
-            <image_id>aliyun_2_1903_x64_20G_alibase_20200529.vhd</image_id>
-            <scaling_policy>release</scaling_policy>
-            <vswitch_ids>vsw-2ze3ds0mdip0hdz8i****</vswitch_ids>
-      </scaling_group>
-      <kubernetes_config>
-            <runtime_version>19.03.5</runtime_version>
-            <cpu_policy>none</cpu_policy>
-            <cms_enabled>true</cms_enabled>
-            <overwrite_hostname>false</overwrite_hostname>
-            <runtime>docker</runtime>
-            <taints>
-                  <effect>NoSca</effect>
-                  <value>v-bb</value>
-                  <key>k-bb</key>
-            </taints>
-            <user_data>***</user_data>
-            <node_name_mode>nodeip</node_name_mode>
-            <labels>
-                  <value>v-aa</value>
-                  <key>k-aa</key>
-            </labels>
-      </kubernetes_config>
-      <auto_scaling>
-            <health_check_type>***</health_check_type>
-            <eip_internet_charge_type>***</eip_internet_charge_type>
-            <enable>true</enable>
-            <max_instances>10</max_instances>
-            <min_instances>2</min_instances>
-            <eip_bandwidth>5</eip_bandwidth>
-            <type>cpu</type>
-      </auto_scaling>
-      <nodepool_info>
-            <resource_group_id>***</resource_group_id>
-            <created>2020-09-27T19:14:09.156823496+08:00</created>
-            <name>default-nodepool</name>
-            <region_id>cn-beijing</region_id>
-            <is_default>true</is_default>
-            <type>ess</type>
-            <nodepool_id>np615c0e0966124216a0412e10afe0****</nodepool_id>
-            <updated>2020-09-27T20:37:46+08:00</updated>
-      </nodepool_info>
-      <status>
-            <serving_nodes>3</serving_nodes>
-            <total_nodes>3</total_nodes>
-            <state>active</state>
-            <initial_nodes>0</initial_nodes>
-            <offline_nodes>0</offline_nodes>
-            <removing_nodes>0</removing_nodes>
-            <failed_nodes>0</failed_nodes>
-            <healthy_nodes>3</healthy_nodes>
-      </status>
+    <auto_scaling>
+        <eip_bandwidth>5</eip_bandwidth>
+        <is_bond_eip>true</is_bond_eip>
+        <eip_internet_charge_type>PayByBandwidth</eip_internet_charge_type>
+        <enable>true</enable>
+        <max_instances>10</max_instances>
+        <min_instances>2</min_instances>
+        <type>cpu</type>
+    </auto_scaling>
+    <kubernetes_config>
+        <cms_enabled>true</cms_enabled>
+        <cpu_policy>none</cpu_policy>
+        <labels>
+            <key>env</key>
+            <value>prod</value>
+        </labels>
+        <runtime>docker</runtime>
+        <runtime_version>19.03.5</runtime_version>
+        <taints>
+            <key>key</key>
+            <value>value</value>
+            <effect>NoSchedule</effect>
+        </taints>
+        <user_data>IyEvYmluL3NoCmVjaG8gIkhlbGxvIEFD****</user_data>
+    </kubernetes_config>
+    <nodepool_info>
+        <created>2020-09-27T19:14:09.156823496+08:00</created>
+        <is_default>true</is_default>
+        <name>default-nodepool</name>
+        <nodepool_id>np615c0e0966124216a0412e10afe0****</nodepool_id>
+        <region_id>cn-beijing</region_id>
+        <resource_group_id>rg-acfmyvw3wjm****</resource_group_id>
+        <type>ess</type>
+        <updated>2020-09-27T20:37:46+08:00</updated>
+    </nodepool_info>
+    <scaling_group>
+        <auto_renew>false</auto_renew>
+        <auto_renew_period>0</auto_renew_period>
+        <data_disks>
+            <category>cloud_ssd</category>
+            <size>40</size>
+            <encrypted>true</encrypted>
+            <auto_snapshot_policy_id>sp-2zej1nogjvovnz4z****</auto_snapshot_policy_id>
+        </data_disks>
+        <image_id>aliyun_2_1903_x64_20G_alibase_20200529.vhd</image_id>
+        <instance_charge_type>PostPaid</instance_charge_type>
+        <instance_types>ecs.n4.large</instance_types>
+        <multi_az_policy>COST_OPTIMIZED</multi_az_policy>
+        <on_demand_base_capacity>0</on_demand_base_capacity>
+        <on_demand_percentage_above_base_capacity>20</on_demand_percentage_above_base_capacity>
+        <spot_instance_pools>5</spot_instance_pools>
+        <spot_instance_remedy>false</spot_instance_remedy>
+        <compensate_with_on_demand>true</compensate_with_on_demand>
+        <period>0</period>
+        <period_unit>Month</period_unit>
+        <platform>AliyunLinux</platform>
+        <ram_policy>KubernetesWorkerRole-021dc54f-929b-437a-8ae0-34c24d3e****</ram_policy>
+        <spot_strategy>NoSpot</spot_strategy>
+        <spot_price_limit>
+            <instance_type>ecs.c6.large</instance_type>
+            <price_limit>0.39</price_limit>
+        </spot_price_limit>
+        <rds_instances>rm-xxx</rds_instances>
+        <scaling_group_id>asg-2ze8n5qw4atggut8****</scaling_group_id>
+        <scaling_policy>release</scaling_policy>
+        <security_group_id>sg-2ze1iuk12m2sb4c4****</security_group_id>
+        <system_disk_category>cloud_efficiency</system_disk_category>
+        <system_disk_size>120</system_disk_size>
+        <tags>
+            <key>env</key>
+            <value>prod</value>
+        </tags>
+        <vswitch_ids>vsw-2ze3ds0mdip0hdz8i****</vswitch_ids>
+        <login_password>******</login_password>
+        <key_pair>pro-nodepool</key_pair>
+    </scaling_group>
+    <status>
+        <failed_nodes>0</failed_nodes>
+        <healthy_nodes>3</healthy_nodes>
+        <initial_nodes>0</initial_nodes>
+        <offline_nodes>0</offline_nodes>
+        <removing_nodes>0</removing_nodes>
+        <serving_nodes>3</serving_nodes>
+        <state>active</state>
+        <total_nodes>3</total_nodes>
+    </status>
+    <tee_config>
+        <tee_enable>false</tee_enable>
+    </tee_config>
+    <management>
+        <enable>true</enable>
+        <auto_repair>true</auto_repair>
+        <upgrade_config>
+            <auto_upgrade>true</auto_upgrade>
+            <surge>5</surge>
+            <surge_percentage>50</surge_percentage>
+            <max_unavailable>1</max_unavailable>
+        </upgrade_config>
+    </management>
 </nodepools>
 ```
 
-`JSON` format
+
 
 ```
+HTTP/1.1 200 OK
+Content-Type:application/json
+
 {
-    "nodepools": [
-        {
-            "tee_config": {
-                "tee_enable": "false"
-            },
-            "scaling_group": {
-                "instance_types": "ecs.n4.large",
-                "scaling_group_id": "***",
-                "auto_renew_period": "0",
-                "period": "0",
-                "period_unit": "*",
-                "security_group_id": "sg-2ze1iuk12m2sb4c4****",
-                "multi_az_policy": "BALANCE",
-                "system_disk_size": "120",
-                "platform": "AliyunLinux",
-                "tags": [
-                    {
-                        "value": "v-cc",
-                        "key": "k-cc"
-                    }
-                ],
-                "worker_hpc_cluster_id": "***",
-                "data_disks": [
-                    {
-                        "encrypted": "false",
-                        "size": "40",
-                        "category": "cloud_efficiency"
-                    }
-                ],
-                "ram_policy": "KubernetesWorkerRole-021dc54f-929b-437a-8ae0-34c24d3e****",
-                "auto_renew": "false",
-                "instance_charge_type": "PostPaid",
-                "system_disk_category": "cloud_efficiency",
-                "rds_instances": "rds-xxx",
-                "image_id": "aliyun_2_1903_x64_20G_alibase_20200529.vhd",
-                "scaling_policy": "release",
-                "vswitch_ids": "vsw-2ze3ds0mdip0hdz8i****"
-            },
-            "kubernetes_config": {
-                "runtime_version": "19.03.5",
-                "cpu_policy": "none",
-                "cms_enabled": "true",
-                "overwrite_hostname": "false",
-                "runtime": "docker",
-                "taints": [
-                    {
-                        "effect": "NoSca",
-                        "value": "v-bb",
-                        "key": "k-bb"
-                    }
-                ],
-                "user_data": "***",
-                "node_name_mode": "nodeip",
-                "labels": [
-                    {
-                        "value": "v-aa",
-                        "key": "k-aa"
-                    }
-                ]
-            },
-            "auto_scaling": {
-                "health_check_type": "***",
-                "eip_internet_charge_type": "***",
-                "enable": "true",
-                "max_instances": "10",
-                "min_instances": "2",
-                "eip_bandwidth": "5",
-                "type": "cpu"
-            },
-            "nodepool_info": {
-                "resource_group_id": "***",
-                "created": "2020-09-27T19:14:09.156823496+08:00",
-                "name": "default-nodepool",
-                "region_id": "cn-beijing",
-                "is_default": "true",
-                "type": "ess",
-                "nodepool_id": "np615c0e0966124216a0412e10afe0****",
-                "updated": "2020-09-27T20:37:46+08:00"
-            },
-            "status": {
-                "serving_nodes": "3",
-                "total_nodes": "3",
-                "state": "active",
-                "initial_nodes": "0",
-                "offline_nodes": "0",
-                "removing_nodes": "0",
-                "failed_nodes": "0",
-                "healthy_nodes": "3"
-            }
-        }
-    ]
+  "nodepools" : [ {
+    "auto_scaling" : {
+      "eip_bandwidth" : 5,
+      "is_bond_eip" : true,
+      "eip_internet_charge_type" : "PayByBandwidth",
+      "enable" : true,
+      "max_instances" : 10,
+      "min_instances" : 2,
+      "type" : "cpu"
+    },
+    "kubernetes_config" : {
+      "cms_enabled" : true,
+      "cpu_policy" : "none",
+      "labels" : [ {
+        "key" : "env",
+        "value" : "prod"
+      } ],
+      "runtime" : "docker",
+      "runtime_version" : "19.03.5",
+      "taints" : [ {
+        "key" : "key",
+        "value" : "value",
+        "effect" : "NoSchedule"
+      } ],
+      "user_data" : "IyEvYmluL3NoCmVjaG8gIkhlbGxvIEFD****"
+    },
+    "nodepool_info" : {
+      "created" : "2020-09-27T19:14:09.156823496+08:00",
+      "is_default" : true,
+      "name" : "default-nodepool",
+      "nodepool_id" : "np615c0e0966124216a0412e10afe0****",
+      "region_id" : "cn-beijing",
+      "resource_group_id" : "rg-acfmyvw3wjm****",
+      "type" : "ess",
+      "updated" : "2020-09-27T20:37:46+08:00"
+    },
+    "scaling_group" : {
+      "auto_renew" : false,
+      "auto_renew_period" : 0,
+      "data_disks" : [ {
+        "category" : "cloud_ssd",
+        "size" : 40,
+        "encrypted" : "true",
+        "auto_snapshot_policy_id" : "sp-2zej1nogjvovnz4z****"
+      } ],
+      "image_id" : "aliyun_2_1903_x64_20G_alibase_20200529.vhd",
+      "instance_charge_type" : "PostPaid",
+      "instance_types" : [ "ecs.n4.large" ],
+      "multi_az_policy" : "COST_OPTIMIZED",
+      "on_demand_base_capacity" : 0,
+      "on_demand_percentage_above_base_capacity" : 20,
+      "spot_instance_pools" : 5,
+      "spot_instance_remedy" : false,
+      "compensate_with_on_demand" : true,
+      "period" : 0,
+      "period_unit" : "Month",
+      "platform" : "AliyunLinux",
+      "ram_policy" : "KubernetesWorkerRole-021dc54f-929b-437a-8ae0-34c24d3e****",
+      "spot_strategy" : "NoSpot",
+      "spot_price_limit" : [ {
+        "instance_type" : "ecs.c6.large",
+        "price_limit" : "0.39"
+      } ],
+      "rds_instances" : [ "rm-xxx" ],
+      "scaling_group_id" : "asg-2ze8n5qw4atggut8****",
+      "scaling_policy" : "release",
+      "security_group_id" : "sg-2ze1iuk12m2sb4c4****",
+      "system_disk_category" : "cloud_efficiency",
+      "system_disk_size" : 120,
+      "tags" : [ {
+        "key" : "env",
+        "value" : "prod"
+      } ],
+      "vswitch_ids" : [ "vsw-2ze3ds0mdip0hdz8i****" ],
+      "login_password" : "******",
+      "key_pair" : "pro-nodepool"
+    },
+    "status" : {
+      "failed_nodes" : 0,
+      "healthy_nodes" : 3,
+      "initial_nodes" : 0,
+      "offline_nodes" : 0,
+      "removing_nodes" : 0,
+      "serving_nodes" : 3,
+      "state" : "active",
+      "total_nodes" : 3
+    },
+    "tee_config" : {
+      "tee_enable" : false
+    },
+    "management" : {
+      "enable" : true,
+      "auto_repair" : true,
+      "upgrade_config" : {
+        "auto_upgrade" : true,
+        "surge" : 5,
+        "surge_percentage" : 50,
+        "max_unavailable" : 1
+      }
+    }
+  } ]
 }
 ```
 
-## Error codes
 
-For a list of error codes, visit the [API Error Center](https://error-center.alibabacloud.com/status/product/CS).
+
+## 
+
+
 
