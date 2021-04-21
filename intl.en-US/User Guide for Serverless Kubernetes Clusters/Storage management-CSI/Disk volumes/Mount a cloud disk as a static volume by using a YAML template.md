@@ -11,7 +11,7 @@ After you create a cloud disk in the Elastic Compute Service \(ECS\) console, re
 
 You can only use a YAML template to create a CSI persistent volume \(PV\) object in the ACK console.
 
-1.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+1.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
 
 2.  Use the following template to create a static PV and a persistent volume claim \(PVC\):
 
@@ -121,6 +121,4 @@ You can only use a YAML template to create a CSI persistent volume \(PV\) object
     kubectl apply -f nginx-disk-dept.yaml
     ```
 
-
-You can also mount a cloud disk as a static volume in the ACK console. For more information, see [Use a disk in the ACK console](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Use a disk in the ACK console.md).
 
