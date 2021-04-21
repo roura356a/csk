@@ -268,7 +268,7 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
 
     1.  创建PV。
 
-        分别创建4个PV。有关创建PV的具体操作步骤，请参见[创建PV]()。department1-public-dev1和department1-public-dev2是用于dev1和dev2两组分别共享部门department1的数据。dev1-public，dev2-public是用于dev1和dev2各自组内共享数据。创建PV的参数配置如下图所示。
+        分别创建4个PV。有关创建PV的具体操作步骤，请参见[创建PV](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/使用NAS静态存储卷.md)。department1-public-dev1和department1-public-dev2是用于dev1和dev2两组分别共享部门department1的数据。dev1-public，dev2-public是用于dev1和dev2各自组内共享数据。创建PV的参数配置如下图所示。
 
         ![PV](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6337182061/p174088.png)
 
@@ -276,7 +276,7 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
 
     2.  创建PVC。
 
-        使用上步创建的PV，分别创建PVC。有关创建PVC的具体操作步骤，请参见[创建PVC]()。
+        使用上步创建的PV，分别创建PVC。有关创建PVC的具体操作步骤，请参见[创建PVC](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/使用NAS静态存储卷.md)。
 
         完成创建PVC后，可以看到在命名空间dev1下给dev1组分配部门和小组两级共享的NAS数据卷：department1-public-dev1和dev1-public。在命名空间dev2下给dev2组分配部门和小组两级共享的NAS数据卷：department1-public-dev2和dev2-public。
 
