@@ -35,7 +35,7 @@ Request body
 |cluster\_type|string|Yes|The type of the cluster.|
 |name|string|Yes|The name of the cluster. The name can contain uppercase letters, lowercase letters, digits, and hyphens \(-\).|
 |kubernetes\_version|string|No|The version of the cluster.|
-|private\_zone|bool|Yes|Specifies whether to enable PrivateZone for service discovery. Valid values: true and false. For more information, see [Use the service discovery feature based on Alibaba Cloud DNS PrivateZone in serverless Kubernetes clusters](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Application management/Serverless clusters support the service discovery based on Alibaba Cloud DNS PrivateZone.md).|
+|private\_zone|bool|Yes|Specifies whether to enable PrivateZone for service discovery. Valid values: true and false. For more information, see [Use the service discovery feature based on Alibaba Cloud DNS PrivateZone in ASK clusters](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Serverless cluster best practices/Use the service discovery feature based on Alibaba Cloud DNS PrivateZone in ASK clusters.md).|
 |region\_id|string|Yes|The ID of the region where the cluster is deployed.|
 |endpoint\_public\_access|bool|No|Specifies whether to enable Internet access to the endpoint of the cluster.|
 |zone\_id|string|Yes|The ID of the zone to which the cluster belongs.|
