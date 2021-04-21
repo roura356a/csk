@@ -35,9 +35,9 @@ keyword: [NAS共享存储, Arena, 分布式存储, 配置PV和PVC]
 -   挂载点类型设置为**专有网络**。
 -   VPC网络和交换机设置为和ACK集群一致的VPC和交换机。
 
-创建成功后，在**挂载点**页面，悬浮鼠标至![挂载点](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3704359951/p134346.png)，查看NAS实例的挂载地址。
+创建成功后，在**挂载点**页面，悬浮鼠标至![挂载点](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3704359951/p134346.png)，查看NAS实例的挂载地址。
 
-![挂载点信息](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3704359951/p134349.png)
+![挂载点信息](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3704359951/p134349.png)
 
 ## 步骤三：配置ACK集群的存储卷（PV）和存储声明（PVC）
 
@@ -45,13 +45,13 @@ keyword: [NAS共享存储, Arena, 分布式存储, 配置PV和PVC]
 
 2.  创建存储卷（PV）。
 
-    创建存储卷的具体步骤请参见[创建PV](/intl.zh-CN/Kubernetes集群用户指南/存储管理-CSI/NAS存储卷/通过控制台使用NAS静态存储卷.md)。
+    创建存储卷的具体步骤请参见[创建PV](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/使用NAS静态存储卷.md)。
 
     **说明：** 创建存储卷配置参数时，设置**挂载点域名**为**选择挂载点**，并选择NAS的挂载点地址。
 
 3.  创建存储声明（PVC）。
 
-    创建存储声明的具体步骤请参见[创建PVC](/intl.zh-CN/Kubernetes集群用户指南/存储管理-CSI/NAS存储卷/通过控制台使用NAS静态存储卷.md)。
+    创建存储声明的具体步骤请参见[创建PVC](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/使用NAS静态存储卷.md)。
 
     完成创建后，在存储声明 \(PVC\) 的列表中，可以看到刚刚创建的存储声明 \(PVC\) 实例。
 
@@ -72,7 +72,7 @@ keyword: [NAS共享存储, Arena, 分布式存储, 配置PV和PVC]
 
     NAS挂载命令表示将NAS实例挂载到当前登录的ECS节点下的/mnt路径中。
 
-    ![挂载命令](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3704359951/p134539.png)
+    ![挂载命令](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3704359951/p134539.png)
 
     ```
     sudo mount -t nfs -o xxxx.nas.aliyuncs.com:/ /mnt
