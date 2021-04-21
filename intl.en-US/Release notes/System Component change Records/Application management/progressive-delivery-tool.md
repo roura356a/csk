@@ -10,10 +10,6 @@ This topic introduces progressive-delivery-tool and lists the latest changes to 
 
 You can use progressive-delivery-tool to implement canary releases of your applications in a progressive manner. You can implement a canary release to forward a custom percentage of traffic to the new application version. This way, you can reduce service interruptions caused by errors of the new application version and minimize potential risks. You can also perform rollbacks if required. This allows you to publish the new application version in a progressive manner.
 
-## Instruction
-
-For more information about how to use progressive-delivery-tool, see [t1941209.md\#]().
-
 ## Release notes
 
 **November 2020**
