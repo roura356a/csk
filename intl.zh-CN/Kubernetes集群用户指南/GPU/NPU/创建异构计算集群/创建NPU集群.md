@@ -118,6 +118,6 @@ keyword: [创建NPU集群, NPU资源]
     **说明：**
 
     -   `imagePullSecrets`是声明拉取镜像时需要指定密钥。
-    -   `regsecret`必须和步骤[3](#step_cri_jrl_v1r)生成密钥的键名一致。
+    -   `regsecret`必须和步骤[3](#step_u84_b04_t39)生成密钥的键名一致。
     -   `image`中的Docker仓库名称必须和`--docker-server`中的Docker仓库名一致。
 
