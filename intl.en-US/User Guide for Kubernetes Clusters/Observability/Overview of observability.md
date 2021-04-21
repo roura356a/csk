@@ -21,8 +21,6 @@ The following section describes the observability of each layer.
 **Related topics**  
 
 
-[Monitor application architecture]()
-
 [Monitor basic resources](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Monitor basic resources.md)
 
 [Enable ARMS Prometheus](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Enable ARMS Prometheus.md)
