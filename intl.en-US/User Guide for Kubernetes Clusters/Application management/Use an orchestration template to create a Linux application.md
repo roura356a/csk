@@ -2,13 +2,13 @@
 
 In an orchestration template of Container Service for Kubernetes \(ACK\), you must define the resources that are required to run an application and use mechanisms such as label selectors to manage these resources.
 
-[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md).
+[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md).
 
 This topic describes how to use an orchestration template to create an NGINX application that consists of a deployment and a service. The service is associated with a pod that is created by the deployment.
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+2.  In the left-side navigation pane, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -69,7 +69,7 @@ This topic describes how to use an orchestration template to create an NGINX app
        type: LoadBalancer        ##In this example, the type is changed from Nodeport to LoadBalancer.
     ```
 
-7.  Click **Create**. A message appears to indicate the deployment status. You can view the deployment progress in the dashboard. For more information, see [Create an application in the Kubernetes dashboard]().
+7.  Click **Create**. A message appears to indicate the deployment status. You can view the deployment progress in the dashboard.
 
     ![View the deployment progress](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4145359951/p11075.png)
 
