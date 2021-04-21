@@ -95,7 +95,7 @@ keyword: [HTTPS安全访问, HTTPS访问配置]
     |注解一|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-protocol-port|https:443|
     |注解二|service.beta.kubernetes.io/alibaba-cloud-loadbalancer-cert-id|$\{YOUR\_CERT\_ID\}|
 
-    **说明：** 将$\{YOUR\_CERT\_ID\}替换成[步骤7配置SSL证书](#d6e104)生成的证书ID。
+    **说明：** 将$\{YOUR\_CERT\_ID\}替换成[步骤7配置SSL证书](#step_4at_ako_3e0)生成的证书ID。
 
     您还可以使用YAML方式添加注解内容，完整YAML示例如下：
 
