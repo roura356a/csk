@@ -91,7 +91,7 @@ Spark Operator是专门针对Spark on Kubernetes设计的operator，开发者可
 
 **构建ImageCache进行镜像加速** 
 
-Spark镜像的尺寸较大，拉取的数目会比较慢，可以通过ImageCache的方式实现镜像缓存启动加速。具体的制作流程参考：[https://help.aliyun.com/document_detail/141241.html](https://help.aliyun.com/document_detail/141241.html?spm=a2c4g.11186623.6.578.WkZlFF)
+Spark镜像的尺寸较大，拉取的数目会比较慢，可以通过ImageCache的方式实现镜像缓存启动加速。
 
 
 
