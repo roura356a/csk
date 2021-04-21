@@ -22,10 +22,10 @@ keyword: [容器服务Kubernetes, LDAP, IDAAS]
 1.  IDaaS添加LDAP对接配置，同步LDAP账号进入IDaaS，密码不同步。此时使用LDAP用户名登录需要在IDaaS中重新设置密码（如果您不想使用多套密码，可以使用以下SSO方式）。
 2.  IDaaS中添加应用：
     -   应用需要通过访问密钥（AccessKey）对接RAM中有AliyunRAMFullAccess权限的子账号，用于应用对RAM权限的操控。
-    -   应用与RAM中另外的一个Role或RAM子账号对接，用于赋权给LDAP中用于登录的账号。
-    -   应用需要导入IDaaS中已经导入阿里云系统的LDAP账号，允许这些账号使用本应用，权限为应用中对接的Role或RAM子账号权限。
+    -   应用与RAM中另外的一个Role或RAM账号对接，用于赋权给LDAP中用于登录的账号。
+    -   应用需要导入IDaaS中已经导入阿里云系统的LDAP账号，允许这些账号使用本应用，权限为应用中对接的Role或RAM账号权限。
 3.  配置IDaaS单点登录对接的LDAP服务。
-4.  LDAP用户通过SSO登录阿里云平台，获取IDaaS中某应用里对接的Role或RAM子账号权限。
+4.  LDAP用户通过SSO登录阿里云平台，获取IDaaS中某应用里对接的Role或RAM账号权限。
 5.  主账号在容器平台进行PaaS层赋权。
 
 ## 步骤一：环境准备
