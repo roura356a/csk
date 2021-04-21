@@ -205,7 +205,7 @@ On the **Advanced** wizard page, you can configure the settings of access contro
 
     -   To create an Ingress, click **Create** on the right side of **Ingresses**. In the Create dialog box, set the parameters.
 
-        For more information about the parameters that are required to create an Ingress, see [Ingress configurations]().
+        For more information about the parameters that are required to create an Ingress, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Basic operations of an Ingress.md).
 
         **Note:** When you deploy an application from an image, you can create an Ingress for only one Service. In this example, the name of a virtual host is used as the test domain name. You must add the following entry to the hosts file to map the domain name to the IP address of the Ingress. The entry is in the format of <Ingress external endpoint\> + <Ingress domain name\>. In practical scenarios, use a domain name that has obtained an Internet Content Provider \(ICP\) number.
 
@@ -216,7 +216,7 @@ On the **Advanced** wizard page, you can configure the settings of access contro
         |Parameter|Description|
         |---------|-----------|
         |Name|Enter a name for the Ingress. In this example, nginx-ingress is used.|
-        |Rules|Ingress rules that are used to enable access to a specified Service in a cluster. For more information, see [Ingress configurations]().         -   **Domain**: Enter the domain name of the Ingress. In this example, the test domain name `foo.bar.com` is used.
+        |Rules|Ingress rules that are used to enable access to a specified Service in a cluster. For more information, see [Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Basic operations of an Ingress.md).         -   **Domain**: Enter the domain name of the Ingress. In this example, the test domain name `foo.bar.com` is used.
         -   **Path**: Enter the Service URL. The default path is the root path /. The default path is used in this example. Each path is associated with a backend Service. SLB forwards traffic to a backend Service only when inbound requests match the domain name and path.
         -   **Services**: Set the Service name and port. In this example, nginx-svc is used.
         -   Select **EnableTLS** to enable TLS. For more information, see [Advanced Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Configure an Ingress.md). |
