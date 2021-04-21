@@ -127,5 +127,5 @@ ack-prometheus-gpu-exporter-blbnq                     1/1     Running   0       
 **相关文档**  
 
 
-[配置GPU Prometheus监控](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/运维管理/配置GPU Prometheus监控.md)
+[配置GPU Prometheus监控](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/可观测性/配置GPU Prometheus监控.md)
 
