@@ -79,7 +79,7 @@ Log4j is an open source project of Apache. Log4j consists of three components: l
 
         -   `-Dproject`: the name of your project in Log Service. In this example, the name of the project is k8s-log4j.
         -   `-DlogStore`: the name of your Logstore in Log Service. In this example, the name of the Logstore is k8s-logstore.
-        -   `-Dendpoint`: the service endpoint of Log Service. You must configure the service endpoint based on the region where the Log Service project is deployed. For more information, see[Service endpoints](https://www.alibabacloud.com/help/zh/doc-detail/29008.htm). In this example, the service endpoint is cn-hangzhou.log.aliyuncs.com.
+        -   `-Dendpoint`: the service endpoint of Log Service. You must configure the service endpoint based on the region where the Log Service project is deployed. For more information, see [Service endpoints](https://www.alibabacloud.com/help/zh/doc-detail/29008.htm). In this example, the service endpoint is cn-hangzhou.log.aliyuncs.com.
         -   `-Daccess_key_id`: your AccessKey ID.
         -   `-Daccess_key`: your AccessKey secret.
     3.  Run the following command to create a Deployment:
