@@ -21,7 +21,7 @@ ECI Profile介绍
 
     
   
-  * [配置ECI弹性调度](/cn.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/使用ECI弹性调度.md)
+  * [配置ECI弹性调度](/cn.zh-CN/Kubernetes集群用户指南/调度/节点调度/使用ECI弹性调度.md)
 
     
   
@@ -40,76 +40,6 @@ ECI Profile介绍
   对于上述情况，ECI Effect实现了自动追加Annotation和Label的功能，即在ECI Profile中，您可以声明需要匹配的Namespace或者Pod的Label，以及需要追加的Annotation和Label，对于Label能够匹配上的Pod，将自动追加配置的Annotation和Label。
   
 
-
-
-
-准备工作 
--------------------------
-
-使用ECI Profile时，您需要确保集群中的VK为最新版本，并且如果需要使用ECI Scheduler，则必须要开启Webhook。
-
-对于不同的Kubernetes集群，相应的准备工作如下：
-
-* 阿里云ASK集群
-
-  自动升级VK到最新版本。
-  **说明**
-
-  ASK集群默认调度Pod到ECI，无需使用ECI Scheduler。
-  
-
-* 阿里云ACK集群
-
-  * VK托管：自动升级VK到最新版本，并开启Webhook。
-
-    
-  
-  * VK非托管：您需要手动修改VK的配置文件，升级VK到最新版本，并开启Webhook。
-
-    
-  
-
-  
-
-* 其他集群
-
-  您需要手动修改VK的配置文件，升级VK到最新版本，并开启Webhook。
-  
-
-
-
-
-您可以通过以下命令修改VK的配置文件：
-
-    kubectl edit deployment -n kube-system virtual-node-controller
-
-
-
-配置示例如下：
-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: virtual-node-controller
-      namespace: kube-system
-      labels:
-        app: virtual-node-controller
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          app: virtual-node-controller
-      template:
-        metadata:
-          labels:
-            app: virtual-node-controller
-        spec:
-          containers:
-          - name: virtual-node-controller
-            image: registry.cn-beijing.aliyuncs.com/acs/virtual-nodes-eci:v2.******-aliyun  #将镜像tag改为最新版本
-      env:  #通过环境变量开启Webhook
-            - name: WEBHOOK
-              value: "true"
 
 
 
