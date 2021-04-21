@@ -132,7 +132,7 @@ The feature is supported by professional managed Kubernetes clusters, standard m
 
 |All regions
 
-|[Configure the time zone for a cluster]()|
+|[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)|
 |Tag|Cloud disks, Apsara File Storage NAS \(NAS\) file systems, and Log Service projects with tags are supported by CSI and Logtail. Cloud disks, NAS file systems, and Log Service projects that are created by ACK for a cluster are added with the cluster ID as tags. This makes the allocation of resource fees easier.|All regions
 
 |None|
@@ -160,7 +160,7 @@ The feature is supported by professional managed Kubernetes clusters, standard m
          mode.md) |
 |Periodic inspection|Periodic inspection policies can be configured for a cluster on the Inspections page in the ACK console.|All regions
 
-|[Use the inspection component to check for security risks in workloads of an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Security/Use the inspection component to check for workload security risks in an ACK cluster.md)|
+|[Use the inspection feature to check for security risks in the workloads of an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Security/Use the inspection feature to check for security risks in the workloads of an ACK cluster.md)|
 |Cluster auditing|The cluster auditing feature can be enabled or disabled on the Cluster Auditing page in the ACK console.|All regions
 
 |[Enable cluster auditing](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Security/Enable cluster auditing.md)|
@@ -172,8 +172,8 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 
 |All regions
 
-|-   [Install and use logtail-ds](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Elastic node pools/Install and use logtail-ds.md)
--   [Install migrate-controller](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Manage components/Install migrate-controller.md) |
+|-   [Install and use logtail-ds](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Register cluster observability access/Install and use logtail-ds.md)
+-   [Install migrate-controller](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Switch traffic to the Kubernetes application/Install migrate-controller.md) |
 |Sandboxed-Container 2.0|Sandboxed-Container is upgraded to V2.0. Sandboxed-Container 2.0 has the following benefits:-   Sandboxed-Container is a container runtime that is developed by Alibaba Cloud on top of lightweight virtual machines. Compared with Sandboxed-Container 1.0, Sandboxed-Container 2.0 supports more lightweight and efficient deployment and simplifies the architecture and maintenance of ACK clusters.
 -   Sandboxed-Container 2.0 reduces the resource overheads by 90% and improves the startup speed of sandboxed containers by three times.
 -   Sandboxed-Container 2.0 increases the deployment density of standalone sandboxed containers by 10 times.
@@ -319,7 +319,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 
 |Feature|Description|Supported region|References|
 |-------|-----------|----------------|----------|
-|Virtual node|ClusterIP Services can be accessed by pods that are deployed on virtual nodes. This enables Kubernetes to centrally manage virtual nodes and elastic container instances. You can deploy applications on virtual nodes without the inconvenience of resource capacity planning. This meets the requirements of scenarios such as online workload scaling, offline computing, and CI/CD, and also reduces the overall computing costs. To enable this feature, log on to the console, choose App Catalog, and then find and install ack-virtual-node.|All regions|[Deploy ack-virtual-node in an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Deploy ack-virtual-node in an ACK cluster.md)|
+|Virtual node|ClusterIP Services can be accessed by pods that are deployed on virtual nodes. This enables Kubernetes to centrally manage virtual nodes and elastic container instances. You can deploy applications on virtual nodes without the inconvenience of resource capacity planning. This meets the requirements of scenarios such as online workload scaling, offline computing, and CI/CD, and also reduces the overall computing costs. To enable this feature, log on to the console, choose App Catalog, and then find and install ack-virtual-node.|All regions|[Deploy the virtual node controller and use it to create Elastic Container Instance-based pods](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Deploy the virtual node controller and use it to create Elastic Container Instance-based pods.md)|
 |API server|Service account token volume projection can be enabled for the API server when you create a cluster. This enables service account authentication on pods. This feature is also required if mutual Transport Layer Security \(TLS\) authentication is enabled on Istio through Secret Discovery Service \(SDS\).|All regions|[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
 |CSI|CSI can be selected as the volume plug-in when you create an ACK cluster. The optimized CSI plug-in provides the following features: -   Object Storage Service \(OSS\) subdirectories can be mounted to containers.
 -   The Memory type emptyDir volumes are supported. The Memory type volume is a RAM-based temporary file system, whose storage space is limited by memory. This type of file system provides good performance and is typically used to provide caching space in containers.
@@ -462,7 +462,7 @@ UK \(London\)
 -   The inclusive ENI mode: In this mode, you can deploy multiple pods on a node. The pods share the same ENI.
 
 |All regions|[t64408.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md)|
-|Knative|Knative is supported. Knative is a Kubernetes-based serverless framework. Knative creates a cloud-native and cross-platform orchestration standard for serverless applications. Knative implements this standard by integrating the creation of containers \(or functions\), workload management \(auto scaling\), and event models. ACK supports Knative and allows you to install and upgrade the Build, Serving, and Eventing components. You must deploy Istio before you use Knative. ACK provides instructions to deploy sample applications, and also provides the best practices of tracing, monitoring, and logging applications.|All regions|[Overview](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Overview.md), [t474495.md\#]()|
+|Knative|Knative is supported. Knative is a Kubernetes-based serverless framework. Knative creates a cloud-native and cross-platform orchestration standard for serverless applications. Knative implements this standard by integrating the creation of containers \(or functions\), workload management \(auto scaling\), and event models. ACK supports Knative and allows you to install and upgrade the Build, Serving, and Eventing components. You must deploy Istio before you use Knative. ACK provides instructions to deploy sample applications, and also provides the best practices of tracing, monitoring, and logging applications.|All regions|[Overview](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Overview.md), [Create a Knative Service](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative services/Create a Knative Service.md)|
 |Pod search|Pods can be searched for by node IP address or pod IP address. In the ACK console, choose **Applications** \> **Pods** and specify a node IP address or pod IP address to search for a pod. This saves the time to find pods that you want to manage and maintain.|All regions|None|
 
 ## May 2019
@@ -500,7 +500,7 @@ Compared with other remote storage solutions provided by the community, TSDB is 
 |Audit log|Audit logs can be collected from managed Kubernetes clusters. Audit logs record operations on the API server and allow cluster administrators to trace the activities of different users.|All regions|[t21467.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Security/Enable cluster auditing.md)|
 |Istio 1.1|Istio is upgraded to V1.1. Istio 1.1 allows you to manage Istio applications in the ACK console. You can create and manage Istio applications and services on a graphical interface. You can create different application versions, implement canary releases, set canary release policies, and also configure fault injection policies. In the console, choose **Service Mesh** \> **Virtual Services** to configure the settings.
 
-|All regions|[Traffic management]()|
+|All regions|无|
 |ASK|GPU-accelerated pods are supported when you create applications in an ASK cluster. When you create an application from a template, specify the pod type as GPU in the YAML file.|All regions|[t220322.md\#](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Serverless cluster best practices/Use GPU-based ECIs.md)|
 |New region|Container Registry Enterprise Edition is available in the China \(Beijing\) region.|China \(Beijing\)| |
 |FPGA cluster|FPGA cluster are released. This type of cluster uses FPGA F3 instances as worker nodes and is used for H265 video encoding and image conversion from JPEG to HEIF. FPGA-based video encoding reduces the processing time from more than 1 week to a short period of time. This significantly reduces the bitrate and reduces bandwidth costs when transcoding videos of the same quality. In the ACK console, choose **Clusters** \> **Clusters** and click Create Kubernetes Cluster. In the Select Cluster Template dialog box, select **Dedicated FPGA Cluster** to create a dedicated FPGA cluster.|All regions|None|
@@ -603,7 +603,7 @@ India \(Mumbai\)
 |New region|ACK is available in the China South 1 Finance region on Alibaba Finance Cloud.|China South 1 Finance|[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
 |New region|-|Regions outside China|[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)|
 |Deployment|Version management and rollback are supported for Deployments.|All regions|None|
-|Istio|Istio is deeply integrated into ACK and Istio add-ons are supported.|All regions|[Overview]()|
+|Istio|Istio is deeply integrated into ACK and Istio add-ons are supported.|All regions|无|
 
 ## September 2018
 
@@ -623,14 +623,14 @@ India \(Mumbai\)
 |Feature|Description|Supported region|References|
 |-------|-----------|----------------|----------|
 |Managed Kubernetes cluster|Managed Kubernetes clusters are released for public preview.|All regions|[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)|
-|Istio|Istio add-ons are supported.|All regions|[Overview]()|
+|Istio|Istio add-ons are supported.|All regions|无|
 
 ## July 2018
 
 |Feature|Description|Supported region|References|
 |-------|-----------|----------------|----------|
 |New region|-|Australia \(Sydney\)|[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
-|Canary releases and phased releases are supported.|-|All regions|[Overview]() and [Implement a phased release in the ACK console]()|
+|Canary releases and phased releases are supported.|-|All regions|[Overview]() and The capabilitie of Implement a phased release in the ACK console has been offline|
 
 ## June 2018
 
@@ -669,7 +669,7 @@ India \(Mumbai\)
 UAE \(Dubai\)
 
 |[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
-|MySQL, RDS, RabbitMQ, and Spark are supported in Service Catalog.|All regions|[Overview]()|
+|MySQL, RDS, RabbitMQ, and Spark are supported in Service Catalog.|All regions|Features are offline|
 |Management of applications released by using Helm is supported in App Catalog.|All regions|[Manage a Helm-based release](/intl.en-US/User Guide for Kubernetes Clusters/Release management/Manage a Helm-based release.md)|
 
 ## March 2018
@@ -678,7 +678,7 @@ UAE \(Dubai\)
 |-------|-----------|----------------|----------|
 |Kubernetes 1.9|Kubernetes 1.9.3 is supported. ACK releases Workloads API. By default, CRD is enabled. GPU scheduling is supported. You can select custom ECS images when you create a cluster. You can also reset images when you add nodes to a cluster.|All regions|None|
 |Helm|App Catalog is released to allow you to quickly deploy applications by using Helm.|All regions|[Manage a Helm-based release](/intl.en-US/User Guide for Kubernetes Clusters/Release management/Manage a Helm-based release.md)|
-|ServiceBroker|App Catalog is released to support ServiceBroker.|All regions|[Overview]()|
+|ServiceBroker|App Catalog is released to support ServiceBroker.|All regions|Features are offline|
 |Cloud Monitor|Nodes can be monitored by using Cloud Monitor.|All regions|[Monitor basic resources](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Monitor basic resources.md)|
 
 ## January 2018
