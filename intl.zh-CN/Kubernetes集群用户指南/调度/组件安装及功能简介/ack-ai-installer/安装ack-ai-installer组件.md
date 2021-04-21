@@ -33,7 +33,7 @@ keyword: [GPU拓扑感知调度, Kubernetes调度]
 4.  在应用目录-ack-ai-installer页面右侧的**创建**面板中，在**集群**列表框中选择目标集群，并单击**创建**。![image](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8995975061/p183749.png)
 
 
-[背景概述](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/GPU拓扑感知调度/GPU拓扑感知调度背景概述.md)
+[背景概述](/intl.zh-CN/Kubernetes集群用户指南/调度/GPU调度/GPU拓扑感知调度/GPU拓扑感知调度背景概述.md)
 
-[分布式训练场景下激活GPU拓扑感知调度](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/GPU拓扑感知调度/分布式训练场景下激活GPU拓扑感知调度.md)
+[分布式训练场景下激活GPU拓扑感知调度](/intl.zh-CN/Kubernetes集群用户指南/调度/GPU调度/GPU拓扑感知调度/分布式训练场景下激活GPU拓扑感知调度.md)
 
