@@ -97,5 +97,3 @@ spec:
             claimName: pvc-nas
 ```
 
-You can also mount an NAS file system as a static PV in the console. For more information, see [Use a static NAS volume in the ACK console](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/Use a static NAS volume in the ACK console.md).
-
