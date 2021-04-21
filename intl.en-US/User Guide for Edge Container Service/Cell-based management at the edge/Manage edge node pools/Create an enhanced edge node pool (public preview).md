@@ -20,7 +20,7 @@ Edge node pools support two types of modes for collaborative cloud-edge networki
 |Whether edge nodes can access VPCs|No.|Yes.|
 |Network quality|Low.|High. Edge nodes can connect to CCN instances through the nearest access points.|
 |Security|Low.|High. Connections between the cloud and edge are encrypted.|
-|Costs|Low.|High. For more information, see [t1936963.md\#](). Enhanced edge node pools are free of charge during the public preview.|
+|Costs|Low.|High. Enhanced edge node pools are free of charge during the public preview.|
 |Scenarios|Workloads that are deployed at the edge and are not strongly reliant on cloud computing.|Applies to the following scenarios:-   Workloads that require intercommunication between the cloud and edge.
 -   Latency-sensitive workloads that require high network quality.
 -   Workloads that require high network security. |
@@ -32,7 +32,7 @@ Edge node pools support two types of modes for collaborative cloud-edge networki
 -   In an enhanced edge node pool, the gateway components are installed in pods on edge nodes. These pods support only the Flannel network plug-in. Host networking is not supported.
 -   When you create a basic or enhanced edge node pool, you must specify the maximum number of nodes that the edge node pool supports. This value is saved in an annotation of the NodePool object and cannot be modified. We recommend that you set the size of your edge node pool to a proper value.
 -   The metadata of an enhanced edge node pool is saved in the annotations of the NodePool object. You must not modify or delete these annotations. Otherwise, the enhanced edge node pool may fail to work in enhanced mode. For more information about the annotations, see [Annotations for an edge node pool](#table_r0v_lda_822).
--   The `openyurt.io/desired-nodepool` label specifies the node pool to which a node belongs. You cannot move a node from an enhanced edge node pool to another enhanced edge node pool by modifying this label. To move the node, you must remove the node from the current node pool and then add it to another enhanced edge node pool. Otherwise, the node cannot work in enhanced mode. For more information, see [Remove edge nodes]().
+-   The `openyurt.io/desired-nodepool` label specifies the node pool to which a node belongs. You cannot move a node from an enhanced edge node pool to another enhanced edge node pool by modifying this label. To move the node, you must remove the node from the current node pool and then add it to another enhanced edge node pool. Otherwise, the node cannot work in enhanced mode. For more information, see [Remove edge nodes](/intl.en-US/User Guide for Edge Container Service/Node management/Remove edge nodes.md).
 
 ## How an enhanced edge node pool works
 
@@ -46,7 +46,7 @@ When you create an enhanced edge node pool, the following components are deploye
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+2.  In the left-side navigation pane, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
