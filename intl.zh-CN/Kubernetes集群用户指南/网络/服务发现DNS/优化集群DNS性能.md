@@ -112,11 +112,11 @@ Autopath会在第一次域名查询失败时切割域名后缀，尝试找到正
 
 ![autopath](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6795659951/p129419.png)
 
-## 使用节点级Node Local DNS
+## 使用节点级NodeLocal DNSCache
 
-在ACK集群中部署Node Local DNS可以提升服务发现的稳定性和性能。Node Local DNS以DaemonSet形式部署，会在ACK集群的每个节点上运行一个专门处理DNS查询请求的Pod，该Pod会将集群内部域名查询请求发往CoreDNS，将集群外部请求直接发往外部域名解析服务器。同时能够缓存所有请求。可以被看作是节点级别的高效DNS缓存，能够大幅提高集群整体DNS查询的QPS。
+在ACK集群中部署NodeLocal DNSCache可以提升服务发现的稳定性和性能，NodeLocal DNSCache通过在集群节点上作为DaemonSet运行DNS缓存代理来提高集群DNS性能。
 
-关于更多Node Local DNS的介绍及如何在ACK集群中部署Node Local DNS的具体步骤，请参见[在ACK集群中部署Node Local DNS](/intl.zh-CN/Kubernetes集群用户指南/网络/服务发现DNS/在ACK集群中部署Node Local DNS.md)。
+关于更多NodeLocal DNSCache的介绍及如何在ACK集群中部署NodeLocal DNSCache的具体步骤，请参见[在ACK集群中使用NodeLocal DNSCache](/intl.zh-CN/Kubernetes集群用户指南/网络/服务发现DNS/在ACK集群中使用NodeLocal DNSCache.md)。
 
 **相关文档**  
 
@@ -125,5 +125,5 @@ Autopath会在第一次域名查询失败时切割域名后缀，尝试找到正
 
 [ACK集群内DNS原理和配置说明](/intl.zh-CN/Kubernetes集群用户指南/网络/服务发现DNS/ACK集群内DNS原理和配置说明.md)
 
-[在ACK集群中部署Node Local DNS](/intl.zh-CN/Kubernetes集群用户指南/网络/服务发现DNS/在ACK集群中部署Node Local DNS.md)
+[在ACK集群中使用NodeLocal DNSCache](/intl.zh-CN/Kubernetes集群用户指南/网络/服务发现DNS/在ACK集群中使用NodeLocal DNSCache.md)
 
