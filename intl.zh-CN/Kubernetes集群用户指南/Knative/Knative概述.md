@@ -50,8 +50,8 @@ Knative支持第三方add-on组件。当前支持GitHub add-on组件，用于提
 
 标准托管Kubernetes 、标准专有Kubernetes以及Serverless Kubernetes （ASK）集群支持部署Knative。部署方式如下：
 
--   在标准托管Kubernetes集群和标准专有Kubernetes集群中安装部署Knative，详细介绍请参见[t423002.md\#](/intl.zh-CN/Kubernetes集群用户指南/Knative/Knative组件管理/一键部署Knative.md)。
--   在Serverless Kubernetes （ASK）集群中安装部署Knative，详细介绍请参见[t1956927.md\#](/intl.zh-CN/Serverless Kubernetes集群用户指南/Knative/Knative组件管理/开启Knative.md)。
+-   在标准托管Kubernetes集群和标准专有Kubernetes集群中安装部署Knative，详细介绍请参见[一键部署Knative](/intl.zh-CN/Kubernetes集群用户指南/Knative/Knative组件管理/一键部署Knative.md)。
+-   在Serverless Kubernetes （ASK）集群中安装部署Knative，详细介绍请参见[开启Knative](/intl.zh-CN/Serverless Kubernetes集群用户指南/Knative/Knative组件管理/开启Knative.md)。
 
     **说明：** 如果您的ASK集群版本<1.16，请先升级ASK集群。
 
@@ -61,13 +61,12 @@ Knative支持第三方add-on组件。当前支持GitHub add-on组件，用于提
 Knative本身不收取管理费用，但在使用过程中所创建的云服务器、负载均衡实例、NAT网关等，按照相应资源的价格计费。
 
 -   [云服务器ECS计费概述](/intl.zh-CN/产品计费/计费概述.md)
--   [t13985.md\#](/intl.zh-CN/购买指南/NAT网关计费说明.md)
--   [负载均衡按量计费]()
-
+-   [NAT网关计费说明](/intl.zh-CN/购买指南/NAT网关计费说明.md)
+-   
 **相关文档**  
 
 
-[t423002.md\#](/intl.zh-CN/Kubernetes集群用户指南/Knative/Knative组件管理/一键部署Knative.md)
+[一键部署Knative](/intl.zh-CN/Kubernetes集群用户指南/Knative/Knative组件管理/一键部署Knative.md)
 
 [t1040500.md\#](/intl.zh-CN/Kubernetes集群用户指南/Knative/Knative服务管理/快速部署Serverless应用.md)
 
