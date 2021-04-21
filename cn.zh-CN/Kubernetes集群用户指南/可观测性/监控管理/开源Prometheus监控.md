@@ -285,7 +285,7 @@ kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1"
 
 -   Grafana dashboard显示有问题
 
-    在集群信息页面选择选择**应用** \> **Helm**，在**ack-prometheus-operator**右侧，单击**更新**，查看**clusterVersion**的值是否为正确的集群版本。Kubernetes集群是1.16以前的版本，这里请填写1.14.8-aliyun.1，1.16及以后的版本，请填写1.16.6-aliyun.1。
+    在集群信息页面选择**应用** \> **Helm**，在**ack-prometheus-operator**右侧，单击**更新**，查看**clusterVersion**的值是否为正确的集群版本。Kubernetes集群是1.16以前的版本，这里请填写1.14.8-aliyun.1，1.16及以后的版本，请填写1.16.6-aliyun.1。
 
 -   删除ack-prometheus的命名空间后，重新安装ack-prometheus失败。
 
