@@ -267,15 +267,13 @@ By default, the **Enable Log Service** check box is selected when you create a c
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+2.  In the left-side navigation pane, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane, choose **Clusters** \> **Clusters**. On the Clusters page, find the cluster for which you want to enable cluster auditing, and click **Manage**.
 
 5.  In the left-side navigation pane of the details page of the cluster, choose **Security** \> **Cluster Auditing**. If cluster auditing is disabled, you are prompted to enable this feature.
-
-    ![Enable cluster auditing](../images/p147894.png)
 
 6.  Click **Enable Cluster Auditing Now**. **Select an existing project** or **create a project**, and then click **OK**.
 
@@ -290,7 +288,7 @@ You can perform the following steps to disable cluster auditing:
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+2.  In the left-side navigation pane, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
