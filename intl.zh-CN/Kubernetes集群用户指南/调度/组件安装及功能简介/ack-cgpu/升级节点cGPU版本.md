@@ -7,7 +7,7 @@ keyword: [升级cGPU, cGPU版本]
 ACK集群支持GPU共享调度时节点需要安装cGPU模块。本文介绍如何通过命令及控制台升级节点上的cGPU模块。
 
 -   您已通过kubectl连接集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
--   集群已安装ack-cgpu或ack-ai-installer组件。具体操作，请参见[安装ack-cgpu组件](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/共享GPU调度/安装共享GPU组件.md)或[安装ack-ai-installer组件](/intl.zh-CN/Kubernetes集群用户指南/调度/组件安装及功能简介/ack-ai-installer/安装ack-ai-installer组件.md)。
+-   集群已安装ack-cgpu或ack-ai-installer组件。具体操作，请参见[安装ack-cgpu组件](/intl.zh-CN/Kubernetes集群用户指南/调度/组件安装及功能简介/ack-cgpu/安装共享GPU组件.md)或[安装ack-ai-installer组件](/intl.zh-CN/Kubernetes集群用户指南/调度/组件安装及功能简介/ack-ai-installer/安装ack-ai-installer组件.md)。
 -   升级节点上无正在运行的业务。
 
 ## 通过命令升级节点cGPU版本
