@@ -112,8 +112,8 @@ ACK默认不支持部署AES，您可以自行根据需要进行部署。下文�
       selector:
         matchLabels:
           app: quote
-        strategy:
-          type: RollingUpdate
+      strategy:
+        type: RollingUpdate
       template:
         metadata:
           labels:
