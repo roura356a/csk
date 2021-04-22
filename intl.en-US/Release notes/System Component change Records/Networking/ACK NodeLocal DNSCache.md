@@ -12,7 +12,7 @@ ACK NodeLocal DNSCache is a local DNS caching solution developed based on the op
 
 ## Usage notes
 
-You can use the component to enable pods to access the local DNS cache on cluster nodes. For more information, see [t2008363.md\#]().
+You can use the component to enable pods to access the local DNS cache on cluster nodes. For more information, see [Deploy Node Local DNS in an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service discovery DNS/Deploy Node Local DNS in an ACK cluster.md).
 
 ## Release notes
 
