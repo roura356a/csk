@@ -500,7 +500,7 @@ Compared with other remote storage solutions provided by the community, TSDB is 
 |Audit log|Audit logs can be collected from managed Kubernetes clusters. Audit logs record operations on the API server and allow cluster administrators to trace the activities of different users.|All regions|[t21467.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Security/Enable cluster auditing.md)|
 |Istio 1.1|Istio is upgraded to V1.1. Istio 1.1 allows you to manage Istio applications in the ACK console. You can create and manage Istio applications and services on a graphical interface. You can create different application versions, implement canary releases, set canary release policies, and also configure fault injection policies. In the console, choose **Service Mesh** \> **Virtual Services** to configure the settings.
 
-|All regions|无|
+|All regions|None|
 |ASK|GPU-accelerated pods are supported when you create applications in an ASK cluster. When you create an application from a template, specify the pod type as GPU in the YAML file.|All regions|[t220322.md\#](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Serverless cluster best practices/Use GPU-based ECIs.md)|
 |New region|Container Registry Enterprise Edition is available in the China \(Beijing\) region.|China \(Beijing\)| |
 |FPGA cluster|FPGA cluster are released. This type of cluster uses FPGA F3 instances as worker nodes and is used for H265 video encoding and image conversion from JPEG to HEIF. FPGA-based video encoding reduces the processing time from more than 1 week to a short period of time. This significantly reduces the bitrate and reduces bandwidth costs when transcoding videos of the same quality. In the ACK console, choose **Clusters** \> **Clusters** and click Create Kubernetes Cluster. In the Select Cluster Template dialog box, select **Dedicated FPGA Cluster** to create a dedicated FPGA cluster.|All regions|None|
@@ -603,7 +603,7 @@ India \(Mumbai\)
 |New region|ACK is available in the China South 1 Finance region on Alibaba Finance Cloud.|China South 1 Finance|[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
 |New region|-|Regions outside China|[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)|
 |Deployment|Version management and rollback are supported for Deployments.|All regions|None|
-|Istio|Istio is deeply integrated into ACK and Istio add-ons are supported.|All regions|无|
+|Istio|Istio is deeply integrated into ACK and Istio add-ons are supported.|All regions|None|
 
 ## September 2018
 
@@ -623,7 +623,7 @@ India \(Mumbai\)
 |Feature|Description|Supported region|References|
 |-------|-----------|----------------|----------|
 |Managed Kubernetes cluster|Managed Kubernetes clusters are released for public preview.|All regions|[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)|
-|Istio|Istio add-ons are supported.|All regions|无|
+|Istio|Istio add-ons are supported.|All regions|None|
 
 ## July 2018
 
