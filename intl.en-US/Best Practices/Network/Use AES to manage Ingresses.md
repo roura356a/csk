@@ -112,8 +112,8 @@ To verify that AES functions as an Ingress controller, you must create a Deploym
       selector:
         matchLabels:
           app: quote
-        strategy:
-          type: RollingUpdate
+      strategy:
+        type: RollingUpdate
       template:
         metadata:
           labels:
