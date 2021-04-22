@@ -21,9 +21,7 @@ csi-plugin支持数据卷的挂载、卸载功能。ACK默认提供云盘、NAS�
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
 |v1.1.2|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.46-afb19e46-aliyun|2021年04月08日|-   支持NAS监控。
--   支持Losetup设备创建与挂载。
 -   支持青岛地域使用云盘。
--   支持DBFS版本配置。
 
 |此次升级不会对业务造成影响。|
 
@@ -31,13 +29,10 @@ csi-plugin支持数据卷的挂载、卸载功能。ACK默认提供云盘、NAS�
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
-|v1.1.1|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.45-1c5d2cd1-aliyun|2021年01月13日|-   支持DBFS卷。
--   默认启用卷监控。
--   支持QuotaPath类型的本地卷。
+|v1.1.1|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.45-1c5d2cd1-aliyun|2021年01月13日|-   默认启用卷监控。
 -   支持VolumeSnapshot List功能。
 -   NAS卷支持配额集。
 -   支持按用户自定义磁盘类型。
--   支持NAS Losetup类型卷。
 
 |此次升级不会对业务造成影响。|
 
