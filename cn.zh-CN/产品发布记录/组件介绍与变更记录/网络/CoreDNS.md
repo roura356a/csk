@@ -16,6 +16,15 @@ CoreDNS是ACK集群和边缘集群中默认采用的DNS服务发现插件，其�
 
 ## 变更记录
 
+**2021年04月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|1.7.0（该版本适用于非边缘集群。）|registry.\{\{.Region\}\}.aliyuncs.com/acs/coredns:1.7.0|2021年04月|-   删除了对已弃用插件Upstream的兼容。如果Corefile配置项中包含Upstream插件，Upstream插件会在升级过程中被安全、自动地删除。
+-   更新指标（Metrics）名称。如果您的监控系统依赖于CoreDNS指标，请注意修改。更多信息，请参见[Metric Changes](https://coredns.io/2020/06/15/coredns-1.7.0-release/#metric-changes)。
+
+|无|
+
 **2021年01月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
