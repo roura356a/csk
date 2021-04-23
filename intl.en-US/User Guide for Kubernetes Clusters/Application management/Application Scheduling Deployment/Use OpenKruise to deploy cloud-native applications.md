@@ -62,7 +62,7 @@ The following section compares the CloneSet, Advanced StatefulSet, and Advanced 
 
 You can install OpenKruise by using Container Service for Kubernetes \(ACK\) App Catalog or Helm charts. We recommend that you use Helm charts to install OpenKruise. The following is a comparison of the two installation methods:
 
-**Note:** Before you install OpenKruise, make sure that the Kubernetes version is 1.13 or later. If you use Kubernetes 1.13 or 1.14, you must enable `CustomResourceWebhookConversion`feature-gate in kube-apiserver before you install OpenKruise.
+**Note:** Before you install OpenKruise, make sure that the Kubernetes version is 1.13 or later. If you use Kubernetes 1.13 or 1.14, you must enable `CustomResourceWebhookConversion` feature-gate in kube-apiserver before you install OpenKruise.
 
 -   Install OpenKruise with ACK App Catalog: You can install OpenKruise with one click. You do not need to use the Helm command-line interface \(CLI\). However, after you install OpenKruise, you can upgrade it only by running the `helm upgrade` command.
 -   Install OpenKruise with Helm charts: This method is applicable to all Kubernetes-native clusters. If you choose this method, you can manage versions and configure parameters as needed. However, to install OpenKruise with Helm charts, you must use the CLI.
