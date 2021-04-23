@@ -36,11 +36,14 @@ keyword: [Flexvolume组件, Disk Controller组件, NAS Controller组件]
 
 ```
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: alicloud-nas-controller
   namespace: kube-system
 spec:
+  selector:
+    matchLabels:
+      app: alicloud-nas-controller
   strategy:
     type: Recreate
   template:
