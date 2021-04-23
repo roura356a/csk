@@ -12,7 +12,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
 
 **创建Ingress**
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -31,20 +31,20 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
     ![路由规则](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1385659951/p10776.png)
 
     -   基于默认域名的简单路由，即使用集群的默认域名对外提供访问服务。
-        -   **域名配置**：使用集群的默认域名，本例中是`test.[cluster-id].[region-id].alicontainer.com`。
+        -   域名配置：使用集群的默认域名，本例中是`test.[cluster-id].[region-id].alicontainer.com`。
 
             在创建路由对话框中，会显示该集群的默认域名，域名格式是`*.[cluster-id].[region-id].alicontainer.com`；您也可在集群的基本信息页面中获取。
 
-        -   **服务配置**：配置服务的访问路径、名称以及端口。
+        -   服务配置：配置服务的访问路径、名称以及端口。
             -   访问路径配置：您可指定服务访问的URL路径，默认为根路径/，本例中不做配置。每个路径（Path）都关联一个Backend（服务），在阿里云SLB将流量转发到Backend之前，所有的入站请求都要先匹配域名和路径。
             -   服务配置：支持服务名称、端口、服务权重等配置，即Backend配置。同一个访问路径下，支持多个服务的配置，Ingress的流量会被切分，并被转发到它所匹配的Backend。
     -   基于域名的简单扇出路由。本例中使用一个虚拟的主机名称作为测试域名对外提供访问服务，为两个服务配置路由权重，并为其中一个服务设置灰度发布规则。若您在生产环境中，可使用成功备案的域名提供访问服务。
-        -   **域名配置**：本例中使用测试域名`foo.bar.com`。
+        -   域名配置：本例中使用测试域名`foo.bar.com`。
 
-            您需要修改HOSTS文件添加一条域名映射规则。
+            您需要修改hosts文件添加一条域名映射规则。
 
             ```
-            118.178.XX.XX foo.bar.com       #IP即是Ingress的Address
+            118.178.XX.XX foo.bar.com       #IP即是Ingress的Address。
             ```
 
         -   **服务配置**：配置服务的访问路径、服务名称、服务端口和服务权重。
@@ -57,7 +57,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
     选中**开启**TLS，配置安全的路由服务。具体请参见[Ingress支持](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress高级用法.md)。
 
     -   您可选择使用已有密钥。
-        1.  登录Master节点，创建tls.key和tls.crt。
+        1.  登录Master节点，执行以下命令创建tls.key和tls.crt。
 
             ```
             openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=foo.bar.com/O=foo.bar.com"
@@ -74,7 +74,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
             ![配置TLS](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1385659951/p10779.png)
 
     -   您可选择在TLS界面上利用已创建的TLS私钥和证书，一键创建Secret。
-        1.  登录Master节点，创建tls.key和tls.crt。
+        1.  登录Master节点，执行以下命令创建tls.key和tls.crt。
 
             ```
             openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=foo.bar.com/O=foo.bar.com"
@@ -85,7 +85,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
 
             ![创建密钥](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1385659951/p10781.png)
 
-8.  配置灰度发布。
+8.  配置灰度发布策略。
 
     容器服务支持多种流量切分方式，适用于灰度发布以及AB测试场景。
 
@@ -128,7 +128,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
 
 **查看Ingress**
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -143,7 +143,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
 
 **更新Ingress**
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
@@ -158,7 +158,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
 
 **删除Ingress**
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
