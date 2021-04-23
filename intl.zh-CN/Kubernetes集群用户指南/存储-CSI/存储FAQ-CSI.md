@@ -4,161 +4,146 @@ keyword: [云盘存储, NAS存储, FAQ]
 
 # 存储FAQ-CSI
 
-本文为您介绍存储常见问题的处理方法。
+本文为您介绍存储常见问题的分析流程，云盘存储卷与NAS存储卷常见问题的处理方法。
 
-**云盘存储常见问题**
+## 常见问题分析流程
 
--   [使用云盘时，提示The specified disk is not a portable disk](#section_rqz_dv4_up0)
--   [启动挂载了云盘的Pod时，提示had volume node affinity conflict](#section_24n_fqd_1lz)
--   [启动挂载了云盘的Pod时，提示can't find disk](#section_3et_ci6_kef)
--   [动态创建PV失败，提示The specified AZone inventory is insufficient](#section_0as_22b_txn)
--   [动态创建PV失败，提示disk size is not supported](#section_ony_za8_acw)
--   [磁盘出现阻塞，导致Pod长时间无法启动](#section_rv9_dh1_7r1)
--   [启动Pod时，出现FailedMount警告](#section_vv3_6ll_hvn)
--   [Pod卸载失败，并且Kubelet出现不受ACK管理的Pod日志](#section_u64_r44_iej)
+通过以下操作查看对应存储插件日志文件，明确问题现象。
 
-**NAS存储常见问题**
+1.  执行以下命令查看PVC或Pod上是否有明显的Event。
 
--   [使用NAS时，提示chown: option not permitted](#section_cxn_2gp_hxw)
+    ```
+    kubectl get events
+    ```
 
-## 使用云盘时，提示The specified disk is not a portable disk
+    预期输出：
 
-问题现象：
+    ```
+    LAST SEEN   TYPE      REASON                 OBJECT                                                  MESSAGE
+    2m56s       Normal    FailedBinding          persistentvolumeclaim/data-my-release-mariadb-0         no persistent volumes available for this claim and no storage class is set
+    41s         Normal    ExternalProvisioning   persistentvolumeclaim/pvc-nas-dynamic-create-subpath8   waiting for a volume to be created, either by external provisioner "nasplugin.csi.alibabacloud.com" or manually created by system administrator
+    3m31s       Normal    Provisioning           persistentvolumeclaim/pvc-nas-dynamic-create-subpath8   External provisioner is provisioning volume for claim "default/pvc-nas-dynamic-create-subpath8"
+    ```
 
-卸载云盘时，提示The specified disk is not a portable disk。
+2.  执行以下命令查看集群是否部署了Flexvolume或CSI存储插件。
 
-问题原因：
+    -   执行以下命令查看集群是否部署了Flexvolume存储插件。
 
-您申请了包年包月的云盘，或者在升级ECS时，把ECS关联的云盘一起升级为包年包月。
+        ```
+        kubectl get pod -nkube-system |grep flexvolume
+        ```
 
-解决方法：
+        预期输出：
 
-将云盘的付费方式改为按量付费。
+        ```
+        NAME                      READY   STATUS             RESTARTS   AGE
+        flexvolume-***            4/4     Running            0          23d
+        ```
 
-## 启动挂载了云盘的Pod时，提示had volume node affinity conflict
+    -   执行以下命令查看集群是否部署了CSI存储插件。
 
-问题现象：
+        ```
+        kbuectl get pod -nkube-system |grep csi
+        ```
 
-在启动挂载云盘的Pod的时候，出现Pod无法启动的情况并报错had volume node affinity conflict。
+        预期输出：
 
-问题原因：
+        ```
+        NAME                       READY   STATUS             RESTARTS   AGE
+        csi-plugin-***             4/4     Running            0          23d
+        csi-provisioner-***        7/7     Running            0          14d
+        ```
 
-您在PV中编写了nodeaffinity属性，这个属性与Pod中声明的属性不一致，导致Pod无法被调度到正确的节点上。
+3.  查看使用的数据卷模板是否和集群存储插件（Flexvolume或CSI）的模板匹配。
 
-解决方法：
+    若在此集群中初次使用数据卷，请检查您的PV对象及StorageClass对象中定义的Driver名称属于CSI还是Flexvolume。Driver名称必须与当前集群部署的插件类型一致。
 
-修改PV或者Pod的属性，使二者属性保持一致。
+4.  查询存储插件是否为最新版本。
 
-## 启动挂载了云盘的Pod时，提示can't find disk
+    -   执行以下命令查询Flexvolume插件的镜像版本。
 
-问题现象：
+        ```
+        kubectl get ds flexvolume -nkube-system -oyaml | grep image
+        ```
 
-在启动挂载云盘的Pod时，无法找到对应diskid。
+        预期输出：
 
-问题原因：
+        ```
+        image: registry.cn-hangzhou.aliyuncs.com/acs/Flexvolume:v1.14.8.109-649dc5a-aliyun
+        ```
 
--   您在编写PV的时候输入了错误的diskid。
--   您的账号无权限操作diskid，可能不是当前账号的diskid。
+        关于Flexvolume插件信息，请参见[Flexvolume](/intl.zh-CN/产品发布记录/组件介绍与变更记录/存储/Flexvolume.md)。
 
-解决方法：
+    -   执行以下命令查询CSI插件的镜像版本。
 
-更换diskid。
+        ```
+        kubectl get ds csi-plugin -nkube-system -oyaml |grep image
+        ```
 
-## 动态创建PV失败，提示The specified AZone inventory is insufficient
+        预期输出：
 
-问题现象：
+        ```
+        image: registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.45-1c5d2cd1-aliyun
+        ```
 
-创建PV失败，PVC Event提示The specified AZone inventory is insufficient。
+        关于CSI插件信息，请参见[csi-plugin](/intl.zh-CN/产品发布记录/组件介绍与变更记录/存储/csi-plugin.md)及[csi-provisioner](/intl.zh-CN/产品发布记录/组件介绍与变更记录/存储/csi-provisioner.md)。
 
-问题原因：
+5.  查看日志。
 
-ECS库存不足，导致创建云盘失败。
+    -   若云盘PVC处于Pending状态，无法成功创建PV，则需要查看Provisioner日志。
+        -   若集群部署了Flexvolume插件，则执行以下命令查询alicloud-disk-controller日志。
 
-解决方法：
+            ```
+            podid=`kubectl get pod -nkube-system | grep alicloud-disk-controller | awk '{print $1}'`
+            kubectl logs {PodID} -nkube-system
+            ```
 
-更换云盘类型或者更换Azone。
+        -   若集群部署了CSI插件，则执行以下命令查询csi-provisioner日志。
 
-## 动态创建PV失败，提示disk size is not supported
+            ```
+            podid=`kubectl get pod -nkube-system | grep csi-provisioner | awk '{print $1}'`
+            kubectl logs {PodID} -nkube-system -c csi-provisioner
+            ```
 
-问题现象：
+            **说明：** csi-provisioner有2个Pod，上述`kubectl get pod -nkube-system | grep csi-provisioner | awk '{print $1}'`命令操作会输出2个`podid`，请分别执行`kubectl logs {PodID} -nkube-system -c csi-provisioner`命令。
 
-动态创建PV失败，提示disk size is not supported。
+    -   若Pod启动时挂载报错，则需要查看Flexvolume或csi-plugin日志。
+        -   若集群部署了Flexvolume插件，则执行以下命令查询Flexvolume日志。
 
-问题原因：
+            ```
+            kubectl get pod {pod-name} -owide
+            ```
 
-在PVC中指定的云盘大小不符合规范，要求最小20 Gi。
+            登录Pod所在节点，在`/var/log/alicloud/flexvolume_**.log`查看Flexvolume日志。
 
-解决方法：
+        -   若集群部署了CSI插件，则执行以下命令查询csi-plugin日志。
 
-调整PVC中云盘的大小，使其符合规范。
+            ```
+            nodeID=`kubectl get pod {pod-name} -owide | awk 'NR>1 {print $7}'`
+            podID=`kubectl get pods -nkube-system -owide -lapp=csi-plugin | grep $nodeID|awk '{print $1}'`
+            kubectl logs {PodID} -nkube-system
+            ```
 
-## 磁盘出现阻塞，导致Pod长时间无法启动
+    -   查看Kubelet日志。
 
-问题现象：
+        执行以下命令获取Pod所在的Node节点。
 
-磁盘出现阻塞，kubelet日志出现下以下大量报错。
+        ```
+        kubectl get pod deployment-disk-5c795d7976-bjhkj -owide | awk 'NR>1 {print $7}'
+        ```
 
-```
-Operation for "{volumeName:kubernetes.io/csi/diskplugin.csi.alibabacloud.com^d-2zejaz33icbp2vvvc9le podName: nodeName:}" failed. No retries permitted until 2020-11-05 14:38:12.653566679 +0800 CST m=+9150650.781033052 (durationBeforeRetry 2m2s). Error: "MountVolume.MountDevice failed for volume \"d-2zejaz33icbp2vvvc9le\" (UniqueName: \"kubernetes.io/csi/diskplugin.csi.alibabacloud.com^d-2zejaz33icbp2vvvc9le\") pod \"pod-e5ee2d454cdb4d1d916d933495e56cbe-3584893\" (UID: \"f8d71e90-d934-4d5a-b54f-62555da5df22\") : rpc error: code = Aborted desc = NodeStageVolume: Previous attach action is still in process
-```
+        登录到该Node节点上查看/var/log/message日志文件。
 
-问题原因：
 
-您使用的是旧版本的CSI，旧版本的CSI使用了blkid通过uuid获取盘符。由于使用快照恢复的云盘有着相同的uuid，导致blkid命令卡死。
+**快速恢复**
 
-解决方法：
+众多Pod挂载不上数据卷场景的问题，可以通过将Pod调度到其他节点快速恢复。关于详细问题分类，请参见下方对应模块的常见问题。
 
-重启当前节点，或升级CSI到最新版本。
+## 云盘存储卷常见问题
 
-## 启动Pod时，出现FailedMount警告
 
-问题现象：
 
-启动Pod的时候，出现以下警告：
+## NAS存储卷常见问题
 
-```
- Warning  FailedMount       104s                 kubelet, cn-zhangjiakou.172.20.11.162  Unable to attach or mount volumes: unmounted volumes=[sysdata-nas], unattached volumes=[kun-log kun-script kun-app sysdata-nas kun-patch default-token-rbx8p kun-etc kun-bin]: timed out waiting for the condition
- Warning  FailedMount       98s (x9 over 3m45s)  kubelet, cn-zhangjiakou.172.20.11.162  MountVolume.MountDevice failed for volume "nas-9d9ead08-8a1d-4463-a7e0-7bd0e3d3****" : kubernetes.io/csi: attacher.MountDevice failed to create newCsiDriverClient: driver name nasplugin.csi.alibabacloud.com not found in the list of registered CSI drivers
-```
 
-问题原因：
-
-一般出现在新增的节点。由于CSI的Pod是和业务Pod一起启动，且CSI注册需要一定时间，所以业务Pod开始挂载的时候，CSI还没有注册完成，导致出现警告。
-
-解决方法：
-
-无需处理，不影响Pod启动。
-
-## Pod卸载失败，并且Kubelet出现不受ACK管理的Pod日志
-
-问题现象：
-
-Pod卸载失败，并且Kubelet出现不受ACK管理的Pod日志。
-
-问题原因：
-
-Pod异常退出，导致数据卷挂载点在卸载过程中没有清理干净，最终导致Pod无法删除。Kubelet的GC流程对数据卷垃圾回收实现并不完善，目前需要手动或脚本自动化实现垃圾挂载点的清理工作。
-
-解决方法：
-
-在问题节点运行以下脚本，对垃圾挂载点进行清理。
-
-```
-wget https://raw.githubusercontent.com/AliyunContainerService/kubernetes-issues-solution/master/kubelet/kubelet.sh
-sh kubelet.sh
-```
-
-## 使用NAS时，提示chown: option not permitted
-
-问题现象：
-
-使用NAS时，提示chown: option not permitted。
-
-问题原因：
-
-您的容器没有权限使用该NAS。
-
-解决方法：
-
-使用root权限启动容器。
 
