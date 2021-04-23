@@ -147,7 +147,7 @@ spec:
 
     在**Kubernetes CoreDNS日志分析**页面，您可以查看CoreDNS请求数、请求成功率和请求延迟等聚合信息，同时提供了各类Top域名请求列表、错误域名列表、慢解析域名列表和高危请求域名访问分析。
 
-    ![coredns log](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3484619161/p267483.png)
+    ![coredns log](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4589619161/p267483.png)
 
 
 ## 步骤四：创建CoreDNS日志告警
