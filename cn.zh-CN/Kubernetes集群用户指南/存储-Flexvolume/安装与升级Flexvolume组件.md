@@ -123,11 +123,11 @@ Flexvolume与Disk Controller组件支持在控制台升级，NAS Controller组�
     升级成功后，对应组件区域会提示升级成功，且可查看组件当前版本。
 
 
--   Flexvolume组件升级时，以下场景请[联系我们](#section_330_5y9_dyy)申请手动升级保障。
+-   Flexvolume组件升级时，以下场景请[联系我们](#section_rup_63p_rhj)申请手动升级保障。
     -   在线升级失败。
     -   Flexvolume组件版本不大于v1.12，且使用了云盘或OSS数据卷。
     -   集群业务敏感，且使用大量数据卷，希望提供升级保障。
--   Disk Controller组件升级失败时，请[联系我们](#section_330_5y9_dyy)申请手动升级保障。
+-   Disk Controller组件升级失败时，请[联系我们](#section_rup_63p_rhj)申请手动升级保障。
 
 ## 联系我们
 
