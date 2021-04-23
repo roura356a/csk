@@ -135,7 +135,7 @@
        metadata:
          name: tensorflow
          annotations:
-           k8s.aliyun.com/eci-use-specs: "ecs.gn6i-c4g1.xlarge"  # 指定GPU规格创建ECI实例，或者您也可以指定instance type创建。例如：k8s.aliyun.com/eci-instance-type: "ecs.gn5i-c2g1.large"
+           k8s.aliyun.com/eci-use-specs: "ecs.gn6i-c4g1.xlarge"  # 指定GPU规格创建ECI实例
            k8s.aliyun.com/eci-image-cache: "true"             # 开启镜像缓存自动匹配
        spec:
          containers:
