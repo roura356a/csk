@@ -374,17 +374,6 @@ kubelet通过--cluster-dns和--cluster-domain两个参数来全局控制Pod DNSC
 
 NodeLocal DNSCache会默认采用TCP协议与CoreDNS进行通信，CoreDNS会根据请求来源使用的协议与上游进行通信。如果您集群中使用了PrivateZone，经过DNS本地缓存组件的解析请求最终会以TCP协议请求至PrivateZone服务。目前阿里云部分地域的PrivateZone服务尚未支持TCP协议，因此PrivateZone的解析结果可能会失败。
 
-建议您使用以下方式修改CoreDNS配置文件，即修改命名空间kube-system下**coredns**，具体操作，请参见[管理配置项]()。在forward插件中指定请求上游的协议为``perfer_udp``，修改之后CoreDNS会优先使用UDP协议与上游通信。修改方式如下所示：
-
-```
-# 修改前
-forward . /etc/resolv.conf
-# 修改后
-forward . /etc/resolv.conf {
-  prefer_udp
-}
-```
-
 **相关文档**  
 
 
