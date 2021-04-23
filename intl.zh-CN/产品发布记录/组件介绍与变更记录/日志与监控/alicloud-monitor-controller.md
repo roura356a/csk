@@ -4,15 +4,33 @@ keyword: [alicloud-monitor-controller, 变更版本]
 
 # alicloud-monitor-controller
 
+alicloud-monitor-controller是阿里云容器服务Kubernetes版提供对接云监控的系统组件。本文介绍alicloud-monitor-controller组件相关内容的最新动态。
+
+## 组件介绍
+
 alicloud-monitor-controller是阿里云容器服务Kubernetes版提供对接云监控的系统组件。当创建、变更、删除应用的时候，alicloud-monitor-controller会自动同步应用元数据到云监控，从而实现应用的容器监控。此外alicloud-monitor-controller还提供设置报警模板的功能，开发者可以通过控制台开启该功能。
+
+## 使用说明
+
+关于alicloud-monitor-controller组件的使用，请参见[容器服务报警管理](/intl.zh-CN/Kubernetes集群用户指南/可观测性/容器服务报警管理.md)。
 
 ## 变更记录
 
-v1.4.0-49ff2362-aliyun
+**2021年04月**
 
--   支持采集Windows节点池与Linux节点池混部场景。
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.5.7-e1d5de8a-aliyun|registry.\{REGION\}.aliyuncs.com/acs/alicloud-monitor-controller:v1.5.7-e1d5de8a-aliyun|2021年04月23日|支持容器服务事件报警能力，可通过CRD方式配置容器服务事件报警。|此次升级不会对业务造成影响。|
+
+**2020年07月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.4.0-49ff2362-aliyun|registry.\{REGION\}.aliyuncs.com/acs/alicloud-monitor-controller:v1.4.0-49ff2362-aliyun|2020年07月24日|-   支持采集Windows节点池与Linux节点池混合部署场景。
 -   支持调整多档位的弹性灵敏度，目前支持15s、20s、30s、60s四个档位。
 -   修复应用滚动更新时HPA误弹的问题。
+
+|此次升级不会对业务造成影响。|
 
 ## 问题诊断
 
