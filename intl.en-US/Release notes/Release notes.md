@@ -4,7 +4,7 @@ This topic lists the latest changes to Container Service for Kubernetes \(ACK\).
 
 -   ACK supports Kubernetes 1.18.8, 1.16.9, and 1.14.8. However, to use Kubernetes 1.14.8, you must submit a ticket to apply for this version to be enabled on your account.
 
--   ACK supports the following operating systems: CentOS 7.7, AliyunLinux 2.1903, and Windows Server 2019.
+-   ACK supports the following operating systems: CentOS 7.7, AliyunLinux 2.1903, Windows Server 2019 and Windows Server Core, 1909.
 
 ## January 2021
 
@@ -22,7 +22,7 @@ This topic lists the latest changes to Container Service for Kubernetes \(ACK\).
 
 |All regions
 
-|[View log data of control plane components](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log data of control plane components from a managed Kubernetes cluster.md)|
+|[View the logs of control plane components](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect the logs of control plane components in a managed Kubernetes cluster.md)|
 |Preemptible instance|Preemptible instances are supported when you set the billing method of a node pool. Preemptible instances are cost-effective. You can bid for unused resources of Alibaba Cloud, obtain the resources, and then run containers until the container resources are reclaimed due to higher bids from other customers. This reduces the costs of elastic container instances.|All regions
 
 |[Set the ratio of preemptible instances to existing instances in a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Set the ratio of preemptible instances to existing instances in a node pool.md)|
@@ -553,7 +553,7 @@ You can add Windows nodes to managed and dedicated Kubernetes clusters.
 
 This feature is in internal preview. To use this feature, submit a ticket.
 
-|All regions|[Create a node pool that runs Windows](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a node pool that runs Windows.md)|
+|All regions|[Create a Windows node pool](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a Windows node pool.md)|
 |Container Registry Enterprise Edition|Container Registry Enterprise Edition is released for internal preview. Container Registry Enterprise Edition provides container image repositories built on top of dedicated resources. This edition provides stable image building, large-scale image distribution, and image hosting with enterprise-class security. It is suitable for enterprises that require high security and a large number of nodes. Container Registry Enterprise Edition is in internal preview. To use this service, submit a ticket.
 
 |All regions|-|
