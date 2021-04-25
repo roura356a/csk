@@ -238,7 +238,7 @@ arc-cs addon get  --region cn-beijing
       "required": "true",
       "config": "",
       "value": "",
-      "description": "name: aliyun-acr-credential-helper\nintroduction: \n  zh: 使用aliyun-acr-credential-helper进行镜像拉取。\n  en: Using aliyun-acr-credential-helper to implement private image pulling without credential setting\ndoc:         \n  zh: https://help.aliyun.com/document_detail/159750.html?spm=5176.10695662.1996646101.searchclickresult.dede56d4WTiNdU\n  en: https://www.alibabacloud.com/help/doc-detail/144049.htm?spm=a2c63.p38356.b99.38.be135889E2TbLg\nchangelog:   \n  zh: https://help.aliyun.com/document_detail/177224.htm·\n  en: \nkeywords:\n- private image\n- namespace:kube-system\n- releaseName: aliyun-acr-credential-helper",
+      "description": "name: aliyun-acr-credential-helper\nintroduction: \n  zh: 使用aliyun-acr-credential-helper进行镜像拉取。\n  en: Using aliyun-acr-credential-helper to implement private image pulling without credential setting\ndoc:         \n  zh: https://help.aliyun.com/document_detail/159750.html?spm=5176.10695662.1996646101.searchclickresult.dede56d4WTiNdU\n  en: https://www.alibabacloud.com/help/doc-detail/159750.htm?spm=a2c63.p38356.b99.38.be135889E2TbLg\nchangelog:   \n  zh: https://help.aliyun.com/document_detail/177224.htm·\n  en: \nkeywords:\n- private image\n- namespace:kube-system\n- releaseName: aliyun-acr-credential-helper",
       "properties": null
     },
     "aliyun-log-controller": {
@@ -398,7 +398,7 @@ arc-cs addon get  --region cn-beijing
       "required": "true",
       "config": "",
       "value": "",
-      "description": "name: \"Nginx Ingress Controller\"\nhome: https://kubernetes.github.io/ingress-nginx/\nintroduction:\n  zh: \"根据ingress资源动态更新nginx配置文件\"\n  en: \"update nginx configuration file according to k8s ingress resouce\"\ndoc:\n  zh: https://help.aliyun.com/document_detail/86533.html\n  en: https://www.alibabacloud.com/help/doc-detail/86535.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/160658.html\n  en: https://www.alibabacloud.com/help/zh/doc-detail/160658.htm\nkeywords:\n- ingress\n- nginx",
+      "description": "name: \"Nginx Ingress Controller\"\nhome: https://kubernetes.github.io/ingress-nginx/\nintroduction:\n  zh: \"根据ingress资源动态更新nginx配置文件\"\n  en: \"update nginx configuration file according to k8s ingress resouce\"\ndoc:\n  zh: https://help.aliyun.com/document_detail/86533.html\n  en: https://www.alibabacloud.com/help/doc-detail/86533.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/160658.html\n  en: https://www.alibabacloud.com/help/zh/doc-detail/160658.htm\nkeywords:\n- ingress\n- nginx",
       "properties": null
     },
     "progressive-delivery-tool": {
