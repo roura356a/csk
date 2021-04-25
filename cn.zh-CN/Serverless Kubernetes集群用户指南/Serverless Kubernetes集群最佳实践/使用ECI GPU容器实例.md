@@ -30,9 +30,7 @@ AI计算离不开GPU已经是行业共识，然而从零开始搭建GPU集群环
 
 4.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**。
 
-5.  在Kubernetes菜单下，单击左侧导航栏中的**应用** \> **无状态**，单击右上角的**使用模板创建**。
-
-6.  在**无状态**页面单击**使用模板创建**，选择示例模板或自定义，然后单击**创建**。
+5.  在**无状态**页面单击**使用YAML创建资源**，选择示例模板或自定义，然后单击**创建**。
 
     您可以使用以下YAML示例模板创建Pod（本例中，Pod中指定GPU类型为 P4，GPU个数为 1） 。
 
@@ -57,14 +55,14 @@ AI计算离不开GPU已经是行业共识，然而从零开始搭建GPU集群环
       restartPolicy: OnFailure
     ```
 
-7.  单击**容器组**页签，查看容器组的状态。
+6.  在集群管理页左侧导航栏中，选择**工作负载** \> **容器组**，查看容器组的状态。
 
-8.  单击目标容器组，单击容器组 - tensorflow中的**日志**页签，可以看到以下红框内容时，表示图片识别成功。
+7.  单击目标容器组，单击容器组 - tensorflow中的**日志**页签，可以看到以下红框内容时，表示图片识别成功。
 
     ![容器组 - tensorflow](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3748649951/p47463.png)
 
 
-如果您想要在容器服务ACK的虚拟节点中使用该功能，请参见[通过部署ACK虚拟节点组件创建ECI Pod](/cn.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/通过部署ACK虚拟节点组件创建ECI Pod.md)，需要把Pod指定调度到虚拟节点上，或把Pod创建在有virtual-node-affinity-injection=enabled label 的Namespace中，然后使用以下示例文件替换步骤[6](#step_a0i_3au_ds9)的YAML文件即可。
+如果您想要在容器服务ACK的虚拟节点中使用该功能，请参见[通过部署ACK虚拟节点组件创建ECI Pod](/cn.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/通过部署ACK虚拟节点组件创建ECI Pod.md)，需要把Pod指定调度到虚拟节点上，或把Pod创建在有virtual-node-affinity-injection=enabled label 的Namespace中，然后使用以下示例文件替换步骤[5](#step_a0i_3au_ds9)的YAML文件即可。
 
 ```
 apiVersion: v1
