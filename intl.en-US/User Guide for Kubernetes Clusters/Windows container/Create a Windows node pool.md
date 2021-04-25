@@ -16,6 +16,7 @@ You can use a node pool to manage multiple nodes in a Container Service for Kube
 -   By default, you can deploy up to 100 nodes in an ACK cluster. To increase the quota, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 -   Before you add an existing Elastic Compute Service \(ECS\) instance that is deployed in a virtual private cloud \(VPC\), make sure that an elastic IP address \(EIP\) is associated with the ECS instance, or a NAT gateway is created for the VPC. In addition, you must make sure that the node can access the Internet. Otherwise, you may fail to add the ECS instance.
 
+-   A Windows node pool supports the following operating systems: Windows Server 2019 and Windows Server Core, 1909.
 
 ## Procedure
 
@@ -27,7 +28,9 @@ You can use a node pool to manage multiple nodes in a Container Service for Kube
 
 4.  In the left-side navigation pane of the details page, click **Node Pools**.
 
-5.  On the Node Pools page, click **Create Node Pool**.
+5.  In the upper-right corner of the Node Pools page, click **Create Node Pool**.
+
+    In the upper-right corner of the Node Pools page, you can also click **Create Managed Node Pool** to create a managed node pool, or click **Configure Auto Scaling** to create an auto-scaling node pool.
 
 6.  In the Create Node Pool dialog box, configure the node pool.
 
@@ -41,7 +44,7 @@ You can use a node pool to manage multiple nodes in a Container Service for Kube
     -   ECS Label: Add labels to the Elastic Compute Service \(ECS\) instances.
 7.  Click **Confirm Order**.
 
-    On the Node Pools page, if the **Status** column of the node pool shows **Initializing**, it indicates that the node pool is being created. After the node pool is created, the **Status** column displays **Active**.
+    On the Node Pools page, if the **state** of the node pool is **Initializing**, it indicates that the node pool is being created. After the node pool is created, the **state** of the node pool changes to **Active**.
 
     ![nodepool](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5365359951/p95881.png)
 
