@@ -16,6 +16,7 @@ keyword: [Windows节点池, 创建Windows节点池]
 -   默认情况下，每个集群中最多可包含100个节点。如果您需要添加更多节点，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)申请。
 -   添加已有云服务器时，请确保您的专有网络中的ECS实例绑定一个弹性公网IP（EIP），或者相应VPC已经配置了NAT网关。您需要确保相应节点能正常访问公网，否则，添加云服务器会失败。
 
+-   Windows节点池支持的操作系统为Windows Server 2019和Windows Server Core，1909。
 
 ## 操作步骤
 
