@@ -30,7 +30,7 @@ keyword: [CPFS共享存储, Arena, 分布式存储, 配置PV和PVC]
 
     在**基本信息**页签，查看文件系统ID和挂载点信息。
 
-    ![CPFS](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4704359951/p134706.png)
+    ![CPFS](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4704359951/p134706.png)
 
 
 ## 步骤三：配置ACK集群的存储卷（PV）和存储声明（PVC）
@@ -41,9 +41,9 @@ keyword: [CPFS共享存储, Arena, 分布式存储, 配置PV和PVC]
 
 3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-4.  在集群管理页左侧导航栏中，单击**工作负载**。
+4.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**。
 
-5.  在无状态（Deployment）页面，单击右上角**使用模板创建**。
+5.  在无状态（Deployment）页面，单击右上角**使用YAML创建资源**。
 
     设置集群名称和命名空间、设置示例模板为**Resource-PersistentVolumeClaim**。
 
@@ -88,7 +88,7 @@ keyword: [CPFS共享存储, Arena, 分布式存储, 配置PV和PVC]
 
     PV和PVC的配置说明如下：
 
-    -   server：填写步骤二中获取的CPFS挂载点信息。
+    -   server：填写[步骤二：配置挂载点](#section_dhs_svi_aui)中获取的CPFS挂载点信息。
     -   fileSystem：填写CPFS文件系统ID。
     -   subPath：填写tf\_data。
 6.  单击**创建**。
