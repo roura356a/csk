@@ -28,7 +28,7 @@ ACK针对Kubernetes 1.20版本提供了全链路的组件优化和升级。
 
 **资源变更与弃用**
 
--   废弃Docker运行时：Docker运行时的支持在1.20被标记为废弃，目前您可以继续在集群中使用Docker。社区计划在后续版本中移除。该变动与集群所使用的的容器镜像（Image）无关。您依然可以使用Docker构建您的镜像。更多信息，请参见[Dockershim Deprecation FAQ](https://kubernetes.io/blog/2020/12/02/dockershim-faq/)。
+-   废弃Docker运行时：Docker运行时的支持在1.20被标记为废弃，目前您可以继续在集群中使用Docker。社区计划在后续版本中移除。该变动与集群所使用的容器镜像（Image）无关。您依然可以使用Docker构建您的镜像。更多信息，请参见[Dockershim Deprecation FAQ](https://kubernetes.io/blog/2020/12/02/dockershim-faq/)。
 -   当您的ACK集群升级到1.20及以上Kubernetes版本前，请确保集群内部署的Admission Webhook组件自签发的服务端证书已经包含必要的SAN字段。更多信息，请参见[Helm Chart配置示例](https://github.com/helm/helm/issues/9046#issuecomment-750892734)。
 -   API优先级和公平性（ APF ）是Kubernetes默认开启的测试版（Beta）特性。您可以通过此特性对不同的请求进行限制和优先级划分。更多信息，请参见[API Priority and Fairness](https://kubernetes.io/docs/concepts/cluster-administration/flow-control/)。
 -   对于专有版的Master节点标签，ACK默认使用`node-role.kubernetes.io/control-plane`，同时在后续版本（不包含1.20）废弃使用`node-role.kubernetes.io/master`。
