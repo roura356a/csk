@@ -6,7 +6,7 @@ keyword: [Log-pilot, 日志采集, ES, k8s]
 
 本文档介绍如何使用开源的Docker日志收集工具Log-pilot，结合Elasticsearch和Kibana等工具，形成一套适用于Kubernetes环境下的一站式日志解决方案。
 
--   您已经开通容器服务，并创建了一个Kubernetes集群。具体步骤，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/创建集群/创建Kubernetes托管版集群.md)。
+-   您已经开通容器服务，并创建了一个Kubernetes集群。具体步骤，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 
     本示例中，创建的Kubernetes集群位于华东1地域。
 
@@ -82,7 +82,7 @@ Log-pilot同时支持自定义tag，我们可以在环境变量里配置`aliyun_
 
 5.  选择**kube-system**作为**命名空间**。
 
-6.  在无状态页面，单击右上角的**使用模板创建**，进入使用模板创建页面。
+6.  在无状态页面，选择**kube-system**命名空间，单击右上角的**使用YAML创建资源**。
 
 7.  **示例模板**选择**自定义**，并将以下内容复制到**模板**中，单击**创建**。
 
@@ -192,14 +192,14 @@ Log-pilot同时支持自定义tag，我们可以在环境变量里配置`aliyun_
     |\{es\_username\}|访问ES集群的用户名。即为创建ES集群时，设置的用户名。|
     |\{es\_password\}|访问ES集群的用户密码。即为创建ES集群时，设置的用户密码。|
 
-8.  在**工作负载**页面，选择**守护进程集**页签。
+8.  在集群管理页左侧导航栏中，选择**工作负载** \> **守护进程集**。
 
     选择目标集群，命名空间为**kube-system**，看到下图所示时，表示运行正常。
 
     ![pilot](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1985659951/p133207.png)
 
 
-**说明：** 您也可以[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群管理/连接集群/通过kubectl连接Kubernetes集群.md)。使用上述YAML模板创建DaemonSet，并执行以下命令查看Log-pilot组件的运行状态。
+**说明：** 您也可以[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。使用上述YAML模板创建DaemonSet，并执行以下命令查看Log-pilot组件的运行状态。
 
 ```
 ~ kubectl apply -f log-pilot.yml
@@ -226,11 +226,9 @@ log-pilot-k2ttk 1/1 Running 0 23s
 
 4.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**。
 
-5.  选择目标**命名空间**。
+5.  选择目标**命名空间**，单击右上角的**使用YAML创建资源**。
 
-6.  单击右上角的**使用模板创建**，进入使用模板创建页面。
-
-7.  **示例模板**选择**自定义**，并将以下内容复制到**模板**中，单击**创建**。
+6.  **示例模板**选择**自定义**，并将以下内容复制到**模板**中，单击**创建**。
 
     编排模板如下。
 
@@ -267,21 +265,21 @@ log-pilot-k2ttk 1/1 Running 0 23s
     -   `aliyun_logs_access=/usr/local/tomcat/logs/catalina.*.log`表示要收集容器内/usr/local/tomcat/logs/目录下所有名字匹配catalina.\*.log的文件日志。
     在本方案的Elasticsearch场景下，环境变量中的`$name`表示Index，本例中`$name`即是catalina和access。
 
-8.  在**工作负载**页面，选择**容器组**页签，选择部署集群的命名空间**default**，单击**tomcat**名称。
+7.  在集群管理页左侧导航栏中，选择**工作负载** \> **容器组**。选择部署集群的命名空间**default**，单击**tomcat**名称。
 
     在容器组 - tomcat页面的**日志**页签下，看到以下内容时，表示Tomcat部署成功。
 
     ![部署tomcat](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1985659951/p47226.png)
 
-9.  在[阿里云ES控制台](https://elasticsearch.console.aliyun.com/?spm=5176.2020520152.products-grouped.delasticsearch.503816ddrx2e3K)，登录**Kibana控制台**。更多信息，请参见[t615643.dita\#task\_761873](/intl.zh-CN/Elasticsearch/可视化控制/Kibana/登录Kibana控制台.md)。
+8.  在[阿里云ES控制台](https://elasticsearch.console.aliyun.com/?spm=5176.2020520152.products-grouped.delasticsearch.503816ddrx2e3K)，登录**Kibana控制台**。更多信息，请参见[t615643.dita\#task\_761873](/intl.zh-CN/Elasticsearch/可视化控制/Kibana/登录Kibana控制台.md)。
 
-10. 单击**Management**，然后单击**Index Patterns**，单击**Create index...**，在Create index pattern区域输入access-\*，单击**Next step**。
+9.  单击**Management**，然后单击**Index Patterns**，单击**Create index...**，在Create index pattern区域输入access-\*，单击**Next step**。
 
     ![创建索引](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1985659951/p47235.png)
 
-11. 在**Time Filter field name**下拉框中，选择**@timestamp**，然后单击**Create index pattern**。
+10. 在**Time Filter field name**下拉框中，选择**@timestamp**，然后单击**Create index pattern**。
 
-12. 如果您需要创建多个索引，按照以下步骤操作。
+11. 如果您需要创建多个索引，按照以下步骤操作。
 
     1.  单击**Management**，在Kibana区域单击**Index Patterns**。
 
