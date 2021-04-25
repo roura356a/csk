@@ -26,7 +26,7 @@ In simple terms, pod replicas are scaled based on resource usage. This is how po
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+2.  In the left-side navigation pane, click **Clusters**.
 
 3.  On the Clusters page, perform the following steps to go to the **Configure Auto Scaling** page.
 
@@ -215,7 +215,7 @@ If an auto-scaling node pool in the cluster is required to be associated with an
     |Cluster|The name of the cluster for which you want to enable auto scaling.|
     |Scale-in Threshold|In a scaling group managed by cluster-autoscaler, the system automatically calculates the ratio of the requested resources to the resource capacity of a node. If the ratio is lower than the threshold, nodes are removed from the ACK cluster. **Note:** Scale-out events are automatically triggered based on pod scheduling. Therefore, you only need to configure scale-in rules. |
     |Defer Scale-in For|The amount of time that the cluster must wait before the cluster scales in. Unit: minutes. The default value is 10 minutes.|
-    |Cooldown|The cooldown period after a scale-in event is triggered. No scale-in event is triggered again during this period of time. Unit: minutes. The default value is 10 minutes.|
+    |Cooldown|The nodes that have been added for scale-out can be used for scale-in only after the specified cooldown period.|
 
 2.  Select an instance type based on your workload requirements, such as a regular instance, a GPU-accelerated instance, or a preemptible instance. Then, click **Create**.
 
@@ -255,7 +255,7 @@ If an auto-scaling node pool in the cluster is required to be associated with an
 
     ![Auto Scaling](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7922234061/p11273.png)
 
-2.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Details** in the **Actions** column. The details page of the cluster appears.
+2.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 3.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
@@ -289,7 +289,7 @@ If an auto-scaling node pool in the cluster is required to be associated with an
 **Related topics**  
 
 
-[Access the Kubernetes API server over the Internet](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Access the Kubernetes API server over the Internet.md)
+[Access the Kubernetes API server over the Internet](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Access the Kubernetes API server over the Internet.md)
 
 [HPA](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/HPA.md)
 
