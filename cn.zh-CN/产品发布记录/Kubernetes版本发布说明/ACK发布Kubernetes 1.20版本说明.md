@@ -22,8 +22,6 @@ ACK针对Kubernetes 1.20版本提供了全链路的组件优化和升级。
 -   更新指标（Metrics）名称。如果您的监控系统依赖于CoreDNS指标，请注意修改。更多信息，请参见[Metric Changes](https://coredns.io/2020/06/15/coredns-1.7.0-release/#metric-changes)。 |
 |NVIDA Container Runtime|3.4.1|无|
 
-无
-
 ## 版本解读
 
 **资源变更与弃用**
