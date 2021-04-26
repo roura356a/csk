@@ -6,7 +6,7 @@ keyword: [FPGA节点标签, 灵活调度]
 
 在使用Kubernetes集群实现FPGA计算时，为了有效利用FPGA设备，可根据需要将应用调度到具有FPGA设备的节点上。本文介绍根据FPGA节点标签进行节点调度。
 
--   您已成功创建一个拥有FPGA节点的Kubernetes集群。具体操作，请参见[创建托管FPGA集群]()。
+-   您已成功创建一个拥有FPGA节点的Kubernetes集群。具体操作，请参见[创建托管FPGA集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/创建异构计算集群/创建托管FPGA集群.md)。
 -   您已连接到Kubernetes集群，方便快速查看节点标签等信息。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 
 阿里云Kubernetes在部署FPGA节点的时候会发现FPGA的属性，并且作为NodeLabel信息暴露给您，拥有如下优势：
