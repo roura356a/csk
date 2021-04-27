@@ -49,7 +49,7 @@ ACK Pro版托管版集群和ACK标准托管版集群的对比详情如下表。
 
 **说明：**
 
-ACK专有版集群仅支持共享GPU普通版调度。详细信息，请参见[共享GPU调度](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU资源调度/共享GPU调度.md)。
+ACK专有版集群仅支持共享GPU普通版调度。详细信息，请参见[共享GPU概述](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU资源调度/共享GPU调度/共享GPU概述.md)。
 
 ## 开服地域
 
