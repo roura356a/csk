@@ -33,7 +33,7 @@ Method 1: If **Install node-problem-detector and Create Event Center** was selec
 
     The Kubernetes event center provides event overview, event details, and information about pod lifecycles. You can also customize queries and configure alerts.
 
-    ![Event overview](../images/p243385.png)
+    ![Event overview](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5415059161/p243385.png)
 
 
 Method 2: If the Kubernetes event center was not deployed when you created the cluster, perform the following steps to deploy and use the Kubernetes event center:
