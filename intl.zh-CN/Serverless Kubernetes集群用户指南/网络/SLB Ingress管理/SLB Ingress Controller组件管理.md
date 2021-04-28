@@ -4,7 +4,7 @@ keyword: 安装SLB Ingress Controller
 
 # SLB Ingress Controller组件管理
 
-阿里云Serverless Kubernetes集群，基于SLB七层转发规则提供了托管的SLB Ingress Controller。本文介绍如何在ASK集群安装SLB Ingress Controller。
+阿里云Serverless Kubernetes集群，基于SLB七层转发规则提供了托管的SLB Ingress Controller。本文介绍如何在ASK集群安装和卸载SLB Ingress Controller。
 
 ## 安装SLB Ingress Controller
 
