@@ -43,7 +43,7 @@ In this example, an application is deployed by using the [ingress-demo](https://
 
     -   Source settings
 
-        ![Source settings](../images/p112719.png)
+        ![Source settings](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0841859161/p112719.png)
 
         |Parameter|Description|
         |---------|-----------|
@@ -68,7 +68,7 @@ In this example, the path is set to ingress-demo.
 
     -   Destination settings
 
-        ![Destination settings](../images/p112731.png)
+        ![Destination settings](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0841859161/p112731.png)
 
         |Parameter|Description|
         |---------|-----------|
@@ -98,7 +98,7 @@ In this example, the path is set to ingress-demo.
 
 5.  In the upper-right corner of the details page of the application, click **SYNC**. In the dialog box that appears, select the resources that you want to deploy and click **SYNC**.
 
-    ![Resources to be deployed](../images/p112789.png)
+    ![Resources to be deployed](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2171859161/p112789.png)
 
     |Parameter|Description|
     |---------|-----------|
@@ -122,7 +122,7 @@ In this example, all resource objects are deployed. |
 
     In the upper-left corner of the details page of the application, click**APP DETAILS** to view the details. The following figure shows the details page of an application.
 
-    ![The details page of the application](../images/p112821.png)
+    ![The details page of the application](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2171859161/p112821.png)
 
 
 ## Use Git repositories as data sources to deploy an application from a Helm chart
@@ -152,8 +152,6 @@ You can also use an ACK orchestration template in the ACK console to deploy an a
 6.  Configure the parameters of the ACK orchestration template.
 
     When you create an application, select **Custom template** in the SOURCE section. Click the **Template** bar and select the template from the drop-down list. For more information about how to create an application, see [Use Git repositories as data sources to deploy an application from a YAML template](#section_sbu_rur_agp).
-
-    ![Custom template](../images/p112865.png)
 
 
 **Related topics**  
