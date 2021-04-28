@@ -38,7 +38,7 @@ Method 1: If **Install node-problem-detector and Create Event Center** was selec
 
 Method 2: If the Kubernetes event center was not deployed when you created the cluster, perform the following steps to deploy and use the Kubernetes event center:
 
-1.  Install ack-node-problem-detector in the monitored cluster and enable Log Service for the monitored cluster. For more information about how to install the plug-in, see [Scenario 3](#section_rya_7i0_9e3).
+1.  Install ack-node-problem-detector in the monitored cluster and enable Log Service for the monitored cluster. For more information about how to install the plug-in, see [Scenario 3: Use DingTalk to raise alerts upon Kubernetes events](#section_dfk_z88_5xf).
 
     **Note:** If ack-node-problem-detector is deployed but Log Service is not enabled, delete and reinstall ack-node-problem-detector.
 
@@ -93,7 +93,7 @@ node-problem-detector is a tool that is used to diagnose Kubernetes nodes. node-
     |---------|-----------|-------------|
     |`npd.image.repository`|The image address of node-problem-detector.|registry.aliyuncs.com/acs/node-problem-detector|
     |`npd.image.tag`|The image version of node-problem-detector.|v0.6.3-28-160499f|
-    |`alibaba_cloud_plugins`|Plug-ins that are used for node diagnostics. For more information, see the [Node diagnostics plug-ins supported by node-problem-detector](#table_74i_e0y_s8b) table.|fd\_check, ntp\_check, network\_problem\_check, and inode\_usage\_check are supported.|
+    |`alibaba_cloud_plugins`|Plug-ins that are used for node diagnostics. For more information, see the [Node diagnostics plug-ins supported by node-problem-detector](#table_7t4_8bu_75w) table.|fd\_check, ntp\_check, network\_problem\_check, and inode\_usage\_check are supported.|
     |`plugin_settings.check_fd_warning_percentage`|The alerting threshold for monitoring the percentage of opened file descriptors.|80|
     |`plugin_settings.inode_warning_percenage`|The alerting threshold for monitoring the inode usage.|80|
     |`eventer.image.repository`|The image address of kube-eventer.|registry.cn-hangzhou.aliyuncs.com/acs/eventer|
