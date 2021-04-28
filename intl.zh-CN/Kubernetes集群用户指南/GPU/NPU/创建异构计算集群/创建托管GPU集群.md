@@ -63,7 +63,7 @@ keyword: 创建托管GPU集群
         |**容器运行时**|支持**Containerd**、**Docker**和**安全沙箱**。更多信息，请参见[如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？](/intl.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？.md)。 |
         |**专有网络**|设置集群的网络，您可以选择普通VPC和共享VPC。         -   共享VPC：VPC的所有者账号（资源所有者）可以将其账号下的VPC内的交换机资源共享给其组织内的其他账号使用。
         -   普通VPC：不具备共享功能的VPC。
-**说明：** Kubernetes集群仅支持专有网络。您可以在已有VPC列表中选择所需的VPC。如果没有您需要的专有网络，可以通过单击**创建专有网络**进行创建，请参见[创建专有网络](/intl.zh-CN/专有网络和交换机/使用专有网络.md)。 |
+**说明：** Kubernetes集群仅支持专有网络。您可以在已有VPC列表中选择所需的VPC。如果没有您需要的专有网络，可以通过单击**创建专有网络**进行创建，请参见[使用专有网络](/intl.zh-CN/专有网络和交换机/使用专有网络.md)。 |
         |**虚拟交换机**|设置虚拟交换机。 您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机 。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[创建交换机](/intl.zh-CN/专有网络和交换机/使用交换机.md)。 |
         |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体可参见[t64408.md\#section\_k1z\_f1n\_lmh](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/使用Terway网络插件.md)。         -   Flannel：简单稳定的社区的Flannel CNI插件。但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
         -   Terway：阿里云容器服务自研的网络插件，将阿里云的弹性网卡分配给容器，支持Kubernetes的Network Policy来定义容器间的访问策略，支持对单个容器做带宽的限流。
@@ -139,7 +139,7 @@ keyword: 创建托管GPU集群
             |**自动续费**|选择**包年包月**，需设置是否**自动续费**。|
             |**实例规格**|选择**异构计算GPU/FPGA/NPU**和**GPU计算型**，详细的实例规格请参见[实例规格族](/intl.zh-CN/实例/实例规格族.md)。 **说明：** 当在实例规格列表里没有可用实例时，可在上一步**集群配置**页面选择其他虚拟交换机。
 
-![异构计算](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2408368061/p127318.png) |
+![异构计算](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0398249161/p127318.png) |
             |**已选规格**|呈现选中的规格。 |
             |**数量**|新增Worker实例（ECS实例）的数量。 |
             |**系统盘**|支持**ESSD云盘**、**SSD云盘**和**高效云盘**。
