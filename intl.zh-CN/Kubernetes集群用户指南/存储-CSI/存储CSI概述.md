@@ -218,6 +218,35 @@ CPFS CSI 插件和CPFS驱动之间的关联：
 -   针对新建集群，推荐您使用CSI插件。ACK会跟随社区持续更新CSI插件的各种能力。
 -   针对已经创建的集群，仍然使用已经安装的存储插件类型。ACK会持续支持Flexvolume插件。
 
+**如何判断集群的存储插件模式**
+
+-   方式一：通过控制台查看节点注释
+    1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+    2.  在控制台左侧导航栏中，单击**集群**。
+    3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
+    4.  在集群管理页左侧导航栏中，选择**节点管理** \> **节点**。
+    5.  在目标节点**操作**列选择**更多** \> **详情**。
+    6.  在**基本信息**中查看节点**注释**。
+
+        如果有`volumes.kubernetes.io/controller-managed-attach-detach: true`，表示集群存储插件为CSI；若没有`volumes.kubernetes.io/controller-managed-attach-detach: true`，表示集群存储插件为Flexvolume。
+
+-   方式二：通过命令查看kubelet参数
+
+    执行以下命令查看kubelet参数。
+
+    ```
+    ps -ef | grep kubelet
+    ```
+
+    预期输出：
+
+    ```
+    --enable-controller-attach-detach=true
+    ```
+
+    若`--enable-controller-attach-detach`的值为`true`，则表示集群存储插件为CSI；若`--enable-controller-attach-detach`的值为`false`，则表示集群存储插件为Flexvolume。
+
+
 **相关文档**  
 
 
