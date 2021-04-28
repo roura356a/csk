@@ -1,26 +1,26 @@
 ---
-keyword: [volume snapshot, backup, K8s, restore]
+keyword: [volume snapshot, backup, dynamically create, statically]
 ---
 
 # Use volume snapshots created from disks
 
-Container Service for Kubernetes \(ACK\) allows you to create volume snapshots from disks and use the volume snapshots to restore application data. This topic describes the features of volume snapshots and how to use volume snapshots in ACK.
+Container Service for Kubernetes \(ACK\) allows you to create volume snapshots from disks and use the volume snapshots to restore application data. This topic describes the basic terms related to volume snapshots and how to use volume snapshots in ACK clusters. This topic also describes how to dynamically and statically create volume snapshots.
 
 ACK clusters that use Kubernetes V1.18 and later support volume snapshots. To use volume snapshots that are created from disks, make sure that Kubernetes V1.18 or later is used in your ACK cluster.
 
-When you deploy stateful applications in an ACK cluster, disks are commonly used to store application data. You can create snapshots from disks and use the snapshots to restore application data. ACK also allows you to use snapshots to back up and restore data. You can back up and restore data in your ACK cluster in the following ways:
+When you deploy stateful applications in an ACK cluster, disks are commonly used to store application data. You can create snapshots from disks and use these snapshots to restore application data. ACK also allows you to use snapshots to back up and restore data. You can back up and restore data in your ACK cluster in the following ways:
 
 -   Create backups \(volume snapshots\) from disks by using VolumeSnapshots.
 -   Restore data by setting [dataSource](https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/) to the related persistent volume claim \(PVC\).
 
-## Usage notes
+## Instruction
 
-To support volume snapshots, you can use [CustomResourceDefinitions \(CRDs\)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) in ACK to define the following resources:
+To enable volume snapshots, you can use [CustomResourceDefinitions \(CRDs\)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) in ACK to define the following resources:
 
 |Resource name|Description|
 |-------------|-----------|
-|VolumeSnapshotContent|A snapshot that is created from a volume in the ACK cluster. Administrators create and manage VolumeSnapshotContents. VolumeSnapshotContents do not belong to any namespace. A VolumeSnapshotContent is a cluster resource similar to a persistent volume \(PV\).|
-|VolumeSnapshot|A request for a volume snapshot. Users create and manage VolumeSnapshots. Each VolumeSnapshot belongs to a specific namespace. A VolumeSnapshot is a cluster resource similar to a PVC.|
+|VolumeSnapshotContent|A snapshot that is created from a volume in the ACK cluster. It is created and managed by administrators. A VolumeSnapshotContent does not belong to any namespace. A VolumeSnapshotContent is a cluster resource similar to a persistent volume \(PV\).|
+|VolumeSnapshot|A request for a volume snapshot. It is created and managed by users. A VolumeSnapshot belongs to a specific namespace. A VolumeSnapshot is a cluster resource similar to a PVC.|
 |VolumeSnapshotClass|Specifies the attributes of a VolumeSnapshot, such as the parameters and controllers that are used to create snapshots. A VolumeSnapshotClass is a cluster resource similar to a StorageClass.|
 
 To use volume snapshots, you must associate these resources with each other based on the following rules:
@@ -31,9 +31,9 @@ To use volume snapshots, you must associate these resources with each other base
 
 **Note:** When you delete a VolumeSnapshotContent, the associated snapshot is also deleted.
 
-## Procedure
+## Dynamically create a volume snapshot
 
-The following flowchart shows how to use a volume snapshot in ACK.
+The following figure shows the procedure to dynamically create a volume snapshot from the disk that is used in an ACK cluster.
 
 ![snapshot](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1593875061/p175481.png)
 
@@ -41,18 +41,16 @@ The following table describes the steps that are performed in the procedure.
 
 |Step|Description|
 |----|-----------|
-|1|Create an application and create a disk volume to store application data.|
-|2|Create a VolumeSnapshot. Then, the ACK cluster automatically creates a VolumeSnapshotContent and a volume snapshot.|
-|3|Create another application, create a PVC for the application, and then specify the PVC as the data source of the volume snapshot that is created in Step 2.|
+|①|Create an application and create a disk volume to store application data.|
+|②|Create a VolumeSnapshot. Then, the ACK cluster automatically creates a VolumeSnapshotContent and a volume snapshot.|
+|③|Create another application, create a PVC for the application, and then specify the volume snapshot that is created in Step 2 as the source of the PVC.|
 
 The preceding steps are performed to enable the following features:
 
 -   Backup: **Snapshot 1** is created to back up data in **Volume 1**.
--   Restoration: The data in **Volume 1** is restored to **Volume 2** based on **Snapshot 1**.
+-   Restoration: **Snapshot 1** is used to restore data in **Volume 1** to **Volume 2**.
 
-## Procedure
-
-The following example shows how to create an NGINX application and restore data of the application by using a volume snapshot.
+The following example shows how to create an NGINX application and restore data of the application by using a volume snapshot. The following procedure demonstrates how to use a volume snapshot to restore data of an application:
 
 1.  Create a VolumeSnapshotClass.
 
@@ -108,7 +106,7 @@ The following example shows how to create an NGINX application and restore data 
               name: disk-ssd
             spec:
               accessModes: [ "ReadWriteOnce" ]
-              storageClassName: "alicloud-disk-snap"
+              storageClassName: "alicloud-disk-ssd"
               resources:
                 requests:
                   storage: 20Gi
@@ -184,7 +182,7 @@ The following example shows how to create an NGINX application and restore data 
 
 4.  Restore data.
 
-    1.  Create the nginx-restore file and copy the following content to the file:
+    1.  Create a nginx-restore file and copy the following content to the file:
 
         ```
         apiVersion: v1
@@ -240,7 +238,7 @@ The following example shows how to create an NGINX application and restore data 
                 apiGroup: snapshot.storage.k8s.io
         ```
 
-        **Note:** In the dataSource field of the volumeClaimTemplates section, set kind to VolumeSnapshot and set name to new-snapshot-demo. The new-snapshot-demo snapshot is created in [Step 3](#step_6fk_ana_cqe).
+        **Note:** In the dataSource field of the volumeClaimTemplates section, set kind to VolumeSnapshot and set name to new-snapshot-demo. The new-snapshot-demo snapshot is created in Step [3](#step_rd7_64g_pty).
 
     2.  Run the following command to restore the application data:
 
@@ -260,6 +258,131 @@ The following example shows how to create an NGINX application and restore data 
     lost+found test
     ```
 
-    The output shows that the same application data is returned. This indicates that the application data has been restored.
+    The output shows that the same application data is returned. This indicates that the application data is restored.
+
+
+## Statically create a volume snapshot \(import an existing snapshot from an ECS instance\)
+
+The following procedure demonstrates how to import an existing snapshot from an ECS instance to an ACK cluster:
+
+1.  Use the following YAML template to create a VolumeSnapshotContent:
+
+    ```
+    apiVersion: snapshot.storage.k8s.io/v1
+    kind: VolumeSnapshotContent
+    metadata:
+      name: new-snapshot-content-test
+    spec:
+      deletionPolicy: Retain
+      driver: diskplugin.csi.alibabacloud.com
+      source:
+        snapshotHandle: <your-snapshotid>
+      volumeSnapshotRef:
+        name: new-snapshot-demo
+        namespace: default
+    ```
+
+    |Parameter|Description|
+    |---------|-----------|
+    |snapshotHandle|Enter the snapshot ID that is generated on the ECS instance page.|
+    |volumeSnapshotRef|Enter the following information for the VolumeSnapshot that you want to create:    -   name: the name of the VolumeSnapshot.
+    -   namespace: the namespace to which the VolumeSnapshot belongs. |
+
+2.  Use the following YAML template to create a VolumeSnapshot:
+
+    ```
+    apiVersion: snapshot.storage.k8s.io/v1
+    kind: VolumeSnapshot
+    metadata:
+      name: new-snapshot-demo
+    spec:
+      source:
+        volumeSnapshotContentName: new-snapshot-content-test
+    ```
+
+    |Parameter|Description|
+    |---------|-----------|
+    |metadata.name|The name of the VolumeSnapshot. The name must be the same as the VolumeSnapshot name that is specified in the preceding VolumeSnapshotContent.|
+    |spec.source.volumeSnapshotContentName|The name of the VolumeSnapshotContent that is associated with the VolumeSnapshot. The name must be the same as the name of the VolumeSnapshotContent that is created in the preceding step.|
+
+3.  Restore data.
+
+    1.  Create a nginx-restore file and copy the following content to the file:
+
+        ```
+        apiVersion: v1
+        kind: Service
+        metadata:
+          name: nginx
+          labels:
+            app: nginx
+        spec:
+          ports:
+          - port: 80
+            name: web
+          clusterIP: None
+          selector:
+            app: nginx
+        ---
+        apiVersion: apps/v1
+        kind: StatefulSet
+        metadata:
+          name: web-restore
+        spec:
+          selector:
+            matchLabels:
+              app: nginx
+          serviceName: "nginx"
+          replicas: 1
+          template:
+            metadata:
+              labels:
+                app: nginx
+            spec:
+              hostNetwork: true
+              containers:
+              - name: nginx
+                image: nginx
+                command: ["sh", "-c"]
+                args: ["sleep 10000"]
+                volumeMounts:
+                - name: disk-ssd
+                  mountPath: /data
+          volumeClaimTemplates:
+          - metadata:
+              name: disk-ssd
+            spec:
+              accessModes: [ "ReadWriteOnce" ]
+              storageClassName: alicloud-disk-ssd
+              resources:
+                requests:
+                  storage: 20Gi
+              dataSource:
+                name: new-snapshot-demo
+                kind: VolumeSnapshot
+                apiGroup: snapshot.storage.k8s.io
+        ```
+
+        **Note:** In the dataSource field of the volumeClaimTemplates section, set kind to VolumeSnapshot and set name to new-snapshot-demo. The new-snapshot-demo snapshot is created in [Step 2](#step_ocu_w92_nmt).
+
+    2.  Run the following command to restore the application data:
+
+        ```
+        kubectl apply -f nginx-restore.yaml
+        ```
+
+4.  Run the following command to view the application data in pod web-restore-0:
+
+    ```
+    kubectl exec -it web-restore-0 ls /data
+    ```
+
+    The following output is returned:
+
+    ```
+    lost+found test
+    ```
+
+    The output shows that the same application data is returned. This indicates that the application data is restored.
 
 
