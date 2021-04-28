@@ -266,7 +266,9 @@ CPFS CSI 插件和CPFS驱动之间的关联：
 **相关文档**  
 
 
-[云盘存储卷使用说明](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷使用说明.md)
+[存储基础知识](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/存储基础知识.md)
+
+[t1592119.md\#](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷使用说明.md)
 
 [NAS卷使用说明](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/NAS卷使用说明.md)
 
