@@ -8,7 +8,7 @@ JindoRuntime来源于阿里云EMR团队JindoFS，是基于C++实现的支撑Data
 
 -   在Kubernetes集群中已安装好Fluid，且版本大于等于0.5.0。具体操作，请参见[Fluid](https://github.com/aliyun/alibabacloud-jindofs/blob/master/docs/jindo_fluid/jindo_fluid_introduce.md)。
 -   已创建ACK Pro版集群，且集群的Kubernetes版本不低于1.14。具体操作步骤，请参见[创建ACK Pro版集群](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
--   通过kubectl连接Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   通过kubectl连接Kubernetes集群。具体操作，请参见[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 -   已开通阿里云对象存储（OSS）服务。具体操作，请参见[开通OSS服务](/cn.zh-CN/控制台用户指南/开通OSS服务.md)。
 
 在准备好基本K8s和OSS环境的条件下，您只需要耗费10分钟左右即可部完成JindoRuntime环境的部署。
