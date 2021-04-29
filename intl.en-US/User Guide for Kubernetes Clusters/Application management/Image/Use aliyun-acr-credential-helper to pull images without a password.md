@@ -343,7 +343,7 @@ Follow these rules when you pull images across accounts:
 
 1.  Create a RAM user for your account and grant the RAM user the permissions to pull images from Container Registry instances within your account.
 
-    For more information about how to grant the permissions to pull images from Container Registry instances, see [Step 1](#step_5b4_2v8_wr8) in the "Pull images across accounts by assuming a RAM role" section.
+    For more information about how to grant the permissions to pull images from Container Registry instances, see [1](#step_ngx_6m3_ujh) in the "Pull images across accounts by assuming a RAM role" section.
 
 2.  Configure the acr-configuration ConfigMap in the **kube-system** namespace. Specify the AccessKey ID and AccessKey secret of the created RAM user.
 
