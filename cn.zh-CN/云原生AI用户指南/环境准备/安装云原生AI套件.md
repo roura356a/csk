@@ -1,13 +1,13 @@
 ---
-keyword: [安装云原生AI套件, 配置AI-Dashboard]
+keyword: [安装云原生AI套件, 配置云原生AI运维控制台]
 ---
 
 # 安装云原生AI套件
 
-云原生AI套件只支持安装在ACK Pro版集群中。本文介绍如何在ACK Pro版集群中安装云原生AI套件，以及如何配置AI-Dashbaord。
+云原生AI套件只支持安装在ACK Pro版集群中。本文介绍如何在ACK Pro版集群中安装云原生AI套件，以及如何配置云原生AI运维控制台。
 
 -   已创建ACK Pro版集群，且在组件配置页面，需要选中**监控插件**和**日志服务**。具体操作，请参见[创建ACK Pro版集群](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
--   ACK Pro托管版集群的Kubernetes版本不低于1.18。
+-   ACK Pro版集群的Kubernetes版本不低于1.18。
 
 ## 部署云原生AI套件
 
@@ -26,23 +26,23 @@ keyword: [安装云原生AI套件, 配置AI-Dashboard]
     **说明：**
 
     -   **交互方式**下的**Arena命名行（必选）**为默认必选组件。
-    -   选中**AI-Dashboard控制台**时，会弹出**提示**话框。具体操作，请参见步骤[1](#step_twc_y20_m4t)。
+    -   选中**云原生AI运维控制台**时，会弹出**提示**话框。具体操作，请参见步骤[1](#step_twc_y20_m4t)。
     组件安装成功后，在组件列表页面：
 
     -   您能看到当前集群中已经安装的组件名称、版本等信息，并能对组件进行**部署**、**卸载**操作。
     -   如果已安装的组件有新版本的话，还可以对组件进行**升级**操作。
-    -   安装了AI-Dashboard组件后，您可在页面左上方看到AI-Dashboard访问地址，通过该地址可以访问AI-Dashboard控制台页面。
+    -   安装了云原生AI运维控制台组件（ack-ai-dashboard）后，您可在页面左上方看到运维控制台访问地址，通过该地址可以访问运维控制台页面。
 
-## 安装配置AI-Dashboard控制台
+## 安装配置云原生AI运维控制台
 
-1.  在云原生AI套件一键部署页面选中**AI-Dashboard控制台**时，会弹出下图所示的**提示**对话框。
+1.  在云原生AI套件一键部署页面交互方式部分选中**运维控制台**时，会弹出下图所示的**提示**对话框。
 
-    ![K-AI-2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8804787161/p237448.png)
+    ![K-AI-2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9671859161/p237448.png)
 
     **说明：**
 
-    -   AI-Dashboard控制台使用**公网域名**访问时，请注意控制访问范围。
-    -   AI-Dashboard控制台选择**私网**网络类型访问时，在**提示**对话框中选中**私网IP**。
+    -   云原生AI运维控制台使用**公网域名**访问时，请注意控制访问范围。
+    -   云原生AI运维控制台选择**私网**网络类型访问时，在**提示**对话框中选中**私网IP**。
 2.  单击**提示**对话框中的授权策略链接。
 
     1.  在**RAM角色管理**页面中，选择**权限管理**页签，单击目标授权策略名称。
@@ -69,7 +69,7 @@ keyword: [安装云原生AI套件, 配置AI-Dashboard]
 
 3.  在一键部署**云原生AI套件**页面选中**监控组件**。
 
-    ![K-AI-3](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1931772161/p237487.png)
+    ![K-AI-3](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0771859161/p237487.png)
 
 4.  单击**部署云原生AI套件**。
 
