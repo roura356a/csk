@@ -1,26 +1,28 @@
 ---
-keyword: [cGPU组件, 安装GPU隔离模块, kubectl-inspect-cgpu]
+keyword: [共享GPU组件, 安装GPU隔离模块, kubectl-inspect-cgpu]
 ---
 
 # 安装共享GPU组件
 
-目前阿里云ACK提供了GPU共享调度能力，服务于使用共享单GPU的模型预测场景，同时也可以通过Nvidia驱动在内核态的控制保障GPU显存的隔离。本文介绍如何在GPU节点上安装GPU隔离模块及安装GPU分配查询工具，实现GPU的调度和隔离能力。
+目前阿里云ACK提供了GPU共享调度能力，服务于使用共享单GPU的模型预测场景，同时也可以通过NVIDIA驱动在内核态的控制保障GPU显存的隔离。本文介绍如何在GPU节点上安装GPU隔离模块及安装GPU分配查询工具，实现GPU的共享和隔离能力。
 
--   [创建GPU集群](/intl.zh-CN/Kubernetes集群用户指南/调度/GPU调度/Kubernetes GPU集群支持GPU调度.md)
+-   [创建GPU集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU资源调度/使用Kubernetes默认GPU调度.md)
 
-**说明：** 支持专有版GPU集群和ACK Pro版集群，不支持托管版GPU集群。
+**说明：**
 
--   [通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)
+-   本文所描述的组件，仅支持专有版GPU集群，不支持托管版GPU集群。
+-   如果您想在ACK Pro版集群安装共享GPU组件，请参考[安装并使用共享GPU组件和资源工具](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/GPU资源调度/共享GPU专业版/安装并使用共享GPU组件和资源工具.md)。
+-   [t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)
 
 ## 使用须知
 
 |配置|支持版本|
 |--|----|
-|Kubernetes|1.16.06|
+|Kubernetes|1.12.6及其以上，仅支持专有版集群|
 |Helm版本|3.0及以上版本|
-|Nvidia驱动版本|418.87.01及以上版本|
+|NVIDIA驱动版本|418.87.01及以上版本|
 |Docker版本|19.03.5|
-|操作系统|CentOS 7.6、CentOS 7.7、Ubuntu 16.04和Ubuntu 18.04|
+|操作系统|CentOS 7.x、Alibaba Cloud Linux 2.x、Ubuntu 16.04和Ubuntu 18.04|
 |支持显卡|Tesla P4、Tesla P100、 Tesla T4和Tesla v100|
 
 ## 步骤一：为带有GPU设备的节点打标签
@@ -41,8 +43,8 @@ keyword: [cGPU组件, 安装GPU隔离模块, kubectl-inspect-cgpu]
 
     **说明：**
 
-    -   您可以设置**名称**为**cgpu**，**值**为**true**，使共享生效。
-    -   删除cgpu标签并不能关闭共享，您可以设置**名称**为**cgpu**，**值**为**false**，关闭共享。
+    -   您可以设置**名称**为**cgpu**，**值**为**true**，使节点共享GPU功能生效。
+    -   删除cgpu标签并不能关闭共享，您可以设置**名称**为**cgpu**，**值**为**false**，关闭节点共享GPU功能。
 8.  单击**确定**。
 
 
@@ -54,7 +56,7 @@ keyword: [cGPU组件, 安装GPU隔离模块, kubectl-inspect-cgpu]
 
 3.  在应用目录页面，搜索ack-cgpu，然后单击ack-cgpu。
 
-4.  在应用目录-ack-cgpu页面右侧的**创建**面板中，选中目标集群，然后单击**创建**。
+4.  在应用目录 - ack-cgpu页面右侧的**创建**面板中，选中目标集群，然后单击**创建**。
 
     您无需设置**命名空间**和**发布名称**，系统显示默认值。
 
