@@ -1,30 +1,38 @@
 # OpenAckService
 
-Activates Container Service for Kubernetes \(ACK\).
+Activates a type of Container Service for Kubernetes \(ACK\) service.
 
 ## Debugging
 
 [OpenAPI Explorer automatically calculates the signature value. For your convenience, we recommend that you call this operation in OpenAPI Explorer. OpenAPI Explorer dynamically generates the sample code of the operation for different SDKs.](https://api.aliyun.com/#product=CS&api=OpenAckService&type=ROA&version=2015-12-15)
 
-## Request headers
-
-This operation uses only common request headers. For more information, see [Common request parameters](~~167755~~).
-
-## Request syntax
+## Request structure
 
 ```
-POST /service/open 
+POST /service/open?type=String HTTP/1.1 
+Content-Type:application/json
 ```
 
 ## Request parameters
 
-|Parameter|Type|Position|Required|Example|Description|
-|---------|----|--------|--------|-------|-----------|
-|type|String|Query|No|propayasgo|The type of ACK cluster that you want to enable. Valid values:
+|Parameter|Type|Required|Example|Description|
+|---------|----|--------|-------|-----------|
+|type|String|No|propayasgo|The type of ACK service that you want to activate. Valid values:
 
- -   `propayasgo`: professional managed Kubernetes clusters.
--   `edgepayasgo`: edge Kubernetes clusters.
--   `gspayasgo`: Kubernetes clusters for Alibaba Cloud Genomics Compute Service \(AGS\). |
+ -   `propayasgo`: professional managed Kubernetes service.
+-   `edgepayasgo`: edge Kubernetes service.
+-   `gspayasgo`: Kubernetes service for Alibaba Cloud Genomics Compute Service \(AGS\). |
+
+## Response structure
+
+```
+HTTP/1.1 200
+Content-Type:application/json
+{
+  "request_id" : "String",
+  "order_id" : "String"
+}
+```
 
 ## Response parameters
 
@@ -38,7 +46,8 @@ POST /service/open
 Sample requests
 
 ```
-POST /service/open? type=propayasgo
+POST /service/open?type=propayasgo HTTP/1.1 
+Content-Type:application/json
 ```
 
 Sample success responses
