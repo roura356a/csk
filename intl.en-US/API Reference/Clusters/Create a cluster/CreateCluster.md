@@ -1,6 +1,6 @@
 # CreateCluster
 
-Creates a dedicated Kubernetes cluster that supports sandboxed containers.
+Creates a serverless Kubernetes \(ASK\) cluster.
 
 ## Debugging
 
@@ -12,77 +12,31 @@ Creates a dedicated Kubernetes cluster that supports sandboxed containers.
 POST /clusters HTTP/1.1
 Content-Type:application/json
 {
+
+  "cluster_type" : "String",
+  "name" : "String",
+  "kubernetes_version" : "String",
+  "private_zone" : Boolean,
+  "region_id" : "String",
+  "endpoint_public_access" : Boolean,
+  "service_discovery_types" : [ "String" ],
+  "zone_id" : "String",
+  "tags" : [ {
+    "key" : "String",
+    "value" : "String"
+  } ],
+  "deletion_protection" : Boolean,
+  "service_cidr" : "String",
+  "timezone" : "String",
   "addons" : [ {
     "name" : "String",
     "config" : "String",
     "disabled" : Boolean
   } ],
-  "cloud_monitor_flags" : Boolean,
-  "cluster_type" : "String",
-  "container_cidr" : "String",
-  "cpu_policy" : "String",
-  "deletion_protection" : Boolean,
-  "disable_rollback" : Boolean,
-  "endpoint_public_access" : Boolean,
-  "is_enterprise_security_group" : Boolean,
-  "key_pair" : "String",
-  "kubernetes_version" : "String",
-  "login_password" : "String",
-  "master_auto_renew" : Boolean,
-  "master_auto_renew_period" : Long,
-  "master_count" : Long,
-  "master_vswitch_ids" : [ "String" ],
-  "master_instance_types" : [ "String" ],
-  "master_system_disk_category" : "String",
-  "master_system_disk_size" : Long,
-  "master_system_disk_snapshot_policy_id" : "String",
-  "master_instance_charge_type" : "String",
-  "master_period_unit" : "String",
-  "master_period" : Long,
-  "name" : "String",
-  "node_cidr_mask" : "String",
-  "node_port_range" : "String",
-  "num_of_nodes" : Long,
-  "pod_vswitch_ids" : [ "String" ],
-  "proxy_mode" : "String",
-  "region_id" : "String",
-  "runtime" : {
-    "name" : "String",
-    "version" : "String"
-  },
-  "service_cidr" : "String",
-  "security_group_id" : "String",
-  "snat_entry" : Boolean,
-  "ssh_flags" : Boolean,
-  "tags" : [ {
-    "key" : "String",
-    "value" : "String"
-  } ],
-  "taints" : [ {
-    "key" : "String",
-    "value" : "String",
-    "effect" : "String"
-  } ],
-  "timeout_mins" : Long,
-  "user_data" : "String",
+  "nat_gateway" : Boolean,
   "vpcid" : "String",
   "vswitch_ids" : [ "String" ],
-  "worker_auto_renew" : Boolean,
-  "worker_auto_renew_period" : Long,
-  "worker_data_disks" : [ {
-    "category" : "String",
-    "size" : Long,
-    "encrypted" : "String",
-    "auto_snapshot_policy_id" : "String"
-  } ],
-  "worker_vswitch_ids" : [ "String" ],
-  "worker_instance_types" : [ "String" ],
-  "worker_system_disk_category" : "String",
-  "worker_system_disk_size" : Long,
-  "worker_instance_charge_type" : "String",
-  "worker_period_unit" : "String",
-  "worker_period" : Long,
-  "zone_id" : "String"
+  "security_group_id" : "String"
 }
 ```
 
@@ -90,185 +44,89 @@ Content-Type:application/json
 
 |Parameter|Type|Required|Example|Description|
 |---------|----|--------|-------|-----------|
-|addons|Array|Yes|\[\{"name": "terway-eniip","config": ""\}, \{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\",\\"sls\_project\_name\\":\\"your\_sls\_project\_name\\"\}"\}, \{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\]|The list of add-ons to be installed.-   Parameter description:
-    -   `name`: This parameter is required.
-    -   `config`: This parameter is optional. If this parameter is left empty, it indicates that no configurations are required.
-    -   `disabled`: specifies whether to disable automatic installation. This parameter is optional.
--   Network plug-in: Required. Supported network plug-ins are Flannel and Terway. Select one of the plug-ins for the cluster.
-    -   Specify the Flannel plug-in in the following format: `[{"name":"flannel","config":""}]`.
-    -   Specify the Terway plug-in in the following format: `[{"name": "terway-eniip","config": "\"IPVlan\":\"false\""}]`.
--   Volume plug-in: Required. Supported volume plug-ins are CSI and FlexVolume.
-    -   Specify the `CSI` plug-in in the following format: `[{"name":"csi-plugin","config": ""},{"name": "csi-provisioner","config": ""}]`.
-    -   Specify the `FlexVolume` plug-in in the following format: `[{"name": "flexvolume","config": ""}]`.
--   Log Service component: Optional.
-
-**Note:** If Log Service is disabled, you cannot use the cluster auditing feature.
-
-    -   To use an existing Log Service project, specify the component in the following format: `[{"name": "logtail-ds","config": "{"IngressDashboardEnabled":"true","sls_project_name":"your_sls_project_name"}"}]`.
-    -   To create a Log Service project, specify the component in the following format: `[{"name": "logtail-ds","config": "{"IngressDashboardEnabled":"true"}"}]`.
--   Ingress controller: Optional. By default, the nginx-ingress-controller component is installed.
-    -   To install nginx-ingress-controller and enable Internet access, specify the component in the following format: `[{"name":"nginx-ingress-controller","config":"{"IngressSlbNetworkType":"internet"}"}]`.
-    -   If you do not want to install nginx-ingress-controller, specify the component in the following format: `[{"name": "nginx-ingress-controller","config": "","disabled": true}]`.
--   Event center: Optional. By default, the event center feature is enabled. The event center feature allows you to log Kubernetes events, query events, and raise alerts. Logstores that are associated with the Kubernetes event center are free of charge for the first 90 days. For more information, see [Create and use a Kubernetes event center](/intl.en-US/Application/K8s Event Center/Create and use a Kubernetes event center.md).
-
-Enable the ack-node-problem-detector component in the following format: `[{"name":"ack-node-problem-detector","config":"{\"sls_project_name\":\" your_sls_project_name\"}"}]`. |
-|cloud\_monitor\_flags|Boolean|No|true|Specifies whether to install the CloudMonitor agent. Valid values:-   `true`: installs the CloudMonitor agent.
--   `false`: does not install the CloudMonitor agent.
-
-Default value: `false`. |
-|cluster\_type|String|Yes|Kubernetes|The type of cluster. Set the value to `Kubernetes` if you want to create a dedicated Kubernetes cluster that supports sandboxed containers.|
-|container\_cidr|String|No|172.20.0.0/16|The CIDR block of pods. This CIDR block cannot overlap with the CIDR block of the virtual private cloud \(VPC\) in which the cluster is deployed. If the VPC is automatically created by the system, the CIDR block of pods is set to 172.16.0.0/16 by default. This parameter is required if the cluster uses the Flannel plug-in.|
-|cpu\_policy|String|No|none|The CPU policy. The following policies are supported if the cluster version is 1.12.6 or later.-   `static`: allows pods with specific resource characteristics on the node to be granted with enhanced CPU affinity and exclusivity.
--   `none`: This policy indicates that the default CPU affinity is used.
-
-Default value: `none`. |
-|deletion\_protection|Boolean|No|true|Specifies whether to enable deletion protection for the cluster. After deletion protection is enabled, the cluster cannot be deleted in the console or by calling API operations. Valid values:-   `true`: enables deletion protection for the cluster.
--   `false`: disables deletion protection for the cluster.
-
-Default value: `false`. |
-|disable\_rollback|Boolean|No|true|Specifies whether to perform a rollback when the cluster fails to be created. Valid values:-   `true`: performs a rollback when the cluster fails to be created.
--   `false`: does not perform a rollback when the cluster fails to be created.
-
-Default value: `false`. |
-|endpoint\_public\_access|Boolean|No|true|Specifies whether to enable Internet access for the API server. Valid values:-   `true`: enables Internet access for the API server.
--   `false`: disables Internet access for the API server. The API server is accessible only within the internal network.
-
-Default value: `true`. |
-|is\_enterprise\_security\_group|Boolean|No|true|Specifies whether to create an advanced security group. This parameter takes effect only if `security_group_id` is left empty. You must specify an advanced security group for a cluster that has Terway installed. -   `true`: creates an advanced security group.
--   `false`: does not create an advanced security group.
-
-Default value: `false`.|
-|key\_pair|String|Yes|secrity-key|The name of the key pair. You must set this parameter or the `login_password` parameter.|
-|kubernetes\_version|String|No|1.16.9-aliyun.1|The version of the cluster. The cluster versions provided by Container Service for Kubernetes \(ACK\) are consistent with the open source versions. We recommend that you select the latest version. If you do not specify this parameter, the latest version is used. You can create clusters of the latest two versions in the ACK console. You can create ACK clusters of earlier versions by calling API operations. For more information about the Kubernetes versions supported by ACK, see [Release notes](/intl.en-US/Release notes/Kubernetes release notes/Release notes.md).|
-|login\_password|String|Yes|Hello@1234|The password for Secure Shell \(SSH\) logon. You must set this parameter or the `key_pair` parameter. The password must be 8 to 30 characters in length, and must contain at least three of the following character types: uppercase letters, lowercase letters, digits, and special characters.|
-|master\_auto\_renew|Boolean|No|true|Specifies whether to enable auto-renewal for master nodes. This parameter takes effect only if `master_instance_charge_type` is set to `PrePaid`. Valid values:
-
--   `true`: enables auto-renewal.
--   `false`: disables auto-renewal.
-
-Default value: `true`. |
-|master\_auto\_renew\_period|Long|No|1|The cycle of auto-renewal. This parameter takes effect and is required only if the subscription billing method is selected for master nodes.
-
-Valid values: 1, 2, 3, 6, and 12.
-
-Default value: 1. |
-|master\_count|Long|No|3|The number of master nodes to be created. Valid values: 3 and 5.
-
-Default value: 3. |
-|master\_instance\_charge\_type|String|No|PrePaid|The billing method of master nodes. Valid values:
-
--   `PrePaid`: subscription.
--   `PostPaid`: pay-as-you-go.
-
-The default value is `PostPaid`. |
-|master\_instance\_types|Array of String|No|ecs.n4.xlarge|The instance types of master nodes.|
-|master\_period|Long|No|1|The subscription duration of master nodes. This parameter takes effect and is required only if `master_instance_charge_type` is set to `PrePaid`.
-
-Valid values: 1, 2, 3, 6, 12, 24, 36, 48, and 60.
-
-Default value: 1. |
-|master\_period\_unit|String|No|Month|The billing cycle of master nodes. This parameter is required if master\_instance\_charge\_type is set to `PrePaid`.
-
-Set the value to `Month`. |
-|master\_system\_disk\_category|String|No|cloud\_ssd|The type of system disk that is specified for master nodes. Valid values:
-
--   `cloud_efficiency`: ultra disk.
--   `cloud_ssd`: standard SSD.
-
-Default value: `cloud_ssd`. |
-|master\_system\_disk\_size|Long|No|120|The size of the system disk that is specified for master nodes. Valid values: 40 to 500. Unit: GiB.
-
-Default value: 120. |
-|master\_vswitch\_ids|Array of String|No|vsw-2ze3ds0mdip0hdz8i\*\*\*\*|The IDs of the vSwitches that are specified for master nodes.|
+|cluster\_type|String|Yes|Ask|The type of cluster. Set the value to `Ask` to create an ASK cluster. |
 |name|String|Yes|cluster-demo|The name of the cluster.
 
 The name must be 1 to 63 characters in length, and can contain digits, letters, and hyphens \(-\). It cannot start with a hyphen. |
-|node\_cidr\_mask|String|No|25|The maximum number of IP addresses that can be assigned to each node. This number is determined by the specified pod CIDR block. This parameter takes effect only if the cluster uses the Flannel plug-in.
+|kubernetes\_version|String|No|1.16.9-aliyun.1|The version of the cluster. The cluster versions provided by Container Service for Kubernetes \(ACK\) are consistent with the open source versions. We recommend that you select the latest version. If you do not specify this parameter, the latest version is used.
 
-Default value: 25. |
-|node\_port\_range|String|No|30000~32767|The node port range. Valid values: 30000 to 65535. |
-|num\_of\_nodes|Long|Yes|3|The number of worker nodes to be created. Valid values: 0 to 100. |
-|pod\_vswitch\_ids|Array of String|No|vsw-2ze97jwri7cei0mpw\*\*\*\*|The list of pod vSwitches. **Note:** The `pod_vswitch_ids` parameter is required when the Terway network plug-in is selected for the cluster.
+You can create clusters of the latest two versions in the ACK console. You can create ACK clusters of earlier versions by calling API operations. For more information about the Kubernetes versions supported by ACK, see [Release notes](/intl.en-US/Release notes/Kubernetes release notes/Release notes.md). |
+|private\_zone|Boolean|No|false|Specifies whether to enable Alibaba Cloud DNS PrivateZone for Service discovery. Valid values:-   `true`: enables Alibaba Cloud DNS PrivateZone for Service discovery.
+-   `false`: disables Alibaba Cloud DNS PrivateZone for Service discovery.
 
-For each vSwitch that is allocated to nodes, you must specify at least one pod vSwitch in the same zone. The pod vSwitches cannot be the same as the node `vSwitches`.|
-|proxy\_mode|String|No|ipvs|The kube-proxy mode. Valid values: `iptables` and `ipvs`. Default value: `ipvs`. |
+For more information, see [Use the service discovery feature based on Alibaba Cloud DNS PrivateZone in ASK clusters](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Serverless cluster best practices/Use the service discovery feature based on Alibaba Cloud DNS PrivateZone in ASK clusters.md).|
 |region\_id|String|Yes|cn-beijing|The ID of the region where you want to deploy the cluster.|
-|runtime|Object|Yes| |The container runtime. **Note:** This parameter is required. |
-|name|Object|Yes|Sandboxed-Container.runv|The version of the container runtime. The name of the container runtime. Valid values:-   `Sandboxed-Container.runv`: Sandboxed-Container.
--   `docker`: Docker.
+|endpoint\_public\_access|Boolean|No|true|Specifies whether to enable Internet access for the API server. Valid values:
 
-Default value: `docker`.
+-   `true`: enables Internet access for the API server.
+-   `false`: disables Internet access for the API server. The API server is accessible only within the internal network.
 
-**Note:** Set the value to `Sandboxed-Container.runv` if you want to create a cluster that supports sandboxed containers. |
-|version|Object|Yes|2.1.0|The version of the container runtime. By default, the latest version is used. For more information about the release notes on Sandboxed-Container, see [Sandboxed-Container release notes](/intl.en-US/Release notes/Release notes for Runtime/Sandboxed-Container release notes.md).|
-|security\_group\_id|String|No|sg-bp1bdue0qc1g7k\*\*\*\*|The ID of the existing security group that is specified for the cluster. You must set this parameter or the `is_enterprise_security_group` parameter. Nodes in the cluster are automatically added to the specified security group.|
-|service\_cidr|String|Yes|172.21.0.0/20|The CIDR block of Services. This CIDR block cannot overlap with the CIDR block of pods or the CIDR block of the VPC in which the cluster is deployed. If the VPC is automatically created by the system, the CIDR block of Services is set to 172.19.0.0/20 by default.|
-|snat\_entry|Boolean|No|true|Specifies whether to configure Source Network Address Translation \(SNAT\) rules for the VPC where your cluster is deployed.-   If the VPC supports Internet access, set the value to `false`.
--   If the VPC does not support Internet access, valid values are:
-    -   `true`: configures SNAT rules. This enables Internet access for the cluster.
-    -   `false`: does not configure SNAT rules. In this case, the cluster cannot access the Internet.
+Default value: `true`. |
+|service\_discovery\_types|Array of String|No|PrivateZone|Specifies the type of Service discovery in `ASK` clusters.
 
-If your applications deployed in the cluster need to access the Internet, we recommend that you set the value to `true`.
+-   `CoreDNS`: a Kubernetes-native standard Service discovery component. You must provision pods to use the Domain Name System \(DNS\) resolution service. By default, two elastic container instances are used. The specification of each instance is 0.25 cores and 512 MiB of memory.
+-   `PrivateZone`: a DNS resolution service provided by Alibaba Cloud. Alibaba Cloud DNS PrivateZone must be activated before you can use it for Service discovery.
 
-Default value: `false`. |
-|ssh\_flags|Boolean|No|true|Specifies whether to enable SSH logon over the Internet. Valid values:-   `true`: enables SSH logon over the Internet.
--   `false`: disables SSH logon over the Internet.
+By default, this parameter is not specified. |
+|zone\_id|String|No|cn-beiji\*\*\*\*|The ID of the zone to which the cluster belongs.
 
-Default value: `false`.|
-|tags|Array|No| |The labels to be added to the cluster.|
-|key|String|No|env|The key of a label.|
-|value|String|No|prod|The value of a label.|
-|taints|Array|No| |The taints to be added to nodes. Taints are added to nodes to prevent pods from being scheduled to inappropriate nodes. However, toleration rules allow pods to be scheduled to nodes with matching taints. For more information, see [taint-and-toleration](https://kubernetes.io/zh/docs/concepts/scheduling-eviction/taint-and-toleration/).|
-|effect|String|No|NoSchedule|The scheduling policy. Valid values:-   NoSchedule: A pod cannot be scheduled to a node with taints.
--   NoExecute: If a taint is added to a node, all pods that do not tolerate the taint are immediately evicted from the node.
--   PreferNoSchedule: a soft version of NoSchedule. The system attempts not to schedule a pod to a node with taints. |
-|key|String|No|disk\_type|The key of a taint.|
-|value|String|No|sshd|The value of a taint.|
-|timeout\_mins|Long|No|60|The timeout period of cluster creation. Default value: 60. |
-|user\_data|String|No|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFD\*\*\*\*|The user-defined data. For more information, see [Prepare user data](/intl.en-US/Instance/Manage instances/User data/Prepare user data.md).|
-|vpcid|String|Yes|vpc-2zeik9h3ahvv2zz95\*\*\*\*|The ID of the VPC where the cluster is deployed.|
-|vswitch\_ids|Array of String|Yes|vsw-2ze48rkq464rsdts1\*\*\*\*"|The IDs of vSwitches.|
-|worker\_auto\_renew|Boolean|No|true|Specifies whether to enable auto-renewal for worker nodes. This parameter takes effect only if `worker_instance_charge_type` is set to `PrePaid`. Valid values:-   true: enables auto-renewal.
--   false: disables auto-renewal.
+**Note:** If you do not set `vpc_id` or `vswitch_ids`, you must set the `zone_id` parameter. |
+|tags|Array of [tag](/intl.en-US/API Reference/Commonly used parameters.md)|No|\[\{"key": "env", "value": "prod"\}\]|The labels of the cluster. A label consists of the following parts: -   `key`: the key of the label.
+-   `value`: the value of the label. |
+|deletion\_protection|Boolean|No|true|Specifies whether to enable deletion protection for the cluster. After deletion protection is enabled, the cluster cannot be deleted in the ACK console or by calling API operations. Valid values:
 
-Default value: true.|
-|worker\_auto\_renew\_period|Long|No|1|The cycle of auto-renewal. This parameter takes effect and is required only if the subscription billing method is selected for worker nodes. Valid values: 1, 2, 3, 6, and 12.|
-|worker\_data\_disks|Array|Yes| |The configurations of the data disks that are mounted to worker nodes. Each configuration includes disk type and disk size.|
-|auto\_snapshot\_policy\_id|String|No|sp-bp14j6w7ss6ozz\*\*\*\*|The ID of the automatic snapshot policy.|
-|category|String|No|cloud\_ssd|The type of data disk that is mounted to worker nodes. Valid values:-   `cloud_efficiency`: ultra disk.
--   `cloud_ssd`: standard SSD.
--   `cloud`: basic disk.
-
-Default value: `cloud_efficiency`.|
-|encrypted|String|No|false|Specifies whether to encrypt the data disk. Valid values:-   `true`: encrypts the data disk.
--   `false`: does not encrypt the data disk.
+-   `true`: enables deletion protection for the cluster.
+-   `false`: disables deletion protection for the cluster.
 
 Default value: `false`. |
-|size|String|Yes|200|The size of the data disk. Unit: GiB. Valid values:-   cloud\_efficiency: 20 to 32768.
--   cloud\_ssd: 20 to 32768.
--   cloud: 5 to 2000.
+|service\_cidr|String|Yes|172.21.0.0/20|The CIDR block of Services. Valid values: 10.0.0.0/16-24, 172.16-31.0.0/16-24, and 192.168.0.0/16-24.
 
-**Note:** You must mount at least one data disk to nodes that run sandboxed containers. The data disk must be at least 200 GiB in size. |
-|worker\_instance\_charge\_type|String|Yes|PrePaid|The billing method of worker nodes. Valid values:-   `PrePaid`: subscription.
--   `PostPaid`: pay-as-you-go.
+The CIDR block of Services cannot overlap with that of the virtual private cloud \(VPC\) where the cluster is deployed. The CIDR block of the VPC is 10.1.0.0/21 in this example. In addition, the CIDR block of Services cannot overlap with the CIDR blocks of existing clusters in the VPC. You cannot modify the Service CIDR block after the cluster is created.
 
-Default value: PostPaid.|
-|worker\_instance\_types|Array of String|Yes|ecs.ebmg5s.24xlarge|The instance types of worker nodes. **Note:** To create a cluster that supports sandboxed containers, you must select **ECS Bare Metal instances**. |
-|worker\_period|Long|No|1|The subscription duration of worker nodes. This parameter takes effect and is required only if `worker_instance_charge_type` is set to `PrePaid`. Valid values: 1, 2, 3, 6, 12, 24, 36, 48, and 60. Default value: 1. |
-|worker\_period\_unit|String|No|Month|The billing cycle of worker nodes. This parameter is required if worker\_instance\_charge\_type is set to `PrePaid`. Set the value to `Month`. Worker nodes are billed only on a monthly basis.|
-|worker\_system\_disk\_category|String|No|cloud\_efficiency|The type of system disk that is specified for worker nodes. Valid values:-   `cloud_efficiency`: ultra disk.
--   `cloud_ssd`: standard SSD.
+By default, the CIDR block of Services is set to 172.19.0.0/20. |
+|timezone|String|No|Asia/Shanghai|The time zone of the cluster. |
+|addons|Array of [addon](/intl.en-US/API Reference/Commonly used parameters.md)|No|\[\{"name":"logtail-ds","config":"\{"sls\_project\_name":"your\_sls\_project\_name"\}"\}\]|The add-ons to be installed for the cluster. Parameter description:
 
-Default value: `cloud_ssd`. |
-|worker\_system\_disk\_size|Long|No|200|The size of the system disk that is specified for worker nodes. Unit: GiB.
+-   `name`: the name of the add-on. This parameter is required.
+-   `config`: This parameter is optional. If this parameter is left empty, it indicates that no configurations are required.
+-   `disabled`: specifies whether to disable automatic installation. This parameter is optional.
 
-Valid values: 40 to 500.
+**Network plug-in**: Required. Supported network plug-ins are Flannel and Terway. Select one of the plug-ins for the cluster.
 
-The value of this parameter must be at least 40 and greater than or equal to the size of the image.
+-   Specify the Flannel plug-in in the following format: \[\{"name":"flannel","config":""\}\].
+-   Specify the Terway plug-in in the following format: \[\{"name": "terway-eniip","config": ""\}\].
 
-Default value: `120`. |
-|worker\_vswitch\_ids|Array of String|No|vsw-2ze3ds0mdip0hdz8i\*\*\*\*|The list of vSwitches that are specified for nodes. Each node is allocated a vSwitch.|
-|zone\_id|String|No|cn-beijing-b|The ID of the zone to which the cluster belongs.|
+**Volume plug-in**: Required. Supported volume plug-ins are `CSI` and `FlexVolume`.
+
+-   Specify the `CSI` plug-in in the following format: \[\{"name":"csi-plugin","config": ""\},\{"name": "csi-provisioner","config": ""\}\].
+-   Specify the `FlexVolume plug-in` in the following format: \[\{"name": "flexvolume","config": ""\}\].
+
+**Log Service component**: Optional.
+
+**Note:** If Log Service is disabled, you cannot use the cluster auditing feature.
+
+-   To use an existing Log Service project, specify the component in the following format: \[\{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\",\\"sls\_project\_name\\":\\"your\_sls\_project\_name\\"\}"\}\].
+-   To create a Log Service project, specify the component in the following format: \[\{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\"\}"\}\].
+
+**Ingress controller**: Optional. By default, the nginx-ingress-controller component is installed for dedicated Kubernetes clusters.
+
+-   To install nginx-ingress-controller and enable Internet access, specify the component in the following format: \[\{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\].
+-   If you do not want to install nginx-ingress-controller, specify the component in the following format: \[\{"name": "nginx-ingress-controller","config": "","disabled": true\}\].
+
+**Event center**: Optional. By default, the event center feature is enabled. The event center feature allows you to log Kubernetes events, query events, and raise alerts. Logstores that are associated with the Kubernetes event center are free of charge for the first 90 days. For more information, see [Create and use a Kubernetes event center](/intl.en-US/Application/K8s Event Center/Create and use a Kubernetes event center.md).
+
+Enable the ack-node-problem-detector component in the following format: \[\{"name":"ack-node-problem-detector","config":"\{\\"sls\_project\_name\\":\\"
+
+your\_sls\_project\_name\\"\}"\}\]. |
+|nat\_gateway|Boolean|No|true|Specifies whether to create a Network Address Translation \(NAT\) gateway and configure Source Network Address Translation \(SNAT\) rules when you create the ASK cluster. Valid values:
+
+-   `true`: automatically creates a NAT gateway and configures SNAT rules. This enables Internet access for the VPC where the cluster is deployed.
+-   `false`: does not create a NAT gateway or configure SNAT rules. In this case, clusters in the VPC cannot access the Internet.
+
+Default value: `false`. |
+|vpcid|String|Yes|vpc-2zeik9h3ahvv2zz95\*\*\*\*|The VPC where the cluster is deployed. You must specify a VPC when you create the cluster. **Note:** The vSwitches specified by `vswitch_ids` must belong to the VPC that is specified by `vpcid`. |
+|vswitch\_ids|Array of String|Yes|\["vsw-2ze97jwri7cei0mpw\*\*\*\*"\]|The IDs of vSwitches. You can specify up to three vSwitches.|
+|security\_group\_id|String|No|sg-bp1bdue0qc1g7k\*\*\*\*|The ID of the existing security group that is specified for the cluster. You must set this parameter or the `is_enterprise_security_group` parameter. Nodes in the cluster are automatically added to the specified security group. |
 
 ## Response structure
 
@@ -286,223 +144,90 @@ Content-Type:application/json
 
 |Parameter|Type|Example|Description|
 |---------|----|-------|-----------|
-|cluster\_id|String|cb95aa626a47740afbf6aa099b650\*\*\*\*|The ID of the cluster.|
-|request\_id|String|687C5BAA-D103-4993-884B-C35E4314A1E1|The ID of the request.|
-|task\_id|String|T-5a54309c80282e39ea00002f|The ID of the task.|
+|cluster\_id|String|cb95aa626a47740afbf6aa099b650\*\*\*\*|The ID of the cluster. |
+|request\_id|String|687C5BAA-D103-4993-884B-C35E4314A1E1|The ID of the request. |
+|task\_id|String|T-5a54309c80282e39ea00002f|The ID of the task. |
 
-## Example 1: Create a dedicated Kubernetes cluster that supports sandboxed containers and uses the Flannel plug-in
-
-Sample requests
-
-```
-POST /clusters
-Common request headers
-{
-  "cluster_type": "Kubernetes",
-  "name": "webService",
-  "region_id": "cn-hangzhou",
-  "disable_rollback": true,
-  "timeout_mins": 60,
-  "kubernetes_version": "1.18.8-aliyun.1",
-  "snat_entry": true,
-  "endpoint_public_access": false,
-  "cloud_monitor_flags": true,
-  "deletion_protection": false,
-  "node_cidr_mask": "26",
-  "proxy_mode": "ipvs",
-  "timezone": "Asia/Shanghai",
-  "tags": [],
-  "addons": [{
-    "name": "flannel"
-  }, {
-    "name": "arms-prometheus"
-  }, {
-    "name": "csi-plugin"
-  }, {
-    "name": "csi-provisioner"
-  }, {
-    "name": "logtail-ds",
-    "config": "{\"IngressDashboardEnabled\":\"true\"}"
-  }, {
-    "name": "ack-node-problem-detector",
-    "config": "{\"sls_project_name\":\"\"}"
-  }, {
-    "name": "nginx-ingress-controller",
-    "config": "{\"IngressSlbNetworkType\":\"internet\"}"
-  }],
-  "node_port_range": "30000-32767",
-  "login_password": "Hello1234!",
-  "cpu_policy": "none",
-  "master_count": 3,
-  "master_vswitch_ids": ["vsw-bp1hl2o4i9z7sbmy*****", "vsw-bp1hl2o4i9z7sbmy*****", "vsw-bp1hl2o4i9z7sbmy*****"],
-  "master_instance_types": ["ecs.c6e.large", "ecs.c6e.large", "ecs.c6e.large"],
-  "master_system_disk_category": "cloud_essd",
-  "master_system_disk_size": 120,
-  "runtime": {
-    "name": "Sandboxed-Container.runv",
-    "version": "2.1.0"
-  },
-  "worker_instance_types": ["ecs.ebmc5s.24xlarge"],
-  "num_of_nodes": 1,
-  "worker_system_disk_category": "cloud_essd",
-  "worker_system_disk_size": 120,
-  "worker_data_disks": [{
-    "category": "cloud_efficiency",
-    "size": "200",
-    "encrypted": "false",
-    "auto_snapshot_policy_id": ""
-  }],
-  "vpcid": "vpc-bp1gxh70jnkl12vq*****",
-  "worker_vswitch_ids": ["vsw-bp1hl2o4i9z7sbmy*****"],
-  "is_enterprise_security_group": true,
-  "container_cidr": "172.23.0.0/16",
-  "service_cidr": "172.21.0.0/20"
-}
-```
-
-Sample success responses
-
-`XML` format
-
-```
-<cluster_id>cb95aa626a47740afbf6aa099b650****</cluster_id>
-<task_id>T-5a54309c80282e39ea00002f</task_id>
-<request_id>687C5BAA-D103-4993-884B-C35E4314A1E1</request_id>
-```
-
-`JSON` format
-
-```
-{
-    "cluster_id": "cb95aa626a47740afbf6aa099b650****",
-    "task_id": "T-5a54309c80282e39ea00002f",
-    "request_id": "687C5BAA-D103-4993-884B-C35E4314A1E1"
-}
-```
-
-## Example 2: Create a dedicated Kubernetes cluster that supports sandboxed containers and uses the Terway plug-in
-
-**Note:** `pod_vswitch_ids` is required if you create a cluster that uses the Terway plug-in.
+## Example 1: Create an ASK cluster in an automatically created VPC
 
 Sample requests
 
 ```
 POST /clusters HTTP/1.1
-Common request headers
+<Common request headers>
 {
-  "cluster_type": "Kubernetes",
-  "name": "webService",
-  "region_id": "cn-hangzhou",
-  "disable_rollback": true,
-  "timeout_mins": 60,
-  "kubernetes_version": "1.18.8-aliyun.1",
-  "snat_entry": true,
-  "endpoint_public_access": false,
-  "cloud_monitor_flags": true,
-  "deletion_protection": false,
-  "proxy_mode": "ipvs",
-  "timezone": "Asia/Shanghai",
-  "tags": [],
-  "addons": [{
-    "name": "terway-eniip",
-    "config": "{\"IPVlan\":\"false\",\"NetworkPolicy\":\"false\"}"
-  }, {
-    "name": "arms-prometheus"
-  }, {
-    "name": "csi-plugin"
-  }, {
-    "name": "csi-provisioner"
-  }, {
-    "name": "logtail-ds",
-    "config": "{\"IngressDashboardEnabled\":\"true\"}"
-  }, {
-    "name": "ack-node-problem-detector",
-    "config": "{\"sls_project_name\":\"\"}"
-  }, {
-    "name": "nginx-ingress-controller",
-    "config": "{\"IngressSlbNetworkType\":\"internet\"}"
-  }],
-  "node_port_range": "30000-32767",
-  "pod_vswitch_ids": ["vsw-bp1e5819t8dl8ulcrpgkm"],
-  "login_password": "Hello1234!",
-  "cpu_policy": "none",
-  "master_count": 3,
-  "master_vswitch_ids": ["vsw-bp1hl2o4i9z7sbmy*****", "vsw-bp1hl2o4i9z7sbmy*****", "vsw-bp1hl2o4i9z7sbmy*****"],
-  "master_instance_types": ["ecs.c6e.large", "ecs.c6e.large", "ecs.c6e.large"],
-  "master_system_disk_category": "cloud_essd",
-  "master_system_disk_size": 120,
-  "runtime": {
-    "name": "Sandboxed-Container.runv",
-    "version": "2.1.0"
-  },
-  "worker_instance_types": ["ecs.ebmc5s.24xlarge"],
-  "num_of_nodes": 1,
-  "worker_system_disk_category": "cloud_essd",
-  "worker_system_disk_size": 120,
-  "worker_data_disks": [{
-    "category": "cloud_efficiency",
-    "size": "200",
-    "encrypted": "false",
-    "auto_snapshot_policy_id": ""
-  }],
-  "vpcid": "vpc-bp1gxh70jnkl12vq27jg7",
-  "worker_vswitch_ids": ["vsw-bp1hl2o4i9z7sbmy*****"],
-  "is_enterprise_security_group": true,
-  "service_cidr": "172.21.0.0/20"
-}{
-  "cluster_type":"Kubernetes",
-  "name":"webService-terway",
-  "region_id":"cn-beijing",
-  "disable_rollback":true,
-  "timeout_mins":60,
-  "kubernetes_version":"1.14.8-aliyun.1",
-  "snat_entry":true,
-  "endpoint_public_access":true,
-  "ssh_flags":true,"cloud_monitor_flags":true,
-  "deletion_protection":false,
-  "proxy_mode":"ipvs",
-  "tags":[],
-  "addons":[{"name":"terway-eni"},{"name":"flexvolume"},{"name":"alicloud-disk-controller"},{"name":"logtail-ds","config":"{\"IngressDashboardEnabled\":\"false\"}"},{"name":"ack-node-problem-detector","config":"{\"sls_project_name\":\"\"}"},{"name":"nginx-ingress-controller","config":"{\"IngressSlbNetworkType\":\"internet\"}"}],
-  "os_type":"Linux",
-  "platform":"CentOS",
-  "node_port_range":"30000-32767",
-  "pod_vswitch_ids":["vsw-2zete8s4qocqg0mf6****"],
-  "key_pair":"sian-sshkey",
-  "cpu_policy":"none",
-  "master_count":3,
-  "master_vswitch_ids":["vsw-2zed90q9inwtuyfzd****","vsw-2zed90q9inwtuyfzd****","vsw-2zed90q9inwtuyfzd****"],
-  "master_instance_types":["ecs.i1.4xlarge","ecs.i1.4xlarge","ecs.i1.4xlarge"],
-  "master_system_disk_category":"cloud_ssd",
-  "master_system_disk_size":120,
-  "runtime":{"name":"docker","version":"18.09.2"},
-  "worker_instance_types":["ecs.i1.4xlarge"],
-  "num_of_nodes":1,
-  "worker_system_disk_category":"cloud_efficiency",
-  "worker_system_disk_size":120,
-  "vpcid":"vpc-2zecuu62b9zw7a7qnn2tv",
-  "worker_vswitch_ids":["vsw-2zed90q9inwtuyfzd****"],
-  "is_enterprise_security_group":true,
-  "service_cidr":"172.21.0.0/20"
+    "cluster_type":"Ask",
+    "name":"test-ask",
+    "region_id":"cn-hangzhou",
+    "endpoint_public_access":false,
+    "private_zone":false,
+    "nat_gateway":true,
+    "tags":[
+        {
+            "key":"k-aa",
+            "value":"v-aa"
+        }
+    ],
+    "deletion_protection":false,
+    "addons":[
+        {
+            "name":"logtail-ds"
+        }
+    ],
+    "zone_id":"cn-hangzhou-i"
 }
 ```
 
-Sample success responses
-
-`XML` format
-
-```
-<cluster_id>cb95aa626a47740afbf6aa099b650****</cluster_id>
-<task_id>T-5a54309c80282e39ea00002f</task_id>
-<request_id>687C5BAA-D103-4993-884B-C35E4314A1E1</request_id>
-```
-
-`JSON` format
+Sample responses
 
 ```
 {
     "cluster_id": "cb95aa626a47740afbf6aa099b650****",
+    "RequestId": "687C5BAA-D103-4993-884B-C35E4314A1E1",
     "task_id": "T-5a54309c80282e39ea00002f",
-    "request_id": "687C5BAA-D103-4993-884B-C35E4314A1E1"
+}
+```
+
+## Example 2: Create an ASK cluster in an existing VPC
+
+Sample requests
+
+```
+POST /clusters HTTP/1.1
+<Common request headers>
+{
+    "cluster_type":"Ask",
+    "name":"ask-cluster",
+    "region_id":"cn-shenzhen",
+    "endpoint_public_access":true,
+    "private_zone":true,
+    "tags":[
+        {
+            "key":"tier",
+            "value":"frontend"
+        }
+    ],
+    "deletion_protection":true,
+    "addons":[
+        {
+            "name":"logtail-ds"
+        }
+    ],
+    "vpc_id":"vpc-wz984yvbd6lck22z3****",
+    "vswitch_ids":[
+        "vsw-wz9uwxhawmtzg7u9h****"
+    ],
+    "security_group_id":"sg-wz9b86l4s7nthi1k****"
+}
+```
+
+Sample responses
+
+```
+{
+    "cluster_id": "cb95aa626a47740afbf6aa099b650****",
+    "RequestId": "687C5BAA-D103-4993-884B-C35E4314A1E1",
+    "task_id": "T-5a54309c80282e39ea00002f",
 }
 ```
 
