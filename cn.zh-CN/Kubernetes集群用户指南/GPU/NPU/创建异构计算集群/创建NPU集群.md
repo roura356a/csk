@@ -122,3 +122,7 @@ keyword: [创建NPU集群, NPU资源]
     -   `regsecret`必须和步骤[3](#step_u84_b04_t39)生成密钥的键名一致。
     -   `image`中的Docker仓库名称必须和`--docker-server`中的Docker仓库名一致。
 
+## 使用NPU集群
+
+通过Kubernetes管理ALI NPU设备，能够帮助您快速部署AI推理任务，监控NPU资源使用情况等。具体操作，请参见[Kubernetes集群支持NPU调度](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/NPU资源调度/Kubernetes集群支持NPU调度.md)。
+
