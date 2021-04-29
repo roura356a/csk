@@ -43,7 +43,7 @@ An ACK cluster is created. For more information, see [Create a managed Kubernete
 
     |Parameter|Description|
     |---------|-----------|
-    |||
+    | | |
     |Namespace|Select a namespace for the ConfigMap. A ConfigMap is a Kubernetes resource object and must be scoped to a namespace.|
     |Sample Template|You can select Custom from the drop-down list and configure the ConfigMap in YAML syntax. You can also select **Resource - ConfigMap** from the drop-down list. If you select Resource - ConfigMap, the ConfigMap is named aliyun-config and contains the following variable files: `game.properties` and `ui.properties`. You can modify the ConfigMap to meet your requirements.|
 
@@ -92,8 +92,6 @@ If you modify a ConfigMap, the applications that use this ConfigMap will be affe
 6.  In the **Edit** panel, modify the keys and values based on your requirements and click **OK**.
 
     **Note:** You can also modify the keys and values in the YAML file. On the **ConfigMap** page, click **Edit YAML** in the Actions column. In the **View in YAML** panel, modify the keys and values based on your requirements and click **OK**.
-
-
 
 
 1.  In the left-side navigation pane, click **Clusters**.
