@@ -137,7 +137,7 @@ ARMS allows you to create alerts for monitoring jobs. When alert conditions are 
 
 4.  Configure an alert rule.
 
-    1.  Log on to the[ARMS console](https://prometheus.console.aliyun.com/#/home).
+    1.  Log on to the [ARMS console](https://prometheus.console.aliyun.com/#/home).
 
     2.  In the left-side navigation pane, click **Prometheus Monitoring**. In the **K8s** column, click the cluster that you want to manage.
 
@@ -208,7 +208,7 @@ You can add annotations to pod configuration templates to define custom monitori
 
 7.  Configure custom performance metrics.
 
-    1.  Log on to the[ARMS console](https://prometheus.console.aliyun.com/#/home).
+    1.  Log on to the [ARMS console](https://prometheus.console.aliyun.com/#/home).
 
     2.  In the left-side navigation pane, click **Prometheus Monitoring**. Click the cluster that you want to manage in the **K8s** column.
 
