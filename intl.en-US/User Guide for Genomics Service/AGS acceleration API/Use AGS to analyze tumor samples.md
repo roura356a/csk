@@ -27,11 +27,6 @@ Based on normal samples with a given match, `mutect2` detects only somatic mutat
 
     ```
     ags remote run mutect2 \
-    ```
-
-    The following output is returned:
-
-    ```
     --region cn-shenzhen # region of oss, e.g. cn-shenzhen, cn-beijing and etc\
     --bucket my-test-shenzhen # Bucket name\
     --input-bam-tumor bam/HKU2_160660.bam #Tumor sample bam file\
@@ -42,9 +37,12 @@ Based on normal samples with a given match, `mutect2` detects only somatic mutat
     --reference [hg19|hg38|<reference path on OSS>] # hg19: it is hs37d5 version, GRCh37/hg19 include decoy contig, no support for UCSC hg19. hg38: GRCh38/hg38 include decoy
     ```
 
+    The following output is returned:
+
 -   Sample output:
 
 ```
+ags remote run mutect2 \
 --region cn-shenzhen \
 --bucket my-test-shenzhen \
 --input-bam-tumor bam/HKU2_160660.bam \
@@ -89,11 +87,6 @@ mutect2 performs analytics on individual samples, such as tumor samples or norma
 
     ```
     ags remote run mutect2 \
-    ```
-
-    The following output is returned:
-
-    ```
     --region cn-shenzhen # region of oss, e.g. cn-shenzhen, cn-beijing and etc\
     --bucket my-test-shenzhen # Bucket name\
     --input-bam-tumor bam/HKU2_160660.bam #Tumor/Normal sample bam file\
@@ -102,9 +95,12 @@ mutect2 performs analytics on individual samples, such as tumor samples or norma
     --reference [hg19|hg38|<reference path on OSS>] # hg19: it is hs37d5 version, GRCh37/hg19 include decoy contig, no support for UCSC hg19. hg38: GRCh38/hg38 include decoy
     ```
 
+    The following output is returned:
+
 -   Sample output:
 
     ```
+    ags remote run mutect2 \
     --region cn-shenzhen \
     --bucket my-test-shenzhen \
     --input-bam-tumor bam/HKU2_160660.bam \
