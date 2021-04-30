@@ -10,7 +10,7 @@ Cloud-native AI significantly improves the resource utilization of heterogeneous
 
 **Note:** Cloud-native AI supports two types of user role:
 
--   Administrators: responsible for building AI infrastructure and daily administration. For more information, see [Deploy Cloud-native AI Component Set](), [Manage users](), [Manage elastic quota groups](), and [Manage datasets]().
+-   Administrators: responsible for building AI infrastructure and daily administration. For more information, see [Deploy cloud-native AI component set](), [Manage users](), [Manage elastic quota groups](), and [Manage datasets]().
 -   Data scientists: use cloud-native AI to submit tasks. For more information, see [Use Arena to submit standalone TensorFlow training jobs](/intl.en-US/Solutions/Deep learning solution/Training/Use Arena to submit standalone TensorFlow training jobs.md), [Use Arena to submit distributed TensorFlow training jobs](/intl.en-US/Solutions/Deep learning solution/Training/Use Arena to submit distributed TensorFlow training jobs.md), [Use Arena to submit standalone PyTorch training jobs](/intl.en-US/Solutions/Deep learning solution/Training/Use Arena to submit standalone PyTorch training jobs.md), and [Use Arena to submit distributed PyTorch training jobs](/intl.en-US/Solutions/Deep learning solution/Training/Use Arena to submit distributed PyTorch training jobs.md).
 
 ## Heterogeneous resource efficiency optimization
