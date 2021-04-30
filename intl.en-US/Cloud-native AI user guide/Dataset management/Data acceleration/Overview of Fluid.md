@@ -22,7 +22,7 @@ Fluid provides features based on datasets, as shown in the following figure.
 
 -   Dataset: a set of logically related data that is used by computing engines. For example, Apache Spark uses datasets in big data scenarios and TensorFlow uses datasets in AI scenarios. Datasets enable intelligent applications and help produce the core values in various industries. Dataset management involves multiple aspects, including security, versions, and data acceleration.
 -   Runtime: the execution engine that implements security, version management, and data acceleration for datasets. Runtime also defines a series of lifecycle interfaces. These interfaces are used to manage and accelerate datasets.
--   JindoRuntime: the execution engine of JindoFS developed by the Alibaba Cloud Elastic MapReduce \(EMR\) team. JindoRuntime is based on C++ and provides dataset management and caching. JindoRuntime also supports Object Storage Service \(OSS\). Alibaba Cloud provides cloud service-level support for JindoFS. Fluid enables the observability, scalability, and portability of datasets by managing and scheduling JindoRuntime. For more information, see [Use JindoFS to accelerate access to OSS]() and [Use JindoFS to accelerate ResNet-50 model training]().
+-   JindoRuntime: the execution engine of JindoFS developed by the Alibaba Cloud Elastic MapReduce \(EMR\) team. JindoRuntime is based on C++ and provides dataset management and caching. JindoRuntime also supports Object Storage Service \(OSS\). Alibaba Cloud provides cloud service-level support for JindoFS. Fluid enables the observability, scalability, and portability of datasets by managing and scheduling JindoRuntime. For more information, see [Use JindoFS to accelerate access to OSS](/intl.en-US/Cloud-native AI user guide/Dataset management/Data acceleration/Use JindoFS to accelerate access to OSS.md) and [Use JindoFS to accelerate ResNet-50 model training](/intl.en-US/Cloud-native AI user guide/Dataset management/Data acceleration/Use JindoFS to accelerate ResNet-50 model training.md).
 -   AlluxioRuntime: the execution engine of open source [Alluxio](https://www.alluxio.org/). AlluxioRuntime provides dataset management and caching. AlluxioRuntime supports persistent volume claims \(PVCs\), Ceph, and Cloud Parallel File System \(CPFS\) acceleration. Therefore, you can use AlluxioRuntime in hybrid cloud scenarios. Alluxio is an open source project. Alibaba Cloud will optimize the stability and performance of data caching based on the releases of Alluxio. However, the optimization may have some delays. Fluid enables the observability, scalability, and portability of datasets by managing and scheduling AlluxioRuntime. For more information, see [Fluid Documentation](https://github.com/fluid-cloudnative/fluid/blob/master/docs/zh/TOC.md).
 
 |Feature|Alluxio|Jindo|
@@ -35,7 +35,7 @@ Fluid provides features based on datasets, as shown in the following figure.
 **Related topics**  
 
 
-[Use JindoFS to accelerate access to OSS]()
+[Use JindoFS to accelerate access to OSS](/intl.en-US/Cloud-native AI user guide/Dataset management/Data acceleration/Use JindoFS to accelerate access to OSS.md)
 
-[Use JindoFS to accelerate ResNet-50 model training]()
+[Use JindoFS to accelerate ResNet-50 model training](/intl.en-US/Cloud-native AI user guide/Dataset management/Data acceleration/Use JindoFS to accelerate ResNet-50 model training.md)
 
