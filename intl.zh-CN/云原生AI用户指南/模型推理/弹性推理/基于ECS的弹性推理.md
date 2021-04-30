@@ -224,6 +224,4 @@ keyword: [ECS, 弹性推理]
 
     可以看到扩容出来的Pod中，都运行在ECS实例上。其中既有按量付费实例，也有抢占式实例（Spot），且数量比例等于创建节点池时配置的比例。
 
-    ![ESS](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8356772161/p240489.png)
-
 
