@@ -8,6 +8,7 @@
 
 -   主账号需要授权容器服务账号使用AliyunCSManagedSecurityRole系统角色的权限。如果您使用的账号未授权，在创建Pro集群或修改已有Pro集群过程中开启Secret落盘加密时，系统会提示您进行安全系统角色授权。
 -   如果当前登录账号是子账号，请确保该子账号有AliyunKMSCryptoAdminAccess系统权限，授权流程请参考[为RAM用户授权](/cn.zh-CN/用户管理/为RAM用户授权.md)。
+-   阿里云密钥管理服务KMS（Key Management Service）对API调用（以万次调用为单位）和用户上传密钥的托管会收取一定费用。当您的Pro集群开启了Secret落盘加密特性后，kube-apiserver对Secret实例的读写操作均会调用KMS服务的加解密API，请务必保证您的账号内有足够的余额。当您欠费超过七天后，会影响整个集群的管控能力。关于KMS服务计费的详细说明，请参见[计费说明](/cn.zh-CN/产品计费/计费说明.md)。
 
 在Kubernetes集群中，我们通常使用[Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)密钥模型存储和管理业务应用涉及的敏感信息，比如应用密码、TLS证书、Docker镜像下载凭据等敏感信息。Kubernetes会将所有的这些Secrets密钥对象数据存储在集群对应的etcd中。
 
@@ -24,7 +25,7 @@
 
 3.  单击页面右上角的**创建集群**，在弹出的选择集群模板页面，选择Pro版集群，并单击**创建**。
 
-4.  在**ACK托管版**页签找到**Secret落盘加密**，选中**选择KMS密钥**，在下拉框中选择KMS密钥ID。创建ACK Pro集群的其他配置请参见[创建Kubernetes Pro版集群](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建Kubernetes Pro版集群.md)。
+4.  在**ACK托管版**页签找到**Secret落盘加密**，选中**选择KMS密钥**，在下拉框中选择KMS密钥ID。创建ACK Pro集群的其他配置请参见[创建ACK Pro版集群](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
 
     ![集群](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5295659951/p133261.png)
 
@@ -43,7 +44,7 @@
 
 4.  在集群详情页面单击**基本信息**页签，在**基本信息**区域中打开**Secret落盘加密**开关。
 
-    **说明：** 如果当前登录用户为子账号，请确保该子账号对该集群有RBAC的管理员或运维人员权限，授权流程请参考[配置子账号RBAC权限](/cn.zh-CN/Kubernetes集群用户指南/授权管理/配置子账号RBAC权限.md)。
+    **说明：** 如果当前登录用户为子账号，请确保该子账号对该集群有RBAC的管理员或运维人员权限，授权流程请参考[配置RAM用户RBAC权限](/cn.zh-CN/Kubernetes集群用户指南/授权/配置RAM用户RBAC权限.md)。
 
     当集群状态由**更新中**变为**运行中**时，说明该集群Secret落盘加密的特性已变更完成。
 
@@ -58,7 +59,7 @@
 
 4.  在集群详情页面单击**基本信息**页签，在**基本信息**区域中关闭**Secret落盘加密**开关。
 
-    **说明：** 如果当前登录用户为子账号，请确保该子账号对该集群有RBAC的管理员或运维人员权限，授权流程请参考[配置子账号RBAC权限](/cn.zh-CN/Kubernetes集群用户指南/授权管理/配置子账号RBAC权限.md)。
+    **说明：** 如果当前登录用户为子账号，请确保该子账号对该集群有RBAC的管理员或运维人员权限，授权流程请参考[配置RAM用户RBAC权限](/cn.zh-CN/Kubernetes集群用户指南/授权/配置RAM用户RBAC权限.md)。
 
     当集群状态由**更新中**变为**运行中**时，说明该集群Secret落盘加密的特性已变更完成。
 
