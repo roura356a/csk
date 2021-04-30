@@ -1,34 +1,34 @@
 ---
-keyword: [PMEM, non-volatile memory \(NVM\), Optane DIMMs, Intel Optane DC Persistent Memory \(Apache Pass - AEP\)]
+keyword: [PMEM, Non-Volatile Memory \(NVM\), Optane DIMMs, Intel Optane DC Persistent Memory \(Apache Pass - AEP\)]
 ---
 
 # Use AEP in ACK clusters
 
-Traditional memory and storage products have limits on density, performance, and costs. Persistent memory is type of storage product for high-performance, persistent, and in-memory storage. Apache Pass \(AEP\) is a persistent memory \(PMEM\) product developed by Intel. It integrates the cutting-edge memory and storage technologies. AEP expands memory capacity in a cost-efficient manner and enables low-latency access to persisted data. You can use AEP in clusters of Container Service for Kubernetes \(ACK\). This topic describes how to use AEP in ACK clusters and provides an example.
+Traditional memory and storage products have limits on density, performance, and cost. Persistent memory \(PMEM\) is a storage product that provides high-performance, persistent, and in-memory storage services. Apache Pass \(AEP\) is a PMEM product developed by Intel. It integrates cutting edge memory and storage technologies. AEP expands memory capacity in a cost-effective manner and enables low-latency access to persisted data. You can use AEP in Container Service for Kubernetes \(ACK\) clusters. This topic describes how to use AEP in ACK clusters by using an example.
 
 ## AEP overview
 
-In recent years, CPU technology has developed rapidly. The increase in computing frequency of single-core CPUs and the emergence of multi-core CPUs have made considerable contribution to the development of the computing capabilities of CPUs. However, storage media as data carriers have not kept up with the development of CPUs. Dynamic random-access memory \(DRAM\) provides high-speed reads and writes but loses data when power is off. In addition, DRAM does not apply to large-scale scenarios due to its high costs. Non-volatile memory \(such as SSDs and disks\) does not lose data when power is off. However, they cannot provide high-speed reads and writes as required. Therefore, the computing industry has been in research for a memory product that can meet the computing requirements of CPUs and avoid data loss when power is off.
+In recent years, CPU technology has rapidly developed. The increase in computing frequency of single-core CPUs and the emergence of multi-core CPUs have made a considerable contribution to the development of the computing capabilities of CPUs. However, storage media as data carriers have not kept up with the development of CPUs. Dynamic random-access memory \(DRAM\) provides high-speed reads and writes but loses data when power is off. In addition, DRAM does not apply to large-scale scenarios due to its high cost. NVM \(such as SSDs and disks\) does not lose data when power is off. However, they cannot provide high-speed reads and writes as required. Therefore, the computing industry has been in research for a memory product that can meet the computing requirements of CPUs and avoid data loss when power is off.
 
 The release of AEP indicates that PMEM is becoming a mature technology. PMEM products provide high-speed reads and writes that are almost the same as those by using memory. PMEM products are being used in data acceleration industries.
 
-The following figure shows the hierarchy of memory and storage media based on the costs, latency, and capacity. You can view the position of PMEM in the hierarchy.
+The following figure shows the hierarchy of memory and storage media based on the cost, latency, and capacity. You can view the position of PMEM in the hierarchy.
 
 ![AEP](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9236065061/p170018.png)
 
 ## How to use AEP in ACK
 
-You can use the CSI driver provided by Alibaba Cloud to manage the lifecycle of AEP devices in ACK clusters. This allows you to allocate, mount, and use AEP resources through declarative claims.
+You can use the Container Storage Interface \(CSI\) driver provided by Alibaba Cloud to manage the lifecycle of AEP devices in ACK clusters. This allows you to allocate, mount, and use AEP resources through declarative claims.
 
 You can use AEP in ACK clusters by using the following methods:
 
 -   **PMEP-LVM \(use AEP as non-intrusive block storage\)**
 
-    You can directly claim the AEP resources without modifying your applications. You can use Logical Volume Manager \(LVM\) to virtualize PMEM resources on a node into a volume group \(VG\). Then, you can create persistent volume claims \(PVCs\) of the required type and capacities. You can use AEP without modifying the following applications: serverless applications, low-latency and high-throughput data computing applications, and short continuous integration \(CI\)/continuous delivery \(CD\) period applications that require high-speed temporary storage. This allows you to improve the I/O throughput by 2 to 10 times.
+    You can directly claim the AEP resources without modifying your applications. You can use Logical Volume Manager \(LVM\) to virtualize PMEM resources on a node into volume groups \(VGs\). Then, you can create persistent volume claims \(PVCs\) of the required type and capacities. You can use AEP without modifying the following types of applications: serverless applications, low-latency and high-throughput data computing applications, and short-CI/CD period applications that require high-speed temporary storage. This allows you to improve the I/O throughput by 2 to 10 times.
 
 -   **PMEM-direct memory**
 
-    You can use PMEM as direct memory by making a certain number of modifications to the memory allocation functions. This allows you to access data in almost the same way as using dynamic random access memory \(DRAM\). This way, you can provision AEP resources as direct memory at TB-level while reducing 30% to 50% of the costs. This meets the requirements of in-memory databases such as Redis and SAP HANA in large memory and cost-efficiency.
+    You can use PMEM as direct memory by making a specific number of modifications to the memory allocation functions. This allows you to access data in almost the same way as using dynamic random access memory \(DRAM\). This way, you can provision AEP resources as direct memory at TB-level and reduce 30% to 50% of the cost. This meets the requirements of in-memory databases such as Redis and SAP HANA in terms of large memory and cost-effectiveness.
 
 
 **Note:**
@@ -55,15 +55,15 @@ To use AEP in ACK clusters, you must deploy the following components:
 
 When you deploy CSI-Plugin, take note of the following limits:
 
--   To enable automatic operations and maintenance \(O&M\) for AEP devices, you must add the `pmem.csi.alibabacloud.com` label to the node where AEP is used.
--   To use the PMEP-LVM method, you must add the `pmem.csi.alibabacloud.com: lvm` label to the node where AEP is used.
--   To use the PMEM-direct memory method, you must add the `pmem.csi.alibabacloud.com: direct` label to the node where AEP is used.
+-   To enable automatic operations and maintenance \(O&M\) for AEP devices, you must add the `pmem.csi.alibabacloud.com` label to the node that uses AEP.
+-   To use the PMEP-LVM method, you must add the `pmem.csi.alibabacloud.com: lvm` label to the node that uses AEP.
+-   To use the PMEM-direct memory method, you must add the `pmem.csi.alibabacloud.com: direct` label to the node that uses AEP.
 
 1.  Create an ACK cluster.
 
-    Create an ACK cluster that contains ECS instances of the PMEM type, for example, ecs.ebmre6p.26xlarge. For more information about how to create an ACK cluster, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+    Create an ACK cluster that contains ECS instances with AEP resources, for example, ecs.ebmre6p.26xlarge. For more information about how to create an ACK cluster, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 
-2.  Specify the type of the PMEM node.
+2.  Configure the node with AEP resources.
 
     To enable the CSI plug-in to function as expected, you must add the required label to the node.
 
@@ -73,7 +73,7 @@ When you deploy CSI-Plugin, take note of the following limits:
     pmem.csi.alibabacloud.com/type: direct
     ```
 
-    Or add the following label:
+    or add the following label:
 
     ```
     pmem.csi.alibabacloud.com/type: lvm
@@ -106,7 +106,7 @@ When you deploy CSI-Plugin, take note of the following limits:
           storageClassName: pmem-lvm
         ```
 
-        To schedule the PVC to an AEP node, add the following annotation to the PVC configurations: `annotations: volume.kubernetes.io/selected-node`.
+        To schedule the PVC to a specific AEP node, add the following annotation to the PVC configurations: `annotations: volume.kubernetes.io/selected-node`.
 
     2.  Deploy an application.
 
@@ -140,7 +140,7 @@ When you deploy CSI-Plugin, take note of the following limits:
                     claimName: pmem-lvm
         ```
 
-    3.  View the results.
+    3.  Check the result.
 
         ```
         kubectl get pvc 
@@ -172,7 +172,7 @@ When you deploy CSI-Plugin, take note of the following limits:
         /dev/mapper/pmemvgregion0-disk--334cb6fa--fabd--4687--96dc--0d2b15564822  10255636 36888  10202364   1% /data
         ```
 
-        The output shows that a block storage volume is created and mounted to the application pods.
+        The output shows that a block storage volume is created and mounted to the application pod.
 
 
 1.  **Use AEP as direct memory volumes**
@@ -195,7 +195,7 @@ When you deploy CSI-Plugin, take note of the following limits:
           storageClassName: pmem-direct
         ```
 
-        To schedule the PVC to an AEP node, add the following annotation to the PVC configurations: `annotations: volume.kubernetes.io/selected-node`.
+        To schedule the PVC to a node with AEP resources, add the following annotation to the PVC configurations: `annotations: volume.kubernetes.io/selected-node`.
 
     2.  Deploy an application.
 
@@ -229,7 +229,7 @@ When you deploy CSI-Plugin, take note of the following limits:
                     claimName: pmem-direct
         ```
 
-    3.  View the results.
+    3.  Check the result.
 
         ```
         kubectl get pvc pmem-direct
@@ -262,6 +262,6 @@ When you deploy CSI-Plugin, take note of the following limits:
         /dev/pmem0       9076344 36888   9023072   1% /data
         ```
 
-        The output shows that a PMEM volume is created and mounted to the application pods.
+        The output shows that a PMEM volume is created and mounted to the application pod.
 
 
