@@ -363,5 +363,3 @@ If you delete only the namespace of ARMS Prometheus, resource settings may be re
 
 [View monitoring dashboards]()
 
-[Configure a data collection rule for Prometheus Monitoring]()
-
