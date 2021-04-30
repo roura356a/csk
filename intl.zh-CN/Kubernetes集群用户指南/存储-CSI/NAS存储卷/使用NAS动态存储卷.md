@@ -1,18 +1,31 @@
 ---
-keyword: [NAS, 动态存储卷, 挂载]
+keyword: [NAS, 动态存储卷, 持久化存储, 共享存储]
 ---
 
 # 使用NAS动态存储卷
 
-阿里云Kubernetes CSI支持2种类型的NAS动态存储卷挂载：subpath方式和filesystem方式。
+阿里云Kubernetes CSI支持2种类型的NAS动态存储卷挂载：subpath方式和filesystem方式。本文介绍如何使用阿里云NAS动态存储卷，使用NAS动态存储卷如何实现持久化存储与共享存储。
 
-使用此方案，需要在集群中部署CSI驱动（Kubernetes集群默认已部署该驱动）。
+-   您已经创建好一个Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
+-   您已经创建一个动态NAS卷。请参见[管理文件系统]()。
+-   您已经创建NAS挂载点。请参见[管理挂载点]()。
 
-如果您没有部署CSI-Plugin，请参见[t1592079.md\#](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/安装与升级CSI组件.md)。
+    NAS挂载点需要和集群节点在同一个VPC内。
+
+
+## 使用场景
+
+-   对磁盘I/O要求较高的应用。
+-   读写性能相对于对象存储OSS高。
+-   可实现跨主机文件共享，例如可作为文件服务器。
 
 ## 注意事项
 
-在使用极速NAS文件系统时，配置动态存储卷StorageClass中的`path`需要以/share为父目录。例如，`xxxxxxx.cn-hangzhou.nas.aliyuncs.com:/share/subpath`表示Pod挂载的NAS文件系统子目录为`/share/subpath`。
+-   在使用极速NAS文件系统时，配置动态存储卷StorageClass中的`path`需要以/share为父目录。例如，`xxxxxxx.cn-hangzhou.nas.aliyuncs.com:/share/subpath`表示Pod挂载的NAS文件系统子目录为`/share/subpath`。
+-   NAS支持同时被多个Pod挂载，此时多个Pod可能同时修改相同数据，需要应用自行实现数据的同步。
+
+    **说明：** NAS存储的/目录不支持修改权限、属主和属组。
+
 
 ## subpath类型的NAS动态存储卷
 
@@ -47,7 +60,6 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         parameters:
           volumeAs: subpath
           server: "xxxxxxx.cn-hangzhou.nas.aliyuncs.com:/k8s/"
-          archiveOnDelete: "true"
         provisioner: nasplugin.csi.alibabacloud.com
         reclaimPolicy: Retain
         ```
@@ -66,108 +78,127 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         kubectl create -f alicloud-nas-subpath.yaml
         ```
 
-3.  创建PV、PVC，和Pod挂载NAS存储卷。
+3.  执行以下命令创建PVC。
 
-    创建Pod `nginx-1`和`nginx-2`共享NAS存储卷的同一个子目录，`pvc.yaml`、`nginx-1.yaml`、`nginx-2.yaml`文件内容如下。
+    1.  创建并复制以下内容到pvc.yaml文件中。
 
-    `pvc.yaml`
+        ```
+        kind: PersistentVolumeClaim
+        apiVersion: v1
+        metadata: 
+          name: nas-csi-pvc
+          spec:
+            accessModes:
+              - ReadWriteMany 
+            storageClassName: alicloud-nas-subpath
+            resources: 
+              requests:
+                storage: 20Gi
+        ```
 
-    ```
-    kind: PersistentVolumeClaim
-    apiVersion: v1
-    metadata:
-      name: nas-csi-pvc
-    spec:
-      accessModes:
-        - ReadWriteMany
-      storageClassName: alicloud-nas-subpath
-      resources:
-        requests:
-          storage: 20Gi
-    ```
+        |参数|说明|
+        |--|--|
+        |`name`|PVC的名称。|
+        |`accessModes`|配置访问模式。|
+        |`storageClassName`|StorageClass的名称，用于绑定StorageClass。|
+        |`storage`|声明应用存储使用量。|
 
-    `nginx-1.yaml`：
+    2.  执行以下命令创建PVC。
 
-    ```
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: deployment-nas-1
-      labels:
-        app: nginx-1
-    spec:
-      selector:
-        matchLabels:
-          app: nginx-1
-      template:
+        ```
+        kubectl create -f pvc.yaml
+        ```
+
+4.  执行以下命令创建应用。
+
+    创建应用nginx-1和nginx-2共享NAS存储卷的同一个子目录。
+
+    1.  创建并复制以下内容到nginx-1.yaml文件中。
+
+        ```
+        apiVersion: apps/v1
+        kind: Deployment
         metadata:
+          name: deployment-nas-1
           labels:
             app: nginx-1
         spec:
-          containers:
-          - name: nginx
-            image: nginx:1.7.9
-            ports:
-            - containerPort: 80
-            volumeMounts:
-              - name: nas-pvc
-                mountPath: "/data"
-          volumes:
-            - name: nas-pvc
-              persistentVolumeClaim:
-                claimName: nas-csi-pvc
-    ```
+          selector:
+            matchLabels:
+              app: nginx-1
+          template:
+            metadata:
+              labels:
+                app: nginx-1
+            spec:
+              containers:
+              - name: nginx
+                image: nginx:1.7.9
+                ports:
+                - containerPort: 80
+                volumeMounts:
+                  - name: nas-pvc
+                    mountPath: "/data"
+              volumes:
+                - name: nas-pvc
+                  persistentVolumeClaim:
+                    claimName: nas-csi-pvc
+        ```
 
-    `nginx-2.yaml`：
+        -   `mountPath`：NAS在容器中挂载的位置。
+        -   `claimName`：PVC的名称，用于绑定PVC。本例中为nas-csi-pvc。
+    2.  创建并复制以下内容到nginx-2.yaml文件中。
 
-    ```
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: deployment-nas-2
-      labels:
-        app: nginx-2
-    spec:
-      selector:
-        matchLabels:
-          app: nginx-2
-      template:
+        ```
+        apiVersion: apps/v1
+        kind: Deployment
         metadata:
+          name: deployment-nas-2
           labels:
             app: nginx-2
         spec:
-          containers:
-          - name: nginx
-            image: nginx:1.7.9
-            ports:
-            - containerPort: 80
-            volumeMounts:
-              - name: nas-pvc
-                mountPath: "/data"
-          volumes:
-            - name: nas-pvc
-              persistentVolumeClaim:
-                claimName: nas-csi-pvc
-    ```
+          selector:
+            matchLabels:
+              app: nginx-2
+          template:
+            metadata:
+              labels:
+                app: nginx-2
+            spec:
+              containers:
+              - name: nginx
+                image: nginx:1.7.9
+                ports:
+                - containerPort: 80
+                volumeMounts:
+                  - name: nas-pvc
+                    mountPath: "/data"
+              volumes:
+                - name: nas-pvc
+                  persistentVolumeClaim:
+                    claimName: nas-csi-pvc
+        ```
 
-    执行以下命令，创建并查看PVC和Deployment。
+        -   `mountPath`：NAS在容器中挂载的位置。本例为/date。
+        -   `claimName`：输入与nginx-1应用相同的PVC名称，本例为nas-csi-pvc。
+    3.  执行以下命令创建应用nginx-1和nginx-2。
 
-    ```
-    kubectl create -f pvc.yaml -f nginx-1.yaml -f nginx-2.yaml
-    ```
+        ```
+        kubectl create -f nginx-1.yaml -f nginx-2.yaml
+        ```
 
-    执行以下命令查看Pod信息。
+5.  执行以下命令查看Pod信息。
 
     ```
     kubectl get pod
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME                                READY   STATUS    RESTARTS   AGE
-    deployment-nas-1-5b5cdb85f6-nhklx   1/1     Running   0          32s
-    deployment-nas-2-c5bb4746c-4jw5l    1/1     Running   0          32s
+    deployment-nas-1-5b5cdb85f6-n****   1/1     Running   0          32s
+    deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
     ```
 
     **说明：** NAS存储卷的`xxxxxxx.cn-hangzhou.nas.aliyuncs.com:/share/nas-79438493-f3e0-11e9-bbe5-00163e09c2be`会同时挂载到`deployment-nas-1-5b5cdb85f6-nhklx`和`deployment-nas-2-c5bb4746c-4jw5l`的/data目录下。其中：
@@ -227,7 +258,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
 
 2.  创建StorageClass。
 
-    1.  创建并拷贝以下内容到alicloud-nas-fs.yaml文件中。
+    1.  创建并复制以下内容到alicloud-nas-fs.yaml文件中。
 
         ```
         apiVersion: storage.k8s.io/v1
@@ -264,64 +295,209 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         kubectl create -f alicloud-nas-fs.yaml
         ```
 
-3.  创建PV、PVC，和Pod挂载NAS存储卷。
+3.  创建PVC和Pod挂载NAS存储卷。
 
-    `pvc.yaml`、`nginx.yaml`文件内容如下。
+    1.  创建并复制以下内容到pvc.yaml文件中。
 
-    `pvc.yaml`
-
-    ```
-    kind: PersistentVolumeClaim
-    apiVersion: v1
-    metadata:
-      name: nas-csi-pvc-fs
-    spec:
-      accessModes:
-        - ReadWriteMany
-      storageClassName: alicloud-nas-fs
-      resources:
-        requests:
-          storage: 20Gi
-    ```
-
-    `nginx.yaml`
-
-    ```
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: deployment-nas-fs
-      labels:
-        app: nginx
-    spec:
-      selector:
-        matchLabels:
-          app: nginx
-      template:
+        ```
+        kind: PersistentVolumeClaim
+        apiVersion: v1
         metadata:
+          name: nas-csi-pvc-fs
+        spec:
+          accessModes:
+            - ReadWriteMany
+          storageClassName: alicloud-nas-fs
+          resources:
+            requests:
+              storage: 20Gi
+        ```
+
+    2.  创建并复制以下内容到nginx.yaml文件中。
+
+        ```
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: deployment-nas-fs
           labels:
             app: nginx
         spec:
-          containers:
-          - name: nginx
-            image: nginx:1.7.9
-            ports:
-            - containerPort: 80
-            volumeMounts:
-              - name: nas-pvc
-                mountPath: "/data"
-          volumes:
-            - name: nas-pvc
-              persistentVolumeClaim:
-                claimName: nas-csi-pvc-fs
-    ```
+          selector:
+            matchLabels:
+              app: nginx
+          template:
+            metadata:
+              labels:
+                app: nginx
+            spec:
+              containers:
+              - name: nginx
+                image: nginx:1.7.9
+                ports:
+                - containerPort: 80
+                volumeMounts:
+                  - name: nas-pvc
+                    mountPath: "/data"
+              volumes:
+                - name: nas-pvc
+                  persistentVolumeClaim:
+                    claimName: nas-csi-pvc-fs
+        ```
 
-    执行以下命令，创建PVC和Deployment。
+    3.  执行以下命令创建PVC和Pod。
 
-    ```
-    kubectl create -f pvc.yaml -f nginx.yaml
-    ```
+        ```
+        kubectl create -f pvc.yaml -f nginx.yaml
+        ```
 
 
 这种场景下，CSI会在PVC创建时动态新建NAS文件系统和挂载点，PVC删除时动态删除挂载点和文件系统。
+
+## 验证NAS的持久化存储
+
+1.  查看部署应用的Pod和NAS文件。
+
+    1.  执行以下命令，查看部署的应用所在Pod的名称。
+
+        ```
+        kubectl get pod 
+        ```
+
+        预期输出：
+
+        ```
+        NAME                                READY   STATUS    RESTARTS   AGE
+        deployment-nas-1-5b5cdb85f6-n****   1/1     Running   0          32s
+        deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
+        ```
+
+    2.  执行以下命令，查看任意一个Pod/data路径下的文件，本文以名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod为例。
+
+        ```
+        kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
+        ```
+
+        无返回结果，说明/data路径下无文件。
+
+2.  执行以下命令，在名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod/data路径下创建文件nas。
+
+    ```
+    kubectl exec deployment-nas-1-5b5cdb85f6-n**** touch /data/nas
+    ```
+
+3.  执行以下命令，查看名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod/data路径下的文件。
+
+    ```
+    kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
+    ```
+
+    预期输出：
+
+    ```
+    nas
+    ```
+
+4.  执行以下命令，删除Pod。
+
+    ```
+    kubectl delete pod deployment-nas-1-5b5cdb85f6-n****
+    ```
+
+5.  同时在另一个窗口中，执行以下命令，查看Pod删除及Kubernetes重建Pod的过程。
+
+    ```
+    kubectl get pod -w -l app=nginx
+    ```
+
+6.  验证删除Pod后，NAS里创建的文件是否还存在。
+
+    1.  执行以下命令，查看Kubernetes重建的Pod名称。
+
+        ```
+        kubectl get pod
+        ```
+
+        预期输出：
+
+        ```
+        NAME                                READY   STATUS    RESTARTS   AGE
+        deployment-nas-1-5b5cdb85f6-n****   1/1     Running   0          32s
+        deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
+        ```
+
+    2.  执行以下命令，查看名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod/data路径下的文件。
+
+        ```
+        kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
+        ```
+
+        预期输出：
+
+        ```
+        nas
+        ```
+
+        nas文件仍然存在，说明NAS的数据可持久化保存。
+
+
+## 验证NAS的共享存储
+
+1.  查看部署的应用所在的Pod和NAS文件。
+
+    1.  执行以下命令，查看应用所在Pod的名称。
+
+        ```
+        kubectl get pod 
+        ```
+
+        预期输出：
+
+        ```
+        NAME                                READY   STATUS    RESTARTS   AGE
+        deployment-nas-1-5b5cdb85f6-n****   1/1     Running   0          32s
+        deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
+        ```
+
+    2.  执行以下命令，查看2个Pod/data路径下的文件。
+
+        ```
+        kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
+        kubectl exec deployment-nas-2-c5bb4746c-4**** ls /data
+        ```
+
+2.  执行以下命令，在任意一个Pod的/date路径下创建文件nas。
+
+    ```
+     kubectl exec deployment-nas-1-5b5cdb85f6-n**** touch /data/nas
+    ```
+
+3.  执行以下命令，查看2个Pod/date路径下的文件。
+
+    1.  执行以下命令，查看名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod/date路径下的文件。
+
+        ```
+        kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
+        ```
+
+        预期输出：
+
+        ```
+        nas
+        ```
+
+    2.  执行以下命令，查看名为deployment-nas-2-c5bb4746c-4\*\*\*\*的Pod/date路径下的文件。
+
+        ```
+        kubectl exec deployment-nas-2-c5bb4746c-4**** ls /data
+        ```
+
+        预期输出：
+
+        ```
+        nas
+        ```
+
+        在任意一个Pod的/date下创建的文件，两个Pod下的/date路径下均存在此文件，说明两个Pod共享一个NAS。
+
 
