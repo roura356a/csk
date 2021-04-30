@@ -147,7 +147,7 @@ ARMS allows you to create alerts for monitoring jobs. When alert conditions are 
 
         For more information about how to configure PromQL statements, see [Create ARMS alerts](/intl.en-US/Quick Start/Create ARMS alerts.md).
 
-    **Note:** You can also choose**Alerts** \> **Alert Policies** in the [ARMS console](https://arms-ap-southeast-1.console.aliyun.com/#/home) to manage alerts.
+    **Note:** You can also choose **Alerts** \> **Alert Policies** in the [ARMS console](https://arms-ap-southeast-1.console.aliyun.com/#/home) to manage alerts.
 
     **Verify the result**
 
