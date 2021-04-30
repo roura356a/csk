@@ -3,7 +3,7 @@
 弹性负载会监听原始负载，并根据弹性单元设定的调度策略，克隆并生成弹性单元的负载。根据弹性负载中副本的变化，动态的分配原始负载和弹性单元上面的副本数目。本文介绍如何安装以及使用Elastic Workload（弹性负载）。
 
 -   您已经成功创建一个Kubernetes集群，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   如果创建的是ACK集群，您还需要部署ack-virtual-node，请参见[容器服务（ACK）使用ECI]()。
+-   如果创建的是ACK集群，您还需要部署ack-virtual-node（请使用v2.0.0.102-045a06eb4-aliyun及以上版本），请参见[容器服务（ACK）使用ECI]()。
 
 ## 部署ack-kubernetes-elastic-workload
 
@@ -70,28 +70,21 @@ spec:
 apiVersion: autoscaling.alibabacloud.com/v1beta1
 kind: ElasticWorkload
 metadata:
-  name: elasticworkload-sample
+  name: elasticworkload-sample
 spec:
-  sourceTarget:
-    name: nginx-deployment-basic
-    kind: Deployment
-    apiVersion: apps/v1
-    min: 2
-    max: 4
-  replicas: 6
-  elasticUnit:
-  - name: virtual-kubelet
-    labels:
-      virtual-kubelet: "true"
-    annotations:
-      virtual-kubelet: "true"
-    nodeSelector:
-      type: "virtual-kubelet"
-    tolerations:
-    - key: "virtual-kubelet.io/provider"
-      operator: "Exists"
-    # min: 0 每个单元也可以指定自己的上下限。
-    # max: 10
+  sourceTarget:
+    name: nginx-deployment-basic
+    kind: Deployment
+    apiVersion: apps/v1
+    min: 2
+    max: 4
+  replicas: 6
+  elasticUnit:
+  - name: virtual-kubelet
+    labels:
+      alibabacloud.com/eci: "true"
+    # min: 0 每个单元也可以指定自己的上下限。
+    # max: 10
 ```
 
 以上就是这个场景的弹性负载定义，弹性负载的使用方式与HPA类似，通过外部挂载的方式使用，对原有的业务无侵入。
@@ -118,51 +111,49 @@ kubectl describe ew elasticworkload-sample   # same as kubectl get elasticworklo
 预期输出：
 
 ```
-Name:         elasticworkload-sample
-Namespace:    default
-Labels:       &amp;amp;lt;none&amp;amp;gt;
-Annotations:  &amp;amp;lt;none&amp;amp;gt;
-API Version:  autoscaling.alibabacloud.com/v1beta1
-Kind:         ElasticWorkload
+Name:         elasticworkload-sample
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+API Version:  autoscaling.alibabacloud.com/v1beta1
+Kind:         ElasticWorkload
 Metadata:
-  Creation Timestamp:  2020-05-06T03:43:41Z
-  Generation:          27
-  Resource Version:    20635284
-  Self Link:           /apis/autoscaling.alibabacloud.com/v1beta1/namespaces/default/elasticworkloads/elasticworkload-sample
-  UID:                 0e9205ff-38b8-43b7-9076-ffa130f26ef4
+  Creation Timestamp:  2021-04-30T06:58:03Z
+  Generation:          2
+  Resource Version:  1126368056
+  Self Link:         /apis/autoscaling.alibabacloud.com/v1beta1/namespaces/default/elasticworkloads/elasticworkload-sample
+  UID:               a465de9e-1253-4cbe-8cd5-98393393e990
 Spec:
-  Elastic Unit:
-    Annotations:
-      Virtual - Kubelet:  true
-    Labels:
-      Virtual - Kubelet:  true
-    Name:                 demo
-    Node Selector:
-      Type:  virtual-kubelet
-    Tolerations:
-      Key:       virtual-kubelet.io/provider
-      Operator:  Exists
-  Replicas:      6
-  Source Target:
-    API Version:  apps/v1
-    Kind:         Deployment
-    Max:          2
-    Min:          0
-    Name:         nginx-deployment-basic
+  Elastic Unit:
+    Labels:
+      alibabacloud.com/eci:  true
+    Name:                    virtual-kubelet
+  Replicas:                  6
+  Source Target:
+    API Version:  apps/v1
+    Kind:         Deployment
+    Max:          4
+    Min:          2
+    Name:         nginx-deployment-basic
 Status:
-  Elastic Units Status:
-    Desired Replicas:  4
-    Name:              nginx-deployment-basic-unit-virtual-kubelet
-    Update Timestamp:  2020-05-07T12:38:27Z
-  Replicas:            6
-  Selector:            app=nginx
-  Source Target:
-    API Version:       apps/v1
-    Desired Replicas:  2
-    Kind:              Deployment
-    Name:              nginx-deployment-basic
-    Update Timestamp:  2020-05-07T12:38:27Z
-Events:                &amp;amp;lt;none&amp;amp;gt;
+  Elastic Units Status:
+    Desired Replicas:  2
+    Name:              nginx-deployment-basic-unit-virtual-kubelet
+    Update Timestamp:  2021-04-30T06:58:03Z
+  Replicas:            6
+  Selector:            app=nginx
+  Source Target:
+    API Version:       apps/v1
+    Desired Replicas:  4
+    Kind:              Deployment
+    Name:              nginx-deployment-basic
+    Update Timestamp:  2021-04-30T06:58:03Z
+Events:
+  Type    Reason                 Age                  From             Message
+  ----    ------                 ----                 ----             -------
+  Normal  UnitCreation           110s                 ElasticWorkload  ElasticWorkloadUnit nginx-deployment-basic-unit-virtual-kubelet created
+  Normal  ElasticWorkloadUpdate  110s (x2 over 110s)  ElasticWorkload  ElasticWorkload update
+  Normal  UnitUpdate             110s                 ElasticWorkload  ElasticWorkloadUnit virtual-kubelet has been updated
 ```
 
 当下发弹性负载的模板后，可以查看Pod的情况。可以发现弹性负载克隆出了新的Deployment与Pod，并且Deployment的Pod副本数目是根据上述的规则进行动态分配的。
@@ -176,13 +167,13 @@ kubectl get pod -o wide
 预期输出：
 
 ```
-NAME                                               READY   STATUS    RESTARTS   AGE    IP             NODE                     NOMINATED NODE   READINESS GATES
-nginx-deployment-basic-7ff9955f89-djxwv            1/1     Running   0          138m   172.20.*.***   cn-hangzhou.10.0.*.***   &amp;amp;lt;none&amp;amp;gt;           &amp;amp;lt;none&amp;amp;gt;
-nginx-deployment-basic-7ff9955f89-hrw2z            1/1     Running   0          138m   172.2*.*.**    cn-hangzhou.10.0.*.***   &amp;amp;lt;none&amp;amp;gt;           &amp;amp;lt;none&amp;amp;gt;
-nginx-deployment-basic-unit-demo-8bb586568-4f8xt   1/1     Running   0          138m   10.1.**.**     virtual-node-eci-1       &amp;amp;lt;none&amp;amp;gt;           &amp;amp;lt;none&amp;amp;gt;
-nginx-deployment-basic-unit-demo-8bb586568-bl5pd   1/1     Running   0          138m   10.1.**.**     virtual-node-eci-0       &amp;amp;lt;none&amp;amp;gt;           &amp;amp;lt;none&amp;amp;gt;
-nginx-deployment-basic-unit-demo-8bb586568-ndbp8   1/1     Running   0          138m   10.1.**.**     virtual-node-eci-0       &amp;amp;lt;none&amp;amp;gt;           &amp;amp;lt;none&amp;amp;gt;
-nginx-deployment-basic-unit-demo-8bb586568-vx9jx   1/1     Running   0          138m   10.1.**.**     virtual-node-eci-2       &amp;amp;lt;none&amp;amp;gt;           &amp;amp;lt;none&amp;amp;gt;
+NAME                                                           READY   STATUS    RESTARTS   AGE   IP              NODE                            NOMINATED NODE   READINESS GATES
+nginx-deployment-basic-769f84b5cf-hdmlw                        1/1     Running   0          46m   172.26.240.69   cn-hangzhou.10.1.84.111         <none>           <none>
+nginx-deployment-basic-769f84b5cf-lmd99                        1/1     Running   0          46m   172.26.240.6    cn-hangzhou.10.1.84.112         <none>           <none>
+nginx-deployment-basic-769f84b5cf-nbp5c                        1/1     Running   0          30m   172.26.240.75   cn-hangzhou.10.1.84.111         <none>           <none>
+nginx-deployment-basic-769f84b5cf-scj68                        1/1     Running   0          30m   172.26.240.11   cn-hangzhou.10.1.84.112         <none>           <none>
+nginx-deployment-basic-unit-virtual-kubelet-594f86b5c9-8z876   1/1     Running   0          10m   10.1.84.119     virtual-kubelet-cn-hangzhou-i   <none>           <none>
+nginx-deployment-basic-unit-virtual-kubelet-594f86b5c9-drxvq   1/1     Running   0          10m   10.1.84.118     virtual-kubelet-cn-hangzhou-i   <none>           <none>
 ```
 
 此外，弹性负载也支持与HPA配合使用，可以将HPA作用在弹性负载上，如上图，弹性负载会根据HPA的状态动态调整每个单元的副本分布，例如如果当前是从6个副本缩容到4个副本，那么会优先将弹性单元的副本进行缩容。
