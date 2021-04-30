@@ -8,7 +8,7 @@ Elastic model training integrates the Elastic Horovod feature and allows Horovod
 
 -   The cloud-native AI component set is installed and the **elastic training** component \(**et-operator**\) is selected. For more information, see [Deploy cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Install Cloud-native AI Component Set and access AI Dashboard.md).
 -   Horovod is used as a distributed training framework.
--   The Arena client is installed. For more information, see [t1917487.dita\#task\_1917487](/intl.en-US/Solutions/Deep learning solution/Preparations/Install the latest version of Arena.md).
+-   The Arena client is installed. For more information, see [Install the latest version of Arena](/intl.en-US/Solutions/Deep learning solution/Preparations/Install the latest version of Arena.md).
 
 For traditional distributed deep learning tasks, the number of workers cannot be dynamically adjusted after a training task is submitted.
 
