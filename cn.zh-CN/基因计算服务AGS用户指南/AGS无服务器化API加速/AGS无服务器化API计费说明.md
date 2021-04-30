@@ -19,7 +19,19 @@ keyword: [基因计算, AGS无服务器化API计费]
 |mapping|黄金级（g）|45分钟内，<=90 Gbp|0.75元/Gbp|
 |mapping|铂金级（p）|30分钟内，<=90 Gbp|1元/Gbp|
 
-**说明：** 1 Gbp = 10亿碱基对
+**说明：** 1 Gbp = 10亿碱基对，1 Tbp = 1024 Gbp。
+
+## AGS资源包
+
+您购买资源包后可以对按量付费的账单进行抵扣，并享受折扣优惠。资源包购买地址：[https://common-buy.aliyun.com/?commodityCode=csk\_gs\_bag](https://common-buy.aliyun.com/?commodityCode=csk_gs_bag)。
+
+|资源包规格|价格|
+|-----|--|
+|50 Tbp|49000元|
+|100 Tbp|95000元|
+|200 Tbp|180000元|
+|500 Tbp|425000元|
+|1000 Tbp|800000元|
 
 ## 计费示例
 
