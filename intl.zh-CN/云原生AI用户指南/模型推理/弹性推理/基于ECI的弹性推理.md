@@ -280,6 +280,4 @@ keyword: [ECI, 弹性推理, 工作负载]
 
     可以看到扩容出来的Pod中，既有普通的ECI实例，也有抢占式（Spot）实例。
 
-    ![实例](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1816772161/p240488.png)
-
 
