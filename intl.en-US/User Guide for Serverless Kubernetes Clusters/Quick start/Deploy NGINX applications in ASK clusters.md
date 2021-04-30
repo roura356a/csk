@@ -1,16 +1,20 @@
+---
+keyword: deploy NGINX applications in ASK clusters
+---
+
 # Deploy NGINX applications in ASK clusters
 
 You do not need to create or manage nodes in serverless Kubernetes \(ASK\) clusters. This frees you from maintaining cloud resources for your applications and allows you to focus on your business development instead of managing the underlying infrastructure. This topic describes how to deploy web applications in ASK clusters.
 
 [Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md)
 
-ASK cluster support standard Kubernetes semantics and API operations. You can create cluster resources with a few clicks, such as Deployments, StatefulSets, Jobs, Services, Ingresses, and custom resources. You can also use Helm to deploy a variety of Kubernetes-native applications in ASK clusters.
+ASK clusters support standard Kubernetes semantics and API operations. You can create cluster resources with a few clicks, such as Deployments, StatefulSets, Jobs, Services, Ingresses, and custom resources. You can also use Helm to deploy a variety of Kubernetes-native applications in ASK clusters.
 
 ## Procedure
 
-1.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+1.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
 
-2.  Create a file named nginx.yaml and copy the following content into the file.
+2.  Create a YAML file named nginx.yaml and copy the following content into the file:
 
     ```
     apiVersion: v1
@@ -52,11 +56,13 @@ ASK cluster support standard Kubernetes semantics and API operations. You can cr
                 memory: "4Gi"
     ```
 
-3.  Deploy the nginx.yaml file.
+3.  Run the following command to deploy an NGINX application in the ASK cluster:
 
     ```
     kubectl apply -f nginx.yaml
     ```
+
+    Expected output:
 
     ```
     service/nginx-service created
@@ -65,72 +71,84 @@ ASK cluster support standard Kubernetes semantics and API operations. You can cr
 
 4.  Check the states of the deployed pods and Services. You can use the IP address of the created Server Load Balancer \(SLB\) instance to access the NGINX application.
 
-    1.  Run the following command to query the states of the NGINX pods:
+    1.  Run the following command to query the states of the application pods:
 
         ```
         kubectl get pod
         ```
+
+        Expected output:
 
         ```
         nginx-deploy-55d8dcf755-bxk8n   1/1     Running   0          36s
         nginx-deploy-55d8dcf755-rchhq   1/1     Running   0          36s
         ```
 
-    2.  Run the following command to query the state of the created Service:
+    2.  Run the following command to query the states of created Services:
 
         ```
         kubectl get svc
         ```
 
+        Expected output:
+
         ```
         NAME            TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
-        kubernetes      ClusterIP      172. **. *.*     <none>        443/TCP        10d
-        nginx-service   LoadBalancer   172.19. *. ***   47.57. **. **   80:32278/TCP   39s
+        kubernetes      ClusterIP      172.**.*.*     <none>        443/TCP        10d
+        nginx-service   LoadBalancer   172.19.*.***   47.57.**.**   80:32278/TCP   39s
         ```
 
     3.  Run the following command to use the IP address of the created SLB instance to access the NGINX application:
 
         ```
-        curl 47.57. **. **
+        curl 47.57.**.**
         ```
 
+        Expected output:
+
         ```
-        <! DOCTYPE html>
+        <!DOCTYPE html>
         <html>
         <head>
-        <title>Welcome to nginx! </title>
+        <title>Welcome to nginx!</title>
         ...
         </html>
         ```
 
-5.  Scale out the NGINX Deployment.
+5.  Scale out the created Deployment.
 
-    1.  Run the following command to query the NGINX Deployment:
+    1.  Run the following command to query the created Deployment:
 
         ```
         kubectl get deploy
         ```
+
+        Expected output:
 
         ```
         NAME           READY   UP-TO-DATE   AVAILABLE   AGE
         nginx-deploy   2/2     2            2           9m32s
         ```
 
-    2.  Run the following command to scale out the NGINX Deployment:
+    2.  Run the following command to scale out the created Deployment:
 
         ```
         kubectl scale deploy nginx-deploy --replicas=10
         ```
 
+        Expected output:
+
         ```
         deployment.extensions/nginx-deploy scaled
         ```
 
-    3.  Run the following command to query the NGINX pods after the NGINX application is scaled out:
+    3.  Run the following command to query the pods after the NGINX application is scaled out:
 
         ```
         kubectl get pod
         ```
+
+        Expected output:
 
         ```
         NAME                            READY   STATUS    RESTARTS   AGE
@@ -146,23 +164,27 @@ ASK cluster support standard Kubernetes semantics and API operations. You can cr
         nginx-deploy-55d8dcf755-xspnt   1/1     Running   0          38s
         ```
 
-6.  You can use Horizontal Pod Autoscaler \(HPA\) to automatically scale out the NGINX Deployment when the CPU usage exceeds the scale-out threshold. After HPA is enabled, more pod replicas are added for the NGINX Deployment when the CPU usage exceeds the scale-out threshold.
+6.  You can use Horizontal Pod Autoscaler \(HPA\) to automatically scale out the Deployment when the CPU usage exceeds the scale-out threshold. After HPA is enabled, more pod replicas are added for the Deployment when the CPU usage exceeds the scale-out threshold.
 
-    1.  Run the following command to scale in the number of pod replicas to one for the NGINX Deployment:
+    1.  Run the following command to scale in the number of pod replicas to one for the Deployment:
 
         ```
         kubectl scale deploy nginx-deploy --replicas=1
         ```
 
+        Expected output:
+
         ```
         deployment.extensions/nginx-deploy scaled
         ```
 
-    2.  Run the following command to query the state of the NGINX pod:
+    2.  Run the following command to query the state of the application pod:
 
         ```
         kubectl get pod
         ```
+
+        Expected output:
 
         ```
         NAME                            READY   STATUS    RESTARTS   AGE
@@ -175,6 +197,8 @@ ASK cluster support standard Kubernetes semantics and API operations. You can cr
         kubectl autoscale deployment nginx-deploy --cpu-percent=50 --min=1 --max=10
         ```
 
+        Expected output:
+
         ```
         horizontalpodautoscaler.autoscaling/nginx-deploy autoscaled
         ```
@@ -184,6 +208,8 @@ ASK cluster support standard Kubernetes semantics and API operations. You can cr
         ```
         kubectl get hpa
         ```
+
+        Expected output:
 
         ```
         NAME           REFERENCE                 TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
