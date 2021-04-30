@@ -1,33 +1,46 @@
+---
+keyword: [cGPU Professional Edition, cGPU Basic Edition, cGPU]
+---
+
 # Overview
 
-This topic describes the benefits of cGPU Professional Edition by comparing it with cGPU Basic Edition.
+This topic introduces cGPU and describes the benefits of cGPU Professional Edition by comparing it with cGPU Basic Edition.
 
 ## Benefits of cGPU Professional Edition
 
 |Benefit|Description|
 |-------|-----------|
-|Supports graphics processing unit \(GPU\) sharing and memory isolation.|-   Supports GPU sharing and memory isolation on a one-pod-one-GPU basis. This is commonly used in model inference scenarios.
--   Supports GPU sharing and memory isolation on a one-pod-multi-GPU basis. This is commonly used to build the code to train distributed models. |
-|Supports flexible GPU sharing and memory isolation policies.|-   Supports GPU scheduling by using the binpack and spread algorithms.
+|Supports graphics processing unit \(GPU\) sharing, scheduling, and memory isolation.|-   Supports GPU sharing, scheduling, and memory isolation on a one-pod-one-GPU basis. This is commonly used in model inference scenarios.
+-   Supports GPU sharing, scheduling, and memory isolation on a one-pod-multi-GPU basis. This is commonly used to build the code to train distributed models. |
+|Supports flexible GPU sharing and memory isolation policies.|-   Supports GPU allocation by using the binpack and spread algorithms.
     -   Binpack: The system preferably shares one GPU with multiple pods. This applies to scenarios where high GPU utilization is required.
-    -   Spread: The system attempts to allocate one GPU to each pod with best efforts. This applies to scenarios where the high availability of GPUs is required. The system attempts to avoid scheduling the same GPU to different pod replicas of an application.
+    -   Spread: The system attempts to allocate one GPU to each pod. This applies to scenarios where the high availability of GPUs is required. The system attempts to avoid allocating the same GPU to different pod replicas of an application.
 -   Supports GPU sharing without memory isolation. This applies to deep learning scenarios where applications are configured with user-defined isolation systems at the application layer.
 -   Supports GPU sharing on multiple GPUs and memory isolation. |
-|Supports comprehensive monitoring on GPU resources.|Supports monitoring on both exclusive GPUs and shared GPUs.|
+|Supports comprehensive monitoring of GPU resources.|Supports monitoring of both exclusive GPUs and shared GPUs.|
 
 ## Comparison between cGPU Basic Edition and cGPU Professional Edition
 
-|cGPU Basic Edition|cGPU Professional Edition|
-|------------------|-------------------------|
-|Supports GPU sharing on one GPU.|Supports GPU sharing on one GPU and multiple GPUs.|
-|Supports memory isolation on one GPU.|Supports memory isolation on one GPU and multiple GPUs.|
-|Supports monitoring and auto scaling for exclusive GPUs and shared GPUs.|Supports monitoring and auto scaling for exclusive GPUs and shared GPUs.|
-|By default, GPUs are scheduled by using the binpack algorithm.|Supports GPU scheduling by using the binpack and spread algorithms. You can choose binpack or spread based on your business requirements.|
-|Allows you to create different GPU scheduling policies for a node pool. You can enable GPU sharing with or without memory isolation for a node pool.|Allows you to create different GPU scheduling policies for a node pool. You can enable GPU sharing with or without memory isolation for a node pool. In addition, you can use the binpack or spread algorithm to schedule GPUs.|
+|Feature|cGPU Professional Edition|cGPU Basic Edition|
+|-------|-------------------------|------------------|
+|GPU sharing and scheduling on one GPU|Supported|Supported|
+|GPU sharing and scheduling on multiple GPUs|Supported|Not supported|
+|Memory isolation on one GPU|Supported|Supported|
+|Memory isolation on multiple GPUs|Supported|Not supported|
+|Monitoring and auto scaling of exclusive GPUs and shared GPUs|Supported|Supported|
+|Node pools that support flexible policy configurations|Supported. Allows you to create different GPU policies for a node pool. You can enable GPU sharing with or without memory isolation for a node pool.|Supported. You can configure different GPU policies for a node pool. You can enable GPU sharing with or without memory isolation for a node pool. In addition, you can use the binpack or spread algorithm to allocate GPUs.|
+|Allocate GPU memory to pods by using algorithms.|Supported. GPUs can be allocated by using the binpack and spread algorithms. You can choose binpack or spread based on your business requirements.|Supported. By default, GPUs are allocated by using the binpack algorithm.|
+
+**Note:** The cGPU edition varies based on the cluster type:
+
+-   cGPU Basic Edition is applied if the cGPU component is installed in a dedicated Kubernetes cluster with GPU resources.
+-   cGPU Professional Edition is applied if the cGPU component is installed in a professional Kubernetes cluster with GPU resources.
+
+For more information about how to install the cGPU component, see [Install the cGPU component](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Install the cGPU component.md).
 
 ## cGPU
 
-The key of GPU sharing among multiple pods is to isolate the GPU memory and computing power that are allocated to each pod. When you run multiple containers on one GPU, GPU resources are allocated to each container as required. However, if one container occupies excessive GPU resources, the performance of other containers may be affected. To solve this issue, many solutions have been developed in the computing industry. Technologies such as NVIDIA virtual GPU \(vGPU\), NVIDIA Multi-process Service \(MPS\), rCUDA, and vCUDA all contribute to the use of fine-grained GPU resource allocation.
+A key requirement of GPU sharing among multiple pods is to isolate the GPU memory and computing power that are allocated to each pod. When you run multiple containers on one GPU, the GPU resources are allocated to each container as required. However, if one container occupies excess GPU resources, the performance of the other containers may be affected. To address this issue, many solutions have been developed in the computing industry. Technologies, such as NVIDIA virtual GPU \(vGPU\), NVIDIA Multi-process Service \(MPS\), rCUDA, and vCUDA, all contribute to fine-grained GPU resource allocation.
 
 The cGPU solution is provided by Alibaba Cloud. The cGPU solution uses the server kernel driver that is developed by Alibaba Cloud to provide more efficient use of the underlying drivers of NVIDIA GPUs. cGPU provides the following features:
 
