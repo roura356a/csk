@@ -8,7 +8,7 @@ AI tasks have two types: model training and model inference. Model inference tas
 
 -   Model training is completed. In this topic, an image recognition model trained by TensorFlow is used.
 -   The ack-alibaba-cloud-metrics-adapter component is installed. For more information, see [Manage system components](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Upgrade cluster/Manage system components.md).
--   The AI Dashboard component is installed. For more information, see [Install Cloud-native AI Component Set and access AI Dashboard]().
+-   The AI Dashboard component is installed. For more information, see [Deploy cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Install Cloud-native AI Component Set and access AI Dashboard.md).
 
 ## Procedure
 
@@ -218,7 +218,7 @@ AI tasks have two types: model training and model inference. Model inference tas
 
 7.  Test the inference service and then log on to AI Dashboard.
 
-    Before you can log on to AI Dashboard, you must install and check whether you have access to AI Dashboard. For more information about how to install and access AI Dashboard, see [Install Cloud-native AI Component Set and access AI Dashboard]().
+    Before you can log on to AI Dashboard, you must install and check whether you have access to AI Dashboard. For more information about how to install and access AI Dashboard, see [Deploy cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Install Cloud-native AI Component Set and access AI Dashboard.md).
 
 8.  In the left-side navigation pane of AI Dashboard, choose **Elastic Tasks** \> **Tasks** to view the details of the inference service.
 
