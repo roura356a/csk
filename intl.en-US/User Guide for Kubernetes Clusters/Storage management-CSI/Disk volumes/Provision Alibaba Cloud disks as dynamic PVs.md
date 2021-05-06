@@ -4,10 +4,10 @@ This topic describes how to provision an Alibaba Cloud disk as a dynamic persist
 
 Before you provision a dynamic PV, make sure that you have completed the following steps:
 
--   [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)
--   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md)
+-   [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)
+-   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md)
 
-For more information about StorageClass, see [Configure StorageClasses](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Configure StorageClasses.md).
+For more information about StorageClass, see [Use Alibaba Cloud disks that are mounted as PVs](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Use Alibaba Cloud disks that are mounted as PVs.md).
 
 ## Create a StorageClass
 
@@ -45,7 +45,7 @@ If you require higher data security, we recommend that you set the Retain mode t
         |encrypted|Optional. This parameter specifies whether a created cloud disk is encrypted. By default, this parameter is set to false, which indicates that a created cloud disk is not encrypted.|
         |volumeBindingMode|The WaitForFirstConsumer mode delays the binding and provisioning of a PV until a pod that uses the PVC is created. Before the PV is bound and provisioned, the pod is scheduled to a node and a cloud disk is created in the zone where the node is deployed.|
         |allowVolumeExpansion|When this parameter is set to true, the cloud disk can be automatically expanded.|
-        |performanceLevel|Valid values: PL1, PL2, and PL3. For more information, see [Capacity and PLs of ESSDs](/intl.en-US/Block Storage/Block Storage overview/Enhanced SSDs.md).|
+        |performanceLevel|Valid values: PL1, PL2, and PL3. For more information, see [Capacity and PLs](/intl.en-US/Block Storage/Block Storage overview/ESSDs.md).|
 
     3.  Run the following command to create a StorageClass:
 
