@@ -4,7 +4,7 @@ keyword: [ACK专有版集群, Kubernetes集群迁移, Pro集群]
 
 # 热迁移ACK专有版集群至Pro托管集群
 
-为了能够让存量的ACK专有版管集群用户享受到ACK Pro托管集群的功能和特性，容器服务平台推出了专有版到Pro版的集群热迁移功能，使您可以动态地迁移ACK专有版集群至Pro托管集群。本文介绍如何迁移ACK专有版集群至Pro托管集群中。
+为了能够让存量的ACK专有版集群用户享受到ACK Pro托管版集群的功能和特性，容器服务平台推出了专有版到Pro托管版的集群热迁移功能，使您可以动态地迁移ACK专有版集群至Pro托管版集群。本文介绍如何迁移ACK专有版集群至Pro托管集群中。
 
 迁移ACK专有版集群至Pro托管版集群前，您需要创建一个OSS的存储空间（Bucket）。关于如何创建OSS Bucket的具体步骤，请参见[创建存储空间](/cn.zh-CN/控制台用户指南/存储空间管理/创建存储空间.md)。
 
@@ -28,11 +28,11 @@ keyword: [ACK专有版集群, Kubernetes集群迁移, Pro集群]
 
     迁移专有版集群至Pro托管版集群，您需要添加以下迁移所需的权限。
 
-    1.  在**迁移至Pro版**对话框中，单击以**KubernetesMasterRole**开头的链接。
+    1.  在**迁移至Pro版**对话框中，单击**访问控制台（RAM）**。
 
-        ![migrate](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4932938161/p263337.png)
+        ![migrate](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0464069161/p269274.png)
 
-    2.  在Master RAM角色的详情页，单击目标授权策略名称。
+    2.  在Master RAM角色的详情页，单击以**k8sMasterRolePolicy**开头的授权策略名称。
 
         ![master role](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4932938161/p263338.png)
 
@@ -68,7 +68,7 @@ keyword: [ACK专有版集群, Kubernetes集群迁移, Pro集群]
 
 在完成迁移专有版集群至Pro托管版集群后，您可以自行将Master节点从集群中删除。目前ACK暂时不支持从控制台直接删除Master节点，您可以通过kubectl命令方式删除Master节点。
 
-在执行命令前，请确保您可以使用kubectl命令连接集群。关于如何使用kubectl命令连接集群的具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+在执行命令前，请确保您可以使用kubectl命令连接集群。关于如何使用kubectl命令连接集群的具体操作，请参见[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 
 1.  执行以下命令查看需要删除的Master节点名称。
 
