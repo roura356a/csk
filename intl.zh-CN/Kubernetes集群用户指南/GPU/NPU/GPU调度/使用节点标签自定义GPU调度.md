@@ -78,7 +78,7 @@ keyword: [GPU节点标签, 灵活调度]
     |---|-----|
     |`aliyun.accelerator/nvidia_count`|GPU核心数量|
     |`aliyun.accelerator/nvidia_mem`|GPU显存，单位为MiB|
-    |`aliyun.accelerator/nvidia_name`|nvida设备的GPU计算卡名称|
+    |`aliyun.accelerator/nvidia_name`|nvidia设备的GPU计算卡名称|
 
     同一类型的GPU云服务器的GPU计算卡名称相同，因此，您可通过该标签筛选节点。
 
