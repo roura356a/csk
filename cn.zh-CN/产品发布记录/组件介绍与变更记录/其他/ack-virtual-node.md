@@ -12,6 +12,12 @@ keyword: [ack-virtual-node, 虚拟节点组件, 变更记录]
 
 ack-virtual-node是基于社区开源项目Virtual Kubelet，扩展了对Aliyun Provider的支持，并做了大量优化，实现Kubernetes与弹性容器实例ECI的无缝连接。Kubernetes集群可以轻松获得极大的弹性能力，而不必受限于集群的节点计算容量。您可以灵活动态的按需创建ECI Pod，免去集群容量规划的麻烦。
 
+## 2021年05月
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v2.0.0.110-49c928287-aliyun|registry-vpc.$RegionId.aliyuncs.com/acs/virtual-nodes-eci:v2.0.0.110-49c928287-aliyun|2021年05月06日|兼容NodeSelector调度方式，即Pod的`type=virtual-kubelet`时会被VK接管创建。|此次升级不会对业务造成影响。|
+
 ## 2021年04月
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
