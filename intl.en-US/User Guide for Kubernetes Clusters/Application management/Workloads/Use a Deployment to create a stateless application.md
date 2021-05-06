@@ -343,7 +343,7 @@ On the Deployments page, select the application and click **More** in the **Acti
 |**View in YAML**|View the YAML file of the application.|
 |**Redeploy**|Redeploy the application.|
 |**Edit Label**|Configure labels for the application.|
-|**Node Affinity**|Configure node affinity rules for the application. For more information, see [Scheduling](#step_csu_4sv_gz8)[Scheduling](#step_cev_rgj_vck).|
+|**Node Affinity**|Configure node affinity rules for the application. For more information, see [Scheduling](#step_csu_4sv_gz8).|
 |**Scaling**|Configure scaling settings for the application. For more information, see [HPA](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/HPA.md) and [CronHPA](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/CronHPA.md).|
 |**Toleration**|Configure toleration rules for the application. For more information, see [Scheduling](#step_csu_4sv_gz8).|
 |**Upgrade Policy**|Configure the upgrade policy for the application.-   **Rolling Update**: Pods are updated in a rolling update fashion.
