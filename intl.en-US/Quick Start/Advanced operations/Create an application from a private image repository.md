@@ -6,25 +6,27 @@ In many scenarios, you use an image in a private image repository to deploy an a
 
 If this is the first time you use the Container Registry console, the Tips message appears, prompting you to set a password for logging on to the console. Click **Activate Now** and set a password.
 
-1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, choose **Marketplace** \> **Alibaba Cloud Container Registry**.
+2.  In the left-side navigation pane of the ACK console, choose **Marketplace** \> **Alibaba Cloud Container Registry**.
 
-3.  In the left-side navigation pane of the Container Registry console, choose **Default Instance** \> **Repositories**. In the top menu bar, select a region to deploy the repository and click **Create Repository**.
+3.  In the left-side navigation pane, choose **Marketplace** \> **Docker Images**. On the Images page, click **Container Registry Console** in the upper-right corner of the page.
 
-4.  In the Create Repository dialog box, set the **Namespace**, **Repository Name**, **Summary**, and **Repository Type** parameters. In this example, the type of the repository is private. Click **Next**.
+4.  In the left-side navigation pane of the Container Registry console, choose **Default Instance** \> **Repositories**. In the top menu bar, select a region to deploy the repository and click **Create Repository**.
+
+5.  In the Create Repository dialog box, set the **Namespace**, **Repository Name**, **Summary**, and **Repository Type** parameters. In this example, the type of the repository is private. Click **Next**.
 
     ![Create an image repository](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8441258951/p7484.png)
 
-5.  On the Code Source wizard page, set Code Source to **Local Repository** and click **Create Repository**.
+6.  On the Code Source wizard page, set Code Source to **Local Repository** and click **Create Repository**.
 
-6.  On the Repositories page, select the region and namespace where the repository is created, find the created repository, and click **Manage** in the Actions column.
+7.  On the Repositories page, select the region and namespace where the repository is created, find the created repository, and click **Manage** in the Actions column.
 
-7.  On the **Details** page of the repository, click the **Guide** tab and view details about how to use the private image repository.
+8.  On the **Details** page of the repository, click the **Guide** tab and view details about how to use the private image repository.
 
     ![Repository details](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8441258951/p11349.png)
 
-8.  Log on to the repository from a Linux server and run the following command to upload a local image to the repository:
+9.  Log on to the repository from a Linux server and run the following command to upload a local image to the repository:
 
     ```
     sudo docker login --username=abc@aliyun.com registry.cn-hangzhou.aliyuncs.com
@@ -63,7 +65,7 @@ If this is the first time you use the Container Registry console, the Tips messa
     V1: digest: sha256:cded14cf64697961078aedfdf870e704a52270188c8194b6f70c778a8289**** size: 2836
     ```
 
-9.  Go to the Details page of the repository. In the left-side navigation pane, choose **Tags** and verify that the local image is uploaded to the repository. You can also view the image version.
+10. Go to the Details page of the repository. In the left-side navigation pane, choose **Tags** and verify that the local image is uploaded to the repository. You can also view the image version.
 
     ![Tags](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8441258951/p11362.png)
 
@@ -72,19 +74,21 @@ If this is the first time you use the Container Registry console, the Tips messa
 
 To pull private images, you must use a **private repository Secret**.
 
-1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click **Details** in the **Actions** column.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane, click **Configurations**.
+4.  In the left-side navigation pane of the details page, choose **Configurations** \> **ConfigMaps**.
 
-5.  On the **Configurations** page, click the Secrets tab.
+5.  In the left-side navigation pane, choose **Configuration** \> **Secrets**.
 
-6.  In the upper-right corner of the Secrets tab, click **Create**.
+6.  On the **Configurations** page, click the Secrets tab.
 
-7.  In the **Create** panel, set the parameters and click **OK**.
+7.  In the upper-right corner of the Secrets tab, click **Create**.
+
+8.  In the **Create** panel, set the parameters and click **OK**.
 
     ![Configure the Secret](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8441258951/p42130.png)
 
@@ -107,23 +111,23 @@ To pull private images, you must use a **private repository Secret**.
 
 **Note:**
 
-You can also create a **private repository Secret** from the command-line interface \(CLI\). For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+You can also create a **private repository Secret** from the command-line interface \(CLI\). For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
 
 ## Create an application from the private image repository
 
-1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click **Details** in the **Actions** column.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane, click **Workloads**.
+4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
 5.  On the **Workload** page, click the **Deployments** tab.
 
 6.  In the upper-right corner of the **Deployments** tab, click **Create from Template**.
 
-    **Note:** You can also click **Create from Image** to create an application. For more information, see [Use an image secret](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Use an image secret.md).
+    **Note:** You can also click **Create from Image** to create an application. For more information, see [Create an application by using an image pull secret](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
 
 7.  Set **Sample Template** to **Custom** and copy the following content to **Template**.
 
