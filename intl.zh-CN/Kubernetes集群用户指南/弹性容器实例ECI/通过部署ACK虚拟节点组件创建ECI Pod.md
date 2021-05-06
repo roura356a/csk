@@ -177,36 +177,7 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
 **修改ACK虚拟节点配置**
 
-虚拟节点Controller的配置决定了其调度ECI Pod的行为和ECI运行环境配置，包括虚拟交换机和安全组配置等。您可以根据需要灵活的修改Controller配置，修改配置后不会影响已经运行的ECI Pod，会立即生效于新建的ECI Pod。
-
-执行以下命令修改虚拟节点Controller的配置。
-
-```
-kubectl -n kube-system edit deployment ack-virtual-node-controller
-```
-
-常用的变更操作如下：
-
--   **更新virtual-node controller版本。**
-
-    当您使用更新虚拟节点功能时，需要更新Virtual Node Controller镜像至最新版本。
-
--   **修改安全组配置ECI\_SECURITY\_GROUP。**
-
-    您可以修改此环境变量，改变ECI Pod的安全组。
-
--   **修改虚拟交换机配置ECI\_VSWITCH。**
-
-    您可以修改此环境变量，改变ECI Pod所在的虚拟交换机。建议配置多个虚拟交换机支持多可用区，当单可用区库存不足时，Controller会选择另外一个可用区创建ECI Pod。
-
--   **修改kube-proxy配置ECI\_KUBE\_PROXY。**
-
-    此环境变量默认值为**true**，表示ECI Pod默认可以访问集群中的ClusterIP Service。如果ECI Pod无需访问ClusterIP Service时，例如Job计算场景，您可以设置此环境变量为**false**关闭kube-proxy功能。另外在一些规模化场景，例如集群中需要启动大量ECI Pod时，ECI中的kube-proxy和kubernetes apiserver之间的并发连接数也会大量增加，您同样可以选择关闭kube-proxy功能，减少对API Server的压力提升可扩展性。
-
--   **修改kube-system/eci-profile configmap。**
-
-    您可以修改此ConfigMap配置更多ECI相关参数，例如虚拟交换机、安全组等。
-
+关于修改ACK虚拟节点配置的操作，请参见[配置ECI Profile](/intl.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/配置ECI Profile.md)。
 
 **删除ACK虚拟节点**
 
