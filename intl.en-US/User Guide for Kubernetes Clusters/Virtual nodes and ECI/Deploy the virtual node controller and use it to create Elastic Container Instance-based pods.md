@@ -161,39 +161,6 @@ You can use one of the following methods to create an Elastic Container Instance
 
 **Note:** The following operations only apply to ACK clusters and do not apply to ASK clusters.
 
-**Modify the configurations of the virtual node controller in an ACK cluster**
-
-The configurations of the virtual node controller determine how pods are scheduled to a virtual node and specify the runtime environment of the pod, such as vSwitches and security group settings. You can modify the configurations of the virtual node controller to meet your business requirements. Modified configurations apply to only pods that are scheduled after modifications and do not apply to existing pods that run on the node.
-
-Run the following command to modify the configurations of the virtual node controller:
-
-```
-kubectl -n kube-system edit deployment ack-virtual-node-controller
-```
-
-The following content describes common modifications:
-
--   **Upgrade the version of the virtual node controller**.
-
-    To use the latest features of virtual nodes, you must upgrade the virtual node controller to the latest version.
-
--   **Modify security group settings**.
-
-    You can modify the ECI\_SECURITY\_GROUP environment variable to change the security group that is associated with pods that are scheduled to the virtual node.
-
--   **vSwitch settings**.
-
-    You can modify the ECI\_VSWITCH environment variable to change the vSwitch to which the pods that are scheduled to the virtual node belong. We recommend that you configure multiple vSwitches that are deployed in different zones to ensure high availability. When the stock of elastic container instances in the current zone is insufficient, the virtual node controller creates pods in another zone.
-
--   **Modify kube-proxy settings**.
-
-    By default, the ECI\_KUBE\_PROXY environment variable is set to **true**. This indicates that pods can access ClusterIP type Services. If the pods no longer need to access ClusterIP type Services, you can set the environment variable to **false** to disable kube-proxy. In large-scale deployment scenarios, a cluster may need to start a large number of pods. This significantly increases the number of concurrent connections between kube-proxy and the Kubernetes API server. In this case, you can disable kube-proxy to reduce the heavy loads on the API server.
-
--   **Modify the kube-system/eci-profile ConfigMap**.
-
-    You can modify the kube-system/eci-profile ConfigMap to specify more parameters for elastic container instances, such as vSwitches and security groups.
-
-
 **Delete virtual nodes in ACK clusters**
 
 1.  Uninstall ack-virtual-node.
