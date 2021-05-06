@@ -6,7 +6,7 @@
 ECI Profile介绍 
 ----------------------------------
 
-在Kubernetes场景中通过Virtual Kubelet（简称VK）使用ECI时，可能会碰到Pod无法无缝调度到ECI，或者Pod调度到ECI后，为了生效ECI的功能特性（如镜像缓存）需要添加Pod Annotation。这类问题一般由集群管理员处理，但目前却需要研发人员通过调整Pod的yaml来解决。
+在Kubernetes场景中通过Virtual Kubelet（简称VK）使用ECI时，可能会碰到Pod无法无缝调度到ECI，或者Pod调度到ECI后，为了生效ECI的功能特性（如镜像缓存）需要添加Pod Annotation。这类问题一般由集群管理员处理，但目前只能由研发人员通过修改Pod的YAML文件解决。
 
 针对上述场景，ECI支持通过配置ECI Profile来解决。ECI Profile包括以下两个能力：
 
@@ -21,7 +21,7 @@ ECI Profile介绍
 
     
   
-  * [配置ECI弹性调度](/cn.zh-CN/Kubernetes集群用户指南/调度/节点调度/使用ECI弹性调度.md)
+  * [配置ECI弹性调度](/cn.zh-CN/Kubernetes集群用户指南/调度/弹性调度/使用ECI弹性调度.md)
 
     
   
