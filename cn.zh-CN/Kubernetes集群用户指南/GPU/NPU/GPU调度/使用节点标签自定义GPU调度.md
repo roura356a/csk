@@ -138,7 +138,7 @@ keyword: [GPU节点标签, 灵活调度]
                   hostPort: 8888
                 env:
                   - name: PASSWORD
-                    value: mypassw0rdv # 设置该应用的登陆密码
+                    value: mypassw0rdv # 设置该应用的登录密码
         ```
 
     2.  您也可避免将某些应用部署到GPU节点。下面部署一个nginx的Pod，利用节点亲和性的特性进行调度，具体参见[创建无状态工作负载Deployment](/cn.zh-CN/Kubernetes集群用户指南/应用/工作负载/创建无状态工作负载Deployment.md)中关于节点亲和性的说明。
