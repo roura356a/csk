@@ -66,7 +66,7 @@ For security purposes, we recommend that you do not install Arena, run Arena, or
 
     2.  Run the following commands to create user IDs \(UIDs\) and group IDs \(GIDs\) in Linux for the corresponding users and user groups on the client.
 
-        In this example, create UIDs and GIDs for Bob and Tom, and create user groups dev1 and dev2 on the client. Use the Linux account system to complete [Task 2](#li_b62_eoa_lit): each user can log on to the client only with their own username and password, and run Arena only in their own environment.
+        In this example, create UIDs and GIDs for Bob and Tom, and create user groups dev1 and dev2 on the client. Use the Linux account system to complete Task 2: each user can log on to the client only with their own username and password, and run Arena only in their own environment.
 
         ```
         # Create Linux groups, users.
@@ -85,7 +85,7 @@ For security purposes, we recommend that you do not install Arena, run Arena, or
 
     After you submit jobs, the jobs are running in the ACK cluster. Each user on the client corresponds to a service account in the ACK cluster and each user group corresponds to a namespace. Therefore, you must create service accounts and namespaces, and make sure that they are mapped to the corresponding users and user groups on the client. You must map namespaces to user groups, and map service accounts to users.
 
-    Log on to the client as the root user. Make sure that the root user has permissions to manage the ACK cluster. For more information, see [Use kubectl to connect to an ACK cluster](#substep_212_rl0_m60). Run the following commands:
+    Log on to the client as the root user. Make sure that the root user has permissions to manage the ACK cluster. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md). Run the following commands:
 
     ```
     # Create a namespace that corresponds to user group dev1.
@@ -120,7 +120,7 @@ For security purposes, we recommend that you do not install Arena, run Arena, or
 
     To allow each user to use Arena in a separate environment, you must create a kubeconfig file for each user \(service account\). You can grant users different permissions on the ACK cluster. This ensures data security.
 
-    Log on to the client as the root user, and run the createKubeConfig.sh script to create a kubeconfig file for each user. For more information, see [Appendix](#section_m57_i99_0zo). Run the following commands:
+    Log on to the client as the root user, and run the createKubeConfig.sh script to create a kubeconfig file for each user. For more information, see [Appendix](#section_68x_865_s0z). Run the following commands:
 
     ```
     # Make the createKubeConfig.sh script executable.
@@ -139,7 +139,7 @@ For security purposes, we recommend that you do not install Arena, run Arena, or
 
     ![config](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4381205061/p173803.png)
 
-    After you perform the preceding operations, you can log on to the client with the account of Bob or Tom, and then run Arena in a separate environment. After you perform Step 1 and Step 2, [Task 1](#li_s36_5go_gcm) and [Task 2](#li_b62_eoa_lit) are completed.
+    After you perform the preceding operations, you can log on to the client with the account of Bob or Tom, and then run Arena in a separate environment. After you perform Step 1 and Step 2, Task 1 and Task 2 are completed.
 
 
 ## Step 3: Grant the users different permissions on Arena
@@ -152,7 +152,7 @@ For security purposes, we recommend that you do not install Arena, run Arena, or
 
         Create roles in dev1 and dev2, and bind the roles to Bob and Tom separately. In this example, grant Bob and Tom the minimum permissions. This allows them to view and manage only their own jobs.
 
-        For more information about how to create a role in dev1, see dev1\_roles.yaml in [Appendix](#section_m57_i99_0zo). For more information about how to create a role in dev2, see dev2\_roles.yaml in [Appendix](#section_m57_i99_0zo).
+        For more information about how to create a role in dev1, see dev1\_roles.yaml in [Appendix](#section_68x_865_s0z). For more information about how to create a role in dev2, see dev2\_roles.yaml in [Appendix](#section_68x_865_s0z).
 
     2.  After you create dev1\_roles.yaml and dev2\_roles.yaml, run the following commands to deploy the files to the ACK cluster:
 
@@ -183,9 +183,9 @@ For security purposes, we recommend that you do not install Arena, run Arena, or
 
     You can use two Kubernetes objects, RoleBinding and ClusterRoleBinding, to create role bindings that grant permissions on namespaces or the ACK cluster. For more information about how to use RoleBinding and ClusterRoleBinding to describe role bindings, see [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
 
-    To complete [Task 3](#li_zu0_17k_nom), bind the roles that are created in [Step 3](#step_9f2_rfl_ruj) to Bob and Tom. To grant permissions to users, perform the following operations:
+    To complete Task 3, bind the roles that are created in [Step 3: Grant the users different permissions on Arena](#section_p2d_lqd_tod) to Bob and Tom. To grant permissions to users, perform the following operations:
 
-    1.  Log on to the client as the root user. Run the following commands to bind the roles to Bob and Tom. For more information about bob\_rolebindings.yaml and tom\_rolebindings.yaml, see [Appendix](#section_m57_i99_0zo).
+    1.  Log on to the client as the root user. Run the following commands to bind the roles to Bob and Tom. For more information about bob\_rolebindings.yaml and tom\_rolebindings.yaml, see [Appendix](#section_68x_865_s0z).
 
         ```
         kubectl apply -f bob_rolebindings.yaml
@@ -214,9 +214,9 @@ ACK provides a console for you to centrally manage all resources of an ACK clust
 
 In Kubernetes, a ResourceQuota object describes constraints that limit aggregate resource consumption per namespace. Each namespace corresponds to a user group on the client where Arena is installed. You can configure quotas for various resources, such as CPU, memory, and extended resources. Extended resources include NVIDIA GPUs. A ResourceQuota object also limits the resource usage of containers and other Kubernetes objects in a namespace. For more information, see [Resource quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/).
 
-To complete [Task 4](#li_db9_ab1_imr), configure quotas of GPU, CPU, and memory resources for each user group. For more information, see [Allocate resources](#table_xy2_zmb_z48). In this example, allocate one GPU to dev1. The CPU and memory resources are unlimited. Bob in dev1 can use all CPU and memory resources of the cluster. Then, allocate the following resources to dev2: 2 GPUs, 8 CPU cores, and 60 GiB of memory. To configure resource quotas for the user groups, perform the following operations:
+To complete Task 4, configure quotas of GPU, CPU, and memory resources for each user group. For more information, see [Table 1](#table_vn6_cqk_2vq). In this example, allocate one GPU to dev1. The CPU and memory resources are unlimited. Bob in dev1 can use all CPU and memory resources of the cluster. Then, allocate the following resources to dev2: 2 GPUs, 8 CPU cores, and 60 GiB of memory. To configure resource quotas for the user groups, perform the following operations:
 
-1.  Log on to the client as the root user, and run the following commands to configure resource quotas. For more information about dev1\_quota.yaml and dev2\_quota.yaml, see [Appendix](#section_m57_i99_0zo). Run the following command to deploy the files in the ACK cluster:
+1.  Log on to the client as the root user, and run the following commands to configure resource quotas. For more information about dev1\_quota.yaml and dev2\_quota.yaml, see [Appendix](#section_68x_865_s0z). Run the following command to deploy the files in the ACK cluster:
 
     ```
     kubectl apply -f dev1_quota.yaml
@@ -241,14 +241,14 @@ To complete [Task 4](#li_db9_ab1_imr), configure quotas of GPU, CPU, and memory 
 
     ![quota](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4381205061/p174046.png)
 
-    In this case, computing resources are allocated to the user groups, and [Task 4](#li_db9_ab1_imr) is completed.
+    In this case, computing resources are allocated to the user groups, and Task 4 is completed.
 
 
 ## Step 5: Create NAS volumes to enforce multi-level access control
 
 To meet the requirements of multi-level access control, you must create volumes that are accessible to different users and user groups. This ensures the security of data sharing.
 
-To complete [Task 5](#li_9tk_kye_uqc), you must create two types of shared volumes. The first type of volume is used to store data that can be accessed by users in both user groups, and the other type of volume is used to store data that can be accessed by only users in a specific user group. For more information about shared volumes, see [Allocate resources](#table_xy2_zmb_z48). In this example, four volumes are created: dev1-public, dev2-public, department1-public-dev1, and department1-public-dev2. department1-public-dev1 and department1-public-dev2 are mounted to the same directory of the NAS file system. The volume data can be accessed by users in both dev1 and dev2. dev1-public and dev2-public are mounted to different directories of the NAS file system. Data stored on dev1-public can be accessed by only Bob in dev1, and data stored on dev2-public can be accessed by only Tom in dev2. To create NAS volumes for data sharing, perform the following operations:
+To complete Task 5, you must create two types of shared volumes. The first type of volume is used to store data that can be accessed by users in both user groups, and the other type of volume is used to store data that can be accessed by only users in a specific user group. For more information about shared volumes, see [Table 1](#table_vn6_cqk_2vq). In this example, four volumes are created: dev1-public, dev2-public, department1-public-dev1, and department1-public-dev2. department1-public-dev1 and department1-public-dev2 are mounted to the same directory of the NAS file system. The volume data can be accessed by users in both dev1 and dev2. dev1-public and dev2-public are mounted to different directories of the NAS file system. Data stored on dev1-public can be accessed by only Bob in dev1, and data stored on dev2-public can be accessed by only Tom in dev2. To create NAS volumes for data sharing, perform the following operations:
 
 1.  Create a NAS file system.
 
