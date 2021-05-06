@@ -343,9 +343,9 @@ On the Deployments page, select the application and click **More** in the **Acti
 |**View in YAML**|View the YAML file of the application.|
 |**Redeploy**|Redeploy the application.|
 |**Edit Label**|Configure labels for the application.|
-|**Node Affinity**|Configure node affinity rules for the application. For more information, see [Scheduling](#step_cev_rgj_vck).|
+|**Node Affinity**|Configure node affinity rules for the application. For more information, see [Scheduling](#step_csu_4sv_gz8)[Scheduling](#step_cev_rgj_vck).|
 |**Scaling**|Configure scaling settings for the application. For more information, see [HPA](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/HPA.md) and [CronHPA](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/CronHPA.md).|
-|**Toleration**|Configure toleration rules for the application. For more information, see [Scheduling](#step_cev_rgj_vck).|
+|**Toleration**|Configure toleration rules for the application. For more information, see [Scheduling](#step_csu_4sv_gz8).|
 |**Upgrade Policy**|Configure the upgrade policy for the application.-   **Rolling Update**: Pods are updated in a rolling update fashion.
 -   **OnDelete**: All existing pods are deleted before new pods are created. |
 |**Clone**|Create a new application by using the same container settings as the current application.|
@@ -506,7 +506,7 @@ When you create an application by using a private image, you must set a secret f
 
 8.  Configure other parameters based on your requirements. Then, click **Create**.
 
-    For more information, see [Step 3: Configure advanced settings](#task_p2s_2rl_vdb).
+    For more information, see Step 3: Configure advanced settings.
 
 9.  In the left-side navigation pane, click **Clusters**.
 
@@ -521,6 +521,6 @@ When you create an application by using a private image, you must set a secret f
 
 ## References
 
--   [Deploy a stateful application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateful application from an image.md)
+-   [Use a StatefulSet to create a stateful application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a StatefulSet to create a stateful application.md)
 -   [Use annotations to configure load balancing](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Use annotations to configure load balancing.md)
 
