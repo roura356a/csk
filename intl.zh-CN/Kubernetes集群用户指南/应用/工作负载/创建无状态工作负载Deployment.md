@@ -132,12 +132,12 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
     -   **自定义**
     -   **配置项**
-    -   **密钥**
+    -   **保密字典**
     -   **变量/变量引用**
     -   **资源引用**
-配置项、密钥支持全部文件的引用，以密钥为例。选择**密钥**类型，只选择目标密钥（保密字典），则默认引用全部文件。
+配置项、保密字典支持全部文件的引用，以保密字典为例。选择**保密字典**类型，只选择目标保密字典，则默认引用全部文件。
 
-![环境变量](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p130410.png)
+![环境变量](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9173530261/p130410.png)
 
 对应的YAML，也引用了整个密钥（Secret）。
 
@@ -313,7 +313,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
     -   配置路由（Ingress）：在**路由（Ingress）**右侧，单击**创建**设置后端Pod的路由规则。
 
-        关于路由配置信息，请参见[配置路由信息](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress基本操作.md)。
+        关于路由配置信息，请参见[配置路由信息](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/创建Ingress路由.md)。
 
         **说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在hosts文件中添加一条域名映射（<Ingress外部端点\> + <Ingress域名\>）。在实际工作场景中，请使用备案域名。
 
@@ -330,7 +330,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 本例为nginx-ingress。|
         |规则
 
-|路由规则是指授权入站到达集群服务的规则。更多信息，请参见[配置路由信息](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress基本操作.md)。
+|路由规则是指授权入站到达集群服务的规则。更多信息，请参见[配置路由信息](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/创建Ingress路由.md)。
 
         -   **域名**：输入Ingress域名。
         -   **路径**：指定服务访问的URL路径，默认为根路径/，本例中不做配置。每个路径 （path）都关联一个backend（服务），在阿里云SLB将流量转发到backend之前，所有的入站请求都要先匹配域名和路径。
