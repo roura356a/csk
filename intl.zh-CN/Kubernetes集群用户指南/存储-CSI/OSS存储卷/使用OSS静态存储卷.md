@@ -146,7 +146,9 @@ keyword: [OSS, 静态存储, K8s]
     apiVersion: v1
     kind: PersistentVolume
     metadata:
-      name: oss-csi-pv
+      name: pv-oss
+      labels:
+        alicloud-pvname: pv-oss
     spec:
       capacity:
         storage: 5Gi
@@ -155,7 +157,7 @@ keyword: [OSS, 静态存储, K8s]
       persistentVolumeReclaimPolicy: Retain
       csi:
         driver: ossplugin.csi.alibabacloud.com
-        volumeHandle: oss-csi-pv // 需要和PV名字一致。
+        volumeHandle: pv-oss // 需要和PV名字一致。
         nodePublishSecretRef:
           name: oss-secret
           namespace: default
@@ -199,7 +201,6 @@ keyword: [OSS, 静态存储, K8s]
     spec:
       accessModes:
         - ReadWriteMany
-      storageClassName: oss
       resources:
         requests:
           storage: 5Gi
@@ -212,7 +213,6 @@ keyword: [OSS, 静态存储, K8s]
     |--|--|
     |`name`|PVC的名称。|
     |`accessModes`|配置访问模式。|
-    |`storageClassName`|本例设置为OSS，表示PVC只与OSS类型的PV绑定。|
     |`storage`|声明应用使用量，不能大于存储卷的总量。|
     |`alicloud-pvname`|通过标签关联PV，与PV标签保持一致。|
 
@@ -339,7 +339,7 @@ spec:
             claimName: pvc-oss
 ```
 
--   `livenessProbe`：配置健康检查，详细介绍，请参见[OSS存储卷概述](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/OSS存储卷/OSS卷使用说明.md)。
+-   `livenessProbe`：配置健康检查，详细介绍，请参见[OSS存储卷概述](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/OSS存储卷/OSS存储卷概述.md)。
 -   `mountPath`：OSS在容器中挂载的位置。
 -   `claimName`：PVC的名称，用于绑定PVC。
 
