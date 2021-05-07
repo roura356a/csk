@@ -1,5 +1,5 @@
 ---
-keyword: [sgx-device-plugin, 变更版本]
+keyword: sgx-device-plugin
 ---
 
 # sgx-device-plugin
@@ -22,8 +22,7 @@ sgx-device-plugin主要提供以下功能：
 
 sgx-device-plugin主要依赖以下组件：
 
--   [Intel SGX Drivers](https://github.com/intel/linux-sgx-driver)
--   [Intel SGX PSW\(Platform Software\)](https://github.com/intel/linux-sgx)（如果您需要AESM服务）
+-   TEE-SDK（兼容Intel SGX SDK和Intel SGX PSW）
 -   Kubernetes版本≥1.10
 -   Go版本≥1.10
 
@@ -44,9 +43,11 @@ sgx-device-plugin主要依赖以下组件：
 
 ## 变更记录
 
+**2021年04月**
+
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
-|v1.0.0-5f5b5ef-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/sgx-device-plugin:v1.0.0-5f5b5ef-aliyun|2020年2月21日|-   无需开启容器特权模式即可使用SGX。
+|v1.1.0-bb1f5f9-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/sgx-device-plugin:v1.1.0-bb1f5f9-aliyu|2021年04月30日|-   无需开启容器特权模式即可使用SGX。
 -   支持自动获取EPC内存大小。
 -   支持容器声明式EPC内存分配。
 
