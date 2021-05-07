@@ -8,7 +8,7 @@ keyword: [Intel SGX SDK, 构建SGX2.0应用]
 
 -   [创建加密计算托管集群](/cn.zh-CN/Kubernetes集群用户指南/ACK-TEE机密计算/创建加密计算托管集群.md)。
 -   开发编译环境依赖：
-    -   AliyunLinux 2或CentOS/RHEL7+。
+    -   AliyunLinux 2。
     -   Intel SGX Driver。
     -   TEE-SDK：是阿里云提供的开发加密计算应用的开发者套件，该套件提供与Intel Linux SGX SDK一致的开发模型和编程接口，兼容Intel SGX SDK和Intel SGX PSW。
     -   AESM service。
