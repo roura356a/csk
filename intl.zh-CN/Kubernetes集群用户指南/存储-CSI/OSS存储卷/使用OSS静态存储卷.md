@@ -235,7 +235,7 @@ kubectl create -f pv-accesskey.yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: oss-csi-pv
+  name: pv-oss
 spec:
   capacity:
     storage: 5Gi
@@ -244,7 +244,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ossplugin.csi.alibabacloud.com
-    volumeHandle: oss-csi-pv // 需要和PV名字一致。
+    volumeHandle: pv-oss // 需要和PV名字一致。
     volumeAttributes:
       bucket: "oss"
       url: "oss-cn-hangzhou.aliyuncs.com"
@@ -269,7 +269,7 @@ kubectl create -f pv-sts.yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: oss-csi-pv
+  name: pv-oss
 spec:
   capacity:
     storage: 5Gi
@@ -278,7 +278,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ossplugin.csi.alibabacloud.com
-    volumeHandle: oss-csi-pv // 需要和PV名字一致。
+    volumeHandle: pv-oss // 需要和PV名字一致。
     volumeAttributes:
       bucket: "oss"
       url: "oss-cn-hangzhou.aliyuncs.com"
