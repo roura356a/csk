@@ -20,7 +20,7 @@ keyword: [任务调度, GPU调度, 资源利用率]
 
 **GPU共享调度**
 
-GPU共享调度除了提供GPU共享调度降低了使用GPU的经济成本，同时为了保障程序运行的稳定性，提供了GPU显存和算力隔离的功能。更多信息，请参见：[共享GPU概述](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU调度/共享GPU调度/共享GPU概述.md)。 同时在ACK Pro集群中提供了更加丰富的GPU设备分配策略：包括单Pod单GPU卡共享和隔离，常用于支持模型推理场景；单Pod多GPU卡共享和隔离，常用于支持分布式模型训练代码的开发；按GPU卡的Binpack和Spread分配策略，可以针对GPU卡的使用密度和出现坏卡时高可用性的平衡。更多信息，请参见共享GPU专业版[共享GPU专业版概述](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/GPU调度/共享GPU调度专业版/共享GPU专业版概述.md)。
+GPU共享调度除了提供GPU共享调度降低了使用GPU的经济成本，同时为了保障程序运行的稳定性，提供了GPU显存和算力隔离的功能。更多信息，请参见：[共享GPU概述](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU调度/共享GPU调度/共享GPU概述.md)。 同时在ACK Pro集群中提供了更加丰富的GPU设备分配策略：包括单Pod单GPU卡共享和隔离，常用于支持模型推理场景；单Pod多GPU卡共享和隔离，常用于支持分布式模型训练代码的开发；按GPU卡的Binpack和Spread分配策略，可以针对GPU卡的使用密度和出现坏卡时高可用性的平衡。更多信息，请参见[共享GPU专业版概述](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/GPU调度/共享GPU调度专业版/共享GPU专业版概述.md)。
 
 **拓扑感知调度**
 
