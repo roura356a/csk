@@ -16,7 +16,7 @@ keyword: [工作负载, 有状态, StatefulSet]
 
 -   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
 -   [创建持久化存储卷声明](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/创建持久化存储卷声明.md)
--   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)
+-   [t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)
 
 ## 背景信息
 
@@ -110,7 +110,7 @@ StatefulSet包括以下特性：
 
             选择**密钥**，选择**变量**，默认全部文件引用。
 
-            ![环境变量](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p130410.png)
+            ![环境变量](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9173530261/p130410.png)
 
             对应的yaml，则引用了整个Secret。
 
@@ -199,7 +199,7 @@ StatefulSet包括以下特性：
         |配置项|描述|
         |---|--|
         |服务（Service）|在**服务（Service）**右侧，单击**创建**设置**创建服务**的配置项。配置项的详情，请参见[管理服务](/cn.zh-CN/Kubernetes集群用户指南/网络/Service管理/管理服务.md)。本例中服务类型选择**ClusterIP**。|
-        |路由（Ingress）|在**路由（Ingress）**右侧，单击**创建**。在弹出的对话框中，为后端Pod配置路由规则。详细的路由配置信息，请参见[创建Ingress](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress基本操作.md)。**说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在Hosts中添加一条记录。在实际工作场景中，请使用备案域名。
+        |路由（Ingress）|在**路由（Ingress）**右侧，单击**创建**。在弹出的对话框中，为后端Pod配置路由规则。详细的路由配置信息，请参见[创建Ingress](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/创建Ingress路由.md)。**说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在Hosts中添加一条记录。在实际工作场景中，请使用备案域名。
 
         ```
 101.37.224.146   foo.bar.com    #即ingress的IP
