@@ -15,7 +15,6 @@ Before you use the cluster, take note of the following limits:
 
 -   By default, you can deploy up to 100 nodes in each cluster. To add more nodes, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 -   The ECS instances that you want to add to the ACK cluster must be deployed in the same region and virtual private cloud \(VPC\) as the cluster.
--   Before you add an existing ECS instance to an ACK cluster, make sure that an elastic IP address \(EIP\) is attached to the ECS instance, or a Network Address Translation \(NAT\) gateway is created in the VPC where the ECS instance is deployed. This ensures that the ECS instance can access the Internet. Otherwise, the ECS instance cannot be added to the cluster.
 -   The ECS instances that you want to add must belong to the same account as the cluster.
 -   Nodes that run the following operating systems can be added to an ACK cluster:
     -   Alibaba Cloud Linux 2
