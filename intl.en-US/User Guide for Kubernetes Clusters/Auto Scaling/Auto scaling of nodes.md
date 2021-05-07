@@ -270,7 +270,6 @@ If an auto-scaling node pool in the cluster is required to be associated with an
 
     -   Whether instance types that are configured for the scaling group meet the requested resources of pods. By default, system components are installed for each node. Therefore, the requested resources of pods on a node must be less than the resource capacity of the instance type of the node.
     -   Whether you have performed authorization steps as described. You must perform the authorization for each cluster that is involved in the scale-out event.
-    -   Whether the cluster can access the Internet. Nodes in a scaling group require Internet access. This is because the auto scaling component needs to call Alibaba Cloud APIs over the Internet.
 -   Why does the auto scaling component fail to remove nodes after a scale-in event is triggered?
 
     Check for the following issues:
