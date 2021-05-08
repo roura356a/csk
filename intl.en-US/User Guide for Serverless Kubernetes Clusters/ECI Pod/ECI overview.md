@@ -99,7 +99,7 @@ You can set environment variables of an ECI to collect stdout files or log files
 
 |Annotation|Description|Example|
 |----------|-----------|-------|
-|k8s.aliyun.com/eci-use-specs|Specifies the instance types and specifications that can be used. You can specify multiple instance types. If the stock of a specified instance type is insufficient, the system selects another instance type to create instances. The instance type can be set in the CPU-MEM format \($\{cpu\}-$\{mem\}Gi\), ECS instance type format, or GPU type format \(eci-gpu-$gputype-$gpucount\).|"k8s.aliyun.com/eci-use-specs": "2-4Gi,4-8Gi,ecs.c6.xlarge,ecigpu-P100-4"|
+|k8s.aliyun.com/eci-use-specs|Specifies the instance types and specifications that can be used. You can specify multiple instance types. If the stock of a specified instance type is insufficient, the system selects another instance type to create instances. The instance type can be set in the CPU-MEM format \($\{cpu\}-$\{mem\}Gi\), ECS instance type format.|"k8s.aliyun.com/eci-use-specs": "2-4Gi,4-8Gi,ecs.c6.xlarge"|
 |k8s.aliyun.com/eci-vswitch|Sets a vSwitch for an ECI.|"k8s.aliyun.com/eci-vswitch" : "$\{your\_vsw\_id\}"|
 |k8s.aliyun.com/eci-security-group|Sets a security group for an ECI.|"k8s.aliyun.com/eci-security-group" : "$\{your\_security\_group\_id\}"|
 |k8s.aliyun.com/eci-resource-group-id|Sets a resource group to which an ECI belongs.|"k8s.aliyun.com/eci-resource-group-id" : "$\{your\_resource\_group\_id\}"|
