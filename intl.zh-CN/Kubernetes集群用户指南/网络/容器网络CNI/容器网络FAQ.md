@@ -11,6 +11,12 @@
 -   [ACK集群是否支持VPC多路由表？](#section_9lf_6ud_9zg)
 -   [如何查看集群的网络类型及对应的虚拟交换机？](#section_bgi_kgm_etw)
 -   [如何查看集群中使用的云资源？](#section_8b1_slo_xiu)
+-   [Kubernetes集群中Pod出现网络异常](~~142373~~)
+-   [如何确认Kubernetes集群内应用的出网地址](~~142274~~)
+-   [使用Terway网络的ENI模式出现网络异常](~~147426~~)
+-   [Kubernetes管控集群链路异常的排查思路](~~149275~~)
+-   [Terway网络场景中交换机的IP资源不足](~~189784~~)
+-   [Kubernetes集群中访问LoadBalancer暴露出去的SLB地址不通](~~171437~~)
 
 ## 手动升级了Flannel镜像版本后，如何解决无法兼容1.16以上版本集群的问题？
 
