@@ -11,8 +11,14 @@
 -   [如何规划集群网络？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
 -   [ACK是否支持hostPort的端口映射？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
 -   [ACK集群是否支持VPC多路由表？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
--   [如何查看集群的网络类型？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
+-   [如何查看集群的网络类型及对应的虚拟交换机？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
 -   [如何查看集群中使用的云资源？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
+-   [Kubernetes集群中Pod出现网络异常](~~142373~~)
+-   [如何确认Kubernetes集群内应用的出网地址](~~142274~~)
+-   [使用Terway网络的ENI模式出现网络异常](~~147426~~)
+-   [Kubernetes管控集群链路异常的排查思路](~~149275~~)
+-   [Terway网络场景中交换机的IP资源不足](~~189784~~)
+-   [Kubernetes集群中访问LoadBalancer暴露出去的SLB地址不通](~~171437~~)
 
 ## Service FAQ
 
@@ -51,4 +57,5 @@
 -   [nginx-ingress-controller组件支持HSTS吗？](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress FAQ.md)
 -   [Ingress-Nginx支持哪些Rewrite配置？](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress FAQ.md)
 -   [当版本升级后SLS解析日志不正常怎样修复？](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress FAQ.md)
+-   [如何配置Nginx Ingress Controller的私网SLB](~~142097~~)
 
