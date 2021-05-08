@@ -14,6 +14,9 @@ keyword: 安全组常见问题
 -   [Secret在新建的Namespace下面无法使用](#section_js7_ku8_n29)
 -   [无法挂载default-token](#section_5ic_ehe_2om)
 -   [审计日志查询方法](#section_zhr_qfz_ofq)
+-   [如何收集Kubernetes集群的诊断信息？](~~86761~~)
+-   [如何收集边缘Kubernetes集群节点的诊断信息？](~~149335~~)
+-   [CentOS 7.6系统的Kubernetes集群中kubelet日志含有“Reason:KubeletNotReady Message:PLEG is not healthy:”信息](~~178340~~)
 
 ## 为什么容器之间网络不通？
 
@@ -85,7 +88,7 @@ keyword: 安全组常见问题
 
 ## 集群审计功能是否可以取消或者在创建集群后再部署？
 
-可以。具体操作，请参见[使用集群审计功能](/cn.zh-CN/Kubernetes集群用户指南/安全/容器应用安全/使用集群审计功能.md)。
+可以。具体操作，请参见[使用集群审计功能](/cn.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/使用集群审计功能.md)。
 
 ## Kubernetes专有版本集群怎么更换证书有效期，以及更换各个组件的证书？
 
