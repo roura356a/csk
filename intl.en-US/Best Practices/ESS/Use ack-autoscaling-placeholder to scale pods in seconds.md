@@ -4,23 +4,23 @@ keyword: [ack-autoscaling-placeholder, scale pods in seconds]
 
 # Use ack-autoscaling-placeholder to scale pods in seconds
 
-ack-autoscaling-placeholder provides a buffer for automatically scaling pods in a cluster. ack-autoscaling-placeholder is suitable for quickly launching pods for workloads without the need to worry about whether the node resources are sufficient. This topic describes how to use ack-autoscaling-placeholder to scale pods in seconds.
+ack-autoscaling-placeholder provides a buffer for automatically scaling pods in a cluster. ack-autoscaling-placeholder is suitable for quickly launching pods for workloads without the need to worry whether node resources are sufficient. This topic describes how to use ack-autoscaling-placeholder to scale pods within seconds.
 
 Auto Scaling \(ESS\) is enabled for your cluster of Container Service for Kubernetes \(ACK\). For more information, see [Auto scaling of nodes](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Auto scaling of nodes.md).
 
 ## Procedure
 
-1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, choose **Marketplace** \> **App Catalog**.
+2.  In the left-side navigation pane of the ACK console, choose **Marketplace** \> **App Catalog**.
 
-3.  On the App Catalog page, find and click **ack-autoscaling-placeholder**. On the App Catalog - ack-autoscaling-placeholder page, select the cluster and namespace to deploy the application and click **Create**.
+3.  On the App Catalog page, find and click **ack-autoscaling-placeholder**. On the App Catalog - ack-autoscaling-placeholder page, select the cluster and namespace where you want to deploy the application and click **Create**.
 
 4.  Configure ack-autoscaling-placeholder.
 
-    1.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+    1.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-    2.  In the left-side navigation pane of the details page, click **Releases**.
+    2.  In the left-side navigation pane of the details page, choose **Applications** \> **Helm**.
 
     3.  On the page that appears, find **ack-autoscaling-placeholder** and click **Update** in the Actions column.
 
@@ -43,7 +43,7 @@ Auto Scaling \(ESS\) is enabled for your cluster of Container Service for Kubern
                  pullPolicy: IfNotPresent
                  resources:
                    requests:
-                     cpu: 4                  # Occupy 4 cores and 8 GB of memory.
+                     cpu: cpu: 4                  # Occupy 4 cores and 8 GB of memory.
                      memory: 8               
              imagePullSecrets: {}
              annotations: {}
@@ -62,12 +62,14 @@ Auto Scaling \(ESS\) is enabled for your cluster of Container Service for Kubern
         kubectl apply -f priorityClass.yaml
         ```
 
+        Expected output:
+
         ```
         apiVersion: scheduling.k8s.io/v1
         kind: PriorityClass
         metadata:
           name: high-priority
-        value: 1000000              # Specify the priority.
+        value: value: 1000000              # Specify the priority. 
         globalDefault: false
         description: "This priority class should be used for XYZ service pods only."
         ```
@@ -97,7 +99,7 @@ Auto Scaling \(ESS\) is enabled for your cluster of Container Service for Kubern
             spec:
               nodeSelector:                        # Select nodes.
                 demo: "yes"
-              priorityClassName: high-priority     # Specify the name of the PriorityClass that is created in Step 3.
+              priorityClassName: high-priority     # Specify the name of the PriorityClass that is created in Step 3. 
               containers:
               - name: nginx
                 image: nginx:1.7.9 
@@ -105,11 +107,11 @@ Auto Scaling \(ESS\) is enabled for your cluster of Container Service for Kubern
                 - containerPort: 80
                 resources:       
                   requests:      
-                    cpu: 3                         # Specify the amount of resources required by the workload.
+                    cpu: cpu: 3                         # Specify the amount of resources required by the workload. 
                     memory: 5
         ```
 
-        A PriorityClass that grants a higher priority than other pods is created for the workload, as shown in the following figure. When the node resources are insufficient, the placeholder pod placeHolder is evicted and its state changes to Pending. After the placeholder pod changes to the Pending state, a scale-out activity is triggered in the cluster because Auto Scaling is activated for the cluster. Consequently, **pods are scaled out in seconds** for the workload.
+        A PriorityClass that grants a higher priority than other pods is created for the workload, as shown in the following figure. When node resources are insufficient, the placeholder pod named placeHolder is evicted and its state changes to Pending. After the placeholder pod changes to the Pending state, a scale-out activity is triggered in the cluster because Auto Scaling is activated for the cluster. Consequently, **pods are scaled out within seconds** for the workload.
 
         ![pending](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0854065061/p170802.png)
 
