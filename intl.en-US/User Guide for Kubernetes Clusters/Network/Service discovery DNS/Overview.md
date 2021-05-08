@@ -4,22 +4,26 @@ keyword: [CoreDNS, service discovery, DNS]
 
 # Overview
 
-CoreDNS is deployed in Container Service for Kubernetes \(ACK\) clusters and serves as a Domain Name System \(DNS\) server to provide DNS resolution services for workloads deployed in ACK clusters. This topic describes CoreDNS and its features. It also describes how CoreDNS resolves domain names in Kubernetes clusters.
+CoreDNS is deployed in Container Service for Kubernetes \(ACK\) clusters and serves as a Domain Name System \(DNS\) server to provide DNS resolution services for workloads deployed in ACK clusters. This topic introduces CoreDNS and its features, and describes how CoreDNS resolves domain names in Kubernetes clusters.
 
 ## Introduction to CoreDNS
 
-CoreDNS is a DNS resolver for Kubernetes clusters. CoreDNS resolves custom domain names from inside Kubernetes clusters or domain names from outside Kubernetes clusters. CoreDNS confains a variety of plug-ins. These plug-ins allow you to configure custom DNS settings and customize hosts, Canonical Name \(CNAME\) records, and rewrite rules for Kubernetes clusters. CoreDNS is hosted by [Cloud Native Computing Foundation \(CNCF\)](https://cncf.io/), which also hosts Kubernetes. For more information about CoreDNS, see [CoreDNS: DNS and Service Discovery](https://coredns.io/).
+CoreDNS is a DNS resolver for Kubernetes clusters. CoreDNS resolves custom internal domain names and external domain names. CoreDNS contains a variety of plug-ins. These plug-ins allow you to configure custom DNS settings and customize hosts, Canonical Name \(CNAME\) records, and rewrite rules for Kubernetes clusters. CoreDNS is hosted by [Cloud Native Computing Foundation \(CNCF\)](https://cncf.io/), which also hosts Kubernetes. For more information about CoreDNS, see [CoreDNS: DNS and Service Discovery](https://coredns.io/).
 
-ACK uses CoreDNS for service discovery in ACK clusters. You can configure CoreDNS based on your requirements to support higher numbers of DNS queries in different scenarios.
+ACK uses CoreDNS to implement service discovery in clusters. You can configure CoreDNS based on your requirements to support higher numbers of DNS queries in different scenarios.
 
 -   For more information about CoreDNS configurations in ACK clusters, see [Configure CoreDNS for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service discovery DNS/Introduction and configuration of the DNS service in ACK clusters.md).
 -   For more information about how to use CoreDNS to improve the performance of DNS resolutions for an ACK cluster, see [Optimize DNS resolution for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service discovery DNS/Optimize DNS resolution for an ACK cluster.md).
 
+**Note:**
+
+You can also use NodeLocal DNSCache to improve the stability and performance of service discovery in ACK clusters. NodeLocal DNSCache improves DNS performance by running a DNS caching agent on nodes as a DaemonSet. For more information about how to deploy NodeLocal DNSCache in an ACK cluster, see [Deploy Node Local DNS in an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service discovery DNS/Deploy Node Local DNS in an ACK cluster.md).
+
 ## Mappings between CoreDNS versions and Kubernetes versions
 
-ACK maintains a mapping between CoreDNS versions and Kubernetes versions. You can upgrade CoreDNS versions only when you upgrade Kubernetes versions for ACK clusters. The following table describes the mappings between CoreDNS versions and Kubernetes versions.
+ACK maintains a mapping between CoreDNS versions and Kubernetes versions. You can upgrade CoreDNS versions only when you upgrade Kubernetes versions for ACK clusters. The following table describes the mapping between CoreDNS versions and Kubernetes versions.
 
-**Note:** To view the current CoreDNS version of your cluster, log on to the ACK console, go to the **Pods** page, and then check the image version of the coredns-xxx pod. For more information, see [View pods in ACK clusters](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/View pods in ACK clusters.md).
+**Note:** To view the current CoreDNS version of your cluster, log on to the ACK console, go to the **Pods** page, and then check the image version of the pod named coredns-xxx. For more information, see [Manage pods](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Manage pods.md).
 
 |Item|Version|
 |----|-------|
@@ -28,9 +32,9 @@ ACK maintains a mapping between CoreDNS versions and Kubernetes versions. You ca
 
 ## DNS resolutions in an ACK cluster
 
-The startup parameters of kubelet in an ACK cluster contain `--cluster-dns=<dns-service-ip>` and `--cluster-domain=<default-local-domain>`. These parameters are used to configure the IP address and the suffix of the base domain name for the DNS server in the ACK cluster.
+The startup parameters of kubelet in an ACK cluster include `--cluster-dns=<dns-service-ip>` and `--cluster-domain=<default-local-domain>`. These parameters are used to configure the IP address and the suffix of the base domain name for the DNS server in the ACK cluster.
 
-By default, a Service named **kube-dns** is deployed in an ACK cluster to provide DNS resolution service for an ACK cluster. Two pods named **coredns** are deployed as the backend of CoreDNS for ACK clusters. DNS queries in an ACK cluster are sent to the DNS servers that are specified in the coredns pod configurations. The /etc/resolv.conf file in the coredns pod configures how domain names are resolved. The file contains the following content:
+By default, ACK deploys a set of workloads in a cluster to run CoreDNS. A Service named **kube-dns** is deployed to expose these workloads to DNS queries in the cluster. Two pods named **coredns** are deployed as the backend of CoreDNS. DNS queries in the cluster are sent to the DNS server that is specified in the coredns pod configurations. The DNS configuration file in the pod is /etc/resolv.conf. The file contains the following content:
 
 ```
 nameserver 172.xx.x.xx
@@ -53,4 +57,6 @@ For more information about DNS resolutions in Kubernetes clusters, see [t1985778
 [Introduction and configuration of the DNS service in ACK clusters](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service discovery DNS/Introduction and configuration of the DNS service in ACK clusters.md)
 
 [Optimize DNS resolution for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service discovery DNS/Optimize DNS resolution for an ACK cluster.md)
+
+[Deploy Node Local DNS in an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service discovery DNS/Deploy Node Local DNS in an ACK cluster.md)
 
