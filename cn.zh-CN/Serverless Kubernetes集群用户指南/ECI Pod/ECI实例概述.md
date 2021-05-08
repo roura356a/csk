@@ -77,7 +77,7 @@ ECI Pod默认每次启动后使用内部的containerd从远端拉取容器镜像
     -   挂载Disk Volume：同标准的Flexvolume用法相同，指定disk volume Id进行挂载。
     -   随ECI实例自动创建disk volume：为了提供更灵活的云盘挂载能力，ECI支持创建时挂载flexvolume动态创建一个云盘，可以指定disk volume的size大小，也可以配置当ECI实例结束时是否保留disk volume。
 -   NFS：[参考示例](https://github.com/AliyunContainerService/serverless-k8s-examples/blob/master/nas-volume/nas-volume.yaml)。
--   PV/PVC：[参考示例](https://github.com/AliyunContainerService/serverless-k8s-examples/tree/master/pvc)
+-   PV/PVC：[参考示例](https://github.com/AliyunContainerService/serverless-k8s-examples/tree/master/pvc)。
 
 ## 网络
 
@@ -95,11 +95,11 @@ ECI Pod默认使用Host网络模式，占用交换机VSwitch的一个弹性网�
 
 ## 支持Annotation列表
 
-**说明：** 注意：Annotation需要配置在Pod Spec中，而不是Deployment Spec中。
+**说明：** Annotation需要配置在Pod Spec中，而不是Deployment Spec中。
 
 |Annotation|解释|示例|
 |----------|--|--|
-|k8s.aliyun.com/eci-use-specs|表示允许的实例规格，可以配置多个。当前规格没有库存时依次尝试下一个规格创建。支持CPU-MEM格式（$\{cpu\}-$\{mem\}Gi）、ECS规格格式、GPU规格格式（eci-gpu-$gputype-$gpucount）。|"k8s.aliyun.com/eci-use-specs": "2-4Gi,4-8Gi,ecs.c6.xlarge,ecigpu-P100-4"|
+|k8s.aliyun.com/eci-use-specs|表示允许的实例规格，可以配置多个。当前规格没有库存时依次尝试下一个规格创建。支持CPU-MEM格式（$\{cpu\}-$\{mem\}Gi）、ECS规格格式。|"k8s.aliyun.com/eci-use-specs": "2-4Gi,4-8Gi,ecs.c6.xlarge"|
 |k8s.aliyun.com/eci-vswitch|设置Pod的虚拟交换机。|"k8s.aliyun.com/eci-vswitch" : "$\{your\_vsw\_id\}"|
 |k8s.aliyun.com/eci-security-group|设置Pod的安全组。|"k8s.aliyun.com/eci-security-group" : "$\{your\_security\_group\_id\}"|
 |k8s.aliyun.com/eci-resource-group-id|设置Pod所在的资源组|"k8s.aliyun.com/eci-resource-group-id" : "$\{your\_resource\_group\_id\}"|
