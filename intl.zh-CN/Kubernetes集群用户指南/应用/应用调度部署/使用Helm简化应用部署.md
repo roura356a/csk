@@ -1,8 +1,12 @@
+---
+keyword: [Helm, 应用部署]
+---
+
 # 使用Helm简化应用部署
 
 本文档介绍Helm的基本概念和使用方式，演示如何在阿里云的Kubernetes集群上利用Helm来部署示例应用WordPress和Spark。
 
--   通过Helm部署应用之前，利用阿里云容器服务来创建Kubernetes集群。参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
+-   通过Helm部署应用之前，利用阿里云容器服务来创建Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 
     在Kubernetes集群创建的同时，Tiller将会被自动部署到集群之中，并且在所有的master节点上自动安装Helm CLI以及配置指向阿里云的Chart存储库。
 
@@ -41,7 +45,7 @@ Helm采用客户端/服务器架构，由如下组件组成：
 
 4.  单击**参数**页签，对配置进行修改。
 
-    本示例中使用云盘的动态数据卷绑定一个PVC，参见[云盘存储卷使用说明](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/云盘存储卷/云盘存储卷使用说明.md)。
+    本示例中使用云盘的动态数据卷绑定一个PVC。具体操作，请参见[使用云盘动态存储卷](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/使用云盘动态存储卷.md)。
 
     **说明：** 您需要预先创建一个云盘存储卷（PV），并且存储卷的容量不能小于PVC定义的数值。
 
@@ -63,7 +67,7 @@ Helm采用客户端/服务器架构，由如下组件组成：
 
 ## 通过命令行部署应用
 
-通过命令行部署应用时，您可以SSH登录Kubernetes集群（Helm CLI已自动安装并已配置Repository）进行操作，参见[通过SSH访问Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过SSH访问Kubernetes集群.md)。您也可以在本地安装配置kubectl和Helm CLI。
+通过命令行部署应用时，您可以SSH登录Kubernetes集群（Helm CLI已自动安装并已配置Repository）进行操作，请参见[通过SSH访问Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过SSH访问Kubernetes集群.md)。您也可以在本地安装配置kubectl和Helm CLI。
 
 本示例以在本地安装配置kubectl和Helm CLI并部署WordPress和Spark应用为例进行说明。
 
@@ -71,7 +75,7 @@ Helm采用客户端/服务器架构，由如下组件组成：
 
     1.  在本地计算机上安装和配置kubectl。
 
-        参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+        参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 
         若要查看Kubernetes目标集群的信息，键入命令`kubectl cluster-info`。
 
