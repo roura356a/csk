@@ -6,9 +6,9 @@ keyword: [TensorFlow, 单机训练, 共享存储系统, Arena]
 
 本文展示如何使用Arena提交TensorFlow的单机训练作业，并通过TensorBoard可视化查看训练作业。
 
--   [创建包含GPU的Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU资源调度/Kubernetes GPU集群支持GPU调度.md)。
+-   [创建包含GPU的Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU调度/使用Kubernetes默认GPU调度.md)。
 -   [集群节点可以访问公网](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过公网访问集群API Server.md)。
--   [已经安装最新版的Arena](/intl.zh-CN/解决方案/AI解决方案/环境准备/通过组件安装最新版的Arena.md)。
+-   [安装Arena](/intl.zh-CN/解决方案/AI解决方案/环境准备/通过组件安装最新版的Arena.md)。
 -   已给集群配置了Arena使用的PVC，并且PVC已填充本文使用的数据集，详情请参见[配置NAS共享存储](/intl.zh-CN/解决方案/AI解决方案/环境准备/配置NAS共享存储.md)（或者[配置CPFS共享存储](/intl.zh-CN/解决方案/AI解决方案/环境准备/配置CPFS共享存储.md)）。
 
 本文示例从Git URL下载源代码，数据集放在共享存储系统（基于NAS的PV和PVC）中。示例假设您已经获得了一个名称为**training-data**的PVC实例（一个共享存储），里面存在一个目录tf\_data，存放了示例所使用的数据集。
@@ -83,7 +83,7 @@ NAME           ACCESSMODE     DESCRIPTION  OWNER  AGE
 training-data  ReadWriteMany                      35m
     ```
 
-如果没有可用的PVC，您可创建PVC。详情请参见[配置NAS共享存储](/intl.zh-CN/解决方案/AI解决方案/环境准备/配置NAS共享存储.md)。
+如果没有可用的PVC，您可创建PVC。详情请参见。
 
 |无|
     |--tensorboard|可选|为训练任务开启一个TensorBoard服务，用作数据可视化，您可以结合--logdir指定TensorBoard要读取的event路径。不指定该参数，则不开启TensorBoard服务。|无|
