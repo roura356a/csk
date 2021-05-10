@@ -2,6 +2,7 @@
 
 本文主要为您介绍Kubernetes集群中应用的常见问题。
 
+-   [容器服务ACK应用故障排查](~~211618~~)
 -   [如何手动升级Helm的版本？](#section_42y_vhz_d9t)
 -   [如何支持私有镜像？](#section_b2s_ldm_84z)
 -   [如何手动安装alicloud-application-controller插件？](~~87156~~)
