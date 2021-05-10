@@ -67,7 +67,7 @@ Before you use aliyun-acr-credential-helper to pull images, you must update and 
 
         -   Method 1: Click **Edit** in the Actions column for the ConfigMap and edit the keys and values of the ConfigMap.
 
-            If your cluster does not have the **acr-configuration** ConfigMap, create one. For more information, see [Create a ConfigMap on the ConfigMap tab](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Configuration items and key/Create a ConfigMap.md). For more information about how to update a ConfigMap, see [t15755.md\#section\_2px\_yjo\_j61](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Configuration items and key/Create a ConfigMap.md).
+            If your cluster does not have the **acr-configuration** ConfigMap, create one. For more information, see [Create a ConfigMap](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Configuration items and key/Manage ConfigMaps.md). For more information about how to update a ConfigMap, see [Modify a ConfigMap](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Configuration items and key/Manage ConfigMaps.md).
 
         -   Method 2: Click **Edit YAML** in the Actions column for the ConfigMap and edit the keys and values of the ConfigMap.
         The following table describes the keys and values of acr-configuration ConfigMap.
