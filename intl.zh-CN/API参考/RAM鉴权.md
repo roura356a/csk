@@ -1,12 +1,12 @@
 # RAM鉴权
 
-在使用RAM账号调用阿里云API前，需要主账号通过创建授权策略对RAM账号进行授权。
+在使用RAM账号调用阿里云API前，需要主账号（阿里云账号）通过创建授权策略对RAM账号进行授权。
 
 ## 资源授权
 
 默认RAM账号没有权限通过调用阿里云API去创建、修改云资源。使用RAM账号调用API时，您需要先创建一个授权策略，然后将这个授权策略关联给对应的RAM账号完成资源授权。
 
-在创建授权策略时，您可以通过ARN \(Aliyun Resource Name\) 指定要授权的资源。ARN是阿里云为每个资源定义的一个全局的阿里云资源名称。
+在创建授权策略时，您可以通过ARN（Aliyun Resource Name）指定要授权的资源。ARN是阿里云为每个资源定义的一个全局的阿里云资源名称。
 
 ARN格式如下。
 
@@ -17,7 +17,7 @@ acs:service-name:region:account-id:resource-relative-id
 其中：
 
 -   acs：Alibaba Cloud Service的首字母缩写，表示阿里云的公共云平台。
--   service-name：阿里云云服务的名称，如ecs, oss, slb等。
+-   service-name：阿里云云服务的名称，如ECS、OSS、SLB等。
 -   region：地域信息。如果不支持该项，可以使用通配符星号（\*）来代替。
 
 -   account-id：账号ID，例如1234567890123456。
@@ -79,7 +79,7 @@ acs:service-name:region:account-id:resource-relative-id
 |DescribeExternalAgent|DescribeExternalClusterAgentDeployment|查看注册集群的集群导入代理配置。|
 |DescribeTemplates|V2ListTemplates|查看应用部署模板。|
 |DescribeUserQuota|GetUserQuota|查看用户配额。|
-|GetKubernetesTrigger|GetK8sTrigger|获取应用触发器详情|
+|GetKubernetesTrigger|GetK8sTrigger|获取应用触发器详情。|
 |GetUpgradeStatus|GetK8sClusterState|查看集群升级状态。|
 |InstallClusterAddons|InstallK8sComponents|安装集群插件。|
 |ModifyCluster|ModifyCluster|修改集群信息。|
@@ -98,4 +98,11 @@ acs:service-name:region:account-id:resource-relative-id
 |UpgradeClusterAddons|UpgradeK8sComponents|升级集群插件。|
 |DescribeUserPermission|GetUserPermissions|获取RAM用户集群授权信息。|
 |GrantPermissions|GrantPermission|全量更新RAM用户集群授权信息。|
+|CreateClusterNodePool|CreateNodepool|创建节点池。|
+|DeleteClusterNodepool|DeleteNodepool|删除节点池。|
+|DescribeClusterNodePoolDetail|GetNodepoolDetail|获取节点池详细信息。|
+|DescribeClusterNodePools|GetNodepools|获取节点池信息。|
+|ModifyClusterNodePool|UpdateNodepools|修改节点池信息。|
+|ScaleClusterNodePool|ScaleNodepools|扩缩容节点池。|
+|MigrateCluster|MigrateCluster|迁移集群。|
 
