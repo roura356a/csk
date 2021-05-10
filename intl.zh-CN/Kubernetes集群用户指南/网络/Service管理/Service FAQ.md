@@ -18,6 +18,7 @@ keyword: [Service FAQ, SLB, 常见问题]
 -   [删除Service是否会删除SLB？](#section_apr_koj_k8v)
 -   [旧版本CCM如何支持SLB重命名？](#section_61e_9ty_sgk)
 -   [Local模式下如何自动设置Node权重？](#section_7xa_hpn_yfw)
+-   [ACK集群中SLB实例的具体用途](~~141866~~)
 
 **CCM升级相关**
 
@@ -31,6 +32,7 @@ keyword: [Service FAQ, SLB, 常见问题]
 **其他**
 
 -   [如何将CCM接入至在阿里云ECS中自建的Kubernetes集群中？](#section_3nt_555_bta)
+-   [Kubernetes的Service如何进行会话保持？](~~149276~~)
 
 ## 为什么看不到Service与LoadBalancer同步过程的事件Event信息？
 
@@ -179,7 +181,7 @@ Cloud Controller Manager组件V1.9.3.10后续版本创建的SLB支持自动打TA
 -   只有Cloud Controller Manager组件V1.9.3.10及之前版本创建的SLB才需要手动打TAG的方式来支持重命名。
 -   Service类型为Loadbalancer。
 
-1.  登录到Kubernetes集群Master节点，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+1.  登录到Kubernetes集群Master节点，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 
 2.  执行`# kubectl get svc -n ${namespace} ${service}`命令，查看该Service类型及IP。
 
