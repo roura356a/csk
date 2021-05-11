@@ -343,9 +343,12 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 1.  删除ClusterRole。
 
     ```
-    kubectl delete ClusterRole arms-kube-state-metricskubectl delete ClusterRole arms-node-exporter
+    kubectl delete ClusterRole arms-kube-state-metrics
+    kubectl delete ClusterRole arms-node-exporter
     kubectl delete ClusterRole arms-prom-ack-arms-prometheus-role
     kubectl delete ClusterRole arms-prometheus-oper3
+    kubectl delete ClusterRole arms-prometheus-ack-arms-prometheus-role
+    kubectl delete ClusterRole arms-pilot-prom-k8s
     ```
 
 2.  删除ClusterRoleBinding。
@@ -355,6 +358,17 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
     kubectl delete ClusterRoleBinding arms-prom-ack-arms-prometheus-role-binding
     kubectl delete ClusterRoleBinding arms-prometheus-oper-bind2
     kubectl delete ClusterRoleBinding kube-state-metrics
+    kubectl delete ClusterRoleBinding arms-pilot-prom-k8s
+    kubectl delete ClusterRoleBinding arms-prometheus-ack-arms-prometheus-role-binding
+    ```
+
+3.  删除Role及RoleBinding。
+
+    ```
+    kubectl delete Role arms-pilot-prom-spec-ns-k8s
+    kubectl delete Role arms-pilot-prom-spec-ns-k8s -n kube-system
+    kubectl delete RoleBinding arms-pilot-prom-spec-ns-k8s 
+    kubectl delete RoleBinding arms-pilot-prom-spec-ns-k8s  -n kube-system
     ```
 
 
