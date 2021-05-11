@@ -47,12 +47,14 @@ To use image-syncer, prepare a configuration file. The following code block show
 
 ```
 {
-    "auth": {                   // This field specifies the authentication information. Each object consists of a username and a password that are required to access a registry.
-                                // Typically, image-syncer must have the permissions to pull images from and access tags in the source repository.                                                                                     // image-syncer must have permissions to push images to and create repositories in the destination registry. If these permissions are not provided, image-syncer access repositories in anonymous mode. 
+    "auth": {                   // The authentication information field. Each object contains the username and password that are required to access a registry.
+                                // In most cases, image-syncer must have permissions to pull images from and access tags in the source registry.
+                                // image-syncer must have permissions to push images to and create repositories in the destination registry. If no authentication information is provided for a registry, image-syncer accesses the registry in anonymous mode.
 
-        "quay.io": {            // The URL of the registry. The URL must be the same as that of the registry in image URLs. 
-            "username":  "xxx",               // The username, which is optional.
-            "password": "xxxxxxxxx",         // The password, which is optional.            "insecure": true                 // This parameter specifies whether the repository support HTTP. A value of true specifies that the repository supports HTTP. Default value: false. This parameter is optional and available to only image-syncer versions that are later than 1.0.1.
+        "quay.io": {            // The URL of the registry, which must be the same as that of the registry in image URLs.
+            "username": "xxx",               // Optional. The username.
+            "password": "xxxxxxxxx",         // Optional. The password.
+            "insecure": true                 // Optional. Specifies whether the repository is accessed through HTTP. Default value: false. Only image-syncer of V1.0.1 and later support this parameter.
         },
         "registry.cn-beijing.aliyuncs.com": {
             "username": "xxx",
@@ -64,49 +66,22 @@ To use image-syncer, prepare a configuration file. The following code block show
         }
     },
     "images": {
-        // This field specifies the rules for synchronizing images. Each rule is a key-value pair. The key specifies the URL of the source image repository and the value specifies the URL of the destination image repository.
+        // The field that describes image synchronization rules. Each rule is a key-value pair. The key specifies the URL of the source repository and the value specifies the URL of the destination repository.
 
-        // You can use rules to synchronize only image repositories. You cannot use a rule to synchronize a namespace or a registry.
+        // You cannot synchronize an entire namespace or registry based on one rule. You can synchronize only one repository based on one rule.
 
         // The URLs of the source and destination repositories are in the format of registry/namespace/repository:tag, which is similar to the image URL format used in the docker pull or docker push command.
         // The URL of the source repository must contain registry/namespace/repository. If the URL of the destination repository is not an empty string, it must also contain registry/namespace/repository.
         // The URL of the source repository cannot be an empty string. To synchronize images from a source repository to multiple destination repositories, you must configure multiple rules.
-        // The name and tags of the destination repository can be different from those of the source repository. In this case, the image synchronization rule works in the same way as the combination of the docker pull, docker tag, and docker push commands.        "quay.io/coreos/kube-rbac-proxy": "quay.io/ruohe/kube-rbac-proxy",
+        // The name and tags of the destination repository can be different from those of the source repository. In this case, the image synchronization rule works in the same way as the combination of the docker pull, docker tag, and docker push commands.
         "quay.io/coreos/kube-rbac-proxy": "quay.io/ruohe/kube-rbac-proxy",
         "xxxx":"xxxxx",
         "xxx/xxx/xx:tag1,tag2,tag3":"xxx/xxx/xx"
         // If the URL of the source repository does not contain tags, all images in the source repository are synchronized to the destination repository with the original tags. In this case, the URL of the destination repository cannot contain tags.
-        // If the URL of source repository contains only one tag, only images that have this tag in the source repository are synchronized to the destination repository. If the URL of the destination repository does not contain a tag, synchronized images keep the original tag.
+        // If the URL of source repository contains only one tag, only images that has this tag in the source repository are synchronized to the destination repository. If the URL of the destination repository does not contain a tag, synchronized images keep the original tag.
         // If the URL of the source repository contains multiple tags that are separated with commas (,), such as "a/b/c:1,2,3", the URL of the destination repository cannot contain tags. Synchronized images keep the original tags.
 
         // If the URL of the destination repository is an empty string, images are synchronized to a repository that has the same name and tags in the default namespace of the default registry. The default registry and namespace can be set through command parameters or environment variables.
-    }
-} {
-            "username": "xxx",
-            "password": "xxxxxxxxx"
-        },
-        "registry.hub.docker.com": {
-            "username": "xxx",
-            "password": "xxxxxxxxxx"
-        }
-    },
-    "images": {
-        // 同步镜像规则字段，其中一条规则包括一个源仓库（键）和一个目标仓库（值）
-
-        // 同步的最大单位是仓库（repo），不支持通过一条规则同步整个namespace以及registry
-
-        // 源仓库和目标仓库的格式与docker pull/push命令使用的镜像url类似（registry/namespace/repository:tag）
-        // 源仓库和目标仓库（如果目标仓库不为空字符串）都至少包含registry/namespace/repository
-        // 源仓库字段不能为空，如果需要将一个源仓库同步到多个目标仓库需要配置多条规则
-        // 目标仓库名可以和源仓库名不同（tag也可以不同），此时同步功能类似于：docker pull + docker tag + docker push
-        "quay.io/coreos/kube-rbac-proxy": "quay.io/ruohe/kube-rbac-proxy",
-        "xxxx":"xxxxx",
-        "xxx/xxx/xx:tag1,tag2,tag3":"xxx/xxx/xx"
-        // 当源仓库字段中不包含tag时，表示将该仓库所有tag同步到目标仓库，此时目标仓库不能包含tag
-        // 当源仓库字段中包含tag时，表示只同步源仓库中的一个tag到目标仓库，如果目标仓库中不包含tag，则默认使用源tag
-        // 源仓库字段中的tag可以同时包含多个（比如"a/b/c:1,2,3"），tag之间通过","隔开，此时目标仓库不能包含tag，并且默认使用原来的tag
-
-        // 当目标仓库为空字符串时，会将源镜像同步到默认registry的默认namespace下，并且repo以及tag与源仓库相同，默认registry和默认namespace可以通过命令行参数以及环境变量配置，参考下面的描述
     }     
 }
 ```
