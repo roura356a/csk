@@ -365,10 +365,10 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 3.  删除Role及RoleBinding。
 
     ```
-    kubectl delete Role arms-pilot-prom-spec-ns-k8s
-    kubectl delete Role arms-pilot-prom-spec-ns-k8s -n kube-system
-    kubectl delete RoleBinding arms-pilot-prom-spec-ns-k8s 
-    kubectl delete RoleBinding arms-pilot-prom-spec-ns-k8s  -n kube-system
+    kubectl delete Role arms-pilot-prom-spec-ns-k8s
+    kubectl delete Role arms-pilot-prom-spec-ns-k8s -n kube-system
+    kubectl delete RoleBinding arms-pilot-prom-spec-ns-k8s 
+    kubectl delete RoleBinding arms-pilot-prom-spec-ns-k8s -n kube-system
     ```
 
 
