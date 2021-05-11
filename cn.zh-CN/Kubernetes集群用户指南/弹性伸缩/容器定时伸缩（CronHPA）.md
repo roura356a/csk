@@ -8,7 +8,7 @@ keyword: [定时扩容, cronhpa, kubernetes, 兼容HPA]
 
 -   您已创建一个容器服务Kubernetes集群，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   在本地计算机上安装Helm，请参见按照[Install Helm](https://github.com/helm/helm?spm=a2c4g.11186623.2.28.36d61fa8fxvUaY)，并确保Helm版本v2.11.0以上。
--   在本地使用命令前，您需要先设置[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   在本地使用命令前，您需要先设置[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 
 kubernetes-cronhpa-controller是一个Kubernetes HPA controller，按照类似Crontab的策略定时地对容器服务Kubernetes集群进行扩缩容。您可以把CronHorizontalPodAutoscaler（以下简称CronHPA）用在任何Kubernetes中定义的对象上，只要该对象支持伸缩子资源（如Deployment和StatefulSet）的[项目](https://github.com/AliyunContainerService/kubernetes-cronhpa-controller)已在GitHub开源。
 
@@ -112,6 +112,8 @@ Field name   | Mandatory? | Allowed values  | Allowed special characters
 
 4.  在**应用目录-ack-kubernetes-cronhpa-controller**页面右侧的**创建**区域，选择目标集群，然后单击**创建**。
 
+
+如果您无需使用容器定时伸缩功能，可以删除CronHPA组件。关于删除CronHPA组件ack-kubernetes-cronhpa-controller的具体步骤，请参见[管理组件](/cn.zh-CN/Kubernetes集群用户指南/集群/升级集群/管理组件.md)或[删除发布](/cn.zh-CN/Kubernetes集群用户指南/发布/基于Helm的发布管理.md)。
 
 ## 创建定时伸缩CronHPA任务
 
