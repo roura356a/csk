@@ -4,7 +4,7 @@ keyword: [0 Worker节点, terraform, k8s集群, 节点池]
 
 # 使用Terraform创建零Worker节点集群
 
-如果您想创建ACK集群又想节省ECS资源，您可以创建零Worker节点的ACK集群。ACk Pro版托管集群支持创建零Worker节点集群。您也可以通过使用Terraform创建零Worker节点的ACK集群。本文介绍如何通过Terraform工具创建零Worker节点的ACK集群，并在后期通过创建节点池为集群添加节点。
+如果您想将已有的ECS节点添加至ACK集群，又想节省ECS资源，您可以创建零Worker节点的ACK集群。ACK Pro版托管集群支持创建零Worker节点集群。您也可以通过使用Terraform创建零Worker节点的ACK集群。本文介绍如何通过Terraform工具创建零Worker节点的ACK集群，并在后期通过创建节点池为集群添加节点。
 
 -   您已安装Terraform工具。具体操作，请参见[t41667.dita\#task\_bts\_tlz\_dfb]()。
 -   如果您需要使用自动伸缩节点池来管理节点，由于自动伸缩功能依赖弹性伸缩（Auto Scaling，旧称ESS）服务，启动节点自动伸缩前，您需要开通弹性伸缩服务，并完成默认角色授权。具体操作，请参见[开通弹性伸缩服务](/intl.zh-CN/Kubernetes集群用户指南/弹性伸缩/节点自动伸缩.md)。
