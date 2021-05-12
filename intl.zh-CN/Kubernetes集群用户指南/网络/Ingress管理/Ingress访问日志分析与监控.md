@@ -15,6 +15,18 @@ keyword: [Ingress, 日志服务, 访问日志分析, 监控]
     通过执行`kubectl edit deployment alibaba-log-controller -n kube-system`命令修改镜像版本进行升级。
 
 
+## 注意事项
+
+部署AliyunLogConfig的CRD时需要注意以下事项：
+
+-   请确保日志组件alibaba-log-controller版本不低于`0.2.0.0-76648ee-aliyun`。更新版本后，若已经应用了该CRD配置，请删除该配置并重新应用。
+-   部署AliyunLogConfig的CRD只针对ACK默认Ingress Controller中的日志格式生效，若您修改过Ingress Controller的访问日志格式，请修改CRD配置中的正则表达式提取`processor_regex`部分，具体操作，请参见[通过DaemonSet-CRD方式采集日志](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/通过DaemonSet-CRD方式采集日志.md)。
+-   `IncludeLabel`为Docker inspect中的Label信息。
+-   Kubernetes中的命名空间和容器名会映射到Docker的Label中，分别为`io.kubernetes.pod.namespace`和`io.kubernetes.container.name`。例如，您创建的Pod所属命名空间为backend-prod，容器名为worker-server。
+    -   如果配置Label白名单为`io.kubernetes.pod.namespace : backend-prod`，则收集对应Pod中所有容器的日志。
+    -   如果配置Label白名单为`io.kubernetes.container.name : worker-server`，则收集对应容器的日志。
+-   Kubernetes不建议使用除`io.kubernetes.pod.namespace`和`io.kubernetes.container.name`之外的其他Label。其他情况请使用IncludeEnv或ExcludeEnv，具体操作，请参见[通过DaemonSet-控制台方式采集Kubernetes标准输出](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/通过DaemonSet-控制台方式采集Kubernetes标准输出.md)。
+
 ## 部署Ingress采集配置
 
 日志采集配置针对ACK进行了CRD扩展，您可以直接部署AliyunLogConfig的CRD配置，Log Controller会自动创建日志服务相关采集配置和报表资源。
@@ -44,7 +56,7 @@ spec:
         - type: service_docker_stdout
           detail:
             IncludeLabel:
-              io.kubernetes.container.name: nginx-ingress-controller
+              io.kubernetes.container.name: nginx-ingress-controller  #如果配置多个ingress controller请注意预防日志重复采集，详细请阅读注意事项中IncludeLabel释义
             Stderr: false
             Stdout: true
         processors:
@@ -80,11 +92,6 @@ spec:
 EOF
 ```
 
-**说明：**
-
--   请确保日志组件alibaba-log-controller版本不低于`0.2.0.0-76648ee-aliyun`。更新版本后，若已经应用了该CRD配置，请删除该配置并重新应用。
--   上述配置只针对ACK默认Ingress Controller中的日志格式生效，若您修改过Ingress Controller的访问日志格式，请根据[通过DaemonSet-CRD方式采集日志](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/通过DaemonSet-CRD方式采集日志.md)修改上述CRD配置中的正则表达式提取`processor_regex`部分。
-
 ## 查看Ingress日志与报表
 
 1.  登录[日志服务控制台](https://sls.console.aliyun.com)。
@@ -101,7 +108,7 @@ Ingress概览报表主要展示当前Ingress的整体状态，主要包括以下
 -   整体架构状态（1天），包括PV、UV、流量、响应延迟、移动端占比和错误比例等。
 -   网站实时状态（1分钟），包括访问PV、访问UV、访问成功率、平均延迟、P95延迟和P99延迟等。
 -   用户请求类信息（1天），包括1天访问PV对比、7天访问PV对比、地域分布、TOP访问省份、TOP访问城市、移动端占比和Android/IOS占比等。
--   TOPURL统计（1小时），包括访问TOP10、延迟TOP10、5XX错误TOP10和404错误TOP10。
+-   TOP URL统计（1小时），包括访问TOP10、延迟TOP10、5XX错误TOP10和404错误TOP10。
 
 ![ingress概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8973321161/p40696.png)
 
