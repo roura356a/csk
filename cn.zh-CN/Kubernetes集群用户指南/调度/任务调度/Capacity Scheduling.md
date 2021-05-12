@@ -346,7 +346,7 @@ keyword: [弹性配额组, Capacity Scheduling]
 
     `nginx3`的弹性配额`root.b.1`的`min`设置为`10`，为了保障其设置的`min`资源，调度器会将`root.a`下之前借用`root.b`的Pod资源归还，使得`nginx3`能够至少得到配额`min.cpu=10`的资源量，保证其运行。
 
-    调度器会综合考虑`root.a`下作业的优先级、可用性以及创建时间等因素，选择相应的Pod归还之前抢占的的资源（10核）。因此，`nginx3`得到配额`min.cpu=10`的资源量后，有2个Pod处于Running状态，其他3个仍处于Pending状态。
+    调度器会综合考虑`root.a`下作业的优先级、可用性以及创建时间等因素，选择相应的Pod归还之前抢占的资源（10核）。因此，`nginx3`得到配额`min.cpu=10`的资源量后，有2个Pod处于Running状态，其他3个仍处于Pending状态。
 
 10. 使用以下YAML文件样例，在`namespace4`中部署服务`nginx4`，其中Pod的副本数为5个，每个Pod请求CPU资源量为5核。
 
