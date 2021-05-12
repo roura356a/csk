@@ -82,7 +82,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 |    -   您可以单击**选择镜像Tag**选择镜像的版本。若不指定，默认为最新版。
     -   ACK支持以下三种镜像拉取策略（imagePullPolicy）：
 
-        -   **优先使用本地镜像（ifNotPresent）**：如果本地有该镜像，则使用本地镜像，本地不存在时拉取镜像。
+        -   **优先使用本地镜像（IfNotPresent）**：如果本地有该镜像，则使用本地镜像，本地不存在时拉取镜像。
         -   **总是拉取镜像（Always）**：表示每次部署或扩容都会从容器镜像服务重新拉取镜像，而不会从本地拉取镜像。
         -   **仅使用本地镜像（Never）**：仅使用本地镜像。
 **说明：** 当您选中**镜像拉取策略**时，默认不设置镜像拉取策略。
@@ -574,7 +574,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
          name: http
          port: 30080            #TODO: choose an unique port on each node to avoid port conflict
          targetPort: 80
-       type: LoadBalancer        ##本例中将type从Nodeport修改为LoadBalancer。
+       type: LoadBalancer        ##本例中将type从NodePort修改为LoadBalancer。
     ```
 
 7.  单击**创建**后。会提示部署状态信息。
