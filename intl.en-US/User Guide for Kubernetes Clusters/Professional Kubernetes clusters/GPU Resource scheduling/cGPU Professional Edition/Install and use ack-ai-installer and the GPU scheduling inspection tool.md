@@ -91,7 +91,7 @@ After the node pool is created, you can add GPU-accelerated nodes to the node po
 
 **Note:** If you have already added GPU-accelerated nodes to the node pool when you created the node pool, skip this step.
 
-## Step 4 \(optional\): Install and use the GPU scheduling inspection tool
+## Step 4: Install and use the GPU scheduling inspection tool
 
 1.  Configure the kubeconfig file. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
 
