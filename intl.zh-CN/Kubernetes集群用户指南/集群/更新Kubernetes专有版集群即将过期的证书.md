@@ -9,7 +9,7 @@ keyword: [更新即将过期的证书, Kubernetes专有版集群]
 ## 前提条件
 
 -   您已经成功创建一个Kubernetes集群。具体操作，请参见[创建Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
--   您已通过kubectl连接集。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   您已通过kubectl连接集。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 ## 控制台更新所有节点证书
 
@@ -36,7 +36,7 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
 2.  执行以下命令，当Master节点对应的SUCCESSFUL均为1，Worker节点对应的SUCCESSFUL为集群Worker节点数时，所有证书完成更新。
 
     ```
-    kubectl get job –nkube-system
+    kubectl get job –n kube-system
     ```
 
     ![nodes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4575659951/p21601.png)
@@ -113,7 +113,7 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
         1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
         2.  在控制台左侧导航栏中，单击**集群**。
         3.  在集群列表页面，单击目标集群名称或者目标集群右侧的**详情**。
-        4.  在集群管理页的左侧导航栏中，单击**节点管理**获取Master个数和**名称/IP 地址/实例 ID**。
+        4.  在集群管理页的左侧导航栏中，选择**节点管理** \> **节点**获取Master个数和和对应的名称、IP地址、实例ID。
 3.  执行以下命令替换job-master.yml文件中指定的变量$\{jobname\}和$\{hostname\}。
 
     ```
@@ -133,7 +133,7 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
 5.  执行以下命令查看Job状态，当SUCCESSFUL均为1时，证书完成更新。
 
     ```
-    kubectl get job –nkube-system
+    kubectl get job –n kube-system
     ```
 
 6.  重复执行步骤3~5，完成所有Master节点的证书更新。
@@ -256,7 +256,7 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
 5.  执行以下命令查看Job状态，当SUCCESSFUL为集群Worker节点数时，证书完成更新。
 
     ```
-    kubectl get job –nkube-system
+    kubectl get job –n kube-system
     ```
 
     ![nodes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4575659951/p21565.png)
