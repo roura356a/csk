@@ -20,7 +20,7 @@ Before you get started with ACK, take note of the following limits:
 
         **Note:** To avoid these issues, we recommend that you create pay-as-you-go ECS instances when you create a cluster. You can change the billing method from pay-as-you-go to subscription in the ECS console based on your requirements.
 
-    -   Requirements for ECS specifications: You must select ECS instances with 2 or more vCPU cores and memory sizes must be greater than 4 GiB.
+    -   Requirements for ECS specifications: You must select ECS instances with 4 or more vCPU cores and memory sizes must be greater than 8 GiB.
 
 ## Limits on the quota of ACK clusters
 
