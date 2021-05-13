@@ -60,6 +60,11 @@ keyword: [Ingress Controller, Ingress接入层]
 
         ```
         kubectl -n kube-system scale --replicas=3 deployment/nginx-ingress-controller
+        ```
+
+        预期输出：
+
+        ```
         deployment.extensions/nginx-ingress-controller scaled
         ```
 
@@ -103,11 +108,21 @@ keyword: [Ingress Controller, Ingress接入层]
 
         ```
         kubectl label nodes cn-hangzhou.i-bp12h6biv9bg24lmdc2o node-role.kubernetes.io/ingress="true"
+        ```
+
+        预期输出：
+
+        ```
         node/cn-hangzhou.i-bp12h6biv9bg24lmdc2o labeled
         ```
 
         ```
         kubectl label nodes cn-hangzhou.i-bp12h6biv9bg24lmdc2p node-role.kubernetes.io/ingress="true"
+        ```
+
+        预期输出：
+
+        ```
         node/cn-hangzhou.i-bp12h6biv9bg24lmdc2p labeled
         ```
 
@@ -120,6 +135,11 @@ keyword: [Ingress Controller, Ingress接入层]
 
         ```
         kubectl -n kube-system patch deployment nginx-ingress-controller -p '{"spec": {"template": {"spec": {"nodeSelector": {"node-role.kubernetes.io/ingress": "true"}}}}}'
+        ```
+
+        预期输出：
+
+        ```
         deployment.extensions/nginx-ingress-controller patched
         ```
 
