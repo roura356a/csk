@@ -9,7 +9,7 @@ Obtains the kubeconfig file of a specified Container Service for Kubernetes \(AC
 ## Request syntax
 
 ```
-GET /k8s/ClusterId/user_config?PrivateIpAddress=Boolean HTTP/1.1 
+GET /k8s/ClusterId/user_config?PrivateIpAddress=Boolean&TemporaryDurationMinutes=Long HTTP/1.1
 Content-Type:application/json
 ```
 
@@ -17,24 +17,32 @@ Content-Type:application/json
 
 |Parameter|Type|Required|Example|Description|
 |---------|----|--------|-------|-----------|
-|ClusterId|String|Yes|c5b5e80b0b64a4bf6939d2d8fbbc5\*\*\*\*|The ID of the ACK cluster. |
+|ClusterId|String|Yes|c5b5e80b0b64a4bf6939d2d8fbbc5\*\*\*\*|The ID of the ACK cluster that you want to query. |
 
 |Parameter|Type|Required|Example|Description|
 |---------|----|--------|-------|-----------|
-|PrivateIpAddress|Boolean|No|true|Specifies whether to obtain the credential that is used to access the internal network. Valid values:
+|PrivateIpAddress|Boolean|No|true|Specifies whether to obtain the credential that is used to connect to the cluster through the internal network. Valid values:
 
--   `true`: obtains the credential that is used to access the internal network.
--   `false`: obtains the credential that is used to access the Internet.
+ -   `true`: obtains the credential that is used to connect to the cluster through the internal network.
+-   `false`: obtains the credential that is used to connect to the cluster over the Internet.
 
-Default value: `false`. |
+ Default value: `false`. |
+|TemporaryDurationMinutes|Long|No|15|The validity period of a temporary kubeconfig file. Unit: minutes. Valid values: 15 to 4320.
+
+ **Note:**
+
+-   If you specify this parameter, the returned kubeconfig file will expire at the time specified by `expiration`.
+-   If you do not specify this parameter, the returned kubeconfig file is permanently valid. |
 
 ## Response syntax
 
 ```
-HTTP/1.1 200
+HTTP/1.1 200 OK
 Content-Type:application/json
+
 {
-  "config" : "String"
+  "config" : "String",
+  "expiration" : "String"
 }
 ```
 
@@ -43,13 +51,15 @@ Content-Type:application/json
 |Parameter|Type|Example|Description|
 |---------|----|-------|-----------|
 |config|String|apiVersion: v1\*\*\*\*|The content of the kubeconfig file. For more information about how to check the content of the kubeconfig file of an ACK cluster, see [Configure cluster credentials](~~86494~~). |
+|expiration|String|2024-03-10T09:56:17Z|The expiration time of the kubeconfig file. The value is in the RFC3339 format and is displayed in UTC. |
 
 ## Examples
 
 Sample requests
 
 ```
-GET /k8s/c5b5e80b0b64a4bf6939d2d8fbbc5****/user_config?PrivateIpAddress=true HTTP/1.1 
+GET /k8s/c5b5e80b0b64a4bf6939d2d8fbbc5****/user_config?PrivateIpAddress=true&TemporaryDurationMinutes=15 HTTP/1.1
+Host:cs.aliyuncs.com
 Content-Type:application/json
 ```
 
@@ -65,23 +75,9 @@ Content-Type:application/xml
 apiVersion: v1
 clusters:
 - cluster:
-    server: https://192.168.0.**:6443
-    certificate-authority-data: ***
-  name: kubernetes
-contexts:
-- context:
-    cluster: kubernetes
-    user: "kubernetes-admin"
-  name: kubernetes-admin-c23421cfa74454bc8b37163fd19af****
-current-context: kubernetes-admin-c23421cfa74454bc8b37163fd19af****
-kind: Config
-preferences: {}
-users:
-- name: "kubernetes-admin"
-  user:
-    client-certificate-data: ***
-    client-key-data: ***
+...
 </config>
+<expiration>2021-03-25T10:01:20Z</expiration>
 ```
 
 `JSON` format
@@ -91,7 +87,8 @@ HTTP/1.1 200 OK
 Content-Type:application/json
 
 {
-  "config" : "\napiVersion: v1\nclusters:\n- cluster:\n    server: https://192.168.0.**:6443\n    certificate-authority-data: ***\n  name: kubernetes\ncontexts:\n- context:\n    cluster: kubernetes\n    user: \"kubernetes-admin\"\n  name: kubernetes-admin-c23421cfa74454bc8b37163fd19af****\ncurrent-context: kubernetes-admin-c23421cfa74454bc8b37163fd19af****\nkind: Config\npreferences: {}\nusers:\n- name: \"kubernetes-admin\"\n  user:\n    client-certificate-data: ***\n    client-key-data: ***\n"
+  "config" : "\napiVersion: v1\nclusters:\n- cluster:\n...\n",
+  "expiration" : "2021-03-25T10:01:20Z"
 }
 ```
 
