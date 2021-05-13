@@ -4,7 +4,7 @@ keyword: [ack-virtual-node, 变更记录, 介绍]
 
 # ack-virtual-node
 
-ack-virtual-node组件是用于扩展Kubernetes集群弹性能力的组件，可部署在ACK或者线下Kubernetes集群中。本文为您介绍ack-virtual-node组件相关内容的最新动态。
+ack-virtual-node组件是用于扩展Kubernetes集群弹性能力的组件，可部署在ACK或者线下Kubernetes集群中。本文为您介绍ack-virtual-node组件的功能、使用说明和变更记录。
 
 ## 组件介绍
 
