@@ -36,6 +36,7 @@ The following table lists multiple common cluster sizes and the specifications o
 
 ## Select ECS instances to create worker nodes
 
+-   You must select ECS instances with 4 or more vCPU cores and memory sizes must be greater than 8 GiB.
 -   Determine the specifications of worker nodes based on the total number of vCPUs in the ACK cluster and the maximum failure rate that is tolerated by the ACK cluster.
 
     For example, if the ACK cluster has 160 vCPUs and supports a maximum failure rate of 10%, we recommend that you select at least 10 ECS instances with 16 vCPUs for each instance. This ensures that at least 144 vCPUs can be consumed during peak hours. This limit is based on the following calculation: 160 vCPUs × 90% = 144 vCPUs. If the ACK cluster supports a maximum failure rate of 20%, we recommend that you select at least five ECS instances with 32 vCPUs for each instance. This ensures that at least 128 vCPUs can be consumed during peak hours. This limit is based on the following calculation: 160 vCPUs × 80% = 128 vCPUs. This way, if an ECS instance has faults, the remaining ECS instances can continue to serve your workloads and ensure high availability.
