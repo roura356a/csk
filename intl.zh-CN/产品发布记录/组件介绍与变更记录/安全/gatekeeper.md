@@ -4,7 +4,7 @@ keyword: [gatekeeper组件, 介绍, OPA]
 
 # gatekeeper
 
-gatekeeper组件可以帮助您方便地管理和应用集群内的Open Policy Agent（OPA）策略，实现命名空间标签管理等功能。本文为您介绍gatekeeper组件相关内容的最新动态。
+gatekeeper组件可以帮助您方便地管理和应用集群内的Open Policy Agent（OPA）策略，实现命名空间标签管理等功能。本文为您介绍gatekeeper组件的功能、使用说明和变更记录。
 
 ## 组件介绍
 
