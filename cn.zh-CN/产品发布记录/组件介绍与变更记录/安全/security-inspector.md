@@ -4,7 +4,7 @@ keyword: [security-inspector组件, 介绍, 安全巡检功能]
 
 # security-inspector
 
-security-inspector组件是实现安全巡检功能的关键组件。本文您介绍security-inspector组件相关内容的最新动态。
+security-inspector组件是实现安全巡检功能的关键组件。本文您介绍security-inspector组件的功能、使用说明和变更记录。
 
 ## 组件介绍
 
