@@ -4,65 +4,69 @@ keyword: [workflow, parameters workflow]
 
 # Create a workflow
 
-Based on Argo Workflows, workflows that are developed by Alibaba Cloud are used to implement containerized job orchestration in Kubernetes. Each step in a workflow is a container. This topic describes how to create a workflow in the Container Service for Kubernetes \(ACK\) console or by using the command-line interface \(CLI\).
+Workflows developed by Alibaba Cloud are developed based on Argo Workflows and are used to implement container orchestration in Kubernetes. Each step in a workflow is a container. This topic describes how to create a workflow in the Container Service for Kubernetes \(ACK\) console or by using a command-line interface \(CLI\).
 
--   [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md)
--   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md)
+-   A Container Service for Kubernetes \(ACK\) cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+-   You are connected to the cluster by using kubectl. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+-   The workflow feature is enabled for your account.
 
-Based on Argo Workflows, workflows that are developed by Alibaba Cloud are used to implement containerized job orchestration in Kubernetes. Each step in a workflow is a container.
+    **Note:** To apply for the workflow feature to be enabled for your account,[Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 
-Each workflow is implemented as a Kubernetes CustomResourceDefinition\(CRD\). Therefore, you can use kubectl to manage workflows and integrate them with other Kubernetes services, such as volumes, Secrets, and role-based access control \(RBAC\). At the backend, the workflow controller provides a complete list of workflow features, such as parameter substitution, storage, loops, and recursion.
 
-You can create workflows in the ACK console or by using the CLI.
+Workflows developed by Alibaba Cloud are developed based on Argo Workflows and are used to implement container orchestration in Kubernetes. Each step in a workflow is a container.
 
-## Create workflows in the ACK console
+Workflows are implemented by using Kubernetes CustomResourceDefinitions\(CRDs\). Therefore, you can use kubectl to manage workflows and integrate them with other Kubernetes services, such as volumes, Secrets, and role-based access control \(RBAC\). At the backend, the workflow controller provides a complete set of workflow features, such as parameter substitution, storage, loops, and recursion.
+
+You can create workflows in the ACK console or by using a CLI.
+
+## Create a workflow in the ACK console
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane, click **Clusters**.
 
-3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane, click **Releases**.
 
-5.  On the Releases page, click the **Workflows** tab. On the upper-right corner of the Workflows tab, click **Create**.
+5.  On the Releases page, click the **Workflows** tab. In the upper-right corner of the Workflows tab, click **Create**.
 
-6.  In the Create from Template dialog box, set the parameters, configure the template, and then click **Create**.
+6.  Configure the template and click **Create**.
 
-    -   **Cluster**: Select a cluster. The workflow will be deployed in the selected cluster.
+    -   **Cluster**: Select the cluster where the workflow is to be created. The workflow will be deployed in the selected cluster.
     -   **Namespace**: Select the namespace to which the workflow belongs. By default, the default namespace is selected.
-    -   **Sample Template**: ACK provides YAML templates of various resource types to simplify the deployment of workflows. You can also create a custom template based on YAML syntax to describe the resource that you want to define.
+    -   **Sample Template**: ACK provides YAML templates of various resource types to simplify the deployment of workflows. You can also create a custom template based on YAML syntax to customize resource definition.
     The following example is a custom template that is used to create a Hello World workflow:
 
     ```
     apiVersion: argoproj.io/v1alpha1
-    kind: Workflow                  # new type of k8s spec
+    kind: Workflow                  # The type of Kubernetes object.
     metadata:
-      generateName: hello-world-    # name of the workflow spec
+      generateName: hello-world-    # The name of the workflow.
     spec:
-      entrypoint: whalesay          # invoke the whalesay template
+      entrypoint: whalesay          # Invoke the template of a whalesay image.
       templates:
-      - name: whalesay              # name of the template
+      - name: whalesay              # The name of the template.
         container:
           image: docker/whalesay
           command: [cowsay]
           args: ["hello world"]
-          resources:                # limit the resources
-            limits:
+          resources:                # The resource limits.
+            limits: 
               memory: 32Mi
               cpu: 100m
     ```
 
 7.  After the workflow is created, you can view the created workflow on the Workflows tab.
 
-    ![View the created workflow](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6386858951/p47713.png)
+    ![Successful creation](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6386858951/p47713.png)
 
-    You can click **Details** in the Actions column to view information about the workflow and container groups.
+    You can click **Details** in the Actions column to view information about the workflow and pods.
 
 
-## Create parameters workflows by using the CLI
+## Create a parameters workflow by using a CLI
 
-1.  Create a YAML file named arguments-parameters.yaml and paste the following content into the file:
+1.  Create a YAML file named arguments-parameters.yaml and copy the following content into the file:
 
     ```
     apiVersion: argoproj.io/v1alpha1
@@ -70,9 +74,7 @@ You can create workflows in the ACK console or by using the CLI.
     metadata:
       generateName: hello-world-parameters-
     spec:
-      # invoke the whalesay template with
-      # "hello world" as the argument
-      # to the message parameter
+      # Specify "hello world" as the value of the parameter when the template of a whalesay image is invoked. 
       entrypoint: whalesay
       arguments:
         parameters:
@@ -83,10 +85,10 @@ You can create workflows in the ACK console or by using the CLI.
       - name: whalesay
         inputs:
           parameters:
-          - name: message       # parameter declaration
+          - name: message       # The description of the parameter. 
         container:
-          # run cowsay with that message input parameter as args
-          image: docker/whalesay
+          # Use the input parameter args to run the cosway command. 
+          image: docker/whalesay 
           command: [cowsay]
           args: ["{{inputs.parameters.message}}"]
     ```
