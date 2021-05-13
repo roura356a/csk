@@ -4,7 +4,7 @@ keyword: [kritis-validation-hook, 发布记录]
 
 # kritis-validation-hook
 
-kritis-validation-hook组件是部署可信容器环节中进行容器镜像签名验证的关键组件。本文为您介绍kritis-validation-hook组件相关内容的最新动态。
+kritis-validation-hook组件是部署可信容器环节中进行容器镜像签名验证的关键组件。本文为您介绍kritis-validation-hook组件的功能、使用说明和变更记录。
 
 ## 组件介绍
 
