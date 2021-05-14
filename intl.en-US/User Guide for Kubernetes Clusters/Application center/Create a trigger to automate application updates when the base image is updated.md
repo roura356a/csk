@@ -14,7 +14,7 @@ For more information, see [Deploy an application in Application Center](/intl.en
 
 ## Step 2: Generate the webhook URL of a trigger in Application Center
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane of the ACK console, choose **Multi-cluster** \> **Application Center**.
 
@@ -37,11 +37,13 @@ For more information, see [Deploy an application in Application Center](/intl.en
 
 4.  On the Instances page, click the required Container Registry Enterprise Edition instance.
 
-5.  On the Repositories page, click the name of the repository that is used when you created the application in [Step 1](#section_nmr_hga_zoo).
+5.  On the management page of the Container Registry Enterprise Edition instance, , choose **Repositories** \> **Repositories**.
 
-6.  On the repository details page, click **Trigger**. Then, click **Create**.
+6.  On the Repositories page, click the name of the repository that is used when you created the application in [Step 1](#section_nmr_hga_zoo).
 
-7.  In the **Create Trigger** dialog box, specify the name of the trigger, enter the webhook URL of the trigger generated in [Step 2](#section_gc6_cw8_7r0), and set **Trigger** to **All**. Then, click **Confirm**.
+7.  On the repository details page, click **Trigger**. Then, click **Create**.
+
+8.  In the **Create Trigger** dialog box, specify the name of the trigger, enter the webhook URL of the trigger generated in [Step 2](#section_gc6_cw8_7r0), and set **Trigger** to **All**. Then, click **Confirm**.
 
     The following trigger modes are supported: **All**, **By RegExp**, and **By Tags**. The following section describes the trigger modes:
 
@@ -82,13 +84,31 @@ When a container image in the repository is updated, the updated image is automa
 
     After the container image is updated, Application Center pulls the updated image and updates the orchestration template of the application.
 
-    1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+    1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
     2.  In the left-side navigation pane of the ACK console, choose **Marketplace** \> **Orchestration Templates**.
 
     3.  On the Templates page, find the template that you created in [Step 1](#section_nmr_hga_zoo) and click **Details**. On the **Details** page, the updated image is used in the template.
 
-2.  Enter app.demo.example.com in the address bar of your browser.
+2.  Get the endpoint of the application.
+
+    1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
+
+    2.  In the left-side navigation pane, click **Clusters**.
+
+    3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+
+    4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Ingresses**.
+
+    5.  On the **Ingresses** page,view the endpoint of the demo.
+
+3.  Enter the following in the hosts file.
+
+    ```
+    <endpoint> app.demo.example.com 
+    ```
+
+4.  Enter app.demo.example.com in the address bar of your browser.
 
     If the page shown in the following figure appears in your browser, the application is updated.
 
