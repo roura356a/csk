@@ -42,7 +42,7 @@ ACK支持在控制台界面上快速创建支持HPA的应用，实现容器资�
 9.  在高级设置页选中**指标伸缩**的**开启**，设置伸缩的条件和配置。
 
     -   **指标**：支持CPU和内存，需要和设置的所需资源类型相同。
-    -   **触发条件**：资源使用率的百分比，超过该使用量，容器开始扩容。
+    -   **触发条件**：资源使用率的百分比，超过该使用量，容器开始扩容。有关Pod水平自动扩缩的算法，请参见[算法细节](https://kubernetes.io/zh/docs/tasks/run-application/horizontal-pod-autoscale/#algorithm-details)。
     -   **最大副本数**：该Deployment可扩容的容器数量上限。
     -   **最小副本数**：该Deployment可缩容的容器数量下限。
 10. 单击右下角的**创建**，一个支持HPA的Deployment就已经创建完毕。
