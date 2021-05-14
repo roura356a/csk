@@ -22,10 +22,6 @@ Professional edge Kubernetes clusters offer all benefits of standard edge Kubern
 -   More intelligent pod scheduling: kube-scheduler is integrated to provide better pod scheduling capability. This allows you to schedule pods in bulk, set multiple scheduling algorithms, and schedule pods to NPU-accelerated nodes. This also enhances the pod scheduling capability in scenarios where large-scale data computing or high-performance data processing is required.
 -   SLA guarantees: Professional edge Kubernetes clusters are covered by the SLA that supports compensation clauses. A level of 99.95% uptime is guaranteed for the cluster API server.
 
-## Pricing
-
-For more information about the pricing of professional edge Kubernetes clusters, see [t1936963.md\#]().
-
 ## Comparison
 
 The following table compares professional edge Kubernetes clusters with standard edge Kubernetes clusters.
