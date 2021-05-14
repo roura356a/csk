@@ -7,7 +7,7 @@ keyword: [upgrade cGPU, cGPU version]
 Container Service for Kubernetes \(ACK\) supports GPU sharing. To enable GPU sharing, you must install cGPU on the nodes. This topic describes how to upgrade the cGPU version on a node by using a command-line interface \(CLI\) and the ACK console.
 
 -   A kubectl client is connected to the cluster. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
--   The ack-cgpu or ack-ai-installer component is installed in the cluster. For more information, see [Install a shared GPU](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU resource scheduling/Shared GPU scheduling/Install a shared GPU.md) or [Install the ack-ai-installer component](/intl.en-US/User Guide for Kubernetes Clusters/Scheduling/Introduction to Component Installation and Functions/ack-ai-installer/Install the ack-ai-installer component.md).
+-   The ack-cgpu or ack-ai-installer component is installed in the cluster. For more information, see [Install a shared GPU](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Install the cGPU component.md).
 -   No workload is running on the node that you want to upgrade.
 
 ## Upgrade the cGPU version on a node by using a CLI
