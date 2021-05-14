@@ -31,13 +31,13 @@ ASK Knative中提供了事件驱动框架Eventing。Eventing组件针对Serverle
         kubectl -n kube-system edit configmap eci-profile
         ```
 
-    2.  修改`privatezone`参数值为`true`，保存并退出eci-profile文件。
+    2.  修改`enablePrivateZone`参数值为`true`，保存并退出eci-profile文件。
 
         ```
         apiVersion: v1
         data:
           ...
-          privatezone: "true"
+          enablePrivateZone: "true"
           ...
         kind: ConfigMap
         metadata:
