@@ -6,7 +6,7 @@ keyword: [SNAT, access the Internet, clusters]
 
 If Source Network Address Translation \(SNAT\) is not enabled when you create a Container Service for Kubernetes \(ACK\) cluster, you can enable SNAT in the ACK console after the cluster is created. ACK does not allow you to enable SNAT for an existing cluster by calling the API. This topic describes how to enable SNAT for existing ACK clusters in the ACK console. SNAT allows existing ACK clusters to access the Internet.
 
-If an Elastic Compute Service \(ECS\) instance or an ACK cluster does not have a public IP address, you can create an SNAT entry in the virtual private cloud \(VPC\) where the ECS instance or ACK cluster is deployed to provide a proxy to enable access to the Internet. For more information about SNAT, see [t13979.md\#](/intl.en-US/Product Introduction/What is NAT Gateway?.md).
+If an Elastic Compute Service \(ECS\) instance or an ACK cluster does not have a public IP address, you can create an SNAT entry in the virtual private cloud \(VPC\) where the ECS instance or ACK cluster is deployed to provide a proxy to enable access to the Internet. For more information about SNAT, see .[t13979.md\#](/intl.en-US/Product Introduction/What is NAT Gateway?.md)
 
 ## Procedure
 
@@ -22,7 +22,7 @@ The following flowchart shows the procedure of how to enable SNAT for an existin
 
     3.  On the **NAT Gateway** page, click **Create NAT Gateway**.
 
-        For more information about the parameters required to create a NAT gateway, see [Create a NAT gateway]().
+        For more information about the parameters required to create a NAT gateway, see [Create NAT gateways](/intl.en-US/User Guide/Create NAT gateways.md).
 
         **Note:** The NAT gateway must be created in the same region and VPC as the ACK cluster.
 
