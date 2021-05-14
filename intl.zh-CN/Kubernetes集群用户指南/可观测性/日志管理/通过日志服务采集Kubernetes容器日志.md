@@ -207,7 +207,7 @@ keyword: [容器日志, 日志采集, 日志服务]
 
 |Project需与您的Logtail工作所在Region一致。|
 |aliyun\_logs\_\{key\}\_logstore|可选。值为指定的日志服务Logstore。当不存在该环境变量时Logstore和\{key\}一致。|```
-- name: aliyun_logs_catalina_tags
+- name: aliyun_logs_catalina_logstore
 
    my-logstore
 ```
