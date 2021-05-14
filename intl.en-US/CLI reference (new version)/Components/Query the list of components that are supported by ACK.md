@@ -2,7 +2,7 @@
 
 You can run the following command to query the list of components that are supported by ACK: `arc-cs addon get --region <region>`.
 
-For more information about this command, see [Query supported add-ons](/intl.en-US/API Reference/Add-ons/Query supported add-ons.md).
+For more information about this command, see [DescribeAddons](/intl.en-US/API Reference/Add-ons/DescribeAddons.md).
 
 ## Example by using Alibaba Cloud CLI
 
@@ -238,7 +238,7 @@ Sample response:
       "required": "true",
       "config": "",
       "value": "",
-      "description": "name: aliyun-acr-credential-helper\nintroduction: \n  en: Use aliyun-acr-credential-helper to pull private images without credential setting\ndoc:         \n  zh: https://help.aliyun.com/document_detail/159750.html?spm=5176.10695662.1996646101.searchclickresult.dede56d4WTiNdU\n  en: https://www.alibabacloud.com/help/doc-detail/144049.htm?spm=a2c63.p38356.b99.38.be135889E2TbLg\nchangelog:   \n  zh: https://help.aliyun.com/document_detail/177224.htm·\n  en: \nkeywords:\n- private image\n- namespace:kube-system\n- releaseName: aliyun-acr-credential-helper",
+      "description": "name: aliyun-acr-credential-helper\nintroduction: \n  en: Use aliyun-acr-credential-helper to pull private images without credential setting\ndoc:         \n  zh: https://help.aliyun.com/document_detail/159750.html?spm=5176.10695662.1996646101.searchclickresult.dede56d4WTiNdU\n  en: https://www.alibabacloud.com/help/doc-detail/159750.htm?spm=a2c63.p38356.b99.38.be135889E2TbLg\nchangelog:   \n  zh: https://help.aliyun.com/document_detail/177224.htm·\n  en: \nkeywords:\n- private image\n- namespace:kube-system\n- releaseName: aliyun-acr-credential-helper",
       "properties": null
     },
     "aliyun-log-controller": {
@@ -398,7 +398,7 @@ Sample response:
       "required": "true",
       "config": "",
       "value": "",
-      "description": "name: \"Nginx Ingress Controller\"\nhome: https://kubernetes.github.io/ingress-nginx/\nintroduction:\n   en: \"Dynamically update NGINX configuration files based on Ingresses\"\ndoc:\n  zh: https://help.aliyun.com/document_detail/86533.html\n  en: https://www.alibabacloud.com/help/doc-detail/86535.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/160658.html\n  en: https://www.alibabacloud.com/help/zh/doc-detail/160658.htm\nkeywords:\n- ingress\n- nginx",
+      "description": "name: \"Nginx Ingress Controller\"\nhome: https://kubernetes.github.io/ingress-nginx/\nintroduction:\n   en: \"Dynamically update NGINX configuration files based on Ingresses\"\ndoc:\n  zh: https://help.aliyun.com/document_detail/86533.html\n  en: https://www.alibabacloud.com/help/doc-detail/86533.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/160658.html\n  en: https://www.alibabacloud.com/help/zh/doc-detail/160658.htm\nkeywords:\n- ingress\n- nginx",
       "properties": null
     },
     "progressive-delivery-tool": {
