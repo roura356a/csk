@@ -6,10 +6,8 @@ keyword: [subdirectories of NAS volumes, quota limits]
 
 You can set quotas to manage resource allocation and improve the overall resource utilization. Container Service for Kubernetes \(ACK\) allows you to use the CSI plug-in to set quotas on the subdirectories of Apsara File Storage NAS volumes. This topic describes how to set quotas on the subdirectories of NAS volumes.
 
--   The image version of csi-plugin is V1.18.8.45 or later. For more information about csi-plugin versions, see [csi-plugin]().
+-   The image version of csi-plugin is V1.18.8.45 or later. For more information about csi-plugin versions, see [csi-plugin](/intl.en-US/Release notes/System Component change Records/Storage/csi-plugin.md).
 -   The NAS volume is mounted by using a subdirectory.
-
-For more information, see [Manage quotas]().
 
 ## Limits
 
