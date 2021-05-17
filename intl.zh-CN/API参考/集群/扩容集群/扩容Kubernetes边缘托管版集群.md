@@ -40,7 +40,7 @@ Content-Type:application/json
 |worker\_instance\_type|String|是|ens.sn1.tiny|ENS实例规格。|
 |ens\_region\_id|String|是|cn-beijing-cmcc-2|ENS地域ID。|
 |worker\_image\_id|String|是|centos\_7\_06\_64\_20G\_alibase\_2019\*\*\*\*|节点自定义镜像，默认使用系统镜像。当选择自定义镜像时，将取代默认系统镜像。请参见[自定义镜像](~~146647~~)。 |
-|ens\_Internet\_charge\_type|String|是|BandwidthByDay|计费方式,，取值：-   `BandwidthByDay`：日峰值带宽。
+|ens\_Internet\_charge\_type|String|是|BandwidthByDay|计费方式，取值：-   `BandwidthByDay`：日峰值带宽。
 -   `95BandwidthByMonth`：月95峰值带宽。 |
 |worker\_period|Long|是|1|Worker节点包年包月时长，当`worker_instance_charge_type`取值为`PrePaid`时才生效且为必选值。
 
