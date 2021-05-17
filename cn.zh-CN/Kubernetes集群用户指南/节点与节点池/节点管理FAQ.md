@@ -2,12 +2,12 @@
 
 本文主要为您介绍节点管理常见问题。
 
--   [如何在已有集群的GPU节点上手动升级Kernel](#section_i7t_2z5_h3n)
+-   [如何在已有集群的GPU节点上手动升级Kernel？](#section_i7t_2z5_h3n)
 -   [修复GPU节点容器启动问题](#section_wj1_6cu_gtc)
 -   [添加Kubernetes集群节点的常见问题](~~170722~~)
 -   [移除节点时提示”drain-node job execute timeout”错误](~~190626~~)
 
-## 如何在已有集群的GPU节点上手动升级Kernel
+## 如何在已有集群的GPU节点上手动升级Kernel？
 
 下面为您介绍如何在已有集群的GPU节点上手动升级Kernel。
 
@@ -17,7 +17,7 @@
 
 本文提供方案并不涉及kernel升级，仅针对在kernel升级的前提下对应的Nvidia驱动升级。
 
-1.  [t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+1.  [t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 2.  将GPU节点设置为不可调度（本例以节点 cn-beijing.i-2ze19qyi8votgjz12345为例）。
 
@@ -66,7 +66,7 @@
 
 5.  升级Kernel。
 
-    您可以根据需要升级Kerne。
+    您可以根据需要升级Kernel。
 
 6.  重启GPU机器。
 
