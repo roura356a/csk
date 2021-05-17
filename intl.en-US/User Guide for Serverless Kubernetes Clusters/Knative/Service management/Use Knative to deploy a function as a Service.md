@@ -7,7 +7,7 @@ keyword: [deploy a function as a Service, Knative]
 Knative is integrated with Function Compute. You can use Knative to deploy a function as a Service by using the following methods: create a deployment file that contains the function code, pull the function code file from Object Storage Service \(OSS\), and use a container image. This topic describes how to use Knative to deploy a function as a Service.
 
 -   [Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md)
--   [Deploy Knative in an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Knative/Component management/Deploy Knative in an ASK cluster.md)
+-   [Enable Knative](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Knative/Component management/Enable Knative.md)
 
 ## Create a deployment file that contains the function code
 
