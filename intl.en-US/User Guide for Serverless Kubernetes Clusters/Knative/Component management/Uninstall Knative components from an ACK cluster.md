@@ -1,8 +1,12 @@
+---
+keyword: uninstall Knative
+---
+
 # Uninstall Knative components from an ACK cluster
 
 This topic describes how to uninstall Knative components from a Container Service for Kubernetes \(ACK\) cluster.
 
-[Deploy Knative in an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Knative/Component management/One-click Deploy Knative in an ASK cluster.md)
+[Deploy Knative in an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Knative/Component management/Deploy Knative in an ASK cluster.md)
 
 ## Procedure
 
@@ -14,12 +18,12 @@ This topic describes how to uninstall Knative components from a Container Servic
 
 4.  In the left-side navigation pane of the details page, choose **Applications** \> **Knative**.
 
-5.  On the **Knative Components** page, click **Uninstall** in the upper-right corner of the page.
+5.  In the upper-right corner of the **Components** tab, click **Uninstall**.
 
 6.  In the **Confirm** dialog box, select **I confirm that I have read the above information and want to uninstall Knative** and click **OK**.
 
 
-## Check the result
+## Result
 
-After Knative components are uninstalled, the following information is displayed on the **Knative Components** page.
+You can find that Knative components are uninstalled on the **Knative Components** page.
 
