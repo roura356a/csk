@@ -6,7 +6,7 @@ keyword: [kubectl, 连接Kubernetes集群]
 
 如果您需要从客户端计算机连接到Kubernetes集群，请使用Kubernetes命令行客户端kubectl。本文介绍如何通过kubectl连接Kubernetes集群。
 
-1.  从[Kubernetes版本页面](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG.md?spm=a2c4g.11186623.2.4.9ZrN6B&file=CHANGELOG.md)下载最新的kubectl客户端。
+1.  从[Kubernetes版本页面](https://github.com/kubernetes/kubectl/releases)下载最新的kubectl客户端。
 
 2.  安装和设置kubectl客户端。
 
