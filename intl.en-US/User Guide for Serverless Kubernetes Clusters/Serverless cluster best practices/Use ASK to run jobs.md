@@ -1,13 +1,17 @@
+---
+keyword: run jobs
+---
+
 # Use ASK to run jobs
 
-In a serverless Kubernetes \(ASK\) cluster, you can create pods as needed. The system stops billing after a pod is stopped and you do not need to reserve computing resources to handle jobs. This solves the issues of insufficient computing resources and saves you the need to expand the cluster. In addition, you can reduce the computing cost by using preemptible instances. This topic describes how to use ASK to create jobs to meet your business requirements.
+In a serverless Kubernetes \(ASK\) cluster, you can create pods to meet your business requirements. The system stops billing a pod after the pod lifecycle is terminated. You do not need to reserve computing resources to handle jobs. This resolves the issues of insufficient computing resources and saves you the need to expand the cluster. In addition, you can reduce the computing costs by using preemptible instances. This topic describes how to use ASK to create jobs to meet your business requirements.
 
 -   [Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md)
--   [Use kubectl to connect to an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Cluster management/Manage and access clusters/Use kubectl to connect to an ASK cluster.md)
+-   [Use kubectl to connect to an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Cluster/Manage and access clusters/Use kubectl to connect to an ASK cluster.md)
 
 ## Procedure
 
-1.  Use the kubectl client to create the job.yaml file and copy the following content into the file:
+1.  Use the kubectl client to create the job.yaml file and copy the following content to the file:
 
     ```
     apiVersion: batch/v1
@@ -43,6 +47,8 @@ In a serverless Kubernetes \(ASK\) cluster, you can create pods as needed. The s
     kubectl get pod
     ```
 
+    Expected output:
+
     ```
     NAME       READY   STATUS      RESTARTS   AGE
     pi-4f7w5   0/1     Completed   0          80s
@@ -53,6 +59,8 @@ In a serverless Kubernetes \(ASK\) cluster, you can create pods as needed. The s
     ```
     kubectl describe pod
     ```
+
+    Expected output:
 
     ```
     Name:               pi-4f7w5
@@ -73,7 +81,7 @@ In a serverless Kubernetes \(ASK\) cluster, you can create pods as needed. The s
 
 4.  To use a preemptible instance, add a preemptible instance annotation to the pod.
 
-    For more information about how to a preemptible instance annotation, see [Use preemptible instances](/intl.en-US/User Guide for Serverless Kubernetes Clusters/ECI Pod management/Use preemptible instances.md).
+    For more information about how to add annotations for preemptible instances, see [Use preemptible instances](/intl.en-US/User Guide for Serverless Kubernetes Clusters/ECI Pod/Use preemptible instances.md).
 
     ```
     apiVersion: batch/v1
