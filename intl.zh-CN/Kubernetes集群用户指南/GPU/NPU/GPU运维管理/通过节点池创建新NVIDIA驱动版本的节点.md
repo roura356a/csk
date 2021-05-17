@@ -69,7 +69,7 @@ ACK集群默认安装的NVIDIA驱动版本为418.87.01，如果您使用的CUDA�
 
 5.  在**详情**面板，关闭**使用HTTPS**开关，取消使用HTTPS的配置。
 
-    **说明：** ACK创建集群时会通过URL拉取驱动文件，URL中使用的协议是HTTP协议。OSS默认使用的是HTTPS协议，您需要单击**使用HTTPS**按钮，取消使用HTTPS的配置。
+    **说明：** ACK创建集群时会通过URL拉取驱动文件，URL中使用的协议是HTTP协议。OSS默认使用的是HTTPS协议，您需要关闭**使用HTTPS**开关，取消使用HTTPS的配置。
 
 6.  确认驱动文件配置信息。记录该文件的URL，且将URL拆成两部分，即endpoint和runfile。以`[http://nvidia-XXX-XXX-cn-beijing.aliyuncs.com/NVIDIA-Linux-x86\_64-460.32.03.run](http://nvidia-XXX-XXX-cn-beijing.aliyuncs.com/NVIDIA-Linux-x86_64-460.32.03.run)`为例，将其分成以下两部分：
 
