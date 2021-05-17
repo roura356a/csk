@@ -9,7 +9,7 @@ NAS提供了共享存储和持久化存储的服务，满足您需要多个Pod�
 -   [创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   [t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 -   您已在文件存储控制台创建一个文件系统，请参见[Linux系统挂载NFS文件系统]()。创建的文件系统需要与您的Kubernetes集群在同一可用区。
--   您已在创建好的文件系统中添加容器服务Kubernetes集群的挂载点，请参见[管理挂载点]()。文件系统挂载时的VPC网络要与您Kubernetes集群所在的VPC网络保持一致。
+-   您已在创建好的文件系统中添加容器服务Kubernetes集群的挂载点，请参见。文件系统挂载时的VPC网络要与您Kubernetes集群所在的VPC网络保持一致。
 
 NAS支持同时被多个Pod挂载，此时多个Pod可能同时修改相同数据，需要应用自行实现数据的同步。
 
