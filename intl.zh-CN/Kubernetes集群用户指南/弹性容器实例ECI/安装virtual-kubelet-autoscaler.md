@@ -17,7 +17,7 @@ virtual-kubelet-autoscaler是阿里云提供的Kubernetes Autoscaler插件，在
 
 3.  在**应用目录**页面**阿里云应用**页签，然后选中**ack-virtual-kubelet-autoscaler**应用。
 
-    **阿里云应用**包含较多应用，您可在页面右上角搜索**ack-virtual-kubelet-autoscaler**，支持关键字搜索。
+    **阿里云应用**包含较多应用，您可在**名称**文本框中搜索**ack-virtual-kubelet-autoscaler**。
 
 4.  在**应用目录 - ack-virtual-kubelet-autoscaler**页面右侧的**创建**区域，选择目标集群，单击**创建**。
 
