@@ -4,7 +4,7 @@ keyword: [函数部署服务, Knative]
 
 # 在Knative中使用函数部署服务
 
-将Knative与函数计算（FC）结合，使用函数部署服务，支持根据代码、OSS文件和镜像部署服务。本文介绍如何在Knative中使用函数部署服务。
+将Knative与函数计算FC（Function Compute）结合，使用函数部署服务，支持根据代码、OSS文件和镜像部署服务。本文介绍如何在Knative中使用函数部署服务。
 
 -   [创建Serverless Kubernetes集群](/intl.zh-CN/Serverless Kubernetes集群用户指南/快速入门/创建Serverless Kubernetes集群.md)
 -   [开启Knative](/intl.zh-CN/Serverless Kubernetes集群用户指南/Knative/Knative组件管理/开启Knative.md)
@@ -169,7 +169,7 @@ keyword: [函数部署服务, Knative]
 
     2.  在顶部菜单栏，选择地域。
 
-    3.  在左侧导航栏中，单击**服务/函数**。在服务/函数页面可以看到kn\_default\_coffee服务。
+    3.  在左侧导航栏中，单击**服务及函数**。在服务及函数页面可以看到kn\_default\_coffee服务。
 
     4.  单击kn\_default\_coffee，在**函数列表**页签下可以看到kn\_default\_coffee函数。
 
