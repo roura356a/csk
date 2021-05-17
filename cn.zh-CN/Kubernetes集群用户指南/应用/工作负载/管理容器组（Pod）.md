@@ -33,6 +33,12 @@ keyword: [Pod, 容器组, 最小可部署单元, Pod日志]
 
 在容器组列表中，选择目标容器组，然后单击其右侧的**日志**，查看容器的日志信息
 
+**过滤容器组**
+
+在容器组列表页面，您可以根据名称、节点、Host IP、Pod IP和标签，过滤出相应的容器组。
+
+![Pod](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0177221261/p274317.png)
+
 ## 变更容器组配置
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
