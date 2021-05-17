@@ -1,9 +1,22 @@
 使用镜像缓存CRD加速创建Pod 
 =====================================
 
-ECI容器组实例创建过程中，大部分时间消耗在镜像下载阶段，为加速ECI容器组创建速度，ECI提供镜像缓存功能，用户事先将需要用到的镜像作为云盘快照缓存，在创建ECI容器组实例时基于快照创建，避免或减少镜像层下载，从而提升ECI容器组实例创建速度。经实测，基于dockerhub的flink镜像（386.26 MB）创建Pod，普通创建eci过程中，镜像准备阶段需要耗费`50s`，使用镜像快照后镜像准备阶段仅需`5s`。因此在创建eci过程中，镜像准备阶段节省时间`45s`。具体的提升速度跟Pod使用的镜像个数，镜像大小和镜像仓库网络因素决定。
+阿里云以CRD的方式将ECI的镜像缓存功能提供给Kubernetes用户，以便Kubernetes用户也可以使用该功能来加速创建Pod。本文介绍如何使用镜像缓存CRD加速创建Pod。
 
-为方便kubernetes用户也可以使用到ECI的镜像缓存功能，因此以CRD的方式将ECI镜像缓存功能暴露给kubernetes用户。重点强调：ImageCache CRD在kubernetes集群中为 **Cluster级别的资源** ，类似于PV，被集群内所有namespace共享。
+背景信息 
+-------------------------
+
+ECI实例在创建时，大部分时间消耗在镜像下载阶段。为加速实例创建速度，ECI提供镜像缓存功能。您可以预先将需要使用的镜像制作成云盘快照缓存，然后基于该快照来创建实例，避免或者减少镜像层的下载，从而提升实例创建速度。
+
+经实测，以Docker Hub的flink镜像（约386.26 MB）创建Pod为例，正常创建ECI实例过程中，镜像准备阶段需要耗时50s，使用镜像缓存后，镜像准备阶段可以缩短至5s，大大节约了实例创建耗时。
+**说明**
+
+具体提升速度由Pod中使用的镜像个数，镜像大小和镜像仓库网络因素等决定。
+
+为方便Kubernetes用户也可以使用到ECI的镜像缓存功能，阿里云以CRD的方式将镜像缓存功能提供给Kubernetes用户，对应的CRD为ImageCache。更多信息，请参见[kubernetes ImageCache API]()。
+**注意**
+
+ImageCache CRD在kubernetes集群中为Cluster级别资源，被集群内所有Namespace共享。
 
 准备工作 
 -------------------------
@@ -160,12 +173,12 @@ ImageCache基本操作
 **参数说明：** 
 
 
-|          名称           |     类型     | 必选 |                                                              描述                                                               |
-|-----------------------|------------|----|-------------------------------------------------------------------------------------------------------------------------------|
-| spec.images           | \[\]string | Y  | 镜像列表。                                                                                                                         |
-| spec.imagePullSecrets | \[\]string | N  | 镜像仓库对应的Secret列表，格式：。如果images列表中有用户私有仓库镜像，需要用户为私有镜像仓库创建secret，然后根据 **namespace:secretName** 格式，设置此参数。如若images中均是共有镜像，不需要设置此参数。 |
-| spec.imageCacheSize   | int        | N  | 镜像缓存使用的快照盘大小，默认为20 GB，取值范围为:\[20, 32768\]，单位为GB。                                                                              |
-| spec.retentionDays    | int        | N  | 镜像缓存保留的时间，取值范围\[1,65536\]，默认永不过期。                                                                                             |
+|          名称           |   类型   | 必选 |                                                              描述                                                               |
+|-----------------------|--------|----|-------------------------------------------------------------------------------------------------------------------------------|
+| spec.images           | string | Y  | 镜像列表。                                                                                                                         |
+| spec.imagePullSecrets | string | N  | 镜像仓库对应的Secret列表，格式：。如果images列表中有用户私有仓库镜像，需要用户为私有镜像仓库创建secret，然后根据 **namespace:secretName** 格式，设置此参数。如若images中均是共有镜像，不需要设置此参数。 |
+| spec.imageCacheSize   | int    | N  | 镜像缓存使用的快照盘大小，默认为20 GB，取值范围为：\[20,32768\]，单位为GB。                                                                               |
+| spec.retentionDays    | int    | N  | 镜像缓存保留的时间，取值范围\[1,65536\]，默认永不过期。                                                                                             |
 
 
 
@@ -179,7 +192,7 @@ ImageCache基本操作
 
 输入以下命令创建ImageCahce：
 
-    # kubectl create -f  imagecache-secrets-test.yaml
+    kubectl create -f  imagecache-secrets-test.yaml
 
 
 
@@ -319,7 +332,7 @@ ImageCache资源是Cluster级别的，所以在不同的namespace下创建Pod都
 
 使用ImageCache快速创建Pod有两种使用方式：
 
-* 明确指定方式：在创建pod时，明确的指定使用哪个ImageCacheId创建Pod。
+* 明确指定方式：在创建Pod时，明确的指定使用哪个ImageCacheId创建Pod。
 
   
 
@@ -522,8 +535,6 @@ ImageCache资源是Cluster级别的，所以在不同的namespace下创建Pod都
    系统输出类似如下结果：
 
        imagecache.eci.alibabacloud.com " imagecache-secrets-test" deleted
-       kubectl get imagecache/ imagecache-secrets-test
-       Error from server (NotFound): imagecaches.eci.alibabacloud.com " imagecache-secrets-test" not found        
 
    
 
@@ -559,12 +570,12 @@ ImageCache v1 eci.alibabacloud.com
 **ImageCacheList:** 
 
 
-|   Field    |      Type      |          Description           |
-|------------|----------------|--------------------------------|
-| apiVersion | string         | api版本： eci.alibabacloud.com/v1 |
-| kind       | string         | 资源类别：ImageCacheList            |
-| metadata   | ListMeta       | Standard list metadata。        |
-| Items      | \[\]ImageCache | 镜像缓存列表。                        |
+|   Field    |    Type    |          Description           |
+|------------|------------|--------------------------------|
+| apiVersion | string     | api版本： eci.alibabacloud.com/v1 |
+| kind       | string     | 资源类别：ImageCacheList            |
+| metadata   | ListMeta   | Standard list metadata。        |
+| Items      | ImageCache | 镜像缓存列表。                        |
 
 
 
@@ -588,7 +599,7 @@ ImageCache v1 eci.alibabacloud.com
 |------------------|------------|---------|------------------------------------------------|
 | images           | \[\]string | Y       | 镜像缓存的镜像列表。                                     |
 | imagePullSecrets | \[\]string | N       | 私有镜像仓库对应的Secret列表，格式： **namespace:secretName** |
-| imageCacheSize   | int        | N       | 镜像缓存的大小，默认为20 GB，取值范围为：\[20, 32768\]，单位为GB。    |
+| imageCacheSize   | int        | N       | 镜像缓存的大小，默认为20 GB，取值范围为：\[20,32768\]，单位为GB。     |
 | retentionDays    | int        | N       | 镜像缓存保留的时间，取值范围\[1,65536\]，默认永不过期。              |
 
 
@@ -596,15 +607,15 @@ ImageCache v1 eci.alibabacloud.com
 **ImageCacheStatus:** 
 
 
-|      Field      |   Type    |                         Description                         |
-|-----------------|-----------|-------------------------------------------------------------|
-| phase           | string    | 镜像缓存状态。                                                     |
-| progress        | string    | 标示制作过程中进度。                                                  |
-| imageCacheId    | string    | 镜像缓存ID，调用Provdier的Create操作返回，然后更新到ImageCache对象。             |
-| startTime       | Time      | 镜像缓存对象创建时间。                                                 |
-| lastUpdatedTime | Time      | 镜像缓存最后更新时间。                                                 |
-| events          | \[\]Event | 制作镜像cache过程中的事件信息。                                          |
-| expireDateTime  | Time      | 镜像缓存的过期时间，有两种来源：1、用户设置了retentionDays；2、制作失败的镜像缓存自动在24小时后过期。 |
+|      Field      |  Type  |                         Description                         |
+|-----------------|--------|-------------------------------------------------------------|
+| phase           | string | 镜像缓存状态。                                                     |
+| progress        | string | 标示制作过程中进度。                                                  |
+| imageCacheId    | string | 镜像缓存ID，调用Provdier的Create操作返回，然后更新到ImageCache对象。             |
+| startTime       | Time   | 镜像缓存对象创建时间。                                                 |
+| lastUpdatedTime | Time   | 镜像缓存最后更新时间。                                                 |
+| events          | Event  | 制作镜像cache过程中的事件信息。                                          |
+| expireDateTime  | Time   | 镜像缓存的过期时间，有两种来源：1、用户设置了retentionDays；2、制作失败的镜像缓存自动在24小时后过期。 |
 
 
 
