@@ -1,8 +1,12 @@
+---
+keyword: [configure schedule-based autoscaling, Knative]
+---
+
 # Configure schedule-based autoscaling in Knative
 
 Serverless Kubernetes \(ASK\) clusters support schedule-based autoscaling. This feature allows you to create schedule-based autoscaling policies for the system to allocate resources. This feature is integrated with the resource scaling capabilities of Horizontal Pod Autoscaler \(HPA\). This ensures that the system can automatically allocate sufficient resources to cope with spikes in workloads. This topic describes how to configure and apply a schedule-based autoscaling policy in Knative.
 
-[Deploy Knative in an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Knative/Component management/One-click Deploy Knative in an ASK cluster.md)
+[Enable Knative](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Knative/Component management/Enable Knative.md)
 
 ## Procedure
 
@@ -50,8 +54,8 @@ Serverless Kubernetes \(ASK\) clusters support schedule-based autoscaling. This 
            replicas: 2
     ```
 
-    -   In the schedule field, the first number indicates the day of a month. The second number indicates the month of a year. The remaining indicates the days of a week. The format of the value is `* * 1-5`. In the preceding example, 1-5 indicates Monday to Friday, and 0,6 indicates Saturday and Sunday.
-    -   timeseries: specifies the numbers of instances at the specified time points. The time points are specified in the 24-hour notation in the `Hour:Minute:Second` format.
+    -   In the `schedule` field, the first number indicates the day of a month. The second number indicates the month of a year. The remaining indicates the days of a week. The format of the value is `* * 1-5`. In the preceding example, 1-5 indicates Monday to Friday, and 0,6 indicates Saturday and Sunday.
+    -   The format of the value in the `timeseries``timeseries` field is `hour: minute: second`.
     **Note:**
 
     -   Policy updates apply to all Knative Services that are associated with the policy.
@@ -84,18 +88,18 @@ Serverless Kubernetes \(ASK\) clusters support schedule-based autoscaling. This 
     ```
 
     -   Set `alicloud.autoscaling.service.knative.dev/timeserie` to specify the policy name.
-    -   Set `autoscaling.knative.dev/class: "ppa.autoscaling.knative.dev"` to specify the schedule-based autoscaling plug-in.
-    -   Specify multiple Horizontal Pod Autoscaler \(HPA\) metrics. The publicly available version of Knative allows you to specify only one HPA metric. In ASK Knative, you can specify multiple HPA metrics by setting `alicloud.autoscaling.knative.dev/metric-target`. For example, you can specify the number of CPU cores and the amount of memory resources by setting the parameter to `cpu:50,memory:50`.
-    -   Set `autoscaling.knative.dev/minScale: "1"` to specify the minimum number of resources.
-    -   Set `autoscaling.knative.dev/maxScale: "10"` to specify the maximum number of resources.
-    **Note:** The following formulas are used to determine the maximum or minimum number of resources after an HPA scaling event:
+    -   Set `autoscaling.knative.dev/class: "ppa.autoscaling.knative.dev"` to specify the schedule-based autoscaling component.
+    -   Specify multiple HPA metrics. Open source Knative allows you to specify only one HPA metric. In ASK Knative, you can specify multiple HPA metrics by setting `alicloud.autoscaling.knative.dev/metric-target`. For example, you can specify the number of CPU cores and the amount of memory resources by setting the parameter to `cpu:50,memory:50`.
+    -   Set `autoscaling.knative.dev/minScale: "1"` to specify the minimum number of pods that must be guaranteed.
+    -   Set `autoscaling.knative.dev/maxScale: "10"` to specify the maximum number of pods that are allowed.
+    **Note:** The following formulas are used to determine the maximum \(`maxScale`\) and minimum \(`minScale`\) numbers of pods for schedule-based autoscaling:
 
-    -   Minimum number of a resource after an HPA scaling event = min\(autoscaling.knative.dev/minScale,Number of a resource specified in the scheduled scaling policy\)
-    -   Maximum number of a resource after an HPA scaling event = max\(autoscaling.knative.dev/maxScale,Number of a resource specified in the scheduled scaling policy\)
+    -   Minimum number of pods = min\(autoscaling.knative.dev/minScale,Number of pods specified in the schedule-based autoscaling policy\)
+    -   Maximum number of pods = max\(autoscaling.knative.dev/maxScale,Number of a resource specified in the schedule-based autoscaling policy\)
 
-## Check the result
+## Verify the result
 
-Check the changes in the number of a resource after you apply the scheduled scaling policy. The following trend chart shows an example.
+Check the changes in the number of pods after you apply the schedule-based autoscaling policy. The following trend chart shows an example.
 
-![v1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5729723061/p175485.png)
+![12](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7701221261/p167946.png)
 
