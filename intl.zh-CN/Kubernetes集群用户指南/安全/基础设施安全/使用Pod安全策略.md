@@ -9,7 +9,7 @@ Kubernetes的Pod安全策略（Pod Security Policy）准入控制组件会基于
 您已完成以下操作：
 
 -   [创建一个Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   [通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   [t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 ## ACK默认的Pod安全策略
 
