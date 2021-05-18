@@ -156,7 +156,7 @@ Systemd版本太老旧。
 requestURI: "configmaps" and <configmap\_name\> not (verb: get or verb: watch or verb: list) 
 ```
 
-**说明：** 上述查询命令在查询时，需要将<configmap\_name\>替换为实际的Deployment名称。
+**说明：** 上述查询命令在查询时，需要将<configmap\_name\>替换为实际的ConfigMap名称。
 
 **Deployment的Pod扩缩容相关操作的审计日志查询方法**
 
