@@ -24,7 +24,7 @@ OSS使用方式：
 ## 前提条件
 
 -   [创建Serverless Kubernetes集群](/cn.zh-CN/Serverless Kubernetes集群用户指南/快速入门/创建Serverless Kubernetes集群.md)。
--   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   [t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 -   您已在OSS管理控制台创建Bucket，请参见[创建存储空间](/cn.zh-CN/快速入门/控制台快速入门/创建存储空间.md)。
 
 ## 注意事项
@@ -65,8 +65,8 @@ OSS使用方式：
     |--|--|
     |`alicloud-pvname`|PV的名称，与PVC中的`selector`配合使用。|
     |`bucket`|Bucket名称，目前只支持挂载Bucket，不支持挂载Bucket下面的子目录或文件。|
-    |`url`|：OSS Bucket的访问域名（Endpoint），请参见[访问域名和数据中心](/cn.zh-CN/开发指南/访问域名（Endpoint）/访问域名和数据中心.md)。也可以在OSS管理控制台查询：登录OSS管理控制台，在左侧导航栏选择目标Bucket，在**概览**页面的访问域名区域，查看**Endpoint（地域节点）**。|
-    |`akId`|：AccessKey ID。在容器服务管理控制台，单击右上角![user](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7685659951/p161100.png)，选择**AccessKey 管理**，设置**AccessKey ID**和**AccessKey Secret**。|
+    |`url`|OSS Bucket的访问域名（Endpoint），请参见[访问域名和数据中心](/cn.zh-CN/开发指南/访问域名（Endpoint）/访问域名和数据中心.md)。也可以在OSS管理控制台查询：登录OSS管理控制台，在左侧导航栏选择目标Bucket，在**概览**页面的访问域名区域，查看**Endpoint（地域节点）**。|
+    |`akId`|AccessKey ID。在容器服务管理控制台，单击右上角![user](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7685659951/p161100.png)，选择**AccessKey 管理**，设置**AccessKey ID**和**AccessKey Secret**。|
     |`akSecret`|AccessKey Secret。获取方法同`akId`。|
     |`otherOpts`|挂载OSS时支持定制化参数，格式为：`-o *** -o ***`，请参见[t4872.md\#](/cn.zh-CN/常用工具/ossfs/常见问题.md)。|
 
@@ -182,7 +182,7 @@ OSS使用方式：
                 claimName: pvc-oss
     ```
 
-    **说明：** 健康检查`livenessProbe`的详细内容及解释，请参见[OSS存储卷使用说明](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/OSS储存卷/OSS存储卷使用说明.md)。
+    **说明：** 健康检查`livenessProbe`的详细内容及解释，请参见[OSS存储卷使用说明](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/OSS存储卷/OSS存储卷使用说明.md)。
 
 2.  执行以下命令，创建Deployment。
 
