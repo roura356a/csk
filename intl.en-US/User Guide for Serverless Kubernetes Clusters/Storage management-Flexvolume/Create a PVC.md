@@ -1,3 +1,7 @@
+---
+keyword: persistent volume claims \(PVCs\)
+---
+
 # Create a PVC
 
 In the Container Service for Kubernetes \(ACK\) console, you can create a persistent volume claim \(PVC\).
@@ -8,19 +12,17 @@ In the Container Service for Kubernetes \(ACK\) console, you can create a persis
     By default, PVCs are associated with PVs that have the alicloud-pvname label. This label is added to the PVs that are created in the ACK console. If a PV does not have this label, add the label to the PV before you can associate the PV with a PVC.
 
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, choose **Applications** \> **Persistent Volume Claims**. Then, you are redirected to the Persistent Volumes page.
+2.  In the left-side navigation pane, click **Clusters**.
 
-3.  In the left-side navigation pane, click **Serverless Clusters**.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+4.  In the left-side navigation pane of the details page, choose **Volumes** \> **Persistent Volumes**.
 
-5.  In the left-side navigation pane of the details page, choose **Volumes** \> **Persistent Volumes**.
+5.  On the **Persistent Volumes Claims** tab, click **Create**.
 
-6.  On the **Persistent Volumes Claims** tab, click **Create**.
-
-7.  In the **Create PVC** dialog box, set the parameters and click **Create**.
+6.  In the **Create PVC** dialog box, set the parameters and click **Create**.
 
     -   **PVC Type**: Cloud Disk, NAS, and OSS are supported. These options are also available when you set PVC Type for a PV.
     -   **Name**: the name of the PVC.
@@ -44,6 +46,6 @@ In the Container Service for Kubernetes \(ACK\) console, you can create a persis
 
     ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6745359951/p10717.png)
 
-8.  On the **Persistent Volume Claims** tab, the newly created PVC appears.
+7.  On the **Persistent Volume Claims** tab, the newly created PVC appears.
 
 
