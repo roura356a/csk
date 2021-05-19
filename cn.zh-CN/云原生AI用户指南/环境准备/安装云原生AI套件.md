@@ -17,7 +17,7 @@ keyword: [安装云原生AI套件, 配置云原生AI运维控制台]
 
 3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-4.  在集群管理页左侧导航栏中，选择**应用** \> **AI工程加速**。
+4.  在集群管理页左侧导航栏中，选择**应用** \> **AI工程加速（公测）**。
 
 5.  在**云原生AI套件**页面，单击**一键部署**。
 
@@ -50,7 +50,6 @@ keyword: [安装云原生AI套件, 配置云原生AI运维控制台]
     2.  **策略内容**页签中，单击**修改策略内容**，在**修改策略内容**面板的**策略内容**区域，将以下策略代码添加至`Action`字段中。
 
         ```
-        "ecs:DescribeInstances",
         "ecs:DescribeSpotPriceHistory",
         "ecs:DescribePrice",
         "eci:DescribeContainerGroups",
@@ -62,7 +61,8 @@ keyword: [安装云原生AI套件, 配置云原生AI运维控制台]
         "ims:DeleteApplication",
         "ims:CreateAppSecret",
         "ims:GetAppSecret",
-        "ims:ListAppSecretIds"
+        "ims:ListAppSecretIds",
+        "ims:ListUsers"
         ```
 
     3.  添加完成后，单击**确定**。
