@@ -10,7 +10,7 @@
 
 -   注册阿里云账号并生成访问密钥（AccessKey）。
 
-    详情参见[创建AccessKey]()。
+    详情参见[获取AccessKey]()。
 
 
 ## 源码地址
@@ -28,7 +28,7 @@
     -   如果您使用Python 2.x，执行以下命令安装阿里云SDK核心库。
 
         ```
-        pip install aliyun-python-sdk-cs
+        pip install aliyun-python-sdk-core
         ```
 
     -   如果您使用Python 3.x，执行以下命令安装阿里云SDK核心库。
