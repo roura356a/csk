@@ -58,8 +58,8 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
 **说明：** Kubernetes集群仅支持专有网络。您可以在已有VPC列表中选择所需的VPC。如果没有您需要的专有网络，可以通过单击**创建专有网络**进行创建，请参见[使用专有网络](/intl.zh-CN/专有网络和交换机/使用专有网络.md)。 |
         |**虚拟交换机**|设置虚拟交换机。
 
-您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[创建交换机](/intl.zh-CN/专有网络和交换机/使用交换机.md)。 |
-        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[Flannel与Terway对比](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/使用Terway网络插件.md)。
+您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[使用交换机](/intl.zh-CN/专有网络和交换机/使用交换机.md)。 |
+        |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体请参见[Terway与Flannel对比](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/使用Terway网络插件.md)。
 
         -   Flannel：简单稳定的社区的Flannel CNI插件。但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
         -   Terway：阿里云容器服务自研的网络插件，将阿里云的弹性网卡分配给容器，支持Kubernetes的Network Policy来定义容器间的访问策略，支持对单个容器做带宽的限流。
@@ -75,12 +75,14 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
 
 -   如果选中，Pod将独占一个专有的弹性网卡。
 -   如果不选中，使用弹性网卡的辅助IP分配给Pod，一个Pod占用一个弹性网卡辅助IP地址。
+**说明：** 当前只有白名单用户可使用上述**Pod独占弹性网卡以获得最佳性能**功能。[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请使用。
+
         -   设置是否选中**IPvlan**
 
 -   只在弹性网卡共享模式支持选中。
--   如果选中，采用IPVLAN eBPF作为网卡共享模式虚拟化技术，并且只能使用Alibaba Cloud Linux 2系统，性能优于默认模式。
+-   如果选中，采用IPvlan eBPF作为网卡共享模式虚拟化技术，并且只能使用Alibaba Cloud Linux 2系统，性能优于默认模式。
 -   如果不选中，则使用默认模式，采用策略路由作为网卡共享模式虚拟化技术，同时兼容Centos 7和Alibaba Cloud Linux 2的系统。
-**说明：** 当前只有白名单用户可使用上述**Pod独占弹性网卡以获得最佳性能**功能。[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请使用。
+关于Terway模式的IPvlan模式的详细信息，请参见[Terway IPvlan模式](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/使用Terway网络插件.md)。
 
         -   设置是否选中**NetworkPolicy支持**
 
@@ -188,7 +190,7 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
         |**实例保护**|设置是否启用实例保护。
 
 **说明：** 为防止通过控制台或API误释放集群节点，默认启用实例保护。 |
-        |**实例自定义数据**|请参见[生成实例自定义数据](/intl.zh-CN/实例/管理实例/使用实例自定义数据/生成实例自定义数据.md)。 |
+        |**实例自定义数据**|请参见[ECS实例自定义数据概述](/intl.zh-CN/实例/管理实例/使用实例自定义数据/ECS实例自定义数据概述.md)。 |
         |**自定义镜像**|允许您选择一个自定义ECS镜像。选择自定义镜像后，集群所有节点将基于此镜像进行部署 。有关创建自定义镜像操作，请参见[使用自定义镜像创建Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/使用自定义镜像创建Kubernetes集群.md)。
 
 **说明：**
@@ -256,7 +258,7 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
 
         **说明：** 单击**重新绑定域名**，您可以重新绑定访问域名。
 
--   您可以[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)，执行`kubectl get node`查看集群的节点信息。
+-   您可以[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)，执行`kubectl get node`查看集群的节点信息。
 
     ![集群查看结果](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9275659951/p21438.png)
 
