@@ -52,7 +52,7 @@ keyword: 授权管理FAQ
 
 1.  用主账号（即阿里云账号）进行容器服务系统角色的批量授权。
 
-    -   服务角色的授权是一次性操作，如果您不确定是否已经完成，可以使用主账号登录后打开以下链接做容器服务系统角色一次性的批量授权：[https://ur.alipay.com/1paTcxSWdAEW70GVH5TZiO](https://ur.alipay.com/1paTcxSWdAEW70GVH5TZiO)
+    -   服务角色的授权是一次性操作，如果您不确定是否已经完成，可以使用主账号登录后打开以下链接做容器服务系统角色一次性的批量授权：[ur.alipay.com/1paTcxSWdAEW70GVH5TZiO](https://ur.alipay.com/1paTcxSWdAEW70GVH5TZiO)
     -   关于容器服务默认系统角色说明，请参见[容器服务默认角色](/cn.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.md)。
 2.  主账号对目标子账号进行自定义RAM授权策略操作。
 
@@ -119,7 +119,7 @@ rules:
 
 ## ECS的RAM角色被删后如何恢复？
 
-组件请求`metadata api 100`地址时提示**404**或**Message:Node condition RAMRoleError is now: True, reason: NodeHasNoRAMRole**。您可以选择以下方案尝试恢复ECS的RAM角色：
+ECS节点上运行的应用中请求`metadata api 100`地址时提示**404**或**Message:Node condition RAMRoleError is now: True, reason: NodeHasNoRAMRole**。您可以选择以下方案尝试恢复ECS的RAM角色：
 
 -   ECS的RAM角色被删后，您需要为节点授予相应的RAM角色。具体操作，请参见[更换实例RAM角色](/cn.zh-CN/安全/实例RAM角色/管理实例RAM角色/更换实例RAM角色.md)。
     -   Master节点需要授予**集群信息** \> **集群资源** \> **Master RAM角色**的RAM角色。
@@ -158,11 +158,11 @@ Kubernetes集群暂不支持指定RAM中的自定义角色，但是在Kubernetes
 
 3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-4.  在**详情**页单击**基本信息**页签。
+4.  在集群信息管理页单击**集群资源**页签。
 
-5.  在基本信息页面的**集群资源**区域，单击**Worker RAM角色**。
+5.  在**集群资源**页面，单击**Worker RAM角色**右侧的链接。
 
-6.  跳转到RAM控制台页面，在RAM 角色管理页面，单击权限策略名称。
+6.  在RAM 角色管理页面，单击权限策略名称。
 
 7.  进入策略权限管理页面，单击**修改策略内容**，将以下内容填入后，单击**确定**。本示例中授予该角色伸缩和删除集群的权限。如果您想了解更多的权限，请参见[自定义RAM授权策略](/cn.zh-CN/Kubernetes集群用户指南/授权/自定义RAM授权策略.md)。
 
