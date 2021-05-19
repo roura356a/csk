@@ -1,6 +1,10 @@
+---
+keyword: [install CSI-Provisioner, install a volume plug-in]
+---
+
 # Install CSI
 
-CSI-Provisioner can automatically mount cloud disks and Apsara File Storage NAS \(NAS\) file systems as volumes and persistent volumes \(PVs\). This topic describes how to install CSI-Provisioner in a serverless Kubernetes \(ASK\) cluster.
+CSI-Provisioner can automatically mount disks and Apsara File Storage NAS \(NAS\) file systems as volumes and persistent volumes \(PVs\). This topic describes how to install CSI-Provisioner in a serverless Kubernetes \(ASK\) cluster.
 
 ## Prerequisites
 
