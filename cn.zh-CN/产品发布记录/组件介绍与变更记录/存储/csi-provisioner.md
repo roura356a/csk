@@ -20,7 +20,7 @@ csi-provisioner支持数据卷的自动创建能力。本文介绍csi-provisione
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
-|v1.1.2|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.47-906bd535-aliyun|2021年05月20日|-   支持云盘分区挂载。
+|v1.1.3|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.47-906bd535-aliyun|2021年05月20日|-   支持云盘分区挂载。
 -   支持分区云盘扩容。
 
 |此次升级不会对业务造成影响。|
