@@ -7,7 +7,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 您可以通过镜像、编排模板及命令创建一个无状态应用。容器服务Kubernetes集群支持通过Web界面使用镜像密钥。本文以Nginx为例说明如何通过镜像、编排模板及命令来创建无状态应用。
 
 -   您已成功创建一个Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   在本地使用命令前，您需要先设置[通过Kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   在本地使用命令前，您需要先设置[通过Kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 -   您已构建一个私有镜像仓库，并将镜像上传到该仓库中。本例中使用阿里云容器镜像服务作为示例，请参见[管理镜像](/cn.zh-CN/Kubernetes集群用户指南/应用/镜像/管理镜像.md)。
 
 ## 使用镜像创建无状态Deployment应用
@@ -24,9 +24,9 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 5.  在**无状态**页面中，单击**使用镜像创建**。
 
-6.  在**应用基本信息**页签中，设置应用的基本信息。
+6.  在**应用基本信息**配置向导页面中，设置应用的基本信息。
 
-    在配置Deployment负载前，您需在页面上方设置应用所在的命名空间。本例设置命名空间为default。
+    在配置Deployment负载前，您需在页面上方设置应用所在的命名空间。本例设置命名空间为**default**。
 
     |参数|描述|
     |--|--|
@@ -44,7 +44,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 |为该应用添加一个标签，标识该应用。 |
     |注解
 
-|为该应用添加一个注解（annotation）。 |
+|为该应用添加一个注解（Annotation）。 |
     |时区同步
 
 |容器与节点是否使用相同的时区。 |
@@ -53,14 +53,14 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 7.  单击**下一步**。
 
-    进入**容器配置**页面。
+    进入**容器配置**配置向导页面。
 
 
 **步骤二：配置容器**
 
-在**容器配置**页签中，配置容器的镜像与资源、端口、环境变量、健康检查、生命周期、数据卷和日志。
+在**容器配置**配置向导页面中，配置容器的镜像与资源、端口、环境变量、健康检查、生命周期、数据卷和日志。
 
-**说明：** 在**容器配置**页签上方，单击**添加容器**为应用的Pod设置多个容器。
+**说明：** 在**容器配置**配置向导页面下方，单击**添加容器**为应用的Pod设置多个容器。
 
 1.  在**基本配置**区域，完成容器的基本配置。
 
@@ -82,7 +82,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 |    -   您可以单击**选择镜像Tag**选择镜像的版本。若不指定，默认为最新版。
     -   ACK支持以下三种镜像拉取策略（imagePullPolicy）：
 
-        -   **优先使用本地镜像（IfNotPresent）**：如果本地有该镜像，则使用本地镜像，本地不存在时拉取镜像。
+        -   **优先使用本地镜像（IfNotPresent）**：如果本地有该镜像（之前拉取过该镜像至宿主机中），则使用本地镜像，本地不存在时拉取镜像。
         -   **总是拉取镜像（Always）**：表示每次部署或扩容都会从容器镜像服务重新拉取镜像，而不会从本地拉取镜像。
         -   **仅使用本地镜像（Never）**：仅使用本地镜像。
 **说明：** 当您选中**镜像拉取策略**时，默认不设置镜像拉取策略。
@@ -217,10 +217,10 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
     |参数|描述|
     |--|--|
-    |本地存储
+    |增加本地存储
 
 |本地存储：支持主机目录（HostPath）、配置项（ConfigMap）、保密字典（Secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息，请参见[volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。 |
-    |云存储声明（PVC）
+    |增加云存储声明（PersistentVolumeClaim）
 
 |支持通过PVC挂载云存储卷。在选择目标挂载源前，您需要创建云存储声明。具体操作，请参见[创建持久化存储卷声明](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/创建持久化存储卷声明.md)。|
 
@@ -247,12 +247,12 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 8.  单击**下一步**。
 
-    进入**高级配置**页面。
+    进入**高级配置**配置向导页面。
 
 
 **步骤三：完成高级配置**
 
-在**高级配置**页签中设置访问、伸缩、调度和标签注解。
+在**高级配置**配置向导页面中设置访问、伸缩、调度和标签注解。
 
 1.  在**访问设置**区域，设置暴露后端Pod的方式。
 
@@ -315,7 +315,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
         关于路由配置信息，请参见[配置路由信息](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/创建Ingress路由.md)。
 
-        **说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在hosts文件中添加一条域名映射（<Ingress外部端点\> + <Ingress域名\>）。在实际工作场景中，请使用备案域名。
+        **说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在hosts文件中添加一条域名映射（Ingress外部端点 + Ingress域名）。在实际工作场景中，请使用备案域名。
 
         ```
         101.37.XX.XX   foo.bar.com    #即Ingress的IP。
@@ -387,7 +387,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 |该负载类型可缩容的容器数量下限。 |
 
     -   容器服务支持容器组的定时伸缩，即定时地对容器服务Kubernetes集群进行扩缩容。开启定时伸缩前，需先安装ack-kubernetes-cronhpa-controller组件。关于定时伸缩的详细说明，请参见[创建定时伸缩CronHPA任务](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/容器定时伸缩（CronHPA）.md)。
-3.  在**调度设置**区域，设置升级方式、节点亲和性、应用亲和性和应用非亲和性，更多信息，请参见[Affinity and anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/?spm=a2c4g.11186623.2.31.3fdd30dfnyevPx#affinity-and-anti-affinity)。
+3.  在**调度设置**区域，设置**升级方式**、**节点亲和性**、**应用亲和性**和**应用非亲和性**，更多信息，请参见[Affinity and anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/?spm=a2c4g.11186623.2.31.3fdd30dfnyevPx#affinity-and-anti-affinity)。
 
     **说明：** 亲和性调度依赖节点标签和Pod标签。您可使用内置的标签进行调度；也可预先为节点、Pod配置相关的标签。
 
@@ -403,7 +403,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 节点调度支持硬约束和软约束（Required/Preferred），以及丰富的匹配表达式（In, NotIn, Exists, DoesNotExist. Gt, and Lt）：
 
     -   **必须满足**，即硬约束，一定要满足，对应requiredDuringSchedulingIgnoredDuringExecution，效果与`NodeSelector`相同。本例中Pod只能调度到具有对应标签的Worker节点。您可以定义多条硬约束规则，但只需满足其中一条。
-    -   **尽量满足**，即软约束，不一定满足，对应preferredDuringSchedulingIgnoredDuringExecution。本例中，调度会尽量不调度Pod到具有对应标签的Node节点。您还可为软约束规则设定权重，具体调度时，若存在多个符合条件的节点，权重最大的节点会被优先调度。您可定义多条软约束规则，但必须满足全部约束，才会进行调度。 |
+    -   **尽量满足**，即软约束，不一定满足，对应preferredDuringSchedulingIgnoredDuringExecution。调度会尽量调度Pod到具有对应标签的Node节点。您还可为软约束规则设定权重，具体调度时，若存在多个符合条件的节点，权重最大的节点会被优先调度。您可定义多条软约束规则，但必须满足全部约束，才会进行调度。 |
     |应用亲和性
 
 |决定应用的Pod可以和哪些Pod部署在同一拓扑域。例如，对于相互通信的服务，可通过应用亲和性调度，将其部署到同一拓扑域（如同一个主机）中，减少它们之间的网络延迟。
@@ -450,7 +450,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 **步骤四：查看应用**
 
-在**创建完成**页签中查看应用任务。
+在**创建完成**配置向导页面中查看应用任务。
 
 1.  在**创建应用任务已提交**面板中单击**查看应用详情**。
 
@@ -510,7 +510,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 ## 通过编排模板创建Linux应用
 
-在容器服务kubernetes模板编排中，您需要自己定义一个应用运行所需的资源对象，通过标签选择器等机制，将资源对象组合成一个完整的应用。
+在容器服务Kubernetes模板编排中，您需要自己定义一个应用运行所需的资源对象，通过标签选择器等机制，将资源对象组合成一个完整的应用。
 
 本例演示如何通过一个编排模板创建Nginx应用，包含一个Deployment和Service，后端Deployment会创建Pod资源对象，Service会绑定到后端Pod上，形成一个完整的Nginx应用。
 
@@ -533,8 +533,10 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
     -   **保存模板**：您可以保存设置好的编排模板。
     下面是一个Nginx应用的示例编排，基于容器服务内置的编排模板。通过该编排模板，即可快速创建一个属于Nginx应用的Deployment。
 
-    **说明：** 容器服务支持Kubernetes YAML编排，支持通过`---`符号将资源对象分隔，从而通过一个模板创建多个资源对象。
+    **说明：**
 
+    -   容器服务支持Kubernetes YAML编排，支持通过`---`符号将资源对象分隔，从而通过一个模板创建多个资源对象。
+    -   在应用中通过Volume方式挂载存储卷时，默认情况下挂载目录下的文件在挂载后将会被覆盖。若要不影响挂载目录下的其他文件，您可以配置`subPath`参数。
     ```
     apiVersion: apps/v1 
     kind: Deployment
@@ -557,7 +559,14 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
               image: nginx:1.7.9 # replace it with your exactly <image_name:tags>
               ports:
               - containerPort: 80
-    
+              volumeMounts:
+                - name: nginx-config
+                  mountPath: /etc/nginx/nginx.conf 
+                  subPath: nginx.conf   #设置subPath。    
+          volumes:
+            - name: nginx-config
+              configMap:
+                name: nginx-conf
     ---
     
     apiVersion: v1     
@@ -575,6 +584,36 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
          port: 30080            #TODO: choose an unique port on each node to avoid port conflict
          targetPort: 80
        type: LoadBalancer        ##本例中将type从NodePort修改为LoadBalancer。
+    ---
+    
+    #存储卷的配置项
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: nginx-conf
+      namespace: default
+    data:
+      nginx.conf: |-
+       user  nginx;
+       worker_processes  1;
+       error_log  /var/log/nginx/error.log warn;
+       pid        /var/run/nginx.pid;
+       events {
+            worker_connections  1024;
+        }
+        http {
+            include       /etc/nginx/mime.types;
+            default_type  application/octet-stream;
+            log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                              '$status $body_bytes_sent "$http_referer" '
+                              '"$http_user_agent" "$http_x_forwarded_for"';
+            access_log  /var/log/nginx/access.log  main;
+            sendfile        on;
+            #tcp_nopush     on;
+            keepalive_timeout  65;
+            #gzip  on;
+            include /etc/nginx/conf.d/*.conf;
+        } 
     ```
 
 7.  单击**创建**后。会提示部署状态信息。
@@ -624,11 +663,11 @@ nginx-2721357637-d****                 1/1       Running   1          9h
 
 5.  在**无状态**页面，设置命名空间，然后单击右上角**使用镜像创建**。
 
-6.  在**应用基本信息**页面设置相关参数。更多信息，请参见[使用镜像创建无状态Deployment应用](/cn.zh-CN/Kubernetes集群用户指南/应用/工作负载/创建无状态工作负载Deployment.md)。
+6.  在**应用基本信息**页面设置相关参数。更多信息，请参见[创建无状态工作负载Deployment](#task_p2s_2rl_vdb)。
 
 7.  设置容器配置。
 
-    本例仅对容器镜像密钥的配置进行说明，关于容器配置说明，请参见[使用镜像密钥创建应用](#section_frc_gez_jd5)。
+    本例仅对容器镜像密钥的配置进行说明，关于容器配置说明，请参见[创建无状态工作负载Deployment](#task_p2s_2rl_vdb)。
 
     1.  在**容器配置**页面，首先配置镜像名称，在**镜像名称栏**中输入私有镜像地址，填写格式是`domainname/namespace/imagename`。
 
