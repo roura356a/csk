@@ -6,7 +6,7 @@ keyword: [升级cGPU, cGPU版本]
 
 ACK集群支持GPU共享调度时节点需要安装cGPU模块。本文介绍如何通过命令及控制台升级节点上的cGPU模块。
 
--   您已通过kubectl连接集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   您已通过kubectl连接集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 -   集群已安装ack-cgpu组件。具体操作，请参见[安装ack-cgpu组件](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU调度/共享GPU调度/安装共享GPU组件.md)。
 -   升级节点上无正在运行的业务。
 
@@ -14,7 +14,11 @@ ACK集群支持GPU共享调度时节点需要安装cGPU模块。本文介绍如�
 
 cgpu-installer的DaemonSet用于在节点上安装cGPU驱动模块。在升级cGPU时，需要将cgpu-installer的镜像版本修改为待升级的版本。
 
-目前支持的cGPU镜像版本有：v0.8.10及v0.8.12。
+目前支持的cGPU镜像版本如下：
+
+-   v0.8.10
+-   v0.8.12
+-   v0.8.13
 
 **说明：** 升级节点cGPU版本过程中会重启节点，所以在升级节点cGPU版本之前，请确认节点上无正在运行的业务。
 
@@ -75,7 +79,11 @@ cat /proc/cgpu_km/version
 
 cgpu-installer的DaemonSet用于在节点上安装cGPU驱动模块。在升级cGPU时，需要将cgpu-installer的镜像版本修改为待升级的版本。
 
-目前支持的cGPU镜像版本有：v0.8.10及v0.8.12。
+目前支持的cGPU镜像版本如下：
+
+-   v0.8.10
+-   v0.8.12
+-   v0.8.13
 
 1.  执行以下命令修改cgpu-installer的镜像，升级节点的cGPU模块版本。
 
