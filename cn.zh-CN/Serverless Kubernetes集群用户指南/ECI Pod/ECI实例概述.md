@@ -19,8 +19,8 @@ ECI支持多种规格配置的方式来申请资源和计费。
 
 -   **指定CPU和Memory**
 
-    -   **指定容器的CPU和Memory**：用户可以通过Kubernetes标准方式配置单个容器的CPU和Memory（resources.limit），如不指定则默认单个容器的资源是1C2G。ECI的资源则是Pod内所有容器所需资源的总和。（注意我们会对不支持的规格进行自动规整，例如所有容器相加的资源为2C3G，那么将会自动规整为2C4G。超过4C将不会自动规整。）
-    -   **指定Pod的CPU和Memory**：用户可以通过Annotation的方式配置整个Pod的CPU和Memory，这种情况将不再把所有容器资源相加，而以指定的资源创建和计费。此时可以不用指定内部容器的request和limit ，各容器可以最大程度的使用Pod内计算资源。
+    -   **指定容器的CPU和Memory**：用户可以通过Kubernetes标准方式配置单个容器的CPU和Memory（`resources.limit`），如不指定则默认单个容器的资源是1C2G。ECI的资源则是Pod内所有容器所需资源的总和。（注意我们会对不支持的规格进行自动规整，例如所有容器相加的资源为2C3G，那么将会自动规整为2C4G。超过4C将不会自动规整。）
+    -   **指定Pod的CPU和Memory**：用户可以通过Annotation的方式配置整个Pod的CPU和Memory，这种情况将不再把所有容器资源相加，而以指定的资源创建和计费。此时可以不用指定内部容器的`request`和`limit`，各容器可以最大程度的使用Pod内计算资源。
     目前ECI Pod支持的CPU和Memory规格有：
 
     |vCPU|Memory|
@@ -40,7 +40,7 @@ ECI支持多种规格配置的方式来申请资源和计费。
 
     CPU和Memory配置其计费时长从挂载外部存储/下载容器镜像开始至ECI实例停止运行（进入Succeeded/Failed状态）结束。
 
-    **计费公式**：ECI Pod实例费用 =（ECI实例CPU核数 x CPU单价 + ECI实例内存大小 x 内存单价）x ECI实例运行时长，实例按秒计费。当前计费单价如下：
+    **计费公式**：ECI Pod实例费用=（ECI实例CPU核数xCPU单价+ECI实例内存大小x内存单价）xECI实例运行时长，实例按秒计费。当前计费单价如下：
 
     |计费项|价格|小时价|
     |---|--|---|
@@ -49,9 +49,22 @@ ECI支持多种规格配置的方式来申请资源和计费。
 
 -   **指定Pod的ECS规格**
 
-    ECI支持根据[ECS实例规格族](/cn.zh-CN/实例/实例规格族.md)，价格参考[各地域ECS按量](https://www.aliyun.com/price/product?#/ecs/detail)价格。您可以根据需要，指定ECI实例底层使用的ECS规格族，获得各规格族的指定能力，例如指定使用[ecs.sn1ne](/cn.zh-CN/实例/实例规格族.md)规格族来使用网络增强能力。
+    您可以根据需要，指定ECI实例底层使用的ECS规格族，获得各规格族的指定能力，例如指定使用[ecs.sn1ne](/cn.zh-CN/实例/实例规格族.md)规格族来使用网络增强能力。更多相关信息，请参见[ECS实例规格族](/cn.zh-CN/实例/实例规格族.md)和[各地域ECS按量](https://www.aliyun.com/price/product?#/ecs/detail)。
 
-    **计费公式**：ECI实例费用 = ECI实例指定的[ECS规格单价](https://www.aliyun.com/price/product?#/ecs/detail) x ECI实例运行时长，实例按秒计费。
+    **说明：** 指定ECS规格创建ECI实例时，计算资源的费用按ECS规格进行计算。目前支持的ECS实例规格族如下：
+
+    -   通用型：g6e、g6、g5、sn2ne
+    -   计算型：c6e、c6a、c6、c5、sn1ne
+    -   内存型：r6e、r6、r5、se1ne、se1
+    -   密集计算型：ic5
+    -   高主频计算型：hfc6、hfc5
+    -   高主频通用型：hfg6、hfg5
+    -   GPU计算型：gn6i、gn6v、gn5i、gn5
+    -   大数据网络增强型：d1ne
+    -   本地SSD型：i2、i2g
+    -   突发性能型：t6、t5
+    -   共享型：s6、xn4、n4、mn4、e4
+    **计费公式**：ECI实例费用=ECI实例指定的[ECS规格单价](https://www.aliyun.com/price/product?#/ecs/detail) x ECI实例运行时长，实例按秒计费。
 
     当指定Pod的ECS规格时，ECI可以选择使用预留实例券对ECI按规格创建实例进行抵扣。详情请参见[预留实例券概述](/cn.zh-CN/实例/选择实例购买方式/预留实例券/预留实例券概述.md)。
 
@@ -73,9 +86,9 @@ ECI Pod默认每次启动后使用内部的containerd从远端拉取容器镜像
 支持多种使用存储的方式：
 
 -   Flexvolume：
-    -   挂载NAS Volume。同标准的Flexvolume用法相同，指定nas volume Id进行挂载。
-    -   挂载Disk Volume：同标准的Flexvolume用法相同，指定disk volume Id进行挂载。
-    -   随ECI实例自动创建disk volume：为了提供更灵活的云盘挂载能力，ECI支持创建时挂载flexvolume动态创建一个云盘，可以指定disk volume的size大小，也可以配置当ECI实例结束时是否保留disk volume。
+    -   挂载NAS Volume：同标准的Flexvolume用法相同，指定`nas volume Id`进行挂载。
+    -   挂载Disk Volume：同标准的Flexvolume用法相同，指定`disk volume Id`进行挂载。
+    -   随ECI实例自动创建`disk volume`：为了提供更灵活的云盘挂载能力，ECI支持创建时挂载Flexvolume动态创建一个云盘，可以指定`disk volume`的Size大小，也可以配置当ECI实例结束时是否保留`disk volume`。
 -   NFS：[参考示例](https://github.com/AliyunContainerService/serverless-k8s-examples/blob/master/nas-volume/nas-volume.yaml)。
 -   PV/PVC：[参考示例](https://github.com/AliyunContainerService/serverless-k8s-examples/tree/master/pvc)。
 
@@ -91,7 +104,7 @@ ECI Pod默认使用Host网络模式，占用交换机VSwitch的一个弹性网�
 
 ## 日志收集
 
-用户可以直接配置Pod的Env收集stdout或者文件日志到阿里云日志服务SLS中。一般情况无需再部署一个logtail sidecar容器。
+用户可以直接配置Pod的Env收集`stdout`或者文件日志到阿里云日志服务SLS中。一般情况无需再部署一个`logtail sidecar`容器。
 
 ## 支持Annotation列表
 
