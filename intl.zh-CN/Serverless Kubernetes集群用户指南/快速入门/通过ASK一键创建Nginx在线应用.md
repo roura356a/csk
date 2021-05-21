@@ -8,11 +8,11 @@ ASK集群无需管理节点，无需进行节点的安全维护等运维操作�
 
 [创建Serverless Kubernetes集群](/intl.zh-CN/Serverless Kubernetes集群用户指南/快速入门/创建Serverless Kubernetes集群.md)
 
-ASK支持标准Kubernetes的语义和API，您可以一键创建Deployment/StatefulSet/Jobs/Service/Ingress/CRD等资源，也可以使用Helm部署各种Kubernetes生态应用。
+ASK支持标准Kubernetes的语义和API，您可以一键创建Deployment、StatefulSet、Jobs、Service、Ingress或CRD等资源，也可以使用Helm部署各种Kubernetes生态应用。
 
 ## 操作步骤
 
-1.  [通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+1.  [t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 2.  使用以下样例创建名为nginx.yaml的YAML文件。
 
@@ -29,7 +29,7 @@ ASK支持标准Kubernetes的语义和API，您可以一键创建Deployment/State
         app: nginx
       type: LoadBalancer
     ---
-    apiVersion: apps/v1beta2
+    apiVersion: apps/v1  #对于不同的K8s版本这里需要使用不同的对应版本。
     kind: Deployment
     metadata:
       name: nginx-deploy
@@ -56,6 +56,11 @@ ASK支持标准Kubernetes的语义和API，您可以一键创建Deployment/State
                 memory: "4Gi"
     ```
 
+    **说明：** K8s版本和Deployment的apiVersion对应关系如下：
+
+    -   K8s 1.6版本之前：`extensions/v1beta1`
+    -   K8s 1.6版本到1.9版本之间：`apps/v1beta1`
+    -   K8s 1.9版本之后：`apps/v1`
 3.  执行以下命令，部署Nginx示例应用。
 
     ```
