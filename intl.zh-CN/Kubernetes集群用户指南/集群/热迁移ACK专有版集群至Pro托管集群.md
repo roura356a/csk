@@ -8,6 +8,8 @@ keyword: [ACK专有版集群, Kubernetes集群迁移, Pro集群]
 
 迁移ACK专有版集群至Pro托管版集群前，您需要创建一个OSS的存储空间（Bucket）。关于如何创建OSS Bucket的具体步骤，请参见[创建存储空间](/intl.zh-CN/控制台用户指南/存储空间管理/创建存储空间.md)。
 
+**说明：** 如果您需要使用迁移ACK专有版集群至Pro托管版集群功能，需要[提交工单](https://workorder-intl.console.aliyun.com/console.htm)开通白名单申请。
+
 ## 注意事项
 
 -   请确保您的ACK专有版集群的Kubernetes版本在1.16及以上。如不满足该条件，请升级您的集群版本。关于如何升级集群的Kubernetes版本的具体步骤，请参见[升级集群](/intl.zh-CN/Kubernetes集群用户指南/集群/升级集群/升级集群.md)。
@@ -68,7 +70,7 @@ keyword: [ACK专有版集群, Kubernetes集群迁移, Pro集群]
 
 在完成迁移专有版集群至Pro托管版集群后，您可以自行将Master节点从集群中删除。目前ACK暂时不支持从控制台直接删除Master节点，您可以通过kubectl命令方式删除Master节点。
 
-在执行命令前，请确保您可以使用kubectl命令连接集群。关于如何使用kubectl命令连接集群的具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+在执行命令前，请确保您可以使用kubectl命令连接集群。关于如何使用kubectl命令连接集群的具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 1.  执行以下命令查看需要删除的Master节点名称。
 
