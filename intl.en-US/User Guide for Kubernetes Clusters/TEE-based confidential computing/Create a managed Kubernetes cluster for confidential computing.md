@@ -70,7 +70,7 @@ When you create a managed Kubernetes cluster for confidential computing, take no
 **Note:** ACK clusters support only VPCs. You can select a VPC from the drop-down list. If no VPC is available, click **Create VPC** to create one. For more information, see [Work with VPCs](/intl.en-US/VPCs and vSwitchs/Work with VPCs.md). |
         |**VSwitch**|Select vSwitches.
 
-You can select up to three vSwitches that are deployed in different **zones**. If no vSwitch is available, click **Create VSwitch** to create one. For more information, see [Create a vSwitch](/intl.en-US/VPCs and vSwitchs/Work with vSwitches.md). |
+You can select up to three vSwitches that are deployed in different **zones**. If no vSwitch is available, click **Create VSwitch** to create one. For more information, see [Work with vSwitches](/intl.en-US/VPCs and vSwitchs/Work with vSwitches.md). |
         |**Network Plug-in**|You must select the **Flannel** plug-in if you want to enable confidential computing.|
         |**Pod CIDR Block**|If you select **Flannel** as the network plug-in, you must set **Pod CIDR Block**.
 
@@ -123,7 +123,7 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
 
 6.  Click **Next:Worker Configurations** to configure worker nodes.
 
-    1.  Set worker nodes.
+    1.  Select instances as worker nodes.
 
         **Note:** Only ECS Bare Metal instances can be used as worker nodes in clusters for confidential computing. The instance type must be ecs.ebmhfg5.2xlarge.
 
@@ -146,7 +146,7 @@ The following billing methods are supported: **Pay-As-You-Go** and **Subscriptio
             -   You can select **Enable Backup** to back up disk data.
             -   If you select an **enhanced SSD** as the system disk, you can also set a custom **performance level** for the disk.
 
-You can select higher performance levels for enhanced SSDs with larger storage capacities. For example, you can select performance level 2 for an enhanced SSD with a storage capacity of more than 460 GiB. You can select performance level 3 for an enhanced SSD with a storage capacity of more than 1,260 GiB. For more information, see [Capacity and PLs of ESSDs](/intl.en-US/Block Storage/Block Storage overview/Enhanced SSDs.md). |
+You can select higher performance levels for enhanced SSDs with larger storage capacities. For example, you can select performance level 2 for an enhanced SSD with a storage capacity of more than 460 GiB. You can select performance level 3 for an enhanced SSD with a storage capacity of more than 1,260 GiB. For more information, see [Capacity and PLs](/intl.en-US/Block Storage/Block Storage overview/ESSDs.md). |
             |**Mount Data Disk**|**Enhanced SSDs**, **SSDs**, and **ultra disks** are supported. You can enable **disk encryption** and **disk backup** when you mount a data disk. |
             |**Operating System**|Only the AliyunLinux 2.xxxx operating systems are supported.|
             |**Logon Type**|            -   Key pair logon.
@@ -165,7 +165,7 @@ You can select higher performance levels for enhanced SSDs with larger storage c
         |**Node Protection**|Specify whether to enable node protection.
 
 **Note:** By default, this check box is selected. This way, the nodes in the cluster cannot be deleted in the console or by calling the API. This prevents user errors. |
-        |**User Data**|You can enter custom scripts. Custom scripts are automatically executed after the nodes are initialized. **Note:** Windows nodes support Batch and PowerShell scripts. Before you encode the content in Base64, make sure that the first line includes \[bat\] or \[powershell\]. Linux nodes support shell scripts. For more information about the supported formats, see [cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/format.html) and [Prepare user data](/intl.en-US/Instance/Manage instances/User data/Prepare user data.md).
+        |**User Data**|You can enter custom scripts. Custom scripts are automatically executed after the nodes are initialized. **Note:** Windows nodes support Batch and PowerShell scripts. Before you encode the content in Base64, make sure that the first line includes \[bat\] or \[powershell\]. Linux nodes support shell scripts. For more information about the supported formats, see [cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/format.html) and [Overview of ECS instance user data](/intl.en-US/Instance/Manage instances/Manage instance user data/Overview of ECS instance user data.md).
 
 If your script file is larger than 1 KB, we recommend that you upload the script to an Object Storage Service \(OSS\) bucket and pull the script from the internal endpoint of the OSS bucket. |
         |**Custom Image**|**Note:** Do not use custom images. Some images may not support confidential computing. |
@@ -188,8 +188,8 @@ A node name consists of a prefix, an IP substring, and a suffix.
     |**Ingress**|Specify whether to install Ingress controllers. By default, **Install Ingress Controllers** is selected. For more information, see [Advanced Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Configure an Ingress.md).
 
 **Note:** If you want to select **Create Ingress Dashboard**, you must first enable Log Service. |
-    |**Monitoring Agents**|Select whether to install the Cloud Monitor agent. After the Cloud Monitor agent is installed on ECS instances, you can view monitoring information about the instances in the Cloud Monitor console.|
-    |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create a new one. By default, **Enable Log Service** is selected. When you create an application, you can activate Log Service through a few steps. For more information, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md). |
+    |**Monitoring Agents**|Select whether to install the CloudMonitor agent. After the CloudMonitor agent is installed on ECS instances, you can view monitoring information about the instances in the CloudMonitor console.|
+    |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create a new one. By default, **Enable Log Service** is selected. When you create an application, you can activate Log Service through a few steps. For more information, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md). |
     |**Workflow Engine**|Specify whether to enable Alibaba Cloud Genomics Compute Service \(AGS\).
 
 **Note:** To use this feature, submit a ticket.
@@ -206,9 +206,9 @@ A node name consists of a prefix, an IP substring, and a suffix.
     **Note:** It requires approximately 10 minutes for the system to create a managed Kubernetes cluster that contains multiple nodes.
 
 
--   After the cluster is created, you can view the created cluster on the Clusters page in the console.
+-   After the cluster is created, you can view the cluster on the Clusters page in the ACK console.
 
-    ![Clusters](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6765359951/p77641.png)
+    ![Cluster list](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6765359951/p77641.png)
 
 -   Click **View Logs** in the **Actions** column. On the Log Information page, you can view the cluster log. To view detailed log data, click **Stack events**.
 
@@ -233,7 +233,7 @@ A node name consists of a prefix, an IP substring, and a suffix.
     -   **API Server Internal Endpoint**: the IP address and port that the API server uses to provide services within the cluster. The IP address belongs to the Server Load Balancer \(SLB\) instance that is bound to the cluster.
     -   **Testing Domain**: the domain name that is used to test Services. The suffix of the domain name is `<cluster_id>.<region_id>.alicontainer.com`.
 
-        **Note:** To rebind the domain name, click **Rebind Domain Name**.
+        **Note:** To remap the domain name, click **Rebind Domain Name**.
 
 -   You can [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md) and run the `kubectl get node` command to query information about the nodes in the cluster.
 
@@ -245,5 +245,5 @@ A node name consists of a prefix, an IP substring, and a suffix.
 
 [TEE-based confidential computing](/intl.en-US/User Guide for Kubernetes Clusters/TEE-based confidential computing/TEE-based confidential computing.md)
 
-[Use the Intel SGX SDK to develop and build an application](/intl.en-US/User Guide for Kubernetes Clusters/TEE-based confidential computing/Use the Intel SGX SDK to develop and build an application.md)
+[Use Intel SGX SDK to develop and build applications](/intl.en-US/User Guide for Kubernetes Clusters/TEE-based confidential computing/Use Intel SGX SDK to develop and build applications.md)
 
