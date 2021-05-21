@@ -11,6 +11,7 @@ keyword: [OSS, 静态存储, K8s]
 
     **说明：** 相同地域的OSS Bucket可以使用私网地址进行挂载。
 
+-   已通过kubectl连接Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 阿里云对象存储服务（OSS）提供海量、安全、低成本、高可靠的云存储服务。OSS支持同时被多个Pod挂载。以下为OSS的使用场景：
 
@@ -79,7 +80,7 @@ keyword: [OSS, 静态存储, K8s]
 
 4.  单击**创建**。
 
-    创建成功后可以在列表中看到csi-oss-pvc，并且已绑定相应的存储卷。
+    创建成功后可以在列表中看到**csi-oss-pvc**，并且已绑定相应的存储卷。
 
 
 **步骤三：创建应用**
@@ -106,8 +107,6 @@ keyword: [OSS, 静态存储, K8s]
 
 
 ## 通过kubectl命令行的方式使用OSS静态存储卷
-
-通过kubectl命令行的方式使用OSS静态存储卷前，请确保您可以使用kubectl命令链接集群。具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
 
 **步骤一：创建静态PV及PVC**
 
@@ -357,13 +356,13 @@ spec:
 
         ```
         NAME                             READY   STATUS    RESTARTS   AGE
-        oss-static-66fbb85b67-dqbl2      1/1     Running   0          1h
+        oss-static-66fbb85b67-d****      1/1     Running   0          1h
         ```
 
     2.  执行以下命令，查看/data路径下的文件。
 
         ```
-         kubectl exec oss-static-66fbb85b67-dqbl2 ls /data | grep tmpfile
+         kubectl exec oss-static-66fbb85b67-d**** ls /data | grep tmpfile
         ```
 
         无返回结果，说明/data路径下无文件。
@@ -371,13 +370,13 @@ spec:
 2.  执行以下命令，在/data路径下创建文件static。
 
     ```
-    kubectl exec oss-static-66fbb85b67-dqbl2 touch /data/tmpfile
+    kubectl exec oss-static-66fbb85b67-d**** touch /data/tmpfile
     ```
 
 3.  执行以下命令，查看/data路径下的文件。
 
     ```
-    kubectl exec oss-static-66fbb85b67-dqbl2 ls /data | grep tmpfile
+    kubectl exec oss-static-66fbb85b67-d**** ls /data | grep tmpfile
     ```
 
     预期输出：
@@ -389,13 +388,13 @@ spec:
 4.  执行以下命令，删除名称为`oss-static-66fbb85b67-d****`的Pod。
 
     ```
-    kubectl delete pod oss-static-66fbb85b67-dqbl2
+    kubectl delete pod oss-static-66fbb85b67-d****
     ```
 
     预期输出：
 
     ```
-    pod "oss-static-66fbb85b67-dqbl2" deleted
+    pod "oss-static-66fbb85b67-d****" deleted
     ```
 
 5.  同时在另一个窗口中，执行以下命令，查看Pod删除及重建Pod的过程。
@@ -439,7 +438,7 @@ spec:
     2.  执行以下命令，查看/data路径下的文件。
 
         ```
-        kubectl exec oss-static-66fbb85b67-zlvmw ls /data | grep tmpfile
+        kubectl exec oss-static-66fbb85b67-z**** ls /data | grep tmpfile
         ```
 
         预期输出：
