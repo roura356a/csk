@@ -1,26 +1,26 @@
 ---
-keyword: Upgrade the NVIDIA driver
+keyword: upgrade the NVIDIA driver for a node
 ---
 
 # Use a node pool to upgrade the NVIDIA driver for a node
 
-If your CUDA Toolkit requires a higher version of the NVIDIA driver, you must upgrade the NVIDIA driver. To upgrade the NVIDIA driver for a node, you can remove the node from the cluster and add the node back to the cluster. When the node is added to the cluster, the operating system of the node is reinstalled. This allows you to install a specific version of the NVIDIA driver. This topic describes how to use a node pool to upgrade the NVIDIA driver for a node.
+If your CUDA Toolkit requires a later version of the NVIDIA driver, you must upgrade the NVIDIA driver. To upgrade the NVIDIA driver for a node, you can remove the node from its cluster and add the node back to the cluster. When the node is added to the cluster, the operating system of the node is reinstalled. This allows you to install a specific version of the NVIDIA driver. This topic describes how to use a node pool to upgrade the NVIDIA driver for a node.
 
-Container Service for Kubernetes \(ACK\) does not allow you to upgrade the NVIDIA driver for a node without removing the node from the cluster. Your existing node pool may contain different nodes. Therefore, you cannot upgrade the NVIDIA driver for the entire node pool.
+Container Service for Kubernetes \(ACK\) does not allow you to upgrade the NVIDIA driver for a node without removing the node from its cluster. The node pool to which the node belongs may contain different nodes. Therefore, you cannot upgrade the NVIDIA driver for the entire node pool.
 
-## Benefits
+## Benefits of using a node pool to upgrade the NVIDIA driver for a node
 
 This solution allows you to manage the NVIDIA drivers of different nodes in batches. The following two scenarios are covered:
 
 -   You manage cluster nodes in two groups: A and B. You want to upgrade the NVIDIA driver of Group A to version 418.181.07 and the NVIDIA driver of Group B to version 450.102.0. In this case, you can add nodes in Group A to Node Pool A and nodes in Group B to Node Pool B.
 -   Node Pool A consists of all nodes whose NVIDIA drivers are to be upgraded to version 418.181.07. If you want to schedule a task to a node that runs the NVIDIA driver of version 418.181.07, you need only to specify the **selector** of the task to the label of Node Pool A.
 
+## Step 1: Determine the NVIDIA driver version
+
 **Note:**
 
--   To upgrade the NVIDIA driver for a node, you must remove the node from the cluster and add the node back to the cluster. When the node is added to the cluster, the operating system of the node is reinstalled and the NVIDIA driver of the specified version is installed. Before you perform the upgrade, make sure that no task is running on the node and critical data is backed up.
--   To lower security risks, we recommend that you first upgrade the NVIDIA driver for one node. If no error occurs during this process, you can then perform the upgrade on multiple nodes.
-
-## Step 1: Determine the NVIDIA driver version
+-   To upgrade the NVIDIA driver for a node, you must remove the node from its cluster and add the node back to the cluster. When the node is added to the cluster, the operating system of the node is reinstalled and the NVIDIA driver of the specified version is installed. Before you perform the upgrade, make sure that no task is running on the node and critical data is backed up.
+-   To lower risk of failures, we recommend that you first upgrade the NVIDIA driver for one node. If no error occurs during this process, you can then perform the upgrade on multiple nodes.
 
 You must consider which CUDA Toolkit versions are compatible with the NVIDIA driver version that you want to use. The following figure displays a list of CUDA Toolkit versions and the compatible NVIDIA driver versions.
 
@@ -30,7 +30,7 @@ You must consider which CUDA Toolkit versions are compatible with the NVIDIA dri
 
 For more information, see [CUDA compatibility](https://docs.nvidia.com/deploy/cuda-compatibility/index.html).
 
-## Step 2: Remove the node from the cluster
+## Step 2: Remove a node from its cluster
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
@@ -40,7 +40,7 @@ For more information, see [CUDA compatibility](https://docs.nvidia.com/deploy/cu
 
 4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node**.
 
-5.  Select the node that you want to upgrade and click **Batch Remove**.
+5.  Select the node for which you want to upgrade the NVIDIA driver and click **Batch Remove**.
 
 6.  In the **Remove Node** dialog box, select **Drain the Node** and click **OK**.
 
@@ -61,20 +61,20 @@ The following example shows how to set the NVIDIA driver version to 418.181.07:
 
 4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node Pools**.
 
-5.  Click **Create Node Pool** in the upper-right corner.
+5.  In the upper-right corner of the Node Pools page, click **Create Node Pool**.
 
-6.  In the **Create Node Pool** dialog box, configure the parameters based on your requirements. For more information about the parameters, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md). The following table describes the parameters.
+6.  In the **Create Node Pool** dialog box, set the required parameters. For more information about the parameters, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md). The following table describes the parameters.
 
     |Parameter|Description|
     |---------|-----------|
-    |**VSwitch**|These parameters are used only when new nodes are added to the node pool. In this example, an existing node is added to the node pool. Therefore, these parameters are not used.|
+    |**VSwitch**|The VSwitch and Instance Type parameters are used only when new nodes are added to the node pool. In this example, an existing node is added to the node pool. Therefore, you can set the parameters to any values.|
     |**Instance Type**|
     |**Operating System**|The operating system of the node after the node is added to the cluster.|
     |**Quantity**|Set the value to 0. Otherwise, ACK creates new instances. ![ACK2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5146487161/p245634.png) |
 
     1.  Click **Show Advanced Options**.
 
-    2.  In the **Node Label** section, click ![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5146487161/p245638.png), set **Key** to `ack.aliyun.com/nvidia-driver-version`, and set **Value** to `418.181.07`.
+    2.  In the **Node Label** section, click ![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5146487161/p245638.png), set **Key** to `ack.aliyun.com/nvidia-driver-version`, and then set **Value** to `418.181.07`.
 
         ACK provides the following NVIDIA driver versions:
 
@@ -87,21 +87,23 @@ The following example shows how to set the NVIDIA driver version to 418.181.07:
 
 **Custom driver version**
 
-The following example shows how to upload the NVIDIA-Linux-x86\_64-460.32.03.run driver to specify a custom driver version. You can download NVIDIA drivers from the [NVIDIA official website](https://www.nvidia.com/Download/index.aspx?lang=en-us).
+The following example shows how to upload the NVIDIA-Linux-x86\_64-460.32.03.run file to specify a custom driver version. You can download NVIDIA driver files from the [NVIDIA official website](https://www.nvidia.com/Download/index.aspx?lang=en-us).
 
-**Note:** The NVIDIA-Linux-x86\_64-460.32.03.run file must be stored in the root directory of the Object Storage Service \(OSS\) bucket.
+**Note:** The NVIDIA-Linux-x86\_64-460.32.03.run file must be stored in the root directory of the specified Object Storage Service \(OSS\) bucket.
 
-1.  Create a bucket in the OSS console. For more information, see [Create buckets](/intl.en-US/Console User Guide/Manage buckets/Create buckets.md).
+1.  Create an OSS bucket in the [OSS console](https://oss.console.aliyun.com/). For more information, see [Create buckets](/intl.en-US/Console User Guide/Manage buckets/Create buckets.md).
 
-2.  Upload the NVIDIA-Linux-x86\_64-460.32.03.run file to the bucket. For more information, see [Upload objects](/intl.en-US/Console User Guide/Upload, download, and manage objects/Upload objects.md).
+2.  Upload the NVIDIA-Linux-x86\_64-460.32.03.run file to the OSS bucket. For more information, see [Upload objects](/intl.en-US/Console User Guide/Upload, download, and manage objects/Upload objects.md).
 
-3.  In the OSS console, select the NVIDIA driver file and click **View Details** in the **Actions** column.
+3.  After the file is uploaded to the bucket, click **Files** in the left-side navigation pane of the bucket details page.
 
-4.  In the **Details** panel, click **HTTPS**![gpu-1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5146487161/p246955.png) to disable HTTPS configuration.
+4.  On the **Files** page, find the file that you uploaded and click **View Details** in the **Actions** column.
 
-    **Note:** ACK downloads the driver file by using its URL, which adopts the HTTP protocol. By default, OSS uses the HTTPS protocol. You must click **HTTPS** to disable HTTPS configuration.
+5.  In the **View Details** panel, turn off the **HTTPS** switch to disable HTTPS.
 
-5.  Check the URL of the driver file. Take note of the URL. The URL consists of the following parts: endpoint and runfile. For example, you can divide the following URL into two parts: `[http://nvidia-XXX-XXX-cn-beijing.aliyuncs.com/NVIDIA-Linux-x86\_64-460.32.03.run](http://nvidia-XXX-XXX-cn-beijing.aliyuncs.com/NVIDIA-Linux-x86_64-460.32.03.run)`.
+    **Note:** ACK downloads the driver file by using its URL, which adopts the HTTP protocol. By default, OSS uses the HTTPS protocol. You must turn off the **HTTPS** switch to disable HTTPS.
+
+6.  Check the URL of the driver file. Take note of the URL. The URL consists of the following parts: endpoint and runfile. For example, you can divide the following URL into two parts: `[http://nvidia-XXX-XXX-cn-beijing.aliyuncs.com/NVIDIA-Linux-x86\_64-460.32.03.run](http://nvidia-XXX-XXX-cn-beijing.aliyuncs.com/NVIDIA-Linux-x86_64-460.32.03.run)`.
 
     -   endpoint: nvidia-XXX-XXX-cn-beijing.aliyuncs.com
     -   runfile: NVIDIA-Linux-x86\_64-460.32.03.run
@@ -116,13 +118,13 @@ The following example shows how to upload the NVIDIA-Linux-x86\_64-460.32.03.run
 
 4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node Pools**.
 
-5.  Click **Create Node Pool** in the upper-right corner.
+5.  In the upper-right corner of the Node Pools page, click **Create Node Pool**.
 
-6.  In the **Create Node Pool** dialog box, configure the parameters based on your requirements. For more information about the parameters, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md). The following table describes the parameters.
+6.  In the **Create Node Pool** dialog box, configure the required parameters. For more information about the parameters, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md). The following table describes the parameters.
 
     |Parameter|Description|
     |---------|-----------|
-    |**VSwitch**|These parameters are used only when new nodes are added to the node pool. In this example, an existing node is added to the node pool. Therefore, these parameters are not used.|
+    |**VSwitch**|The VSwitch and Instance Type parameters are used only when new nodes are added to the node pool. In this example, an existing node is added to the node pool. Therefore, you can set the parameters to any values.|
     |**Instance Type**|
     |**Operating System**|The operating system of the node after the node is added to the cluster.|
     |**Quantity**|Set the value to 0. Otherwise, ACK creates new instances. ![ACK2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5146487161/p245634.png) |
@@ -142,7 +144,7 @@ After the node pool is created, add the node that you removed to the node pool. 
 
 ## Step 5: Check whether the NVIDIA driver version is upgraded
 
-1.  In the ACK console, select the cluster to which the node belongs and click **More** \> **Open Cloud Shell** in the **Actions** column.
+1.  In the ACK console, select the cluster to which the node belongs and choose **More** \> **Open Cloud Shell** in the **Actions** column.
 
 2.  Run the following command to query pods that have the `component: nvidia-device-plugin` label:
 
@@ -161,7 +163,7 @@ After the node pool is created, add the node that you removed to the node pool. 
     nvidia-device-plugin-cn-beijing.192.168.8.14    1/1     Running   0          9d    192.168.8.14    cn-beijing.192.168.8.14    <none>           <none>
     ```
 
-    You can refer to the Node column to find the node that is newly added to the cluster. The name of the pod that runs on the node is nvidia-device-plugin-cn-beijing.192.168.1.128.
+    You can refer to the NODE column to find the node that is newly added to the cluster. The name of the pod that runs on the node is `nvidia-device-plugin-cn-beijing.192.168.1.128`.
 
 3.  Run the following command to query the NVIDIA driver version of the node:
 
@@ -206,5 +208,5 @@ After the node pool is created, add the node that you removed to the node pool. 
 **Related topics**  
 
 
-[Use a node pool to create a node with a custom NVIDIA driver version]()
+[Use a node pool to create a node with a custom NVIDIA driver version](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/Operations & Maintenance (O&M) Management/Use a node pool to create a node with a custom NVIDIA driver version.md)
 
