@@ -7,7 +7,10 @@ keyword: [NAS, 动态存储卷, 持久化存储, 共享存储]
 阿里云Kubernetes CSI支持2种类型的NAS动态存储卷挂载：subpath方式和filesystem方式。本文介绍如何使用阿里云NAS动态存储卷，使用NAS动态存储卷如何实现持久化存储与共享存储。
 
 -   您已经创建好一个Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   您已经创建一个动态NAS卷。请参见[管理文件系统]()。
+-   您已经创建一个动态NAS卷。请参见[创建文件系统]()。
+
+    若需要加密NAS存储卷中的数据，创建NAS文件系统时请配置加密类型。
+
 -   您已经创建NAS挂载点。请参见[管理挂载点]()。
 
     NAS挂载点需要和集群节点在同一个VPC内。
@@ -37,7 +40,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
 
     1.  登录[NAS控制台](https://nas.console.aliyun.com/)。
 
-    2.  创建NAS文件系统。请参见[管理文件系统]()。
+    2.  创建NAS文件系统。请参见[创建文件系统]()。
 
         ![创建文件系统](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7785659951/p69131.png)
 
@@ -111,7 +114,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
 
 4.  执行以下命令创建应用。
 
-    创建应用nginx-1和nginx-2共享NAS存储卷的同一个子目录。
+    创建应用**nginx-1**和**nginx-2**共享NAS存储卷的同一个子目录。
 
     1.  创建并复制以下内容到nginx-1.yaml文件中。
 
@@ -146,7 +149,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         ```
 
         -   `mountPath`：NAS在容器中挂载的位置。
-        -   `claimName`：PVC的名称，用于绑定PVC。本例中为nas-csi-pvc。
+        -   `claimName`：PVC的名称，用于绑定PVC。本例中为**nas-csi-pvc**。
     2.  创建并复制以下内容到nginx-2.yaml文件中。
 
         ```
@@ -180,7 +183,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         ```
 
         -   `mountPath`：NAS在容器中挂载的位置。本例为/date。
-        -   `claimName`：输入与nginx-1应用相同的PVC名称，本例为nas-csi-pvc。
+        -   `claimName`：输入与**nginx-1**应用相同的PVC名称，本例为**nas-csi-pvc**。
     3.  执行以下命令创建应用nginx-1和nginx-2。
 
         ```
@@ -201,16 +204,16 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
     deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
     ```
 
-    **说明：** NAS存储卷的`xxxxxxx.cn-hangzhou.nas.aliyuncs.com:/share/nas-79438493-f3e0-11e9-bbe5-00163e09c2be`会同时挂载到`deployment-nas-1-5b5cdb85f6-nhklx`和`deployment-nas-2-c5bb4746c-4jw5l`的/data目录下。其中：
+    **说明：** NAS存储卷的`xxxxxxx.cn-hangzhou.nas.aliyuncs.com:/share/nas-79438493-f3e0-11e9-bbe5-00163e09****`会同时挂载到`deployment-nas-1-5b5cdb85f6-n****`和`deployment-nas-2-c5bb4746c-4****`的/data目录下。其中：
 
     -   `/share`：StorageClass中指定的subpath。
-    -   `nas-79438493-f3e0-11e9-bbe5-00163e09c2be`：PV的名称。
-    如果您需要为不同的Pod挂载同一个NAS文件系统的不同子目录， 则需要分别创建pvc-1和nginx-1以及pvc-2和nginx-2。
+    -   `nas-79438493-f3e0-11e9-bbe5-00163e09****`：PV的名称。
+    如果您需要为不同的Pod挂载同一个NAS文件系统的不同子目录， 则需要分别创建**pvc-1**和**nginx-1**以及**pvc-2**和**nginx-2**。
 
 
 ## filesystem类型的NAS动态存储卷
 
-**说明：** filesystem类型的NAS动态卷在删除时默认保留文件系统和挂载点， 若需要在释放PV资源的同时释放NAS文件系统和挂载点， 则需要同时设置StorageClass中的reclaimPolicy为Delete且deleteVolume的值为**true**。
+**说明：** filesystem类型的NAS动态卷在删除时默认保留文件系统和挂载点， 若需要在释放PV资源的同时释放NAS文件系统和挂载点， 则需要同时设置StorageClass中的reclaimPolicy为Delete且deleteVolume的值为true。
 
 当您的Kubernetes应用需要动态创建和删除NAS文件系统和挂载点时， 可以使用filesystem类型。
 
@@ -240,11 +243,11 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
 
     -   编辑Kubernetes集群的Master RAM角色中的自定义策略内容，添加以上NAS相关的权限设置。请参见[容器服务默认角色](/cn.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.md)。
 
-        ![自定义授权](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8785659951/p69183.png)
+        ![自定义授权](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3016481261/p69183.png)
 
         **说明：** 托管集群是自动添加Master RAM，专有集群则需要加Master的RAM。
 
-    -   创建子账号授权以上RAM Policy并生成AccessKey，配置到StatefulSet csi-provisioner中csi-nasprovisioner的env变量中。请参见[容器服务默认角色](/cn.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.md)。
+    -   创建子账号授权以上RAM Policy并生成AccessKey，配置到StatefulSet csi-provisioner中csi-nasprovisioner的`env`变量中。请参见[容器服务默认角色](/cn.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.md)。
 
         ```
         env:
@@ -279,15 +282,15 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
 
         |参数|描述|
         |--|--|
-        |volumeAs|定义创建数据的类型，可选filesystem和subpath两种类型：         -   filesystem表示provisioner自动创建NAS文件系统，一个PV对应一个NAS文件系统。
-        -   subpath类型表示一个PV对应一个NAS文件系统的子目录，provisioner自动创建NAS文件系统子目录。 |
-        |storageType|定义创建NAS文件系统的类型，可选Performance、Capacity两种类型，分别表示性能型、容量型。默认性能型。|
+        |volumeAs|定义创建数据的类型，可选filesystem和subpath两种类型：         -   filesystem表示Provisioner自动创建NAS文件系统，一个PV对应一个NAS文件系统。
+        -   subpath类型表示一个PV对应一个NAS文件系统的子目录，Provisioner自动创建NAS文件系统子目录。 |
+        |storageType|定义创建NAS文件系统的类型，可选**Performance**及**Capacity**两种类型，分别表示性能型、容量型。默认为性能型。|
         |zoneId|定义创建NAS文件系统所在可用区。|
         |vpcId|定义创建NAS文件系统对应挂载点所在VPC。|
         |vSwitchId|定义创建NAS文件系统对应挂载点所在vSwitch ID。|
-        |accessGroupName|定义创建NAS文件系统对应挂载点所用的AccessGroup。默认：DEFAULT\_VPC\_GROUP\_NAME。|
+        |accessGroupName|定义创建NAS文件系统对应挂载点所用的AccessGroup。默认为DEFAULT\_VPC\_GROUP\_NAME。|
         |deleteVolume|定义数据卷删除时处理NAS文件系统策略，由于NAS为共享文件系统，安全起见需要同时配置。|
-        |reclaimPolicy|Delete、且deleteVolume为true才会在删除PVC的时候把NAS文件系统删除。|
+        |reclaimPolicy|PV的回收策略。当值为Delete且deleteVolume为true才会在删除PVC的时候把NAS文件系统删除。|
 
     2.  执行以下命令创建StorageClass。
 
@@ -372,7 +375,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
         ```
 
-    2.  执行以下命令，查看任意一个Pod/data路径下的文件，本文以名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod为例。
+    2.  执行以下命令，查看任意一个Pod/data路径下的文件，本文以名为`deployment-nas-1-5b5cdb85f6-n****`的Pod为例。
 
         ```
         kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
@@ -380,13 +383,13 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
 
         无返回结果，说明/data路径下无文件。
 
-2.  执行以下命令，在名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod/data路径下创建文件nas。
+2.  执行以下命令，在名为`deployment-nas-1-5b5cdb85f6-n****`的Pod/data路径下创建文件nas。
 
     ```
     kubectl exec deployment-nas-1-5b5cdb85f6-n**** touch /data/nas
     ```
 
-3.  执行以下命令，查看名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod/data路径下的文件。
+3.  执行以下命令，查看名为`deployment-nas-1-5b5cdb85f6-n****`的Pod/data路径下的文件。
 
     ```
     kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
@@ -426,7 +429,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
         ```
 
-    2.  执行以下命令，查看名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod/data路径下的文件。
+    2.  执行以下命令，查看名为`deployment-nas-1-5b5cdb85f6-n****`的Pod/data路径下的文件。
 
         ```
         kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
@@ -474,7 +477,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
 
 3.  执行以下命令，查看2个Pod/date路径下的文件。
 
-    1.  执行以下命令，查看名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod/date路径下的文件。
+    1.  执行以下命令，查看名为`deployment-nas-1-5b5cdb85f6-n****`的Pod/date路径下的文件。
 
         ```
         kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
@@ -486,7 +489,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         nas
         ```
 
-    2.  执行以下命令，查看名为deployment-nas-2-c5bb4746c-4\*\*\*\*的Pod/date路径下的文件。
+    2.  执行以下命令，查看名为`deployment-nas-2-c5bb4746c-4****`的Pod/date路径下的文件。
 
         ```
         kubectl exec deployment-nas-2-c5bb4746c-4**** ls /data
