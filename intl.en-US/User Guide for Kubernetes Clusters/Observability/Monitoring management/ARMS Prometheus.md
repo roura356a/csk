@@ -343,7 +343,8 @@ If you delete only the namespace of ARMS Prometheus, resource settings may be re
 1.  Run the following commands to delete the related ClusterRoles.
 
     ```
-    kubectl delete ClusterRole arms-kube-state-metricskubectl delete ClusterRole arms-node-exporter
+    kubectl delete ClusterRole arms-kube-state-metrics
+    kubectl delete ClusterRole arms-node-exporter
     kubectl delete ClusterRole arms-prom-ack-arms-prometheus-role
     kubectl delete ClusterRole arms-prometheus-oper3
     ```
