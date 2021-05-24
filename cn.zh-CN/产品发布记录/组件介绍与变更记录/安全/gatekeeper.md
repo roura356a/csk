@@ -85,6 +85,52 @@ Open Policy Agent（OPA）是一个开源的、通用的策略引擎，可以在
 
     等待10秒左右，待gatekeeper完成约束的初始化。
 
+4.  验证命名空间的约束效果。
+
+    -   执行以下命令，在包含标签`name=test-gatekeeper`的命名空间test-gatekeeper下创建一个不包含`gatekeeper-test-label`标签的Pod。
+
+        ```
+        kubectl -n test-gatekeeper run test-deny --image=nginx --restart=Never
+        ```
+
+        预期输出：
+
+        ```
+        Error from server ([denied by pod-must-have-gatekeeper-test-label] you must provide labels: {"gatekeeper-test-label"}): admission webhook "validation.gatekeeper.sh" denied the request: [denied by pod-must-have-gatekeeper-test-label] you must provide labels: {"gatekeeper-test-label"}
+        ```
+
+        可以看到，在包含标签`name=test-gatekeeper`的命名空间test-gatekeeper下创建一个不包含`gatekeeper-test-label`标签的Pod失败。
+
+    -   执行以下命令，在包含标签`name=test-gatekeeper`的命名空间test-gatekeeper下创建一个包含`gatekeeper-test-label`标签的Pod。
+
+        ```
+        kubectl -n test-gatekeeper run test-pass -l gatekeeper-test-label=pass --image=nginx --restart=Never
+        ```
+
+        预期输出：
+
+        ```
+        pod/test-pass created
+        ```
+
+        可以看到，在包含标签`name=test-gatekeeper`的命名空间test-gatekeeper下创建一个包含`gatekeeper-test-label`标签的Pod成功。
+
+    -   执行以下命令，在其他未配置约束的命名空间下创建一个不包含`name=test-gatekeeper`标签的Pod。
+
+        ```
+        kubectl -n default run test-deny --image=nginx --restart=Never
+        ```
+
+        预期输出：
+
+        ```
+        pod/test-deny created
+        ```
+
+        可以看到，在其他未配置约束的命名空间下创建一个不包含`name=test-gatekeeper`标签的Pod成功。
+
+    根据以上验证，说明通过gatekeeper限制指定命名空间下创建的Pod必须包含一个名为gatekeeper-test-label的标签成功。
+
 
 ## 变更记录
 
