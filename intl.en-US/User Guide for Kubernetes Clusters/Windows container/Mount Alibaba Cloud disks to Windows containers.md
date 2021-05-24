@@ -6,8 +6,8 @@ keyword: [ACK Windows nodes, disks, storage resources, Kubernetes]
 
 You can use Alibaba Cloud disks as the storage resources for Windows containers that run in a Container Service for Kubernetes \(ACK\) cluster. This topic describes how to mount Alibaba Cloud disks to Windows containers.
 
--   [Create a node pool that runs Windows](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a node pool that runs Windows.md)
--   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md)
+-   [Create a Windows node pool](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a Windows node pool.md)
+-   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md)
 
 ## Procedure
 
@@ -15,17 +15,17 @@ You can use Alibaba Cloud disks as the storage resources for Windows containers 
 
     1.  Create a YAML file.
 
-        Use the following template to create a YAML file, and deploy the FlexVolume plug-in in the ACK cluster. Then, create a StorageClass in the Windows environment, and update the default component alicloud-disk-controller in the ACK cluster. This allows you to mount Alibaba Cloud disks as Windows persistent volumes \(PVs\).
+        Use the following template to create a YAML file and deploy the FlexVolume plug-in in the ACK cluster. Then, create a StorageClass in the Windows environment and update the alicloud-disk-controller component in the region of the disk that you want to mount. This allows you to mount the disk as a persistent volume \(PV\).
 
-        FlexVolume is a storage plug-in that is supported by Kubernetes. For more information, see [Volume plug-ins](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Volume plug-ins.md).
+        FlexVolume is a volume plug-in that is supported by Kubernetes. For more information, see [Overview](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Overview.md).
 
 
 
-    2.  In the command-line interface \(CLI\), enter `kubectl apply -f <YAML file name>.yaml` to deploy the plug-in.
+    2.  Run the `kubectl apply -f <YAML file name>.yaml` command to deploy the plug-in.
 
 2.  Create an application.
 
-    1.  Use the following YAML template to create a persistent volume claim \(PVC\) and a StatefulSet. This allows you to check whether the storage plug-in works as expected.
+    1.  Use the following YAML template to create a persistent volume claim \(PVC\) and a StatefulSet. This allows you to check whether the plug-in works as expected.
 
         ```
         apiVersion: v1
@@ -81,9 +81,13 @@ You can use Alibaba Cloud disks as the storage resources for Windows containers 
                   storage: 20Gi
         ```
 
-    If the storage plug-in is deployed, after you run the `kubectl get pv` command, the PV is automatically created.
+    Run the following command. If the plug-in is deployed, you can view the automatically created PV.
 
-    The following output is returned:
+    ```
+    kubectl get pv
+    ```
+
+    Expected output:
 
     ```
     NAME                     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM              STORAGECLASS        REASON   AGE
