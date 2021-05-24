@@ -66,7 +66,7 @@ spec:
     - name: cloud
       nodeSelectorTerm:
         matchExpressions:
-        - key: apps.openyurt.io/uniteddeployment
+        - key: apps.openyurt.io/nodepool
           operator: In
           values:
           - cloud
@@ -74,7 +74,7 @@ spec:
     - name: edge
       nodeSelectorTerm:
         matchExpressions:
-        - key: apps.openyurt.io/uniteddeployment
+        - key: apps.openyurt.io/nodepool
           operator: In
           values:
           - edge
