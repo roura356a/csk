@@ -347,6 +347,8 @@ If you delete only the namespace of ARMS Prometheus, resource settings may be re
     kubectl delete ClusterRole arms-node-exporter
     kubectl delete ClusterRole arms-prom-ack-arms-prometheus-role
     kubectl delete ClusterRole arms-prometheus-oper3
+    kubectl delete ClusterRole arms-prometheus-ack-arms-prometheus-role
+    kubectl delete ClusterRole arms-pilot-prom-k8s
     ```
 
 2.  Run the following commands to delete the related ClusterRoleBindings.
@@ -356,6 +358,17 @@ If you delete only the namespace of ARMS Prometheus, resource settings may be re
     kubectl delete ClusterRoleBinding arms-prom-ack-arms-prometheus-role-binding
     kubectl delete ClusterRoleBinding arms-prometheus-oper-bind2
     kubectl delete ClusterRoleBinding kube-state-metrics
+    kubectl delete ClusterRoleBinding arms-pilot-prom-k8s
+    kubectl delete ClusterRoleBinding arms-prometheus-ack-arms-prometheus-role-binding
+    ```
+
+3.  Run the following commands to delete the related ClusterRoles and ClusterRoleBindings.
+
+    ```
+    kubectl delete Role arms-pilot-prom-spec-ns-k8s
+    kubectl delete Role arms-pilot-prom-spec-ns-k8s -n kube-system
+    kubectl delete RoleBinding arms-pilot-prom-spec-ns-k8s 
+    kubectl delete RoleBinding arms-pilot-prom-spec-ns-k8s -n kube-system
     ```
 
 
