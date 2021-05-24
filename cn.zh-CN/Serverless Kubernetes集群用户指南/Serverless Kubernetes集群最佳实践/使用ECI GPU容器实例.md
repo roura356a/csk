@@ -4,21 +4,21 @@ keyword: ECI GPU容器实例
 
 # 使用ECI GPU容器实例
 
-本文主要为您介绍如何使用GPU容器实例，这里以使用Tensorflow图片识别为例进行演示。该功能适用于Serverless kubernetes集群和在 Kubernetes集群创建的虚拟节点。
+本文以在Serverless kubernetes集群中使用Tensorflow进行图片识别为例，说明如何使用GPU容器实例。
 
-ASK基于ECI（弹性容器实例）正式推出GPU容器实例支持，让用户以Serverless的方式快速运行 AI计算任务，极大降低AI平台运维的负担，显著提升整体计算效率。
+您已经创建一个ASK集群，或已在Kubernetes集群创建一个虚拟节点。具体操作，请参见[Serverless Kubernetes集群](/cn.zh-CN/Serverless Kubernetes集群用户指南/快速入门/创建Serverless Kubernetes集群.md)或[通过部署ACK虚拟节点组件创建ECI Pod](/cn.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/通过部署ACK虚拟节点组件创建ECI Pod.md)。
 
-AI计算离不开GPU已经是行业共识，然而从零开始搭建GPU集群环境是件相对复杂的任务，包括GPU规格购买、机器准备、驱动安装、容器环境安装等。GPU资源的Serverless交付方式，充分的展现了Serverless的核心优势，其向用户提供标准化而且“开箱即用”的资源供给能力，用户无需购买机器也无需登录到节点安装GPU驱动，极大降低了AI平台的部署复杂度，让客户关注在AI模型和应用本身而非基础设施的搭建和维护，让使用 GPU/CPU资源就如同打开水龙头一样简单方便，同时按需计费的方式让客户按照计算任务进行消费， 避免包年包月带来的高成本和资源浪费。
+ASK基于ECI（弹性容器实例）正式推出GPU容器实例支持，让您以Serverless的方式快速运行AI计算任务，极大降低AI平台运维的负担，显著提升整体计算效率。
+
+AI计算离不开GPU已经是行业共识，然而从零开始搭建GPU集群环境是件相对复杂的任务，包括GPU规格购买、机器准备、驱动安装、容器环境安装等。GPU资源的Serverless交付方式，充分的展现了Serverless的核心优势，其向您提供标准化而且“开箱即用”的资源供给能力，您无需购买机器也无需登录到节点安装GPU驱动，极大降低了AI平台的部署复杂度，让客户关注在AI模型和应用本身而非基础设施的搭建和维护，让使用 GPU/CPU资源就如同打开水龙头一样简单方便，同时按需计费的方式让客户按照计算任务进行消费，避免包年包月带来的高成本和资源浪费。
 
 在容器服务ACK Serverless中创建挂载GPU的Pod，通过Annotation指定所需GPU的类型，同时在`resource.limits`中指定GPU的个数即可（也可指定instance-type）。每个Pod独占GPU，GPU实例的收费与ECS GPU类型收费一致，不产生额外费用。目前阿里云ECI提供的GPU规格及类型请参见[ECI GPU 使用示例](https://help.aliyun.com/document_detail/114581.html)。
 
-**说明：** 目前创建挂载vGPU的Pod暂不支持该功能。
+**说明：** 创建挂载实例类型为vGPU的Pod暂不支持该功能。
 
-## 前提条件
+## 操作步骤
 
-您已经创建一个[Serverless Kubernetes集群](/cn.zh-CN/Serverless Kubernetes集群用户指南/快速入门/创建Serverless Kubernetes集群.md)或已在Kubernetes集群创建一个[通过部署ACK虚拟节点组件创建ECI Pod](/cn.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/通过部署ACK虚拟节点组件创建ECI Pod.md)。
-
-下面以Serverless kubernetes集群中在使用Tensorflow进行图片识别。
+本文以在Serverless kubernetes集群中使用Tensorflow进行图片识别为例，说明如何使用GPU容器实例。
 
 ![image](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3748649951/p47460.png)
 
