@@ -7,7 +7,7 @@ keyword: [edge node, managed edge Kubernetes cluster]
 This topic describes how to add an edge node as a worker node to a managed edge Kubernetes cluster in the Container Service for Kubernetes \(ACK\) console. Make sure that the added node can communicate with the Kubernetes API server of the cluster. You can add Elastic Compute Service \(ECS\) instances, Edge Node Service \(ENS\) instances, and on-premises servers to a managed edge Kubernetes cluster.
 
 -   A managed edge Kubernetes cluster is created. For more information, see [Create a managed edge Kubernetes cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Create a managed edge Kubernetes cluster.md).
--   To enable the cluster to automatically add ENS instances, ENS must be activated.
+-   ENS is activated if you want to automatically add ENS instances.
 
 **Note:** When you use a managed edge Kubernetes cluster, take note of the following limits:
 
@@ -23,11 +23,11 @@ This topic describes how to add an edge node as a worker node to a managed edge 
 
     -   Method 1:
         1.  In the left-side navigation pane of the ACK console, click **Clusters**.
-        2.  On the Clusters page, find the cluster to which you want to add nodes and choose **More** \> **Add Existing Node** in the **Actions** column.
+        2.  On the Clusters page, find the cluster to which you want to add a node and choose **More** \> **Add Existing Node** in the **Actions** column.
     -   Method 2:
         1.  In the left-side navigation pane of the ACK console, click **Clusters**.
-        2.  On the Clusters page, find the cluster to which you want to add nodes. Then, click the name of the cluster or click **Details** in the **Actions** column.
-        3.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node**.
+        2.  On the Clusters page, find the cluster to which you want to add a node. Then, click the name of the cluster or click **Details** in the **Actions** column.
+        3.  In the left-side navigation pane of the details page, choose **Nodes** \> **Nodes**.
         4.  In the left-side navigation pane, choose **Clusters** \> **Nodes** to go to the Nodes page.
         5.  In the upper-right corner of the page, click **Add Existing Node**.
 3.  On the page that appears, you can select **Manual** to manually add existing instances.
@@ -41,13 +41,8 @@ This topic describes how to add an edge node as a worker node to a managed edge 
 
         **Note:** If the version of the managed edge Kubernetes cluster is 1.14.8-aliyunedge.1 or later, ARM or ARM64 nodes can be added to the cluster.
 
-    3.  After the configuration is completed, click **Next Step**.
-    4.  On the Complete wizard page, click **Copy**. Then, log on to the selected edge node and run the following command:
-
-        ```
-        wget http://aliacs-k8s-cn-beijing.oss-cn-beijing.aliyuncs.com/public/pkg/run/attach/1.14.8-aliyunedge.1/amd64/edgeadm -O edgeadm; chmod u+x edgeadm; ./edgeadm join --openapi-token=XXXXX --node-spec="{\"enableIptables\":true,\"quiet\":true,\"manageRuntime\":true,\"nodeNameOverride\":\"*.ack.edge\",\"allowedClusterAddons\":[\"kube-proxy\",\"flannel\",\"coredns\"]}" --region=cn-beijing
-        ```
-
+    3.  After the configuration is complete, click **Next Step**.
+    4.  On the Complete wizard page, click **Copy** to copy the script to your edge node. Then, execute the script on the node.
     If the edge node is added to the cluster, the following result is returned.
 
     ![Node added](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9883068951/p52432.png)
