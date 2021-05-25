@@ -1,6 +1,6 @@
 # Mount a NAS file system as a statically provisioned volume
 
-NAS volumes use distributed file systems. NAS volumes can be shared and are scalable, high-performance, and highly reliable. This topic describes how to mount a NAS file system as a statically provisioned volume.
+Apsara File Storage NAS \(NAS\) volumes use distributed file systems. NAS volumes can be shared and are scalable, high-performance, and highly reliable. This topic describes how to mount a NAS file system as a statically provisioned volume.
 
 -   A NAS file system is created. For more information, see [Manage file systems]().
 -   A mount target is created for the NAS file system. For more information, see [Manage mount targets]().
@@ -42,7 +42,7 @@ Before you use kubectl to mount a NAS file system as a statically provisioned vo
     **Note:**
 
     -   `driver`: the type of driver. In this example, the parameter is set to `nasplugin.csi.alibabacloud.com`. This indicates that the Alibaba Cloud NAS CSI plug-in is used.
-    -   `volumeHandle`: the name of the PV.
+    -   `volumeHandle`: the name of the PV. If multiple PVs are used, the name of each PV must be unique.
     -   `server`: the address of the mount target.
     -   `path`: the subdirectory of the NAS file system that is mounted. If you mount an Extreme NAS file system, the path must start with /share.
     -   `vers`: the version of the NFS protocol. We recommend that you use NFSv3. Extreme NAS file systems support only NFSv3.
@@ -107,7 +107,7 @@ Before you use kubectl to mount a NAS file system as a statically provisioned vo
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -156,7 +156,7 @@ Before you use kubectl to mount a NAS file system as a statically provisioned vo
     After the PVC is created, you can view the PVC in the list of Persistent Volume Claims. The PVC is associated with the corresponding PV.
 
 
-**Step 3: Create applications**
+**Step 3: Create an application**
 
 1.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
@@ -170,12 +170,12 @@ Before you use kubectl to mount a NAS file system as a statically provisioned vo
 
     -   **Add Local Storage**: You can select HostPath, ConfigMap, Secret, or EmptyDir from the PV Type drop-down list. Then, set the Mount Source and Container Path parameters to mount the volume to a container path. For more information, see [Volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE).
     -   **Add PVC**: You can add cloud volumes.
-    In this example, csi-nas-pvc is specified as Mount Source and mounted to the /tmp path in the container.
+    In this example, csi-nas-pvc is specified as the Mount Source and mounted to the /tmp path in the container.
 
     ![Volumes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8927051261/p59980.jpg)
 
 4.  Set other parameters and click **Create**.
 
-    After you create the application, you can use the disk volume to store application data.
+    After you create the application, you can use the NAS volume to store application data.
 
 
