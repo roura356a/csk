@@ -4,7 +4,7 @@ keyword: [create images, view images]
 
 # Manage images
 
-This topic describes how to create and query images.
+This topic describes how to create and view images.
 
 ## Create images
 
@@ -12,32 +12,29 @@ This topic describes how to create and query images.
 
 2.  In the left-side navigation pane of the ACK console, choose **Marketplace** \> **Alibaba Cloud Container Registry**.
 
-3.  In the Container Registry console, the **Repositories** page appears. Click **Create Repository**.
+3.  On the Instances page, click the instance of Container Registry Enterprise Edition that you want to manage.
 
-4.  In the **Create Repository** dialog box, set the required parameters for the repository.
+    To create an instance of Container Registry Enterprise Edition, see [Step 3: Create a Container Registry Enterprise Edition instance](section_ngl_swv_bde).
 
-    1.  On the **Repository Info** wizard page, set the required parameters and click **Next**.
+4.  Create a namespace in the instance of Container Registry Enterprise Edition. For more information, see [Step 4: Create a namespace](section_pys_y3j_jar).
 
-    2.  On the **Code Source** wizard page, set the required parameters and click **Create Repository**. For more information about how to create an image repository, see [Create a repository and build images]().
+5.  Create a repository in the instance of Container Registry Enterprise Edition. For more information, see [Step 5: Create an image repository](section_zp1_q3z_ka8).
 
-        You can upload your own images from a local repository by using the command-line interface \(CLI\). You can also select a third-party code repository such as GitHub or Bitbucket to set up automatic image builds.
+6.  Push an image to the repository, or automatically build an image from a third-party code repository. For more information, see [Use a Container Registry Enterprise Edition instance to push and pull images]() and [Use Container Registry Enterprise Edition to build images]().
 
 
-## Query images
+## View images
 
-1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
+1.  Log on to the [Container Registry console](https://cr.console.aliyun.com).
 
-2.  In the left-side navigation pane of the ACK console, choose **Marketplace** \> **Alibaba Cloud Container Registry**.
+2.  In the top navigation bar, select a region.
 
-3.  On the **Repositories** page, click **Create Repository**.
+3.  In the left-side navigation pane, click **Instances**.
 
-    -   **Alibaba Cloud Container Registry**: On the Alibaba Cloud Container Registry tab, you can view the images that are stored in Container Registry.
+4.  On the Instances page, click the required Container Registry Enterprise Edition instance.
 
-        **Image Region**: Specify a region to filter images.
+5.  On the management page of the instance, choose **Repositories** \> **Repositories** in the left-side navigation pane. On the Repositories page, click the name of the repository that you want to manage.
 
-        **Container Registry Instance**: The default Container Registry instance is used.
+6.  On the details page of the repository, click **Tags** in the left-side navigation pane. On the Tags page, you can view images that are pushed to the repository.
 
-    -   **Docker Official Images**: On the Docker Official Images tab, you can view images from Docker Hub.
-    -   **Favorite Images**: On the Favorite Images tab, you can view images that you have specified as the favorite images on other tabs. For example, the images that you have specified as the favorite images on the [Container Registry Instance](https://cr.console.aliyun.com/) tab are synchronized to the Favorite Images tab.
-    -   **Search**: On the Search tab, you can specify a region to search for an image in Container Registry. You can also select Docker Images from the drop-down list and search for Docker images.
 
