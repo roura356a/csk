@@ -6,12 +6,12 @@ keyword: [JindoFS加速OSS文件访问, 数据加速, JindoRuntime]
 
 JindoRuntime来源于阿里云EMR团队JindoFS，是基于C++实现的支撑Dataset数据管理和缓存的执行引擎，支持OSS对象存储。JindoFS是阿里云的产品，有专门的产品级支持。Fluid通过管理和调度JindoRuntime实现数据集的可见性、弹性伸缩和数据迁移。本文介绍JindoFS如何加速OSS文件访问。
 
--   在Kubernetes集群中已安装好Fluid，且版本大于等于0.5.0。具体操作，请参见[Fluid](https://github.com/aliyun/alibabacloud-jindofs/blob/master/docs/jindo_fluid/jindo_fluid_introduce.md)。
+-   在Kubernetes集群中已安装好Fluid，且版本大于等于0.5.0。具体操作，请参见[Fluid](https://github.com/fluid-cloudnative/fluid)。
 -   已创建ACK Pro版集群，且集群的Kubernetes版本不低于1.14。具体操作步骤，请参见[创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
--   通过kubectl连接Kubernetes集群。具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   通过kubectl连接Kubernetes集群。具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 -   已开通阿里云对象存储（OSS）服务。具体操作，请参见[开通OSS服务](/intl.zh-CN/控制台用户指南/开通OSS服务.md)。
 
-在准备好基本K8s和OSS环境的条件下，您只需要耗费10分钟左右即可部完成JindoRuntime环境的部署。
+准备好K8s和OSS环境的条件，您只需要耗费10分钟左右即可完成JindoRuntime环境的部署。
 
 ## 步骤一：准备OSS Bucket的数据
 
@@ -26,7 +26,7 @@ JindoRuntime来源于阿里云EMR团队JindoFS，是基于C++实现的支撑Data
 
 ## 步骤二：创建Dataset和JindoRuntime
 
-1.  在创建Dataset之前，您可以创建一个mySecret.yaml文件来保存OSS的fs.oss.accessKeyId和fs.oss.accessKeySecret
+1.  在创建Dataset之前，您可以创建一个mySecret.yaml文件来保存OSS的fs.oss.accessKeyId和fs.oss.accessKeySecret。
 
     创建mySecret.yaml文件的YAML样例如下：
 
