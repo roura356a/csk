@@ -28,5 +28,5 @@ keyword: [混合云, 部署Kubernetes集群]
 
 ## 解决方案
 
-完整的最佳实践请参见。
+关于完整的最佳实践，请参见[混合云部署Kubernetes集群](https://bp.aliyun.com/detail/102)。
 
