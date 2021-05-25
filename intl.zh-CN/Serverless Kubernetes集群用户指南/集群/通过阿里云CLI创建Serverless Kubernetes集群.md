@@ -12,7 +12,8 @@ keyword: [Serverless Kubernetes集群, 阿里云CLI]
 
 Cloud Shell默认安装配置了阿里云CLI和账号信息，无需任何额外配置。如果您不使用Cloud Shell，您需要安装和配置如下组件。
 
--   安装阿里云CLI。
+1.  安装阿里云CLI。
+
     -   在Linux上安装阿里云CLI，具体操作，请参见[在Linux上安装阿里云CLI]()。
     -   在macOS上安装阿里云CLI。
         -   [在macOS上安装阿里云CLI]()。
@@ -23,7 +24,7 @@ Cloud Shell默认安装配置了阿里云CLI和账号信息，无需任何额外
             ```
 
     -   在Windows上安装阿里云CLI，具体操作，请参见[在Windows上安装阿里云CLI]()。
--   配置阿里云CLI。执行以下命令，创建环境变量，用于存放身份认证信息。
+2.  配置阿里云CLI。执行以下命令，创建环境变量，用于存放身份认证信息。
 
     ```
     aliyun configure
@@ -64,18 +65,29 @@ Cloud Shell默认安装配置了阿里云CLI和账号信息，无需任何额外
     `create.json`文件请求示例如下：
 
     ```
+    POST /clusters HTTP/1.1
+    <公共请求头>
     {
-        "cluster_type": "Ask",
-        "name": "test-serverless-k8s",
-        "region_id": "cn-beijing",
-        "zoneid": "cn-beijing-h",
-        "nat_gateway": true,
-        "private_zone": false,
-        "tags": [
-            {"key": "env", "value": "test"}
-        ]
-    }
-                            
+        "cluster_type":"Ask",
+        "name":"test-ask",
+        "region_id":"cn-hangzhou",
+        "endpoint_public_access":false,
+        "private_zone":false,
+        "nat_gateway":true,
+        "tags":[
+            {
+                "key":"k-aa",
+                "value":"v-aa"
+            }
+        ],
+        "deletion_protection":false,
+        "addons":[
+            {
+                "name":"logtail-ds"
+            }
+        ],
+        "zone_id":"cn-hangzhou-i"
+    }                 
     ```
 
     该示例文件描述了Serverless Kubernetes集群配置信息。更多信息，请参考[创建Serverless Kubernetes集群](/intl.zh-CN/API参考/集群/创建集群/创建Serverless Kubernetes集群.md)。
