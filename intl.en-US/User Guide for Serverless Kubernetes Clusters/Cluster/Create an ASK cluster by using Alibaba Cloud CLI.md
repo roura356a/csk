@@ -12,7 +12,8 @@ Before you use Alibaba Cloud CLI, you must configure the settings that are requi
 
 By default, Cloud Shell is preinstalled with Alibaba Cloud CLI and configured with the account information. You do not need to make any configuration changes. If you do not use Cloud Shell, you must install and set up Alibaba Cloud CLI and kubectl.
 
--   Install Alibaba Cloud CLI.
+1.  Install Alibaba Cloud CLI.
+
     -   Install Alibaba Cloud CLI in Linux. For more information, see [Linux]().
     -   Install Alibaba Cloud CLI in macOS.
         -   [MacOS]().
@@ -23,7 +24,7 @@ By default, Cloud Shell is preinstalled with Alibaba Cloud CLI and configured wi
             ```
 
     -   For more information about how to install Alibaba Cloud CLI in Windows, see [Windows]().
--   Configure Alibaba Cloud CLI. Run the following command to create environment variables that are used to store identity information:
+2.  Configure Alibaba Cloud CLI. Run the following command to create environment variables that are used to store identity information:
 
     ```
     aliyun configure
@@ -70,18 +71,29 @@ Install and set up a kubectl client. For more information, see [Install and set 
     The following template is an example of the `create.json` file:
 
     ```
+    POST /clusters HTTP/1.1
+    <公共请求头>
     {
-        "cluster_type": "Ask",
-        "name": "test-serverless-k8s",
-        "region_id": "cn-beijing",
-        "zoneid": "cn-beijing-h",
-        "nat_gateway": true,
-        "private_zone": false,
-        "tags": [
-            {"key": "env", "value": "test"}
-        ]
-    }
-                            
+        "cluster_type":"Ask",
+        "name":"test-ask",
+        "region_id":"cn-hangzhou",
+        "endpoint_public_access":false,
+        "private_zone":false,
+        "nat_gateway":true,
+        "tags":[
+            {
+                "key":"k-aa",
+                "value":"v-aa"
+            }
+        ],
+        "deletion_protection":false,
+        "addons":[
+            {
+                "name":"logtail-ds"
+            }
+        ],
+        "zone_id":"cn-hangzhou-i"
+    }                             
     ```
 
     The preceding sample template describes the configurations that are used to create a serverless Kubernetes \(ASK\) cluster. For more information, see [Create an ASK cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create an ASK cluster.md).
