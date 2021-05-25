@@ -8,27 +8,27 @@ The following tables list API operations available for use in Container Service 
 
 |API|Description|
 |---|-----------|
-|[CreateCluster](/intl.en-US/API Reference/Clusters/Create a cluster/CreateCluster.md)|Creates a dedicated Kubernetes cluster.|
-|[CreateCluster](/intl.en-US/API Reference/Clusters/Create a cluster/CreateCluster.md)
+|[Create a dedicated Kubernetes cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a dedicated Kubernetes cluster.md)|Creates a dedicated Kubernetes cluster.|
+|[CreateCluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a managed Kubernetes cluster.md)
 
 |Creates a managed Kubernetes cluster and adds a specified number of nodes to the cluster.|
-|[Create a serverless cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a serverless cluster.md)
+|[Create an ASK cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create an ASK cluster.md)
 
 |Creates a serverless Kubernetes \(ASK\) cluster.|
-|[Create a managed edge cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a managed edge cluster.md)
+|[Create a managed edge Kubernetes cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a managed edge Kubernetes cluster.md)
 
 |Creates a managed edge Kubernetes cluster.|
-|[Create an ACK cluster that supports sandboxed containers](/intl.en-US/API Reference/Clusters/Create a cluster/Create an ACK cluster that supports sandboxed containers.md)
+|[Create a dedicated Kubernetes cluster that supports sandboxed containers](/intl.en-US/API Reference/Clusters/Create a cluster/Create a dedicated Kubernetes cluster that supports sandboxed containers.md)
 
 |Creates a dedicated Kubernetes cluster that runs sandboxed containers.|
-|[Create a managed ACK cluster that supports sandboxed containers]()|Creates a managed Kubernetes cluster that runs sandboxed containers.|
-|[Add worker nodes to a cluster](/intl.en-US/API Reference/Clusters/Expand a cluster/Add worker nodes to a cluster.md)
+|[Create a standard managed Kubernetes cluster that supports sandboxed](/intl.en-US/API Reference/Clusters/Create a cluster/Create a standard managed Kubernetes cluster that supports sandboxed.md)|Creates a managed Kubernetes cluster that runs sandboxed containers.|
+|[Scale out an ACK cluster \(will be deleted\)](/intl.en-US/API Reference/Clusters/Scale out a Kubernetes cluster.md)
 
 |Adds worker nodes to a specified ACK cluster. The worker nodes can be deployed across zones.|
-|[Add worker nodes to a cluster that supports sandboxed containers](/intl.en-US/API Reference/Clusters/Expand a cluster/Add worker nodes to a cluster that supports sandboxed containers.md)
+|[Scale out a Kubernetes cluster that supports sandboxed containers]()
 
 |Adds worker nodes to a specified ACK cluster that runs sandboxed containers. The worker nodes can be deployed across zones.|
-|[Add worker nodes to a managed edge cluster](/intl.en-US/API Reference/Clusters/Expand a cluster/Add worker nodes to a managed edge cluster.md)
+|[Scale out a managed edge ACK cluster \(will be deleted\)](/intl.en-US/API Reference/Clusters/Scale out a managed edge ACK cluster (will be deleted).md)
 
 |Adds worker nodes to a specified ACK cluster. You can add only Edge Node Service \(ENS\) instances to a managed edge Kubernetes cluster.|
 |[DescribeClusterDetail](/intl.en-US/API Reference/Clusters/DescribeClusterDetail.md)
@@ -51,7 +51,7 @@ The following tables list API operations available for use in Container Service 
 |Queries the logs of a specified ACK cluster.|
 |[DescribeClusterUserKubeconfig](/intl.en-US/API Reference/Clusters/DescribeClusterUserKubeconfig.md)
 
-|Obtains the kubeconfig file of a specified ACK cluster. The kubeconfig file is used to configure access to an ACK cluster.|
+|Obtains the kubeconfig file of a specified ACK cluster. The kubeconfig file stores details of the account that is used to log on to the ACK cluster.|
 |[ModifyCluster](/intl.en-US/API Reference/Clusters/ModifyCluster.md)
 
 |Modifies the configurations of a specified ACK cluster.|
@@ -66,6 +66,7 @@ The following tables list API operations available for use in Container Service 
 |Queries the labels that are added to the specified resources.|
 |[DescribeKubernetesVersionMetadata](/intl.en-US/API Reference/Clusters/DescribeKubernetesVersionMetadata.md)|Queries the details of a specified Kubernetes version that is supported by ACK.|
 |[DescribeTaskInfo](/intl.en-US/API Reference/Clusters/DescribeTaskInfo.md)|Queries the details of a task by task ID.|
+|[DescribeEvents](/intl.en-US/API Reference/Clusters/DescribeEvents.md)|Queries operations performed by users.|
 
 ## Permissions
 
@@ -82,16 +83,16 @@ The following tables list API operations available for use in Container Service 
 
 |API|Description|
 |---|-----------|
-|[DescribeClusterNodes](/intl.en-US/API Reference/Nodes/DescribeClusterNodes.md)
+|[DescribeClusterNodes](/intl.en-US/API Reference/Clusters/DescribeClusterNodes.md)
 
 |Queries the nodes in a specified ACK cluster.|
-|[DeleteClusterNodes](/intl.en-US/API Reference/Nodes/DeleteClusterNodes.md)
+|[DeleteClusterNodes](/intl.en-US/API Reference/Node pools/DeleteClusterNodes.md)
 
 |Removes the nodes from a specified ACK cluster.|
-|[AttachInstances](/intl.en-US/API Reference/Nodes/AttachInstances.md)
+|[AttachInstances](/intl.en-US/API Reference/Node pools/AttachInstances.md)
 
 |Adds existing Elastic Compute Service \(ECS\) instances to a specified ACK cluster.|
-|[DescribeClusterAttachScripts](/intl.en-US/API Reference/Nodes/DescribeClusterAttachScripts.md)
+|[DescribeClusterAttachScripts](/intl.en-US/API Reference/Node pools/DescribeClusterAttachScripts.md)
 
 |Adds an existing node to a specified managed edge Kubernetes cluster. This operation returns a unique and executable script. You can run the script on an existing node to add the node to the managed edge Kubernetes cluster.|
 |[AttachInstances]()
@@ -143,12 +144,9 @@ The following tables list API operations available for use in Container Service 
 
 |API|Description|
 |---|-----------|
-|[CreateTemplate](/intl.en-US/API Reference/Applications/Create an application deployment template.md)
-
-|Creates an application deployment template.|
-|[DescribeTemplates](/intl.en-US/API Reference/Applications/Query application deployment templates.md)
-
-|Queries application deployment templates.|
+|[CreateTemplate](/intl.en-US/API Reference/Applications/Create an application deployment template.md)|Creates an application deployment template.|
+|[DescribeTemplates](/intl.en-US/API Reference/Applications/Query application deployment templates.md)|Queries application deployment templates.|
+|[DescribeTemplateAttribute](/intl.en-US/API Reference/Applications/Query the details of an orchestration template.md)|Queries the details of a specified application deployment template.|
 |[UpdateTemplate](/intl.en-US/API Reference/Applications/Update an application deployment template.md)
 
 |Updates an application deployment template.|
@@ -156,9 +154,8 @@ The following tables list API operations available for use in Container Service 
 
 |Deletes an application deployment template.|
 |[CreateKubernetesTrigger](/intl.en-US/API Reference/Applications/Create a trigger.md)|Creates an application trigger.|
-|[GetKubernetesTrigger](/intl.en-US/API Reference/Applications/Query triggers.md)|Queries specific triggers that are created for a specified application.|
+|[GetKubernetesTrigger](/intl.en-US/API Reference/Applications/Query triggers.md)|Queries triggers that are created for a specified application.|
 |[DeleteKubernetesTrigger](/intl.en-US/API Reference/Applications/Delete a trigger.md)|Deletes an application trigger.|
-|[DescribeTemplateAttribute](/intl.en-US/API Reference/Applications/Query the details of an orchestration template.md)|Queries the details of a specified application deployment template.|
 
 ## Components
 
@@ -166,13 +163,13 @@ The following tables list API operations available for use in Container Service 
 |---|-----------|
 |[InstallClusterAddons](/intl.en-US/API Reference/Add-ons/InstallClusterAddons.md)
 
-|Install components in a specified ACK cluster.|
+|Installs components in a specified ACK cluster.|
 |[DescribeClusterAddonsVersion](/intl.en-US/API Reference/Add-ons/DescribeClusterAddonsVersion.md)
 
 |Queries the versions of components in a specified ACK cluster.|
 |[DescribeAddons](/intl.en-US/API Reference/Add-ons/DescribeAddons.md)
 
-|Query the details of components that are installed in ACK clusters.|
+|Queries the details of components that are installed in ACK clusters.|
 |[UpgradeClusterAddons](/intl.en-US/API Reference/Add-ons/UpgradeClusterAddons.md)|Upgrades a component to the specified version in a specified ACK cluster.|
 |[DescribeClusterAddonsUpgradeStatus](/intl.en-US/API Reference/Add-ons/DescribeClusterAddonsUpgradeStatus.md)|Queries the upgrade status of multiple components at a time.|
 |[ModifyClusterConfiguration](/intl.en-US/API Reference/Add-ons/ModifyClusterConfiguration.md)|Modifies ConfigMaps for kube-apiserver and Kube Controller Manager \(KCM\). This allows you to modify the configurations of these components.|
