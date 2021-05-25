@@ -4,32 +4,34 @@ keyword: [back up applications, restore applications, restore applications acros
 
 # Back up and restore applications in Kubernetes clusters
 
-Container Service for Kubernetes \(ACK\) integrates open source Velero that allows you to back up and restore applications. This allows you to back up and restore applications and volumes in Kubernetes clusters and registered external Kubernetes clusters. You can create and restore backups in the same cluster, or create backups in one cluster and restore the backups to another cluster. This topic describes how to back up and restore applications in Kubernetes clusters. This helps protect your applications from service interruptions and data loss.
+Container Service for Kubernetes \(ACK\) is integrated with open source Velero to provide the application backup feature. This feature allows you to back up and restore applications and volumes in ACK clusters and registered external clusters. You can create and restore backups in the same cluster. You can also create backups in one cluster and restore backups to another cluster. This topic describes how to back up and restore applications in Kubernetes clusters. This helps protect your applications from service interruptions and data loss.
 
 -   This feature is in public preview. To use this feature, you must [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply for the feature to be enabled on your account.
--   A Kubernetes cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md), [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md), and [Create a cluster registration proxy and register an on-premises cluster](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of registered clusters/Create a cluster registration proxy and register an on-premises cluster.md).
+-   A Kubernetes cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md), [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md), or [Create a cluster registration proxy and register an on-premises cluster](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of external clusters/Create a cluster registration proxy and register an on-premises cluster.md).
 
     **Note:** The Kubernetes version of your cluster must be later than V1.10. Otherwise, the feature may not function as expected.
 
 -   An Object Storage Service \(OSS\) bucket is created. For more information, see [Create buckets](/intl.en-US/Console User Guide/Manage buckets/Create buckets.md).
 
-The number of enterprises that choose to deploy their applications on Kubernetes are increasing. Therefore, regular application backups are important. You can use application backups to restore applications that cannot be recovered after the applications are accidentally disrupted for a long period of time. Different from the traditional single-server backup and disk backup, the application backup feature is used to back up applications and the relevant data, resource objects, and configurations. You can also use this feature to back up all resources in a namespace.
+The number of enterprises that choose to deploy their applications on Kubernetes is increasing. Therefore, regular application backups are important. You can use application backups to restore applications that cannot be recovered if the applications are disrupted for a long period of time. Traditional backup solutions include single-server backups and disk backups. Compared with traditional solutions, application backups allow you to back up applications and the data, resource objects, configurations, and namespaces of the applications.
+
+The application backup feature supports only OSS as the storage of application backups. Before you use OSS, you must grant OSS permissions to your cluster.
 
 ## Limits
 
--   You can back up applications only by namespace.
 -   You can create only full backups for applications. Incremental backups are not supported.
--   When you back up an application, the resources that are being deleted are not backed up.
+-   When you back up an application, the resources in the Deleting state are not backed up.
+-   If you want to back up a disk volume, you must install the Container Storage Interface \(CSI\) plug-in of V1.1.0 or later. For more information about how to install the CSI plug-in, see [t1592079.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Install and upgrade the CSI plug-in.md).
 
 ## Step 1: Grant OSS permissions to the cluster
 
-**Grant OSS permissions to managed or dedicated Kubernetes clusters**
+**Configure permissions for managed or dedicated Kubernetes clusters**
 
-If you use managed or dedicated Kubernetes clusters, you must grant OSS permissions to your clusters.
+If you use a managed or dedicated Kubernetes cluster, you must grant the required OSS permissions to the cluster.
 
 1.  Create a custom permission policy with the required OSS permissions. For more information, see [Create a custom policy](/intl.en-US/Policy Management/Custom policies/Create a custom policy.md).
 
-    **Note:** For information about how to regulate fine-grained access to OSS, see [Use RAM to manage OSS permissions](/intl.en-US/Tutorials/Use RAM to manage OSS permissions.md).
+    **Note:** For more information about how to regulate fine-grained access to OSS, see [Use RAM to manage OSS permissions](/intl.en-US/Tutorials/Use RAM to manage OSS permissions.md).
 
     To grant full OSS permissions, create a permission policy based on the following template:
 
@@ -80,7 +82,7 @@ If you use managed or dedicated Kubernetes clusters, you must grant OSS permissi
     }
     ```
 
-    Replace the value of `mybackups` with the name of the OSS bucket that you have created.
+    Replace `mybackups` with the name of the OSS bucket that you have created.
 
 2.  Grant permissions to the Resource Access Management \(RAM\) role of the managed Kubernetes cluster.
 
@@ -107,23 +109,23 @@ If you use managed or dedicated Kubernetes clusters, you must grant OSS permissi
 
 **Grant permissions to a registered Kubernetes cluster**
 
-If your applications run in a registered Kubernetes cluster, you must create a RAM user for the cluster. Then, create an AccessKey pair for the RAM user and grant the RAM user permissions to access cloud resources.
+If your applications are deployed in a registered Kubernetes cluster, you must create a RAM user for the cluster. Grant the RAM user the permissions to access other cloud resources and create an AccessKey pair for the RAM user.
 
-1.  Create a RAM user. For more information, see [Create a RAM user](/intl.en-US/RAM User Management/Create a RAM user.md).
+1.  Create a RAM user. For more information, see [Create a RAM user](/intl.en-US/RAM User Management/Basic operations/Create a RAM user.md).
 
 2.  Create a custom permission policy with the required OSS permissions. For more information, see Step [1](#step_csd_xek_3x4).
 
-3.  Grant permissions to the RAM user. For more information, see [Grant permissions to a RAM user](/intl.en-US/RAM User Management/Grant permissions to a RAM user.md).
+3.  Grant permissions to the RAM user. For more information, see [Grant permissions to a RAM user](/intl.en-US/RAM User Management/Authorization management/Grant permissions to a RAM user.md).
 
 4.  Create an AccessKey pair for the RAM user. For more information, see [Obtain an AccessKey pair]().
 
 5.  Create a Secret in the registered Kubernetes cluster.
 
-    To ensure that the AccessKey pair is used only within the registered cluster, you must use the AccessKey pair to create a Secret named alibaba-addon-secret in the cluster. This reduces the risk of information leakage.
+    To ensure that the AccessKey pair is used only within the registered Kubernetes cluster, you must use the AccessKey pair to create a Secret named alibaba-addon-secret in the cluster. This reduces the risk of information leakage.
 
     ACK installs migrate-controller in the velero namespace, which is inherited from the open source Velero project. If the namespace does not exist, you must create a namespace that is named velero. After you create the namespace, use the AccessKey pair to create a Secret that is named alibaba-addon-secret in the namespace.
 
-    1.  Run the following command to create a namespace named velero:
+    1.  Run the following command to create a namespace named **velero**:
 
         ```
         kubectl create ns velero
@@ -140,9 +142,11 @@ If your applications run in a registered Kubernetes cluster, you must create a R
 
 ## Step 2: Install the application backup component
 
+**Note:** To use the application backup feature, you must first install the application backup component. If you have installed the application backup component, skip this step.
+
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -163,7 +167,7 @@ When you back up applications in an ACK cluster, the backup data is stored in an
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -175,7 +179,7 @@ When you back up applications in an ACK cluster, the backup data is stored in an
 
     |Parameter|Description|
     |---------|-----------|
-    |Name|The name of the backup vault. The name can contain lowercase letters and digits.|
+    |Vault Name|The name of the backup vault. The name can contain lowercase letters and digits.|
     |Bucket Region|The region where the OSS bucket is deployed.|
     |Bucket Name|The name of the OSS bucket.|
     |Bucket Subdirectory|The subdirectory of the OSS bucket. This parameter is optional.|
@@ -186,7 +190,7 @@ When you back up applications in an ACK cluster, the backup data is stored in an
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -196,24 +200,33 @@ When you back up applications in an ACK cluster, the backup data is stored in an
 
 6.  On the **Backups** tab, click **Create**.
 
-7.  If you want to back up a volume, run the following command to add an annotation to the pod to which the volume is mounted:
-
-    **Note:** If you want to back up an application, skip this step.
-
-    ```
-    kubectl -n <The name of the volume that you want to back up> annotate pod/<The name of the pod> backup.velero.io/backup-volumes=<The name of the persistent volume claim (PVC) that corresponds to the pod>
-    ```
-
-8.  In the **Create** dialog box, set **Name**, **Backup Vaults**, **Backup Namespace**, **Label**, **Excluded Resources**, **Validity Period**, and **Scheduled Backup**. Click **OK**.
+7.  In the **Create** panel, set the parameters and click **OK**.
 
     ![Create a backup](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0795159161/p245376.png)
 
+    |Parameter|Description|
+    |---------|-----------|
+    |**Name**|The name of the backup task. This parameter is required.|
+    |**Backup Vaults**|Select the backup vault that you want to use. This parameter is required.|
+    |**Backup Namespaces**|You can select one or more namespaces that you want to backup. Applications in the selected namespaces are backed up.|
+    |**Label**|Specify a label. Applications that are added with this label are backed up.|
+    |**Excluded Namespaces**|You can select one or more namespaces that you want to exclude from the backup task. Applications in the selected namespaces are not backed up.|
+    |**Excluded Resources**|You can specify multiple types of Kubernetes resources, such as `pod or Secret`, that you want to exclude from the backup. Separate resource types with commas \(,\). Resources of the selected types are not backed up.|
+    |**Volume Backup**|Specify whether to enable volume backup to back up application data. If you select Enable, you must set **Backup Method**:
+
+    -   **Disk Snapshot**: uses the disk snapshot feature of Alibaba Cloud disks to back up application data. The backup data is stored in a backend disk.
+    -   **Restic**: uses the open source Restic project to back up application data. The backup data is stored in OSS. |
+    |**Validity Period**|Specify the validity period of the backup data. Backup data cannot be restored after it expires.|
+    |**Scheduled Backup**|Specify whether to enable scheduled backup for applications and application data. You can enter a cron expression to specify the backup schedule. For more information about cron expressions, see [how-use-cron-linux](https://opensource.com/article/17/11/how-use-cron-linux).|
+
     **Note:**
 
-    -   The name can contain only lowercase letters and digits.
-    -   You must set at least one of the following parameters: **Backup Namespace** and **Label**.
-    -   The backup schedule. You can enter a cron expression or a time interval.
-    -   After scheduled backup is enabled, you can view the scheduled backup configurations of this backup on the **Scheduled Backup Configurations** tab of the Application Backup page.
+    -   The backup name can contain only lowercase letters and digits, and cannot contain spaces.
+    -   You can select multiple backup namespaces and multiple excluded namespaces.
+    -   If you want to back up resources by label, you can specify only one label.
+    -   The Disk Snapshot option uses the disk snapshot feature of Alibaba Cloud disks to back up a disk volume. The Restic option uses the open source Restic project to back up a disk volume. We recommend that you use the Disk Snapshot option.
+    -   When you specify the backup schedule, you can enter a cron expression or a time interval.
+    -   If you enable scheduled backup, you can view the details of scheduled backups on the **Scheduled Backup Configurations** tab of the Application Backup page.
     On the **Backups** tab, if the state of the backup task is **Completed**, the task is created.
 
 
@@ -221,7 +234,7 @@ When you back up applications in an ACK cluster, the backup data is stored in an
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -236,17 +249,17 @@ When you back up applications in an ACK cluster, the backup data is stored in an
     **Note:**
 
     -   The name can contain only lowercase letters and digits.
-    -   Existing resources in the cluster are not overwritten during restoration. Only resources that do not exist in the cluster are restored. If you want to restore an application to an earlier version, you must first delete the current resources of the application.
+    -   Existing resources in the cluster are not overwritten during restoration. Only resources that do not exist in the cluster are restored. You must delete the current resources of an application before you can restore the application to an earlier version.
 8.  In the message that appears, click **OK**.
 
 
 ## Restore an application across clusters
 
-You must create two clusters before you can restore an application that is backed up in a cluster to another cluster. In this example, a cluster named cluster\_A and the other named cluster\_B are created. The following example shows how to back up an application in cluster\_A and restore the application in cluster\_B.
+You must create two clusters before you can restore an application across clusters. In this example, a cluster named cluster\_A and the other named cluster\_B are used. The following example shows how to back up an application in cluster\_A and restore the application in cluster\_B.
 
 **Note:** Make sure that the two clusters use the same Kubernetes version. Otherwise, you cannot restore the application in cluster\_B.
 
-![Architecture](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1135242161/p223924.png)
+![Backup architecture](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1135242161/p223924.png)
 
 1.  Grant the required OSS permissions to cluster\_A and cluster\_B. For more information, see [Step 1: Grant OSS permissions to the cluster](#section_eex_psy_s4t).
 
@@ -258,11 +271,11 @@ You must create two clusters before you can restore an application that is backe
 
     After the backup task is created, you can log on to cluster\_B to view the backup task on the **Backups** tab of the Application Backup page.
 
-5.  On the Application Backup page, click the **Restore** tab, find the backup that is created in cluster\_A, and then restore the backup. For more information, see [Step 5: Create a restoration task](#section_gdu_9n6_lft).
+5.  On the Application Backup page, click the **Restore** tab and create a restoration task based on the backup task that is created in cluster\_A. For more information, see [Step 5: Create a restoration task](#section_gdu_9n6_lft).
 
 
 **Related topics**  
 
 
-[Use migrate-controller to back up and restore applications](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Switch traffic to the Kubernetes application/Use migrate-controller to back up and restore applications.md)
+[Use migrate-controller to back up and restore applications](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Application migration/Use migrate-controller to back up and restore applications.md)
 
