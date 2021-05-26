@@ -7,12 +7,15 @@ keyword: [NAS静态存储卷, 持久化存储, 共享存储]
 NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能的分布式文件系统。本文介绍如何使用阿里云NAS静态存储卷，使用NAS静态存储卷如何实现持久化存储与共享存储。
 
 -   您已经创建好一个Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   您已经创建一个静态NAS卷。具体操作，请参见[管理文件系统]()。
+-   您已经创建一个静态NAS卷。具体操作，请参见[创建文件系统]()。
+
+    若需要加密NAS存储卷中的数据，创建NAS文件系统时请配置加密类型。
+
 -   您已经创建NAS挂载点。具体操作，请参见[管理挂载点]()。
 
     NAS挂载点需要和集群节点在同一个VPC内。
 
--   您已通过kubectl连接集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   您已通过kubectl连接集群。具体操作，请参见[通过kubectl管理Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 ## 使用场景
 
@@ -74,7 +77,7 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
     |--|--|
     |**存储声明类型**|支持云盘、NAS、OSS三种云存储类型。 本文中选择NAS。|
     |**名称**|创建的存储声明名称在集群内必须唯一。|
-    |**分配模式**|选择已有存储卷。**说明：** 若未创建存储卷，您可以设置**分配模式**为**创建存储卷**，配置创建存储卷参数，详情请参见[创建PV](#p_93m_jyx_d0a)。 |
+    |**分配模式**|选择已有存储卷。**说明：** 若未创建存储卷，您可以设置**分配模式**为**创建存储卷**，配置创建存储卷参数。更多信息，请参见[创建PV](#p_93m_jyx_d0a)。 |
     |**已有存储卷**|单击**选择已有存储卷**，在目标存储卷右侧操作列单击**选择**，选择存储卷。|
     |**总量**|所创建存储卷的容量。**说明：** 所创建存储卷声明的容量不能超过待挂载的存储卷容量。 |
 
@@ -95,7 +98,7 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
 
     ACK数据卷支持配置本地存储和云存储。
 
-    -   **本地存储**：支持主机目录（HostPath）、配置项（ConfigMap）、保密字典（Secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息参见[volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。
+    -   **本地存储**：支持主机目录（HostPath）、配置项（ConfigMap）、保密字典（Secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息，请参见[volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。
     -   **云存储**：支持云存储类型。
     本例中配置了一个NAS类型的数据卷，将该NAS存储卷挂载到容器中/tmp路径下。
 
@@ -184,13 +187,13 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
     |storage|声明应用使用量，不能大于存储卷的总量。|
     |mathLabels|输入PV的标签，用于关联PV。|
 
-3.  执行以下命令创建名为nas-static的应用，并挂载PVC。
+3.  执行以下命令创建名为**nas-static**的应用，并挂载PVC。
 
     ```
     kubectl create -f nas.yaml
     ```
 
-    以下为创建nas-static应用的nas.yaml示例文件。
+    以下为创建**nas-static**应用的nas.yaml示例文件。
 
     ```
     apiVersion: apps/v1
@@ -261,7 +264,7 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
         deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
         ```
 
-    2.  执行以下命令，查看任意一个Pod/data路径下的文件，本文以名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod为例。
+    2.  执行以下命令，查看任意一个Pod /data路径下的文件，本文以名为`deployment-nas-1-5b5cdb85f6-n****`的Pod为例。
 
         ```
         kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
@@ -269,13 +272,13 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
 
         无返回结果，说明/data路径下无文件。
 
-2.  执行以下命令，在名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod/data路径下创建文件nas。
+2.  执行以下命令，在名为`deployment-nas-1-5b5cdb85f6-n****`的Pod/data路径下创建文件nas。
 
     ```
     kubectl exec deployment-nas-1-5b5cdb85f6-n**** touch /data/nas
     ```
 
-3.  执行以下命令，查看名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod/data路径下的文件。
+3.  执行以下命令，查看名为`deployment-nas-1-5b5cdb85f6-n****`的Pod/data路径下的文件。
 
     ```
     kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
@@ -315,7 +318,7 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
         deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
         ```
 
-    2.  执行以下命令，查看名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod/data路径下的文件。
+    2.  执行以下命令，查看名为`deployment-nas-1-5b5cdb85f6-n****`的Pod/data路径下的文件。
 
         ```
         kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
@@ -363,7 +366,7 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
 
 3.  执行以下命令，查看2个Pod/date路径下的文件。
 
-    1.  执行以下命令，查看名为deployment-nas-1-5b5cdb85f6-n\*\*\*\*的Pod/date路径下的文件。
+    1.  执行以下命令，查看名为`deployment-nas-1-5b5cdb85f6-n****`的Pod/date路径下的文件。
 
         ```
         kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
@@ -375,7 +378,7 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
         nas
         ```
 
-    2.  执行以下命令，查看名为deployment-nas-2-c5bb4746c-4\*\*\*\*的Pod/date路径下的文件。
+    2.  执行以下命令，查看名为`deployment-nas-2-c5bb4746c-4****`的Pod/date路径下的文件。
 
         ```
         kubectl exec deployment-nas-2-c5bb4746c-4**** ls /data
