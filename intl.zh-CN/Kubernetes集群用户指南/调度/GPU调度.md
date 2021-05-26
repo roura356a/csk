@@ -8,9 +8,9 @@ keyword: [GPU调度, 默认GPU调度, 共享GPU调度, GPU拓扑感知调度]
 
 ## 普通GPU调度
 
-申请Kubernetes GPU集群后，通过运行TensorFlow的GPU实验环境，关于如何使用Kubernetes默认调度器独占GPU，请参见[使用Kubernetes默认GPU调度](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU调度/使用Kubernetes默认GPU调度.md)
+申请Kubernetes GPU集群后，通过运行TensorFlow的GPU实验环境，关于如何使用Kubernetes默认调度器独占GPU，请参见[使用Kubernetes默认GPU调度](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU调度/使用Kubernetes默认GPU调度.md)。
 
-您也可通过使用GPU节点标签自定义调度，具体操作，请参见[使用节点标签自定义GPU调度](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU调度/使用节点标签自定义GPU调度.md)
+您也可通过使用GPU节点标签自定义调度，具体操作，请参见[使用节点标签自定义GPU调度](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU调度/使用节点标签自定义GPU调度.md)。
 
 ## 共享GPU调度
 
