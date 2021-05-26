@@ -8,7 +8,7 @@ keyword: [阿里云KMS, 云盘存储卷加密]
 
 -   已创建好一个Kubernetes集群，并且在该集群中安装CSI插件。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   已开通密钥管理服务。具体操作，请参见[开通密钥管理服务](/cn.zh-CN/快速入门/开通密钥管理服务.md)。
--   已通过kubectl连接Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)
+-   已通过kubectl连接Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 ## 功能介绍
 
