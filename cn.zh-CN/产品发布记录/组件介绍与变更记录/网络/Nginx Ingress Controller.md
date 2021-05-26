@@ -26,7 +26,7 @@ Ingress Controller通过API Server获取Ingress资源的变化，动态地生成
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
-|v0.44.0.2-abf1c6fe4-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/aliyun-ingress-controller:v0.44.0.2-abf1c6fe4-aliyun|2021年04月01日|兼容老版本log\_format中配置的`the_real_ip`字段。|建议在业务低峰期升级，变更过程中可能会导致已经建立的连接发生瞬断。|
+|v0.44.0.2-abf1c6fe4-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/aliyun-ingress-controller:v0.44.0.2-abf1c6fe4-aliyun|2021年04月01日|兼容老版本（0.30及之前的版本）log\_format中配置的`the_real_ip`字段。|建议在业务低峰期升级，变更过程中可能会导致已经建立的连接发生瞬断。|
 
 ## 2021年03月
 
