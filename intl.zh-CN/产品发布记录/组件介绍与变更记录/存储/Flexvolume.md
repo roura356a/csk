@@ -26,7 +26,7 @@ Flexvolume插件是Kubernetes社区较早实现的存储卷扩展机制。ACK从
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
-|v1.18.8.166|registry.cn-hangzhou.aliyuncs.com/acs/Flexvolume:v1.18.8.166-b39c52a-aliyun|2021年05月27日|-   支持默认开启云盘监控。
+|v1.18.8.166|registry.cn-hangzhou.aliyuncs.com/acs/flexvolume:v1.18.8.166-b39c52a-aliyun|2021年05月27日|-   支持默认开启云盘监控。
 -   支持Windows SMB挂载。
 
 |此次升级不会对业务造成影响。|
