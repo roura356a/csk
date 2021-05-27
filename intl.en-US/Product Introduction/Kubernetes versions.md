@@ -31,6 +31,8 @@ Starting January 1, 2020, ACK supports only the major versions of Kubernetes. AC
     -   Deprecated major versions refer to major versions that are earlier than the three supported major versions of Kubernetes.
     -   Deprecated minor versions refer to minor versions other than the latest one. Some of these minor versions are released to fix vulnerabilities listed in the Common Vulnerabilities & Exposures \(CVE\) system.
 
+For more information about the Kubernetes versions supported by ACK, see [Overview of Kubernetes release notes](/intl.en-US/Release notes/Kubernetes release notes/Overview of Kubernetes release notes.md).
+
 ## Release cycle
 
 -   In most cases, Alibaba Cloud updates the list of Kubernetes major versions supported by ACK every six months.
