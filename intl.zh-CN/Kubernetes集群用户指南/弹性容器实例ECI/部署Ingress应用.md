@@ -9,7 +9,7 @@ keyword: [部署Ingress, Ingress应用]
 ## 前提条件
 
 -   您已经部署了一个虚拟节点。具体操作，请参见[通过部署ACK虚拟节点组件创建ECI Pod](/intl.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/通过部署ACK虚拟节点组件创建ECI Pod.md)。
--   您已经给命名空间vk打上virtual-node-affinity-injection: enabled标签。具体操作，请参见[通过配置namespace标签的方式创建Pod](/intl.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/通过部署ACK虚拟节点组件创建ECI Pod.md)。
+-   您已经给命名空间**vk**打上virtual-node-affinity-injection: enabled标签。具体操作，请参见[通过配置namespace标签的方式创建Pod](/intl.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/通过部署ACK虚拟节点组件创建ECI Pod.md)。
 
 ## 操作步骤
 
@@ -21,7 +21,7 @@ keyword: [部署Ingress, Ingress应用]
 
 4.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**。
 
-5.  单击右上角的**使用模板创建**。
+5.  单击右上角的**使用YAML创建资源**。
 
 6.  选择样例模板或自定义，然后单击**创建**。
 
