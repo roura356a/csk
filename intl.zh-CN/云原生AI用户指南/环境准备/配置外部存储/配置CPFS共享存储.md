@@ -43,7 +43,7 @@ keyword: [CPFS共享存储, Arena, 分布式存储, 配置PV和PVC]
 
 4.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**。
 
-5.  在无状态（Deployment）页面，单击右上角**使用模板创建**。
+5.  在无状态（Deployment）页面，单击右上角**使用YAML创建资源**。
 
     设置集群名称和命名空间、设置示例模板为**Resource-PersistentVolumeClaim**。
 
