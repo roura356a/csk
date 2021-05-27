@@ -187,7 +187,12 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
             |**挂载数据盘**|支持**ESSD云盘**、**SSD云盘**和**高效云盘**。挂载数据盘时，支持云盘**加密**和**开启云盘备份**。 |
             |**操作系统**|ACK支持的节点操作系统包括：
 
-            -   Alibaba Cloud Linux 2（ACK默认的操作系统）
+            -   Alibaba Cloud Linux 2.x（ACK默认的操作系统）
+
+选中Alibaba Cloud Linux 2.x操作系统时，您可以进行以下安全加固的配置：
+
+                -   不开启：不对Alibaba Cloud Linux 2.x操作系统进行安全加固。
+                -   CIS加固：对Alibaba Cloud Linux 2.x操作系统进行CIS加固。关于CIS加固的使用说明，请参见[ACK CIS加固使用说明](/intl.zh-CN/Kubernetes集群用户指南/集群/ACK CIS加固使用说明.md)。
             -   CentOS 7.x
 
 **说明：** 暂不支持CentOS 8.x及以上的操作系统。 |
