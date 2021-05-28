@@ -90,13 +90,13 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         apiVersion: v1
         metadata: 
           name: nas-csi-pvc
-          spec:
-            accessModes:
-              - ReadWriteMany 
-            storageClassName: alicloud-nas-subpath
-            resources: 
-              requests:
-                storage: 20Gi
+        spec:
+          accessModes:
+            - ReadWriteMany 
+          storageClassName: alicloud-nas-subpath
+          resources: 
+            requests:
+              storage: 20Gi
         ```
 
         |参数|说明|
