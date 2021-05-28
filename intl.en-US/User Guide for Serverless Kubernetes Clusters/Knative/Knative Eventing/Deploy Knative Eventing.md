@@ -13,7 +13,7 @@ ASK Knative provides the Knative Eventing component to build an event-driven fra
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -31,13 +31,13 @@ ASK Knative provides the Knative Eventing component to build an event-driven fra
         kubectl -n kube-system edit configmap eci-profile
         ```
 
-    2.  Set `privatezone` to `true`. Save and close the eci-profile file.
+    2.  Set `enableprivatezone` to `true`. Save and close the eci-profile file.
 
         ```
         apiVersion: v1
         data:
           ...
-          privatezone: "true"
+          enableprivatezone: "true"
           ...
         kind: ConfigMap
         metadata:
