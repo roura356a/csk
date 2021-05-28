@@ -21,7 +21,7 @@ Serverless Kubernetes \(ASK\) clusters support schedule-based autoscaling. This 
       name: cron-autoscaler
       namespace: default
     data:
-      jobs:
+      jobs: |
        - name: "workday"
          schedule: "* * 1-5"
          timeseries:
