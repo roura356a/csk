@@ -34,11 +34,11 @@ For more information, see [CUDA compatibility](https://docs.nvidia.com/deploy/cu
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node**.
+4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Nodes**.
 
 5.  Select the node for which you want to upgrade the NVIDIA driver and click **Batch Remove**.
 
@@ -55,7 +55,7 @@ The following example shows how to set the NVIDIA driver version to 418.181.07:
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -80,6 +80,7 @@ The following example shows how to set the NVIDIA driver version to 418.181.07:
 
         -   418.181.07
         -   450.102.04
+        -   460.32.03
     3.  Click **Confirm Order**.
 
 
@@ -112,7 +113,7 @@ The following example shows how to upload the NVIDIA-Linux-x86\_64-460.32.03.run
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
