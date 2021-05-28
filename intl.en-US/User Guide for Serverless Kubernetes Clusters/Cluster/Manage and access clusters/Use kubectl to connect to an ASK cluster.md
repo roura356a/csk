@@ -6,7 +6,7 @@ keyword: [kubectl, connect to a Kubernetes cluster]
 
 To connect to a serverless Kubernetes \(ASK\) cluster from your on-premises machine, we recommend that you use the kubectl command-line tool. This topic describes how to use kubectl to connect to an ASK cluster.
 
-1.  Download the latest kubectl client from the [Kubernetes version description](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG.md?spm=a2c4g.11186623.2.4.9ZrN6B&file=CHANGELOG.md) page.
+1.  Download the latest kubectl client from the [Kubernetes version description](https://github.com/kubernetes/kubectl/releases) page.
 
 2.  Install and set up the kubectl client.
 
