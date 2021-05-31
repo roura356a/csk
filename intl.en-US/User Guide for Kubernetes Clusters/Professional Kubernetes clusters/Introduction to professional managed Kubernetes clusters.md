@@ -42,50 +42,12 @@ The following table compares professional managed Kubernetes clusters with stand
 |Observability metrics|![Supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232205.png)|![Not supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232208.png)|
 |Kube-scheduler|[Gang scheduling](/intl.en-US/User Guide for Kubernetes Clusters/Scheduling/Workload scheduling/Gang scheduling.md)|![Supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232205.png)|![Not supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232208.png)|
 |[Topology-aware CPU scheduling](/intl.en-US/User Guide for Kubernetes Clusters/Scheduling/Resource scheduling/Topology-aware CPU scheduling.md)|![Supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232205.png)|![Not supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232208.png)|
-|[Topology-aware GPU scheduling](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/GPU Resource scheduling/GPU topology-aware scheduling/Overview.md)|![Supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232205.png)|![Not supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232208.png)|
-|[cGPU Professional Edition](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/GPU Resource scheduling/cGPU Professional Edition/Overview.md)|![Supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232205.png)|![Not supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232208.png)|
+|[Topology-aware GPU scheduling](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/GPU scheduling/GPU topology-aware scheduling/Overview of topology-aware GPU scheduling.md)|![Supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232205.png)|![Not supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232208.png)|
+|[cGPU Professional Edition](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/GPU scheduling/cGPU Professional Edition/Overview of cGPU Professional Edition.md)|![Supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232205.png)|![Not supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232208.png)|
 |Security management|The advanced security management feature that supports data encryption. For more information, see [Use KMS to encrypt Kubernetes secrets at rest in the etcd](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Use KMS to encrypt Kubernetes secrets at rest in the etcd.md).|![Supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232205.png)|![Not supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232208.png)|
 |Managed node pool|[Managed node pool](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Managed node pools/Overview.md)|![Supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232205.png)|![Not supported.](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2912887161/p232208.png)|
 
 **Note:**
 
 Dedicated Kubernetes clusters support only cGPU Basic Edition. For more information, see [Overview](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Overview.md).
-
-## Supported regions
-
--   Asia Pacific
-
-    |Region|City|Region ID|
-    |------|----|---------|
-    |China \(Beijing\)|Beijing|cn-beijing|
-    |China \(Zhangjiakou\)|Zhangjiakou|cn-zhangjiakou|
-    |China \(Hohhot\)|Hohhot|cn-huhehaote|
-    |China \(Ulanqab\)|Ulanqab|cn-wulanchabu|
-    |China \(Hangzhou\)|Hangzhou|cn-hangzhou|
-    |China \(Shanghai\)|Shanghai|cn-shanghai|
-    |China \(Shenzhen\)|Shenzhen|cn-shenzhen|
-    |China \(Heyuan\)|Heyuan|cn-heyuan|
-    |China \(Chengdu\)|Chengdu|cn-chengdu|
-    |China \(Hong Kong\)|Hong Kong|cn-hongkong|
-    |Japan \(Tokyo\)|Tokyo|ap-northeast-1|
-    |Singapore \(Singapore\)|Singapore|ap-southeast-1|
-    |Australia \(Sydney\)|Sydney|ap-southeast-2|
-    |Malaysia \(Kuala Lumpur\)|Kuala Lumpur|ap-southeast-3|
-    |Indonesia \(Jakarta\)|Jakarta|ap-southeast-5|
-
--   Europe & Americas
-
-    |Region|City|Region ID|
-    |------|----|---------|
-    |US \(Silicon Valley\)|Silicon Valley|us-west-1|
-    |US \(Virginia\)|Virginia|us-east-1|
-    |UK \(London\)|London|eu-west-1|
-    |Germany \(Frankfurt\)|Frankfurt|eu-central-1|
-
--   India
-
-    |Region|City|Region ID|
-    |------|----|---------|
-    |India \(Mumbai\)|Mumbai|ap-south-1|
-
 
