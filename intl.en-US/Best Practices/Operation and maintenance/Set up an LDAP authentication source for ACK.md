@@ -47,7 +47,7 @@ Perform the following steps to build a staging environment for LDAP:
     ```
 
     ```
-    tmp cd demo-base-code/01_ldap
+    cd demo-base-code/01_ldap
     01_ldap git:(master) tree . /
     
     # Output:
