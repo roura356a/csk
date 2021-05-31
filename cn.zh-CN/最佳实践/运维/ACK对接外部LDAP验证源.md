@@ -56,7 +56,7 @@ keyword: [容器服务Kubernetes, LDAP, IDAAS]
     2.  执行以下命令修改域名。
 
         ```
-        tmp cd demo-base-code/01_ldap
+        cd demo-base-code/01_ldap
         01_ldap git:(master) tree ./
         ```
 
