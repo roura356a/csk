@@ -35,8 +35,6 @@ CIS Aliyun Linux 2 Benchmark version 1.0.0是最新的CIS Aliyun Linux 2 Benchma
 
 在创建ACK集群时，您可以选择启用CIS加固，这样集群在创建时会自动配置对应的CIS加固项，使得ACK集群所有节点的Alibaba Cloud Linux 2镜像满足CIS Aliyun Linux 2 Benchmark version 1.0.0中大部分Level 1 Scored项的加固要求。关于具体满足的加固项，请参见[ACK CIS加固集群满足的CIS Level 1 Scored加固项清单](#section_qq6_5no_2nz)。
 
-![等保加固](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4844651261/p275668.png)
-
 **说明：** 为了满足CIS Level 1的加固要求，ACK会在CIS加固的Alibaba Cloud Linux 2操作系统中默认创建**ack\_cis**这个普通用户。
 
 ## ACK CIS加固集群满足的CIS Level 1 Scored加固项清单
@@ -113,7 +111,7 @@ CIS-CAT Pro具有v4和v3两个版本系列。以v4为例，本文将阐述如何
 
 2.  登录到ACK集群的任一Alibaba Cloud Linux 2操作系统的节点。
 
-    关于连接ACK集群ECS节点的具体方式，请参见[查看节点列表](/cn.zh-CN/Kubernetes集群用户指南/节点与节点池/节点/查看节点列表.md)和[连接方式概述](/cn.zh-CN/实例/连接实例/连接方式概述.md)。
+    关于连接ACK集群ECS节点的具体方式，请参见[查看节点列表](/intl.zh-CN/Kubernetes集群用户指南/节点与节点池/节点/查看节点列表.md)和[连接方式概述](/intl.zh-CN/实例/连接实例/连接方式概述.md)。
 
 3.  分别执行以下命令安装CIS-CAT需要的Java环境。
 
@@ -178,7 +176,7 @@ CIS-CAT Pro具有v4和v3两个版本系列。以v4为例，本文将阐述如何
 **相关文档**  
 
 
-[Alibaba Cloud Linux 2概述](/cn.zh-CN/镜像/Alibaba Cloud Linux 2/Alibaba Cloud Linux 2概述.md)
+[Alibaba Cloud Linux 2概述](/intl.zh-CN/镜像/Alibaba Cloud Linux 2/Alibaba Cloud Linux 2概述.md)
 
 [CIS Aliyun Linux 2 Benchmark version 1.0.0](https://www.cisecurity.org/benchmark/Aliyun_Linux/)
 
