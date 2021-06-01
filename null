@@ -1,80 +1,80 @@
-# 使用操作系统Alibaba Cloud Linux 2
+# Use Alibaba Cloud Linux 2, a container-optimized operating system
 
-ACK目前已经全面支持Alibaba Cloud Linux 2的节点创建，并结合Alibaba Cloud Linux 2的高内核特性提供了多场景的优化。本文介绍ACK中使用Alibaba Cloud Linux 2操作系统的优势，及ACK基于Alibaba Cloud Linux 2提供的多场景优化。
+Container Service for Kubernetes \(ACK\) allows you to create nodes that run the Alibaba Cloud Linux 2 operating system and provides optimizations for multiple scenarios based on the high-performance kernel of Alibaba Cloud Linux 2. This topic describes the optimizations that are provided by Alibaba Cloud Linux 2 on ACK to meet the requirements of different scenarios.
 
-Alibaba Cloud Linux 2是新一代阿里云原生Linux操作系统，为云上应用程序提供安全、稳定、高性能的定制化运行环境，并针对云基础设施进行了深度优化，为您打造更好的运行时体验。您可以免费使用Alibaba Cloud Linux 2公共镜像，并免费获得阿里云针对该操作系统的长期支持。
+Alibaba Cloud Linux 2 is a next-generation proprietary Linux distribution that is developed by Alibaba Cloud. It provides a safe, stable, and high-performance customized environment for applications on Elastic Compute Service \(ECS\) instances. Alibaba Cloud Linux 2 is optimized for the cloud infrastructure and aims to deliver a better runtime experience. Alibaba Cloud Linux 2 images are free of charge, and Alibaba Cloud provides long-term technical support \(LTS\) for Alibaba Cloud Linux 2.
 
-## 使用Alibaba Cloud Linux 2操作系统镜像的优势
+## Benefits of Alibaba Cloud Linux 2
 
-Alibaba Cloud Linux 2的操作系统是针对阿里云飞天虚拟化平台开发的，针对阿里云的环境提供了很多优化和新特性，主要包括：
+Alibaba Cloud Linux 2 is intended for hosting and running containers on the Alibaba Cloud IaaS platform and provides various features specific to the Alibaba Cloud environment. Alibaba Cloud Linux 2 provides the following features:
 
--   是阿里云上启动最快的Linux发行版。
--   针对ECS大规格虚机、裸金属服务器深度优化，特别是大规格实例的多任务的场景。
--   默认安装阿里云常用软件包，如阿里云CLI、cloud-init等，减少云资源的管理成本。
--   精简系统，最小的安全攻击面，最少的系统资源占用。
--   更完善的支持体系，在阿里云上提供多种渠道的技术支持体系。
--   更及时的软件安全漏洞（CVE）修复。
--   支持内核热补丁升级的能力，大大保障漏洞修复时的业务连续性。
+-   The Linux distribution with the fastest boot time on Alibaba Cloud.
+-   Deeply optimized for high-specification virtual machines and bare metal servers. This is particularly suitable for multi-task scenarios that involve large-sized instances.
+-   Pre-installed with commonly used software such as Alibaba Cloud CLI and cloud-init. This reduces the costs of cloud resource management.
+-   A streamlined kernel that minimizes the attack surface and system resource occupation.
+-   An optimized technical support system that offers multi-channel technical support on Alibaba Cloud.
+-   Fixes vulnerabilities at the earliest opportunity based on Common Vulnerabilities and Exposures \(CVE\).
+-   Supports live patching of the kernel. This ensures service continuity when vulnerabilities are being fixed.
 
-应用实例在Alibaba Cloud Linux 2上运行的性能优势包括：
+Alibaba Cloud Linux 2 provides the following benefits for the performance of applications that run Alibaba Cloud Linux 2:
 
--   针对ECS实例环境大幅优化启动速度，在系统压力来临时快速的扩容启动计算资源，启动速度相对CentOS 7提升29%。
--   针对ECS实例环境优化了多任务的场景，提升大规格实例多任务的性能，同样规格下能有16%的性能提升。
--   更高效的系统调用，系统调用的性能提升11%。
--   Linux网络栈的优化，综合网络性能相对CentOS 7提升7.8%。
--   Alibaba Cloud Linux 2默认是编译好BBR的拥塞控制算法的，在公网访问较多的场景中允许用户修改拥塞控制算法为BBR（Bottleneck Bandwidth and RTT），提升公网访问的带宽稳定性。
--   针对TLS协议的加密优化。
--   支持新的Budget Fair Queueing的IO调度器，降低云盘的延迟。
+-   Significantly reduces the system boot time of ECS instances. Scales out computing resources when system overloading is detected. Reduces the system boot time by 29% compared with CentOS 7.
+-   Provides optimizations for ECS instances in multi-task scenarios and improves the performance of large-sized instances by 16%.
+-   Improves the efficiency of system scheduling by 11%.
+-   Optimizes the Linux networking stack to improve the network performance by 7.8% compared with CentOS 7.
+-   By default, Alibaba Cloud Linux 2 is compiled with Bottleneck Bandwidth and Round-trip Propagation Time \(BBR\), a congestion control algorithm. In scenarios where frequent Internet access is required, you can change the congestion control algorithm of containers to BBR to improve the bandwidth stability for Internet access.
+-   Optimizes the TLS encryption protocol.
+-   Supports the Budget Fair Queueing \(BFQ\) I/O scheduler to reduce the disk latency.
 
-## ACK结合Alibaba Cloud Linux 2的场景优化
+## Optimizations provided by Alibaba Cloud Linux 2 on ACK in different scenarios
 
-阿里云容器化业务通过内核级的优化，让容器任务混布的密度提升的同时不影响在线业务的响应。Alibaba Cloud Linux 2的操作系统和Kernel中包含了这些优化。ACK针对这些优化特性，提供了多场景的优化，促进容器化业务跑的更快更平稳。
+ACK provides kernel optimizations to allow containerized workloads to support more densely deployed container tasks without service interruptions. Based on the optimizations provided by Alibaba Cloud Linux 2 and its kernel. ACK offers further optimizations to improve the speed and stability of containerized workloads in various scenarios.
 
--   容器网络优化
+-   Container network optimization
 
-    Alibaba Cloud Linux 2拥有4.19的高内核版本。在Alibaba Cloud Linux 2的节点上，ACK Terway网络插件支持IPVlan的容器网络模式，在网络小包的场景下相对传统bridge和策略路由网络性能提升40%。Alibaba Cloud Linux 2默认编译了BBR的拥塞控制算法，在公网访问较多的场景中允许用户修改容器的拥塞控制算法为BBR，提升公网访问的带宽稳定性，在容器的公网连接和跨公网的镜像拉取上性能大幅提升。
+    Alibaba Cloud Linux 2 is compiled with kernel 4.19. The Terway network plug-in supports the IPVLAN driver, which improves the network performance in short-packet communications by 40% compared with the traditional bridge mode and policy-based routing \(PBR\). By default, Alibaba Cloud Linux 2 has compiled the BBR congestion control algorithm. In scenarios where frequent Internet access is required, you can change the congestion control algorithm of containers to BBR to improve the bandwidth stability of Internet access. This significantly improves the efficiency when containers communicate with the Internet or ACK pulls images from the Internet.
 
--   安全沙箱支持和优化
+-   Support and optimizations for Sandboxed-Container
 
-    阿里云与Kata Containers和Clear Linux社区合作。在弹性裸金属实例上，您可以无缝地部署整套Kata Containers的解决方案。ACK还优化了安全沙箱（RunV）镜像的启动时间，使得Kata Containers的整体解决方案可以正常运行。ACK在此之上，提供了和普通集群体验几乎一致的安全沙箱容器集群，让应用运行在一个轻量虚拟机沙箱环境中，适合于多用户间的负载隔离，对不可信应用的隔离，在提升安全性的同时，对性能影响也做到非常小。
+    Alibaba Cloud has established partnerships with the Kata Containers and Clear Linux communities. You can seamlessly deploy the Kata Containers solution on ECS Bare Metal instances. ACK also reduces the boot time of runV containers. This ensures that the Kata Containers solution can work as expected. ACK also provides clusters that have sandboxed containers deployed. This type of cluster offers similar user experience as normal clusters. You can deploy applications in lightweight sandboxed environments to isolate workloads among multiple tenants. In addition, you can use sandboxed containers to isolate untrusted applications. Sandboxed-Container improves security and has little impact on application performance.
 
--   节点AutoScaler优化
+-   AutoScaler optimization
 
-    Alibaba Cloud Linux 2针对ECS实例环境大幅优化启动速度，节点的启动时间相对CentOS 7的系统降低29%。结合ACK灵活高效的自动弹性伸缩，在应用压力来临时，ACK集群会自动根据负载状况创建和启动ECS的节点加入集群，并调度和启动应用实例。Alibaba Cloud Linux 2的快速扩容启动的能力让计算资源可以及时满足流量峰值的需求。
+    Alibaba Cloud Linux 2 significantly reduces the system boot time of ECS instances. The average system boot time is reduced by 29% compared with CentOS 7. Based on the auto scaling feature provided by ACK, ACK clusters can create and launch ECS instance-based nodes when the system is overloaded. Then, ACK schedules and starts application instances accordingly. Alibaba Cloud Linux 2 enables nodes to quickly start up and scale out to withstand traffic spikes.
 
--   CoreDNS优化
+-   CoreDNS optimization
 
-    针对UDP协议的conntrack表的占用优化，在ACK集群中部署密度高了后经常遇到DNS的解析问题，大部分是因为DNS查询的UDP协议对conntrack的占用太多不释放导致，而Alibaba Cloud Linux 2中的conntrack的优化可以让同样DNS查询频率的conntrack表占用减少一半，从而大大提高集群中应用DNS查询的成功率。
+    When pods are densely deployed in an ACK cluster, Domain Name Service \(DNS\) resolution may fail because UDP connections account for excessive entries in the conntrack table. Alibaba Cloud Linux 2 has optimized the conntrack table to reduce table entries by 50% for the same DNS query rate. This significantly improves the success rate of DNS queries.
 
--   更细粒度的资源监控和控制能力
+-   More fine-grained resource monitoring and control
 
-    Alibaba Cloud Linux 2的内核提供了针对容器场景的PSI压力模型、per-cgroup kswapd、memory priority等的细粒度可视化和控制能力。在Alibaba Cloud Linux 2的ACK集群中我们可以通过CGroup Controller来利用这些能力，可以实现细粒度BufferIO Control、TCP、CPUSet、Mem、NUMA等细粒度资源的配置和动态更新，在逐步提升资源利用率的同时也能保障应用间的互相干扰降到最低。
+    The kernel of Alibaba Cloud Linux 2 provides fine-grained visualization and control capabilities for containers, such as PSI pressure metrics, per-cgroup kswapd, and memory priority. In ACK clusters that run Alibaba Cloud Linux 2, you can use CGroup Controllers to adopt these capabilities, and achieve fine-grained resource configurations and dynamic updates. These resources include BufferIO Control, TCP, CPUSet, Mem, and NUMA. This provides a step-by-step improvement in resource utilization and minimizes the interference between applications.
 
--   AI和数据加速
+-   Acceleration of AI-assisted computing and data processing
 
-    Alibaba Cloud Linux 2对大规格机型和多任务的优化可以提升高性能计算任务的速度，对存储的流式读写的优化也可以提高模型大文件的读写性能，综合起来大大加速AI和高性能计算任务的效率。实际测试场景如下：
+    Alibaba Cloud Linux 2 enables large-sized instances to handle high-performance computing tasks much faster. It also optimizes streaming reads and writes to improves the efficiency of reading and writing large model files. This significantly accelerates AI-assisted and high-performance computing. The following data is recorded in the staging environment:
 
-    -   通过Alluxio利用64个线程加载OSS数据1152个文件144G，在CentOS需要3m25s，Alibaba Cloud Linux 2只需2m19.037s，速度是CentOS上的1.6倍。
-    -   运行ResNet50 Batch 128模型训练，数据缓存到Alluxio中，在CentOS下V100仅仅为5212.00 images/s。在Alibaba Cloud Linux 2下V100可以达到8746.59 images/s, 速度是CentOS上的1.7倍。
--   其他
-    -   使用Linux 4.19的内核，ACK将阿里巴巴内核和容器化实践融入其中。
-    -   降低Overlayfs的性能损耗，减少容器化对存储性能的损失。
-    -   大量sysctl namespace化，在4.19的内核中大部分sysctl配置都支持在容器中单独设置，比如TCP的超时和重传时间，不同应用有不同的超时和重传的需求，但是在CentOS 7的内核中是修改不了的，在Alibaba Cloud Linux 2中支持对其做Pod级别的配置。
+    -   Test: Use Alluxio to load 1,152 files that add up to 144 GB of Object Storage Service \(OSS\) data through 64 threads. CentOS requires 3 minutes and 25 seconds while Alibaba Cloud Linux 2 requires only 2 minutes and 19.037 seconds. Alibaba Cloud Linux 2 is 1.6 times faster than CentOS.
+    -   Test: Train the ResNet50 model with a batch size of 128 and cache data to Alluxio. In CentOS with NVIDIA V100, the speed is 5,212.00 images/s. In Alibaba Cloud Linux 2 with NVIDIA V100, the speed is 8,746.59 images/s. Alibaba Cloud Linux 2 is 1.7 times faster than CentOS.
+-   Others
+    -   Alibaba Cloud Linux 2 is compiled with Linux kernel 4.19. Alibaba Cloud Linux 2 is powered with core capabilities of Alibaba Cloud and provides better support for containerization.
+    -   Reduces the performance loss of OverlayFS and minimizes the loss caused by containerization in storage.
+    -   In most cases, sysctls are namespaced. In Kernel 4.19, most sysctls can be separately set on pods. This allows you to set different TCP timeout values and retransmit timeout values for different applications. You cannot modify these parameters in CentOS 7. In Alibaba Cloud Linux 2, you can set these parameters on pods.
 
-## 如何使用Alibaba Cloud Linux 2作为集群节点系统镜像
+## Set the operating system image of a node to Alibaba Cloud Linux 2
 
-您可以在创建集群的配置过程中，将**操作系统**选择为**Alibaba Cloud Linux 2.1903**来使用Alibaba Cloud Linux 2作为集群节点系统镜像。具体步骤，请参见[创建Kubernetes专有版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
+When you create an ACK cluster in the ACK console, set **Operating System** to **Alibaba Cloud Linux 2.1903**. This way, you can use Alibaba Cloud Linux 2 as the operating system image of the nodes in the cluster. For more information, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md).
 
-![linux](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6647452061/p96758.png)
+![linux](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0635359951/p96758.png)
 
-**说明：**
+**Note:**
 
-如果您选用Alibaba Cloud Linux 2，在创建集群以及后期扩容节点、添加节点、自动伸缩节点时，ACK会自动检测Alibaba Cloud Linux 2的安全补丁更新并自动安装补丁。
+After you select Alibaba Cloud Linux 2, ACK automatically checks for security patches of Alibaba Cloud Linux 2 and installs the patches when it creates the cluster, expands the cluster, or scales nodes.
 
-**相关文档**  
+**Related topics**  
 
 
-[Alibaba Cloud Linux 2产品详情页](https://www.alibabacloud.com/zh/products/alinux)
+[Product page of Alibaba Cloud Linux 2](https://www.alibabacloud.com/zh/products/alinux)
 
-[阿里云内核开源官网](https://alibaba.github.io/cloud-kernel/)
+[Alibaba Cloud Kernel official website](https://alibaba.github.io/cloud-kernel/)
 
