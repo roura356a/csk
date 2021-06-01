@@ -4,19 +4,38 @@ keyword: [Terway release notes, terway-eniip]
 
 # Terway
 
-Terway is an open source Container Network Interface \(CNI\) plug-in developed by Alibaba Cloud. Terway works with Virtual Private Cloud \(VPC\) and allows you to use standard Kubernetes network policies to regulate how containers communicate with each other. You can use Terway to enable internal communication within a Kubernetes cluster. This topic lists the latest changes to the Terway plug-in.
+Terway is an open source Container Network Interface \(CNI\) plug-in developed by Alibaba Cloud. Terway works with Virtual Private Cloud \(VPC\) and allows you to use standard Kubernetes network policies to regulate how containers communicate with each other. You can use Terway to enable internal communications within a Kubernetes cluster. This topic lists the latest changes to the Terway plug-in.
 
-## Introduction
+## Overview
 
-Terway is a Container Network Interface \(CNI\) plug-in developed by Container Service for Kubernetes \(ACK\). The plug-in builds networks based on Elastic Network Interface \(ENI\) to make full use of cloud resources. Terway supports the use of Extended Berkeley Packet Filter \(eBPF\) to accelerate network traffic and reduce latency. It supports standard Kubernetes network policies that define how containers communicate with each other and provides compatibility with Calico network policies.
+Terway is a CNI plug-in developed by Container Service for Kubernetes \(ACK\). The plug-in builds networks based on Elastic Network Interface \(ENI\) to make full use of cloud resources. Terway supports the use of Extended Berkeley Packet Filter \(eBPF\) to accelerate network traffic and reduce latency. It supports standard Kubernetes network policies that define how containers communicate with each other and provides compatibility with Calico network policies.
 
 In a cluster that has Terway installed, each pod has a separate network stack and is assigned a separate IP address. Pods on the same Elastic Compute Service \(ECS\) instance communicate with each other by forwarding packets inside the ECS instance. Pods on different ECS instances communicate with each other through ENIs in the VPC where the ECS instances are deployed. This improves communication efficiency because no tunneling technologies such as Virtual Extensible Local Area Network \(VXLAN\) are required to encapsulate packets.
 
-## Usage notes
+## Instruction
 
 For more information about how to use Terway, see [Work with Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md).
 
 ## Release notes
+
+**May 2021**
+
+|Version|Image address|Release date|Description|Impact|
+|-------|-------------|------------|-----------|------|
+|v1.0.10.368-g2890967-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.368-g2890967-aliyun|2021-05-24|-   The issue that the `ResourceInvalid` alert occurs when elastic IP addresses \(EIPs\) are used is fixed.
+-   Communication between pods on a node is supported in IPVLAN mode. Data can be transmitted within the node and does not need to be transmitted by using the virtual private cloud \(VPC\) where the node is deployed.
+-   Proactive checks and corrections of the `ip forwarding` settings are supported.
+
+|No impact on workloads. |
+
+**April 2021**
+
+|Version|Image address|Release date|Description|Impact|
+|-------|-------------|------------|-----------|------|
+|v1.0.10.333-gfd2b7b8-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.333-gfd2b7b8-aliyun|2021-04-26|-   The IP address conflicts that occur when stateful applications use EIPs are fixed.
+-   Hubble can be enabled in IPVLAN mode. For more information about Hubble, see [What is Hubble](https://github.com/cilium/hubble#what-is-hubble).
+
+|No impact on workloads. |
 
 **March 2021**
 
@@ -53,7 +72,7 @@ Fixed issues:
 
 -   Packet loss due to traffic throttling of Terway.
 -   Residual IP policies.
--   Incorrect counting of the number of IP addresses provided by elastic network interfaces \(ENIs\).
+-   Incorrect counting of the number of IP addresses provided by ENIs.
 
 |No impact on workloads. |
 
