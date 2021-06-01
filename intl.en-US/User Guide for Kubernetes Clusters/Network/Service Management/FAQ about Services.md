@@ -258,7 +258,7 @@ We recommend that you set the externalTrafficPolicy of the SLB instance to Local
 
 If the annotation of the Service contains the ID of the SLB instance, it indicates that the SLB instance is reused.
 
-2.  Log on to the SLB console and delete the listener that uses the Service port. For more information about how to delete listeners for an SLB instance, see [Manage forwarding rules for listeners](/intl.en-US/Application Load Balancer/Application Load Balancer Listener/Manage forwarding rules for listeners.md). |
+2.  Log on to the SLB console and delete the listener that uses the Service port. For more information about how to delete listeners for an SLB instance, see [Manage forwarding rules for listeners](/intl.en-US/Application Load Balancer/ALB User Guide/Listeners/Manage forwarding rules for listeners.md). |
 |Status Code: 400 Code: NetworkConflict|When I reuse an internal-facing SLB instance, the SLB instance and the cluster are not in the same VPC. You must ensure that your SLB instance and the cluster are in the same VPC.|
 |Status Code: 400 Code: VSwitchAvailableIpNotExist Message: The specified VSwitch has no available ip.|The idle IP addresses in the current vSwitch is insufficient. You can specify another vSwitch in the same VPC by using `service.beta.kubernetes.io/alibaba-cloud-loadbalancer-vswitch-id: "${YOUR_VSWITCH_ID}"`.|
 |PAY.INSUFFICIENT\_BALANCE Message: Your account does not have enough balance.|The balance in your account is less than CNY 100.|
