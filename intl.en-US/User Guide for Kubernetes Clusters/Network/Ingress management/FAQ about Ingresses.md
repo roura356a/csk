@@ -3,12 +3,13 @@
 This topic provides answers to some frequently asked questions about Ingresses.
 
 -   [Which Secure Sockets Layer \(SSL\) or Transport Layer Security \(TLS\) protocol versions are supported by Ingresses?](#section_gsi_4n0_lsd)
--   [Does Ingress pass Layer 7 request headers?](#section_i3e_5lj_47y)
+-   [Do Ingresses pass Layer 7 request headers?](#section_i3e_5lj_47y)
 -   [Can ingress-nginx forward requests to HTTPS Services at the backend?](#section_ghy_7bv_ute)
--   [Does Ingress pass client IP addresses at Layer 7?](#section_ril_3ys_j8u)
+-   [Do Ingresses pass client IP addresses at Layer 7?](#section_ril_3ys_j8u)
 -   [Does nginx-ingress-controller support HTTP Strict Transport Security \(HSTS\)?](#section_ycn_qs2_rb2)
 -   [Which rewrite rules are supported by ingress-nginx?](#section_l15_amm_2ht)
--   [How do I fix the issue that Log Service cannot parse logs as normal after ingress-nginx-controller is upgraded?](#section_10k_mmd_5e0)
+-   [How do I fix the issue that Log Service cannot parse logs as expected after ingress-nginx-controller is upgraded?](#section_10k_mmd_5e0)
+-   [How do I configure the internal-facing SLB instance for the NGINX Ingress controller?](~~142097~~)
 
 ## Which Secure Sockets Layer \(SSL\) or Transport Layer Security \(TLS\) protocol versions are supported by Ingresses?
 
@@ -21,7 +22,7 @@ ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-EC
 ssl-protocols: "TLSv1 TLSv1.1 TLSv1.2 TLSv1.3"
 ```
 
-## Does Ingress pass Layer 7 request headers?
+## Do Ingresses pass Layer 7 request headers?
 
 By default, ingress-nginx passes Layer 7 request headers. However, request headers that do not conform to HTTP rules are filtered out before they are forwarded to the backend Services. For example, the Mobile Version request header is filtered out. If you do not want to filter out these request headers, run the following command to add the required configurations to the nginx-configuration ConfigMap. For more information, see [ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-underscores-in-headers).
 
@@ -39,11 +40,11 @@ kind: Ingress
 metadata:
   name: xxxx
   annotations:
-    # Note: You must specify the backend protocol as HTTPS to enable ingress-nginx to forward requests to HTTPS Services at the backend.
+    # Note: You must specify the backend protocol as HTTPS to enable ingress-nginx to forward requests to HTTPS Services at the backend. 
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 ```
 
-## Does Ingress pass client IP addresses at Layer 7?
+## Do Ingresses pass client IP addresses at Layer 7?
 
 By default, ingress-nginx adds the X-Forward-For and X-Real-IP header fields to carry client IP address. However, if the X-Forward-For and X-Real-IP header fields are already added to the request by a client, the backend server cannot obtain the client IP address.
 
@@ -59,7 +60,7 @@ For more information, see [Configure an ACK Ingress to pass through client IP ad
 
 ## Does nginx-ingress-controller support HTTP Strict Transport Security \(HSTS\)?
 
-By default, HSTS is enabled for nginx-ingress-controller. When a browser sends a plain HTTP request for the first time, the response header from the backend server \(with HSTS enabled\) contains `Non-Authoritative-Reason: HSTS`. This indicates that the backend server supports HSTS. If the client also supports HSTS, the client will continue to send HTTPS requests after the first access attempt succeeds. The response body from the backend server contains the status code `307 Internal Redirect`, as shown in the following figure.
+By default, nginx-ingress-controller is enabled for nginx-ingress-controller. When a browser sends a plain HTTP request for the first time, the response header from the backend server \(with HSTS enabled\) contains `Non-Authoritative-Reason: HSTS`. This indicates that the backend server supports HSTS. If the client also supports HSTS, the client directly sends HTTPS requests after the first successful access. The response body from the backend server contains the status code `307 Internal Redirect`, as shown in the following figure.
 
 ![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9511674161/p202703.png)
 
@@ -74,13 +75,13 @@ Only simple rewrite rules are supported by ingress-nginx. For more information, 
 -   configuration-snippet: Add this annotation to the location configuration of an Ingress. For more information, see [Configuration snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#configuration-snippet).
 -   server-snippet: Add this annotation to the server configuration of an Ingress. For more information, see [Server snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet).
 
-You can use other code snippets to add global configurations, as shown in the following figure. For more information, see [main-snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#main-snippet).
+You can use other snippets to add global configurations, as shown in the following figure. For more information, see [main-snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#main-snippet).
 
 ![2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9511674161/p202783.png)
 
-## How do I fix the issue that Log Service cannot parse logs as normal after ingress-nginx-controller is upgraded?
+## How do I fix the issue that Log Service cannot parse logs as expected after ingress-nginx-controller is upgraded?
 
-The ingress-nginx-controller component has two commonly used versions: ingress-nginx-controller 0.20 and 0.30. The default log format of ingress-nginx-controller 0.20 is different from that of ingress-nginx-controller 0.30. Therefore, after you upgrade from ingress-nginx-controller 0.20 to 0.30 on the **Add-ons** page in the console, the Ingress dashboard may not show the actual access statistics to the backend Services when you perform canary releases or blue-green releases for an Ingress.
+The ingress-nginx-controller component has two commonly used versions: ingress-nginx-controller 0.20 and 0.30. The default log format of ingress-nginx-controller 0.20 is different from that of ingress-nginx-controller 0.30. Therefore, after you upgrade from ingress-nginx-controller 0.20 to 0.30 on the **Add-ons** page in the console, the Ingress dashboard may not show the actual statistics of access to the backend Services when you perform canary releases or blue-green releases with an Ingress.
 
 To fix the issue, perform the following steps to update the `nginx-configuration` ConfigMap and the configuration of `k8s-nginx-ingress`.
 
@@ -178,7 +179,7 @@ To fix the issue, perform the following steps to update the `nginx-configuration
                 - proxy_alternative_upstream_name
                 NoKeyError: true
                 NoMatchError: true
-                Regex: ^(\S+)\s-\s\[([^]]+)]\s-\s(\S+)\s\[(\S+)\s\S+\s"(\w+)\s(\S+)\s([^"]+)"\s(\d+)\s(\d+)\s"([^"]*)"\s"([^"]*)"\s(\S+)\s(\S+)+\s\[([^]]*)]\s(\S+)\s(\S+)\s(\S+)\s(\S+)\s(\S+)\s*(\S*)\s*\[*([^]]*)\]*. *
+                Regex: ^(\S+)\s-\s\[([^]]+)]\s-\s(\S+)\s\[(\S+)\s\S+\s"(\w+)\s(\S+)\s([^"]+)"\s(\d+)\s(\d+)\s"([^"]*)"\s"([^"]*)"\s(\S+)\s(\S+)+\s\[([^]]*)]\s(\S+)\s(\S+)\s(\S+)\s(\S+)\s(\S+)\s*(\S*)\s*\[*([^]]*)\]*.*
                 SourceKey: content
     ```
 
