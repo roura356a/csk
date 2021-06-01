@@ -13,6 +13,12 @@ This topic provides answers to some frequently asked questions about container n
 -   [Can I configure multiple route tables for the VPC where my cluster is deployed?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
 -   [How do I check the network type and vSwitches of the cluster?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
 -   [How do I check the cloud resources used in an ACK cluster?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
+-   [Network errors of pods in the cluster](~~142373~~)
+-   [How do I obtain the public IP address of an application in the cluster?](~~142274~~)
+-   [Network errors in the exclusive ENI mode when the Terway network plug-in is used](~~147426~~)
+-   [How do I troubleshoot cluster access issues?](~~149275~~)
+-   [The number of IP addresses provided by the vSwitch is insufficient when the Terway network plug-in is used](~~189784~~)
+-   [The cluster cannot connect to the public IP address of the SLB instance that is associated with the LoadBalancer Service](~~171437~~)
 
 ## Service FAQ
 
@@ -29,7 +35,7 @@ This topic provides answers to some frequently asked questions about container n
 -   [How do I rename an SLB instance when the CCM version is V1.9.3.10 or earlier?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 -   [How does CCM calculate node weights in Local mode?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 
-**FAQ about upgrading the cloud controller manager \(CCM\)**
+**FAQ about Cloud Controller Manager \(CCM\) upgrades**
 
 -   [What do I do if CCM fails to upgrade?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 
@@ -51,4 +57,5 @@ This topic provides answers to some frequently asked questions about container n
 -   [Does nginx-ingress-controller support HTTP Strict Transport Security \(HSTS\)?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
 -   [Which rewrite rules are supported by ingress-nginx?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
 -   [How do I fix the issue that Log Service cannot parse logs as normal after ingress-nginx-controller is upgraded?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
+-   [How do I configure the internal-facing SLB instance for the NGINX Ingress controller?](~~142097~~)
 
