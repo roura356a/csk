@@ -63,7 +63,7 @@ Alibaba Cloud Linux 2的操作系统是针对阿里云飞天虚拟化平台开�
 
 ## 如何使用Alibaba Cloud Linux 2作为集群节点系统镜像
 
-您可以在创建集群的配置过程中，将**操作系统**选择为**Alibaba Cloud Linux 2.1903**来使用Alibaba Cloud Linux 2作为集群节点系统镜像。具体步骤，请参见[创建Kubernetes专有版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
+您可以在创建集群的配置过程中，将**操作系统**选择为**Alibaba Cloud Linux 2.1903**来使用Alibaba Cloud Linux 2作为集群节点系统镜像。具体步骤，请参见[创建Kubernetes专有版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
 
 ![linux](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6647452061/p96758.png)
 
@@ -74,13 +74,7 @@ Alibaba Cloud Linux 2的操作系统是针对阿里云飞天虚拟化平台开�
 **相关文档**  
 
 
-[Alibaba Cloud Linux 2产品详情页](https://www.aliyun.com/product/alinux)
-
-[阿里云操作系统及Kernel团队博客](https://kernel.taobao.org/)
+[Alibaba Cloud Linux 2产品详情页](https://www.alibabacloud.com/zh/products/alinux)
 
 [阿里云内核开源官网](https://alibaba.github.io/cloud-kernel/)
-
-[体验Alibaba Cloud Linux 2不多花一分钱提升15%服务器性能](https://yq.aliyun.com/articles/701433)
-
-[￼Kubernetes网络的IPVlan方案](https://kernel.taobao.org/2019/11/ipvlan-for-kubernete-net/)
 
