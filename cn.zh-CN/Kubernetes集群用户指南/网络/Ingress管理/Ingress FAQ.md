@@ -9,7 +9,8 @@
 -   [nginx-ingress-controller组件支持HSTS吗？](#section_ycn_qs2_rb2)
 -   [Ingress-Nginx支持哪些Rewrite配置？](#section_l15_amm_2ht)
 -   [当版本升级后SLS解析日志不正常怎样修复？](#section_10k_mmd_5e0)
--   [如何配置Nginx Ingress Controller的私网SLB](~~142097~~)
+-   [如何配置Nginx Ingress Controller的私网SLB？](~~142097~~)
+-   [在ACK组件管理中升级Nginx Ingress Controller组件时，系统所做的更新是什么？](#section_99r_gia_5ax)
 
 ## Ingress支持哪些SSL/TLS版本？
 
@@ -183,4 +184,40 @@ ingress-nginx-controller组件当前主要有0.20和0.30两个版本，当通过
                 SourceKey: content
     ```
 
+
+## 在ACK组件管理中升级Nginx Ingress Controller组件时，系统所做的更新是什么？
+
+Nginx Ingress Controller组件在0.44之前的版本，包含以下资源：
+
+-   serviceaccount/ingress-nginx
+-   configmap/nginx-configuration
+-   configmap/tcp-service
+-   configmap/udp-services
+-   clusterrole.rbac.authorization.k8s.io/ingress-nginx
+-   clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx
+-   role.rbac.authorization.k8s.io/ingress-nginx
+-   rolebinding.rbac.authorization.k8s.io/ingress-nginx
+-   service/nginx-ingress-lb
+-   deployment.apps/nginx-ingress-controller
+
+Nginx Ingress Controller组件在0.44版本及其之后的版本，额外包含以下资源：
+
+-   validatingwebhookconfiguration.admissionregistration.k8s.io/ingress-nginx-admission
+-   service/ingress-nginx-controller-admission
+-   serviceaccount/ingress-nginx-admission
+-   clusterrole.rbac.authorization.k8s.io/ingress-nginx-admission
+-   clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx-admission
+-   role.rbac.authorization.k8s.io/ingress-nginx-admission
+-   rolebinding.rbac.authorization.k8s.io/ingress-nginx-admission
+-   job.batch/ingress-nginx-admission-create
+-   job.batch/ingress-nginx-admission-patch
+
+在ACK的组件管理页面对Nginx Ingress Controller组件进行升级时，系统保留以下资源配置不变更：
+
+-   configmap/nginx-configuration
+-   configmap/tcp-services
+-   configmap/udp-services
+-   service/nginx-ingress-lb
+
+所有其他资源的配置都会被覆盖成默认配置。以deployment.apps/nginx-ingress-controller资源配置为例，其默认的的replicas参数为2。如果您升级Nginx Ingress Controller组件之前的replicas为5，但是通过组件管理升级Ingress后，其replicas将会为2，和默认配置一致。
 
