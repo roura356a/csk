@@ -4,52 +4,48 @@ keyword: [the cGPU component, install the GPU isolation module, kubectl-inspect-
 
 # Install the cGPU component
 
-Container Service for Kubernetes \(ACK\) provides cGPU to enable graphics processing unit \(GPU\) sharing and scheduling. You can use cGPU to share one GPU in model inference scenarios. In addition, the NVIDIA kernel driver ensures GPU memory isolation among containers. This topic describes how to install the resource isolation module and an inspection tool on a GPU-accelerated node. This enables GPU scheduling and memory isolation.
+Container Service for Kubernetes \(ACK\) provides cGPU to enable GPU sharing and scheduling. You can use cGPU to share one GPU in model inference scenarios. In addition, the NVIDIA kernel driver ensures GPU memory isolation among containers. This topic describes how to install the resource isolation module and an inspection tool on a GPU-accelerated node. This enables GPU scheduling and memory isolation.
 
--   [An ACK cluster with GPU resources is created.](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Configure a Kubernetes GPU cluster to support GPU scheduling.md)
+-   [An ACK cluster with GPU-accelerated nodes is created.](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/GPU scheduling for ACK clusters with GPU-accelerated nodes.md)
 
-**Note:** Dedicated Kubernetes clusters and professional Kubernetes clusters support GPU resources. Managed Kubernetes clusters do not support GPU resources.
+**Note:**
 
+-   Only dedicated Kubernetes clusters with GPU-accelerated nodes support the component described in this topic. Managed Kubernetes clusters with GPU-accelerated nodes do not support the component described in this topic.
+-   If you want to install the cGPU component in professional Kubernetes clusters, see [Install and use ack-ai-installer and the GPU scheduling inspection tool](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/GPU scheduling/cGPU Professional Edition/Install and use ack-ai-installer and the GPU scheduling inspection tool.md).
 -   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md)
 
 ## Limits
 
 |Item|Supported version|
 |----|-----------------|
-|Kubernetes|1.16.06|
-|Helm|V3.0 and later|
-|NVIDIA driver|V418.87.01 and later|
+|Kubernetes|1.12.6 and later. Only dedicated Kubernetes clusters are supported.|
+|Helm|3.0 and later|
+|NVIDIA driver|418.87.01 and later|
 |Docker|19.03.5|
-|Operating system|CentOS 7.6, CentOS 7.7, Ubuntu 16.04, and Ubuntu 18.04|
-|GPU|Telsa P4, Telsa P100, Telsa T4, and Telsa V100 \(16 GB\)|
+|Operating system|CentOS 7.x, Alibaba Cloud Linux 2.x, Ubuntu 16.04, and Ubuntu 18.04|
+|GPU|Tesla P4, Tesla P100, Tesla T4, and Tesla v100|
 
 ## Step 1: Add labels to GPU-accelerated nodes
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, choose **Clusters** \> **Nodes**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Nodes page, select the cluster that you want to manage and click **Manage Labels and Taints** in the upper-right corner of the page.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane, click **Clusters**.
+4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Nodes**.
 
-5.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+5.  On the Nodes page, click **Manage Labels and Taints** in the upper-right corner.
 
-6.  On the **Nodes** page, click **Manage Labels and Taints** in the upper-right corner of the page.
+6.  On the Labels tab of the **Manage Labels and Taints** page, select the nodes that you want to manage and click **Add Label**.
 
-7.  On the Labels tab of the **Manage Labels and Taints** page, select the nodes that you want to manage and click **Add Label**.
-
-    ![Add labels](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5935359951/p101294.png)
-
-8.  In the Add dialog box, set **Name** and **Value**.
+7.  In the Add dialog box, set **Name** and **Value**.
 
     **Note:**
 
     -   You must set **Name** to **cgpu** and set **Value** to **true**.
-    -   If you delete the cgpu label, GPU sharing is not disabled. To disable GPU sharing, set **Name** to **cgpu** and set **Value** to **false**.
-    ![Add labels](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7935359951/p101645.png)
-
-9.  Click **OK**.
+    -   If you delete the cgpu label, GPU sharing is still enabled. To disable GPU sharing, set **Name** to **cgpu** and set **Value** to **false**.
+8.  Click **OK**.
 
 
 ## Step 2: Install the cGPU component on the labeled nodes
@@ -58,9 +54,9 @@ Container Service for Kubernetes \(ACK\) provides cGPU to enable graphics proces
 
 2.  In the left-side navigation pane of the ACK console, choose **Marketplace** \> **App Catalog**.
 
-3.  On the App Catalog page, find and click **ack-cgpu**.
+3.  On the App Catalog page, search for ack-cgpu and click ack-cgpu after it appears.
 
-4.  On the App Catalog - ack-cgpu page, select the cluster that you want to manage in the **Deploy** section on the right side of the page and click **Create**.
+4.  On the App Catalog - ack-cgpu page, select the cluster that you want to manage in the **Deploy** section and click **Create**.
 
     You do not need to set **Namespace** or **Release Name**. The default values are used.
 
@@ -105,7 +101,7 @@ Container Service for Kubernetes \(ACK\) provides cGPU to enable graphics proces
 **Related topics**  
 
 
-[Overview](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Overview.md)
+[Overview of cGPU](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Overview of cGPU.md)
 
 [Enable GPU sharing](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Enable GPU sharing.md)
 
