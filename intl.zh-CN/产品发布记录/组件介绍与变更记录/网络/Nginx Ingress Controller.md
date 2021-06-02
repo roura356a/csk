@@ -22,6 +22,12 @@ Ingress Controller通过API Server获取Ingress资源的变化，动态地生成
 
 ![S2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4614073161/p241496.png)
 
+## 2021年06月
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v0.44.0.3-8e83e7dc6-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/aliyun-ingress-controller:v0.44.0.3-8e83e7dc6-aliyun|2021年06月01日|修复CVE-2021-23017漏洞。更多信息，请参见[Updating NGINX for a DNS Resolver Vulnerability \(CVE-2021-23017\)](https://www.nginx.com/blog/updating-nginx-dns-resolver-vulnerability-cve-2021-23017/)。|建议在业务低峰期升级，变更过程中可能会导致已经建立的连接发生瞬断。|
+
 ## 2021年04月
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
