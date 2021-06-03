@@ -14,7 +14,7 @@ CoreDNS is deployed in Container Service for Kubernetes \(ACK\) clusters and ser
 
 ## Step 1: Enable the logging of CoreDNS
 
-**Note:** After you enable the logging of CoreDNS, the CPU usage increases by about 10% and the data transfer also increases. If the pod replicas of CoreDNS are running with high CPU usage, we recommend that you scale out CoreDNS. For more information about how to scale out CoreDNS, see [Manually scale a containerized application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Manage pods.md).
+**Note:** After you enable the logging of CoreDNS, the CPU usage increases by about 10% and the data transfer also increases. If the pod replicas of CoreDNS are running with high CPU usage, we recommend that you scale out CoreDNS. For more information about how to scale out CoreDNS, see [Manually scale the number of pods for an application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Manage pods.md).
 
 ACK creates a ConfigMap named **coredns** in the kube-system namespace of a cluster. You can modify the **coredns** ConfigMap by specifying the logging component in the log field of the Corefile configuration. This enables the logging of CoreDNS. For more information about how to modify a ConfigMap, see [t15755.dita\#task\_1797447/section\_2px\_yjo\_j61](t15755.dita#task_1797447/section_2px_yjo_j61).
 
@@ -137,7 +137,7 @@ spec:
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -152,9 +152,9 @@ spec:
 
 On the **Kubernetes CoreDNS Log Analysis** page, you can configure alerts based on each chart or list.
 
-1.  Find the chart or list that you want to use and choose **![more](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9019141261/p267496.png)** \> **Save as Alert** in the upper-right corner. For more information about how to configure an alert, see [Create an alert rule](/intl.en-US/Query and visualization/Alarm/Create an alert rule.md).
+1.  Find the chart or list that you want to use and choose **![more](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9019141261/p267496.png)** \> **Save as Alert** in the upper-right corner. For more information about how to configure an alert, see [Create an alert rule](/intl.en-US/Alarm/Alarm (Old)/Create an alert rule.md).
 
-    After an alert rule is created, you can manage the alert rule and view the alerts that are triggered based on the alert rule. For more information, see [Manage an alert rule](/intl.en-US/Query and visualization/Alarm/Manage an alert rule.md) and [View alerts](/intl.en-US/Query and visualization/Alarm/View the evaluation results of alert rules.md).
+    After an alert rule is created, you can manage the alert rule and view the alerts that are triggered based on the alert rule. For more information, see [Manage an alert rule](/intl.en-US/Alarm/Alarm (Old)/Manage an alert rule.md) and [View alerts](/intl.en-US/Alarm/Alarm (Old)/View the evaluation results of alert rules.md).
 
 
 **Related topics**  
