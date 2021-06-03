@@ -22,18 +22,18 @@
 
 |调用CreateCluster创建一个专有版安全沙箱Kubernetes集群。|
 |[创建标准托管版安全沙箱Kubernetes集群](/intl.zh-CN/API参考/集群/创建集群/创建标准托管版安全沙箱Kubernetes集群.md)|调用CreateCluster创建一个托管版安全沙箱Kubernetes集群。|
-|[扩容集群](/intl.zh-CN/API参考/集群/扩容集群/扩容集群.md)
+|[扩容集群](/intl.zh-CN/API参考/集群/扩容集群.md)
 
 |调用ScaleOutCluster增加集群中Worker节点的数量（支持多可用区实例）。|
-|[扩容安全沙箱容器集群](/intl.zh-CN/API参考/集群/扩容集群/扩容安全沙箱容器集群.md)
-
-|调用ScaleOutCluster增加安全沙箱容器集群中Worker节点的数量（支持多可用区实例）。|
-|[扩容Kubernetes边缘托管版集群](/intl.zh-CN/API参考/集群/扩容集群/扩容Kubernetes边缘托管版集群.md)
+|[扩容ACK边缘托管版集群](/intl.zh-CN/API参考/集群/扩容ACK边缘托管版集群.md)
 
 |调用ScaleOutCluster增加集群中Worker节点数量。目前只能扩容边缘节点服务ENS（Edge Node Service）实例。|
 |[查询集群信息](/intl.zh-CN/API参考/集群/查询集群信息.md)
 
 |调用DescribeClusterDetail，根据集群ID，查看集群的详细信息。|
+|[查询集群节点](/intl.zh-CN/API参考/集群/查询集群节点.md)
+
+|调用DescribeClusterNodes查询集群节点。|
 |[查询所有集群列表](/intl.zh-CN/API参考/集群/查询所有集群列表.md)
 
 |调用DescribeClustersV1查看您在ACK中创建的所有集群（包括Swarm和Kubernetes集群）。|
@@ -67,6 +67,9 @@
 |[查询Kubernetes版本详情](/intl.zh-CN/API参考/集群/查询Kubernetes版本详情.md)|调用DescribeKubernetesVersionMetadata查询支持的Kubernetes版本的详细信息。|
 |[查询任务详情](/intl.zh-CN/API参考/集群/查询任务详情.md)|调用DescribeTaskInfo根据任务ID查询任务执行详情。|
 |[查询用户事件](/intl.zh-CN/API参考/集群/查询用户事件.md)|调用DescribeEvents查询用户操作事件。|
+|[添加已有ENS节点至ACK边缘托管集群]()
+
+|调用AttachInstances接口添加已有ENS节点至边缘托管集群。|
 
 ## 权限
 
@@ -78,26 +81,6 @@
 |[全量更新RAM用户集群授权信息](/intl.zh-CN/API参考/权限/全量更新RAM用户集群授权信息.md)
 
 |调用GrantPermissions全量更新RAM用户集群授权信息。|
-
-## 节点
-
-|API|描述|
-|---|--|
-|[查询集群节点](/intl.zh-CN/API参考/节点/查询集群节点.md)
-
-|调用DescribeClusterNodes查询集群节点。|
-|[移除集群节点](/intl.zh-CN/API参考/节点/移除集群节点.md)
-
-|调用RemoveClusterNodes移除指定集群额外节点。|
-|[添加已有实例到集群](/intl.zh-CN/API参考/节点/添加已有实例到集群.md)
-
-|调用AttachInstances添加已有实例到集群。|
-|[手动添加已有实例至集群](/intl.zh-CN/API参考/节点/手动添加已有实例至集群.md)
-
-|调用DescribeClusterAttachScripts添加已有节点到边缘Kubernetes托管集群。该API返回唯一的可执行脚本，您获取脚本后，在已有节点上执行即可完成该节点的接入。|
-|[添加已有ENS节点至Kubernetes边缘托管集群]()
-
-|调用AttachInstances接口添加已有ENS节点至边缘托管集群。|
 
 ## 节点池
 
@@ -118,6 +101,15 @@
 |[查询节点池详情](/intl.zh-CN/API参考/节点池/查询节点池详情.md)
 
 |调用DescribeClusterNodePoolDetail查询集群指定节点池详情。|
+|[添加已有实例至节点池](/intl.zh-CN/API参考/节点池/添加已有实例至节点池.md)
+
+|调用AttachInstances添加已有实例到集群。|
+|[手动添加已有实例至节点池](/intl.zh-CN/API参考/节点池/手动添加已有实例至节点池.md)
+
+|调用DescribeClusterAttachScripts添加已有节点到边缘Kubernetes托管集群。该API返回唯一的可执行脚本，您获取脚本后，在已有节点上执行即可完成该节点的接入。|
+|[移除节点池中的节点](/intl.zh-CN/API参考/节点池/移除节点池中的节点.md)
+
+|调用RemoveClusterNodes移除指定集群额外节点。|
 |[删除节点池](/intl.zh-CN/API参考/节点池/删除节点池.md)|调用DeleteClusterNodepool删除节点池。|
 
 ## 升级
