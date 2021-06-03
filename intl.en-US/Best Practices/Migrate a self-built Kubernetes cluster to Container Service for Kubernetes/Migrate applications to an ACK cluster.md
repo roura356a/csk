@@ -58,7 +58,7 @@ Perform the following steps to deploy Velero in the ACK cluster and the self-man
 
         In this example, the OSS bucket is named `ls-velero` and deployed in the China \(Hangzhou\) region.
 
-3.  Create a Resource Access Management \(RAM\) user and generate an AccessKey pair. For more information, see [Create a RAM user](/intl.en-US/RAM User Management/Create a RAM user.md).
+3.  Create a Resource Access Management \(RAM\) user and generate an AccessKey pair. For more information, see [Create a RAM user](/intl.en-US/RAM User Management/Basic operations/Create a RAM user.md).
 
     If you use the AccessKey pair of an Alibaba Cloud account, skip this step.
 
@@ -302,267 +302,168 @@ The WordPress application consists of the WordPress and MySQL components. Each c
 # 1. Create a StorageClass named nfs.
 cat nfs-sc.yaml
 apiVersion: storage.k8s.io/v1
-kind:
-StorageClass
+kind: StorageClass
 metadata:
-name: nfs
+  name: nfs
 provisioner: helm.default/nfs
 reclaimPolicy: Delete
 kubectl apply -f  nfs-sc.yaml
 
-# 2.
-Create a Secret to store the password of the MySQL component. For example, if the password is mysql, run the echo -n "mysql" |base64 command to query the Base64-encoded string of the password.
+# 2. Create a Secret to store the password of the MySQL component. For example, if the password is mysql, run the echo -n "mysql" |base64 command to query the Base64-encoded string of the password.
 cat secret.yaml
 apiVersion: v1
-kind:
-  Secret
+kind: Secret
 metadata:
-name: mysql
-type:
-Opaque
-data: password: bXlzcWw=
+  name: mysql
+type: Opaque
+data:
+  password: bXlzcWw=
 kubectl apply -f secret.yaml
 
-# 3.
-Create a Service, a persistent volume claim (PVC), and a Deployment for the MySQL component.
+# 3. Create a Service, a persistent volume claim (PVC), and a Deployment for the MySQL component.
 cat mysql.yaml
 apiVersion: v1
-kind:
-
-Service
-metadata: name: mysql
-  labels:
-app: mysql
-spec:
-type:
-ClusterIP
-  ports: - port:
-3306
-  selector:
-  app: mysql
----
-apiVersion: v1
-kind:
-PersistentVolumeClaim
-metadata: name: mysql-volumeclaim
-  annotations:
-volume.beta.kubernetes.io/storage-class:
-  "nfs"
-spec:
-accessModes:
-
-- ReadWriteOnce
-  resources: requests:
-storage:
-20Gi
-
----
-apiVersion: apps/v1
-kind:
-Deployment
-metadata: name: mysql
-  labels:
-app: mysql
-spec:
-  replicas:
-  1
-  selector:
-    matchLabels:
-app: mysql
-  template:
-  metadata: labels:
-  app: mysql
-    spec:
-    securityContext: runAsUser:
-  999
-        runAsGroup:
-    999
-        fsGroup:
-999
-      containers:
-- image: registry.api.paas.com:5000/admin/mysql:8
-          name: mysql
-          args:
-- "--default-authentication-plugin=mysql_native_password"
-          env: - name:
-MYSQL_ROOT_PASSWORD
-              valueFrom:
-  secretKeyRef:
+kind: Service
+metadata:
   name: mysql
-                  key: password
-          ports:
-    - containerPort: 3306
-              name: mysql
-          volumeMounts:
-- name: mysql-persistent-storage
-              mountPath:
-  /var/lib/mysql
-      volumes:
-    - name: mysql-persistent-storage
-          persistentVolumeClaim:
-  claimName: mysql-volumeclaim
-kubectl apply -f mysql.yaml
-
- # 4.
-    Create a PVC, a Deployment, and a Service for the WordPress component.
-cat wordpress.yaml
-apiVersion: v1
-kind:
-      Service
-metadata: labels:
-
-app: wordpress
-  name: wordpress
+  labels:
+    app: mysql
 spec:
-ports:
-- port: 80
-      targetPort:
-80
-      protocol:
-  TCP
-      nodePort:
-  31570
+  type: ClusterIP
+  ports:
+    - port: 3306
   selector:
-    app: wordpress
-  type:
-NodePort
+    app: mysql
 ---
 apiVersion: v1
-kind:
-  PersistentVolumeClaim
-metadata: name: wordpress-volumeclaim
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-volumeclaim
   annotations:
-  volume.beta.kubernetes.io/storage-class:
-    "nfs"
+    volume.beta.kubernetes.io/storage-class: "nfs"
 spec:
-      accessModes:
-  - ReadWriteOnce
+  accessModes:
+    - ReadWriteOnce
   resources:
     requests:
-      storage:
-        20Gi
+      storage: 20Gi
+
 ---
 apiVersion: apps/v1
-kind:
-    Deployment
+kind: Deployment
 metadata:
-      name: wordpress
+  name: mysql
   labels:
-        app: wordpress
-spec: replicas:
-        1
-  selector: matchLabels:
-        app: wordpress
-  template: metadata:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      securityContext:
+        runAsUser: 999
+        runAsGroup: 999
+        fsGroup: 999
+      containers:
+        - image: registry.api.paas.com:5000/admin/mysql:8
+          name: mysql
+          args:
+            - "--default-authentication-plugin=mysql_native_password"
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql
+                  key: password
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-volumeclaim
+kubectl apply -f mysql.yaml
+
+ # 4. Create a PVC, a Deployment, and a Service for the WordPress component.
+cat wordpress.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: wordpress
+  name: wordpress
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      nodePort: 31570
+  selector:
+    app: wordpress
+  type: NodePort
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress-volumeclaim
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "nfs"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
       labels:
         app: wordpress
     spec:
-          containers:
-          - image: registry.api.paas.com:5000/admin/wordpress
+      containers:
+        - image: registry.api.paas.com:5000/admin/wordpress
           name: wordpress
           env:
-            - name:
-          WORDPRESS_DB_HOST
+          - name: WORDPRESS_DB_HOST
             value: mysql:3306
-          - name:
-            WORDPRESS_DB_PASSWORD
-            valueFrom: secretKeyRef:
-              name: mysql
+          - name: WORDPRESS_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql
                 key: password
           ports:
-                - containerPort:
-                  80
+            - containerPort: 80
               name: wordpress
           volumeMounts:
-                  - name: wordpress-persistent-storage
-              mountPath:
-          /var/www/html
-      volumes:
             - name: wordpress-persistent-storage
-          persistentVolumeClaim: claimName: wordpress-volumeclaim
+              mountPath: /var/www/html
+      volumes:
+        - name: wordpress-persistent-storage
+          persistentVolumeClaim:
+            claimName: wordpress-volumeclaim
  kubectl apply -f wordpress.yaml
-               
-           
-             
-                 
-       
-         
-           
-             
- 
-
-    
- 
- 
-   
- 
-   
-     
-   
- 
-   
-       
-         
-         
-         
-   
-     
-     
- 
- 
-   
- 
-   
-   
-       
- 
-   
-     
-   
-     
-         
- 
- 
-   
- 
-   
-   
-     
- 
-     
-   
-     
-       
-   
-     
-       
-         
-     
-       
-         
-           
-           
-             
-             
-             
-             
-               
-                 
-                 
-           
-               
-               
-           
-             
-                 
-       
-         
-           
-             
-  
 ```
 
 In the test environment, bind the domain name of the WordPress application to the IP address of the node where the application is deployed in the hosts file of your operating system. Then, access the WordPress application through http://wordpress.myk8s.paas.com:31570/.
 
-![wordpress](../images/p94229.png)
+![wordpress](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8330172261/p94229.png)
 
