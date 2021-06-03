@@ -114,5 +114,5 @@ After the ACK cluster without a worker node is created, you can create a node po
 
 [Alibaba Cloud Provider of Terraform](https://github.com/hashicorp/terraform-provider-alicloud)
 
-[Use Terraform to create an auto-scaling node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Use Terraform to create an auto-scaling node pool.md)
+[Use Terraform to create an auto-scaling node pool](/intl.en-US/Terraform/Use Terraform to create an auto-scaling node pool.md)
 
