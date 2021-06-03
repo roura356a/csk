@@ -268,7 +268,7 @@ To complete [Task 5](#li_9tk_kye_uqc), you must create two types of shared volum
 
     1.  Create PVs.
 
-        Create four PVs. For more information about how to create a PV, see [Create a PV](). Volume department1-public-dev1 is used to share data of department1 with users in dev1, and volume department1-public-dev2 is used to share data of department1 with users in dev2. Volume dev1-public is used to share data with only users in dev1, and volume dev2-public is used to share data with only users in dev2. The following figure shows the configurations of the PVs.
+        Create four PVs. For more information about how to create a PV, see [Create a PV](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/Mount a NAS file system as a statically provisioned volume.md). Volume department1-public-dev1 is used to share data of department1 with users in dev1, and volume department1-public-dev2 is used to share data of department1 with users in dev2. Volume dev1-public is used to share data with only users in dev1, and volume dev2-public is used to share data with only users in dev2. The following figure shows the configurations of the PVs.
 
         ![PV](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4381205061/p174088.png)
 
@@ -276,7 +276,7 @@ To complete [Task 5](#li_9tk_kye_uqc), you must create two types of shared volum
 
     2.  Create PVCs.
 
-        Create a PVC for each newly created PV. For more information about how to create a PVC, see [Create a PVC]().
+        Create a PVC for each newly created PV. For more information about how to create a PVC, see [Create a PVC](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/Mount a NAS file system as a statically provisioned volume.md).
 
         After the PVCs are created, you can find that department1-public-dev1 and dev1-public exist in dev1, and department1-public-dev2 and dev2-public exist in dev2.
 
