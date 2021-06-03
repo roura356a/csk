@@ -22,12 +22,9 @@ The following tables list API operations available for use in Container Service 
 
 |Creates a dedicated Kubernetes cluster that runs sandboxed containers.|
 |[Create a standard managed Kubernetes cluster that supports sandboxed](/intl.en-US/API Reference/Clusters/Create a cluster/Create a standard managed Kubernetes cluster that supports sandboxed.md)|Creates a managed Kubernetes cluster that runs sandboxed containers.|
-|[Scale out an ACK cluster \(will be deleted\)](/intl.en-US/API Reference/Clusters/Scale out a Kubernetes cluster.md)
+|[Scale out an ACK cluster \(will be deleted\)](/intl.en-US/API Reference/Clusters/Scale out an ACK cluster (will be deleted).md)
 
 |Adds worker nodes to a specified ACK cluster. The worker nodes can be deployed across zones.|
-|[Scale out a Kubernetes cluster that supports sandboxed containers]()
-
-|Adds worker nodes to a specified ACK cluster that runs sandboxed containers. The worker nodes can be deployed across zones.|
 |[Scale out a managed edge ACK cluster \(will be deleted\)](/intl.en-US/API Reference/Clusters/Scale out a managed edge ACK cluster (will be deleted).md)
 
 |Adds worker nodes to a specified ACK cluster. You can add only Edge Node Service \(ENS\) instances to a managed edge Kubernetes cluster.|
