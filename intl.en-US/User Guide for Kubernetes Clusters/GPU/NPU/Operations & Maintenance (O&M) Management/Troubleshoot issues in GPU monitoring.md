@@ -12,11 +12,11 @@ When exceptions occur or no records are found on GPU monitoring dashboards, you 
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node**.
+4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Nodes**.
 
 5.  On the **Nodes** page, check whether GPU nodes exist in the cluster.
 
@@ -123,9 +123,4 @@ The preceding output indicates that the number of pods is the same as the number
 
     If the output contains metric records that start with `nvidia_gpu`, data is collected by ack-prometheus-gpu-exporter.
 
-
-**Related topics**  
-
-
-[t1963645.md\#]()
 
