@@ -374,17 +374,6 @@ If you installed NodeLocal DNSCache on the Add-ons page, you must uninstall Node
 
 By default, NodeLocal DNSCache uses the TCP protocol to communicate with CoreDNS. CoreDNS communicates with the upstream servers by using the protocol that is used by the query source. If PrivateZone is used in your cluster, query requests processed by NodeLocal DNSCache are sent to PrivateZone by using the TCP protocol. PrivateZone does not support the TCP protocol in some regions. Therefore, errors may occur when query requests are processed by using PrivateZone.
 
-We recommend that you modify the configuration file of CoreDNS based on the following modifications. The configuration file is named as **coredns** in the kube-system namespace. For more information, see [t1994954.md\#](). Modify the setting of the forward plug-in and set the protocol that is used to request upstream servers to ``perfer_udp``. This way, CoreDNS preferably uses the UDP protocol to communicate with upstream servers. You can modify the setting based on the following modifications:
-
-```
-# The original setting
-forward . /etc/resolv.conf
-# The modified setting
-forward . /etc/resolv.conf {
-  prefer_udp
-}
-```
-
 **Related topics**  
 
 
