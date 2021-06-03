@@ -23,7 +23,7 @@ In practical scenarios, the number of concurrent pod requests is commonly used t
 
 ## Step 2: Set collection job rules for the queue-proxy container
 
-1.  Log on to the[ARMS console](https://arms-intl.console.aliyun.com/).
+1.  Log on to the [ARMS console](https://arms-intl.console.aliyun.com/).
 
 2.  In the left-side navigation pane, click **Prometheus Monitoring**.
 
