@@ -117,7 +117,5 @@ CIS也推出了更符合各大云厂商实际场景的CIS Kubernetes基线，比
 
 [CIS Kubernetes基线](https://www.cisecurity.org/benchmark/kubernetes/)
 
-[security-inspector组件介绍](/cn.zh-CN/新功能发布记录/组件介绍与变更记录/security-inspector/security-inspector组件介绍.md)
-
-[security-inspector组件变更记录](/cn.zh-CN/新功能发布记录/组件介绍与变更记录/security-inspector/security-inspector组件变更记录.md)
+[security-inspector](/cn.zh-CN/产品发布记录/组件介绍与变更记录/安全/security-inspector.md)
 
