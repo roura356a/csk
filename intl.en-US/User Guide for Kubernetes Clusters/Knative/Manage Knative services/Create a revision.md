@@ -9,7 +9,7 @@ You can upgrade a Knative Service by adding a revision to Knative. This topic de
 -   [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)
 -   [Deploy Knative](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative components/Deploy Knative.md)
 -   [Deploy a Knative component](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative components/Deploy a Knative component.md)
--   [A Knative Service is deployed](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative services/Create a Knative Service.md).
+-   [A Knative Service is deployed](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative services/Use Knative to deploy serverless applications.md).
 
 When you deploy a Knative Service, the system creates a revision named stock-service-example-v1 and forwards all inbound traffic to stock-service-example-v1.
 
@@ -17,7 +17,7 @@ When you deploy a Knative Service, the system creates a revision named stock-ser
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -31,9 +31,9 @@ When you deploy a Knative Service, the system creates a revision named stock-ser
 
     1.  Configure the parameters on the **Basic Information** wizard page.
 
-        For more information about how to configure the basic settings of a revision, see [Set revision parameters](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative services/Create a Knative Service.mdstep_mrk_8ar_bk6).
+        For more information about how to configure the basic settings of a revision, see [Set revision parameters](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative services/Use Knative to deploy serverless applications.mdstep_mrk_8ar_bk6).
 
-    2.  Configure the parameters on the**Traffic Splitting Settings** wizard page.
+    2.  Configure the parameters on the **Traffic Splitting Settings** wizard page.
 
         -   Revisions: A revision is created each time a Knative Service is released.
         -   Percent %: The percentage of traffic that is forwarded to a revision. The total sum of the traffic percentage values specified for all revisions must be 100%.
