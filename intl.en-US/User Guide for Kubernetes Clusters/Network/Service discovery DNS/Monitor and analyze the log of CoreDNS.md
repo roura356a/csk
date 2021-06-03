@@ -143,7 +143,7 @@ spec:
 
 4.  On the details page of the cluster, click the **Cluster Resources** tab and click the hyperlink on the right side of **Log Service Project**.
 
-5.  In the left-side navigation page of the Logstores page, click ![resource](../images/p267638.png) and click **Dashboard**. In the Dashboard list, find and click **Kubernetes CoreDNS Log Analysis**
+5.  In the left-side navigation page of the Logstores page, click ![resource](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7084862261/p267638.png) and click **Dashboard**. In the Dashboard list, find and click **Kubernetes CoreDNS Log Analysis**
 
     On the **Kubernetes CoreDNS Log Analysis** page, you can view aggregated information about the number of requests to CoreDNS, the success rate of resolution requests, and the request latencies. You can also view the list of most frequently accessed domain names, the list of invalid domain names, the list of slow resolutions, and the list of access to high-risk domain names.
 
