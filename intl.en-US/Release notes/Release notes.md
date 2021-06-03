@@ -195,7 +195,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 
 |All regions
 
-|-   [Install logtail-ds to enable Log Service]()
+|-   [Enable Log Service for an external Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Observability of external clusters/Enable Log Service for an external Kubernetes cluster.md)
 -   [Install migrate-controller](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Application migration/Install migrate-controller.md) |
 |Sandboxed-Container 2.0|Sandboxed-Container is upgraded to V2.0. Sandboxed-Container 2.0 has the following benefits:-   Sandboxed-Container is a container runtime that is developed by Alibaba Cloud based on lightweight virtual machines. Compared with Sandboxed-Container 1.0, Sandboxed-Container 2.0 supports more lightweight and efficient deployment and simplifies the architecture and maintenance of ACK clusters.
 -   Sandboxed-Container 2.0 reduces the resource overheads by 90% and improves the startup speed of sandboxed containers by three times.
