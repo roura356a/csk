@@ -86,7 +86,7 @@ To use image-syncer, prepare a configuration file. The following code block show
 }
 ```
 
-## 使用示例
+## Examples
 
 -   [Synchronize images from a self-managed Harbor instance to Container Registry Default Instance Edition](/intl.en-US/Best Practices/Migrate a self-built Kubernetes cluster to Container Service for Kubernetes/Migrate container images/Synchronize images from a self-managed Harbor instance to Container Registry Default Instance Edition.md)
 -   [Synchronize images from a self-managed Harbor project to Container Registry Enterprise Edition](/intl.en-US/Best Practices/Migrate a self-built Kubernetes cluster to Container Service for Kubernetes/Migrate container images/Synchronize images from a self-managed Harbor project to Container Registry Enterprise Edition.md)
