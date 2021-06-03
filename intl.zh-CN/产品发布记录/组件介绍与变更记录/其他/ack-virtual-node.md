@@ -27,7 +27,7 @@ ack-virtual-node是基于社区开源项目Virtual Kubelet，扩展了对Aliyun 
 |v2.0.0.102-045a06eb4-aliyun|registry-vpc.$RegionId.aliyuncs.com/acs/virtual-nodes-eci:v2.0.0.102-045a06eb4-aliyun|2021年04月22日|修复Virutal Kubelet节点显示问题。|此次升级不会对业务造成影响。|
 |v2.0.0.101-cd8bcfa04-aliyun|registry-vpc.$RegionId.aliyuncs.com/acs/virtual-nodes-eci:v2.0.0.101-cd8bcfa04-aliyun|2021年04月16日|优化对PrivateZone的接口调用问题，避免重复调用BindZoneVpc。|此次升级不会对业务造成影响。|
 |v2.0.0.93-ef86bbfa1-aliyun|registry-vpc.$RegionId.aliyuncs.com/acs/virtual-nodes-eci:v2.0.0.93-ef86bbfa1-aliyun|2021年04月13日|修改eciLogtailMacheineGroupKey的值，兼容ENV和CRD日志采集功能。|此次升级不会对业务造成影响。|
-|v2.0.0.90-15deb126e-aliyun|registry-vpc.$RegionId.aliyuncs.com/acs/virtual-nodes-eci:v2.0.0.90-15deb126e-aliyun|2021年04月06日|新增ECI Profile功能。更多内容，请参见[配置ECI Profile](/intl.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/配置ECI Profile.md)。|此次升级不会对业务造成影响。|
+|v2.0.0.90-15deb126e-aliyun|registry-vpc.$RegionId.aliyuncs.com/acs/virtual-nodes-eci:v2.0.0.90-15deb126e-aliyun|2021年04月06日|新增ECI Profile功能。|此次升级不会对业务造成影响。|
 
 ## 2021年03月
 
