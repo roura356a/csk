@@ -5,7 +5,7 @@
 -   [已有集群是否可以添加支持Intel SGX的节点？](#section_f5n_8ir_imk)
 -   [Alibaba Cloud Linux2操作系统的集群兼容CentOS的容器镜像吗？](#section_g8z_g18_h2h)
 -   [为何创建Kubernetes集群失败？](~~86762~~)
--   [Kubernetes集群扩容常见问题的排查及解决方法](178936)
+-   [Kubernetes集群扩容常见问题的排查及解决方法](~~178936~~)
 -   [为何删除Kubernetes集群失败？](~~86763~~)
 -   [通过CloudShell管理集群出现超时问题](~~141857~~)
 
@@ -21,5 +21,5 @@
 
 ## Alibaba Cloud Linux2操作系统的集群兼容CentOS的容器镜像吗？
 
-完全兼容。更多信息，请参见[使用操作系统Alibaba Cloud Linux 2](/cn.zh-CN/最佳实践/集群/使用操作系统Alibaba Cloud Linux 2.md)。
+完全兼容。更多信息，请参见[使用操作系统Alibaba Cloud Linux 2](/cn.zh-CN/Kubernetes集群用户指南/集群/操作系统/使用操作系统Alibaba Cloud Linux 2.md)。
 
