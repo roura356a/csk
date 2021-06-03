@@ -83,13 +83,13 @@ Terraform是HashiCorp公司提供的一种开源工具，用于安全高效地�
       new_nat_gateway           = true
       # 节点的ECS实例类型。
       worker_instance_types     = [data.alicloud_instance_types.default.instance_types[0].id]
-      # Kubernetes群集的总工作节点数。默认值为3。最大限制为50。
+      # Kubernetes集群的总工作节点数。默认值为3。最大限制为50。
       worker_number             = 2
-      # ssh登录群集节点的密码。
+      # ssh登录集群节点的密码。
       password                  = "Yourpassword1234"
-      # pod网络的CIDR块。当cluster_network_type设置为flannel，你必须设定该参数。它不能与VPC CIDR相同，并且不能与VPC中的Kubernetes群集使用的CIDR相同，也不能在创建后进行修改。群集中允许的最大主机数量：256。
+      # pod网络的CIDR块。当cluster_network_type设置为flannel，你必须设定该参数。它不能与VPC CIDR相同，并且不能与VPC中的Kubernetes集群使用的CIDR相同，也不能在创建后进行修改。集群中允许的最大主机数量：256。
       pod_cidr                  = "172.20.0.0/16"
-      # 服务网络的CIDR块。它不能与VPC CIDR相同，不能与VPC中的Kubernetes群集使用的CIDR相同，也不能在创建后进行修改。
+      # 服务网络的CIDR块。它不能与VPC CIDR相同，不能与VPC中的Kubernetes集群使用的CIDR相同，也不能在创建后进行修改。
       service_cidr              = "172.21.0.0/20"
       # 是否为kubernetes的节点安装云监控。
       install_cloud_monitor     = true
@@ -203,5 +203,5 @@ Destroy complete! Resources: 5 destroyed.
 
 [阿里云Terraform Provider](https://github.com/hashicorp/terraform-provider-alicloud)
 
-[使用Terraform创建自动伸缩节点池](/cn.zh-CN/Kubernetes集群用户指南/节点与节点池/节点池/使用Terraform创建自动伸缩节点池.md)
+[使用Terraform创建具备自动伸缩功能的节点池](/cn.zh-CN/Terraform/使用Terraform创建具备自动伸缩功能的节点池.md)
 
