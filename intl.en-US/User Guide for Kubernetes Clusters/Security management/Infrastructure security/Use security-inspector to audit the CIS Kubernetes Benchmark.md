@@ -119,5 +119,3 @@ For more information about the benchmarks, see [CIS Kubernetes Benchmarks](https
 
 [security-inspector](/intl.en-US/Release notes/System Component change Records/Security/security-inspector.md)
 
-[Release notes for security-inspector]()
-
