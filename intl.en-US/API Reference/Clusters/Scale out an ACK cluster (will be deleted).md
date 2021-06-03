@@ -117,7 +117,7 @@ Default value: `false`. |
 
 Default value: `none`. |
 |image\_id|String|No|m-bp16z7xko3vvv8gt\*\*\*\*|Specifies a custom image for nodes. By default, the system image is used. You can select a custom image to replace the default image. For more information, see [Custom images](~~146647~~). |
-|user\_data|String|No|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFD\*\*\*\*|The user-defined data for nodes. For more information, see [Prepare user-defined data](https://help.aliyun.com/document_detail/~~49121~~). |
+|user\_data|String|No|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFD\*\*\*\*|The user-defined data for nodes. For more information, see [生成实例自定义数据](~~49121~~). |
 |rds\_instances|Array of String|No|rm-2zev748xi27xc\*\*\*\*|The names of ApsaraDB RDS instances. |
 |tags|Array of [tag](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The labels to be added to nodes. Labeling rules:
 
