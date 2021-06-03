@@ -22,8 +22,3 @@ security-inspector provides the following inspection features.
 
 -   The security-inspector component scans workload configurations in terms of health-checks, image policies, network configurations, resources, security capabilities, and security configurations. This allows you to check whether security risks exist in applications in real time. Solutions are also provided for you to deal with the security risks. For more information, see [Use the inspection feature to check for security risks in the workloads of an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Security/Use the inspection feature to check for security risks in the workloads of an ACK cluster.md).
 
-**Related topics**  
-
-
-[Release notes for security-inspector]()
-
