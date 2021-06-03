@@ -23,9 +23,9 @@ The sharp growth of smart devices connected to the Internet and the needs for de
 
 1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  In the upper-right corner of the Clusters page, click **Create Kubernetes Cluster**.
+3.  On the Clusters page, click **Create Kubernetes Cluster** in the upper-right corner of the page.
 
 4.  Click the **Managed Edge Kubernetes** tab and configure the cluster.
 
@@ -47,7 +47,7 @@ Select **Standard edition** to create a managed edge Kubernetes cluster. |
     |**VPC**|Select a virtual private cloud \(VPC\) to deploy the cluster. Standard VPCs and shared VPCs are supported.
 
     -   Shared VPC: The owner of a VPC \(resource owner\) can share the vSwitches in the VPC with other accounts in the same organization.
-    -   Standard VPC: The owner of a VPC \(resource owner\) cannot share vSwitches in the VPC with other accounts.
+    -   Standard VPC: The owner of a VPC \(resource owner\) cannot share the vSwitches in the VPC with other accounts.
 **Note:** ACK clusters support only VPCs. You can select a VPC from the drop-down list. If no VPC is available, click **Create VPC** to create one. For more information, see [Work with VPCs](/intl.en-US/VPCs and vSwitchs/Work with VPCs.md). |
     |**VSwitch**|Select vSwitches.
 
@@ -57,26 +57,28 @@ You can select up to three vSwitches that are deployed in different **zones**. I
 **Note:**
 
     -   **IP Addresses per Node** specifies the maximum number of IP addresses that can be assigned to each node. We recommend that you use the default value.
-    -   After you select the VPC and specify the number of IP addresses per node, recommended values are automatically generated for Pod CIDR block and Service CIDR block. Based on these configurations, the system also provides the maximum number of nodes that can be deployed in the cluster and the maximum number of pods that can be deployed on each node. You can modify the values based on your business requirements. |
+    -   After you select the VPC and specify the number of IP addresses per node, recommended values are automatically generated for Pod CIDR block and Service CIDR block. The system also provides the maximum number of nodes that can be deployed in the cluster and the maximum number of pods that can be deployed on each node. You can modify the values based on your business requirements. |
     |**Pod CIDR Block**|If you select **Flannel** as the network plug-in, you must set **Pod CIDR Block**.
 
 The CIDR blocks specified by **Pod CIDR Block** and **Service CIDR** cannot overlap with the CIDR block of the VPC and the CIDR blocks of the existing ACK clusters in the VPC. You cannot modify the CIDR blocks after the cluster is created. The Service CIDR block cannot overlap with the Pod CIDR block. For more information about subnetting for ACK clusters, see [Plan CIDR blocks for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network/Plan CIDR blocks for an ACK cluster.md). |
     |**Service CIDR**|
-    |**Configure SNAT**|By default, an ACK cluster cannot access the Internet. If the VPC that you select for the ACK cluster cannot access the Internet, you can select **Configure SNAT for VPC**. This way, ACK will create a NAT gateway and configure Source Network Address Translation \(SNAT\) entries to enable Internet access for the VPC. |
-    |**Access to API Server**|By default, an internal-facing Server Load Balancer \(SLB\) instance is created for the cluster API server. You can modify the specifications of the SLB instance. For more information, see [Instance types and specifications](/intl.en-US/Classic Load Balancer/User Guide/Instance/SLB instance overview.md).
+    |**Configure SNAT**|By default, an ACK cluster cannot access the Internet. If the VPC that you select for the ACK cluster cannot access the Internet, you can select **Configure SNAT for VPC**. This way, ACK will create a NAT gateway and configure Source Network Address Translation \(SNAT\) rules to enable Internet access for the VPC. |
+    |**Access to API Server**|By default, an internal-facing Server Load Balancer \(SLB\) instance is created for the cluster API server. You can modify the specification of the SLB instance. For more information, see [Instance types and specifications](/intl.en-US/Classic Load Balancer/User Guide/Instance/SLB instance overview.md).
 
-**Note:** If you delete the SLB instance, you cannot access the API server.
+**Note:** If you delete the SLB instance, you cannot access the cluster API server.
 
 Select or clear **Expose API Server with EIP**. The ACK API server provides multiple HTTP-based RESTful APIs, which can be used to create, delete, modify, query, and monitor resources, such as pods and Services.
 
     -   If you select this check box, an elastic IP address \(EIP\) is created and associated with an Internet-facing SLB instance. Port 6443 used by the API server is opened on master nodes. You can connect to and manage the ACK cluster by using kubeconfig over the Internet.
-    -   If you clear this check box, no EIP is created. You can connect to and manage the ACK cluster only by using kubeconfig from within the VPC.
+    -   If you clear this check box, no EIP is created. You can connect to and manage the ACK cluster by using kubeconfig only within the VPC.
 **Note:** Edge nodes must call the API over the Internet. If you clear **Expose API Server with EIP**, the edge nodes cannot be connected to the edge cluster. As a result, the created cluster cannot be used in edge computing scenarios. |
     |**RDS Whitelist**|Set the Relational Database Service \(RDS\) whitelist. Add the IP addresses of the nodes in the cluster to the RDS whitelist.
 
 **Note:** To enable an RDS instance to access the cluster, you must deploy the RDS instance in the VPC where the cluster is deployed. |
-    |**Security Group**|You can select **Create Basic Security Group**, **Create Advanced Security Group**, or **Select Existing Security Group**. For more information, see [Overview](/intl.en-US/Security/Security groups/Overview.md). |
-    |**Deletion Protection**|Specify whether to enable deletion protection. If you select this check box, the ACK cluster cannot be deleted in the console or by calling the API. This prevents user errors. |
+    |**Security Group**|You can select **Create Basic Security Group**, **Create Advanced Security Group**, or **Select Existing Security Group**. For more information, see [Overview](/intl.en-US/Security/Security groups/Overview.md).
+
+**Note:** To select **Select Existing Security Group**, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm). |
+    |**Deletion Protection**|Specify whether to enable deletion protection. Deletion protection prevents the cluster from being accidentally deleted in the console or by calling the API. This prevents user errors. |
 
     Configure advanced settings of the cluster.
 
@@ -86,15 +88,15 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
 
     -   iptables is a mature and stable kube-proxy mode. It uses iptables rules to conduct service discovery and load balancing. The performance of this mode is restricted by the size of the ACK cluster. This mode is suitable for ACK clusters that manage a small number of Services.
     -   IPVS is a high-performance kube-proxy mode. It uses Linux Virtual Server \(LVS\) to conduct service discovery and load balancing. This mode is suitable for ACK clusters that manage a large number of Services. We recommend that you use this mode in scenarios where high-performance load balancing is required. |
-    |**Labels**|Add labels to the nodes in the cluster. Enter a key and a value, and click **Add**.
+    |**Labels**|Add labels to the cluster. Enter a key and a value, and click **Add**.
 
 **Note:**
 
     -   Key is required. Value is optional.
     -   Keys are not case-sensitive. A key must be 1 to 64 characters in length, and cannot start with aliyun, http://, or https://.
     -   Values are not case-sensitive. A value can be empty and can contain up to 128 characters in length. It cannot be http:// or https://.
-    -   The keys of labels that are added to the same resource must be unique. If you add a label with a used key, the label overwrites the one that uses the same key.
-    -   You can add up to 20 labels to each resource. If you add more than 20 labels to a resource, all labels become invalid. You must remove excess labels for the remaining labels to take effect. |
+    -   The keys of labels that are added to the same resource must be unique. If you add a label with a used key, the label overwrites the others that use the same key.
+    -   You can add up to 20 labels to each resource. If you add more than 20 labels to a resource, all labels become invalid. You must remove unused labels for the other labels to take effect. |
 
 5.  Click **Next:Worker Configurations** to configure worker nodes.
 
@@ -108,12 +110,12 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
     |**Selected Types**|The selected instance types are displayed. |
     |**Quantity**|Specify the number of worker nodes \(ECS instances\) to be created. |
     |**System Disk**|Configure the system disks of worker nodes. Standard SSDs and ultra disks are supported.|
-    |**Mount Data Disk**|**Enhanced SSDs**, **SSDs**, and **ultra disks** are supported.
+    |**Mount Data Disk**|**Enhanced SSDs**, **standard SSDs**, and **ultra disks** are supported.
 
 **Note:**
 
     -   You can select **Enable Backup** to back up disk data.
-    -   If you select an **enhanced SSD** as the system disk, you can also set a custom **performance level** for the disk.
+    -   If you select an **enhanced SSD** as the system disk, you can set a custom **performance level** for the disk.
 
 You can select higher performance levels for enhanced SSDs with larger storage capacities. For example, you can select performance level 2 for an enhanced SSD with a storage capacity of more than 460 GiB. You can select performance level 3 for an enhanced SSD with a storage capacity of more than 1,260 GiB. For more information, see [Capacity and PLs](/intl.en-US/Block Storage/Block Storage overview/ESSDs.md). |
     |**Logon Type**|**Note:** You must set the logon type if you select **Install CloudMonitor Agent on ECS Instance** or **Enable Log Service**. |
@@ -124,12 +126,12 @@ You can select higher performance levels for enhanced SSDs with larger storage c
     |Parameter|Description|
     |---------|-----------|
     |**CloudMonitor Agent**|Select whether to install the CloudMonitor agent. If you select **Install CloudMonitor Agent on ECS Instance**, you can view monitoring information about the nodes in the Cloud Monitor console.|
-    |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create a new one. By default, **Enable Log Service** is selected. When you create an application, you can activate Log Service through a few steps. For more information, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md). |
-    |**Workflow Engine**|Specify whether to enable Alibaba Cloud Genomics Compute Service \(AGS\).
+    |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create one. By default, **Enable Log Service** is selected. When you create an application, you can enable Log Service through a few steps. For more information, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md). |
+    |**Workflow Engine**|Specify whether to enable Alibaba Cloud Genomics Service \(AGS\).
 
 **Note:** To use this feature, submit a ticket.
 
-    -   If you select this check box, the system automatically installs the AGS workflow plug-in when the system creates the ACK cluster.
+    -   If you select this check box, the system automatically installs the AGS workflow plug-in when the system creates the cluster.
     -   If you clear this check box, you must manually install the AGS workflow plug-in. For more information, see [Introduction to AGS CLI](/intl.en-US/User Guide for Genomics Service/AGS workflow/Introduction to AGS CLI.md). |
 
 7.  Click **Next:Confirm Order**.
@@ -165,7 +167,7 @@ You can [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Ku
 **Related topics**  
 
 
-[t1884276.md\#](t1884276.md#)
+[ACK@Edge overview](/intl.en-US/User Guide for Edge Container Service/ACK@Edge overview.md)
 
 [Upgrade an edge cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Upgrade an edge cluster.md)
 
