@@ -14,7 +14,7 @@ When you create a professional managed Kubernetes cluster, you can set the numbe
 -   Cost-effectiveness. A cluster without a worker node is cost-effective and meets your requirements.
 -   Flexible configurations. A cluster without a worker node decouples the management configurations from node configurations. This allows you to manage the cluster and nodes in a more flexible manner.
 
-Terraform is an open source tool that supports new infrastructures through Terraform providers. You can use Terraform to preview, configure, and manage cloud infrastructures and resources. For more information, see [What is Terraform?](https://help.aliyun.com/document_detail/95820.html). Alibaba Cloud Provider 1.109.1 and later of Terraform allows you to create an ACK cluster without a worker node. The following example describes how to create an ACK cluster without a worker node by using Terraform. After the cluster is created, you can add and manage worker nodes by using node pools.
+Terraform is an open source tool that supports new infrastructures through Terraform providers. You can use Terraform to preview, configure, and manage cloud infrastructures and resources. For more information, see [What is Terraform?](). Alibaba Cloud Provider 1.109.1 and later of Terraform allows you to create an ACK cluster without a worker node. The following example describes how to create an ACK cluster without a worker node by using Terraform. After the cluster is created, you can add and manage worker nodes by using node pools.
 
 ## Create an ACK cluster without a worker node by using Terraform
 
