@@ -1,20 +1,22 @@
 # Use the Kubernetes API
 
-This topic describes how to call the Kubernetes API by using cURL to make REST calls. This allows you to send HTTPS requests to manage Kubernetes clusters. The following examples describe how to create and delete pods, and how to create and modify Deployments.
+This topic describes how to call the Kubernetes API by using cURL to make REST calls. This allows you to send HTTPS requests to manage Kubernetes clusters. The following examples demonstrate how to create and delete pods, and how to create and modify Deployments.
 
 ## Obtain cluster credentials in the kubeconfig file
 
-1.  Log on to [the ACK console](https://cs.console.aliyun.com). On the Clusters page, find the cluster that you want to manage and click **Details** in the Actions column.
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-    ![Cluster management](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0184488951/p96471.png)
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-2.  On the page that appears, click the Connection Information tab. You can find cluster credentials in the **kubeconfig** file. Copy the content of the **kubeconfig** file and save it to the on-premises machine.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-3.  Run the following commands to retrieve information about the certificate authority \(CA\), the private key, and the API server:
+4.  On the page that appears, click the **Connection Information** tab. You can find cluster credentials in the **kubeconfig** file. Copy the content of the **kubeconfig** file and save it to the on-premises machine.
+
+5.  Run the following commands to retrieve information about the certificate authority \(CA\), the private key, and the API server:
 
     ```
-    cat  ./kubeconfig |grep client-certificate-data | awk -F ' ' '{print $2}' |base64 -d > client-cert.pem
-    cat  ./kubeconfig |grep client-key-data | awk -F ' ' '{print $2}' |base64 -d > client-key.pem
+    cat  ./kubeconfig |grep client-certificate-data | awk -F ' ' '{print $2}' |base64 -d > ./client-cert.pem
+    cat  ./kubeconfig |grep client-key-data | awk -F ' ' '{print $2}' |base64 -d > ./client-key.pem
     APISERVER=`cat  ./kubeconfig |grep server | awk -F ' ' '{print $2}'`
     ```
 
@@ -24,10 +26,10 @@ This topic describes how to call the Kubernetes API by using cURL to make REST c
 Run the following command to query all namespaces in the cluster:
 
 ```
-curl --cert client-cert.pem --key client-key.pem -k $APISERVER/api/v1/namespaces
+curl --cert ./client-cert.pem --key ./client-key.pem -k $APISERVER/api/v1/namespaces
 ```
 
--   Common operation to manage pods
+-   Common operations to manage pods
 
     Run the following command to query all pods in the default namespace:
 
