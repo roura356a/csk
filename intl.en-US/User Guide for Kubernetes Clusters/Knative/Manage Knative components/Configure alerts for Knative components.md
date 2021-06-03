@@ -43,7 +43,7 @@ Knative components include:
 
 Before you set an alert policy for a pod where the components are deployed, check the monitoring information about the pod.
 
-1.  Log on to the[ARMS console](https://arms-intl.console.aliyun.com/).
+1.  Log on to the [ARMS console](https://arms-intl.console.aliyun.com/).
 
 2.  In the left-side navigation pane, click **Prometheus Monitoring**.
 
