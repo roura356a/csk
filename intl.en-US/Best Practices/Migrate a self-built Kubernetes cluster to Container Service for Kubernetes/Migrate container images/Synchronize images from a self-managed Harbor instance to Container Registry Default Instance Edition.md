@@ -31,7 +31,7 @@ After the namespace is created, you can find it on the Namespaces page. You can 
 
 Before you perform operations as a Resource Access Management \(RAM\) user, create a RAM user and grant permissions to the RAM user. Skip this step if you use an Alibaba Cloud account to perform subsequent operations.
 
-1.  Create a RAM user. For more information, see [Create a RAM user](/intl.en-US/RAM User Management/Create a RAM user.md).
+1.  Create a RAM user. For more information, see [Create a RAM user](/intl.en-US/RAM User Management/Basic operations/Create a RAM user.md).
 
 2.  Grant permissions to the RAM user. For more information, see [Create a custom RAM policy](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Create a custom RAM policy.md).
 
@@ -101,7 +101,7 @@ In this example, images in the library/nginx repository of a self-managed Harbor
 -   `registry.cn-beijing.aliyuncs.com`: the endpoint of the destination repository. In this example, the image is deployed in the China \(Beijing\) region.
     -   `username`: the username in the credential.
     -   `password`: the password in the credential.
--   `"harbor.myk8s.paas.com:32080/library/nginx": ""`: access the library/nginxrepository through the endpoint harbor.myk8s.paas.com:32080.
+-   `"harbor.myk8s.paas.com:32080/library/nginx": ""`: access the library/nginx repository through the endpoint harbor.myk8s.paas.com:32080.
 
 ## Use image-syncer to synchronize images
 
