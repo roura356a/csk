@@ -47,9 +47,9 @@ spec:
 |scaleTargetRef|scaleTargetRef specifies the object that you want to scale. If the subresources of the object can be scaled, you can enable CronHPA for the object.|
 |excludeDates|The value of excludeDates must be an array of dates. Scaling jobs are not executed on dates that are specified in excludeDates. **Note:** The minimum time period is **one day**.
 
- The value is in the `- "* * * * * *"` format, which indicates -"<seconds\> <minutes\> <hours\> <days of month\> <months\>".
+The value is in the `- "* * * * * *"` format, which indicates -"<seconds\> <minutes\> <hours\> <days of month\> <months\>".
 
- For example, if you do not want to execute scaling jobs on November 15, set excludeDates to the following value: ```
+For example, if you do not want to execute scaling jobs on November 15, set excludeDates to the following value: ```
 excludeDates:
   - "* * * 15 11 *"
 ``` |
@@ -80,7 +80,7 @@ You can install the CronHPA controller ack-kubernetes-cronhpa-controller by usin
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -93,7 +93,7 @@ You can install the CronHPA controller ack-kubernetes-cronhpa-controller by usin
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -137,7 +137,7 @@ The following example demonstrates how to create CronHPA jobs for an existing ap
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -223,27 +223,27 @@ After you deploy the preceding YAML template, CronHPA is aware of the values of 
 
 The following table describes the rules that enable CronHPA and HPA to interact without conflicts.
 
-|HPA（min/max）|Cronhpa|Deployment|Scaling result|Description|
-|------------|-------|----------|--------------|-----------|
-|1/10|5|5|-   HPA（min/max）：1/10
+|HPA \(min/max\)|Cronhpa|Deployment|Scaling result|Description|
+|---------------|-------|----------|--------------|-----------|
+|1/10|5|5|-   HPA \(min/max\)：1/10
 -   Deployment：5
 
 |If the number of pods desired by CronHPA equals the current number of pods, CronHPA does not change the maximum and minimum numbers of pods in the HPA configuration. In addition, no scaling activity is triggered.|
-|1/10|4|5|-   HPA（min/max）：1/10
+|1/10|4|5|-   HPA \(min/max\)：1/10
 -   Deployment：5
 
 |If the number of pods desired by CronHPA is smaller than the current number of pods, no scaling activity is triggered.|
-|1/10|6|5|-   HPA（min/max）：6/10
+|1/10|6|5|-   HPA \(min/max\)：6/10
 -   Deployment：6
 
 |-   If the number of pods desired by CronHPA is greater than the current number of pods, CronHPA adds pods to reach the desired number.
 -   If the number of pods desired by CronHPA is smaller than the value of minReplicas in the HPA configuration, CronHPA changes the value of minReplicas. |
-|5/10|4|5|-   HPA（min/max）：4/10
+|5/10|4|5|-   HPA \(min/max\)：4/10
 -   Deployment：5
 
 |-   If the number of pods desired by CronHPA is smaller than the current number of pods, no scaling activity is triggered.
 -   If the number of pods desired by CronHPA is smaller than the value of minReplicas in the HPA configuration, CronHPA changes the value of minReplicas. |
-|5/10|11|5|-   HPA（min/max）：11/11
+|5/10|11|5|-   HPA \(min/max\)：11/11
 -   Deployment：11
 
 |-   If the number of pods desired by CronHPA is greater than the current number of pods, CronHPA adds pods to reach the desired number.
@@ -251,7 +251,7 @@ The following table describes the rules that enable CronHPA and HPA to interact 
 
 The following list describes the parameters in the table:
 
--   HPA（min/max）: the minimum and maximum numbers of pods that are specified in the HPA configuration.
+-   HPA \(min/max\): the minimum and maximum numbers of pods that are specified in the HPA configuration.
 -   CronHPA: the desired number of pods.
 -   Deployment: the current number of pods that are provisioned for the application.
 
