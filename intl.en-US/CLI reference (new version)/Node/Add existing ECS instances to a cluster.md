@@ -1,15 +1,17 @@
 # Add existing ECS instances to a cluster
 
-You can run the following command to add existing Elastic Compute Service \(ECS\) instances to a Container Service for Kubernetes \(ACK\) cluster: `arc cs node attach <clusterid> --password <password> --instances '["<instanceid1>","<instanceid2>"]'`.
+You can run the following command to add existing Elastic Compute Service \(ECS\) instances to a Container Service for Kubernetes \(ACK\) cluster: `arc-cs node attach <cluster_id> --password <password> --instances '["<instance_id1>","<instance_id2>"]'`.
 
-For more information about this command, see [Add existing ECS instances to a cluster](/intl.en-US/API Reference/Nodes/Add existing ECS instances to a cluster.md).
+For more information about this command, see [AttachInstances](/intl.en-US/API Reference/Node pools/AttachInstances.md).
 
 ## Example by using Alibaba Cloud CLI
 
 Sample request:
 
 ```
-arc cs node attach c8cfc598fc84a41d6af96965f34ed**** --password Hello**** --instances '["i-bp1bw9dno0jghymp****","i-bp1bw9dno0jghymp****"]'
+arc-cs node attach c8cfc598fc84a41d6af96965f34ed**** \
+--password Hello**** \
+--instances '["i-bp1bw9dno0jghymp****","i-bp1bw9dno0jghymp****"]'
 ```
 
 Sample response:
