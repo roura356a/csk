@@ -10,6 +10,10 @@ keyword: [AESM, Intel SGX AESM]
 
 Intel® SGX Architectural Enclave Service Manager （Intel® SGX AESM）是Intel® SGX的系统组件，主要提供了SGX Enclave启动支持，密钥配置、远程认证等服务。ACK TEE提供的AESM组件是以DaemonSet形式部署Intel® SGX AESM服务的组件。
 
+## 使用说明
+
+Intel SGX AESM组件默认安装，无需配置即可使用。
+
 ## 变更记录
 
 **2021年04月**
