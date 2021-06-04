@@ -41,6 +41,10 @@ sgx-device-plugin主要依赖以下组件：
     sgx-device-plugin组件是开源的，详细介绍请参见[sgx-device-plugin](https://github.com/AliyunContainerService/sgx-device-plugin)。
 
 
+## 使用说明
+
+sgx-device-plugin组件默认安装，无需配置即可使用。
+
 ## 变更记录
 
 **2021年04月**
