@@ -18,8 +18,6 @@ aliyun-acr-credential-helper会默认安装在所有ACK集群中。通过读取A
 
 关于免密组件的使用详情，请参见[使用免密组件拉取容器镜像](/intl.zh-CN/Kubernetes集群用户指南/应用/镜像/使用免密组件拉取容器镜像.md)或[通过自建Kubernetes集群的免密组件拉取容器镜像](/intl.zh-CN/Kubernetes集群用户指南/多云混合云/注册集群管理/通过自建Kubernetes集群的免密组件拉取容器镜像.md)。
 
-或
-
 ## 变更记录
 
 **2021年04月**
