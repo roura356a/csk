@@ -39,7 +39,7 @@ After the namespace is created, you can find the created namespace on the Namesp
 
 If you want to perform the subsequent operations as a Resource Access Management \(RAM\) user, you must create and grant permissions to a RAM user. Skip this step if you use an Alibaba Cloud account to perform subsequent operations.
 
-1.  Create a RAM user. For more information, see [Create a RAM user](/intl.en-US/RAM User Management/Create a RAM user.md).
+1.  Create a RAM user. For more information, see [Create a RAM user](/intl.en-US/RAM User Management/Basic operations/Create a RAM user.md).
 
 2.  Grant permissions to the RAM user. For more information, see [Create a custom RAM policy](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Create a custom RAM policy.md).
 
@@ -147,7 +147,7 @@ In this example, images in the library/nginx repository of a self-managed Harbor
 -   `ruohe-test-registry.cn-shanghai.cr.aliyuncs.com`: the endpoint of the instance of Container Registry Enterprise Edition for Internet access.
     -   `username`: the username in the credential.
     -   `password`: the password in the credential.
--   `"harbor.myk8s.paas.com:32080/library/nginx": ""`: access the library/nginxrepository through the endpoint harbor.myk8s.paas.com:32080.
+-   `"harbor.myk8s.paas.com:32080/library/nginx": ""`: access the library/nginx repository through the endpoint harbor.myk8s.paas.com:32080.
 
 ## Use image-syncer to synchronize images
 
@@ -164,7 +164,7 @@ In this example, images in the library/nginx repository of a self-managed Harbor
     ```
     # Set the default destination repository to registry.cn-beijing.aliyuncs.com and the default destination namespace to image-syncer.
     # Set both the number of images that can be synchronized at a time and the maximum number of retries to 10.
-    # Record logs in the ./log file. If the file does not exist, it is automatically created. By default, image-syncer logs appear in Stderr if the log file is not specified.
+    # Record logs in the ./log file. If the file does not exist, it is automatically created. By default, image-syncer logs are stored in Stderr if the log file is not specified.
     # Specify harbor-to-acr.json as the configuration file. Its content is described in the previous section.
     ./image-syncer --proc=10 --config=./harbor-to-acr.json --registry=registry.cn-beijing.aliyuncs.com --namespace=image-syncer --retries=10 --log=./log
     ```
@@ -172,7 +172,7 @@ In this example, images in the library/nginx repository of a self-managed Harbor
 
 ## Synchronization result
 
-Each time you synchronize an image, image-syncer generates a synchronization task, runs the task, and retries if the task fails. Each task synchronizes an image. An image is represented by a tag. If a tag is not specified for a rule in the configuration file, image-syncer lists all the tags in the source repository and generates synchronization tasks for all the images. If image-syncer fails to generate synchronization tasks, image-syncer retries after it runs generated tasks.
+Each time you synchronize an image, image-syncer generates a synchronization task, runs the task, and retries if the task fails. Each task synchronizes an image that is represented by a tag. If no tag is specified for a rule in the configuration file, image-syncer lists all the tags in the source repository and **generates synchronization tasks** for all the images. If image-syncer fails to generate synchronization tasks, image-syncer retries after it runs generated tasks.
 
 -   The following figure shows the output of a successful synchronization task.
 
@@ -184,6 +184,6 @@ Each time you synchronize an image, image-syncer generates a synchronization tas
 
 -   The following figure shows the logs of image-syncer.
 
-    ![Logs](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8446858951/p71386.png)
+    ![Log data](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8446858951/p71386.png)
 
 
