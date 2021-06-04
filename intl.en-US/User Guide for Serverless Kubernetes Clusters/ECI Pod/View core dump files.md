@@ -1,21 +1,21 @@
 View core dump files 
 =========================================
 
-This topic describes how to configure the directory where a core dump file is saved. You can view and analyze a core dump file when a container is terminated abnormally. This helps you to identify the cause of the issue. 
+This topic describes how to configure the directory where to store core dump files. You can view and analyze a core dump file when a container is unexpectedly terminated. This helps you identify the cause of the issue. 
 
 Background information 
 -------------------------------------------
 
-In Linux, if a program suddenly terminates or unexpectedly exits, the operating system records the state of the working memory of the program at that time and saves it in a file. This process is called a core dump. You can view and analyze the core dump file to identify the cause of the issue. 
+In Linux, if a program unexpectedly terminates or exits, the operating system records the state of the working memory of the program at that time and stores the state to a file. This process is called a core dump. You can view and analyze the core dump file to identify the cause of the issue. 
 
 The following figure shows some signals that cause a core dump in Linux. These signals have a value of Core in the Action column. 
 
-![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8044183161/p107903.png)For more information, visit [Core dump file](http://man7.org/linux/man-pages/man5/core.5.html).
+![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8044183161/p107903.png)For more information, see [Core dump file](http://man7.org/linux/man-pages/man5/core.5.html).
 
-Description 
---------------------------------
+Overview 
+-----------------------------
 
-For Elastic Container Instance, the names and directories of core dump files cannot be specified because the elastic container instances are managed. By default, the name of a core dump file is core.pid, and the file is saved in the current directory. 
+For Elastic Container Instance, the names and directories of core dump files cannot be specified because the elastic container instances are managed. By default, the name of a core dump file is core.pid, and the file is stored in the current directory. 
 
 
 
@@ -29,11 +29,14 @@ For Elastic Container Instance, the names and directories of core dump files can
 
 
 
-Even if a core dump file is generated when a container process abnormally exits, the file is lost due to the container exit. Therefore, you cannot view the file offline for subsequent analysis. 
+Even if a core dump file is generated when a container process unexpectedly exits, the file is lost during the container exit and cannot be viewed offline for subsequent analysis. 
 
-Elastic Container Instance allows you to specify the directories in which to save core dump files to solve the preceding problems. You can save core dump files in external volumes. Then, you can still obtain a core dump file for offline viewing and analysis even if the corresponding container exits. 
+Elastic Container Instance allows you to specify directories in which to store core dump files to solve the preceding problems. You can store core dump files in external volumes. This ensures that you can view and analyze core dump files offline even if a container exits. 
 
-You can use one of the following configuration methods:
+You can use one of the following methods to configure the directory where to store core dump files:
+**Notice**
+
+The configured path cannot start with `|`. You cannot use core dump files to configure executable programs.
 
 * Kubernetes
 
@@ -42,7 +45,7 @@ You can use one of the following configuration methods:
 
   
 
-* API operation
+* OpenAPI
 
       CorePattern = "/xx/xx/core"
 
@@ -54,21 +57,31 @@ You can use one of the following configuration methods:
 Configuration examples 
 -------------------------------------------
 
-Typically, core dump files are analyzed offline. Therefore, external volumes are preferred over local directories of the containers to save core dump files. You can use disks or network file system (NFS) file systems as external volumes. An NFS file system is used in the following example. 
+Typically, core dump files are analyzed offline. Therefore, it is better to store core dump files to external volumes instead of local directories. You can use disks or Network File System (NFS) file systems as external volumes. An NFS file system is used in the following example. 
 
-1. Mount an NFS file system and configure the directory where core dump files are saved. 
+1. Mount an NFS file system and configure the directory where to store core dump files. 
 
-   In the following example, the NFS file system is mounted to the /pod/data/dump/ directory of the container and the /pod/data/dump/core directory is used to save core dump files. In this case, all core dump files of the container are automatically saved to the directory and synchronized to the NFS file system. You can obtain the core dump files from the NFS file system for analysis even if the container is released. 
+   In the following example, the NFS file system is mounted to the /pod/data/dump/ directory of the container and the /pod/data/dump/core directory is used to store core dump files. In this case, all core dump files of the container are automatically stored to the directory and synchronized to the NFS file system. You can obtain the core dump files from the NFS file system for analysis even if the container is released. 
 
-       'Volume.1.Name': 'default-volume1',
-       'Volume.1.Type': 'NFSVolume',
-       'Volume.1.NFSVolume.Path': '/dump/',
-       'Volume.1.NFSVolume.Server': '143b24****-gfn3.cn-beijing.nas.aliyuncs.com',
-       
-       'Container.1.VolumeMount.1.Name': 'default-volume1',
-       'Container.1.VolumeMount.1.MountPath': '/pod/data/dump/',
-       
-       'CorePattern':'/pod/data/dump/core-eci',
+       apiVersion: v1
+       kind: Pod
+       metadata:
+         name: test
+         annotations:
+           k8s.aliyun.com/eci-core-pattern: "pod/data/dump/core" 
+       spec:
+         containers:
+         - image: nginx:latest
+           name: test-container
+           volumeMounts:
+           - mountPath: /pod/data/dump/
+             name: default-volume
+         volumes:
+         - name: default-volume
+           nfs:
+             server: 143b24****-gfn3.cn-beijing.nas.aliyuncs.com
+             path: /dump/
+             readOnly: false
 
    
 
@@ -84,7 +97,7 @@ Typically, core dump files are analyzed offline. Therefore, external volumes are
        bin   dev   etc   home  pod   proc  root  sys   tmp   usr   var
        / # cd /pod/data/dump/
        /pod/data/dump # ls
-       core-eci.12
+       core.12
 
    
 
@@ -98,7 +111,7 @@ Typically, core dump files are analyzed offline. Therefore, external volumes are
 
        / # cd /pod/data/dump/
        /pod/data/dump # ls
-       core-eci.12
+       core.12
 
    
 
