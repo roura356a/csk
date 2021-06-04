@@ -1,9 +1,13 @@
+---
+keyword: [WDL workflow, AGS]
+---
+
 # Create a WDL workflow
 
 Workflow Description Language \(WDL\) is a language developed by Broad Institute. WDL specifies data processing workflows with a human-readable and writeable syntax. You can use WDL to efficiently create bioinformatics workflows. This topic describes how to use Alibaba Cloud Genomics Service \(AGS\) to create and run a WDL workflow in a cluster of Container Service for Kubernetes \(ACK\).
 
 -   An ACK cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
--   One or more storage services such as Apsara File Storage NAS \(NAS\), Object Storage Service \(OSS\), or file storage systems that support the Network File System \(NFS\) protocol are deployed. These storage services are used to store input and output data. For more information, see [Mount a NAS file system as a dynamic volume](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/Mount a NAS file system as a dynamic volume.md).
+-   One or more storage services such as Apsara File Storage NAS \(NAS\), Object Storage Service \(OSS\), or file storage systems that support the Network File System \(NFS\) protocol are deployed. These storage services are used to store input and output data. For more information, see [Mount a dynamically provisioned NAS volume](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/Mount a dynamically provisioned NAS volume.md).
 
 ## Benefits of WDL
 
