@@ -58,7 +58,7 @@ Helm采用客户端/服务器架构，由如下组件组成：
     -   **发布名称**：填写应用发布的名称。
     ![部署基本信息](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0085659951/p10397.png)
 
-6.  在集群管理页左侧导航栏中，选择**服务与路由** \> **服务**。
+6.  在集群管理页左侧导航栏中，选择**网络** \> **服务**。
 
 7.  在服务列表中，找到对应的服务，获取HTTP和HTTPS外部端点的地址，然后单击外部端点的访问地址，进入WordPress博客发布页面。
 
@@ -75,7 +75,7 @@ Helm采用客户端/服务器架构，由如下组件组成：
 
     1.  在本地计算机上安装和配置kubectl。
 
-        参见[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+        参见[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
         若要查看Kubernetes目标集群的信息，键入命令`kubectl cluster-info`。
 
