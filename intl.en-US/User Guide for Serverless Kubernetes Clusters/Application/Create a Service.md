@@ -22,11 +22,11 @@ Create a Deployment from an image. In this example, a Deployment named serverles
 
 1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column.
 
-4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
+4.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
 5.  In the upper-right corner of the page, click **Create**.
 
@@ -56,5 +56,7 @@ Create a Deployment from an image. In this example, a Deployment named serverles
     -   **Annotations**: Add annotations to the Service and configure parameters for the SLB instance. For example, an annotation of `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20` specifies that the Service bandwidth is set to 20 Mbit/s. This allows you to limit the traffic that flows through the Service. For more information about annotations, see [Use annotations to configure load balancing](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Use annotations to configure load balancing.md).
     -   **Label**: Add labels to the Service.
 7.  Click **Create**. After the nginx-svc Service is created, it appears on the Services page.
+
+    ![View a Service](../images/p57695.png)
 
 
