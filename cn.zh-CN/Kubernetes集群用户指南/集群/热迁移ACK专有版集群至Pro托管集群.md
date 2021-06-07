@@ -6,9 +6,13 @@ keyword: [ACK专有版集群, Kubernetes集群迁移, Pro集群]
 
 为了能够让存量的ACK专有版集群用户享受到ACK Pro托管版集群的功能和特性，容器服务平台推出了专有版到Pro托管版的集群热迁移功能，使您可以动态地迁移ACK专有版集群至Pro托管版集群。本文介绍如何迁移ACK专有版集群至Pro托管集群中。
 
-迁移ACK专有版集群至Pro托管版集群前，您需要创建一个OSS的存储空间（Bucket）。关于如何创建OSS Bucket的具体步骤，请参见[创建存储空间](/cn.zh-CN/控制台用户指南/存储空间管理/创建存储空间.md)。
+-   迁移ACK专有版集群至Pro托管版集群前，您需要创建一个OSS的存储空间（Bucket）。关于如何创建OSS Bucket的具体步骤，请参见[创建存储空间](/cn.zh-CN/控制台用户指南/存储空间管理/创建存储空间.md)。
+-   确保集群的内网SLB实例规格的配置为slb.s1.small及以上。
 
-**说明：** 如果您需要使用迁移ACK专有版集群至Pro托管版集群功能，需要[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)开通白名单申请。
+**说明：**
+
+-   如果您需要使用迁移ACK专有版集群至Pro托管版集群功能，需要[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)开通白名单申请。
+-   如果集群的内网SLB的配置是共享版，则需要至少升级其到slb.s1.small才能进行集群迁移。关于如果升级SLB实例规格，请参见[按量计费实例升降配](/cn.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/实例变配/按量计费实例升降配.md)。
 
 ## 注意事项
 
