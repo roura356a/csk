@@ -3,11 +3,11 @@
 The Container Service for Kubernetes \(ACK\) console provides rich features that allow you to manage and maintain ACK clusters and applications. This topic describes how to deploy an NGINX application, configure an Ingress, and query logs in the ACK console.
 
 -   Create an ACK cluster. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
--   Enable Log Service and activate Logtail. For more information, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
+-   Enable Log Service and activate Logtail. For more information, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md).
 
 ## Step 1: Deploy an NGINX application
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
@@ -21,7 +21,7 @@ The Container Service for Kubernetes \(ACK\) console provides rich features that
 
     -   At the top of the Create page, set **Namespace** to **default**.
     -   Set Sample Template to **Resource - basic Deployment**.
-    -   Configure log collection. For more information about how to configure log collection parameters, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
+    -   Configure log collection. For more information about how to configure log collection parameters, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md).
 
         Add the following content to the `spec` field in the template.
 
@@ -44,13 +44,13 @@ The Container Service for Kubernetes \(ACK\) console provides rich features that
 
 ## Step 2: Release the NGINX application
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
+4.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
 5.  On the Services page, click **Create** in the upper-right corner of the page.
 
@@ -62,13 +62,13 @@ The Container Service for Kubernetes \(ACK\) console provides rich features that
     |Type|Set **Type** to **Cluster IP**.|
     |Backend|Select **nginx-deployment-basic** from the drop-down list.|
     |Port Mapping|Enter a name for the port. Set **Service Port** to 80, **Container Port** to 80, and **Protocol** to **TCP**.|
-    |Annotations|Add one or more annotations to the Service and configure Server Load Balancer \(SLB\) parameters. For example, the annotation `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20` specifies that the maximum bandwidth of the Service is 20 Mbit/s. This limits the amount of traffic that flows through the Service. For more information, see [Use annotations to configure SLB instances](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Use annotations to configure SLB instances.md).|
+    |Annotations|Add one or more annotations to the Service and configure Server Load Balancer \(SLB\) parameters. For example, the annotation `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20` specifies that the maximum bandwidth of the Service is 20 Mbit/s. This limits the amount of traffic that flows through the Service. For more information, see [Use annotations to configure load balancing](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Use annotations to configure load balancing.md).|
     |Label|Add one or more labels to the Service.|
 
 
 ## Step 3: Create an Ingress
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
@@ -89,7 +89,7 @@ The Container Service for Kubernetes \(ACK\) console provides rich features that
 
 ## Step 4: View the access log of the NGINX application
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
