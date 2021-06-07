@@ -95,3 +95,10 @@ ACK包含了专有版Kubernetes（Dedicated Kubernetes）、托管版Kubernetes�
 
 ![ACK用户大群二维码](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8160817161/p233033.png)
 
+## 学习资源
+
+-   [ACK Workshop](http://ackworkshop.com/zh/)
+-   [CNCF × Alibaba 云原生技术公开课](https://edu.aliyun.com/course/1651/lesson/list)
+-   [阿里云云原生容器工程师ACP认证课程](https://edu.aliyun.com/course/2553)
+-   [Kubernetes官网](https://kubernetes.io/zh/docs/concepts/overview/what-is-kubernetes/)
+
