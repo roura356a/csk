@@ -8,11 +8,11 @@ If you create an application that provides external services, Kubernetes Dashboa
 
 1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column.
 
-4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
+4.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
 5.  On the **Services** page, you can view the Services that are created in the cluster.
 
