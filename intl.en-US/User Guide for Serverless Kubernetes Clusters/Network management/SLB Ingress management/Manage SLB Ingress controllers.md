@@ -42,7 +42,7 @@ When you create an ASK cluster, select **SLB Ingress** in the **Ingress** sectio
 
 **Delete the Service associated with the SLB instance**
 
-1.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
+1.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
 2.  On the **Services** page, select **kube-system** from the **Namespace** drop-down list.
 
