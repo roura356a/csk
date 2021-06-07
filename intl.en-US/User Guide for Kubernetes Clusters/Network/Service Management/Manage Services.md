@@ -12,11 +12,11 @@ Each pod in Kubernetes clusters has its own IP address. However, pods are freque
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
+4.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
 5.  On the Services page, click **Create** in the upper-right corner of the page.
 
@@ -58,7 +58,7 @@ Each pod in Kubernetes clusters has its own IP address. However, pods are freque
 
 **Update a Service**
 
-1.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
+1.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
 2.  On the Services page, find the Service that you want to update and click **Update** in the **Actions** column.
 
@@ -71,7 +71,7 @@ Each pod in Kubernetes clusters has its own IP address. However, pods are freque
 
 **View a Service**
 
-1.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
+1.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
 2.  Select a cluster and a namespace, find the Service that you want to view, and then click **Details** in the Actions column.
 
@@ -123,7 +123,7 @@ spec:
 
     In the following example, a YAML file named my-nginx-svc.yaml is created.
 
-2.  Connect to the cluster by using kubectl or Cloud Shell. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md) and [Use kubectl on Cloud Shell to manage ACK clusters](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl on Cloud Shell to manage ACK clusters.md).
+2.  Connect to the cluster by using kubectl or Cloud Shell. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md) and [Use kubectl on Cloud Shell to manage ACK clusters](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl on Cloud Shell to manage ACK clusters.md).
 
 3.  Run the following command to create a Service:
 
