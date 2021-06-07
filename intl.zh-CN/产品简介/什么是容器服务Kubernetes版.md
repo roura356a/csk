@@ -83,3 +83,7 @@ ACK包含了专有版Kubernetes（Dedicated Kubernetes）、托管版Kubernetes�
 
 单击下方按钮可立即使用ACK。
 
+## 学习资源
+
+[Kubernetes官网](https://kubernetes.io/zh/docs/concepts/overview/what-is-kubernetes/)
+
