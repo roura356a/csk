@@ -5,7 +5,7 @@ Ingress controllers of Container Service for Kubernetes \(ACK\) allow you to str
 You must install the Log Service component before you can use Ingress Dashboard to monitor applications. You can use the following methods to install the component:
 
 -   When you create an ACK cluster, select **Enable Log Service**, **Install Ingress Controllers**, and **Create Ingress Dashboard**.
--   To install the component for an existing ACK cluster, go to the Add-ons page. For more information, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
+-   To install the component for an existing ACK cluster, go to the Add-ons page. For more information, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md).
 
 ## Step 1: View Ingress logs on dashboards
 
@@ -19,7 +19,7 @@ You must install the Log Service component before you can use Ingress Dashboard 
 
 4.  Click **Visual Dashboard** below **nginx-ingress** to view the dashboards of all Ingresses.
 
-    Ingress Dashboard contains five preset charts: Ingress Overview, Ingress Exceptions Center, Ingress Access Center, Ingress Monitoring Center for Blue/Green Deployment, and Ingress Monitoring Center. The following section introduces the Ingress Overview and Ingress Monitoring Center for Blue/Green Deployment charts. For more information about other preset charts, see [Monitor and analyze the logs of nginx-ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Monitor and analyze the logs of nginx-ingress.md).
+    Ingress Dashboard contains five preset charts: Ingress Overview, Ingress Exceptions Center, Ingress Access Center, Ingress Monitoring Center for Blue/Green Deployment, and Ingress Monitoring Center. The following section introduces the Ingress Overview and Ingress Monitoring Center for Blue/Green Deployment charts. For more information about other preset charts, see [Monitor and analyze the logs of nginx-ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Monitor and analyze the logs of nginx-ingress.md).
 
     **Ingress Overview**
 
@@ -79,7 +79,7 @@ To enable ARMS when you create an application, perform the following steps:
 
 5.  In the **Create** dialog box, configure the Ingress and click **Create**.
 
-    For more information about how to configure an Ingress, see [Create an Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Create an Ingress.md).
+    For more information about how to configure an Ingress, see [Create an Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Basic operations of an Ingress.md).
 
 
 ## Step 4: Use Ingress Dashboard with ARMS
