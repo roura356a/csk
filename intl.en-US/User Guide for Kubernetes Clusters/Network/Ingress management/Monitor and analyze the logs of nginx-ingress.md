@@ -8,7 +8,7 @@ Container Service for Kubernetes \(ACK\) allows you to configure the nginx-ingre
 
 1.  The alibaba-log-controller component is installed.
 
-    By default, alibaba-log-controller is installed when you create a cluster. If this component is not installed, you can manually install it. For more information, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
+    By default, alibaba-log-controller is installed when you create a cluster. If this component is not installed, you can manually install it. For more information, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md).
 
 2.  The alibaba-log-controller component is updated.
 
@@ -105,7 +105,7 @@ You can create a custom resource for alibaba-log-controller to collect the logs 
 **Note:**
 
 -   Make sure that the version of alibaba-log-controller is `0.2.0.0-76648ee-aliyun` or later. After you update alibaba-log-controller, delete the custom resource and recreate it.
--   The custom resource that you create applies to only nginx-ingress. If the Ingress controller of your cluster is not nginx-ingress, modify the `processor_regex` field based on your needs in the nginx-ingress.yaml file. For more information, see [Use CRDs to collect Kubernetes container logs in the DaemonSet mode](/intl.en-US/Data Collection/Logtail collection/Container log collection/Use CRDs to collect Kubernetes container logs in the DaemonSet mode.md).
+-   The custom resource that you create applies to only nginx-ingress. If the Ingress controller of your cluster is not nginx-ingress, modify the `processor_regex` field based on your needs in the nginx-ingress.yaml file. For more information, see [Use CRDs to collect Kubernetes container logs in DaemonSet mode](/intl.en-US/Data Collection/Logtail collection/Container log collection/Use CRDs to collect Kubernetes container logs in DaemonSet mode.md).
 
 ## View the logs of nginx-ingress on dashboards
 
@@ -155,7 +155,7 @@ The Ingress exceptions center automatically detects exceptions in the logs of ng
 
 Log Service enables interactive log analysis and visualized dashboards. You can also configure alerts for a chart in a dashboard. You can select one or more notification methods, such as Email, WebHook-DingTalk Bot, WebHook-Custom, or Notifications.
 
-For more information about how to configure an alert, see [Create an alert rule](/intl.en-US/Query and visualization/Alarm/Create an alert rule.md).
+For more information about how to configure an alert, see [Create an alert rule](/intl.en-US/Alerting/Alerting (Old)/Create an alert rule.md).
 
 The following example describes how to configure an alert rule for the 5xx Proportion chart. The system checks whether the alert conditions are met once every five minutes. If the proportion of 5xx errors in the specified time range reaches 1%, an alert is triggered.
 
@@ -176,7 +176,7 @@ The following example describes how to configure an alert rule for the 5xx Propo
 
 Log Service enables dashboard subscription. You can use this feature to take snapshots of a dashboard and send the snapshots by email or DingTalk group message at a specified interval.
 
-For more information about how to subscribe to a dashboard, see [Subscribe to a dashboard](/intl.en-US/Query and visualization/Dashboard/Subscribe to a dashboard.md).
+For more information about how to subscribe to a dashboard, see [Subscribe to a dashboard](/intl.en-US/Visualization/Dashboard/Subscribe to a dashboard.md).
 
 The following example describes how to subscribe to the Ingress Overview dashboard. After you subscribe, a message is sent at 10:00 every morning to the specified DingTalk group.
 
