@@ -12,12 +12,17 @@ Cloud Controller Manager提供Kubernetes与阿里云基础产品的对接能力�
 
 -   管理负载均衡
 
-    当Service的类型设置为`Type=LoadBalancer`时，CCM组件会为该Service创建或配置阿里云负载均衡CLB，包括含CLB、监听、后端服务器组等资源。当Service对应的后端Endpoint或者集群节点发生变化时，CCM会自动更新CLB的后端虚拟服务器组。关于更新规则，请参见[Service的负载均衡配置注意事项](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/Service的负载均衡配置注意事项.md)。此外，CCM还提供了许多注解（Annotation），支持云上丰富的负载均衡能力。详细的使用方式，请参见[通过Annotation配置负载均衡](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/通过Annotation配置负载均衡.md)。
+    当Service的类型设置为`Type=LoadBalancer`时，CCM组件会为该Service创建或配置阿里云负载均衡CLB，包括含CLB、监听、后端服务器组等资源。当Service对应的后端Endpoint或者集群节点发生变化时，CCM会自动更新CLB的后端虚拟服务器组。
 
 -   实现跨节点通信
 
     当集群网络组件为Flannel时，CCM组件负责打通容器与节点间网络，实现容器跨节点通信。CCM会将节点的Pod网段信息写入VPC的路由表中，从而实现跨节点的容器通信。该功能无需配置，安装即可使用。
 
+
+## 使用说明
+
+-   CCM组件会为Service创建或配置阿里云负载均衡CLB，包括含CLB、监听、后端服务器组等资源。更多信息，请参见[Service的负载均衡配置注意事项](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/Service的负载均衡配置注意事项.md)。
+-   CCM组件提供了许多注解（Annotation），支持云上丰富的负载均衡能力。详细的使用方式，请参见[通过Annotation配置负载均衡](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/通过Annotation配置负载均衡.md)。
 
 ## 变更记录
 
