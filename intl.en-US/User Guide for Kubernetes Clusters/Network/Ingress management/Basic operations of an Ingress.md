@@ -12,13 +12,13 @@ An Ingress is a Kubernetes resource object that is used to enable external acces
 
 **Create an Ingress**
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Ingresses**.
+4.  In the left-side navigation pane of the details page, choose **Network** \> **Ingresses**.
 
 5.  On the Ingresses page, click **Create**. In the **Create** dialog box, set the name of the Ingress. In this example, the Ingress is named nginx-ingress.
 
@@ -128,13 +128,13 @@ An Ingress is a Kubernetes resource object that is used to enable external acces
 
 **View an Ingress**
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Ingresses**.
+4.  In the left-side navigation pane of the details page, choose **Network** \> **Ingresses**.
 
 5.  On the Ingresses page, find the Ingress that you want to view and click **Details** in the **Actions** column.
 
@@ -143,13 +143,13 @@ An Ingress is a Kubernetes resource object that is used to enable external acces
 
 **Update an Ingress**
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Ingresses**.
+4.  In the left-side navigation pane of the details page, choose **Network** \> **Ingresses**.
 
 5.  On the Ingresses page, find the Ingress that you want to update and click **Details** in the **Actions** column.
 
@@ -158,13 +158,13 @@ An Ingress is a Kubernetes resource object that is used to enable external acces
 
 **Delete an Ingress**
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Ingresses**.
+4.  In the left-side navigation pane of the details page, choose **Network** \> **Ingresses**.
 
 5.  On the Ingresses page, find the Ingress that you want to delete and choose **More** \> **Delete** in the **Actions** column.
 
