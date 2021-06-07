@@ -62,9 +62,7 @@ After an application is created, you can scale in or out the pods that are provi
 
 4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
-5.  Select the namespace where the service is deployed, find the deployment for the new version, and then click **Scale** in the Actions column.
-
-    ![Deployments](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4983662061/p9942.png)
+5.  Select the namespace where the Deployment is deployed, find the Deployment, and then click **Scale** in the **Actions** column.
 
 6.  In the dialog box that appears, set Desired Number of Pods to 4 and click **OK**.
 
