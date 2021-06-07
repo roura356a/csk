@@ -121,7 +121,7 @@ This topic describes how to deploy applications that provide services by using a
 
 -   In the left-side navigation pane of the cluster details page, choose **Workloads** \> **Deployments**. You can find the newly created coffee and tea applications.
 -   In the left-side navigation pane of the cluster details page, choose **Workloads** \> **Pods**. You can verify that the pods of the newly created applications run on virtual-kubelet nodes.
--   On the details page of the cluster, choose **Services and Ingresses** \> **Ingresses**. You can find the newly created Ingress.
+-   On the details page of the cluster, choose **Network** \> **Ingresses**. You can find the newly created Ingress.
 -   Run the following command to query the Ingress. Then, test access to the Ingress.
 
     ```
