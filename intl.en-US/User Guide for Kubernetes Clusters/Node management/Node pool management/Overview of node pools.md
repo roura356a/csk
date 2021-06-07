@@ -50,7 +50,7 @@ Before you work with node pools, take note of the following items:
 
 -   You can create node pools only in clusters of Kubernetes 1.12.6-aliyun.1 or later.
 
--   By default, you can create up to 20 node pools in each ACK cluster and each node pool can contain up to 1,000 nodes. To increase the quota, [Navigate to the Quota Center page to submit a ticket](https://quotas.console.aliyun.com/products/csk/quotas) and submit a ticket.
+-   By default, you can create up to 20 node pools in each ACK cluster and each node pool can contain up to 1,000 nodes. To increase the quota, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 
 
 ## Billing
