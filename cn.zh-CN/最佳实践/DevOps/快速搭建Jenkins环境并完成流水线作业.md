@@ -43,7 +43,7 @@ keyword: [搭建Jenkins环境, 流水线作业]
 
 9.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-10. 在集群管理页左侧导航栏中，选择**服务与路由** \> **服务**。
+10. 在集群管理页左侧导航栏中，选择**网络** \> **服务**。
 
 11. 选择相应的命名空间，然后单击ack-jenkins-default服务的**外部端点**，访问并登录Jenkins。
 
@@ -62,7 +62,7 @@ keyword: [搭建Jenkins环境, 流水线作业]
 
         ![Credentials](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4055414161/p38458.png)
 
-        在添加凭据前，先在Kubernetes集群的集群信息页面的**连接信息**，找到**配置集群凭据**中提供的**KubeConfig**。有关更多详情，请参见[配置集群凭据](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+        在添加凭据前，先在Kubernetes集群的集群信息页面的**连接信息**，找到**配置集群凭据**中提供的**KubeConfig**。有关更多详情，请参见[配置集群凭据](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
         ![配置集群凭据](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0663659951/p38453.png)
 
@@ -154,19 +154,19 @@ keyword: [搭建Jenkins环境, 流水线作业]
 
     1.  在Jenkins首页，单击**demo-pipeline**。
 
-        ![demo-pipeline](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0663659951/p38467.png)
+        ![demo-pipeline](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8913491261/p38467.png)
 
     2.  在左侧导航栏中，选择**Build with Parameters**。
 
     3.  根据自己的镜像仓库信息修改构建参数。本示例中源码仓库分支为master，镜像为registry.cn-beijing.aliyuncs.com/ack-cicd/ack-jenkins-demo:latest。
 
-        ![构建参数](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7337052161/p38468.png)
+        ![构建参数](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9913491261/p38468.png)
 
     4.  单击**Build**。
 
     5.  查看**Build History**，下图表示构建成功。
 
-        ![Build History](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1663659951/p38469.png)
+        ![Build History](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9913491261/p38469.png)
 
     6.  构建成功后，登录[容器服务管理控制台](https://cs.console.aliyun.com)，查看应用的服务地址。
 
