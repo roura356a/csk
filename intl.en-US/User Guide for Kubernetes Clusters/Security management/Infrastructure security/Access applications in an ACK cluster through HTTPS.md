@@ -42,7 +42,7 @@ You can access applications in a Container Service for Kubernetes \(ACK\) cluste
         Email Address []:a@alibaba.com
         ```
 
-    -   You can also purchase a server certificate that is issued by Alibaba Cloud. For more information, see [Select a certificate from Alibaba Cloud SSL Certificates Service](/intl.en-US/Classic Load Balancer/User Guide/Certificate management/Create a certificate/Select a certificate from Alibaba Cloud SSL Certificates Service.md).
+    -   You can also purchase a server certificate that is issued by Alibaba Cloud. For more information, see [Use a certificate from Alibaba Cloud SSL Certificates Service](/intl.en-US/Classic Load Balancer/User Guide/Certificate management/Create a certificate/Use a certificate from Alibaba Cloud SSL Certificates Service.md).
 
 You can select the following methods to configure the certificate based on how you want to access the cluster.
 
@@ -59,7 +59,7 @@ If you use this method, take note of the following items:
 
 Preparations
 
-An NGINX application is deployed in the cluster. You can access the application through a LoadBalancer type Service. For more information, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateless application from an image.md).
+An NGINX application is deployed in the cluster. You can access the application through a LoadBalancer type Service. For more information, see [Use a Deployment to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
 
 Examples:
 
@@ -69,7 +69,7 @@ Examples:
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
+4.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
 5.  Select the namespace where the related Service is deployed and click the external endpoint to access the application. The endpoint is in the `<SLB IP>:<Port>` format.
 
@@ -80,7 +80,7 @@ Examples:
 7.  Configure an **SSL Certificate**.
 
     -   If you have created a server certificate by running commands as described in the prerequisites, you need to upload the created certificate, including the public key certificate and the private key, to Alibaba Cloud. For more information, see [Upload a third-party certificate](/intl.en-US/Classic Load Balancer/User Guide/Certificate management/Create a certificate/Upload a third-party certificate.md).
-    -   If you have purchased a server certificate that is issued by Alibaba Cloud, skip this step. For more information about how to purchase a server certificate that is issued by Alibaba Cloud, see [Select a certificate from Alibaba Cloud SSL Certificates Service](/intl.en-US/Classic Load Balancer/User Guide/Certificate management/Create a certificate/Select a certificate from Alibaba Cloud SSL Certificates Service.md).
+    -   If you have purchased a server certificate that is issued by Alibaba Cloud, skip this step. For more information about how to purchase a server certificate that is issued by Alibaba Cloud, see [Use a certificate from Alibaba Cloud SSL Certificates Service](/intl.en-US/Classic Load Balancer/User Guide/Certificate management/Create a certificate/Use a certificate from Alibaba Cloud SSL Certificates Service.md).
     Find the certificate that you want to use from the certificate list.
 
 8.  On the Services page of the ACK console, find the created Service and click **Update** in the **Actions** column.
@@ -138,7 +138,7 @@ If you use this method, take note of the following items:
 
 Preparations
 
-A Tomcat application is created in your cluster. You can access the application through a ClusterIP type Service. In this example, an Ingress is used to enable external access through HTTPS. For more information, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateless application from an image.md).
+A Tomcat application is created in your cluster. You can access the application through a ClusterIP type Service. In this example, an Ingress is used to enable external access through HTTPS. For more information, see [Use a Deployment to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
 
 Examples:
 
