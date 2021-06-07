@@ -8,8 +8,8 @@ keyword: [安全路由服务, Rewrite配置, 路由域名, HTTPS双向认证, �
 
 -   已创建Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   ACK集群中的Ingress Controller运行正常。
--   可以使用kubectl命令行连接集群。具体操作，请参见[t16645.dita\#task\_ubf\_lhg\_vdb](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
--   已创建示例Deployment和Service。具体操作，请参见[Kubectl操作指导](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress基本操作.md)。
+-   可以使用kubectl命令行连接集群。具体操作，请参见[t16645.dita\#task\_ubf\_lhg\_vdb](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   已创建示例Deployment和Service。具体操作，请参见[Kubectl操作指导](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/创建Ingress路由.md)。
 
 ## 配置说明
 
