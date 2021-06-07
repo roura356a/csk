@@ -12,7 +12,7 @@ keyword: [阿里云KMS, OSS存储卷加密]
     **说明：** 相同地域的OSS Bucket可以使用私网地址进行挂载。
 
 -   已开通密钥管理服务。具体操作，请参见[开通密钥管理服务](/intl.zh-CN/快速入门/开通密钥管理服务.md)。
--   已通过kubectl连接Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)
+-   已通过kubectl连接Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 ## 加密方式
 
