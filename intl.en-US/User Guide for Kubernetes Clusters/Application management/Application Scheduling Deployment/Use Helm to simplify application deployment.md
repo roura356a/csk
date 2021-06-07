@@ -54,7 +54,7 @@ Helm uses a client-server architecture and consists of the following components:
     -   **Release Name**: the release name for the application.
     ![Basic settings](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5145359951/p10397.png)
 
-6.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
+6.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
 7.  In the Service list, you can find the Service created for the application and the corresponding external endpoints through HTTP and HTTPS. Click an external endpoint to access the WordPress blog page.
 
@@ -71,7 +71,7 @@ In this example, Helm CLI and kubectl are installed and configured on your on-pr
 
     1.  Install and configure kubectl on your on-premises machine.
 
-        For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+        For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
         To view the details of a Kubernetes cluster, run the `kubectl cluster-info` command.
 
