@@ -63,19 +63,19 @@ keyword: [HTTPS安全访问, HTTPS访问配置]
 
 示例：
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
 3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-4.  在集群管理页左侧导航栏中，选择**服务与路由** \> **服务**。
+4.  在集群管理页左侧导航栏中，选择**网络** \> **服务**。
 
 5.  选择集群的命名空间和服务，单击外部端点，您可通过`<SLB IP>:<Port>`的方式访问该应用。
 
     ![nginx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3218782161/p241037.png)
 
-6.  登录[负载均衡管理控制台](https://slb.console.aliyun.com/)[负载均衡管理控制台](https://partners-intl.console.aliyun.com/#/slb)。
+6.  登录[负载均衡管理控制台](https://slb.console.aliyun.com/)。
 
 7.  配置**SSL证书**。
 
@@ -150,19 +150,17 @@ keyword: [HTTPS安全访问, HTTPS访问配置]
     kubectl create secret tls secret-https --key tls.key --cert tls.crt      
     ```
 
-2.  登录[容器服务管理控制台](https://cs.console.aliyun.com)[容器服务管理控制台](https://partners-intl.console.aliyun.com/#/cs)。
+2.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
-3.  在左侧导航栏中，选择**路由与负载均衡** \> **路由**，选择所需的集群和命名空间，单击右上角**创建**。
+3.  在控制台左侧导航栏中，单击**集群**。
 
-4.  在控制台左侧导航栏中，单击**集群**。
+4.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-5.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
+5.  在集群管理页左侧导航栏中，选择**命名空间与配额**，单击右上角**创建**。
 
-6.  在集群管理页左侧导航栏中，选择**命名空间与配额**，单击右上角**创建**。
+6.  在创建路由对话框中，配置可HTTPS访问的路由，完成后单击**创建**。
 
-7.  在创建路由对话框中，配置可HTTPS访问的路由，完成后单击**创建**。
-
-    更多详细的路由配置信息，请参见[创建路由（Ingress）](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress基本操作.md)。本例中进行如下配置。
+    更多详细的路由配置信息，请参见[创建路由（Ingress）](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/创建Ingress路由.md)。本例中进行如下配置。
 
     -   **名称**：输入该路由的名称。
     -   **域名**：即是前面配置的正确域名，与ssl证书中配置的保持一致。
@@ -206,7 +204,7 @@ keyword: [HTTPS安全访问, HTTPS访问配置]
               servicePort: 8080
     ```
 
-8.  返回路由列表，查看创建的路由（Ingress），本例中域名为`foo.bar.com`，并查看端点和域名，您也可进入路由详情页进行查看。
+7.  返回路由列表，查看创建的路由（Ingress），本例中域名为`foo.bar.com`，并查看端点和域名，您也可进入路由详情页进行查看。
 
     **说明：** 本例中以`foo.bar.com`作为测试域名，您需要在hosts文件中创建一条记录。
 
@@ -216,7 +214,7 @@ keyword: [HTTPS安全访问, HTTPS访问配置]
 
     ![路由](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0195659951/p161116.png)
 
-9.  在浏览器中访问`https://foo.bar.com`。
+8.  在浏览器中访问`https://foo.bar.com`。
 
     **说明：** 由于创建了TLS证书访问，所以要用HTTPS来进行域名访问，针对该应用，本例以`foo.bar.com`为示例，在本地进行解析。在具体使用场景中，请使用备案过的域名。
 
