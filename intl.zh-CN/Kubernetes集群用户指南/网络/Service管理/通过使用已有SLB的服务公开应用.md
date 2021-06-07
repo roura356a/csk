@@ -6,7 +6,7 @@ keyword: [指定已有SLB, 负载均衡型服务, loadbalancer service, 公开�
 
 通过阿里云负载均衡SLB（Server Load Balancer）暴露的服务（Service），在集群外可通过SLB域名或`<IP:服务端口>`的方式访问服务，在集群内可通过`<服务名:服务端口>`的方式访问服务。本文以Nginx应用为例，介绍如何通过使用已有SLB的服务来公开应用。
 
-已存在通过SLB控制台创建的SLB实例，且该实例与Kubernetes集群处于同一地域。如果没有创建，请参见[创建负载均衡实例](/intl.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/创建负载均衡实例.md)。
+已存在通过SLB控制台创建的SLB实例，且该实例与Kubernetes集群处于同一地域。如果没有创建，请参见[创建实例](/intl.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/创建实例.md)。
 
 如果您集群的Cloud Controller Manager（CCM）组件版本大于等于v1.9.3，对于指定已有SLB，CCM默认不再为该SLB处理监听。您可以通过设置`service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners: "true"`参数来启用监听配置，或者手动配置该SLB的监听规则。
 
@@ -126,7 +126,7 @@ keyword: [指定已有SLB, 负载均衡型服务, loadbalancer service, 公开�
 
 3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-4.  在集群管理页左侧导航栏中，选择**服务与路由** \> **服务**。
+4.  在集群管理页左侧导航栏中，选择**网络** \> **服务**。
 
 5.  在**服务**页面，单击右上角的**创建**。
 
