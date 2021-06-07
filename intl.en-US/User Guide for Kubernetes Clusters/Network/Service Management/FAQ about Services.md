@@ -179,7 +179,7 @@ For CCM versions later than V1.9.3.10, the tag is automatically added to the SLB
 -   You can rename an SLB instance by adding tags to the instance only if the CCM version is V1.9.3.10 or earlier.
 -   The Service type is LoadBalancer.
 
-1.  Log on to a master node in an ACK cluster. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+1.  Log on to a master node in an ACK cluster. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
 2.  Run the `# kubectl get svc -n ${namespace} ${service}` command to view the Service type and IP address of the Service.
 
