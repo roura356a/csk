@@ -181,7 +181,7 @@ Cloud Controller Manager组件V1.9.3.10后续版本创建的SLB支持自动打TA
 -   只有Cloud Controller Manager组件V1.9.3.10及之前版本创建的SLB才需要手动打TAG的方式来支持重命名。
 -   Service类型为Loadbalancer。
 
-1.  登录到Kubernetes集群Master节点，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+1.  登录到Kubernetes集群Master节点，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 2.  执行`# kubectl get svc -n ${namespace} ${service}`命令，查看该Service类型及IP。
 
@@ -260,7 +260,7 @@ Cloud Controller Manager组件V1.9.3.10后续版本创建的SLB支持自动打TA
 
 如果注解带有SLB实例ID，说明是复用的SLB。
 
-2.  在SLB控制台中删除Service中port对应的监听。关于如何删除SLB监听，请参见[管理监听转发规则](/intl.zh-CN/应用型负载均衡ALB/ALB监听/管理监听转发规则.md)。 |
+2.  在SLB控制台中删除Service中port对应的监听。关于如何删除SLB监听，请参见[管理监听转发规则](/intl.zh-CN/应用型负载均衡ALB/ALB用户指南/监听/管理监听转发规则.md)。 |
 |Status Code: 400 Code: NetworkConflict|复用内网SLB时，该SLB和集群不在同一个VPC内。请确保您的SLB和集群在同一个VPC内。|
 |Status Code: 400 Code: VSwitchAvailableIpNotExist Message: The specified VSwitch has no available ip.|虚拟交换机不足，通过`service.beta.kubernetes.io/alibaba-cloud-loadbalancer-vswitch-id: "${YOUR_VSWITCH_ID}"`指定同VPC下另一个虚拟交换机。|
 |PAY.INSUFFICIENT\_BALANCE Message: Your account does not have enough balance.|账号余额少于100元。|
