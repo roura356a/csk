@@ -29,11 +29,11 @@ keyword: [创建应用, 无状态, Deployment, 镜像]
     |配置项|描述|
     |---|--|
     |应用名称|设置应用的名称。|
-    |命名空间|设置应用部署所处的命名空间，默认使用default命名空间。|
+    |命名空间|设置应用部署所处的命名空间，默认使用**default**命名空间。|
     |副本数量|应用包含的Pod数量。|
     |类型|定义资源对象的类型，可选择**无状态**、**有状态**、**任务**、**定时任务**、**守护进程集**。|
     |标签|为该应用添加一个标签，标识该应用。|
-    |注解|为该应用添加一个注解（annotation）。|
+    |注解|为该应用添加一个注解（Annotation）。|
     |时区同步|容器与节点是否使用相同的时区。|
 
     **说明：** 本例中选择**无状态**类型，即Deployment类型。如果您不设置**命名空间**，系统会默认使用default命名空间。副本数量即应用包含的Pod数量。
@@ -58,7 +58,7 @@ keyword: [创建应用, 无状态, Deployment, 镜像]
 |        -   您可以单击**选择镜像Tag**选择镜像的版本。若不指定，默认为最新版。
         -   ACK支持以下三种镜像拉取策略（imagePullPolicy）：
 
-            -   **优先使用本地镜像（ifNotPresent）**：如果本地有该镜像，则使用本地镜像，本地不存在时拉取镜像。
+            -   **优先使用本地镜像（IfNotPresent）**：如果本地有该镜像（之前拉取过该镜像至宿主机中），则使用本地镜像，本地不存在时拉取镜像。
             -   **总是拉取镜像（Always）**：表示每次部署或扩容都会从容器镜像服务重新拉取镜像，而不会从本地拉取镜像。
             -   **仅使用本地镜像（Never）**：仅使用本地镜像。
 **说明：** 当您选中**镜像拉取策略**时，默认不设置镜像拉取策略。
@@ -68,8 +68,8 @@ keyword: [创建应用, 无状态, Deployment, 镜像]
         |所需资源|即为该应用预留资源额度，包括CPU和内存两种资源，即容器独占该资源，防止因资源不足而被其他服务或进程争夺资源，导致应用不可用。|
         |容器启动项|        -   stdin：将控制台输入发送到容器。
         -   tty：将标准输入控制台作为容器的控制台输入。 |
-        |特权容器|        -   选择特权容器，则privileged=true，开启特权模式。
-        -   不选择特权容器，则privileged=false，关闭特权模式。 |
+        |特权容器|        -   选择特权容器，则`privileged=true`，开启特权模式。
+        -   不选择特权容器，则`privileged=false`，关闭特权模式。 |
         |Init Container|勾选该项，表示创建一个Init Container。Init Container包含一些实用的工具，详情请参见[Init Containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/?spm=a2c4g.11186623.2.13.3fdd30dfnyevPx)。|
 
     -   端口设置
@@ -87,7 +87,7 @@ keyword: [创建应用, 无状态, Deployment, 镜像]
 
             选择**密钥**，选择**变量**，默认全部文件引用。
 
-            ![环境变量](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p130410.png)
+            ![环境变量](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9173530261/p130410.png)
 
             对应的yaml，则引用了整个secret。
 
@@ -102,9 +102,9 @@ keyword: [创建应用, 无状态, Deployment, 镜像]
         |请求类型|配置说明|
         |----|----|
         |HTTP请求|即向容器发送一个HTTPget请求，支持的参数包括：        -   协议：HTTP/HTTPS。
-        -   路径：访问HTTP server的路径。
+        -   路径：访问HTTP Server的路径。
         -   端口：容器暴露的访问端口或端口名，端口号必须介于1~65535。
-        -   HTTP头：即HTTPHeaders，HTTP请求中自定义的请求头，HTTP允许重复的header。支持键值对的配置方式。
+        -   HTTP头：即HTTP Headers，HTTP请求中自定义的请求头，HTTP允许重复的Header。支持键值对的配置方式。
         -   延迟探测时间（秒）：即initialDelaySeconds，容器启动后第一次执行探测时需要等待多少秒，默认为3秒。
         -   执行探测频率（秒）：即periodSeconds，指执行探测的时间间隔，默认为10秒，最小为1秒。
         -   超时时间（秒）：即timeoutSeconds，探测超时时间。默认1秒，最小1秒。
@@ -136,7 +136,7 @@ keyword: [创建应用, 无状态, Deployment, 镜像]
 
         支持增加本地存储和云存储声明（PVC）。
 
-        -   **本地存储**：支持主机目录（hostpath）、配置项（configmap）、保密字典（secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息参见[volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。
+        -   **本地存储**：支持主机目录（hostpath）、配置项（configmap）、保密字典（secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息参见[Volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。
         -   **云存储声明（PVC）**：支持云存储。
         本例中配置了一个云存储类型的数据卷声明disk-ssd，将其挂载到容器的/tmp路径下。
 
@@ -176,7 +176,7 @@ keyword: [创建应用, 无状态, Deployment, 镜像]
         |配置项|描述|
         |---|--|
         |服务（Service）|在**服务（Service）**右侧，单击**创建**设置创建服务配置项。配置项的详情，请参见[管理服务](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/管理服务.md)。本例中服务类型选择**ClusterIP**。|
-        |路由（Ingress）|在**路由（Ingress）**右侧，单击**创建**。在弹出的对话框中，为后端Pod配置路由规则。详细的路由配置信息，请参见[路由配置说明](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress基本操作.md)。**说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在hosts中添加一条记录。在实际工作场景中，请使用备案域名。
+        |路由（Ingress）|在**路由（Ingress）**右侧，单击**创建**。在弹出的对话框中，为后端Pod配置路由规则。详细的路由配置信息，请参见[路由配置说明](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/创建Ingress路由.md)。**说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在hosts中添加一条记录。在实际工作场景中，请使用备案域名。
 
         ```
 101.37.224.146   foo.bar.com    #即ingress的IP
@@ -210,7 +210,7 @@ keyword: [创建应用, 无状态, Deployment, 镜像]
 
         |配置项|描述|
         |---|--|
-        |升级方式|升级方式包括滚动升级（rollingupdate）和替换升级（recreate），详细请参见详情请参见[Deployments](https://kubernetes.io/zh/docs/concepts/workloads/controllers/deployment/?spm=a2c4g.11186623.2.32.3fdd30dfnyevPx)。 |
+        |升级方式|升级方式包括滚动升级（Rollingupdate）和替换升级（Recreate），详细请参见详情请参见[Deployments](https://kubernetes.io/zh/docs/concepts/workloads/controllers/deployment/?spm=a2c4g.11186623.2.32.3fdd30dfnyevPx)。 |
         |节点亲和性|设置**节点亲和性**，通过Worker节点的Label标签进行设置。节点调度支持硬约束和软约束（Required/Preferred），以及丰富的匹配表达式（In, NotIn, Exists, DoesNotExist. Gt, and Lt）：
 
         -   **必须满足**，即硬约束，一定要满足，对应requiredDuringSchedulingIgnoredDuringExecution，效果与`NodeSelector`相同。本例中Pod只能调度到具有对应标签的Worker节点。您可以定义多条硬约束规则，但只需满足其中一条。
@@ -228,7 +228,7 @@ keyword: [创建应用, 无状态, Deployment, 镜像]
 **说明：** **权重**：设置一条软约束规则的权重，介于1~100，通过算法计算满足软约束规则的节点的权重，将Pod调度到权重最大的节点上。 |
         |应用非亲和性|决定应用的Pod不与哪些Pod部署在同一拓扑域。应用非亲和性调度的场景包括：
 
-        -   将一个服务的Pod分散部署到不同的拓扑域（如不同主机）中，提高服务本身的稳定性。
+        -   将一个服务的Pod分散部署到不同的拓扑域（例如不同主机）中，提高服务本身的稳定性。
         -   给予Pod一个节点的独占访问权限来保证资源隔离，保证不会有其它Pod来分享节点资源。
         -   把可能会相互影响的服务的Pod分散在不同的主机上。
 **说明：** 应用非亲和性调度的设置方式与亲和性调度相同，但是相同的调度规则代表的意思不同，请根据使用场景进行选择。 |
@@ -237,7 +237,7 @@ keyword: [创建应用, 无状态, Deployment, 镜像]
 
     -   标签和注释
         -   Pod标签：为该Pod添加一个标签，标识该应用。
-        -   Pod注解：为该Pod添加一个注解（annotation）。
+        -   Pod注解：为该Pod添加一个注解（Annotation）。
 11. 单击**创建**。
 
 12. 创建成功后，默认进入创建完成页面，会列出应用包含的对象，您可以单击**查看应用详情**进行查看。
@@ -249,8 +249,8 @@ keyword: [创建应用, 无状态, Deployment, 镜像]
     **说明：** 您也可以通过以下操作创建路由与服务。在**访问方式**页签：
 
     -   单击**服务（Service）**右侧的**创建**，也可以进行服务创建，请参见[管理服务](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/管理服务.md)。
-    -   单击**路由（Ingress）**右侧的**创建**，进行路由的创建，请参见[创建路由](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress基本操作.md)。
-13. 单击左侧导航栏的**路由**，可以看到路由列表下出现一条规则。
+    -   单击**路由（Ingress）**右侧的**创建**，进行路由的创建，请参见[创建路由](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/创建Ingress路由.md)。
+13. 在集群管理页左侧导航栏中，选择**网络** \> **路由**，可以看到路由列表下出现一条规则。
 
     ![路由规则](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4054404061/p10985.png)
 
