@@ -48,8 +48,6 @@ The following section describes the causes of network failures of different secu
 
         The following figure shows the added inbound rule. The **Authorization Object** is the **Pod CIDR Block** of the cluster and **Protocol Type** is **All**.
 
-        ![Inbound](../images/p148458.png)
-
 -   Cause: The new Elastic Compute Service \(ECS\) instance and the Kubernetes cluster belong to different security groups.
 
     1.  Log on to the [ACK console](https://cs.console.aliyun.com).
