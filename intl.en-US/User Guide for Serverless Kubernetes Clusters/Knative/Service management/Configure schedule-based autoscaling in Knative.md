@@ -55,7 +55,7 @@ Serverless Kubernetes \(ASK\) clusters support schedule-based autoscaling. This 
     ```
 
     -   In the `schedule` field, the first number indicates the day of a month. The second number indicates the month of a year. The remaining indicates the days of a week. The format of the value is `* * 1-5`. In the preceding example, 1-5 indicates Monday to Friday, and 0,6 indicates Saturday and Sunday.
-    -   The format of the value in the `timeseries``timeseries` field is `hour: minute: second`.
+    -   The format of the value in the `timeseries` field is `hour: minute: second`.
     **Note:**
 
     -   Policy updates apply to all Knative Services that are associated with the policy.
