@@ -8,5 +8,5 @@
 -   [可用的GPU数目少于实际GPU数目](~~144735~~)
 -   [GPU节点中重启Kubelet和Docker服务异常](~~123771~~)
 -   [修复GPU实例重启或被置换后设备ID变更问题](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU运维管理/修复GPU实例重启或被置换后设备ID变更问题.md)
--   [如何更新实例规格为vGPU的License？]()
+-   [如何更新实例规格为vGPU的License？](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU运维管理/更新vGPU实例的NVIDIA驱动License.md)
 
