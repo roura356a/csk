@@ -73,7 +73,7 @@ Default value: `false`. |
 |timeout\_mins|Long|No|60|The timeout period in minutes during which a resource must be created. Default value: 60.|
 |kubernetes\_version|String|No|1.16.9-aliyun.1|The version of the cluster. The cluster versions provided by Container Service for Kubernetes \(ACK\) are consistent with the open source versions. We recommend that you select the latest version. If you do not specify this parameter, the latest version is used.
 
-You can create clusters of the latest two versions in the ACK console. You can create ACK clusters of earlier versions by calling API operations. For more information about the Kubernetes versions supported by ACK, see [Release notes](/intl.en-US/Release notes/Kubernetes release notes/Release notes.md). |
+You can create clusters of the latest two versions in the ACK console. You can create ACK clusters of earlier versions by calling API operations. For more information about the Kubernetes versions supported by ACK, see [t1960241.md\#](/intl.en-US/Release notes/Kubernetes release notes/Overview of Kubernetes release notes.md). |
 |region\_id|String|Yes|cn-beijing|The ID of the region where you want to deploy the cluster.|
 |key\_pair|String|Yes|demo-key|The name of the key pair. You must set this parameter or the `login_password` parameter.|
 |login\_password|String|Yes|HelloWorld123|The password for Secure Shell \(SSH\) logon. You must set this parameter or the `key_pair` parameter. The password must be 8 to 30 characters in length, and must contain at least three of the following character types: uppercase letters, lowercase letters, digits, and special characters.|
@@ -149,7 +149,7 @@ Default value: `true`.
 -   To install nginx-ingress-controller and enable Internet access, specify the component in the following format: \[\{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\].
 -   If you do not want to install nginx-ingress-controller, specify the component in the following format: \[\{"name": "nginx-ingress-controller","config": "","disabled": true\}\].
 
-**Event center**: Optional. By default, the event center feature is enabled. The event center feature allows you to log Kubernetes events, query events, and raise alerts. Logstores that are associated with the Kubernetes event center are free of charge for the first 90 days. For more information, see [Create and use a Kubernetes event center](/intl.en-US/Application/K8s Event Center/Create and use a Kubernetes event center.md).
+**Event center**: Optional. By default, the event center feature is enabled. The event center feature allows you to log Kubernetes events, query events, and raise alerts. Logstores that are associated with the Kubernetes event center are free of charge for the first 90 days. For more information, see [t1857672.md\#](/intl.en-US/Application/K8s Event Center/Create and use a Kubernetes event center.md).
 
 **Event center**: Optional. By default, the event center feature is enabled. The event center feature allows you to log Kubernetes events, query events, and raise alerts. Logstores that are associated with the Kubernetes event center are free of charge for the first 90 days.
 
@@ -159,7 +159,7 @@ your\_sls\_project\_name\\"\}"\}\]. |
 |tags|Array of [tag](/intl.en-US/API Reference/Commonly used parameters.md)|No|\[\{"key": "env", "value": "prod"\}\]|The labels to be added to the cluster. -   key: the key of the label.
 -   value: the value of the label. |
 |vpcid|String|Yes|vpc-2zeik9h3ahvv2zz95\*\*\*\*|The VPC where the cluster is deployed. You must specify a VPC when you create the cluster. **Note:** Leave both `vpc_id` and `vswitch_ids` empty or make sure that the vSwitches specified by vswitch\_ids belong to the VPC that is specified by vswitch\_ids. |
-|worker\_data\_disks|Array of[data\_disk](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The configurations of data disks that are mounted to worker nodes. Each configuration includes disk type and disk size.|
+|worker\_data\_disks|Array of [data\_disk](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The configurations of data disks that are mounted to worker nodes. Each configuration includes disk type and disk size.|
 |deletion\_protection|Boolean|No|true|Specifies whether to enable deletion protection for the cluster. After deletion protection is enabled, the cluster cannot be deleted in the ACK console or by calling API operations. Valid values:
 
 -   `true`: enables deletion protection for the cluster. This way, the cluster cannot be deleted in the ACK console or by calling API operations.
@@ -169,7 +169,7 @@ Default value: `false`. |
 |node\_cidr\_mask|String|No|25|The maximum number of IP addresses that can be assigned to each node. This number is determined by the specified pod CIDR block. This parameter takes effect only if the cluster uses the Flannel plug-in.
 
 Default value: `26`. |
-|worker\_instance\_types|Array of String|Yes|ecs.n4.large|The instance types of worker nodes. You must specify at least one instance type. For more information, see [Instance families](/intl.en-US/Instance/Instance families.md).
+|worker\_instance\_types|Array of String|Yes|ecs.n4.large|The instance types of worker nodes. You must specify at least one instance type. For more information, see [t9548.md\#](/intl.en-US/Instance/Instance families.md).
 
 **Note:** The instance types are listed in descending order of priority. If worker nodes fail to be created based on the instance type of the highest priority, the system attempts to create worker nodes by using the instance type of the next highest priority. |
 |worker\_instance\_charge\_type|String|Yes|PrePaid|The billing method of worker nodes. Valid values:
@@ -193,7 +193,7 @@ Default value: `true`. |
 
 Default valid: `ack.standard`. If you leave this parameter empty, a standard edge Kubernetes cluster is created.
 
-For more information, see [Introduction to professional edge Kubernetes clusters](/intl.en-US/User Guide for Edge Container Service/ACK@Edge Pro edition cluster/Introduction to professional edge Kubernetes clusters.md). |
+For more information, see [t2056664.md\#](/intl.en-US/User Guide for Edge Container Service/ACK@Edge Pro edition cluster/Introduction to professional edge Kubernetes clusters.md). |
 
 ## Response structure
 
