@@ -6,82 +6,47 @@ keyword: [MnsOss event sources, facial recognition, OSS event notification]
 
 You can collect Object Storage Service \(OSS\) events from MnsOss event sources and manage the events accordingly. This is suitable for scenarios where facial recognition is required. This topic describes how to use Knative to manage MnsOss event sources.
 
--   Knative Serving and Knative Eventing are installed. For more information, see [Deploy Knative](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative components/Deploy Knative.md).
--   An OSS bucket is created in the OSS console. For more information, see [Create buckets](/intl.en-US/Console User Guide/Manage buckets/Create buckets.md).
--   Message Service \(MNS\) is activated. For more information, see [Activate Message Service]().
+-   Knative Serving and Knative Eventing are installed. For more information, see [t423002.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative components/Deploy Knative.md).
+-   An OSS bucket is created in the OSS console. For more information, see [t4740.md\#](/intl.en-US/Console User Guide/Manage buckets/Create buckets.md).
+-   Message Service \(MNS\) is activated. For more information, see [t1835593.md\#]().
 
 ## Step 1: Deploy MnsOss
 
-1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+1.  On the details page of the cluster, choose **Applications** \> **Knative**.
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  On the **Components** tab, find MnsOss and click **Deploy** in the **Actions** column.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
-
-4.  On the details page of the cluster, choose **Applications** \> **Knative**.
-
-5.  On the **Components** tab, find MnsOss and click **Deploy** in the **Actions** column.
-
-6.  In the**Deploy MnsOss** message, click **Confirm**.
+3.  In the **Deploy MnsOss** message, click **Confirm**.
 
 
 ## Step 2: Configure OSS event notification settings
 
-1.  Log on to the [OSS console](https://oss.console.aliyun.com/).
-
-2.  Click **Buckets**, and then click the name of the target bucket.
-
-3.  In the Event Notification section, click **Configure**. On the page that appears, click **Create Rule**.
-
-4.  In the left-side navigation pane, choose **Basic Settings** \> **Event Notification**.
-
-5.  In the Create Rule panel, configure the rule parameters. The parameters are described in the following table:
-
-    |Parameter|Description|
-    |---------|-----------|
-    |**Rule Name**|Specify the name of the event notification rule.The name of an event notification rule can contain only letters, digits, and hyphens \(-\). The name cannot exceed 85 characters in length. |
-    |**Events**|Select one or more events that can trigger the event notification rule from the drop-down list. For example, if you select CopyObject, the event notification rule is triggered when specific objects are created or overwritten by copying objects.If multiple event notification rules apply to the same object, the values of this parameter in these rules must be different. For example, if you configure Events as **CopyObject** when you create an event notification rule for objects whose names contain the examplefolder prefix, you cannot select **CopyObject** as the value for Events when you create another event notification rule for objects whose names contain the same prefix.
-
-For more information about the events, see [Events](/intl.en-US/Developer Guide/Event notification.md). |
-    |**Resource Description**|Specify the objects to which the event notification rule applies.    -   **Full Name**: Enter the complete path of the object to which the event notification rule applies. Example: examplefolder/myphoto.jpg.
-    -   **Prefix and Suffix**: Enter the prefix and suffix of the objects to which the event notification rule applies. The following examples show how to configure the prefix and suffix:
-        -   To create a rule that applies to all objects in the bucket, leave Prefix and Suffix empty.
-        -   To create a rule that applies to all objects in the examplefolder folder in the root folder of the bucket, set Prefix to **examplefolder/** and leave Suffix empty.
-        -   To create a rule that applies to all JPG objects in the bucket, leave Prefix empty and set Suffix to **.jpg**.
-        -   To create a rule that applies to all MP3 objects in the examplefolder folder in the root folder of the bucket, set Prefix to **examplefolder/** and Suffix to **.mp3**.
-To create a Resource Description, click **Add**. You can create up to five **Resource Description** entries. |
-    |**Endpoint**|Configure the endpoint to which notifications are sent. Valid values: **HTTP** and **Queue**.    -   **HTTP**: Enter the address of the HTTP endpoint to which notifications are sent. Example: `http://198.51.100.1:8080`. For more information about how to enable an HTTP endpoint, see [Manage topics]() and [HttpEndpoint]().
-    -   **Queue**: Enter the name of an MNS queue. For more information about how to create a queue, see [Create a queue]().
-To create an endpoint, click **Add**. You can create up to five endpoints. |
-
-6.  Click **OK**.
+1.  Click **OK**.
 
     After you configure the OSS event notification settings, a topic is created on the Topics page in the [MNS](https://mns.console.aliyun.com/) console.
 
 
 ## Step 3: Create an MNS token
 
-1.  Log on to the [MNS console](https://mns.console.aliyun.com/).
+1.  In the left-side navigation pane, click **Topics**.
 
-2.  In the left-side navigation pane, click **Topics**.
+2.  In the top navigation bar of the MNS console, select the region where your cluster is deployed.
 
-3.  In the top navigation bar of the MNS console, select the region where your cluster is deployed.
+3.  On the Topics page, click the topic that you want to manage.
 
-4.  On the Topics page, click the topic that you want to manage.
+4.  On the Topics page, click **Get Endpoint** in the upper-right corner of the page.
 
-5.  On the Topics page, click **Get Endpoint** in the upper-right corner of the page.
+5.  In the **Endpoint** section of the Topic Details page, copy the public endpoint.
 
-6.  In the **Endpoint** section of the Topic Details page, copy the public endpoint.
+6.  Obtain an AccessKey ID and AccessKey secret of the current account. For more information, see [t20511.md\#](/intl.en-US/FAQ/General FAQ/How can I obtain an AccessKey ID and AccessKey secret?.md).
 
-7.  Obtain an AccessKey ID and AccessKey secret of the current account. For more information, see [How can I obtain an AccessKey ID and AccessKey secret?](/intl.en-US/FAQ/General FAQ/How can I obtain an AccessKey ID and AccessKey secret?.md).
-
-8.  Run the following command to encode the public endpoint, AccessKey ID, and AccessKey secret by using Base64. Then, a token is generated.
+7.  Run the following command to encode the public endpoint, AccessKey ID, and AccessKey secret by using Base64. Then, a token is generated.
 
     ```
     echo '{ "url":"https://xxxx.mns.cn-shanghai.aliyuncs.com/", "accessKeyId":"xxx","accessKeySecret":"xx" }' | base64
     ```
 
-9.  Create a Secret to store and manage the token.
+8.  Create a Secret to store and manage the token.
 
     1.  Create a file named mnsoss-secret.yaml.
 
@@ -95,7 +60,7 @@ To create an endpoint, click **Add**. You can create up to five endpoints. |
           mns: eyAidXJsIjoiaHR0cHM6Ly94eHh4Lm1ucy5jbi1zaGFuZ2hhaS5hbGl5dW5jcy5jb20vIiwgImFjY2Vzc0tleUlkIjoieHh4IiwiYWNjZXNzS2V5U2VjcmV0IjoieHgiIH0K
         ```
 
-        Replace the value of `mns` with the token that is generated in Step [8](#step_k36_cbs_rqi).
+        Replace the value of `mns` with the token that is generated in Step [7](#step_k36_cbs_rqi).
 
     2.  Run the following command to create a Secret:
 
