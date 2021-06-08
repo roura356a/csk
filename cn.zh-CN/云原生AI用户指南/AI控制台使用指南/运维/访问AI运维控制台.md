@@ -12,7 +12,7 @@ AI运维控制台提供四种访问方式（Sshuttle，SSL VPN、私网Ingress�
     -   集群有一台启动SSH，且公网可访问的跳板机。具体操作，请参见[如何为已有集群开启SNAT](/cn.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/为已有集群开启SNAT公网访问能力.md)。
     -   跳板机的Python版本不低于3.6。
     -   已获取跳板机的用户名和密码。
-    -   Sshuttle是最低成本VPN方案，是基于SSH搭建的。建议在集群安全组中开启IP白名单的安全规则，限制可以访问的IP范围。具体操作，请参见[只允许实例访问外部特定IP地址](https://help.aliyun.com/document_detail/25475.html?spm=5176.2020520101securityGroupDetail.0.dexternal.2d004df5d6w9mV#specifyIpAccess)。
+    -   Sshuttle是最低成本VPN方案，是基于SSH搭建的。建议在集群安全组中开启IP白名单的安全规则，限制可以访问的IP范围。具体操作，请参见[t9715.md\#specifyIpAccess](/cn.zh-CN/安全/安全组/安全组应用案例.md)。
 
 ## 访问AI运维控制台
 
