@@ -19,7 +19,7 @@ You can use a certificate issued by Alibaba Cloud or upload a third-party certif
 
 ## Use a certificate that you create
 
-1.  On the **Certificates** page, find the certificate that you want to use, move the pointer over the certificate ID, and then click the ![Copy the certificate ID](../images/p171208.png) icon in the **Certificate Name/ID** column. The certificate ID is copied.
+1.  On the **Certificates** page, find the certificate that you want to use, move the pointer over the certificate ID, and then click the ![Copy the certificate ID](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2128313261/p171208.png) icon in the **Certificate Name/ID** column. The certificate ID is copied.
 
 2.  Before you use Knative, configure a gateway. In the following code block, set `service.beta.kubernetes.io/alibaba-cloud-loadbalancer-cert-id` to the certificate ID that you obtain in step [1](#step_riv_0nw_nb8). Then, you can use the certificate for HTTPS connections.
 
