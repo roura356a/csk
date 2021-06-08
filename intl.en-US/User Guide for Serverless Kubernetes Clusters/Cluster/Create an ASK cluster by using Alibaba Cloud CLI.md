@@ -72,7 +72,7 @@ Install and set up a kubectl client. For more information, see [Install and set 
 
     ```
     POST /clusters HTTP/1.1
-    <公共请求头>
+    <Common request parameters>
     {
         "cluster_type":"Ask",
         "name":"test-ask",
