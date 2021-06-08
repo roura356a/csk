@@ -4,7 +4,7 @@ keyword: [GPU调度, 默认GPU调度, 共享GPU调度, GPU拓扑感知调度]
 
 # GPU调度
 
-本文介绍调度GPU资源的不同方法，包括使用Kubernets默认GPU调度、提升GPU资源使用率的共享GPU调度、以及加速任务执行的GPU拓扑感知调度。
+本文介绍调度GPU资源的不同方法，包括使用Kubernetes默认GPU调度、提升GPU资源使用率的共享GPU调度、以及加速任务执行的GPU拓扑感知调度。
 
 ## 普通GPU调度
 
