@@ -12,9 +12,9 @@ ASK clusters support standard Kubernetes semantics and API operations. You can c
 
 ## Procedure
 
-1.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+1.  [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
-2.  Create a YAML file named nginx.yaml and copy the following content into the file:
+2.  Create a YAML file named nginx.yaml and copy the following content to the file:
 
     ```
     apiVersion: v1
@@ -29,7 +29,7 @@ ASK clusters support standard Kubernetes semantics and API operations. You can c
         app: nginx
       type: LoadBalancer
     ---
-    apiVersion: apps/v1beta2
+    apiVersion: apps/v1  #Specify the version based on the Kubernetes version that you use. 
     kind: Deployment
     metadata:
       name: nginx-deploy
@@ -56,6 +56,11 @@ ASK clusters support standard Kubernetes semantics and API operations. You can c
                 memory: "4Gi"
     ```
 
+    **Note:** The relationships between Kubernetes versions and the apiVersion of Deployments:
+
+    -   Kubernetes versions earlier than 1.6: `extensions/v1beta1`.
+    -   Kubernetes 1.6 to 1.9: `apps/v1beta1`.
+    -   Kubernetes versions later than 1.9: `apps/v1`.
 3.  Run the following command to deploy an NGINX application in the ASK cluster:
 
     ```
@@ -71,7 +76,7 @@ ASK clusters support standard Kubernetes semantics and API operations. You can c
 
 4.  Check the states of the deployed pods and Services. You can use the IP address of the created Server Load Balancer \(SLB\) instance to access the NGINX application.
 
-    1.  Run the following command to query the states of the application pods:
+    1.  Run the following command to query the states of the pods that are provisioned for the application:
 
         ```
         kubectl get pod
@@ -84,7 +89,7 @@ ASK clusters support standard Kubernetes semantics and API operations. You can c
         nginx-deploy-55d8dcf755-rchhq   1/1     Running   0          36s
         ```
 
-    2.  Run the following command to query the states of created Services:
+    2.  Run the following command to query the states of the created Services:
 
         ```
         kubectl get svc
@@ -142,7 +147,7 @@ ASK clusters support standard Kubernetes semantics and API operations. You can c
         deployment.extensions/nginx-deploy scaled
         ```
 
-    3.  Run the following command to query the pods after the NGINX application is scaled out:
+    3.  Run the following command to query the pods after the Deployment is scaled out:
 
         ```
         kubectl get pod
@@ -164,9 +169,9 @@ ASK clusters support standard Kubernetes semantics and API operations. You can c
         nginx-deploy-55d8dcf755-xspnt   1/1     Running   0          38s
         ```
 
-6.  You can use Horizontal Pod Autoscaler \(HPA\) to automatically scale out the Deployment when the CPU usage exceeds the scale-out threshold. After HPA is enabled, more pod replicas are added for the Deployment when the CPU usage exceeds the scale-out threshold.
+6.  You can use Horizontal Pod Autoscaler \(HPA\) to automatically scale out pods when the CPU usage exceeds the scale-out threshold. After HPA is enabled, pods are added for the Deployment when the CPU usage exceeds the scale-out threshold.
 
-    1.  Run the following command to scale in the number of pod replicas to one for the Deployment:
+    1.  Run the following command to scale in the number of pods to one for the Deployment:
 
         ```
         kubectl scale deploy nginx-deploy --replicas=1
@@ -178,7 +183,7 @@ ASK clusters support standard Kubernetes semantics and API operations. You can c
         deployment.extensions/nginx-deploy scaled
         ```
 
-    2.  Run the following command to query the state of the application pod:
+    2.  Run the following command to query the states of the pod:
 
         ```
         kubectl get pod
@@ -191,7 +196,7 @@ ASK clusters support standard Kubernetes semantics and API operations. You can c
         nginx-deploy-55d8dcf755-rchhq   1/1     Running   0          16m
         ```
 
-    3.  Run the following command to configure the scaling settings of HPA:
+    3.  Run the following command to configure HPA:
 
         ```
         kubectl autoscale deployment nginx-deploy --cpu-percent=50 --min=1 --max=10
@@ -203,7 +208,7 @@ ASK clusters support standard Kubernetes semantics and API operations. You can c
         horizontalpodautoscaler.autoscaling/nginx-deploy autoscaled
         ```
 
-    4.  Run the following command to query the state of HPA:
+    4.  Run the following command to query HPA:
 
         ```
         kubectl get hpa
