@@ -7,7 +7,7 @@ keyword: [cGPU, managed Prometheus plug-in for monitoring, isolate GPU resources
 Container Service for Kubernetes \(ACK\) allows you to install the managed Prometheus plug-in. You can use the plug-in to monitor GPU resources. The cGPU solution isolates GPU resources allocated to containers that share one GPU. You do not have to modify the existing GPU program. This topic describes how to monitor GPU memory usage by using the managed Prometheus plug-in. This topic also describes how to isolate GPU resources by using cGPU.
 
 -   A standard dedicated Kubernetes cluster with GPU-accelerated nodes is created and the cluster version is Kubernetes 1.16 or later.
--   [Activate and upgrade ARMS](/intl.en-US/Quick Start/Activate and upgrade ARMS.md).
+-   [t152217.md\#](/intl.en-US/Quick Start/Activate and upgrade ARMS.md).
 -   An Alibaba Cloud account is used to log on to the [Resource Access Management \(RAM\) console](https://ram.console.aliyun.com/). The account is authorized to use ARMS Prometheus.
 -   The GPU model is Tesla P4, Tesla P100, Tesla T4, or Tesla V100 \(16 GB\).
 
@@ -15,7 +15,7 @@ The development of artificial intelligence \(AI\) is fueled by high hash rates, 
 
 ## Use the managed Prometheus plug-in to monitor exclusive GPUs
 
-1.  Log on to the[Application Real-Time Monitoring Service \(ARMS\) console](https://arms-intl.console.aliyun.com/).
+1.  Log on to the [Application Real-Time Monitoring Service \(ARMS\) console](https://arms-intl.console.aliyun.com/).
 
 2.  In the left-side navigation pane, click **Prometheus Monitoring**.
 
@@ -25,7 +25,7 @@ The development of artificial intelligence \(AI\) is fueled by high hash rates, 
 
     It requires about two minutes to install the Prometheus plug-in. After the Prometheus plug-in is installed, it appears in the **Installed Plugins** column.
 
-5.  You can deploy the following sample application by using the CLI. For more information, see [Manage applications by using commands](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
+5.  You can deploy the following sample application by using the CLI. For more information, see [t17653.md\#section\_wko\_o92\_co2](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
 
     ```
     apiVersion: apps/v1beta1
@@ -81,35 +81,23 @@ The development of artificial intelligence \(AI\) is fueled by high hash rates, 
 
 1.  Add labels to GPU-accelerated nodes.
 
-    1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+    1.  On the **Nodes** page, click **Manage Labels and Taints**.
 
-    2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+    2.  On the **Manage Labels and Taints** page, select the nodes to which you want to add a label and click **Add Label**.
 
-    3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Applications** in the **Actions** column.
-
-    4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node**.
-
-    5.  On the **Nodes** page, click **Manage Labels and Taints**.
-
-    6.  On the **Manage Labels and Taints** page, select the nodes to which you want to add a label and click **Add Label**.
-
-    7.  In the **Add** dialog box, set Name to cgpu and set Value to true, and click **OK**.
+    3.  In the **Add** dialog box, set Name to cgpu and set Value to true, and click **OK**.
 
         **Note:** If the label cgpu=true is added to a worker node, the GPU resource **nvidia.com/gpu** is not exclusive to the worker node. To disable GPU sharing for the worker node, set the value of cgpu to false. This makes the GPU resource **nvidia.com/gpu** exclusive to the worker node.
 
 2.  Install the cGPU component.
 
-    1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+    1.  On the App Catalog page, search for ack-cgpu and click ack-cgpu after it appears.
 
-    2.  In the left-side navigation pane of the ACK console, choose **Marketplace** \> **App Catalog**.
+    2.  In the **Deploy** section on the right side of the page, select the required cluster and namespace, and click **Create**.
 
-    3.  On the App Catalog page, search for ack-cgpu and click ack-cgpu after it appears.
+    3.  Log on to a master node and run the following command to query GPU resources.
 
-    4.  In the **Deploy** section on the right side of the page, select the required cluster and namespace, and click **Create**.
-
-    5.  Log on to a master node and run the following command to query GPU resources.
-
-        For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+        For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
         ```
         kubectl inspect cgpu
