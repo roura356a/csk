@@ -219,5 +219,5 @@ Nginx Ingress Controller组件在0.44版本及其之后的版本，额外包含�
 -   configmap/udp-services
 -   service/nginx-ingress-lb
 
-所有其他资源的配置都会被覆盖成默认配置。以deployment.apps/nginx-ingress-controller资源配置为例，其默认的的replicas参数为2。如果您升级Nginx Ingress Controller组件之前的replicas为5，但是通过组件管理升级Ingress后，其replicas将会为2，和默认配置一致。
+所有其他资源的配置都会被覆盖成默认配置。以`deployment.apps/nginx-ingress-controller`资源配置为例，其默认的replicas参数为2。如果您升级Nginx Ingress Controller组件之前的replicas为5，但是通过组件管理升级Ingress后，其replicas将会为2，和默认配置一致。
 
