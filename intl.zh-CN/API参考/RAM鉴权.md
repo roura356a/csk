@@ -58,11 +58,11 @@ acs:service-name:region:account-id:resource-relative-id
 |CancelClusterUpgrade|CancelK8sCluster|取消升级集群。|
 |CancelComponentUpgrade|CancelComponentUpgrade|取消升级组件。|
 |CreateCluster|CreateCluster|创建Kubernetes集群。|
-|CreateTriggerHook|CreateKubernetesTrigger|创建和修改应用触发器。|
+|CreateTriggerHook|CreateTrigger|创建和修改应用触发器。|
 |CreateTemplate|CreateTemplate|创建应用部署模板。|
 |DeleteCluster|DeleteCluster|删除集群。|
 |DeleteClusterNodes|DeleteClusterNodes|移除节点并释放ECS。|
-|DeleteKubernetesTrigger|RevokeTriggers|删除应用触发器。|
+|DeleteTrigger|RevokeTriggers|删除应用触发器。|
 |DeleteTemplate|V2DeleteTemplateInfo|删除应用部署模板。|
 |DescribeAddons|Queryk8sComponentsVersion|查询集群组件信息。|
 |DescribeClusterAddonsVersion|Queryk8sComponentsUpdateVersion|查询集群组件版本信息。|
@@ -79,7 +79,7 @@ acs:service-name:region:account-id:resource-relative-id
 |DescribeExternalAgent|DescribeExternalClusterAgentDeployment|查看注册集群的集群导入代理配置。|
 |DescribeTemplates|V2ListTemplates|查看应用部署模板。|
 |DescribeUserQuota|GetUserQuota|查看用户配额。|
-|GetKubernetesTrigger|GetK8sTrigger|获取应用触发器详情。|
+|GetTrigger|GetK8sTrigger|获取应用触发器详情。|
 |GetUpgradeStatus|GetK8sClusterState|查看集群升级状态。|
 |InstallClusterAddons|InstallK8sComponents|安装集群插件。|
 |ModifyCluster|ModifyCluster|修改集群信息。|
