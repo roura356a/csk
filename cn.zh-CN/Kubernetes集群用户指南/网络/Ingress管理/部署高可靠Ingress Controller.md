@@ -4,10 +4,10 @@ keyword: [Ingress Controller, Ingress接入层]
 
 # 部署高可靠Ingress Controller
 
-在Kubernetes集群中，Ingress是授权入站连接到达集群服务的规则集合，可以为您提供七层负载均衡能力，您可以通过Ingress配置提供外部可访问的URL、负载均衡、SSL、基于名称的虚拟主机等。作为集群流量接入层，Ingress的高可靠性显得尤为重要，本文介绍如何部署一套高性能高可靠的Ingress接入层。
+在Kubernetes集群中，Ingress是授权入站连接到达集群服务的规则集合，可以为您提供七层负载均衡能力，您可以通过Ingress配置提供外部可访问的URL、负载均衡、SSL、基于名称的虚拟主机等。作为集群流量接入层，Ingress的高可靠性显得尤为重要，本文介绍如何部署一套高性能、高可靠的Ingress接入层。
 
 -   您已成功创建一个Kubernetes集群，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   SSH连接到Master节点，请参见[SSH访问Kubernets集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过SSH访问Kubernetes集群.md)。
+-   SSH连接到Master节点，请参见[通过SSH访问Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过SSH访问Kubernetes集群.md)。
 
 ## 高可靠部署架构
 
@@ -44,7 +44,7 @@ keyword: [Ingress Controller, Ingress接入层]
 
     ```
     NAME               TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)                      AGE
-    nginx-ingress-lb   LoadBalancer   172.xx.x.xx   118.xxx.xxx.xx   80:32457/TCP,443:31370/TCP   21d
+    nginx-ingress-lb   LoadBalancer   172.XX.XX.XX   118.XX.XX.XX   80:32XXX/TCP,443:31XXX/TCP   21d
     ```
 
 
@@ -152,8 +152,8 @@ keyword: [Ingress Controller, Ingress接入层]
         预期输出：
 
         ```
-        nginx-ingress-controller-8648ddc696-2bshk                    1/1     Running   0          3h    172.16.2.15     cn-hangzhou.i-bp12h6biv9bg24lmdc2p   <none>
-        nginx-ingress-controller-8648ddc696-jvbs9                    1/1     Running   0          3h    172.16.2.145    cn-hangzhou.i-bp12h6biv9bg24lmdc2o   <none>
+        nginx-ingress-controller-8648ddc696-2bshk     1/1     Running   0     3h    172.16.XX.XX    cn-hangzhou.i-bp****   <none>
+        nginx-ingress-controller-8648ddc696-jvbs9     1/1     Running   0     3h    172.16.XX.XX    cn-hangzhou.i-bp****   <none>
         ```
 
 
