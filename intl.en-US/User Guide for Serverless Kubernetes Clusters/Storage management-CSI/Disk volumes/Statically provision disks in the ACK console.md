@@ -13,7 +13,7 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -36,7 +36,7 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -67,7 +67,7 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -102,12 +102,12 @@ Pods cannot share a disk. Each disk can be mounted to only one pod. This topic d
     -   **Add PVC**: You can add cloud volumes.
     Mount the disk volume that is created in this example to the /tmp path of the container. After the disk volume is mounted, container data that is generated in the /tmp path is saved to the disk volume.
 
-    ![](../images/p68586.png)
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8733023261/p68586.png)
 
 9.  Set other parameters and click **Create**.
 
     After you create the application, you can use the disk volume to store application data.
 
 
-You can also use the statically provisioned disk by using a command-line interface. For more information, see [Mount a cloud disk as a static volume by using a YAML template](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Mount a cloud disk as a static volume by using a YAML template.md).
+You can also use the statically provisioned disk by using a command-line interface. For more information, see [Use a statically provisioned disk volume](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Use a statically provisioned disk volume.md).
 
