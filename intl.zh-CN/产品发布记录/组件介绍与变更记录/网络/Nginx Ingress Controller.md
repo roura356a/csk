@@ -6,11 +6,13 @@ keyword: Nginx Ingress Controller
 
 本文为您介绍Ingress的基本概念、工作原理，以及Nginx Ingress Controller相关内容的最新动态。
 
-## Ingress基本概念
+## 组件介绍
+
+**Ingress基本概念**
 
 在Kubernetes集群中，Ingress作为集群内服务对外暴露的访问接入点，其几乎承载着集群内服务访问的所有流量。Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集群内部服务的方式。您可以通过Ingress资源来配置不同的转发规则，从而达到根据不同的规则设置访问集群内不同的Service后端Pod。
 
-## Ingress Controller工作原理
+**Ingress Controller工作原理**
 
 为了使得Ingress资源正常工作，集群中必须要有个Ingress Controller来解析Ingress的转发规则。Ingress Controller收到请求，匹配Ingress转发规则转发到后端Service，而Service转发到Pod，最终由Pod处理请求。Kubernetes中Service、Ingress与Ingress Controller有着以下关系：
 
@@ -18,23 +20,25 @@ keyword: Nginx Ingress Controller
 -   Ingress是反向代理规则，用来规定HTTP/HTTPS请求应该被转发到哪个Service上。例如根据请求中不同的Host和URL路径，让请求落到不同的 Service上。
 -   Ingress Controller是一个反向代理程序，负责解析Ingress的反向代理规则。如果Ingress有增删改的变动，Ingress Controller会及时更新自己相应的转发规则，当Ingress Controller收到请求后就会根据这些规则将请求转发到对应的Service。
 
-Ingress Controller通过API Server获取Ingress资源的变化，动态地生成Load Balancer所需的配置文件，然后依次生成新的路由转发规则。
+## 使用说明
 
-![S2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4614073161/p241496.png)
+关于Nginx Ingress Controller的使用，请参见[通过Ingress实现灰度发布和蓝绿发布](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/通过Ingress实现灰度发布和蓝绿发布.md)和[通过Ingress Controller来实现应用的流量复制](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/通过Ingress Controller来实现应用的流量复制.md)。
 
-## 2021年06月
+## 变更记录
+
+**2021年06月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
 |v0.44.0.3-8e83e7dc6-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/aliyun-ingress-controller:v0.44.0.3-8e83e7dc6-aliyun|2021年06月01日|修复CVE-2021-23017漏洞。更多信息，请参见[Updating NGINX for a DNS Resolver Vulnerability \(CVE-2021-23017\)](https://www.nginx.com/blog/updating-nginx-dns-resolver-vulnerability-cve-2021-23017/)。|建议在业务低峰期升级，变更过程中可能会导致已经建立的连接发生瞬断。|
 
-## 2021年04月
+**2021年04月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
 |v0.44.0.2-abf1c6fe4-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/aliyun-ingress-controller:v0.44.0.2-abf1c6fe4-aliyun|2021年04月01日|兼容老版本（0.30及之前的版本）log\_format中配置的`the_real_ip`字段。|建议在业务低峰期升级，变更过程中可能会导致已经建立的连接发生瞬断。|
 
-## 2021年03月
+**2021年03月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
@@ -55,7 +59,7 @@ Ingress Controller通过API Server获取Ingress资源的变化，动态地生成
 
 |建议在业务低峰期升级，变更过程中可能会导致已经建立的连接发生瞬断。|
 
-## 2020年04月
+**2020年04月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
@@ -73,19 +77,19 @@ Ingress Controller通过API Server获取Ingress资源的变化，动态地生成
 
 |建议在业务低峰期升级，变更过程中可能会导致已经建立的连接发生瞬断。|
 
-## 2019年10月
+**2019年10月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
 |v0.22.0.5-552e0db-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/aliyun-ingress-controller:v0.22.0.5-552e0db-aliyun|2019年10月24日|开启Server动态更新时支持泛域名、白名单和重定向配置。|建议在业务低峰期升级，变更过程中可能会导致已经建立的连接发生瞬断。|
 
-## 2019年07月
+**2019年07月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
 |v0.22.0.4-5a14d4b-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/aliyun-ingress-controller:v0.22.0.4-5a14d4b-aliyun|2019年07月18日|优化灰度发布规则，支持Perl正则匹配方式。|建议在业务低峰期升级，变更过程中可能会导致已经建立的连接发生瞬断。|
 
-## 2019年04月
+**2019年04月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
@@ -96,7 +100,7 @@ Ingress Controller通过API Server获取Ingress资源的变化，动态地生成
 
 |建议在业务低峰期升级，变更过程中可能会导致已经建立的连接发生瞬断。|
 
-## 2019年01月
+**2019年01月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
@@ -107,7 +111,7 @@ Ingress Controller通过API Server获取Ingress资源的变化，动态地生成
 
 |建议在业务低峰期升级，变更过程中可能会导致已经建立的连接发生瞬断。|
 
-## 2018年11月
+**2018年11月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
