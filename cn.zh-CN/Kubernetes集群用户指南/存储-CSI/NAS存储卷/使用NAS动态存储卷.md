@@ -6,12 +6,12 @@ keyword: [NAS, 动态存储卷, 持久化存储, 共享存储]
 
 阿里云Kubernetes CSI支持2种类型的NAS动态存储卷挂载：subpath方式和filesystem方式。本文介绍如何使用阿里云NAS动态存储卷，使用NAS动态存储卷如何实现持久化存储与共享存储。
 
--   您已经创建好一个Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   您已经创建一个动态NAS卷。请参见[创建文件系统]()。
+-   已创建Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
+-   已创建动态NAS卷。请参见[创建文件系统]()。
 
     若需要加密NAS存储卷中的数据，创建NAS文件系统时请配置加密类型。
 
--   您已经创建NAS挂载点。请参见[管理挂载点]()。
+-   已创建NAS挂载点。请参见[管理挂载点]()。
 
     NAS挂载点需要和集群节点在同一个VPC内。
 
@@ -182,9 +182,9 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
                     claimName: nas-csi-pvc
         ```
 
-        -   `mountPath`：NAS在容器中挂载的位置。本例为/date。
+        -   `mountPath`：NAS在容器中挂载的位置。本例为/data。
         -   `claimName`：输入与**nginx-1**应用相同的PVC名称，本例为**nas-csi-pvc**。
-    3.  执行以下命令创建应用nginx-1和nginx-2。
+    3.  执行以下命令创建应用**nginx-1**和**nginx-2**。
 
         ```
         kubectl create -f nginx-1.yaml -f nginx-2.yaml
@@ -469,15 +469,15 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         kubectl exec deployment-nas-2-c5bb4746c-4**** ls /data
         ```
 
-2.  执行以下命令，在任意一个Pod的/date路径下创建文件nas。
+2.  执行以下命令，在任意一个Pod的/data路径下创建文件nas。
 
     ```
      kubectl exec deployment-nas-1-5b5cdb85f6-n**** touch /data/nas
     ```
 
-3.  执行以下命令，查看2个Pod/date路径下的文件。
+3.  执行以下命令，查看2个Pod/data路径下的文件。
 
-    1.  执行以下命令，查看名为`deployment-nas-1-5b5cdb85f6-n****`的Pod/date路径下的文件。
+    1.  执行以下命令，查看名为`deployment-nas-1-5b5cdb85f6-n****`的Pod/data路径下的文件。
 
         ```
         kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
@@ -489,7 +489,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         nas
         ```
 
-    2.  执行以下命令，查看名为`deployment-nas-2-c5bb4746c-4****`的Pod/date路径下的文件。
+    2.  执行以下命令，查看名为`deployment-nas-2-c5bb4746c-4****`的Pod/data路径下的文件。
 
         ```
         kubectl exec deployment-nas-2-c5bb4746c-4**** ls /data
@@ -501,6 +501,6 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         nas
         ```
 
-        在任意一个Pod的/date下创建的文件，两个Pod下的/date路径下均存在此文件，说明两个Pod共享一个NAS。
+        在任意一个Pod的/data下创建的文件，两个Pod下的/data路径下均存在此文件，说明两个Pod共享一个NAS。
 
 
