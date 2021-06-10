@@ -140,7 +140,7 @@ In this topic, an Elastic Compute Service \(ECS\) instance of the ecs.sn2.13xlar
 3.  Run the following command to check whether the elastic quota group is created:
 
     ```
-    kubectl get ElasticQuotaTree
+    kubectl get ElasticQuotaTree -n kube-system
     ```
 
     Expected output:
