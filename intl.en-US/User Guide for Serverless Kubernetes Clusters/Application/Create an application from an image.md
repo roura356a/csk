@@ -12,7 +12,7 @@ A serverless Kubernetes \(ASK\) cluster is created. For more information, see [C
 
 1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column.
 
@@ -216,7 +216,7 @@ On the **Complete** wizard page, you can view the created application.
 
     ![Deployment list](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1163182061/p10257.png)
 
-2.  In the left-side navigation pane of the details page of the cluster, choose **Services and Ingresses** \> **Services**. On the Services page, you can find the newly created Service named serverless-app-svc.
+2.  In the left-side navigation pane of the details page of the cluster, choose **Network** \> **Services**. On the Services page, you can find the newly created Service named serverless-app-svc.
 
     ![Service list](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1163182061/p10258.png)
 
