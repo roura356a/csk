@@ -40,7 +40,7 @@ keyword: [函数部署服务, Knative]
                 };
     ```
 
-    `image`和`command`下的内容代表使用Nodejs代码部署服务，不同的服务代码内容不同，请根据实际情况替换。
+    `image`和`command`下的内容代表使用Node.js代码部署服务，不同的服务代码内容不同，请根据实际情况替换。
 
 2.  部署服务。
 
@@ -77,8 +77,8 @@ keyword: [函数部署服务, Knative]
 
     `image`和`command`下的内容表示使用函数计算OSS文件部署服务。以下为`image`和`command`参数介绍：
 
-    -   image：输入runtime环境，例如nodejs8。
-    -   command：command数组有两个元素，依次是BucketName和ObjectName。
+    -   `image`：输入`runtime`环境，例如`nodejs8`。
+    -   `command`：`command`数组有两个元素，依次是BucketName和ObjectName。
 2.  部署服务。
 
     ```
@@ -88,7 +88,7 @@ keyword: [函数部署服务, Knative]
 
 ## 基于函数计算镜像部署服务
 
-为了简化开发者体验、提升开发和交付效率，函数计算提供了Custom Container Runtime。通过HTTP协议和函数计算系统交互，开发者将容器镜像作为函数的交付物。关于函数计算镜像部署的详细介绍请参见[简介]()。
+为了简化开发者体验、提升开发和交付效率，函数计算提供了Custom Container Runtime。通过HTTP协议和函数计算系统交互，开发者将容器镜像作为函数的交付物。关于函数计算镜像部署的详细介绍，请参见[简介]()。
 
 **使用限制**
 
@@ -96,7 +96,7 @@ keyword: [函数部署服务, Knative]
 |---|----|
 |镜像大小|-   若您的函数执行内存<1 GB，则解压前镜像大小不能超过256 MB。
 -   若您的函数执行内存≥1 GB，则解压前镜像大小不能超过1024 MB。 |
-|镜像仓库|目前仅支持阿里云容器镜像服务中的默认实例镜像，未来会支持其他镜像仓库。关于默认实例的详细介绍请参见[容器镜像服务个人版概述]()。|
+|镜像仓库|目前仅支持阿里云容器镜像服务中的默认实例镜像，未来会支持其他镜像仓库。关于默认实例的详细介绍，请参见[什么是容器镜像服务ACR]()。|
 |镜像访问|目前仅支持同账号同地域下私有镜像仓库读取，未来会支持读取公共镜像。|
 |容器内文件读写权限|容器run-as-user UID在10000到10999中随机分配。默认容器可在/tmp目录中具有写入权限，其他目录读写权限由镜像文件系统控制。如果运行的UID没有读写某个文件的权限，则需要在Dockerfile中修改。|
 |容器可写层存储空间限制|排除只读镜像层，容器产生的数据最大不能超过512 MB。|
@@ -130,7 +130,7 @@ keyword: [函数部署服务, Knative]
 2.  部署服务。
 
     ```
-    kubectl apply -f coffee-oss.yaml
+    kubectl apply -f coffee-image.yaml
     ```
 
 
@@ -151,7 +151,7 @@ keyword: [函数部署服务, Knative]
     coffee   https://198639303048****.cn-beijing.fc.aliyuncs.com/2016-08-15/proxy/kn_default_coffee.http-prd/kn_default_coffee/   coffee-5bqdr    coffee-5bqdr   True
     ```
 
-2.  使用curl命令访问服务。
+2.  使用`curl`命令访问服务。
 
     ```
     curl https://198639303048****.cn-beijing.fc.aliyuncs.com/2016-08-15/proxy/kn_default_coffee.http-prd/kn_default_coffee/
