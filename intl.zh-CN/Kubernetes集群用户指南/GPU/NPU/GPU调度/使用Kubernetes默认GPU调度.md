@@ -20,7 +20,7 @@ keyword: [GPU调度, Kubernetes GPU集群]
 
 5.  在**无状态**页面右上角单击**使用YAML创建资源**。
 
-6.  选择所需的集群，命名空间，选择样例模板或自定义，然后单击**创建**。
+6.  选择所需命名空间，选择样例模板或自定义，然后单击**创建**。
 
     ![创建应用](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7775659951/p10866.png)
 
@@ -50,12 +50,12 @@ keyword: [GPU调度, Kubernetes GPU集群]
             image: tensorflow/tensorflow:1.4.1-gpu-py3
             resources:
               limits:
-                nvidia.com/gpu: 1          #指定调用nvidia gpu的数量
+                nvidia.com/gpu: 1          #指定调用nvidia gpu的数量。
             ports:
             - containerPort: 8888
               hostPort: 8888
             env:
-              - name: PASSWORD                # 指定访问Jupyter服务的密码，您可以按照您的需要修改
+              - name: PASSWORD                # 指定访问Jupyter服务的密码，您可以按照您的需要修改。
                 value: mypassword
     
     # Define the tensorflow service
@@ -71,9 +71,7 @@ keyword: [GPU调度, Kubernetes GPU集群]
         name: jupyter
       selector:
         app: tf-notebook
-      type: LoadBalancer                           #阿里云的负载均衡访问内部服务和负载均衡
-    
-                            
+      type: LoadBalancer                           #阿里云的负载均衡访问内部服务和负载均衡。                       
     ```
 
     旧的GPU部署方案，您必须要定义以下的nvidia驱动所在的数据卷。
@@ -90,7 +88,7 @@ keyword: [GPU调度, Kubernetes GPU集群]
 
     这需要您在编写部署文件时，强依赖于所在的集群，导致缺乏可移植性。但是在Kubernetes 1.9.3及之后的版本中，无需指定hostPath，nvidia的插件会自发现驱动所需的库链接和执行文件。
 
-7.  在左侧导航栏选择**服务与路由** \> **服务**，选择所需的集群和命名空间，选择tf-notebook服务，查看外部端点。
+7.  在左侧导航栏选择**网络** \> **服务**，选择所需命名空间，选择tf-notebook服务，查看外部端点。
 
     ![查看服务](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7775659951/p10867.png)
 
