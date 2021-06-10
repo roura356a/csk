@@ -126,7 +126,7 @@ If you change the type of the Service, for example, from LoadBalancer to NodePor
     1.  Log on to the [the ACK console](https://cs.console.aliyun.com).
     2.  In the left-side navigation pane, click **Clusters**.
     3.  On the Clusters page, find the cluster that you want to manage. Then, click the name of the cluster or click **Details** in the **Actions** column.
-    4.  In the left-side navigation pane, choose **Services and Ingresses** \> **Services**.
+    4.  In the left-side navigation pane, choose **Network** \> **Services**.
     5.  On the top of the Services page, select **kube-system** from the **Namespace** drop-down list. Then, find **nginx-ingress-lb** on the list of Services and click **View in YAML** in the **Actions** column.
 
         If you cannot find **nginx-ingress-lb** on the lists of Services, use the following template to create a Service named **nginx-ingress-lb**:
