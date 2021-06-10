@@ -32,7 +32,7 @@ keyword: ACK@Edge发布版本说明
 
 ## 边缘节点接入
 
-边缘集群支持接入OS是Ubuntu 20.04系统的节点。
+边缘集群支持接入OS是Ubuntu 20.04的节点。
 
 ## 边缘网络
 
@@ -46,5 +46,5 @@ keyword: ACK@Edge发布版本说明
         |openyurt.io/topologyKeys|kubernetes.io/zone|限制Service只能被本节点池的节点访问。|
         |无|无|对Service不做任何拓扑限制。|
 
-    -   在1.18版本，对上表第二行中的参数openyout.io/topologyKeys的**Annotation Value**做了调整。该参数支持两个值：`kubernetes.io/zone`和`openyurt.io/nodepool`，这两个值分别都支持限制Service只能被本节点池的节点访问的功能，且推荐您使用`openyurt.io/nodepool`。
+    -   在1.18版本，对上表第二行中的参数openyout.io/topologyKeys的**Annotation Value**做了调整。该参数支持两个值：`kubernetes.io/zone`和`openyurt.io/nodepool`，这两个值都用于限制Service只能被本节点池的节点访问，且推荐您使用`openyurt.io/nodepool`。
 
