@@ -140,7 +140,7 @@ keyword: [弹性配额组, Capacity Scheduling]
 3.  执行以下命令，查看弹性配额组是否创建成功。
 
     ```
-    kubectl get ElasticQuotaTree
+    kubectl get ElasticQuotaTree -n kube-system
     ```
 
     预期输出：
