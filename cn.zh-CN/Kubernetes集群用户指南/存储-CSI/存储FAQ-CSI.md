@@ -43,7 +43,7 @@ keyword: [云盘存储, NAS存储, FAQ]
     -   执行以下命令查看集群是否部署了CSI存储插件。
 
         ```
-        kbuectl get pod -nkube-system |grep csi
+        kubectl get pod -nkube-system |grep csi
         ```
 
         预期输出：
