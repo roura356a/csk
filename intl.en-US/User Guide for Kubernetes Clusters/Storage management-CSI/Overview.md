@@ -8,7 +8,7 @@ Container Service for Kubernetes \(ACK\) provides container storage features bas
 
 ## Container storage architecture
 
-![overview](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6968281261/p251924.png)
+![overview](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2849133261/p251924.png)
 
 ACK allows you to configure storage services to be automatically mounted on pods. The storage services include Alibaba Cloud disks, Apsara File Storage NAS \(NAS\), Object Storage Service \(OSS\), Cloud Paralleled File System \(CPFS\), and local volumes. The following table describes the features and scenarios of the storage services.
 
@@ -23,7 +23,7 @@ Disks are block storage devices and are suitable for use in scenarios that requi
 A disk can be used to provision storage for only one pod. You can use disks as volumes in scenarios that do not require data sharing.
 
 
-For more information, see [Use Alibaba Cloud disks that are mounted as PVs](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Use Alibaba Cloud disks that are mounted as PVs.md). |
+For more information, see [Usage notes for disk volumes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Usage notes for disk volumes.md). |
 |NAS|Supported|Supported|Yes|Shared storage that provides high performance and high throughput.|-   Data sharing
 
 NAS file systems allow multiple pods to access the same data. We recommend that you use NAS file systems if data needs to be shared.
@@ -41,7 +41,7 @@ NAS file systems can provision storage for web applications and content manageme
 We recommend that you use NAS file systems as volumes to store log data.
 
 
-For more information, see [Use NAS file systems provided by Apsara File Storage NAS](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/Use NAS file systems provided by Apsara File Storage NAS.md). |
+For more information, see [Overview](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/Overview.md). |
 |OSS|Supported|Not supported|Yes|Shared storage that supports file systems in the user space.|-   Read-only media files such as video and image files
 
 You can use OSS buckets as volumes to read the preceding types of files.
@@ -53,7 +53,7 @@ ossfs provides limited network performance and can be used to read small files.
 
 **Note:** OSS buckets are mounted by using ossfs, which is implemented as a filesystem in the user space \(FUSE\). The write performance is limited when you use OSS buckets as volumes. We recommend that you use other storage media as volumes in scenarios that require high write performance.
 
-For more information, see [Provision OSS buckets as PVs](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/OSS volumes/Provision OSS buckets as PVs.md). |
+For more information, see [Overview](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/OSS volumes/Overview.md). |
 |Cloud Paralleled File System \(CPFS\)|Supported|Supported|No|Shared storage that features high performance and high bandwidth|-   Genomics computing and big data analysis
 
 CPFS provides high throughput and meets the requirement of high performance in large-scale clusters.
@@ -217,11 +217,11 @@ For more information about how to upgrade FlexVolume, see [Manage system compone
 **Related topics**  
 
 
-[Use Alibaba Cloud disks that are mounted as PVs](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Use Alibaba Cloud disks that are mounted as PVs.md)
+[Usage notes for disk volumes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Usage notes for disk volumes.md)
 
-[Use NAS file systems provided by Apsara File Storage NAS](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/Use NAS file systems provided by Apsara File Storage NAS.md)
+[Overview](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/Overview.md)
 
-[Provision OSS buckets as PVs](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/OSS volumes/Provision OSS buckets as PVs.md)
+[Overview](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/OSS volumes/Overview.md)
 
 [Static PVs](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/CPFS volumes/Static volumes.md)
 
