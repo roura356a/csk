@@ -4,11 +4,11 @@ In the Kubernetes-piggymetrics-cluster cluster, the NodePort Service is used to 
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
+4.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
 5.  Check whether the Service is created.
 
@@ -20,7 +20,7 @@ In the Kubernetes-piggymetrics-cluster cluster, the NodePort Service is used to 
 
     You can log on to an Elastic Compute Service \(ECS\) instance in the Container Service for Kubernetes \(ACK\) cluster. Then, send a request to the NodePort Service to check whether the Service is accessible. In this example, the Service port is 30080 and the IP address of the ECS instance is 192.168.XX.X0.
 
-    1.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node**.
+    1.  In the left-side navigation pane of the details page, choose **Nodes** \> **Nodes**.
 
     2.  On the Nodes page, select the Kubernetes-piggymetrics-cluster cluster and click the ID of the ECS instance that you want to manage.
 
