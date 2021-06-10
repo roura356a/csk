@@ -18,7 +18,7 @@ How to use a dynamically provisioned disk volume:
 1.  Manually create a persistent volume claim \(PVC\) and specify a StorageClass in the PVC.
 2.  When you deploy an application, the system automatically creates a persistent volume \(PV\) based on the specified StorageClass.
 
-For more information about StorageClasses, see [t1592119.md\#section\_xxr\_vgk\_yde](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Usage notes for disk volumes.md).
+For more information about StorageClasses, see [Usage notes for disk volumes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Usage notes for disk volumes.md).
 
 ## Step 1: Create a StorageClass
 
