@@ -11,7 +11,7 @@ keyword: [SLB, 金丝雀发布]
 -   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
 -   [通过SSH访问Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过SSH访问Kubernetes集群.md)
 
-## 步骤1 部署旧版本服务
+## 步骤一：部署旧版本服务
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
@@ -70,12 +70,12 @@ keyword: [SLB, 金丝雀发布]
        selector:
          app: nginx
        sessionAffinity: None
-       type: LoadBalancer                       ##通过阿里云SLB对外暴露服务
+       type: LoadBalancer                       #通过阿里云SLB对外暴露服务。
     ```
 
     在**无状态**页面可以看到创建的应用。
 
-7.  在集群管理页面左侧导航栏选择**服务与路由** \> **服务**，在**服务**页面，您可单击服务右侧的外部端点，进入Nginx默认欢迎页面，本示例中的Nginx欢迎页面会显示**old**，表示当前访问的服务对应后端old-nginx容器。
+7.  在集群管理页面左侧导航栏选择**网络** \> **服务**，在**服务**页面，您可单击服务右侧的外部端点，进入Nginx默认欢迎页面，本示例中的Nginx欢迎页面会显示**old**，表示当前访问的服务对应后端old-nginx容器。
 
     ![old](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2395659951/p9939.png)
 
@@ -83,7 +83,7 @@ keyword: [SLB, 金丝雀发布]
 
     ```
     bash  
-    for x in {1..10} ; do curl EXTERNAL-IP; done                    ##EXTERNAL-IP即是服务的外部端点
+    for x in {1..10} ; do curl EXTERNAL-IP; done                    #EXTERNAL-IP为服务的外部端点。
     old
     old
     old
@@ -97,7 +97,7 @@ keyword: [SLB, 金丝雀发布]
     ```
 
 
-## 步骤2 上线新版本Deployment
+## 步骤二：上线新版本Deployment
 
 1.  在控制台左侧导航栏中，单击**集群**。
 
@@ -109,7 +109,7 @@ keyword: [SLB, 金丝雀发布]
 
 5.  选择**示例模板**，然后单击**创建**。
 
-    本示例是一个Nginx的新版本的Deployment，其中的labels，也是含有`app:nginx`标签。这个标签就是为了使用与旧版本Deployment相同的Nginx服务，这样就可以将对应的流量导入进来。
+    本示例是一个Nginx的新版本的Deployment，其中的Labels，也是含有`app:nginx`标签。这个标签就是为了使用与旧版本Deployment相同的Nginx服务，这样就可以将对应的流量导入进来。
 
     本示例的编排模板如下。
 
@@ -141,13 +141,13 @@ keyword: [SLB, 金丝雀发布]
            restartPolicy: Always
     ```
 
-6.  单击**无状态**页面，可以看到名为new-nginx的Deployment。
+6.  在**无状态**页面，可以看到名为**new-nginx**的Deployment。
 
 7.  登录Master节点，执行curl命名，查看服务访问的情况。
 
     ```
     bash  
-    for x in {1..10} ; do curl EXTERNAL-IP; done                    ##EXTERNAL-IP即是服务的外部端点
+    for x in {1..10} ; do curl EXTERNAL-IP; done                    #EXTERNAL-IP为服务的外部端点。
     new
     new
     new
@@ -163,11 +163,11 @@ keyword: [SLB, 金丝雀发布]
     可看到五次访问到旧的服务，五次访问到新的服务。主要原因是Service对于流量请求是平均的负载均衡策略，而且新老Deployment均为一个Pod，因此它们的流量百分比为1：1。
 
 
-## 步骤3 调整流量权重
+## 步骤三：调整流量权重
 
-基于SLB的金丝雀发布需要通过调整后端的pod数量来调整对应的权重。例如我们这里希望新的服务权重更大一些，假如将新的Pod数量调整到4个。
+基于SLB的金丝雀发布需要通过调整后端的Pod数量来调整对应的权重。例如我们这里希望新的服务权重更大一些，假如将新的Pod数量调整到4个。
 
-**说明：** 新旧版本应用同时存在时，某个样本的curl命令返回的结果并非严格按照设置的权重，本例中执行10次curl命令，您可通过观察更大的样本获取接近的效果。
+**说明：** 新旧版本应用同时存在时，某个样本的Curl命令返回的结果并非严格按照设置的权重，本例中执行10次Curl命令，您可通过观察更大的样本获取接近的效果。
 
 1.  在控制台左侧导航栏中，单击**集群**。
 
@@ -181,11 +181,11 @@ keyword: [SLB, 金丝雀发布]
 
     **说明：** Kubernetes的Deployment资源默认的更新方式就是rollingUpdate，所以在更新过程中，会保证最小可服务的容器个数，该个数也可以在模板里面调整。
 
-6.  待部署完成后，登录Master节点，执行curl命名，查看效果。
+6.  待部署完成后，登录Master节点，执行Curl命令，查看效果。
 
     ```
     bash  
-     for x in {1..10} ; do curl EXTERNAL-IP; done                    ##EXTERNAL-IP即是服务的外部端点
+     for x in {1..10} ; do curl EXTERNAL-IP; done                    #EXTERNAL-IP为服务的外部端点。
      new
      new
      new
