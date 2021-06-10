@@ -7,7 +7,7 @@ This topic describes the differences in network configurations when you deploy a
 The user interfaces for deploying an application from an image in a Container Service for Swarm cluster and in an ACK cluster are quite different.
 
 -   For more information about how to deploy an application from an image in a Container Service for Swarm cluster, see [Create an application](/intl.en-US/User Guide/Applications/Create an application.md).
--   For more information about how to deploy an application from an image in an ACK cluster, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateless application from an image.md).
+-   For more information about how to deploy an application from an image in an ACK cluster, see [Use a Deployment to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
 
 Network configurations
 
@@ -31,7 +31,7 @@ You can create a **NodePort** Service to expose your application to external acc
 
     ![Advanced](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5546858951/p35379.png)
 
-2.  Select **Node Port** from the **Type** drop-down list. For more information, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateless application from an image.md).
+2.  Select **Node Port** from the **Type** drop-down list. For more information, see [Use a Deployment to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
 
     ![Node Port](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4546858951/p35381.png)
 
@@ -40,11 +40,11 @@ You can create a **NodePort** Service to expose your application to external acc
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
+4.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
 5.  Select the namespace to which the Service belongs. In the upper-right corner of the Services page, click **Create**. In the Create Service dialog box, select **Node Port** from the **Type** drop-down list. For more information, see [Manage Services](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Manage Services.md).
 
@@ -71,7 +71,7 @@ You can use one of the following methods to create an Ingress:
 
     ![Advanced](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4546858951/p35395.png)
 
-2.  Deploy a stateless application from an image. For more information, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateless application from an image.md).
+2.  Deploy a stateless application from an image. For more information, see [Use a Deployment to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
 
     ![Container configurations](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4546858951/p35397.png)
 
@@ -80,11 +80,11 @@ You can use one of the following methods to create an Ingress:
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Ingresses**.
+4.  In the left-side navigation pane of the details page, choose **Network** \> **Ingresses**.
 
 5.  Select the namespace to which the Ingress belongs and click **Create** in the upper-right corner of the Ingresses page. For more information, see [t16682.md\#section\_g4f\_wex\_ruo](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Basic operations of an Ingress.md).
 
@@ -111,7 +111,7 @@ You can use one of the following methods to create a LoadBalancer Service:
 
     ![Advanced](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5546858951/p35379.png)
 
-2.  Select **Server Load Balancer** from the **Type** drop-down list. For more information, see [Deploy a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Deploy a stateless application from an image.md).
+2.  Select **Server Load Balancer** from the **Type** drop-down list. For more information, see [Use a Deployment to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
 
     ![Server Load Balancer](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5546858951/p35440.png)
 
@@ -120,11 +120,11 @@ You can use one of the following methods to create a LoadBalancer Service:
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**.
+4.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
 5.  Select the namespace to which the Service belongs. In the upper-right corner of the Services page, click **Create**. In the Create Service dialog box, select **Server Load Balancer** from the **Type** drop-down-list. For more information, see [Manage Services](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Manage Services.md).
 
