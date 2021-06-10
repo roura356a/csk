@@ -8,7 +8,7 @@ keyword: [容器存储, CSI, 存储架构]
 
 ## ACK容器存储概览
 
-![en](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7261416161/p253251.png)
+![en](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1749133261/p253251.png)
 
 容器服务ACK支持Pod自动绑定阿里云云盘、NAS、 OSS、CPFS、本地卷等存储服务，每种存储卷的主要特点及应用场景如下表。
 
