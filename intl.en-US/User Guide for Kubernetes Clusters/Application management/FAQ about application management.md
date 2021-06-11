@@ -1,17 +1,22 @@
 # FAQ about application management
 
-This topic provides answers to some commonly asked questions about application management.
+This topic provides answers to some frequently asked questions about application management.
 
+-   [Troubleshoot application errors in Container Service for Kubernetes](~~211618~~)
 -   [How do I manually upgrade Helm?](#section_42y_vhz_d9t)
 -   [How do I use private images in Kubernetes clusters?](#section_b2s_ldm_84z)
+-   [Precheck failure during a Cloud Controller Manager \(CCM\) upgrade](~~164988~~)
+-   [How do I create containers from private images in an ACK cluster?](~~86562~~)
+-   [Troubleshoot failures to bind source code in Container Registry](~~185631~~)
+-   [Troubleshoot failures to create repositories in Container Registry](~~186529~~)
 
 ## How do I manually upgrade Helm?
 
-1.  Log on to a master node in an Alibaba Cloud Container Service for Kubernetes \(ACK\) cluster. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+1.  Log on to a master node in the Kubernetes cluster. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
 2.  Run the following command.
 
-    For the image address, enter the address of the image in the Virtual Private Cloud \(VPC\) network in the region. For example, if your server is deployed in the China \(Hangzhou\) region, the image address is registry-vpc.cn-hangzhou.aliyuncs.com/acs/tiller:v2.11.0.
+    For the image address, enter the domain name of the image in the region where the virtual private cloud \(VPC\) that hosts the image is deployed. For example, if your server is deployed in the China \(Hangzhou\) region, the image address is registry-vpc.cn-hangzhou.aliyuncs.com/acs/tiller:v2.11.0.
 
     ```
     helm init --tiller-image registry.cn-hangzhou.aliyuncs.com/acs/tiller:v2.11.0 --upgrade
@@ -45,16 +50,16 @@ This topic provides answers to some commonly asked questions about application m
 
     **Note:**
 
-    -   `regsecret`: the name of the secret. You can enter a custom name.
+    -   `regsecret`: the name of the Secret. You can enter a custom name.
     -   `--docker-server`: the address of the Docker registry.
     -   `--docker-username`: the username of the Docker registry.
     -   `--docker-password`: the logon password of the Docker registry.
     -   `--docker-email`: the email address. This parameter is optional.
-    You can perform the following operations.
+    You can use the private image by using one of the following two methods:
 
     -   Manually configure the private image
 
-        Add the secret to the YAML configuration file.
+        Add the Secret configuration to the YAML configuration file.
 
         ```
         containers:
@@ -66,16 +71,16 @@ This topic provides answers to some commonly asked questions about application m
 
         **Note:**
 
-        -   `imagePullSecrets` specifies the secret that is required to pull the image.
-        -   `regsecret` must be the same as the previous configured secret name.
+        -   `imagePullSecrets` specifies the Secret that is required to pull the image.
+        -   `regsecret` must be the same as the previous configured Secret name.
         -   The Docker registry address in `image` must be the same as the one that is specified in `--docker-server`.
         For more information, see [Use a private registry](https://kubernetes.io/docs/concepts/containers/images/#using-a-private-registry).
 
-    -   Implement an orchestration without the secret
+    -   Automatically configure the private image without the Secret
 
-        **Note:** To avoid referencing the secret each time you use private images for deployment, you can add the secret to the default service account of the namespace. For more information, see [Add ImagePullSecrets to a service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account).
+        **Note:** To avoid referencing the Secret each time you use private images for deployment, you can add the Secret configuration to the default service account of the namespace. For more information, see [Add ImagePullSecrets to a service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account).
 
-        1.  Run the following command to view the secret that is required to pull private images.
+        1.  Run the following command to view the Secret that is required to pull the private image:
 
             ```
             kubectl get secret regsecret
@@ -86,7 +91,7 @@ This topic provides answers to some commonly asked questions about application m
             regsecret   kubernetes.io/dockerconfigjson   1         13m
             ```
 
-            In this example, the default service account of the namespace is manually configured to use this secret as the imagePullSecret.
+            In this example, the default service account of the namespace is manually configured to use this Secret as the imagePullSecret.
 
         2.  Create an sa.yaml file and add the configuration of the default service account to this file.
 
@@ -101,13 +106,13 @@ This topic provides answers to some commonly asked questions about application m
               creationTimestamp: 2015-08-07T22:02:39Z
               name: default
               namespace: default
-              resourceVersion: "243024"             ##Note this parameter selfLink: /api/v1/namespaces/default/serviceaccounts/default
+              resourceVersion: "243024"             ## Take note of the selfLink field: /api/v1/namespaces/default/serviceaccounts/default
               uid: 052fb0f4-3d50-11e5-b066-42010af0d7b6
             secrets:
             - name: default-token-uudgeoken-uudge
             ```
 
-        3.  In the command-line interface \(CLI\), enter `vim sa.yaml` to open the sa.yaml file, delete the resourceVersion parameter, and then add the imagePullSecrets parameter to specify the secret for pulling images. The following sample code shows the modification:
+        3.  In the command-line interface \(CLI\), enter `vim sa.yaml` to open the sa.yaml file, delete the resourceVersion parameter, and then add the imagePullSecrets parameter to specify the Secret for pulling images. The following sample code shows the modification:
 
             ```
             apiVersion: v1
@@ -120,7 +125,7 @@ This topic provides answers to some commonly asked questions about application m
               uid: 052fb0f4-3d50-11e5-b066-42010af0d7b6
             secrets:
             - name: default-token-uudge
-            imagePullSecrets:                 ## New parameter
+            imagePullSecrets:                 ## This field is newly added.
             - name: regsecret                                    
             ```
 
@@ -156,7 +161,7 @@ This topic provides answers to some commonly asked questions about application m
                     - containerPort: 8080
             ```
 
-        6.  If the configuration is valid, the pod is started. In the CLI, enter kubectl get pod tomcat-xxx -o yaml. You can find the following configuration in the command output:
+        6.  If the configuration is correct, the pod is started. In the CLI, enter kubectl get pod tomcat-xxx -o yaml. You can find the following configuration in the command output:
 
             ```
             spec:
