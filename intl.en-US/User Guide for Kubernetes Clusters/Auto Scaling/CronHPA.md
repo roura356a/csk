@@ -8,7 +8,7 @@ To avoid resource wasting in some scenarios, Container Service for Kubernetes \(
 
 -   An ACK cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 -   Helm 2.11.0 or later is installed on your on-premises machine. For more information, see [Install Helm](https://github.com/helm/helm?spm=a2c4g.11186623.2.28.36d61fa8fxvUaY).
--   You are connected to the cluster by using kubectl before you run commands to perform the following operations. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+-   You are connected to the cluster by using kubectl before you run commands to perform the following operations. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
 kubernetes-cronhpa-controller is a Kubernetes HPA controller that can scale a Kubernetes cluster based on a schedule, which is similar to a crontab. You can use CronHPA with Kubernetes objects whose subresources can be scaled. The objects include Deployments and StatefulSets. In addition, the subresources must be open source projects on GitHub. For more information, see [kubernetes-cronhpa-controller](https://github.com/AliyunContainerService/kubernetes-cronhpa-controller).
 
@@ -225,26 +225,26 @@ The following table describes the rules that enable CronHPA and HPA to interact 
 
 |HPA \(min/max\)|Cronhpa|Deployment|Scaling result|Description|
 |---------------|-------|----------|--------------|-----------|
-|1/10|5|5|-   HPA \(min/max\)：1/10
--   Deployment：5
+|1/10|5|5|-   HPA \(min/max\): 1/10
+-   Deployment: 5
 
 |If the number of pods desired by CronHPA equals the current number of pods, CronHPA does not change the maximum and minimum numbers of pods in the HPA configuration. In addition, no scaling activity is triggered.|
-|1/10|4|5|-   HPA \(min/max\)：1/10
--   Deployment：5
+|1/10|4|5|-   HPA \(min/max\): 1/10
+-   Deployment: 5
 
 |If the number of pods desired by CronHPA is smaller than the current number of pods, no scaling activity is triggered.|
-|1/10|6|5|-   HPA \(min/max\)：6/10
--   Deployment：6
+|1/10|6|5|-   HPA \(min/max\): 6/10
+-   Deployment: 6
 
 |-   If the number of pods desired by CronHPA is greater than the current number of pods, CronHPA adds pods to reach the desired number.
 -   If the number of pods desired by CronHPA is smaller than the value of minReplicas in the HPA configuration, CronHPA changes the value of minReplicas. |
-|5/10|4|5|-   HPA \(min/max\)：4/10
--   Deployment：5
+|5/10|4|5|-   HPA \(min/max\): 4/10
+-   Deployment: 5
 
 |-   If the number of pods desired by CronHPA is smaller than the current number of pods, no scaling activity is triggered.
 -   If the number of pods desired by CronHPA is smaller than the value of minReplicas in the HPA configuration, CronHPA changes the value of minReplicas. |
-|5/10|11|5|-   HPA \(min/max\)：11/11
--   Deployment：11
+|5/10|11|5|-   HPA \(min/max\): 11/11
+-   Deployment: 11
 
 |-   If the number of pods desired by CronHPA is greater than the current number of pods, CronHPA adds pods to reach the desired number.
 -   If the number of pods desired by CronHPA is greater than the value of maxReplicas in the HPA configuration, CronHPA changes the value of maxReplicas. |
