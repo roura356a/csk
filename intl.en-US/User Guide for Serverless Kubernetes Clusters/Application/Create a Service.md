@@ -57,6 +57,4 @@ Create a Deployment from an image. In this example, a Deployment named serverles
     -   **Label**: Add labels to the Service.
 7.  Click **Create**. After the nginx-svc Service is created, it appears on the Services page.
 
-    ![View a Service](../images/p57695.png)
-
 
