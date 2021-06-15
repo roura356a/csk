@@ -8,13 +8,19 @@ kritis-validation-hook组件是部署可信容器环节中进行容器镜像签�
 
 ## 组件介绍
 
-kritis-validation-hook组件是部署可信容器环节中进行容器镜像签名验证的关键组件。通过在部署前对容器镜像进行签名验证，可以确保只部署经过可信授权方进行过签名的容器镜像，降低在您的环境中运行意外或恶意代码的风险。关于kritis-validation-hook组件的更多介绍，请参见[kritis-validation-hook组件介绍](/intl.zh-CN/Kubernetes集群用户指南/应用/镜像/kritis-validation-hook组件介绍.md)。
+kritis-validation-hook组件是部署可信容器环节中容器镜像签名验证的关键组件。在部署前对容器镜像进行签名验证，可以确保只部署经过可信授权方签名的容器镜像，从而在您的环境中降低运行意外或恶意代码的风险。关于kritis-validation-hook组件的更多介绍，请参见[kritis-validation-hook组件介绍](/intl.zh-CN/Kubernetes集群用户指南/应用/镜像/kritis-validation-hook组件介绍.md)。
 
 ## 使用说明
 
-关于kritis-validation-hook组件使用，请参见[使用kritis-validation-hook组件实现自动验证容器镜像签名](/intl.zh-CN/Kubernetes集群用户指南/应用/镜像/使用kritis-validation-hook组件实现自动验证容器镜像签名.md)。
+关于kritis-validation-hook组件的使用，请参见[使用kritis-validation-hook组件实现自动验证容器镜像签名](/intl.zh-CN/Kubernetes集群用户指南/应用/镜像/使用kritis-validation-hook组件实现自动验证容器镜像签名.md)。
 
 ## 变更记录
+
+**2021年06月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v0.4.0.1-gb2862c4-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/kritis-server:v0.4.0.1-gb2862c4-aliyun|2021年06月10日|新功能：支持注册集群安装kritis-validation-hook组件。|此次升级不会对业务造成影响。|
 
 **2021年03月**
 
