@@ -31,7 +31,7 @@ keyword: [Service FAQ, SLB, 常见问题]
 
 **其他**
 
--   [如何将CCM接入至在阿里云ECS中自建的Kubernetes集群中？](#section_3nt_555_bta)
+-   [\#section\_3nt\_555\_bta](#section_3nt_555_bta)
 -   [Kubernetes的Service如何进行会话保持？](~~149276~~)
 
 ## 为什么看不到Service与LoadBalancer同步过程的事件Event信息？
@@ -167,10 +167,6 @@ CCM使用声明式API，会在一定条件下自动根据Service的配置更新S
         4.  选择**服务与路由** \> **服务**。
         5.  在服务页面顶部的**命名空间**下拉框中，单击**所有命名空间**，然后在服务列表中，找到业务Service，然后单击**操作**列下的**查看YAML**。
         6.  在编辑YAML对话框中，移除**status**内容，然后单击**更新**以让CCM重建SLB。
-
-## 如何将CCM接入至在阿里云ECS中自建的Kubernetes集群中？
-
-关于如何使CCM接入至在阿里云ECS中自建Kubernetes中的详细步骤，请参见[kubernetes / cloud-provider-alibaba-cloud](https://github.com/kubernetes/cloud-provider-alibaba-cloud/)和[cloud-provider-alibaba-cloud/docs/getting-started.md](https://github.com/kubernetes/cloud-provider-alibaba-cloud/blob/master/docs/getting-started.md)。
 
 ## 旧版本CCM如何支持SLB重命名？
 
