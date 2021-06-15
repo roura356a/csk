@@ -1,6 +1,6 @@
 # Use cluster check to troubleshoot cluster issues
 
-This topic describes how to use the cluster check feature to troubleshoot issues on Alibaba Cloud Container Service for Kubernetes \(ACK\) clusters and Networking.
+This topic describes how to use the cluster check feature to troubleshoot issues on Alibaba Cloud Container Service for Kubernetes \(ACK\) clusters and networking.
 
 -   An ACK cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 -   The ACK cluster is in the Running state. You can check the cluster status on the Clusters page in the ACK console.
