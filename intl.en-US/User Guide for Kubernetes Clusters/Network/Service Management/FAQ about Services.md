@@ -31,7 +31,7 @@ This topic provides answers to some frequently asked questions about Services of
 
 **Others**
 
--   [How do I connect CCM to a self-managed Kubernetes cluster that consists of Elastic Compute Service \(ECS\) instances?](#section_3nt_555_bta)
+-   [\#section\_3nt\_555\_bta](#section_3nt_555_bta)
 -   [How is session persistence implemented in Kubernetes Services?](~~149276~~)
 
 ## Why are no events collected during the synchronization between a Service and an SLB instance?
@@ -168,10 +168,6 @@ If you change the type of the Service, for example, from LoadBalancer to NodePor
         5.  On the top of the Services page, select **All Namespaces** from the **Namespace** drop-down list. Then, find the Service in the Services list and click **View in YAML** in the **Actions** column.
         6.  In the Edit YAML dialog box, delete the content in the **status** field. Then, click **Update**. This way, CCM creates a new SLB instance.
 
-## How do I connect CCM to a self-managed Kubernetes cluster that consists of Elastic Compute Service \(ECS\) instances?
-
-For more information about how to connect CCM to a self-managed Kubernetes cluster that consists of ECS instances, see [kubernetes / cloud-provider-alibaba-cloud](https://github.com/kubernetes/cloud-provider-alibaba-cloud/) and [cloud-provider-alibaba-cloud/docs/getting-started.md](https://github.com/kubernetes/cloud-provider-alibaba-cloud/blob/master/docs/getting-started.md).
-
 ## How do I rename an SLB instance when the CCM version is V1.9.3.10 or earlier?
 
 For CCM versions later than V1.9.3.10, a tag is automatically added to the SLB instances in the cluster. You need only to change the value if you want to rename an SLB instance. For CCM V1.9.3.10 and earlier, you must manually add a specific tag to an SLB instance if you want to rename the SLB instance. Perform the following steps to rename an SLB instance:
@@ -274,5 +270,5 @@ If the annotation of the Service contains the ID of the SLB instance, it indicat
 
 [Use annotations to configure load balancing](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Use annotations to configure load balancing.md)
 
-[Cloud Controller Manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud Controller Manager.md)
+[Cloud controller manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud controller manager.md)
 
