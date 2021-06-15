@@ -67,36 +67,3 @@ Before you use ACK, take note of the following limits:
 |[Elastic Block Storage \(EBS\)](/intl.en-US/Product Introduction/Limits.md)|Maximum number of pay-as-you-go disks in all regions within an account|The quota is five times the number of ECS instances across all regions within an account. You can create at least 10 pay-as-you-go disks within each account.|[Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm). |
 |Maximum capacity of pay-as-you-go disks that are used as data disks within an account|Subject to ECS resource usage, regions, and disk types. You can go to the Privileges & Quotas page in the ECS console to view details. For more information, see [View quotas \(old version\)]().|[Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm). |
 
-## Regions that support ACK
-
-The following table describes the regions that support ACK and the cluster types supported by each region.
-
-|Cloud service|Region|City|Region ID|Professional and standard managed Kubernetes cluster|Dedicated Kubernetes cluster|ASK cluster|Managed edge Kubernetes cluster|Registered Kubernetes cluster|
-|-------------|------|----|---------|----------------------------------------------------|----------------------------|-----------|-------------------------------|-----------------------------|
-|Alibaba Cloud public cloud|China \(Beijing\)|Beijing|cn-beijing|✔|✔|✔|✔|✔|
-|China \(Zhangjiakou\)|Zhangjiakou|cn-zhangjiakou|✔|✔|✔|✔|✔|
-|China \(Hohhot\)|Hohhot|cn-huhehaote|✔|✔|✔|✔|✔|
-|China \(Ulanqab\)|Ulanqab|cn-wulanchabu|✔|❌|✔|✔|✔|
-|China \(Hangzhou\)|Hangzhou|cn-hangzhou|✔|✔|✔|✔|✔|
-|China \(Shanghai\)|Shanghai|cn-shanghai|✔|✔|✔|✔|✔|
-|China \(Shenzhen\)|Shenzhen|cn-shenzhen|✔|✔|✔|✔|✔|
-|China \(Heyuan\)|Heyuan|cn-heyuan|✔|✔|✔|✔|❌|
-|China \(Guangzhou\)|Guangzhou|guangzhou|✔|✔|✔|✔|❌|
-|China \(Chengdu\)|Chengdu|cn-chengdu|✔|✔|✔|✔|❌|
-|China \(Hong Kong\)|Hong Kong|cn-hongkong|✔|✔|✔|✔|✔|
-|Singapore \(Singapore\)|Singapore|ap-southeast-1|✔|✔|✔|✔|✔|
-|Australia \(Sydney\)|Sydney|ap-southeast-2|✔|✔|✔|✔|✔|
-|Malaysia \(Kuala Lumpur\)|Kuala Lumpur|ap-southeast-3|✔|✔|✔|✔|✔|
-|Indonesia \(Jakarta\)|Jakarta|ap-southeast-5|✔|✔|✔|✔|✔|
-|India \(Mumbai\)|Mumbai|ap-south-1|✔|✔|✔|✔|✔|
-|Japan \(Tokyo\)|Tokyo|ap-northeast-1|✔|✔|✔|✔|✔|
-|US \(Silicon Valley\)|Silicon Valley|us-west-1|✔|✔|✔|✔|✔|
-|US \(Virginia\)|Virginia|us-east-1|✔|✔|✔|✔|✔|
-|Germany \(Frankfurt\)|Frankfurt|eu-central-1|✔|✔|✔|✔|✔|
-|UK \(London\)|London|eu-west-1|✔|✔|✔|✔|✔|
-|UAE \(Dubai\)|Dubai|me-east-1|❌|✔|❌|❌|❌|
-|Alibaba Finance Cloud|China East 1 Finance|Hangzhou|cn-hangzhou-finance-1|✔|✔|❌|❌|❌|
-|China East 2 Finance|Shanghai|cn-shanghai-finance-2|✔|✔|❌|❌|❌|
-|China South 1 Finance|Shenzhen|cn-shenzhen-finance-1|✔|✔|❌|❌|❌|
-|Alibaba Gov Cloud|China North 2 Ali Gov 1|Beijing|cn-north-2-gov-1|❌|✔|❌|❌|❌|
-
