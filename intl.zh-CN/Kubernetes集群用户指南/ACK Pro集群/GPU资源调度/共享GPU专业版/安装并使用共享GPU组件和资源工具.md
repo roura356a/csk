@@ -10,7 +10,7 @@ ACK提供了GPU共享调度能力，服务于共享单GPU的模型预测场景�
 
     **说明：** 仅支持在ACK Pro集群安装共享GPU组件，如果您使用的是专有版集群，您可以[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请白名单。
 
--   [t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   [t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 -   共享GPU组件的安装没有地域限制，但是目前只有以下地域支持GPU显存隔离能力。如果您需要使用显存隔离能力，请确保集群所在地域在此范围内。
 
     |地域|地域ID|
@@ -87,13 +87,13 @@ ACK提供了GPU共享调度能力，服务于共享单GPU的模型预测场景�
 
 ## 步骤三：添加GPU节点
 
-完成创建节点池后，您还可以在节点池中添加GPU节点。添加GPU节点时，您需要将实例规格类型设置为**异构计算GPU/FPGA/NPU**。具体操作，请参见[添加已有节点](/intl.zh-CN/Kubernetes集群用户指南/节点与节点池/节点/添加已有节点.md)或[扩容节点池](/intl.zh-CN/Kubernetes集群用户指南/节点与节点池/节点池/扩容节点池.md)。
+完成创建节点池后，您还可以在节点池中添加GPU节点。添加GPU节点时，您需要将实例规格类型设置为**异构计算GPU/FPGA/NPU**。具体操作，请参见[添加已有节点](/intl.zh-CN/Kubernetes集群用户指南/节点与节点池/节点/添加已有节点.md)或[扩容节点池](/intl.zh-CN/Kubernetes集群用户指南/节点与节点池/节点池/管理节点池.md)。
 
 **说明：** 如果您添加节点池时已经创建GPU节点，您可以跳过此步骤。
 
 ## 步骤四：安装和使用GPU资源查询工具
 
-1.  配置kubeconfig文件。具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+1.  配置kubeconfig文件。具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 2.  下载kubectl-inspect-cgpu。
 
