@@ -2,6 +2,8 @@
 
 调用OpenAckService接口开通容器服务ACK。
 
+**说明：** 只有阿里云账号（主账号）才可以开通容器服务ACK。RAM用户（子账号）暂不支持开通操作。
+
 ## 调试
 
 [您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=CS&api=OpenAckService&type=ROA&version=2015-12-15)
@@ -55,8 +57,9 @@ Content-Type:application/json
 `XML`格式
 
 ```
-HTTP/1.1 200
+HTTP/1.1 200 OK
 Content-Type:application/xml
+
 <request_id>20758A-585D-4A41-A9B2-28DA8F4F534F</request_id>
 <order_id>2067*******0374</order_id>
 ```
@@ -64,8 +67,9 @@ Content-Type:application/xml
 `JSON`格式
 
 ```
-HTTP/1.1 200
+HTTP/1.1 200 OK
 Content-Type:application/json
+
 {
   "request_id" : "20758A-585D-4A41-A9B2-28DA8F4F534F",
   "order_id" : "2067*******0374"
@@ -80,7 +84,7 @@ Content-Type:application/json
 
 -   [SDK](https://next.api.aliyun.com/api-tools/sdk/CS?version=2015-12-15&)
 
-    阿里云为您提供多种语言的SDK，帮助您快速通过API集成阿里云的产品和服务，推荐您使用SDK调用API，已免除您手动签名验证，详情请参见SDK参考文档链接。
+    阿里云为您提供多种语言的SDK，帮助您快速通过API集成阿里云的产品和服务，推荐您使用SDK调用API，已免除您手动签名验证。
 
 -   [OpenAPI Explorer](https://next.api.aliyun.com/api/CS/2015-12-15/OpenAckService)
 
