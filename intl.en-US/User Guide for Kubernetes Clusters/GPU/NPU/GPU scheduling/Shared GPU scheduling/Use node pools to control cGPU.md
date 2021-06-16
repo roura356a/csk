@@ -78,15 +78,13 @@ When you use node pools to control cGPU, take note of the following limits:
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, find the cluster that you want to manage and click the cluster ID.
+3.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node Pools**.
 
-4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node Pools**.
-
-5.  In the upper-right corner of the Node Pools page, click **Create Node Pool**.
+4.  In the upper-right corner of the Node Pools page, click **Create Node Pool**.
 
     In the upper-right corner of the Node Pools page, you can also click **Create Managed Node Pool** to create a managed node pool, or click **Configure Auto Scaling** to create an auto-scaling node pool.
 
-6.  In the **Create Node Pool** dialog box, set the parameters.
+5.  In the **Create Node Pool** dialog box, set the parameters.
 
     For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md). The following describes some of the parameters:
 
@@ -103,12 +101,12 @@ When you use node pools to control cGPU, take note of the following limits:
 
     ![Node labels](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0946876061/p178925.png)
 
-7.  Click **Confirm Order**.
+6.  Click **Confirm Order**.
 
     On the Node Pools page, check the **Status** column of the managed node pool. If the node pool is in the **Initializing** state, it indicates that the node pool is being created. After the node pool is created, the **Status** of the node pool changes to **Active**.
 
 
-**Note:** If you want to add GPU-accelerated nodes to the node pool, you can scale out the node pool. For more information, see [Scale out a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Scale out a node pool.md).
+**Note:** If you want to add GPU-accelerated nodes to the node pool, you can scale out the node pool. For more information, see [Scale out a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Manage a node pool.md).
 
 ## Step 2: Submit jobs
 
