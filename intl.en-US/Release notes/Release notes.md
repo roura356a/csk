@@ -1,22 +1,53 @@
 ---
-keyword: [release notes, K8s, new features of ACK]
+keyword: [release notes, K8s, new features]
 ---
 
 # Release notes
 
 This topic lists the latest changes to Container Service for Kubernetes \(ACK\).
 
--   Kubernetes 1.18.8, 1.16.9, and 1.14.8 are supported by ACK. However, to use Kubernetes 1.14.8, you must submit a ticket to apply for this version to be enabled on your account.
+-   ACK supports Kubernetes V1.20.4, V1.18.8, and V1.16.9.
 
--   The following operating systems are supported by ACK: CentOS 7.x, AliyunLinux 2.1903, Windows Server 2019, and Windows Server version 1909.
+-   ACK supports the following operating systems: CentOS 7.x, AliyunLinux 2.1903, Windows Server 2019, and Windows Server version 1909.
+
+## May 2021
+
+|Feature|Description|Region|References|
+|-------|-----------|------|----------|
+|Worker node|Center for Internet Security \(CIS\) reinforcement is supported for worker nodes. You can enable CIS reinforcement to enhance the security of the operating systems of cluster nodes. CIS is a third-party security organization that is committed to leading a global community of businesses, public service sectors, and academia to develop security best practice solutions. CIS reinforcement supports only Alibaba Cloud Linux 2, which is the official OS image developed by Alibaba Cloud and the default OS image used in ACK clusters.
+
+|All regions|[CIS reinforcement](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Operating system/CIS reinforcement.md)|
+|New region|Professional managed Kubernetes clusters are available in China \(Nanjing\).|China \(Nanjing\) Local Region|-|
+|New region|Professional managed Kubernetes clusters are available in the China North 2 Ali Gov region on Alibaba Gov Cloud.|China North 2 Ali Gov|[Supported regions](/intl.en-US/Product Introduction/Supported regions.md)|
+|Cost analysis|The cost analysis feature is added to help IT administrators analyze resource usage and allocate costs. The feature offers suggestions on cost savings and helps improve resource utilization. The feature provides the following functionalities:-   Cost analysis of cloud resources
+-   Cost trend analysis
+-   Suggestions on cost savings
+-   Real-time cost forecasting
+-   Cost allocation based on namespaces
+-   Optimization of application costs
+
+|All regions|[Cost analysis](/intl.en-US/User Guide for Kubernetes Clusters/Cost analysis/Cost analysis.md)|
+|Custom SSL certificate|Custom SSL certificates can be specified for Server Load Balancer \(SLB\) instances by using annotations when you create Ingresses in serverless Kubernetes \(ASK\) clusters. The SSL certificates are no longer forcibly specified by using Secrets.|All regions|None|
+|Topology-aware scheduling of AMD CPUs|The resource-controller component is upgraded to V1.2.1-d1e280f-aliyun. Topology-aware scheduling of AMD CPUs is now supported by combining resource-controller with ack-scheduler of Kubernetes 1.20.4.|All regions|[Topology-aware CPU scheduling](/intl.en-US/User Guide for Kubernetes Clusters/Scheduling/Resource scheduling/Topology-aware CPU scheduling.md)|
+
+## April 2021
+
+|Feature|Description|Region|References|
+|-------|-----------|------|----------|
+|Kubernetes 1.20|Kubernetes 1.20 is supported. You can select this Kubernetes version when you create a cluster.|All regions|[ACK support for Kubernetes 1.20](/intl.en-US/Release notes/Kubernetes release notes/ACK support for Kubernetes 1.20.md)|
+|Hot migration|Hot migration from existing dedicated Kubernetes clusters to professional Kubernetes clusters is supported. You can dynamically migrate workloads from dedicated Kubernetes clusters to professional Kubernetes clusters without service interruptions.|All regions|[Hot migration from dedicated Kubernetes clusters to professional managed Kubernetes clusters](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Hot migration from dedicated Kubernetes clusters to professional managed Kubernetes clusters.md)|
+|NodeLocal DNSCache|ACK NodeLocal DNSCache is a local DNS cache solution developed based on the open source NodeLocal DNSCache project. The solution consists of a DNS cache that runs as a DaemonSet and an admission controller that runs as a Deployment to dynamically inject data to DNSConfig. The admission controller listens on pod creation requests and dynamically modifies DNSConfig. This enables pods to use local cache to accelerate DNS lookups.|All regions|[ACK NodeLocal DNSCache](/intl.en-US/Release notes/System Component change Records/Networking/ACK NodeLocal DNSCache.md)|
+|Event center and image pulls without passwords|The event center feature is supported by registered Kubernetes clusters. You can also use a component to pull images without passwords for registered Kubernetes clusters.|All regions|[Create a cluster registration proxy and register an on-premises cluster](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of external clusters/Create a cluster registration proxy and register an on-premises cluster.md) and [t2080408.md\#]()|
+|Custom parameter of control plane|The parameter settings of control plane components in professional managed Kubernetes clusters can be customized to meet production requirements. You can customize the parameter settings of managed components, such as Kube API Server and Kube Controller Manager \(KCM\).|All regions|[Customize the settings of control plane components in professional managed Kubernetes clusters](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Customize the settings of control plane components in professional managed Kubernetes clusters.md)|
+|Alerting|The alerting feature is added to enable centralized alert management. ACK allows you to configure alerts to centrally manage exceptions in the cluster and provides various metrics for different scenarios. By default, the alerting feature is enabled when you create clusters. ACK allows you to deploy Custom Resource Definitions \(CRDs\) in a cluster to configure and manage alert rules.|All regions|[Alert management](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Alert management.md)|
 
 ## March 2021
 
 |Feature|Description|Region|References|
 |-------|-----------|------|----------|
-|Node pool|Information about the nodes in a node pool can be exported as comma-separated values \(CSV\) files. This facilitates the operations and maintenance \(O&M\) of the nodes in a node pool.|All regions|[Create a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Create a node pool.md)|
+|Node pool|Information about the nodes in a node pool can be exported as comma-separated values \(CSV\) files. This facilitates the operations and maintenance \(O&M\) of the nodes in a node pool.|All regions|[Manage a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Create a node pool.md)|
 |Managed Kubernetes cluster|Updates to the subject alternative names \(SANs\) in the API server certificates are supported for standard and professional managed Kubernetes clusters.|All regions|[Customize the SAN of the API server certificate for a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Infrastructure security/Customize the SAN of the API server certificate for a managed Kubernetes cluster.md)|
-|Cluster access|Temporary kubeconfig files are supported for access to ACK clusters. The validity period of a temporary kubeconfig file used to access an ACK cluster ranges from 30 minutes to three days. This meets the requirements for temporary access to ACK clusters.|All regions|[Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md)|
+|Cluster access|Temporary kubeconfig files are supported for access to ACK clusters. The validity period of a temporary kubeconfig file used to access an ACK cluster ranges from 30 minutes to three days. This meets the requirements for temporary access to ACK clusters.|All regions|[t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md)|
 |containerd|The containerd runtime is supported by ACK. You can select containerd as the container runtime when you create an ACK cluster. You can also select containerd when you create a regular node pool or a managed node pool. This allows you to deploy both contained containers and Docker containers in an ACK cluster. Hot migration from Docker containers to containerd containers is not supported. To migrate from Docker containers to containerd containers, you must recreate pods.|All regions|[Containerd release notes](/intl.en-US/Release notes/Release notes for Runtime/Containerd release notes.md)|
 
 ## February 2021
@@ -25,8 +56,8 @@ This topic lists the latest changes to Container Service for Kubernetes \(ACK\).
 |-------|-----------|------|----------|
 |Professional edge Kubernetes cluster|Professional edge Kubernetes clusters can be created. This type of cluster provides the same reliability and stability as professional Kubernetes clusters. The billing methods of professional edge Kubernetes clusters are also the same as the billing methods of professional Kubernetes clusters.|All regions|[Introduction to professional edge Kubernetes clusters](/intl.en-US/User Guide for Edge Container Service/ACK@Edge Pro edition cluster/Introduction to professional edge Kubernetes clusters.md)|
 |Log Center|Log Center is available in the ACK console. You can check the log of a cluster and the log of control plane components in Log Center.|All regions|[View the logs of control plane components](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect the logs of control plane components in a managed Kubernetes cluster.md) and [View cluster logs](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/View cluster information.md)|
-|Prometheus monitoring|A CoreDNS dashboard is displayed on the Prometheus Monitoring page in the ACK console.|All regions|[ARMS Prometheus](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/ARMS Prometheus.md)|
-|Node pool|Public IPv4 addresses can be associated with regular node pools and managed node pools. When you create a regular node pool or a managed node pool, you can enable the nodes to automatically associate with elastic IP addresses \(EIPs\). This enables the nodes to access the Internet. You can also configure a NAT gateway when you create an ACK cluster to enable all nodes in the cluster to access the Internet by using the NAT gateway.|All regions|[Create a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Create a node pool.md)|
+|Prometheus monitoring|A CoreDNS dashboard is displayed on the Prometheus Monitoring page in the ACK console.|All regions|[Enable ARMS Prometheus](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Enable ARMS Prometheus.md)|
+|Node pool|Public IPv4 addresses can be associated with regular node pools and managed node pools. When you create a regular node pool or a managed node pool, you can enable the nodes to automatically associate with elastic IP addresses \(EIPs\). This enables the nodes to access the Internet. You can also configure a NAT gateway when you create an ACK cluster to enable all nodes in the cluster to access the Internet by using the NAT gateway.|All regions|[Manage a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Create a node pool.md)|
 |New region|Professional Kubernetes clusters are available in the China South 1 Finance region.|All regions|[Introduction to professional managed Kubernetes clusters](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Introduction to professional managed Kubernetes clusters.md)|
 
 ## January 2021
@@ -37,11 +68,11 @@ This topic lists the latest changes to Container Service for Kubernetes \(ACK\).
 
 |All regions
 
-|[ARMS Prometheus](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/ARMS Prometheus.md)|
+|[Enable ARMS Prometheus](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Enable ARMS Prometheus.md)|
 |Custom parameter|Custom parameters are supported for the API server and Kubernetes controller manager \(KCM\) in professional Kubernetes clusters. This meets the requirements for custom parameters of cluster control components in production environments.|All regions
 
 |[Customize the settings of control plane components in professional managed Kubernetes clusters](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Customize the settings of control plane components in professional managed Kubernetes clusters.md)|
-|Log collection|Log of control components, such as the API server, KCM, and kube-scheduler, can be collected. To enable log collection, select Enable for Log Collection for Control Plane Components when you create a cluster. This helps you monitor the cluster status and detect anomalies in the cluster.
+|Log collection|Logs of control components, such as the API server, KCM, and kube-scheduler, can be collected. To enable log collection, select Enable for Log Collection for Control Plane Components when you create a cluster. This helps you monitor the cluster status and detect anomalies in the cluster.
 
 |All regions
 
@@ -59,7 +90,7 @@ This topic lists the latest changes to Container Service for Kubernetes \(ACK\).
 |[Configure auto scaling](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of external clusters/Configure auto scaling.md)|
 |Application backup|The application backup feature is released. This feature meets the critical requirement for data security in Kubernetes clusters where an increasing number of applications are deployed. You can use application backups to restore applications that are accidentally disrupted for a long period of time. Different from the traditional single-server backup and disk backup, the application backup feature is used to back up applications and the relevant data, resource objects, and configurations. You can also use this feature to back up all resources in a namespace. This feature is available in ACK clusters and registered Kubernetes clusters. You can use this feature to back up applications, volumes, and persistent volumes \(PVs\) in a cluster, and also restore backups to other clusters.|All regions
 
-|[Back up and restore applications in Kubernetes clusters](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Back up and restore applications in Kubernetes clusters.md)|
+|[Back up and restore applications in Kubernetes clusters](/intl.en-US/User Guide for Kubernetes Clusters/Disaster recovery center/Back up and restore applications in Kubernetes clusters.md)|
 |Cost reduction policy|The ratio of preemptible instances to pay-as-you-go instances can be set in a node pool. This allows you to reduce the cost. However, you must make sure that the node pool has enough pay-as-you-go instances to ensure performance stability.|All regions
 
 |[Set the ratio of preemptible instances to existing instances in a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Set the ratio of preemptible instances to existing instances in a node pool.md)|
@@ -92,7 +123,7 @@ This topic lists the latest changes to Container Service for Kubernetes \(ACK\).
 |[CronHPA](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/CronHPA.md)|
 |CentOS 7.8|CentOS 7.8 can be used as the node operating system \(OS\) when you create a cluster or a node pool.|All regions
 
-|[Create a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Create a node pool.md)|
+|[Manage a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Create a node pool.md)|
 |Reinforcement based on classified protection|Reinforcement based on classified protection is supported for the cloud-native Alibaba Cloud Linux operating system in compliance with Multi-Level Protection Scheme \(MLPS\) 2.0 level 3 standards. The following features are provided:-   Identity authentication
 -   Access control
 -   Security auditing
@@ -107,7 +138,7 @@ To enable reinforcement based on classified protection for the node OS when you 
 |Volume snapshot|Volume snapshots created from disks are supported by the CSI component of ACK. This allows you to back up and restore workload data.|All regions
 
 |[Use volume snapshots created from disks](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Use volume snapshots created from disks.md)|
-|Cluster upgrade and new component|Serverless Kubernetes \(ASK\) clusters can be upgraded. The metrics-server, cronhpa-controller, and alb-ingress-controller can be installed and managed on the Add-ons page of the ACK console.|All regions
+|Cluster upgrade and new component|ASK clusters can be upgraded. The metrics-server, cronhpa-controller, and alb-ingress-controller can be installed and managed on the Add-ons page of the ACK console.|All regions
 
 |None|
 
@@ -115,7 +146,7 @@ To enable reinforcement based on classified protection for the node OS when you 
 
 |Feature|Description|Region|References|
 |-------|-----------|------|----------|
-|Managed node pool|Managed node pools are released to support auto upgrading and auto repairing. This provides centralized, managed, and O&M-free lifecycle management on nodes. You do not need to be concerned about the O&M of nodes, such as component upgrading, OS upgrading, or patching to fix Common Vulnerabilities and Exposures \(CVE\)-identified vulnerabilities. ACK automatically fixes node exceptions for the nodes in a managed node pool.
+|Managed node pool|Managed node pools are released to support auto upgrading and auto repairing. This provides centralized, managed, and O&M-free lifecycle management of nodes. You do not need to be concerned about the O&M of nodes, such as component upgrading, OS upgrading, or patching to fix Common Vulnerabilities and Exposures \(CVE\)-identified vulnerabilities. ACK automatically fixes node exceptions for the nodes in a managed node pool.
 
 Managed node pools are supported by professional managed Kubernetes clusters.
 
@@ -134,7 +165,7 @@ This feature is supported by professional managed Kubernetes clusters, standard 
 |[Elastic Block Storage FAQ](/intl.en-US/Block Storage/Elastic Block Storage FAQ.md)|
 |Cloud controller manager|The cloud controller manager is upgraded to V1.9.3.339-g9830b58-aliyun. Hash values are supported in the configurations of LoadBalancer Services. This way, when the cloud controller manager is restarted, only the backend vServer groups of the related SLB instances are updated if the Service configuration is not changed. The configurations of the related SLB instances and listeners are not updated.|All regions
 
-|[Cloud Controller Manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud Controller Manager.md)|
+|[Cloud controller manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud controller manager.md)|
 |Disk monitoring|Disk monitoring is supported by the latest version of the CSI component. This feature allows you to monitor the states of persistent volume claims \(PVCs\) through Application Real-Time Monitoring Service \(ARMS\) Prometheus when you use disks that are mounted through the PVCs. You can also configure alerts by setting thresholds for the storage space and input/output operations per second \(IOPS\) of the disks.|All regions
 
 |None|
@@ -143,7 +174,7 @@ This feature is supported by professional managed Kubernetes clusters, standard 
 |[Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md)|
 |Node pool|Node pools are supported in registered Kubernetes clusters. You can use a node pool in the ACK console to manage a set of ECS instances for a registered Kubernetes cluster. You can add ECS instance-based nodes from a node pool to a self-managed Kubernetes cluster or a Kubernetes cluster that is deployed in the public cloud of a third-party cloud service provider. You can also use node pools to manage the labels and taints of the nodes in node pools.|All regions
 
-|[Create a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Create a node pool.md)|
+|[Manage a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Create a node pool.md)|
 
 ## October 2020
 
@@ -173,9 +204,11 @@ The feature is supported by professional managed Kubernetes clusters, standard m
 |Time zone|The time zone can be selected for master nodes and worker nodes when you create a dedicated or managed Kubernetes cluster.|All regions
 
 |None|
-|Kubernetes 1.18|Kubernetes 1.18.8 is supported. You can select this Kubernetes version when you create a cluster.|All regions
+|Kubernetes 1.18|Kubernetes 1.18.8 is supported. You can select this Kubernetes version when you create a cluster. ACK clusters with Kubernetes 1.18 or later versions no longer support Kubernetes Dashboard. To use Kubernetes Dashboard, we recommend that you install **kubernetes-dashboard** on the App Catalog page.
 
-|[Release notes for Kubernetes 1.18](/intl.en-US/Release notes/Kubernetes release notes/Release notes for Kubernetes 1.18.md)|
+|All regions
+
+|[Release notes for Kubernetes 1.18](/intl.en-US/Release notes/Kubernetes release notes/Release notes for Kubernetes 1.18.md) and [ACK ends support for Kubernetes Dashboard](/intl.en-US/Bulletin/ACK ends support for Kubernetes Dashboard.md)|
 |NetworkPolicy|The NetworkPolicy feature can be enabled or disabled for Terway when you create a cluster.|All regions
 
 |-   [Use network policies for access control](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use network policies for access control.md)
@@ -196,7 +229,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 |All regions
 
 |-   [Enable Log Service for an external Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Observability of external clusters/Enable Log Service for an external Kubernetes cluster.md)
--   [Install migrate-controller](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Application migration/Install migrate-controller.md) |
+-   [Install migrate-controller](/intl.en-US/User Guide for Kubernetes Clusters/Disaster recovery center/Install migrate-controller.md) |
 |Sandboxed-Container 2.0|Sandboxed-Container is upgraded to V2.0. Sandboxed-Container 2.0 has the following benefits:-   Sandboxed-Container is a container runtime that is developed by Alibaba Cloud based on lightweight virtual machines. Compared with Sandboxed-Container 1.0, Sandboxed-Container 2.0 supports more lightweight and efficient deployment and simplifies the architecture and maintenance of ACK clusters.
 -   Sandboxed-Container 2.0 reduces the resource overheads by 90% and improves the startup speed of sandboxed containers by three times.
 -   Sandboxed-Container 2.0 increases the deployment density of sandboxed containers on a single node by 10 times.
@@ -228,7 +261,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 
 |All regions
 
-|[Work with Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md)|
+|[Use the Terway plug-in](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use the Terway plug-in.md)|
 |New region|Professional managed clusters are available in the China \(Beijing\), China \(Shenzhen\), Germany \(Frankfurt\), Indonesia \(Jakarta\), and China East 2 Finance regions.|China \(Beijing\), China \(Shenzhen\), Germany \(Frankfurt\), Indonesia \(Jakarta\), and China East 2 Finance|[Introduction to professional managed Kubernetes clusters](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Introduction to professional managed Kubernetes clusters.md)|
 |ACK@Edge|ACK@Edge is released for commercial use. ACK@Edge is a cloud-managed solution that is provided by ACK to coordinate cloud and edge computing.|All regions
 
@@ -255,7 +288,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 
 |All regions
 
-|[Cloud Controller Manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud Controller Manager.md)|
+|[Cloud controller manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud controller manager.md)|
 |Security management|Security management is supported for your clusters. You can configure pod security policies and cluster inspections. Pod security policy is a significant method to verify the security of pod configurations before pods are deployed. This ensures that applications run in secure pods. Cluster inspection detects the security risks of workloads in an ACK cluster and generates inspection reports for your reference. This way, you can check whether the workloads in your ACK cluster run in a secure environment.
 
 |All regions
@@ -287,7 +320,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 |Feature|Description|Region|References|
 |-------|-----------|------|----------|
 |Advanced security group|Advanced security groups are supported when you create a cluster. You can select a basic security group, an advanced security group, or an existing security group. Compared with a basic security group, an advanced security group can contain up to 65,536 private IP addresses. Advanced security groups are used for clusters where a large number of containers or instances are deployed.|All regions|[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)|
-|Component management|The Prometheus component and Kubernetes event center can be installed from the Add-ons page of the ACK console. ACK is integrated with the most commonly used Prometheus component in the container monitoring field, and the most commonly used node-problem-detector \(NPD\) component in the O&M field. You can select these components when you create a cluster. You can also upgrade and maintain the components on the Add-ons page of the ACK console. The Prometheus component is provided by Application Real-Time Monitoring Service \(ARMS\). NPD is a tool used for node problem detection. NPD can export events that record node exceptions, such as Docker Engine hangs, Linux kernel hangs, network access issues, and file descriptor issues. You can click the **Event Center** tab on the **Events** page to view event details.|All regions|[ARMS Prometheus](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/ARMS Prometheus.md)|
+|Component management|The Prometheus component and Kubernetes event center can be installed from the Add-ons page of the ACK console. ACK is integrated with the most commonly used Prometheus component in the container monitoring field, and the most commonly used node-problem-detector \(NPD\) component in the O&M field. You can select these components when you create a cluster. You can also upgrade and maintain the components on the Add-ons page of the ACK console. The Prometheus component is provided by Application Real-Time Monitoring Service \(ARMS\). NPD is a tool used for node problem detection. NPD can export events that record node exceptions, such as Docker Engine hangs, Linux kernel hangs, network access issues, and file descriptor issues. You can click the **Event Center** tab on the **Events** page to view event details.|All regions|[Enable ARMS Prometheus](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Enable ARMS Prometheus.md)|
 |Kubernetes 1.16.9|Kubernetes 1.16.9 is supported. You can create a cluster of Kubernetes 1.16.9. If the Kubernetes version of your cluster is earlier than V1.16.9, go to the Clusters page and choose **More** \> **Upgrade Cluster** in the Actions column to upgrade to Kubernetes 1.16.9. Compared with the previous Kubernetes 1.16.6, Kubernetes 1.16.9 fixes the CVE-2020-8555 SSRF vulnerability for the kube-controller-manager component.|All regions|[Vulnerability fixed: CVE-2020-8555 in kube-controller-manager](/intl.en-US/Bulletin/Security bulletins/Vulnerability fixed: CVE-2020-8555 in kube-controller-manager.md)|
 |Elastic workload|Elastic workloads are supported. You can go to the **App Catalog** page and select **ack-kubernetes-elastic-workload** to install the component. You can use ACK and Virtual Kubelet in combination to proportionally schedule pay-as-you-go and preemptible instances. This allows you to schedule your workloads with elasticity.|All regions|[View the application catalog](/intl.en-US/User Guide for Kubernetes Clusters/Application marketplace/App catalog management/View the application catalog.md)|
 |Application Center|Application Center is released in the ACK console. In earlier versions of the ACK console, after applications are deployed, the topology of the applications is not displayed in a unified view. Therefore, version management and rollback cannot be unified for continuous deployments. Application Center provides a unified portal for your applications. This allows you to view the deployment of applications in a unified manner. You can also view the deployment status and changes of all ACK sub-resources that are allocated to each application. In addition, Gits and Helm charts are used to deploy applications in ACK clusters by versions. This allows you to publish or roll back different application versions deployed in ACK clusters.|All regions|[Overview](/intl.en-US/User Guide for Kubernetes Clusters/Application center/Overview.md)|
@@ -297,7 +330,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 |Feature|Description|Region|References|
 |-------|-----------|------|----------|
 |AGS|Alibaba Cloud Genomics Service \(AGS\) is released for commercial use. AGS is an ACK-based big data compute service provided by Alibaba Cloud for users in the biotechnology industry. AGS provides efficient, elastic, and reliable services. AGS is faster in computing and more cost-effective than traditional methods. AGS uses the pay-as-you-go billing method and charges you based on the number of successful API calls in the backend. To submit a computing task, you only need to run a command to call the AGS API on the client. This process is counted as one API call.|All regions|[Overview](/intl.en-US/User Guide for Genomics Service/Overview.md)|
-|Dynamically provisioned volume|Expansion of dynamically provisioned volumes without restarting pods is supported for Kubernetes 1.16 and later.|All regions|[Use CSI to dynamically expand a disk volume in ACK](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Use CSI to dynamically expand a disk volume in ACK.md)|
+|Dynamically provisioned volume|Expansion of dynamically provisioned volumes without restarting pods is supported for Kubernetes 1.16 and later.|All regions|[Automatically expand a disk volume](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/Automatically expand a disk volume.md)|
 |Ingress controller|Multiple Ingress controllers can be deployed in a Kubernetes cluster. An Ingress is an important entry for Layer 7 services. If you create only one Ingress for a cluster, the routing performance may encounter a bottleneck. If an Ingress allows inbound access through the Internet and private network at the same time, security risks exist. To solve these issues, ACK provides a Helm chart for the Ingress controller when only one Ingress is used. The name of the Helm chart is ack-ingress-nginx. You can deploy multiple Ingress controllers from App Catalog. You can use YAML files to configure access to Internet-facing and internal-facing SLB instances separately.|All regions|[Deploy Ingresses in a high-reliability architecture](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Deploy Ingresses in a high-reliability architecture.md)|
 |New region|ASK is available in the India \(Mumbai\) region.|India \(Mumbai\)|[Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md)|
 
@@ -305,20 +338,20 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 
 |Feature|Description|Region|References|
 |-------|-----------|------|----------|
-|Component management|The following features are added to component management: -   Allows you to view the YAML files of components.
+|Component management|The following features are added to component management:-   Allows you to view the YAML files of components.
 -   Allows you to perform health checks for nodes before component upgrades. This prevents component upgrade failures that are caused by node drains or exceptions.
 -   Allows you to manually refresh the Add-ons page.
 
 |All regions|[Manage system components](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Upgrade cluster/Manage system components.md)|
-|Self-managed ECS instance|Self-managed ECS instance-based nodes can be added to the backend of SLB instances by using the cloud controller manager. This way, the existing applications and containerized applications share the same SLB instances and inbound traffic. This is suitable for scenarios where existing applications are gradually replaced by containerized applications.|All regions|[Cloud Controller Manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud Controller Manager.md)|
-|Terway|Cluster expansion and node specification changes are supported by Terway. When you manually expand a cluster, you may need to create nodes in new zones. In earlier versions, to create pods in a new zone, you must first add new pod vSwitches in the zone. You can add pod vSwitches in Terway ConfigMaps. When you change the specifications of a node, the maximum number of pods that are supported by Terway on the node also changes. After this release, the K8s max-pod parameter is automatically adjusted to fit the new node specifications.|All regions|[Work with Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md)|
-|Node pool management|Node pool management is supported. A node pool contains a group of nodes with the same configurations. For example, nodes in a node pool are configured with the same container runtime, OS, and security group. You can create multiple node pools for a cluster. This allows you to deploy a variety of services to different node pools in a cluster. Node pools also support auto scaling. Nodes can be automatically added when a node pool is short of required resources.|All regions|[Create a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Create a node pool.md)|
-|Cluster check|Cluster checks are optimized. Cluster check is the core feature provided by ACK for cluster O&M. Cluster check dynamically scans clusters to identify potential risks. The optimization provides the following services: -   Displays information about unknown hosts.
+|Self-managed ECS instance|Self-managed ECS instance-based nodes can be added to the backend of SLB instances by using the cloud controller manager. This way, the existing applications and containerized applications share the same SLB instances and inbound traffic. This is suitable for scenarios where existing applications are gradually replaced by containerized applications.|All regions|[Cloud controller manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud controller manager.md)|
+|Terway|Cluster expansion and node specification changes are supported by Terway. When you manually expand a cluster, you may need to create nodes in new zones. In earlier versions, to create pods in a new zone, you must first add new pod vSwitches in the zone. You can add pod vSwitches in Terway ConfigMaps. When you change the specifications of a node, the maximum number of pods that are supported by Terway on the node also changes. After this release, the K8s max-pod parameter is automatically adjusted to fit the new node specifications.|All regions|[Use the Terway plug-in](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use the Terway plug-in.md)|
+|Node pool management|Node pool management is supported. A node pool contains a group of nodes with the same configurations. For example, nodes in a node pool are configured with the same container runtime, OS, and security group. You can create multiple node pools for a cluster. This allows you to deploy a variety of services to different node pools in a cluster. Node pools also support auto scaling. Nodes can be automatically added when a node pool is short of required resources.|All regions|[Manage a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Create a node pool.md)|
+|Cluster check|Cluster checks are optimized. Cluster check is the core feature provided by ACK for cluster O&M. Cluster check dynamically scans clusters to identify potential risks. The optimization provides the following services:-   Displays information about unknown hosts.
 -   Checks the availability of Yellow dogUpdater, Modified \(YUM\).
 -   Checks the availability of systemd.
 
 |All regions|[Use cluster check to troubleshoot cluster issues](/intl.en-US/Best Practices/Operation and maintenance/Use cluster check to troubleshoot cluster issues.md)|
-|Kubernetes 1.16|Upgrade to Kubernetes 1.16.6 is supported. You can upgrade your clusters from Kubernetes 1.14.8 to 1.16.6. You can also create clusters of Kubernetes 1.16.6. Before you upgrade your clusters, we recommend that you refer to the upgrade notes.|All regions|[Upgrade a cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Upgrade cluster/Upgrade a cluster.md)|
+|Kubernetes 1.16|Upgrade to Kubernetes 1.16.6 is supported. You can upgrade your clusters from Kubernetes 1.14.8 to 1.16.6. You can also create clusters of Kubernetes 1.16.6. We recommend that you read the upgrade notes before you upgrade your clusters.|All regions|[Upgrade a cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Upgrade cluster/Upgrade a cluster.md)|
 |New region|Managed Kubernetes clusters are available in the China South 1 Finance region on Alibaba Finance Cloud.|China South 1 Finance|[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)|
 |ephemeral-storage|The ephemeral-storage parameter is added for container configurations when you create an application. Ephemeral storage is a new storage resource similar to CPU and memory. Kubernetes uses this parameter to manage and schedule the transient storage of applications that run in Kubernetes clusters. The root directory and log directories \(/var/log\) of kubelet are stored on the primary partition of a node. In addition, emptyDir volumes, container logs, image layers, and the writable layers of containers are also stored on the primary partition. Therefore, ephemeral-storage is used to manage the primary partition of a node. You can set requests and limits when you create an application. This allows you to schedule and manage the storage resources that are allocated from the primary partition to the application.|All regions|[Use a Deployment to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md)|
 
@@ -329,10 +362,10 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 |Kubernetes 1.16 and Docker 19.03.5|Kubernetes 1.16 and Docker 19.03.5 are supported to provide enhanced cloud-native capabilities. Compared with the earlier version, Kubernetes 1.16 accelerates pod creation and improves affinity, stability, and observability. You can select Docker 19.03.5 when you create a cluster. ACK accelerates container startups and the building of images that are based on Docker 19.03.5.|All regions|[Kubernetes 1.16 release notes](/intl.en-US/Release notes/Kubernetes release notes/Kubernetes 1.16 release notes.md)|
 |Auto scaling|AliyunLinux 2, custom security groups, advanced security groups, and GPU-accelerated preemptible instances are configurable for auto scaling. To use AliyunLinux 2 and custom security groups, you must first submit a ticket to apply for them to be enabled for your account.|All regions|[Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm). |
 |CentOS 7.7|CentOS 7.7 is supported as the node OS. You can specify the CentOS 7.7 operating system when you create worker nodes. CentOS 7.7 is automatically used when you expand clusters or enable auto scaling for clusters.|All regions|[Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm). |
-|Helm|Helm 3 is supported. You can install Helm 3 from App Catalog. Compared with Helm 2, Helm 3 improves the security of role assignment, provides full compatibility with Kubernetes role-based access control \(RBAC\) in multi-tenant scenarios, and supports hooks for more management operations.|All regions|For information about how to upgrade from Helm 2, see [Helm v2 upgrade notice](/intl.en-US/Bulletin/Helm v2 upgrade notice.md).|
+|Helm|Helm 3 is supported. You can install Helm 3 from App Catalog. Compared with Helm 2, Helm 3 improves the security of role assignment, provides full compatibility with Kubernetes role-based access control \(RBAC\) in multi-tenant scenarios, and supports hooks for more management operations.|All regions|For more information about how to upgrade from Helm 2, see [Helm v2 upgrade notice](/intl.en-US/Bulletin/Helm v2 upgrade notice.md).|
 |New region|ASK is available in the Indonesia \(Jakarta\) and UK \(London\) regions. You can create ASK clusters in these regions in the ACK console.|Indonesia \(Jakarta\) and UK \(London\)|[Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md)|
 |ASK|ClusterIP Services are supported in ASK clusters. This provides more options when you deploy containerized applications in ASK clusters. You can create ClusterIP Services in an ASK cluster to enable access to your workloads from within the ASK cluster.|All regions|[Manage Services](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Manage Services.md)|
-|Cloud controller manager|ECS instances and elastic container instances can be attached to the backend of SLB instances that are associated with Services by using the cloud controller manager. This enables unified scheduling for application pods across worker nodes and virtual nodes. This also improves application resilience.|All regions|[Release notes for the Cloud controller manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud Controller Manager.md)|
+|Cloud controller manager|ECS instances and elastic container instances can be attached to the backend of SLB instances that are associated with Services by using the cloud controller manager. This enables unified scheduling for application pods across worker nodes and virtual nodes. This also improves application resilience.|All regions|[Release notes for the Cloud controller manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud controller manager.md)|
 |Edge Kubernetes cluster|32-bit and 64-bit ARM nodes are supported in edge Kubernetes clusters. This allows edge Kubernetes clusters to support more heterogeneous infrastructures. You can add Edge Node Service \(ENS\) nodes or nodes from data centers to edge Kubernetes clusters.|All regions|[Add an edge node](/intl.en-US/User Guide for Edge Container Service/Node management/Add an edge node.md)|
 
 ## January 2020
@@ -341,7 +374,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 |-------|-----------|------|----------|
 |Virtual node|ClusterIP Services can be accessed by pods that are deployed on virtual nodes. This enables Kubernetes to centrally manage virtual nodes and elastic container instances. You can deploy applications on virtual nodes without the inconvenience of resource capacity planning. This meets the requirements of scenarios such as online workload scaling, offline computing, and CI/CD, and also reduces the overall computing costs. To enable this feature, log on to the console, choose App Catalog, and then find and install ack-virtual-node.|All regions|[Deploy the virtual node controller and use it to create Elastic Container Instance-based pods](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Deploy the virtual node controller and use it to create Elastic Container Instance-based pods.md)|
 |API server|Service account token volume projection can be enabled for the API server when you create a cluster. This enables service account authentication on pods. This feature is also required if mutual Transport Layer Security \(TLS\) authentication is enabled on Istio through Secret Discovery Service \(SDS\).|All regions|[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
-|CSI|CSI can be selected as the volume plug-in when you create an ACK cluster. The optimized CSI plug-in provides the following features: -   Object Storage Service \(OSS\) subdirectories can be mounted to containers.
+|CSI|CSI can be selected as the volume plug-in when you create an ACK cluster. The optimized CSI plug-in provides the following features:-   Object Storage Service \(OSS\) subdirectories can be mounted to containers.
 -   The Memory type emptyDir volumes are supported. The Memory type volume is a RAM-based temporary file system, whose storage space is limited by memory. This type of file system provides good performance and is typically used to provide caching space in containers.
 -   Accelerated ossfs transmission is supported. ossfs allows you to share data by mounting OSS buckets to local file systems in Linux. To meet the requirements of big data and AI scenarios, ACK improves read speed by adjusting concurrency, block size, and libfuse configurations. For more information, see [alibaba-cloud-csi-driver](https://github.com/kubernetes-sigs/alibaba-cloud-csi-driver).
 
@@ -358,9 +391,9 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 |-------|-----------|------|----------|
 |Component management|Component management is supported. You can log on to the ACK console. On the **Clusters** page, find the cluster that you want to manage and choose **More** \> **Manage System Components** in the Actions column to manage cluster components. You can manage all system components and optional components with operations such as upgrade, uninstall, and reinstall. Custom component configurations will be available soon.|All regions|[Manage system components](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Upgrade cluster/Manage system components.md)|
 |App Catalog|The ack-node-local-dns plug-in is provided in App Catalog to speed up Domain Name Service \(DNS\) queries. ack-node-local-dns sends internal Domain Name Service \(DNS\) queries to CoreDNS and directly forwards external DNS queries to external DNS resolvers. ack-node-local-dns caches all queries and provides DNS caching on each node. This significantly improves the overall DNS query rate of the cluster.|All regions|[View the application catalog](/intl.en-US/User Guide for Kubernetes Clusters/Application marketplace/App catalog management/View the application catalog.md)|
-|New region|Managed Kubernetes clusters are available in the China East 1 Finance region. You only need to create worker nodes in a managed Kubernetes cluster. ACK creates and manages master nodes. This type of cluster is easy to use and provides high availability at low costs. This saves you the inconvenience of master node O&M and allows you to focus on business development.|China East 1 Finance|[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)|
+|New region|Managed Kubernetes clusters are available in the China East 1 Finance region on Alibaba Finance Cloud. You only need to create worker nodes in a managed Kubernetes cluster. ACK creates and manages master nodes. This type of cluster is easy to use and provides high availability at low costs. This saves you the inconvenience of master node O&M and allows you to focus on business development.|China \(Hangzhou\)|[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)|
 |NPU-accelerated ECS instances|Neural processing unit \(NPU\)-accelerated ECS instances are supported when you create managed or dedicated Kubernetes clusters. The instance type is ecs.ebman1.26xlarge, which is suitable for big data analytics and AI scenarios in video and graphics industries.|All regions|[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)|
-|Terway|The user experience of Terway is improved. The new user interface provides information about the number of pods that are supported by each ECS instance type when you create a cluster. When you expand a cluster, the user interface also provides multiple options. This allows you to select vSwitches for nodes and pods. The user interface is optimized to clearly and accurately provide information.|All regions|[Work with Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md)|
+|Terway|The user experience of Terway is improved. The new user interface provides information about the number of pods that are supported by each ECS instance type when you create a cluster. When you expand a cluster, the user interface also provides multiple options. This allows you to select vSwitches for nodes and pods. The user interface is optimized to clearly and accurately provide information.|All regions|[Use the Terway plug-in](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use the Terway plug-in.md)|
 
 ## November 2019
 
@@ -370,8 +403,8 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 |Custom node configurations|Custom scripts, tags, and Operation Orchestration Service \(OOS\) are supported for node configurations. You can write custom scripts to configure nodes when you create or expand an ACK cluster. To use this feature, submit a ticket to apply for this feature to be enabled on your account. You can use this feature to specify the node OS. Instead of building custom images, you can directly inject scripts into standard images. Auto scaling allows you to add tags to cluster nodes. This makes it easier for you to identify cluster nodes and allocate the cost of nodes. ACK integrates OOS into the node O&M. You can go to the OOS page from the ACK console and run OOS scripts to maintain nodes on the OOS page.|All regions|[Expand an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Expand an ACK cluster.md)|
 |ASK|Multiple zones and log auditing are supported in ASK clusters. After ASK is upgraded to V2.0, ASK clusters provide more cloud-native features. Cross-zone ASK clusters and log auditing are supported. You can deploy pods across zones to improve the availability of your business. You can also use log auditing to improve the security of ASK clusters. ASK clusters will be improved to provide the same features as dedicated and managed Kubernetes clusters.|All regions|[Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md)|
 |vGPU|vGPU resources are provided through the vgn5i instance family to meet the requirements of AI and big data industries. You can select instance types of the vgn5i instance family when you create an ACK cluster.|All regions|[Use GPU-accelerated elastic container instances](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Serverless cluster best practices/Use GPU-accelerated elastic container instances.md)|
-|Terway|ENI buffer pools are supported for Terway. Terway is a container network plug-in that is developed on top of Alibaba Cloud ENI. The update enables Terway to create a buffer pool of ENI IP addresses during node initialization. This accelerates pod creation and improves user experience.|All regions|[Work with Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md)|
-|Cloud controller manager|External ECS instances can be added to the backend of SLB instances by using the cloud controller manager. The cloud controller manager is a system component that associates Services with SLB instances. By default, cluster nodes that host Services are mounted to the backend of the related SLB instances. The update allows you to add ECS instances outside an ACK cluster as the backend servers to the related SLB instances. This makes it easier to perform application migration and canary releases.|All regions|[Cloud Controller Manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud Controller Manager.md)|
+|Terway|ENI buffer pools are supported for Terway. Terway is a container network plug-in that is developed on top of Alibaba Cloud ENI. The update enables Terway to create a buffer pool of ENI IP addresses during node initialization. This accelerates pod creation and improves user experience.|All regions|[Use the Terway plug-in](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use the Terway plug-in.md)|
+|Cloud controller manager|External ECS instances can be added to the backend of SLB instances by using the cloud controller manager. The cloud controller manager is a system component that associates Services with SLB instances. By default, cluster nodes that host Services are mounted to the backend of the related SLB instances. The update allows you to add ECS instances outside an ACK cluster as the backend servers to the related SLB instances. This makes it easier to perform application migration and canary releases.|All regions|[Cloud controller manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud controller manager.md)|
 
 ## October 2019
 
@@ -391,7 +424,7 @@ The ack-virtual-node component is provided to enable auto scaling for registered
 |New region|ACK is available in the China \(Chengdu\) region. You can create dedicated Kubernetes clusters in the China \(Chengdu\) region. To create managed Kubernetes clusters in the China \(Chengdu\) region, submit a ticket.
 
 |China \(Chengdu\)|[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
-|Kubernetes 1.14.6|The canary release of the upgrade from Kubernetes 1.14.6 has been implemented in the following regions: China \(Shanghai\), China \(Zhangjiakou\), Singapore \(Singapore\), and Germany \(Frankfurt\). Upgrades from Kubernetes 1.14.6 will soon be available in all regions. More features are also provided to simplify the upgrade process. In the ACK console, you can click **Upgrade Cluster** on the Clusters page to upgrade your cluster. The new upgrade feature adds the following improvements to secure upgrades:
+|Kubernetes 1.14.6|The canary release of the upgrade from Kubernetes 1.14.6 is implemented in the following regions: China \(Shanghai\), China \(Zhangjiakou\), Singapore \(Singapore\), and Germany \(Frankfurt\). Upgrades from Kubernetes 1.14.6 will soon be available in all regions. More features are also provided to simplify the upgrade process. In the ACK console, you can click **Upgrade Cluster** on the Clusters page to upgrade your cluster. The new upgrade feature adds the following improvements to secure upgrades:
 
 -   A comprehensive cluster check is performed before an upgrade.
 -   You can manually pause or resume an upgrade.
@@ -434,12 +467,12 @@ Australia \(Sydney\)
 |Auto scaling and cross-zone scheduling|Multiple scaling groups are supported for auto scaling. Cross-zone scheduling policies are supported. The auto scaling feature is optimized. You can configure multiple scaling groups so that resources of different specifications are automatically added when the scaling threshold is reached. This feature meets the requirements of running compute-intensive applications and GPU computing tasks. When you configure auto scaling policies, you can specify different scheduling policies for multiple zones, including priority policies, cost optimization policies, and zone balancing policies. This meets the requirement for resource scheduling when the cluster is deployed across multiple zones.|All regions|[t220155.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Auto scaling of nodes.md)|
 |Custom cluster domain names|Custom cluster domain names are supported. ACK allows you to customize a cluster domain name by specifying the cluster-domain parameter. The cluster-domain parameter specifies the local domain name that is used for service discovery. If you have multiple clusters, we recommend that you customize the local domain names to simplify the management of clusters and services. ACK allows you to customize a cluster domain name when you create a cluster. This simplifies management and improves the O&M efficiency.|All regions|[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
 |App Hub|App Hub is provided in App Catalog. App Hub provides various cloud-native and open source containerized applications. ACK integrates App Hub into App Catalog. To deploy cloud-native applications in your cluster, log on to the ACK console and click the **App Hub** tab on the **App Catalog** page to find and install the applications with one click. This saves you the inconvenience of creating clusters and deploying applications by using a command-line interface \(CLI\).|All regions|[View the application catalog](/intl.en-US/User Guide for Kubernetes Clusters/Application marketplace/App catalog management/View the application catalog.md)|
-|Cloud controller manager|The cloud controller manager is upgraded. The cloud controller manager is the core component in an ACK cluster and is responsible for managing various cloud resources, such as SLB instances and VPCs. The following features are added to the cloud controller manager: -   SLB instances can be created with access control settings. You can specify an IP whitelist for an SLB instance that is created by ACK. This enhances the security of the ACK cluster.
+|Cloud controller manager|The cloud controller manager is upgraded. The cloud controller manager is the core component in an ACK cluster and is responsible for managing various cloud resources, such as SLB instances and VPCs. The following features are added to the cloud controller manager:-   SLB instances can be created with access control settings. You can specify an IP whitelist for an SLB instance that is created by ACK. This enhances the security of the ACK cluster.
 -   You can specify whether to remove unschedulable nodes when you run the kubectl cordon or kubectl drain command. Cordoning and draining nodes are important features in cluster maintenance. However, the community has not reached an agreement on whether to remove a node from the backend of an SLB instance when the node is set to unschedulable for maintenance. The cloud controller manager provides an interface that allows you to specify whether to remove such nodes from the backend of the SLB instance. This ensures the flexibility of maintenance.
 -   Pods can be mounted to the backend of an SLB instance by using Terway. Terway ENI is the latest network plug-in that is provided by ACK. The core feature of Terway ENI is to mount the ENI IP address of a node to a pod. The cloud controller manager allows you to mount pods instead of nodes to the backend of an SLB instance. This prevents traffic forwarding through nodes and improves network performance.
 -   Node weights can be set based on the number of pods on each node for Services in Local mode. The cloud controller manager can adjust the percentage of traffic that is sent to each node based on the number of pods on each node. This balances workloads among nodes. This feature applies to only Services in Local mode.
 
-|All regions|[Cloud Controller Manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud Controller Manager.md)|
+|All regions|[Cloud controller manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud controller manager.md)|
 
 ## July 2019
 
@@ -467,7 +500,7 @@ ACK meets various security requirements.
 |Authorization|Multiple RAM users can be authorized at the same time. You can also grant the permissions to manage all clusters. This allows you to efficiently authorize RAM users. The authorization procedure is also optimized to improve user experience.|All regions|[Overview](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Overview.md)|
 |Time zone|The time zone of an application can be synchronized to that of the node. You can select **Synchronize Timezone from Node to Container** when you create an application from an image. This ensures that the application pods and the host node use the same time zone.|All regions|[Use a Deployment to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md)|
 |New region|Container Registry Enterprise Edition is available in the UK \(London\) region. Container Registry Enterprise Edition supports large-scale image distribution with enhanced security. This service is suitable for enterprise users that require high security and large-scale nodes.|UK \(London\)|None|
-|Container Registry Enterprise Edition|Helm 2 charts are supported by Container Registry Enterprise Edition to make it easier for you to manage cloud-native assets. You can enable the charts component on the overview page of your Enterprise Edition instance. When the component is in the running state, you can start managing Helm chart repositories.|All regions|None|
+|Container Registry Enterprise Edition|Helm 2 charts are supported by Container Registry Enterprise Edition to make it easier for you to manage cloud-native assets. You can enable the charts component on the Overview page of your Container Registry Enterprise Edition instance. When the component is running, you can start to manage Helm chart repositories.|All regions|None|
 
 ## June 2019
 
@@ -481,7 +514,7 @@ UK \(London\)
 |Terway|A new version of Terway is released. The exclusive ENI mode and the inclusive ENI mode are supported by this version. The default mode is the inclusive ENI mode. -   The exclusive ENI mode: In this mode, the number of pods that can be deployed on a node must match the number of ENIs that can be created on the node. This mode improves network performance.
 -   The inclusive ENI mode: In this mode, you can deploy multiple pods on a node. The pods share the same ENI.
 
-|All regions|[Work with Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md)|
+|All regions|[Use the Terway plug-in](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use the Terway plug-in.md)|
 |Knative|Knative is supported. Knative is a Kubernetes-based serverless framework. Knative creates a cloud-native and cross-platform orchestration standard for serverless applications. Knative implements this standard by integrating the creation of containers \(or functions\), workload management \(auto scaling\), and event models. ACK supports Knative and allows you to install and upgrade the Build, Serving, and Eventing components. You must deploy Istio before you use Knative. ACK provides instructions to deploy sample applications, and also provides the best practices of tracing, monitoring, and logging applications.|All regions|[Overview](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Overview.md), [Use Knative to deploy serverless applications](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative services/Use Knative to deploy serverless applications.md)|
 |Pod search|Pods can be searched for by node IP address or pod IP address. In the ACK console, choose **Applications** \> **Pods** and specify a node IP address or pod IP address to search for a pod. This saves the time to find pods that you want to manage and maintain.|All regions|None|
 
@@ -498,12 +531,12 @@ China East 2 Finance
 |[What is Container Service for Kubernetes?](/intl.en-US/Product Introduction/What is Container Service for Kubernetes?.md)|
 |Genomics computing cluster|Genomics computing clusters are released. This type of cluster uses high-performance computing \(HPC\) instances as worker nodes and provides a large-scale workflow engine for batch genomics computing. Genomics computing clusters are suitable for data splitting and mutation detection, and support data analytics for the following formats: BCL, FASTQ, BAM, SAM, and VCF. In the ACK console, choose **Clusters** \> **Clusters** and click Create Kubernetes Cluster. In the Select Cluster Template dialog box, select **Genomics Computing Cluster**.|All regions|None|
 |FPGA cluster|Field-programmable gate array \(FPGA\) clusters are released. This type of cluster uses FPGA F3 instances as worker nodes and is used for H265 video encoding and image conversion from JPEG to HEIF. FPGA-based video encoding reduces the processing time from more than 1 week to 15 minutes. This significantly reduces the bitrate and saves bandwidth costs when transcoding videos of the same quality. In the ACK console, choose **Clusters** \> **Clusters** and click Create Kubernetes Cluster. In the Select Cluster Template dialog box, select **Dedicated FPGA Cluster** to create a dedicated FPGA cluster.|All regions|None|
-|Cloud controller manager|The cloud controller manager is upgraded to V1.9.3.110-g4938309-aliyun. This version supports more SLB configuration options. The following features are provided: -   Allows you to restrict the creation of Internet-facing SLB instances by setting parameters.
+|Cloud controller manager|The cloud controller manager is upgraded to V1.9.3.110-g4938309-aliyun. This version supports more SLB configuration options. The following features are provided:-   Allows you to restrict the creation of Internet-facing SLB instances by setting parameters.
 -   Allows you to change certificate IDs.
 -   Allows you to specify a vSwitch when you attach an internal-facing SLB instance to a Service.
 -   Allows you to set SLB instance configuration to redirect traffic from HTTP port 80 to HTTPS port 443.
 
-|All regions|[Cloud Controller Manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud Controller Manager.md)|
+|All regions|[Cloud controller manager](/intl.en-US/Release notes/System Component change Records/Core components/Cloud controller manager.md)|
 |Istio|Istio is upgraded to V1.1.4. Istio 1.1.4 improves self-recovery capabilities, and supports automatic recovery of the control plane and automatic upgrades of earlier versions. Istio is also integrated with Time Series Database \(TSDB\). TSDB is a database service that supports high-speed read and write operations, compressed storage, and real-time computing. To fix the local storage issues in Prometheus, TSDB provides remote storage services with high performance and high reliability at low costs.
 
 Compared with other remote storage solutions provided by the community, TSDB is easier to use and only requires you to change the Prometheus configuration. The solution supports parallel read and write operations and is highly compatible with PromQL. TSDB is a distributed storage system with auto scaling capabilities.
@@ -538,7 +571,7 @@ Germany \(Frankfurt\)
 US \(Silicon Valley\)
 
 |[What is Container Service for Kubernetes?](/intl.en-US/Product Introduction/What is Container Service for Kubernetes?.md)|
-|Container Registry Enterprise Edition|Container Registry Enterprise Edition was officially released at the Alibaba Cloud Summit on March 21, 2019. This edition provides higher security and supports large-scale image distribution. Container Registry Enterprise Edition is in public preview in the China \(Shanghai\) region. To use this edition, submit a ticket.|China \(Shanghai\)|[Introduction to Container Registry](https://www.alibabacloud.com/help/zh/doc-detail/60945.html)|
+|Container Registry Enterprise Edition|Container Registry Enterprise Edition was officially released at the Alibaba Cloud Summit on March 21, 2019. This edition provides higher security and supports large-scale image distribution. Container Registry Enterprise Edition is in public preview in the China \(Shanghai\) region. To use this edition, submit a ticket.|China East 2 Finance|[Introduction to Container Registry](https://www.alibabacloud.com/help/zh/doc-detail/60945.html)|
 |Container Registry Shared Edition|Container Registry Shared Edition is available in all regions on the International site \(alibabacloud.com\).|All regions|[Introduction to Container Registry](https://www.alibabacloud.com/help/zh/doc-detail/60945.html)|
 |Kubernetes 1.12.6|Kubernetes 1.12.6 is supported. You can create a cluster of Kubernetes 1.12 in the console.|All regions|[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
 |Log Service|The Log Service plug-in is supported by managed Kubernetes clusters. You can enable Log Service when you create a managed or dedicated Kubernetes cluster. After the plug-in is installed, you can use Log Service to manage Kubernetes logs.|All regions|[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)|
@@ -551,7 +584,7 @@ US \(Silicon Valley\)
 
 |Feature|Description|Region|References|
 |-------|-----------|------|----------|
-|New region|Managed Kubernetes clusters are available in the China \(Shenzhen\) region. Managed Kubernetes clusters provide the following core benefits: -   Saves resources. You do not need to create master nodes in a managed Kubernetes cluster. Compared with other cluster types, this cluster type saves you the costs of three master nodes.
+|New region|Managed Kubernetes clusters are available in the China \(Shenzhen\) region. Managed Kubernetes clusters provide the following core benefits:-   Saves resources. You do not need to create master nodes in a managed Kubernetes cluster. Compared with other cluster types, this cluster type saves you the costs of three master nodes.
 -   Simplifies O&M. ACK manages the master nodes.
 -   Ensures security. ACK meets various security requirements.
 
@@ -571,7 +604,7 @@ ACK provides Knative add-ons to help you build the Knative Serving environment i
 
 You can add Windows nodes to managed and dedicated Kubernetes clusters.
 
-This feature is in internal preview. To use this feature, submit a ticket.
+Container Registry Enterprise Edition is in internal preview. To use this service, submit a ticket.
 
 |All regions|[Create a Windows node pool](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a Windows node pool.md)|
 |Container Registry Enterprise Edition|Container Registry Enterprise Edition is released for internal preview. Container Registry Enterprise Edition provides container image repositories built on top of dedicated resources. This edition provides stable image building, large-scale image distribution, and image hosting with enterprise-class security. It is suitable for enterprises that require high security and a large number of nodes. Container Registry Enterprise Edition is in internal preview. To use this service, submit a ticket.
@@ -584,7 +617,7 @@ This feature is in internal preview. To use this feature, submit a ticket.
 |Elastic Container Instance|Starting January 22, 2019, you are charged for the commercial use of Elastic Container Instance. Elastic container instances are deployed as the underlying infrastructures of ASK cluster. You are charged when you create elastic container instances in ASK clusters. ASK clusters remain free to use.|All regions|[Billing](https://www.alibabacloud.com/help/zh/doc-detail/89142.html)|
 |New region|ASK clusters are available in the China \(Beijing\) and China \(Shenzhen\) regions. ASK clusters provide excellent experience with serverless containers.|China \(Beijing\)
 
-China \(Shenzhen\)
+China South 1 Finance
 
 |[Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md)|
 
@@ -593,7 +626,7 @@ China \(Shenzhen\)
 |Feature|Description|Region|References|
 |-------|-----------|------|----------|
 |New region|ACK is available in all regions on the China site \(aliyun.com\) and in the UK \(London\) region on the International site \(alibabacloud.com\).|UK \(London\)|[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
-|New region|Managed Kubernetes clusters are available in the China \(Shanghai\), Malaysia \(Kuala Lumpur\), and India \(Mumbai\) regions.|China \(Shanghai\)
+|New region|Managed Kubernetes clusters are available in the China \(Shanghai\), Malaysia \(Kuala Lumpur\), and India \(Mumbai\) regions.|China East 2 Finance
 
 Malaysia \(Kuala Lumpur\)
 
@@ -611,7 +644,7 @@ India \(Mumbai\)
 |Feature|Description|Region|References|
 |-------|-----------|------|----------|
 |New region|Managed Kubernetes clusters are available in the Indonesia \(Jakarta\) region on the International site \(alibabacloud.com\).|Indonesia \(Jakarta\)|[Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)|
-|Terway|The Terway plug-in is released. Terway enables direct communication between containers through ENIs and provides higher network performance than Flannel.|All regions|[Work with Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md)|
+|Terway|The Terway plug-in is released. Terway enables direct communication between containers through ENIs and provides higher network performance than Flannel.|All regions|[Use the Terway plug-in](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use the Terway plug-in.md)|
 |Worker node|Thumbnail images are used to display the performance metrics of worker nodes, which makes it easy for you to view the states of nodes.|All regions|None|
 |Node adding|Multiple existing nodes can be added to a cluster at the same time.|All regions|None|
 |Cluster certificate|Rolling renewal of cluster certificates is supported to prevent certificates from expiring.|All regions|None|
@@ -699,7 +732,7 @@ UAE \(Dubai\)
 |Kubernetes 1.9|Kubernetes 1.9.3 is supported. ACK releases Workloads API. By default, CRD is enabled. GPU scheduling is supported. You can select custom ECS images when you create a cluster. You can also reset images when you add nodes to a cluster.|All regions|None|
 |Helm|App Catalog is released to allow you to deploy applications by using Helm.|All regions|[Manage releases by using Helm](/intl.en-US/User Guide for Kubernetes Clusters/Release management/Manage releases by using Helm.md)|
 |ServiceBroker|App Catalog is released to support ServiceBroker.|All regions|This feature is phased out.|
-|CloudMonitor|Nodes can be monitored by using CloudMonitor.|All regions|[Monitor basic resources](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Monitor basic resources.md)|
+|Cloud Monitor|Nodes can be monitored by using Cloud Monitor.|All regions|[Monitor basic resources](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Monitor basic resources.md)|
 
 ## January 2018
 
