@@ -30,7 +30,7 @@ You can perform the following steps to deploy an independent NGINX ingress contr
     |Parameter|Description|
     |---------|-----------|
     |controller.image.repository|The image repository of ingress-nginx. If the cluster is deployed in a region outside China, we recommend that you set this parameter to the region ID.|
-    |controller.image.tag|The image version of ingress-nginx. For more information, see [t1881583.md\#](/intl.en-US/Release notes/System Component change Records/Ingress-Nginx.md).|
+    |controller.image.tag|The image version of ingress-nginx. For more information, see [NGINX Ingress controller](/intl.en-US/Release notes/System Component change Records/Networking/NGINX Ingress controller.md).|
     |controller.ingressClass|The ingress class of the ingress controller. The ingress controller handles only the ingress resources that are annotated with the ingress class. **Note:** In a cluster, the ingress class of each ingress controller must be unique. The ingress class of the default ingress controller in a cluster is nginx. Therefore, do not set this parameter to nginx. |
     |controller.replicaCount|The number of pod replicas of the ingress controller.|
     |controller.service.enabled|Specifies whether to use a public-facing SLB instance for load balancing. If you do not want to use a public-facing SLB instance, set the value to false.|
@@ -47,7 +47,7 @@ The following example deploys a test application and uses the newly deployed NGI
 1.  Deploy an NGINX application.
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: nginx
@@ -88,7 +88,7 @@ The following example deploys a test application and uses the newly deployed NGI
 2.  Use the NGINX ingress controller to provide application services for external users.
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1beta1
     kind: Ingress
     metadata:
       name: nginx
@@ -174,7 +174,7 @@ The following example deploys a test application and uses the newly deployed NGI
 
 The preceding tests show that application services accessed through different NGINX ingress controllers do not interfere each other. This solution applies to scenarios where some services must be available to external users, but other services only allow requests from non-Kubernetes workloads in the same VPC.
 
-[Deploy Ingresses in a high-reliability architecture](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Deploy a highly reliable Ingress controller.md)
+[Deploy Ingresses in a high-reliability architecture](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Deploy Ingresses in a high-reliability architecture.md)
 
 [Configure an ingress controller to use an internal SLB instance](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Configure an ingress controller to use an internal SLB instance.md)
 
