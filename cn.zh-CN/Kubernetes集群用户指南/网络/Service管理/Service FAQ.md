@@ -31,7 +31,6 @@ keyword: [Service FAQ, SLB, 常见问题]
 
 **其他**
 
--   [\#section\_3nt\_555\_bta](#section_3nt_555_bta)
 -   [Kubernetes的Service如何进行会话保持？](~~149276~~)
 
 ## 为什么看不到Service与LoadBalancer同步过程的事件Event信息？
