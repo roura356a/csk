@@ -152,7 +152,7 @@ Create an NGINX application and deploy an Ingress controller to enable Layer 7 a
     1.  Create a file named ingress.yaml.
 
         ```
-        apiVersion: extensions/v1beta1
+        apiVersion: networking.k8s.io/v1beta1
         kind: Ingress
         metadata:
           name: gray-release
@@ -256,7 +256,7 @@ Release a new NGINX application version and configure Ingress rules.
         1.  Modify the Ingress that is created in [2](#step_ee9_ta0_d84) based on the following content.
 
             ```
-            apiVersion: extensions/v1beta1
+            apiVersion: networking.k8s.io/v1beta1
             kind: Ingress
             metadata:
               name: gray-release
@@ -313,7 +313,7 @@ Release a new NGINX application version and configure Ingress rules.
         1.  Modify the Ingress that is created in [2](#step_ee9_ta0_d84) based on the following content.
 
             ```
-            apiVersion: extensions/v1beta1
+            apiVersion: networking.k8s.io/v1beta1
             kind: Ingress
             metadata:
               name: gray-release
@@ -373,7 +373,7 @@ Release a new NGINX application version and configure Ingress rules.
         1.  Modify the Ingress that is created in [2](#step_ee9_ta0_d84) based on the following content.
 
             ```
-            apiVersion: extensions/v1beta1
+            apiVersion: networking.k8s.io/v1beta1
             kind: Ingress
             metadata:
               name: gray-release
@@ -414,7 +414,7 @@ If the new NGINX application runs as expected for a period of time, you need to 
 1.  Modify the Ingress that is created in [2](#step_ee9_ta0_d84) based on the following content.
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1beta1
     kind: Ingress
     metadata:
       name: gray-release
