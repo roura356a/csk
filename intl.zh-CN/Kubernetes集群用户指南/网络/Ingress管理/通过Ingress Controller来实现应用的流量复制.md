@@ -25,7 +25,7 @@ ACK支持在不同集群内进行流量复制，用于系统的仿真测试和�
     1.  在K8s Product Cluster集群中部署一个应用，并通过Ingress来对外暴露服务访问。
 
         ```
-        apiVersion: extensions/v1beta1
+        apiVersion: apps/v1
         kind: Deployment
         metadata:
           name: nginx-deployment
@@ -62,7 +62,7 @@ ACK支持在不同集群内进行流量复制，用于系统的仿真测试和�
             app: nginx
           type: NodePort
         ---
-        apiVersion: extensions/v1beta1
+        apiVersion: networking.k8s.io/v1beta1
         kind: Ingress
         metadata:
           name: nginx-ingress
@@ -102,7 +102,7 @@ ACK支持在不同集群内进行流量复制，用于系统的仿真测试和�
     1.  在K8s Stage Cluster中部署一个相同应用，同样通过Ingress来对外暴露服务访问。
 
         ```
-        apiVersion: extensions/v1beta1
+        apiVersion: apps/v1
         kind: Deployment
         metadata:
           name: nginx-deployment
@@ -139,7 +139,7 @@ ACK支持在不同集群内进行流量复制，用于系统的仿真测试和�
             app: nginx
           type: NodePort
         ---
-        apiVersion: extensions/v1beta1
+        apiVersion: networking.k8s.io/v1beta1
         kind: Ingress
         metadata:
           name: nginx-ingress
@@ -213,7 +213,7 @@ ACK支持在不同集群内进行流量复制，用于系统的仿真测试和�
     根据实际需求修改nginx-ingress的`configuration-snippet`和`server-snippet`，以下为本例修改后的YAML。
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1beta1
     kind: Ingress
     metadata:
       name: nginx-ingress
