@@ -26,7 +26,7 @@
 背景信息 
 -------------------------
 
-阿里云容器镜像服务ACR分为默认版和企业版。其中，企业版是企业级云原生应用制品管理平台，提供容器镜像、Helm Chart ，以及符合OCI规范制品的生命周期管理，能够与容器服务Kubernetes版无缝集成，适用于业务大规模部署场景，帮助企业降低交付复杂度。更多信息，请参见[ACR企业版概述]()。
+阿里云容器镜像服务ACR分为默认版和企业版。其中，企业版是企业级云原生应用制品管理平台，提供容器镜像、Helm Chart ，以及符合OCI规范制品的生命周期管理，能够与容器服务Kubernetes版无缝集成，适用于业务大规模部署场景，帮助企业降低交付复杂度。更多信息，请参见[容器镜像服务ACR简介]()。
 
 目前容器镜像服务ACR的镜像使用有如下几种情况：
 
@@ -107,14 +107,17 @@ Kubernetes方式仅支持指定单个ACR实例。如果您有多个ACR实例，�
 ----------------------------------------------
 
 调用CreateContainerGroup接口创建ECI实例时，您可以设置AcrRegistryInfo相关参数来配置免密。相关参数说明如下表所示。更多信息，请参见[CreateContainerGroup]()。
+**说明**
+
+设置AcrRegistryInfo相关参数来配置免密时，必须设置AcrRegistryInfo.N.InstanceId。
 
 
-|               名称               |     类型     | 是否必选 |                       示例值                        |                      描述                      |
-|--------------------------------|------------|------|--------------------------------------------------|----------------------------------------------|
-| AcrRegistryInfo.N.RegionId     | String     | 否    | cn-beijing                                       | ACR企业版实例所属地域。                                |
-| AcrRegistryInfo.N.InstanceId   | String     | 否    | cri-nwj395hgf6f3\*\*\*\*                         | ACR企业版实例ID。                                  |
-| AcrRegistryInfo.N.Domain.N     | RepeatList | 否    | test\*\*\*\*-registry.cn-beijing.cr.aliyuncs.com | ACR企业版实例的域名。默认为相应实例的所有域名。支持指定个别域名，多个以半角逗号分隔。 |
-| AcrRegistryInfo.N.InstanceName | String     | 否    | test\*\*\*\*                                     | ACR企业版实例的名称。                                 |
+|               名称               |     类型     |                       示例值                        |                      描述                      |
+|--------------------------------|------------|--------------------------------------------------|----------------------------------------------|
+| AcrRegistryInfo.N.RegionId     | String     | cn-beijing                                       | ACR企业版实例所属地域。                                |
+| AcrRegistryInfo.N.InstanceId   | String     | cri-nwj395hgf6f3\*\*\*\*                         | ACR企业版实例ID。                                  |
+| AcrRegistryInfo.N.Domain.N     | RepeatList | test\*\*\*\*-registry.cn-beijing.cr.aliyuncs.com | ACR企业版实例的域名。默认为相应实例的所有域名。支持指定个别域名，多个以半角逗号分隔。 |
+| AcrRegistryInfo.N.InstanceName | String     | test\*\*\*\*                                     | ACR企业版实例的名称。                                 |
 
 
 
