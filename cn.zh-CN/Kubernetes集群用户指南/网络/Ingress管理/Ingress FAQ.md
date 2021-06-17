@@ -36,7 +36,7 @@ enable-underscores-in-headers：true
 对于后端业务是HTTPS服务，但同样希望可以通过Ingress-Nginx转发时，执行以下命令，在Ingress资源配置中添加以下注解即可。
 
 ```
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: xxxx
