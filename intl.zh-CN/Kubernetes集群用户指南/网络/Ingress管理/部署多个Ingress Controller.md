@@ -30,7 +30,7 @@ keyword: [部署独立的Nginx Ingress Controller, 容器服务Kubernetes集群]
     |参数|描述|
     |--|--|
     |controller.image.repository|ingress-nginx镜像地址。对于国外地域，建议更改为对应的Region ID。|
-    |controller.image.tag|ingress-nginx镜像版本，请参见[Ingress-Nginx](/intl.zh-CN/产品发布记录/组件介绍与变更记录/Ingress-Nginx.md)。|
+    |controller.image.tag|ingress-nginx镜像版本，请参见[Nginx Ingress Controller](/intl.zh-CN/产品发布记录/组件介绍与变更记录/网络/Nginx Ingress Controller.md)。|
     |controller.ingressClass|设置该Ingress Controller可监听的目标Ingress Class标识。 **说明：** 同一个集群中不同套Ingress Controller监听的Ingress Class标识必须唯一，且不能设置为nginx关键字（nginx是集群默认Ingress Controller的监听标识）。 |
     |controller.replicaCount|设置该Ingress Controller Pod副本数。|
     |controller.service.enabled|是否开启公网SLB访问，不需要开启则设置为false。|
@@ -49,7 +49,7 @@ keyword: [部署独立的Nginx Ingress Controller, 容器服务Kubernetes集群]
 1.  部署一个Nginx测试应用。
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: nginx
@@ -90,7 +90,7 @@ keyword: [部署独立的Nginx Ingress Controller, 容器服务Kubernetes集群]
 2.  通过Ingress来对外暴露提供服务访问。
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1beta1
     kind: Ingress
     metadata:
       name: nginx
