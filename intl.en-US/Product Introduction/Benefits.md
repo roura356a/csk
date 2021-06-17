@@ -8,8 +8,8 @@ This topic describes the advantages of Container Service for Kubernetes \(ACK\) 
 |---------|-----------|
 |Cluster management|-   Provides the following three types of Kubernetes clusters: dedicated clusters, managed clusters, and serverless clusters.
 -   By default, a managed ACK cluster contains three master nodes that are deployed in three zones to ensure high availability.
--   An ACK cluster can contain thousands of ECS nodes. For more information about the quota of nodes, see [t16032.md\#section\_le6\_vv2\_ll0](/intl.en-US/Product Introduction/Limits.md).
--   Cross-zone clusters and registered external Kubernetes clusters are supported. For more information about registered external Kubernetes clusters, see [Overview of registered clusters](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of registered clusters/Overview of registered clusters.md). |
+-   An ACK cluster can contain thousands of ECS nodes. For more information about the quota of nodes, see [Quota limits](/intl.en-US/Product Introduction/Limits.md).
+-   Cross-zone clusters and registered external Kubernetes clusters are supported. For more information about registered external Kubernetes clusters, see [Overview of registered clusters](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of external clusters/Overview of registered clusters.md). |
 |Elastic resource scaling|-   Automatically scales the number of containers based on container resource usage.
 -   Scales up to thousands of nodes in minutes.
 -   If your application is deployed on elastic container instances \(ECIs\) in a serverless Kubernetes cluster, up to 500 pods can be started in 30 seconds.
@@ -22,7 +22,7 @@ This topic describes the advantages of Container Service for Kubernetes \(ACK\) 
 |All-in-one container management|-   Application management:
     -   Supports phased release, blue-green release, application monitoring, and application autoscaling.
     -   Provides a built-in application store that allows you to deploy applications with a few clicks by using Helm.
--   Repository \([Alibaba Cloud Container Registry]()\):
+-   Repository \([What is Container Registry?]()\):
 
     -   Provides high availability and high concurrency of image pull requests.
     -   Supports accelerated image retrieval.
