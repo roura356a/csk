@@ -68,8 +68,8 @@ keyword: [安全路由服务, Rewrite配置, 路由域名, HTTPS双向认证, �
 
 使用`inginx.ingress.kubernetes.io/rewrite-target`注解支持基本的Rewrite配置，对于一些复杂高级的Rewrite需求，可以通过如下注解来实现：
 
--   `nginx.ingress.kubernetes.io/server-snippet`：扩展配置到Locaton章节。
--   `nginx.ingress.kubernetes.io/configuration-snippet`：扩展配置到Server章节。
+-   `nginx.ingress.kubernetes.io/server-snippet`：扩展配置到Server章节。
+-   `nginx.ingress.kubernetes.io/configuration-snippet`：扩展配置到Locaton章节。
 
 配置示例：
 
