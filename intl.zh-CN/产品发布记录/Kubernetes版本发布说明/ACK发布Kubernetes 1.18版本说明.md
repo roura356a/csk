@@ -23,7 +23,7 @@ ACK针对Kubernetes 1.18.8版本提供了全链路的组件优化和升级。
     -   【弃用】Daemonsets/Deployments/Replicasets资源的API extensions/v1beta1将被弃用，请使用**apps/v1**代替。
     -   【弃用】Networkpolicies资源的API extensions/v1beta1将被弃用，请使用**networking.k8s.io/v1**代替。
     -   【弃用】Podsecuritypolicies资源的API extensions/v1beta1将被弃用，请使用**policy/v1beta1**代替。
-    【更新】标识节点地域和区域信息的Label更新至"topology.kubernetes.io/zone"和"topology.kubernetes.io/region"。建议您更新业务负载中对应的配置。
+    标识节点地域和区域信息的Label更新至"topology.kubernetes.io/zone"和"topology.kubernetes.io/region"。建议您更新业务负载中对应的配置。
 
 -   **功能增强**
     -   [Server-side Apply](https://kubernetes.io/blog/2020/04/01/kubernetes-1.18-feature-server-side-apply-beta-2/)引入Beta 2版本。您在资源的metadata.managedFields字段中可以看到资源中各个配置项的所属关系。
