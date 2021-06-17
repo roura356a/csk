@@ -106,7 +106,7 @@ For more information about solutions to CCM upgrade failures, see[CCM upgrade fa
 
 ## Why does the cluster fail to access the IP address of the SLB instance?
 
-For more information about why does a cluster fail to access the IP address of the SLB instance, see[Kubernetes clusters cannot access the IP address of the SLB instance](https://www.alibabacloud.com/help/doc-detail/171437.htm).
+For more information about why does a cluster fail to access the IP address of the SLB instance, see [Kubernetes clusters cannot access the IP address of the SLB instance](https://www.alibabacloud.com/help/doc-detail/171437.htm).
 
 ## If I delete a Service, is the SLB instance associated with the Service automatically deleted?
 
