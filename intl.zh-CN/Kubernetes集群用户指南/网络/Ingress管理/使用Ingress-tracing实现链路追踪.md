@@ -44,11 +44,11 @@ ACK提供了Ingress-tracing链路追踪功能，通过Ingress-tracing链路追�
 
 4.  在集群管理页左侧导航栏中，选择**配置管理** \> **配置项**。
 
-5.  在配置项页面名称搜索框中搜索nginx-configuration，找到nginx-configuration，然后单击nginx-configuration**操作**列的**编辑**。
+5.  在配置项页面上方设置命名空间为**kube-system**，然后在名称搜索框中搜索nginx-configuration，找到nginx-configuration，然后单击nginx-configuration**操作**列的**编辑**。
 
 6.  配置链路追踪方式。
 
-    根据使用的链路追踪方式，需要配置不同的字段，本文采用zipkin来提供链路追踪服务。
+    根据使用的链路追踪方式，需要配置不同的字段，本文采用zipkin来提供链路追踪服务。关于更多链路追踪方式信息，请参见[准备工作概述](/intl.zh-CN/准备工作/准备工作概述.md)。
 
     在**编辑**面板单击**添加**，设置**名称**为zipkin-collector-host ，**值**为[步骤一：获取接入点信息](#section_8f8_sdn_c03)获取的接入点信息。
 
@@ -56,7 +56,7 @@ ACK提供了Ingress-tracing链路追踪功能，通过Ingress-tracing链路追�
 
 7.  开启链路追踪服务。
 
-    单击**添加**，设置**名称**为enable-opentracing ，**值**为true。然后单击**确定**。
+    单击**添加**，设置**名称**为enable-opentracing ，**值**为true，然后单击**确定**。
 
 
 ## 步骤三：查看调用链路数据
