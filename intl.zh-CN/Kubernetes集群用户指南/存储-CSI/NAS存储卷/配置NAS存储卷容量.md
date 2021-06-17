@@ -41,6 +41,7 @@ keyword: [NAS卷的子目录, 配额限制]
       volumeCapacity: "true"
     provisioner: nasplugin.csi.alibabacloud.com
     reclaimPolicy: Delete
+    allowVolumeExpansion: "true"
     ```
 
     |参数|描述|
@@ -54,6 +55,7 @@ keyword: [NAS卷的子目录, 配额限制]
     |provisioner|表示ACK动态卷控制器名称。|
     |reclaimPolicy|表示PV的回收策略。可选值为：    -   Retain：保留后端存储，删除PV及PVC不会删除对应的后端存储，例如云盘。
     -   Delete：当删除PVC时，自动删除PV和后端的存储。 |
+    |allowVolumeExpansion|表示是否支持NAS存储卷的扩容。|
 
     **说明：** 创建带有配额子目录NAS的StorageClass，需要将volumeCapacity设置为true。
 
