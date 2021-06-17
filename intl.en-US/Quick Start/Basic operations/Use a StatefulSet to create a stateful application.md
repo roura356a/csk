@@ -56,7 +56,7 @@ StatefulSets provide the following features:
         |Parameter|Description|
         |---------|-----------|
         |Image Name|        -   To use a Docker image or an image from Container Registry, click **Select Image**. In the dialog box that appears, select an image and click **OK**. In this example, an NGINX image is selected. On the **Search** tab, select **Docker Images** from the drop-down list, enter NGINX in the search bar, and then click Search.
-            -   Alibaba Cloud Container Registry: On the **Alibaba Cloud Container Registry** tab, you can select an image from Container Registry. Specify the region and the Container Registry instance to which the image belongs. For more information about Container Registry, see [What is Container Registry Enterprise Edition?]().
+            -   Alibaba Cloud Container Registry: On the **Alibaba Cloud Container Registry** tab, you can select an image from Container Registry. Specify the region and the Container Registry instance to which the image belongs. For more information about Container Registry, see [What is Container Registry?]().
 
 **Note:** On the **Alibaba Cloud Container Registry** tab, you can enter an image name to search for an image.
 
