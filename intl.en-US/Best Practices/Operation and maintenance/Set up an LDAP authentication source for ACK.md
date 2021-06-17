@@ -61,7 +61,7 @@ Perform the following steps to build a staging environment for LDAP:
     
     0 directories, 6 files
     ################################################ 
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1beta1
     kind: Ingress
     metadata:
       name: ldap-ui
