@@ -132,7 +132,7 @@ ACK默认不支持部署AES，您可以自行根据需要进行部署。下文�
 
     ```
     cat <<-EOF | kubectl apply -f - 
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1beta1
     kind: Ingress
     metadata:
       annotations:
