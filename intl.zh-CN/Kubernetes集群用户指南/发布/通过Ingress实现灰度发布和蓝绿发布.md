@@ -156,7 +156,7 @@ Ingress Controller通过下列Annotation来支持应用服务的灰度发布机�
     1.  创建ingress.yaml。
 
         ```
-        apiVersion: extensions/v1beta1
+        apiVersion: networking.k8s.io/v1beta1
         kind: Ingress
         metadata:
           name: gray-release
@@ -260,7 +260,7 @@ Ingress Controller通过下列Annotation来支持应用服务的灰度发布机�
         1.  按照以下内容，修改步骤[2](#step_ee9_ta0_d84)创建的Ingress。
 
             ```
-            apiVersion: extensions/v1beta1
+            apiVersion: networking.k8s.io/v1beta1
             kind: Ingress
             metadata:
               name: gray-release
@@ -317,7 +317,7 @@ Ingress Controller通过下列Annotation来支持应用服务的灰度发布机�
         1.  按照以下内容，修改步骤[2](#step_ee9_ta0_d84)创建的Ingress。
 
             ```
-            apiVersion: extensions/v1beta1
+            apiVersion: networking.k8s.io/v1beta1
             kind: Ingress
             metadata:
               name: gray-release
@@ -377,7 +377,7 @@ Ingress Controller通过下列Annotation来支持应用服务的灰度发布机�
         1.  按照以下内容，修改步骤[2](#step_ee9_ta0_d84)创建的Ingress。
 
             ```
-            apiVersion: extensions/v1beta1
+            apiVersion: networking.k8s.io/v1beta1
             kind: Ingress
             metadata:
               name: gray-release
@@ -418,7 +418,7 @@ Ingress Controller通过下列Annotation来支持应用服务的灰度发布机�
 1.  按照以下内容，修改步骤[2](#step_ee9_ta0_d84)创建的Ingress。
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1beta1
     kind: Ingress
     metadata:
       name: gray-release
