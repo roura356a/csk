@@ -41,6 +41,7 @@ You can set quotas to manage resource allocation and improve the overall resourc
       volumeCapacity: "true"
     provisioner: nasplugin.csi.alibabacloud.com
     reclaimPolicy: Delete
+    allowVolumeExpansion: "true"
     ```
 
     |Parameter|Description|
@@ -54,6 +55,7 @@ You can set quotas to manage resource allocation and improve the overall resourc
     |provisioner|The provisioner of the PV that is provided by ACK.|
     |reclaimPolicy|The policy that is used to reclaim the PV. Valid values:    -   Retain: retains the backend storage when the PV and PVC are deleted. The backend storage may be cloud disks.
     -   Delete: automatically deletes the backend storage and PV when the PVC is deleted. |
+    |allowVolumeExpansion|This parameter specifies whether NAS storage volume expansion is supported.|
 
     **Note:** To create a StorageClass that sets quotas on the subdirectory of a NAS file system, the volumeCapacity parameter must be set to true.
 
