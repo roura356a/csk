@@ -115,7 +115,7 @@ curl --cert ./client-cert.pem --key ./client-key.pem -k $APISERVER/api/v1/namesp
 
     ```
     cat nginx-deploy.yaml
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: nginx-deploy
@@ -141,25 +141,25 @@ curl --cert ./client-cert.pem --key ./client-key.pem -k $APISERVER/api/v1/namesp
                 cpu: "2"
                 memory: "4Gi"
     
-    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/extensions/v1beta1/namespaces/default/deployments -X POST --header 'content-type: application/yaml' --data-binary @nginx-deploy.yaml
+    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/apps/v1/namespaces/default/deployments -X POST --header 'content-type: application/yaml' --data-binary @nginx-deploy.yaml
     ```
 
     Run the following command to query a Deployment:
 
     ```
-    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/extensions/v1beta1/namespaces/default/deployments
+    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/apps/v1/namespaces/default/deployments
     ```
 
     Run the following command to update a Deployment by modifying the number of replicated pods:
 
     ```
-    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/extensions/v1beta1/namespaces/default/deployments/nginx-deploy -X PATCH -H 'Content-Type: application/strategic-merge-patch+json' -d '{"spec": {"replicas": 4}}'
+    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/apps/v1/namespaces/default/deployments/nginx-deploy -X PATCH -H 'Content-Type: application/strategic-merge-patch+json' -d '{"spec": {"replicas": 4}}'
     ```
 
     Run the following command to update a Deployment by changing the container image:
 
     ```
-    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/extensions/v1beta1/namespaces/default/deployments/nginx-deploy -X PATCH -H 'Content-Type: application/strategic-merge-patch+json' -d '{"spec": {"template": {"spec": {"containers": [{"name": "nginx","image": "nginx:1.7.9"}]}}}}'
+    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/apps/v1/namespaces/default/deployments/nginx-deploy -X PATCH -H 'Content-Type: application/strategic-merge-patch+json' -d '{"spec": {"template": {"spec": {"containers": [{"name": "nginx","image": "nginx:1.7.9"}]}}}}'
     ```
 
 
