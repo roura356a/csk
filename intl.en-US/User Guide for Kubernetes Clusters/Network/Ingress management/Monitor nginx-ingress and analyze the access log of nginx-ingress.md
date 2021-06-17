@@ -144,7 +144,7 @@ For more information about how to configure alerting, see [Create an alert rule]
 
 The following example describes how to configure an alert rule for the 5xx Proportion chart. The system checks whether the alert conditions are met every five minutes. If the proportion of 5xx errors within the specified time range reaches 1%, an alert is triggered.
 
-1.  In the Dashboard section, click Ingress Monitoring Center. On the page that appears, move the pointer over the ![Hint](../images/p229419.png) icon in the upper-right corner of the **5XX Proportion** chart, and click **Create Alert**.
+1.  In the Dashboard section, click Ingress Monitoring Center. On the page that appears, move the pointer over the ![Hint](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1084193261/p229419.png) icon in the upper-right corner of the **5XX Proportion** chart, and click **Create Alert**.
 
     ![Configure an alert](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3445359951/p40708.png)
 
