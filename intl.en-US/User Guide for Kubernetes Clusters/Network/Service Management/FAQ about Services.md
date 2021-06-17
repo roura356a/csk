@@ -31,7 +31,6 @@ This topic provides answers to some frequently asked questions about Services of
 
 **Others**
 
--   [\#section\_3nt\_555\_bta](#section_3nt_555_bta)
 -   [How is session persistence implemented in Kubernetes Services?](~~149276~~)
 
 ## Why are no events collected during the synchronization between a Service and an SLB instance?
