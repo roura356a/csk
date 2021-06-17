@@ -89,7 +89,7 @@ After the node pool is created, you can go to the Node Pools page and perform th
 
     **Note:** When you modify the configurations of the node pool, you can update the image version of the node operating system.
 
--   Click **Scale Out** in the **Actions** column to add nodes to the node pool. For more information, see [Scale out a node pool]().
+-   Click **Scale Out** in the **Actions** column to add nodes to the node pool.
 -   Click the name of the node pool that you want to manage. You can perform the following operations on the details page of the node pool.
     -   Click the **Overview** tab to view information about the cluster, node pool, node configurations, and auto scaling settings.
     -   Click the **Nodes** tab to view information about the nodes in the node pool. You can select multiple nodes and remove them at a time.
