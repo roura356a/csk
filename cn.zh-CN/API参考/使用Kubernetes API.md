@@ -15,8 +15,8 @@
 5.  从kubeconfig文件中提取ca、key和apiserver信息，命令如下。
 
     ```
-    cat  ./kubeconfig |grep client-certificate-data | awk -F ' ' '{print $2}' |base64 -d > client-cert.pem
-    cat  ./kubeconfig |grep client-key-data | awk -F ' ' '{print $2}' |base64 -d > client-key.pem
+    cat  ./kubeconfig |grep client-certificate-data | awk -F ' ' '{print $2}' |base64 -d > ./client-cert.pem
+    cat  ./kubeconfig |grep client-key-data | awk -F ' ' '{print $2}' |base64 -d > ./client-key.pem
     APISERVER=`cat  ./kubeconfig |grep server | awk -F ' ' '{print $2}'`
     ```
 
@@ -26,7 +26,7 @@
 执行以下命令查看当前集群中所有Namespaces。
 
 ```
-curl --cert client-cert.pem --key client-key.pem -k $APISERVER/api/v1/namespaces
+curl --cert ./client-cert.pem --key ./client-key.pem -k $APISERVER/api/v1/namespaces
 ```
 
 -   常用的Pod相关操作。
@@ -115,7 +115,7 @@ curl --cert client-cert.pem --key client-key.pem -k $APISERVER/api/v1/namespaces
 
     ```
     cat nginx-deploy.yaml
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: nginx-deploy
@@ -141,25 +141,25 @@ curl --cert client-cert.pem --key client-key.pem -k $APISERVER/api/v1/namespaces
                 cpu: "2"
                 memory: "4Gi"
     
-    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/extensions/v1beta1/namespaces/default/deployments -X POST --header 'content-type: application/yaml' --data-binary @nginx-deploy.yaml
+    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/apps/v1/namespaces/default/deployments -X POST --header 'content-type: application/yaml' --data-binary @nginx-deploy.yaml
     ```
 
     执行以下命令查看Deployment。
 
     ```
-    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/extensions/v1beta1/namespaces/default/deployments
+    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/apps/v1/namespaces/default/deployments
     ```
 
     执行以下命令更新Deployment（修改replicas副本数量）。
 
     ```
-    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/extensions/v1beta1/namespaces/default/deployments/nginx-deploy -X PATCH -H 'Content-Type: application/strategic-merge-patch+json' -d '{"spec": {"replicas": 4}}'
+    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/apps/v1/namespaces/default/deployments/nginx-deploy -X PATCH -H 'Content-Type: application/strategic-merge-patch+json' -d '{"spec": {"replicas": 4}}'
     ```
 
     执行以下命令更新Deployment（修改容器镜像）。
 
     ```
-    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/extensions/v1beta1/namespaces/default/deployments/nginx-deploy -X PATCH -H 'Content-Type: application/strategic-merge-patch+json' -d '{"spec": {"template": {"spec": {"containers": [{"name": "nginx","image": "nginx:1.7.9"}]}}}}'
+    curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/apps/v1/namespaces/default/deployments/nginx-deploy -X PATCH -H 'Content-Type: application/strategic-merge-patch+json' -d '{"spec": {"template": {"spec": {"containers": [{"name": "nginx","image": "nginx:1.7.9"}]}}}}'
     ```
 
 
