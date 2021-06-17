@@ -25,7 +25,7 @@ Traffic mirroring can be used in the following scenarios:
     1.  Deploy an application in the cluster named K8s Product Cluster and use an Ingress to expose the Services in the cluster.
 
         ```
-        apiVersion: extensions/v1beta1
+        apiVersion: apps/v1
         kind: Deployment
         metadata:
           name: nginx-deployment
@@ -62,7 +62,7 @@ Traffic mirroring can be used in the following scenarios:
             app: nginx
           type: NodePort
         ---
-        apiVersion: extensions/v1beta1
+        apiVersion: networking.k8s.io/v1beta1
         kind: Ingress
         metadata:
           name: nginx-ingress
@@ -102,7 +102,7 @@ Traffic mirroring can be used in the following scenarios:
     1.  Deploy the same application in the cluster named K8s Stage Cluster and use an Ingress to expose the Services in the cluster.
 
         ```
-        apiVersion: extensions/v1beta1
+        apiVersion: apps/v1
         kind: Deployment
         metadata:
           name: nginx-deployment
@@ -139,7 +139,7 @@ Traffic mirroring can be used in the following scenarios:
             app: nginx
           type: NodePort
         ---
-        apiVersion: extensions/v1beta1
+        apiVersion: networking.k8s.io/v1beta1
         kind: Ingress
         metadata:
           name: nginx-ingress
@@ -213,7 +213,7 @@ Mirror all network traffic of the application deployed in the cluster K8s Produc
     Modify `configuration-snippet` and `server-snippet` of the nginx-ingress controller based on your business requirements. The following YAML file is an example:
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1beta1
     kind: Ingress
     metadata:
       name: nginx-ingress
