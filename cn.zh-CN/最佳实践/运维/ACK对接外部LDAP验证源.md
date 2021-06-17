@@ -73,7 +73,7 @@ keyword: [容器服务Kubernetes, LDAP, IDAAS]
         
         0 directories, 6 files
         ################################################ 
-        apiVersion: extensions/v1beta1
+        apiVersion: networking.k8s.io/v1beta1
         kind: Ingress
         metadata:
           name: ldap-ui
