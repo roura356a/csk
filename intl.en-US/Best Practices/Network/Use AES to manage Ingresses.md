@@ -132,7 +132,7 @@ To verify that AES functions as an Ingress controller, you must create a Deploym
 
     ```
     cat <<-EOF | kubectl apply -f - 
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1beta1
     kind: Ingress
     metadata:
       annotations:
