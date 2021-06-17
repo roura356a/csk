@@ -24,7 +24,7 @@ CIS Aliyun Linux 2 Benchmark version 1.0.0是最新的CIS Aliyun Linux 2 Benchma
 
 综上，CIS Aliyun Linux 2一共204项，可以分为四类：
 
--   Level 1 Sorced（共145项）
+-   Level 1 Scored（共145项）
 -   Level 1 Not Scored（共21项）
 -   Level 2 Scored（共33项）
 -   Level 2 Not Scored（共3项）
