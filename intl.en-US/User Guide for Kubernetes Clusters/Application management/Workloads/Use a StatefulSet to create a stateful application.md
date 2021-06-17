@@ -6,7 +6,7 @@ Before you deploy a stateful application from an image, make sure that you have 
 
 -   [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)
 -   [Create a PVC](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Create a PVC.md)
--   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md)
+-   [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md)
 
 StatefulSets provide the following features:
 
@@ -21,7 +21,7 @@ StatefulSets provide the following features:
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -56,7 +56,7 @@ StatefulSets provide the following features:
         |Parameter|Description|
         |---------|-----------|
         |Image Name|        -   To use a Docker image or an image from Container Registry, click **Select Image**. In the dialog box that appears, select an image and click **OK**. In this example, an NGINX image is selected. On the **Search** tab, select **Docker Images** from the drop-down list, enter NGINX in the search bar, and then click Search.
-            -   Alibaba Cloud Container Registry: On the **Alibaba Cloud Container Registry** tab, you can select an image from Container Registry. Specify the region and the Container Registry instance to which the image belongs. For more information about Container Registry, see [What is Container Registry Enterprise Edition?]().
+            -   Alibaba Cloud Container Registry: On the **Alibaba Cloud Container Registry** tab, you can select an image from Container Registry. Specify the region and the Container Registry instance to which the image belongs. For more information about Container Registry, see [What is Container Registry?]().
 
 **Note:** On the **Alibaba Cloud Container Registry** tab, you can enter an image name to search for an image.
 
@@ -69,12 +69,12 @@ StatefulSets provide the following features:
 |        -   Click **Select Image Version** and select an image version. If you do not specify an image version, the latest image version is used.
         -   You can select the following image pull policies:
 
-            -   **ifNotPresent**: If the image you want to pull is found in the region where the cluster is deployed, the local image is used. Otherwise, ACK pulls the image from the corresponding repository.
-            -   **Always**: ACK pulls the image from the repository each time the application is deployed or expanded.
-            -   **Never**: ACK uses only local images.
-**Note:** If you select **Image Pull Policy**, no image pull policy is applied for the deployment of the application.
+            -   **ifNotPresent**: If the image that you want to pull is found on your on-premises machine, the image on your on-premises machine is used. Otherwise, ACK pulls the image from the corresponding repository.
+            -   **Always**: ACK pulls the image from Container Registry each time the application is deployed or scaled out.
+            -   **Never**: ACK uses only images on your on-premises machine.
+**Note:** If you select **Image Pull Policy**, no image pull policy is applied.
 
-        -   To pull the image without a secret, click **Set Image Pull Secret** to set a secret for pulling images. For more information, see [Use aliyun-acr-credential-helper to pull images without a password](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Image/Use aliyun-acr-credential-helper to pull images without a password.md). |
+        -   To pull the image without a password, click **Set Image Pull Secret** to set a Secret that is used to pull the image. For more information, see [Use aliyun-acr-credential-helper to pull images without a password](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Image/Use aliyun-acr-credential-helper to pull images without a password.md). |
         |Resource Limit|You can specify an upper limit for the CPU, memory, and ephemeral storage space that the container can consume. This prevents the container from occupying an excess amount of resources. The CPU resource is measured in millicores \(one thousandth of one core\). The memory resource is measured in MiB. The ephemeral storage resource is measured in GiB.|
         |Required Resources|The amount of CPU and memory resources that are reserved for this application. These resources are exclusive to the container. This prevents the application from becoming unavailable when other services or processes occupy these resources.|
         |Container Start Parameter|        -   stdin: specifies that start parameters defined in the console are sent to the container.
