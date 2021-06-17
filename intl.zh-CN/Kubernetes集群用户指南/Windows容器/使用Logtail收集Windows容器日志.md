@@ -10,6 +10,10 @@ keyword: [Windows节点, Logtail, 应用日志信息采集]
 -   已创建Windows节点池。更多信息，请参见[创建Windows节点池](/intl.zh-CN/Kubernetes集群用户指南/Windows容器/创建Windows节点池.md)。
 -   已通过kubectl连接ACK集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
+## 使用限制
+
+目前Logtail仅限于支持采集Stdout的输出至日志服务，后续会支持对日志文件的采集。
+
 ## 为Windows节点安装Logtail v1.0.x
 
 执行以下YAML模板将Logtail以Daemonset方式部署至Windows节点上。
@@ -47,6 +51,8 @@ spec:
                 operator: In
                 values:
                 - windows
+              - key: window.alibabacloud.com/deployment-topology
+                operator: DoesNotExist
             - matchExpressions:
               - key: type
                 operator: NotIn
@@ -56,6 +62,8 @@ spec:
                 operator: In
                 values:
                 - windows
+              - key: window.alibabacloud.com/deployment-topology
+                operator: DoesNotExist
       containers:
       - name: logtail
         command:
@@ -66,10 +74,10 @@ spec:
         - entrypoint.ps1
         env:
         # --- configure the logtail file configuration generation --- #
-        ## "ALICLOUD_LOGTAIL_CONFIG_PATH" specifies the configuration path of logtail, 
-        ## if the path is blank, the configuration will generate 
+        ## "ALICLOUD_LOGTAIL_CONFIG_PATH" specifies the configuration path of logtail,
+        ## if the path is blank, the configuration will generate
         ## via "ALICLOUD_LOGTAIL_CONFIG_ITEM__" prefix environment variables.
-        ## "ALICLOUD_LOGTAIL_CONFIG_ITEM__" needs to be combined with a type indicator to  
+        ## "ALICLOUD_LOGTAIL_CONFIG_ITEM__" needs to be combined with a type indicator to
         ## display the type of the configuration item, the following indicators are optional.
         ## -       INT__ : 64-bit signed integer.
         ## -      UINT__ : 64-bit unsigned integer.
@@ -77,8 +85,8 @@ spec:
         ## -      BOOL__ : boolean.
         ## -       STR__ : string, default type.
         ## - {<TYPE>}S__ : array in <TYPE> with vertical bar separated format.
-        ## P.S: don't treate "ALICLOUD_LOGTAIL_CONFIG_ITEM__" as a silver bullet, 
-        ## when the configuration is too complicated, 
+        ## P.S: don't treate "ALICLOUD_LOGTAIL_CONFIG_ITEM__" as a silver bullet,
+        ## when the configuration is too complicated,
         ## please mount a detailed configuration file on "ALICLOUD_LOGTAIL_CONFIG_PATH".
         - name: ALICLOUD_LOGTAIL_CONFIG_PATH
           valueFrom:
@@ -112,8 +120,8 @@ spec:
         ## which is to specify the uid of Alibaba Cloud SLS service.
         ## "ALICLOUD_LOG_PROJECT" is the same as "ALICLOUD_LOG_DEFAULT_PROJECT",
         ## which is to specify the project of Alibaba Cloud SLS service.
-        ## "ALICLOUD_LOG_MACHINE_GROUP" is the same as "ALIYUN_LOGTAIL_USER_DEFINED_ID" 
-        ## and "ALICLOUD_LOG_DEFAULT_MACHINE_GROUP", 
+        ## "ALICLOUD_LOG_MACHINE_GROUP" is the same as "ALIYUN_LOGTAIL_USER_DEFINED_ID"
+        ## and "ALICLOUD_LOG_DEFAULT_MACHINE_GROUP",
         ## which is to specify the machine group of Alibaba Cloud SLS service.
         ## "ALICLOUD_LOG_ENDPOINT" specifies the endpoint of the Alibaba Cloud SLS service.
         ## "ALICLOUD_LOG_ECS_FLAG" specifies whether to log the ECS flags.
@@ -165,7 +173,7 @@ spec:
               apiVersion: v1
               fieldPath: status.hostIP
         # 根据不同集群的地域，您需修改以下镜像地址中的地域<cn-hangzhou>信息。
-        image: registry-vpc.cn-hangzhou.aliyuncs.com/acs/logtail-windows:v1.0.20 
+        image: registry-vpc.cn-hangzhou.aliyuncs.com/acs/logtail-windows:v1.0.20
         imagePullPolicy: IfNotPresent
         resources:
           limits:
@@ -211,8 +219,6 @@ spec:
     type: RollingUpdate
 ```
 
-**说明：** 目前Logtail仅限于支持采集Stdout的输出至日志服务，后续会支持对日志文件的采集。
-
 ## 为Windows节点安装Logtail v1.1.x
 
 **说明：** Logtail v1.1.x依赖Windows工作节点上的特权托管进程，仅适用于集群内节点池默认含有`window.alibabacloud.com/deployment-topology=2.0`标签的Windows工作节点。
@@ -255,9 +261,9 @@ spec:
                 values:
                 - windows
               - key: window.alibabacloud.com/deployment-topology
-        operator: In
-        values:
-        - "2.0"
+                operator: In
+                values:
+                - "2.0"
             - matchExpressions:
               - key: type
                 operator: NotIn
@@ -267,10 +273,10 @@ spec:
                 operator: In
                 values:
                 - windows
-       - key: window.alibabacloud.com/deployment-topology
-        operator: In
-        values:
-        - "2.0"
+              - key: window.alibabacloud.com/deployment-topology
+                operator: In
+                values:
+                - "2.0"
       containers:
       - name: logtail
         # use the below volume configuration since v1.1+.
@@ -282,10 +288,10 @@ spec:
         - entrypoint.ps1
         env:
         # --- configure the logtail file configuration generation --- #
-        ## "ALICLOUD_LOGTAIL_CONFIG_PATH" specifies the configuration path of logtail, 
-        ## if the path is blank, the configuration will generate 
+        ## "ALICLOUD_LOGTAIL_CONFIG_PATH" specifies the configuration path of logtail,
+        ## if the path is blank, the configuration will generate
         ## via "ALICLOUD_LOGTAIL_CONFIG_ITEM__" prefix environment variables.
-        ## "ALICLOUD_LOGTAIL_CONFIG_ITEM__" needs to be combined with a type indicator to  
+        ## "ALICLOUD_LOGTAIL_CONFIG_ITEM__" needs to be combined with a type indicator to
         ## display the type of the configuration item, the following indicators are optional.
         ## -       INT__ : 64-bit signed integer.
         ## -      UINT__ : 64-bit unsigned integer.
@@ -293,8 +299,8 @@ spec:
         ## -      BOOL__ : boolean.
         ## -       STR__ : string, default type.
         ## - {<TYPE>}S__ : array in <TYPE> with vertical bar separated format.
-        ## P.S: don't treate "ALICLOUD_LOGTAIL_CONFIG_ITEM__" as a silver bullet, 
-        ## when the configuration is too complicated, 
+        ## P.S: don't treate "ALICLOUD_LOGTAIL_CONFIG_ITEM__" as a silver bullet,
+        ## when the configuration is too complicated,
         ## please mount a detailed configuration file on "ALICLOUD_LOGTAIL_CONFIG_PATH".
         - name: ALICLOUD_LOGTAIL_CONFIG_PATH
           valueFrom:
@@ -328,8 +334,8 @@ spec:
         ## which is to specify the uid of Alibaba Cloud SLS service.
         ## "ALICLOUD_LOG_PROJECT" is the same as "ALICLOUD_LOG_DEFAULT_PROJECT",
         ## which is to specify the project of Alibaba Cloud SLS service.
-        ## "ALICLOUD_LOG_MACHINE_GROUP" is the same as "ALIYUN_LOGTAIL_USER_DEFINED_ID" 
-        ## and "ALICLOUD_LOG_DEFAULT_MACHINE_GROUP", 
+        ## "ALICLOUD_LOG_MACHINE_GROUP" is the same as "ALIYUN_LOGTAIL_USER_DEFINED_ID"
+        ## and "ALICLOUD_LOG_DEFAULT_MACHINE_GROUP",
         ## which is to specify the machine group of Alibaba Cloud SLS service.
         ## "ALICLOUD_LOG_ENDPOINT" specifies the endpoint of the Alibaba Cloud SLS service.
         ## "ALICLOUD_LOG_ECS_FLAG" specifies whether to log the ECS flags.
@@ -381,7 +387,7 @@ spec:
         apiVersion: v1
         fieldPath: status.hostIP
         # 根据不同集群的地域，您需修改以下镜像地址中的地域<cn-hangzhou>信息。
-        image: registry-vpc.cn-hangzhou.aliyuncs.com/acs/logtail-windows:v1.1.18-aliyun.1  
+        image: registry-vpc.cn-hangzhou.aliyuncs.com/acs/logtail-windows:v1.1.18-aliyun.1
         imagePullPolicy: IfNotPresent
         resources:
           limits:
