@@ -102,7 +102,7 @@ In both cases, we recommend that you do not overwrite the listeners of existing 
 
 ## How do I troubleshoot failures to upgrade CCM?
 
-For more information about solutions to CCM upgrade failures, see[CCM upgrade failures](https://www.alibabacloud.com/help/doc-detail/164988.htm).
+For more information about solutions to CCM upgrade failures, see [CCM upgrade failures](https://www.alibabacloud.com/help/doc-detail/164988.htm).
 
 ## Why does the cluster fail to access the IP address of the SLB instance?
 
