@@ -11,7 +11,7 @@ In most cases, to enable a pod to access the Internet, the IP address of the pod
 -   The pod exposes random ports to the Internet. For example, game servers and audio conferences that use the User Datagram Protocol \(UDP\). For example, if the Real Time Streaming Protocol \(RTSP\) is used, different ports are used for different clients.
 -   The pod competes with other pods for a public IP address to access the Internet. In this case, the pod requires a dedicated public IP address to access the Internet.
 
-For more information about how to use the Terway network plug-in in an ACK cluster, see [Work with Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md).
+For more information about how to use the Terway network plug-in in an ACK cluster, see [Use the Terway plug-in](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use the Terway plug-in.md).
 
 ## Step 1: Upgrade Terway to the latest version
 
@@ -27,7 +27,7 @@ You must configure and grant EIP-related permissions to the cluster that uses Te
 
     1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-    2.  In the left-side navigation pane, click **Clusters**.
+    2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
     3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -145,7 +145,7 @@ You can add annotations to the configurations of a pod to create or associate an
     -   Add the following annotation to specify the bandwidth for the EIP. The default EIP bandwidth is 5 Mbit/s.
 
         ```
-        k8s.aliyun.com/eip-bandwidth: 5
+        k8s.aliyun.com/eip-bandwidth: "5"
         ```
 
 -   **Specify an existing EIP**
@@ -170,5 +170,5 @@ When the pod changes to the Running state, you can check the value of k8s.aliyun
 
 [Plan CIDR blocks for an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Network/Plan CIDR blocks for an ACK cluster.md)
 
-[Work with Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md)
+[Use the Terway plug-in](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use the Terway plug-in.md)
 
