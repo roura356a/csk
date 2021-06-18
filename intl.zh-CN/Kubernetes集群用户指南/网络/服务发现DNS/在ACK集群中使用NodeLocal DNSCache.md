@@ -7,7 +7,7 @@ keyword: [node-local-dns, NodeLocal DNSCache, DaemonSet]
 在ACK集群中部署NodeLocal DNSCache可以提升服务发现的稳定性和性能，NodeLocal DNSCache通过在集群节点上作为DaemonSet运行DNS缓存代理来提高集群DNS性能。本文介绍如何安装NodeLocal DNSCache，并配置应用使用NodeLocal DNSCache。
 
 -   已创建ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   使用kubectl命令连接集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   使用kubectl命令连接集群。具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 ## 使用限制
 
@@ -91,11 +91,14 @@ ACK NodeLocal DNSCache是基于社区开源项目NodeLocal DNSCache的一套DNS�
 
 DNSConfig动态注入控制器可用于自动注入DNSConfig至新建的Pod中，避免您手工配置Pod YAML进行注入。本应用默认会监听包含`node-local-dns-injection=enabled`标签的命名空间中新建Pod的请求，您可以通过以下命令给命名空间打上Label标签。
 
-**说明：** 在命名空间DNSConfig自动注入开启的情况下，如需对部分Pod进行豁免（即不进行注入），可以调整其Pod Template中Labels标签字段，加上`node-local-dns-injection=disabled`标签。
-
 ```
 kubectl label namespace default node-local-dns-injection=enabled
 ```
+
+**说明：**
+
+-   上述命令仅会开启default命名空间的自动注入，如需对其它命名空间开启自动注入，则需要替换`default`为目标命名空间名称。
+-   在命名空间DNSConfig自动注入开启的情况下，如需对部分Pod进行豁免（即不进行注入），可以调整其Pod Template中Labels标签字段，加上`node-local-dns-injection=disabled`标签。
 
 开启自动注入后，您创建的Pod会被增加以下字段，为了最大程度上保证业务DNS请求高可用，nameservers中会额外加入kube-dns的ClusterIP地址作为备份的DNS服务器。
 
