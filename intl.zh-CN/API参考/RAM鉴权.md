@@ -90,8 +90,7 @@ acs:service-name:region:account-id:resource-relative-id
 |RemoveClusterNodes|DeleteClusterNode|移除集群节点。|
 |ResumeComponentUpgrade|ResumeComponentUpgrade|重新开始组件升级。|
 |ResumeUpgradeCluster|UpgradeCluster|重新开始集群升级。|
-|ScaleCluster|ScaleCluster|集群扩容。|
-|ScaleOutCluster|ScaleCluster|添加已有节点。|
+|ScaleOutCluster|ScaleCluster|扩容集群。|
 |UnInstallClusterAddons|UnInstallK8sComponents|卸载集群组件。|
 |UpdateK8sClusterUserConfigExpire|UpdateK8sClusterUserConfigExpire|更新用户自定义配置过期时间。|
 |UpgradeCluster|UpgradeCluster|升级集群。|
