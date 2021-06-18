@@ -17,15 +17,15 @@ keyword: [AEP, 非易失性存储卷]
 
 **FIO读写性能测试**
 
-本文分别使用AEP PMEM-LVM类型和SSD类型卷创建应用，然后进行对比测试。
+本文分别使用AEP PMEM-LVM类型和SSD类型卷创建应用，然后对比测试。
 
 
 
 1.  部署YAML文件声明PMEM-LVM类型和SSD类型PVC。
 
-2.  部署YAML文件挂载存储卷和运行FIO测试。
+2.  部署YAML文件挂载存储卷和运行`fio`测试。
 
-    -   通过`kubectl exec`进入测试容器内部，运行fio测试PMEM-LVM卷的写性能。
+    -   通过`kubectl exec`进入测试容器内部，运行`fio`测试PMEM-LVM卷的写性能。
 
         ```
         mount | grep csi
@@ -40,7 +40,7 @@ keyword: [AEP, 非易失性存储卷]
         lat (nsec): min=2054, max=95278, avg=10544.00, stdev=1697.17
         ```
 
-    -   通过`kubectl exec`进入测试容器内部，运行fio测试SSD卷的写性能。
+    -   通过`kubectl exec`进入测试容器内部，运行`fio`测试SSD卷的写性能。
 
         ```
         cd /data
@@ -56,8 +56,8 @@ keyword: [AEP, 非易失性存储卷]
 
     可见AEP设备的PMEM-LVM性能是SSD本地盘设备的2~3倍。
 
-    |卷类型|IOPS|Thoughput|
-    |---|----|---------|
+    |卷类型|IOPS|Throughput|
+    |---|----|----------|
     |PMEM-LVM|92000|381 MB/s|
     |SSD|37000|153 MB/s|
 
@@ -162,8 +162,8 @@ keyword: [AEP, 非易失性存储卷]
           name: mysql-pass
         type: Opaque
         data:
-          username: YWRtaW4=
-          password: YWRtaW4=
+          username: YWRt****
+          password: YWRt****
         ```
 
     2.  执行以下命令查看创建的MySQL数据库实例。
@@ -276,8 +276,8 @@ keyword: [AEP, 非易失性存储卷]
           name: mysql-pass
         type: Opaque
         data:
-          username: YWRtaW4=
-          password: YWRtaW4=
+          username: YWRt****
+          password: YWRt****
         ```
 
     2.  执行以下命令查看创建的MySQL数据库实例。
@@ -318,5 +318,5 @@ sysbench /root/sysbench/point_select.lua run --db-driver=mysql --report-interval
 **相关文档**  
 
 
-[ACK支持AEP非易失性数据卷](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/AEP非易失性存储卷/ACK支持AEP非易失性数据卷.md)
+[AEP非易失性数据卷概述](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/AEP非易失性存储卷/AEP非易失性数据卷概述.md)
 
