@@ -147,7 +147,7 @@ Terway为Pod配置EIP需要EIP相关的权限去申请和配置EIP，所以需�
     -   添加以下注解，指定EIP的带宽，默认带宽5 Mbps（与EIP的默认值保持一致）：
 
         ```
-        k8s.aliyun.com/eip-bandwidth: 5
+        k8s.aliyun.com/eip-bandwidth: "5"
         ```
 
 -   **指定EIP场景**
