@@ -56,8 +56,8 @@ In this topic, two persistent volume claims \(PVCs\) are created based on AEP PM
 
     The output indicates that the read and write performance of the AEP device is two to three times higher than that of the SSD device.
 
-    |Volume type|IOPS|Thoughput|
-    |-----------|----|---------|
+    |Volume type|IOPS|Throughput|
+    |-----------|----|----------|
     |PMEM-LVM|92000|381 MB/s|
     |SSD|37000|153 MB/s|
 
@@ -318,5 +318,5 @@ The result indicates that the database write performance is 2.5 times higher whe
 **Related topics**  
 
 
-[Use AEP in ACK clusters]()
+[Use AEP in ACK clusters](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/AEP non-volatile storage volumes/Use AEP in ACK clusters.md)
 
