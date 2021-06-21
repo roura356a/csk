@@ -53,10 +53,8 @@ keyword: [OSS, 静态存储, K8s]
     -   **新建保密字典**：配置命名空间、名称、AccessKey ID及AccessKey Secret。 |
     |**可选参数**|您可以为OSS存储卷输入定制化参数，格式为`-o *** -o ***`。|
     |**Bucket ID**|您要使用的OSS bucket的名称。单击**选择 Bucket**，在弹出的对话框中选择所需的bucket并单击**选择**。|
-    |**访问域名**|您可以参考以下情况选择需要的访问域名。    -   如果Bucket和ECS实例位于不同地域（Region），请选择**外网域名**。
-    -   如果Bucket和ECS实例位于相同地域，需要根据集群网络类型进行选择：
-        -   若是VPC网络，请选择**VPC域名**。
-        -   若是经典网络，请选择**内网域名**。 |
+    |**访问域名**|您可以参考以下情况选择需要的访问域名。    -   如果Bucket和ECS实例位于不同地域（Region），请选择**公网域名**。
+    -   如果Bucket和ECS实例位于相同地域，请选择**私网域名**。 |
     |**标签**|为该存储卷添加标签。|
 
 7.  参数配置完成后，单击**创建**。
@@ -190,8 +188,10 @@ keyword: [OSS, 静态存储, K8s]
     |nodePublishSecretRef|定义挂载PV时通过Secret对象来获取AccessKey信息。|
     |volumeHandle|配置PV的名称。|
     |bucket|需要挂载的OSS Bucket。|
-    |url|挂载OSS的接入域名，挂载节点和Bucket相同地域时，可使用内网地址。|
-    |otherOpts|挂载OSS时支持输入定制化参数，格式为：`-o *** -o ***`。|
+    |url|挂载OSS的接入域名。    -   挂载节点和Bucket相同地域时，请使用私网地址。
+    -   挂载节点和Bucket不同地域时，请使用公网地址。
+    -   禁止使用VPC网络。 |
+    |otherOpts|挂载OSS时支持输入定制化参数，格式为：`-o *** -o ***`。本示例`-o max_stat_cache_size=0 -o allow_other`默认包含300秒的元数据缓存时间，会导致在控制台上传的文件在300秒内无法在OSSFS中看到。若需要实时刷新数据，可使用示例`-o max_stat_cache_size=0 -o allow_other -oconnect_timeout=0 -ostat_cache_expire=0`。|
     |path|表示挂载时相对Bucket根文件的目录结构，默认为/（v1.14.8.32-c77e277b-aliyun及之后版本支持）。|
 
     1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
