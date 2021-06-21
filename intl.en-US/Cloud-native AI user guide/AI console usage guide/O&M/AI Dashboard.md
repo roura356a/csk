@@ -9,7 +9,7 @@ You can use the monitoring component provided by cloud-native AI to monitor the 
 -   The Kubernetes version of the ACK cluster is 1.18.8 or later.
 -   The Arena component of V0.7.0 or later is installed. For more information, see [Install the latest version of Arena](/intl.en-US/Solutions/Deep learning solution/Preparations/Install the latest version of Arena.md).
 -   The ARMS Prometheus component is installed. For more information, see [arms-prometheus](https://cs.console.aliyun.com/#/k8s/catalog/detail/incubator_ack-arms-prometheus).
--   The AI Dashboard component is installed. For more information, see [Deploy cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy cloud-native AI component set.md).
+-   The AI Dashboard component is installed. For more information, see [Deploy the cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy the cloud-native AI component set.md).
 
 ## Install the cloud-native AI component set
 
@@ -34,7 +34,7 @@ You can use the monitoring component provided by cloud-native AI to monitor the 
 
 ## View the GPU resource usage and resource quotas in different namespaces
 
-**Note:** Before you use the monitoring component, you must install **ack-ai-dashboard** and configure access to the AI Dashboard page. For more information about how to install and access AI Dashboard, see[Deploy cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy cloud-native AI component set.md).
+**Note:** Before you use the monitoring component, you must install **ack-ai-dashboard** and configure access to the AI Dashboard page. For more information about how to install and access AI Dashboard, see [Deploy the cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy the cloud-native AI component set.md).
 
 You can perform the following operations on the AI Dashboard page:
 
