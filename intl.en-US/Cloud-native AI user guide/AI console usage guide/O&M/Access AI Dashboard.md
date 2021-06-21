@@ -12,7 +12,7 @@ You can access AI Dashboard by using sshuttle, SSL VPNs, internal-facing Ingress
     -   A jump server that uses SSH and can access the Internet is added to the cluster. For more information, see [Configure SNAT entries for existing ACK clusters](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Enable an existing ACK cluster to access the Internet by using SNAT.md).
     -   Python 3.6 or later is installed on the jump server.
     -   The username and password that you can use to connect to the jump server are obtained.
-    -   sshuttle is the most cost-effective solution to set up a VPN over SSH. We recommend that you enable an IP whitelist for the security group to which the cluster belongs. The IP whitelist specifies the IP addresses that the cluster is allowed to access over the Internet. For more information, see [Allow your instance to connect to only specified public IP addresses](https://help.aliyun.com/document_detail/25475.html?spm=5176.2020520101securityGroupDetail.0.dexternal.2d004df5d6w9mV#specifyIpAccess).
+    -   sshuttle is the most cost-effective solution to set up a VPN over SSH. We recommend that you enable an IP whitelist for the security group to which the cluster belongs. The IP whitelist specifies the IP addresses that the cluster is allowed to access over the Internet. For more information, see [t9715.md\#specifyInstanceAccess](/intl.en-US/Security/Security groups/Scenarios for security groups.md).
 
 ## Access AI Dashboard
 
@@ -27,7 +27,7 @@ You can access AI Dashboard by using four methods. The following table compares 
 
 **Method 1: Use an Internet-facing Ingress to access AI Dashboard**
 
-1.  Select **O&M Console** on the Cloud-native AI Component Set page. In the **Note** dialog box, select **Public Domain \(you must install an Ingress controller for access from the Internet\)**. For more information, see [Deploy cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy cloud-native AI component set.md).
+1.  Select **O&M Console** on the Cloud-native AI Component Set page. In the **Note** dialog box, select **Public Domain \(you must install an Ingress controller for access from the Internet\)**. For more information, see [Deploy the cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy the cloud-native AI component set.md).
 
     ![ai15](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4790933261/p261809.png)
 
