@@ -12,7 +12,7 @@ You can access AI Dashboard by using sshuttle, SSL VPNs, internal-facing Ingress
     -   A jump server that uses SSH and can access the Internet is added to the cluster. For more information, see [Configure SNAT entries for existing ACK clusters](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Enable an existing ACK cluster to access the Internet by using SNAT.md).
     -   Python 3.6 or later is installed on the jump server.
     -   The username and password that you can use to connect to the jump server are obtained.
-    -   sshuttle is the most cost-effective solution to set up a VPN over SSH. We recommend that you enable an IP whitelist for the security group to which the cluster belongs. The IP whitelist specifies the IP addresses that the cluster is allowed to access over the Internet. For more information, see [t9715.md\#specifyInstanceAccess](/intl.en-US/Security/Security groups/Scenarios for security groups.md).
+    -   sshuttle is the most cost-effective solution to set up a VPN over SSH. We recommend that you enable an IP whitelist for the security group to which the cluster belongs. The IP whitelist specifies the IP addresses that the cluster is allowed to access over the Internet. For more information, see [t9715.md\#specifyIpAccess](/intl.en-US/Security/Security groups/Scenarios for security groups.md).
 
 ## Access AI Dashboard
 
