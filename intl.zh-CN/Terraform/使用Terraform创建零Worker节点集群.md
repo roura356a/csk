@@ -47,7 +47,6 @@ resource "alicloud_key_pair" "default" {
 
 resource "alicloud_cs_managed_kubernetes" "default" {
   name                         = var.name
-  count                        = 1
   # 只有ACK Pro托管版集群才支持创建0节点集群。
   cluster_spec                 = "ack.pro.small"
   password                     = "Hello1234"
@@ -63,7 +62,7 @@ resource "alicloud_cs_managed_kubernetes" "default" {
 
 当您创建完零Worker节点的ACK集群后，想添加节点时，您可以通过Terraform创建节点池来为集群添加Worker节点。配置方式有以下两种：
 
--   通过自定义节点池来管理Worker节点的配置如下。
+-   通过节点池来管理Worker节点的配置如下。
 
     ```
     # 依赖上文中使用Terraform创建零Worker节点集群步骤中的变量以及配置。
@@ -81,9 +80,9 @@ resource "alicloud_cs_managed_kubernetes" "default" {
     }
     ```
 
--   通过自动伸缩节点池来管理Worker节点的配置如下。
+-   通过开启了自动伸缩配置的节点池来管理Worker节点的配置如下。
 
-    **说明：** 使用自动伸缩节点池，必须要先开启本文[前提条件](#prereq_yjz_13n_fb1)中提到的ESS权限。
+    **说明：** 使用开启了自动伸缩配置的节点池，需要先开启本文[前提条件](#prereq_yjz_13n_fb1)中提到的ESS权限。
 
     ```
     resource "alicloud_cs_kubernetes_node_pool" "auto-np" {
@@ -114,5 +113,5 @@ resource "alicloud_cs_managed_kubernetes" "default" {
 
 [阿里云Terraform Provider](https://github.com/hashicorp/terraform-provider-alicloud)
 
-[使用Terraform创建自动伸缩节点池](/intl.zh-CN/Kubernetes集群用户指南/节点与节点池/节点池/使用Terraform创建自动伸缩节点池.md)
+[使用Terraform创建具备自动伸缩功能的节点池](/intl.zh-CN/Terraform/使用Terraform创建具备自动伸缩功能的节点池.md)
 
