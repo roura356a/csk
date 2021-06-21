@@ -23,7 +23,7 @@ keyword: [共享GPU, 托管Prometheus监控, GPU资源隔离]
 
 4.  在**确认**对话框中，单击**确认**。
 
-    插件安装过程需要2分钟左右。安装插件完毕后，**已安装插件**列中将显示全部已安装的插件。
+    插件安装过程需要2分钟左右。安装插件完毕后，**已安装大盘**列中将显示全部已安装的插件。
 
 5.  通过命令行部署以下示例应用，详情请参见[通过命令管理应用](/intl.zh-CN/Kubernetes集群用户指南/应用/工作负载/创建无状态工作负载Deployment.md)。
 
@@ -70,7 +70,7 @@ keyword: [共享GPU, 托管Prometheus监控, GPU资源隔离]
     app-3g-v1-0   1/1     Running   1          2m56s
     ```
 
-6.  单击目标集群**操作**列中的**GPU APP**。
+6.  单击目标集群，在目标集群的**大盘列表**页面，单击**名称**列的**GPU APP**。
 
     可以看到该应用的GPU显存占用率仅为20%，存在80%的浪费。而它使用的显存稳定在3.4 GB左右，而总显存为16 GB左右。因此一个应用独占一张GPU卡的模式比较浪费，可以考虑通过使用cGPU（container GPU）将多个应用部署在同一个GPU卡上。
 
@@ -109,7 +109,7 @@ keyword: [共享GPU, 托管Prometheus监控, GPU资源隔离]
 
     5.  登录Master节点并执行以下命令查看GPU资源。
 
-        登录Master节点相关步骤，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+        登录Master节点相关步骤，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
         ```
         kubectl inspect cgpu
@@ -132,7 +132,7 @@ keyword: [共享GPU, 托管Prometheus监控, GPU资源隔离]
     1.  修改之前部署应用的YAML文件。
 
         -   将实例的副本数从1改为2，这样可以指定部署两个负载。而在原有GPU独享的配置下，单个GPU卡智能调度单个容器；修改配置后，可以部署两个Pod实例。
-        -   将资源维度从`nvidia.com/gpu`变为`aliyun.com/gpu-mem`，单位也从个变成了GiB。
+        -   将资源维度从`nvidia.com/gpu`变为`aliyun.com/gpu-mem`，单位也从个变成了GB。
         ```
         apiVersion: apps/v1
         kind: StatefulSet
@@ -158,7 +158,7 @@ keyword: [共享GPU, 托管Prometheus监控, GPU资源隔离]
                 image: registry.cn-shanghai.aliyuncs.com/tensorflow-samples/cuda-malloc:3G
                 resources:
                   limits:
-                    aliyun.com/gpu-mem: 4   #每个pod申请4GB显存，因为replicas值为2，所以该应用总共申请8GB显存
+                    aliyun.com/gpu-mem: 4   #每个pod申请4 GB显存，因为replicas值为2，所以该应用总共申请8 GB显存
         ```
 
     2.  按照GPU显存维度调度重新创建工作负载。
@@ -286,7 +286,7 @@ keyword: [共享GPU, 托管Prometheus监控, GPU资源隔离]
 
 1.  部署一个新的GPU应用。
 
-    该应用声明使用的GPU显存是4 GiB，但是它实际使用的GPU显存为6 GiB。
+    该应用声明使用的GPU显存是4 GB，但是它实际使用的GPU显存为6 GB。
 
     ```
     apiVersion: apps/v1beta1
@@ -313,7 +313,7 @@ keyword: [共享GPU, 托管Prometheus监控, GPU资源隔离]
             image: registry.cn-shanghai.aliyuncs.com/tensorflow-samples/cuda-malloc:6G
             resources:
               limits:
-                aliyun.com/gpu-mem: 4 #每个pod申请了4GB显存，副本数为1，该应用总共申请4GB显存
+                aliyun.com/gpu-mem: 4 #每个Pod申请了4 GB显存，副本数为1，该应用总共申请4 GB显存
     ```
 
 2.  执行以下命令，查看Pod的状态。
