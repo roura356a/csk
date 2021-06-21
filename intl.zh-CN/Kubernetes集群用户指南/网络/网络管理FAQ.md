@@ -4,7 +4,7 @@
 
 ## 容器网络FAQ
 
--   [t2011665.md\#section\_7hi\_dnx\_552](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
+-   [Terway网络模式下增加了虚拟交换机后，集群无法访问公网怎么办？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
 -   [手动升级了Flannel镜像版本后，如何解决无法兼容1.16以上版本集群的问题？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
 -   [如何解决Pod启动后存在时延的问题？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
 -   [如何让Pod访问自己暴露的服务？](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
