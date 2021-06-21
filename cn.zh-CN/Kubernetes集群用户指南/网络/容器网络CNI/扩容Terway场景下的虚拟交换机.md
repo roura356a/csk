@@ -93,6 +93,16 @@ Terway网络场景下，VSwitch IP资源不足的特征如下：
 
 如果您在上述操作中遇到异常情况，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)。
 
+## 常见问题
+
+**Terway网络下，增加虚拟交换机（VSwitch）后，为何不能正常访问公网？**
+
+问题现象：在Terway网络下，因Pod没有IP资源而手动增加虚拟交换机，在增加虚拟交换机后，发现不能通过公网访问集群。
+
+问题原因：Pod IP所属的虚拟交换机不具备公网访问的能力。
+
+解决方法：您可以通过NAT网关的SNAT功能，为Pod IP所属的虚拟交换机配置公网SNAT规则。更多信息，请参见[为已有集群开启SNAT公网访问能力](/cn.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/为已有集群开启SNAT公网访问能力.md)。
+
 **相关文档**  
 
 
