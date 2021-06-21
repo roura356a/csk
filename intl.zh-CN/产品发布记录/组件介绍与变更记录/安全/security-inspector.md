@@ -24,6 +24,12 @@ security-inspector组件目前支持安全的配置巡检功能。
 
 ## 变更记录
 
+**2021年06月**
+
+|版本号|镜像地址|变更时间|变更内容|
+|---|----|----|----|
+|v0.5.0.2-g5e33765-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/security-inspector:v0.5.0.2-g5e33765-aliyun|2021年06月24日|解决多个集群使用同一个SLS Project时会出现报表数据显示异常的问题。|
+
 **2021年03月**
 
 |版本号|镜像地址|变更时间|变更内容|
