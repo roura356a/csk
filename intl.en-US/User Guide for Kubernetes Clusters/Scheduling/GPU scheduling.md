@@ -18,7 +18,7 @@ Container Service for Kubernetes \(ACK\) provides the open source cGPU solution 
 
 For more information about cGPU, see [Overview of cGPU](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Overview of cGPU.md).
 
-For more information about how to enable cGPU, see[Install the cGPU component](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Install the cGPU component.md). For more information about how to disable cGPU, see [Disable the memory isolation capability of cGPU](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Disable the memory isolation capability of cGPU.md).
+For more information about how to enable cGPU, see [Install the cGPU component](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Install the cGPU component.md). For more information about how to disable cGPU, see [Disable the memory isolation capability of cGPU](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Disable the memory isolation capability of cGPU.md).
 
 For more information about how to use cGPU, see [Enable GPU sharing](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Enable GPU sharing.md), [Monitor and isolate GPU resources](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Monitor and isolate GPU resources.md), and [Use node pools to control cGPU](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Use node pools to control cGPU.md).
 
