@@ -47,7 +47,6 @@ resource "alicloud_key_pair" "default" {
 
 resource "alicloud_cs_managed_kubernetes" "default" {
   name                         = var.name
-  count                        = 1
   # Only professional managed Kubernetes clusters allow you to specify zero worker node in the cluster configurations.
   cluster_spec                 = "ack.pro.small"
   password                     = "Hello1234"
@@ -63,7 +62,7 @@ resource "alicloud_cs_managed_kubernetes" "default" {
 
 After the ACK cluster without a worker node is created, you can create a node pool by using Terraform to add nodes to the cluster. Create a node pool by using the following methods:
 
--   Create a custom node pool. The following template is an example.
+-   Create a node pool. The following template is an example.
 
     ```
     # The node pool configurations are based on the preceding variables and configurations of the cluster.
@@ -81,9 +80,9 @@ After the ACK cluster without a worker node is created, you can create a node po
     }
     ```
 
--   Create an auto-scaling node pool. The following template is an example.
+-   Create an node pool that enables auto-scaling. The following template is an example.
 
-    **Note:** To create an auto-scaling node pool, you must first activate ESS and grant the required permissions as described in the [Prerequisites](#prereq_yjz_13n_fb1) section.
+    **Note:** To create an auto-scaling enabled node pool, you must first activate ESS and grant the required permissions as described in the [Prerequisites](#prereq_yjz_13n_fb1) section.
 
     ```
     resource "alicloud_cs_kubernetes_node_pool" "auto-np" {
