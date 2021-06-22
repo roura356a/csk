@@ -20,6 +20,11 @@ aliyun-acr-credential-helper supports the following images and clusters:
 
 ## Precautions
 
+-   To use aliyun-acr-credential-helper, do not manually specify the imagePullSecret field. If the imagePullSecret field is specified in the template of a Kubernetes resource, such as a Deployment, the component becomes invalid.
+-   If a Kubernetes resource, such as a Deployment, uses custom service accounts, you must modify the service-account field in the configuration file of the component. Then, the component is authorized to pull images with the custom service accounts.
+-   After you create a service account in a cluster, it takes some time for aliyun-acr-credential-helper to renew the token of the service account. The new token for pulling private images is generated based on the default permissions of the ACK cluster. Applications with the service account can use the token to pull images only after the token is renewed. If you create an application immediately after you create a service account, the application will fail to pull images because it is unauthorized.
+-   By default, the configuration of aliyun-acr-credential-helper overwrites the imagePullSecret field of default service accounts in all namespaces. These service accounts are automatically modified when the service-account field of the **acr-configuration** ConfigMap in the kube-system namespace is changed.
+-   When you modify the **acr-configuration** ConfigMap in the kube-system namespace, make sure that you use the same indentation as the example in this topic. We recommend that you paste the YAML code provided in this topic to the editor, replace the corresponding values, and apply the configuration. This ensures that the format of the ConfigMap is valid.
 
 ## Configure the aliyun-acr-credential-helper component in the self-managed cluster
 
