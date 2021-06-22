@@ -28,7 +28,7 @@ Jobs can manage pods based on the settings of `.spec.completions` and `.spec.Par
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -54,7 +54,7 @@ Jobs can manage pods based on the settings of `.spec.completions` and `.spec.Par
 
         -   **Image Name**: Select an image.
             -   To use a Docker image or an image from Container Registry, click **Select Image**. In the dialog box that appears, select an image and click **OK**. In this example, an NGINX image is selected. On the **Search** tab, you can select **Docker Images** from the drop-down list, enter NGINX in the search box, and then click Search.
-                -   Alibaba Cloud Container Registry: On the **Alibaba Cloud Container Registry** tab, you can select an image from Container Registry. You must specify the region and Container Registry instance of the image. For more information about Container Registry, see [What is Container Registry Enterprise Edition?]().
+                -   Alibaba Cloud Container Registry: On the **Alibaba Cloud Container Registry** tab, you can select an image from Container Registry. You must specify the region and Container Registry instance of the image. For more information about Container Registry, see [What is Container Registry?]().
 
                     **Note:** On the **Alibaba Cloud Container Registry** tab, you can search images by name in Container Registry.
 
@@ -66,12 +66,12 @@ Jobs can manage pods based on the settings of `.spec.completions` and `.spec.Par
             -   Click **Select Image Version** and select an image version. If you do not specify an image version, the latest image version is used.
             -   You can select the following image pull policies:
 
-                -   **ifNotPresent**: If the image you want to pull is found in the region where the cluster is deployed, the local image is used. Otherwise, ACK pulls the image from the corresponding repository.
-                -   **Always**: ACK pulls the image from the repository each time the application is deployed or expanded.
-                -   **Never**: ACK uses only local images.
-                **Note:** If you select **Image Pull Policy**, no image pull policy is applied for the deployment of the application.
+                -   **ifNotPresent**: If the image that you want to pull is found on your on-premises machine, the image on your on-premises machine is used. Otherwise, ACK pulls the image from the corresponding repository.
+                -   **Always**: ACK pulls the image from Container Registry each time the application is deployed or scaled out.
+                -   **Never**: ACK uses only images on your on-premises machine.
+                **Note:** If you select **Image Pull Policy**, no image pull policy is applied.
 
-            -   To pull the image without a secret, click **Set Image Pull Secret** to set a secret for pulling images. For more information, see [Use aliyun-acr-credential-helper to pull images without a password](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Image/Use aliyun-acr-credential-helper to pull images without a password.md).
+            -   To pull the image without a password, click **Set Image Pull Secret** to set a Secret that is used to pull the image. For more information, see [Use aliyun-acr-credential-helper to pull images without a password](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Image/Use aliyun-acr-credential-helper to pull images without a password.md).
         -   **Always**: If you do not select this option, ACK caches the pulled image. This improves the efficiency of pulling and deploying images. If the specified image version is the same as the cached image version, ACK deploys the application from the cached image. Therefore, when you update the application code, if you do not change the image version for reasons such as to support the upper-layer workloads, the previously cached image is used. If you set Image Pull Policy to Always, ACK pulls the image from the repository each time the application is deployed. This ensures that the latest image and code are used.
         -   **Set Image Pull Secret**: If you use a private image, we recommend that you configure a Secret to secure the image. For more information, see [Create an application by using an image pull secret](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
         -   **Resource Limit**: You can specify an upper limit for the CPU and memory resources that the application can consume. This prevents the application from occupying an excessive amount of resources. CPU resources are measured in millicores. Each millicore is one thousandth of one core. Memory resources are measured in bytes, which can be GiB, MiB, or KiB.
