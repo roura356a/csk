@@ -1,66 +1,70 @@
+---
+keyword: [auto scaling, nodes]
+---
+
 # Auto scaling of nodes
 
-ACK provides the auto scaling component \(cluster-autoscaler\) for nodes to automatically scale in and out. Regular instances, GPU-accelerated instances, and preemptible instances can be automatically added to or removed from an ACK cluster based on your requirements. This feature provides multiple scaling modes, supports various instance types and multi-zone instances, and meets your scaling requirements in different scenarios.
+Container Service for Kubernetes \(ACK\) provides the auto scaling component \(cluster-autoscaler\) to automatically scale nodes. Regular instances, GPU-accelerated instances, and preemptible instances can be automatically added to or removed from an ACK cluster to meet your business requirements. This component supports multiple scaling modes, various instance types, and instances that are deployed across zones. This component is applicable to diverse scenarios.
 
 ## How it works
 
-The auto scaling mechanism of Kubernetes is different from the traditional scaling model, which is based on resource usage. This is also the most difficult part when developers migrate workloads from traditional data centers or other orchestration systems \(such as Swarm\) to Kubernetes.
+The auto scaling model of Kubernetes is different from the traditional scaling model that is based on the resource usage threshold. Developers must understand the differences between the two scaling models before they migrate workloads from traditional data centers or other orchestration systems, such as Swarm to Kubernetes.
 
-The traditional scaling model is designed based on resource usage. Assume that a cluster has three nodes. When the CPU usage or memory usage exceeds the scaling threshold, new nodes are added to the cluster. However, you need to consider the following issues when you use the traditional scaling model:
+The traditional scaling model is based on resource usage. For example, if a cluster contains three nodes and the CPU utilization or memory usage of the nodes exceeds the scaling threshold, new nodes are added to the cluster. However, you must consider the following issues when you use the traditional scaling model:
 
 
 
-How does the auto scaling mechanism of Kubernetes fix this issue? The auto scaling mechanism of Kubernetes fixes this issue by decoupling the scheduling of pods from the scaling of computing resources in a cluster.
+How does the auto scaling model of Kubernetes fix these issues? Kubernetes provides a two-layer scaling model that decouples pod scheduling from resource scaling.
 
-In simple terms, pod replicas are scaled based on resource usage. This is how pods are scaled. However, when the computing resources are insufficient for scheduling a pod, a scale-out event is triggered. After new nodes are added to the cluster, pending pods are automatically scheduled to these nodes. This way, the load on nodes is reduced. The following section describes the details of the auto scaling mechanism of Kubernetes:
+In simple terms, pods are scaled based on resource usage. When pods enter the Pending state due to insufficient resources, a scale-out event is triggered. After new nodes are added to the cluster, the pending pods are automatically scheduled to the newly added nodes. This way, the load of the application is balanced. The following section describes the auto scaling model of Kubernetes in detail:
 
-## Considerations
+## Precaution
 
--   For each account, the default CPU quota of pay-as-you-go instances in each region is 50 vCPUs. You can create up to 48 custom route entries in each route table in a virtual private cloud \(VPC\). To request a quota increase, submit a ticket.
--   The stock availability of a specific ECS instance type greatly fluctuates. We recommend that you specify multiple instance types for a scaling group. This improves the success rate of auto scaling.
--   In swift mode, when a node is shut down and reclaimed, it stops running and remains in the NotReady state. When a scale-out event is triggered, the state of the node is changed to Ready.
--   When a node is shut down and reclaimed in swift mode, you are charged for only the storage costs of the disk. This rule does not apply to nodes that use local disks, such as the instance type of ecs.d1ne.2xlarge, where the computing costs are also charged. If the stock of the node resources is sufficient, nodes can be launched in a short period of time.
--   If elastic IP addresses \(EIPs\) are bound to pods, we recommend that you do not delete the scaling group or the ECS nodes that are added from the scaling group in the ECS console. Otherwise, these EIPs cannot be automatically released.
+-   For each account, the default CPU quota for pay-as-you-go instances in each region is 50 vCPUs. You can add at most 48 custom route entries to each route table of a virtual private cloud \(VPC\). To request a quota increase, submit a ticket.
+-   The stock of ECS instances may be insufficient for auto scaling if you specify only one ECS instance type for a scaling group. We recommend that you specify multiple ECS instance types with the same specification for a scaling group. This increases the success rate of auto scaling.
+-   In swift mode, when a node is shut down and reclaimed, the node stops running and enters the NotReady state. When a scale-out event is triggered, the state of the node changes to Ready.
+-   If a node is shut down and reclaimed in swift mode, you are charged for only the disks. This rule does not apply to nodes that use local disks, such as the instance type of ecs.d1ne.2xlarge, for which you are also charged a computing fee. If the stock of nodes is sufficient, nodes can be launched within a short period of time.
+-   If elastic IP addresses \(EIPs\) are associated with pods, we recommend that you do not delete the scaling group or remove ECS instances from the scaling group in the ECS console. Otherwise, these EIPs cannot be automatically released.
 
-## Step 1: Go to the Configure Auto Scaling page
+## Step 1: Configure auto scaling
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, perform the following steps to go to the **Configure Auto Scaling** page.
+3.  On the Clusters page, follow the instructions to navigate to the **Configure Auto Scaling** page.
 
-    You can go to the Configure Auto Scaling page in the following ways:
+    You can navigate to the Configure Auto Scaling page in the following ways:
 
     -   Method 1: Find the cluster that you want to manage and choose **More** \> **Auto Scaling** in the **Actions** column.
     -   Method 2:
         1.  Find the cluster that you want to manage and click **Details** in the Actions column.
-        2.  In the left-side navigation pane, choose **Nodes** \> **Node Pools**.
+        2.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node Pools**.
         3.  In the upper-right corner of the Node Pools page, click **Configure Auto Scaling**.
 
-## Step 2: Authorization
+## Step 2: Perform authorization
 
-You need to perform authorization in the following scenarios:
+You must perform authorization in the following scenarios:
 
 
 
-If the current account has limited permissions on nodes in the cluster, you need to assign the **AliyunCSManagedAutoScalerRole** Resource Access Management \(RAM\) role to your account.
+If ACK has limited permissions on nodes in the cluster, assign the **AliyunCSManagedAutoScalerRole** Resource Access Management \(RAM\) role to ACK.
 
-**Note:** You only need to perform the authorization once for each Alibaba Cloud account.
+**Note:** You need to perform the authorization only once for each Alibaba Cloud account.
 
 1.  Activate Auto Scaling \(ESS\).
 
-    1.  In the dialog box that appears, click the first hyperlink to go to the **ESS** console.
+    1.  In the dialog box that appears, click the first hyperlink to log on to the **ESS** console.
 
     2.  Click **Activate Auto Scaling** to go to the Enable Service page.
 
     3.  Select the **I agree with Auto Scaling Agreement of Service** check box and click **Enable Now**.
 
-    4.  On the Activated page, click **Console** to go to the ESS console.
+    4.  On the Activated page, click **Console** to log on to the ESS console.
 
-    5.  Click **Go to Authorize** to go to the Cloud Resource Access Authorization page, and then authorize ESS to access other cloud resources.
+    5.  Click **Go to Authorize** to go to the Cloud Resource Access Authorization page. Then, authorize ESS to access other cloud resources.
 
-    6.  Click **Agree to Authorization**.
+    6.  Click **Confirm Authorization Policy**.
 
 2.  Assign the RAM role.
 
@@ -68,12 +72,12 @@ If the current account has limited permissions on nodes in the cluster, you need
 
         **Note:** You must log on to the RAM console by using an Alibaba Cloud account.
 
-    2.  On the **Cloud Resource Access Authorization** page, click **Agree to Authorization Policy**.
+    2.  On the **Cloud Resource Access Authorization** page, click **Confirm Authorization Policy**.
 
 
 1.  Activate ESS.
 
-    1.  In the dialog box that appears, click the first hyperlink to go to the **ESS** console.
+    1.  In the dialog box that appears, click the first hyperlink to log on to the **ESS** console.
 
         ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7285268951/p11211.png)
 
@@ -81,23 +85,23 @@ If the current account has limited permissions on nodes in the cluster, you need
 
     3.  Select the **I agree with Auto Scaling Agreement of Service** check box and click **Enable Now**.
 
-    4.  On the Activated page, click **Console** to go to the ESS console.
+    4.  On the Activated page, click **Console** to log on to the ESS console.
 
-    5.  Click **Go to Authorize** to go to the Cloud Resource Access Authorization page, and then authorize ESS to access other cloud resources.
+    5.  Click **Go to Authorize** to go to the Cloud Resource Access Authorization page. Then, authorize ESS to access other cloud resources.
 
-    6.  Click **Agree to Authorization**.
+    6.  Click **Confirm Authorization Policy**.
 
-    If the authorization is successful, you are redirected to the ESS console. Close the page and [assign the RAM role](#step_dkz_59w_xec).
+    If the authorization is successful, you are redirected to the ESS console. Close the page and [modify the permissions of the worker RAM role](#step_dkz_59w_xec).
 
-2.  Assign the RAM role.
+2.  Modify the permissions of the worker RAM role.
 
-    1.  Click the second hyperlink in the dialog box to go to the **RAM** console.
+    1.  Click the second hyperlink in the dialog box to go to the **RAM Roles** page.
 
         ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8285268951/p11261.png)
 
         **Note:** You must log on to the RAM console by using an Alibaba Cloud account.
 
-    2.  Click the **Permissions** tab and click the name of the policy that you want to manage. The details page of the policy appears.
+    2.  On the **Permissions** tab, click the name of the policy assigned to the RAM role. The details page of the policy appears.
 
         ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8285268951/p11193.png)
 
@@ -120,14 +124,14 @@ If the current account has limited permissions on nodes in the cluster, you need
         "vpc:DescribeVSwitches"
         ```
 
-        **Note:** Add a comma \(,\) to the end of the bottom line in the `Action` field before you add the policy content.
+        **Note:** Before you add the policy content, add a comma \(,\) to the end of the bottom line in the `Action` field.
 
 
-If an auto-scaling node pool in the cluster is required to be associated with an EIP, perform the following steps to grant permissions.
+If you want to associate an auto-scaling group with an EIP, perform the following steps to grant permissions:
 
 1.  Activate ESS.
 
-    1.  In the dialog box that appears, click the first hyperlink to go to the **ESS** console.
+    1.  In the dialog box that appears, click the first hyperlink to log on to the **ESS** console.
 
         ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7285268951/p11211.png)
 
@@ -135,23 +139,23 @@ If an auto-scaling node pool in the cluster is required to be associated with an
 
     3.  Select the **I agree with Auto Scaling Agreement of Service** check box and click **Enable Now**.
 
-    4.  On the Activated page, click **Console** to go to the ESS console.
+    4.  On the Activated page, click **Console** to log on to the ESS console.
 
-    5.  Click **Go to Authorize** to go to the Cloud Resource Access Authorization page, and then authorize ESS to access other cloud resources.
+    5.  Click **Go to Authorize** to go to the Cloud Resource Access Authorization page. Then, authorize ESS to access other cloud resources.
 
-    6.  Click **Agree to Authorization**.
+    6.  Click **Confirm Authorization Policy**.
 
-    If the authorization is successful, you are redirected to the ESS console. Close the page and [assign the RAM role](#step_dkz_59w_xec).
+    If the authorization is successful, you are redirected to the ESS console. Close the page and [modify the permissions of the worker RAM role](#step_dkz_59w_xec).
 
-2.  Assign the RAM role.
+2.  Modify the permissions of the worker RAM role.
 
-    1.  Click the second hyperlink in the dialog box to go to the **RAM** console.
+    1.  Click the second hyperlink in the dialog box to go to the **RAM Roles** page.
 
         ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8285268951/p11261.png)
 
         **Note:** You must log on to the RAM console by using an Alibaba Cloud account.
 
-    2.  Click the **Permissions** tab and click the name of the policy that you want to manage. The details page of the policy appears.
+    2.  On the **Permissions** tab, click the name of the policy assigned to the RAM role. The details page of the policy appears.
 
         ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8285268951/p11193.png)
 
@@ -159,19 +163,9 @@ If an auto-scaling node pool in the cluster is required to be associated with an
 
         ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8285268951/p11195.png)
 
-    4.  In the **Policy Document** section, add the following policy content to the `Action` field:
+    4.  In the **Policy Document** section, add the following policy content to the `Action` field and click **OK**.
 
         ```
-        "ess:Describe*", 
-        "ess:CreateScalingRule", 
-        "ess:ModifyScalingGroup", 
-        "ess:RemoveInstances", 
-        "ess:ExecuteScalingRule", 
-        "ess:ModifyScalingRule", 
-        "ess:DeleteScalingRule", 
-        "ecs:DescribeInstanceTypes",
-        "ess:DetachInstances",
-        "vpc:DescribeVSwitches"
         "ecs:AllocateEipAddress",
         "ecs:AssociateEipAddress",
         "ecs:DescribeEipAddresses",
@@ -199,9 +193,9 @@ If an auto-scaling node pool in the cluster is required to be associated with an
         "vpc:TagResources"
         ```
 
-        **Note:** Add a comma \(,\) to the end of the bottom line in the `Action` field before you add the policy content.
+        **Note:** Before you add the policy content, add a comma \(,\) to the end of the bottom line in the `Action` field.
 
-    5.  On the **RAM Roles** page, click the name of the RAM role that you want to manage. On the details page of the RAM role, click the **Trust Policy Management** tab and click **Edit Trust Policy**. In the Edit Trust Policy panel, add oos.aliyuncs.com to the Service field, as shown in the following figure. Click **OK**.
+    5.  On the **RAM Roles** page, click the name of the worker RAM role. On the details page of the RAM role, click the **Trust Policy Management** tab and click **Edit Trust Policy**. In the Edit Trust Policy panel, add oos.aliyuncs.com to the Service field, as shown in the following figure. Then, click **OK**.
 
         ![oos](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8285268951/p103678.png)
 
@@ -213,38 +207,39 @@ If an auto-scaling node pool in the cluster is required to be associated with an
     |Parameter|Description|
     |---------|-----------|
     |Cluster|The name of the cluster for which you want to enable auto scaling.|
-    |Scale-in Threshold|In a scaling group managed by cluster-autoscaler, the system automatically calculates the ratio of the requested resources to the resource capacity of a node. If the ratio is lower than the threshold, nodes are removed from the ACK cluster. **Note:** Scale-out events are automatically triggered based on pod scheduling. Therefore, you only need to configure scale-in rules. |
+    |Scale-in Threshold|For a scaling group that is managed by cluster-autoscaler, set the value to the ratio of the requested resources per node to the total resources per node. If the actual value is lower than the threshold, the node is removed from the cluster. **Note:** In auto scaling, a scale-out event is automatically triggered based on node scheduling. Therefore, you need to set only scale-in parameters. |
+    |GPU Scale-in Threshold|The scale-in threshold for GPU-accelerated nodes. If the actual value is lower than the threshold, one or more GPU-accelerated nodes are removed from the Kubernetes cluster.|
     |Defer Scale-in For|The amount of time that the cluster must wait before the cluster scales in. Unit: minutes. The default value is 10 minutes.|
-    |Cooldown|The nodes that have been added for scale-out can be used for scale-in only after the specified cooldown period.|
+    |Cooldown|Newly added nodes cannot be removed in scale-in events during the cool down period.|
 
-2.  Select an instance type based on your workload requirements, such as a regular instance, a GPU-accelerated instance, or a preemptible instance. Then, click **Create**.
+2.  Select an instance type. Supported instance types are regular instances, GPU-accelerated instances, and preemptible instances. Then, click **Create**.
 
 3.  In the Auto Scaling Group Configuration dialog box, set the following parameters to create a scaling group.
 
     |Parameter|Description|
     |---------|-----------|
-    |Region|The region where the scaling group is deployed. The scaling group and the cluster must be deployed in the same region. You cannot change the region after the scaling group is created.|
-    |VPC|The scaling group and the cluster must be deployed in the same VPC.|
-    |VSwitch|The vSwitches of the scaling group. The zone and CIDR block of each vSwitch belong to those of the scaling group.|
+    |Region|The region where you want to deploy the scaling group. The scaling group and the Kubernetes cluster must be deployed in the same region. You cannot change the region after the scaling group is created.|
+    |VPC|The scaling group and the Kubernetes cluster must be deployed in the same VPC.|
+    |VSwitch|The vSwitches of the scaling group. You can specify vSwitches of different zones. The vSwitches allocate pod CIDR blocks to the scaling group.|
 
 4.  Configure worker nodes.
 
     |Parameter|Description|
     |---------|-----------|
-    |Node Type|The types of nodes in the scaling group. The node types must be the same as those that are selected when the cluster was created.|
+    |Node Type|The types of nodes in the scaling group. The node types must be the same as those selected when the cluster is created.|
     |Instance Type|The instance types in the scaling group.|
-    |Selected Types|The instance types that you have selected. You can select up to 10 instance types.|
+    |Selected Types|The instance types that you select. You can select at most 10 instance types.|
     |System Disk|The system disk of the scaling group.|
-    |Mount Data Disk|Specifies whether to mount data disks to the scaling group. By default, no data disk is mounted.|
-    |Quantity|The number of instances in the scaling group. **Note:**
+    |Mount Data Disk|Specify whether to mount data disks to the scaling group. By default, no data disk is mounted.|
+    |Instances|The number of instances contained in the scaling group. **Note:**
 
     -   Existing instances in the cluster are excluded.
-    -   By default, the minimum number of instances is 0. If you specify one or more instances, the system will add instances to the scaling group. When a scale-out event is triggered, instances in the scaling group are added to the cluster to which the scaling group is bound. |
+    -   By default, the minimum number of instances is 0. If you specify one or more instances, the system adds the instances to the scaling group. When a scale-out event is triggered, the instances in the scaling group are added to the cluster to which the scaling group is bound. |
     |Key Pair|The key pair that is used to log on to the nodes in the scaling group. You can create key pairs in the ECS console. **Note:** You can log on to the nodes only by using key pairs. |
     |Scaling Mode|You can select **Standard** or **Swift**.|
-    |RDS Whitelist|The Relational Database Service \(RDS\) instances that can be accessed by nodes that are added by scale-out events.|
-    |Node Label|Node labels are automatically added to nodes that are added to the cluster by scale-out events.|
-    |Taints|After you add taints to a node, ACK does not schedule pods to the node.|
+    |RDS Whitelist|The ApsaraDB RDS instances that can be accessed by the nodes added from the scaling group.|
+    |Node Label|Labels are automatically added to nodes that are added to the cluster by scale-out activities.|
+    |Taints|After you add taints to a node, ACK no longer schedules pods to the node.|
 
 5.  Click **OK** to create the scaling group.
 
@@ -266,23 +261,23 @@ If an auto-scaling node pool in the cluster is required to be associated with an
 
 -   Why does the auto scaling component fail to add nodes after a scale-out event is triggered?
 
-    Check for the following issues:
+    Check whether the following situations exist:
 
-    -   Whether instance types that are configured for the scaling group meet the requested resources of pods. By default, system components are installed for each node. Therefore, the requested resources of pods on a node must be less than the resource capacity of the instance type of the node.
-    -   Whether you have performed authorization steps as described. You must perform the authorization for each cluster that is involved in the scale-out event.
+    -   The instance types in the scaling group cannot fulfill the resource request from pods. By default, system components are installed for each node. Therefore, the requested pod resources must be less than the resource capacity of the instance type.
+    -   The worker RAM role does not have the required permissions. You must configure RAM roles for each Kubernetes cluster that is involved in the scale-out activity.
 -   Why does the auto scaling component fail to remove nodes after a scale-in event is triggered?
 
-    Check for the following issues:
+    Check whether the following situations exist:
 
-    -   Whether the ratio of the requested resources to the resource capacity of each node is higher than the scale-in threshold.
-    -   Whether the pods in the kube-system namespace are running on nodes.
-    -   Whether the pods are configured with a forcible scheduling policy, which forbids these pods to be scheduled to other nodes.
-    -   Whether the pods on the nodes are configured with a [PodDisruptionBudget](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/#how-disruption-budgets-work) and the number of pods has reached the specified minimum value.
-    For more frequently asked questions about the [auto scaling component](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md), visit the open source community.
+    -   The requested resource threshold of each pod is higher than the configured scale-in threshold.
+    -   Pods that belong to the kube-system namespace are running on the node.
+    -   A hard scheduling policy is configured to force the pods to run on the current node. Therefore, the pods cannot be scheduled to other nodes.
+    -   [PodDisruptionBudget](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/#how-disruption-budgets-work) is set for the pods on the node and the minimum value of PodDisruptionBudget is reached.
+    For more information about FAQ, see [open source component](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md).
 
--   How does the system select from multiple scaling groups for a scale-out event?
+-   How does the system choose a scaling group for a scaling event?
 
-    When pods cannot be scheduled to nodes, the auto scaling component will simulate the scheduling of pods based on the configuration of the scaling group. The configuration includes the labels, taints, and instance specifications. If a scaling group that meets the requirements, this scaling group is selected for the scale-out event. If more than one scaling group meet the requirements, the system chooses the scaling group that has the fewest remaining resources after the simulation.
+    When pods cannot be scheduled to nodes, the auto scaling component simulates the scheduling of the pods based on the configurations of scaling groups. The configurations include labels, taints, and instance specifications. If a scaling group can simulate the scheduling of the pods, this scaling group is selected for the scale-out activity. If more than one scaling groups meet the requirements, the system selects the scaling group that has the fewest idle resources after simulation.
 
 
 **Related topics**  
