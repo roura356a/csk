@@ -1,6 +1,6 @@
 # AttachInstances
 
-Adds existing Elastic Compute Service \(ECS\) instances to a specified Container Service for Kubernetes \(ACK\) nodepool.
+Adds existing Elastic Compute Service \(ECS\) instances to a specified Container Service for Kubernetes \(ACK\) cluster.
 
 ## Debugging
 
@@ -38,59 +38,59 @@ Content-Type:application/json
 
 |Parameter|Type|Required|Example|Description|
 |---------|----|--------|-------|-----------|
-|ClusterId|String|Yes|c106f377e16f34eb1808d6b9362c9\*\*\*\*|The ID of the ACK cluster. |
+|ClusterId|String|Yes|c106f377e16f34eb1808d6b9362c9\*\*\*\*|The ID of the ACK cluster that you want to manage. |
 
 |Parameter|Type|Required|Example|Description|
 |---------|----|--------|-------|-----------|
-|instances|Array of String|Yes|i-2zed0sswuau6o89b\*\*\*\*|The IDs of the ECS instances that you want to add. |
-|key\_pair|String|Yes|secrity-key|The name of the key pair that is used to log on to the nodes. You must set key\_pair or `login_password`. |
-|password|String|Yes|Hello1234|The SSH logon password that is used to log on to the nodes. You must set login\_password or `key_pair`. The password must be 8 to 30 characters in length, and must contain at least three of the following character types: uppercase letters, lowercase letters, digits, and special characters. It cannot contain backward slashes \(\\\) or double quotation marks \("\).
+|instances|Array of String|Yes|i-2zed0sswuau6o89b\*\*\*\*|The IDs of the existing ECS instances that you want to add. |
+|key\_pair|String|Yes|secrity-key|The name of the key pair that is used to log on to the ECS instances. You must set key\_pair or `login_password`. |
+|password|String|Yes|Hello1234|The SSH logon password that is used to log on to the ECS instances. You must set login\_password or `key_pair`. The password must be 8 to 30 characters in length, and must contain at least three of the following character types: uppercase letters, lowercase letters, digits, and special characters. It cannot contain backward slashes \(\\\) or double quotation marks \("\).
 
-For security considerations, the password is encrypted during data transfer. |
-|format\_disk|Boolean|No|false|Specifies whether to mount data disks. Valid values:
+ For security considerations, the password is encrypted during data transfer. |
+|format\_disk|Boolean|No|false|Specifies whether to store container data and images on data disks. Valid values:
 
--   `true`: mounts data disks to store container data and images.
--   `false`: does not mount data disks to store container data or images
+ -   `true`: mounts data disks to store container data and images.
+-   `false`: does not mount data disks to store container data or images.
 
-Default value: `false`.
+ Default value: `false`.
 
-**Note:** : After a data disk is mounted, the original data that is stored on the disk is cleared. Before you mount a data disk to the nodes, we recommend that you back up the disk data.
+ A data disk is mounted based on the following rules:
 
-A data disk is mounted based on the following rules:
+ -   If the ECS instances are already mounted with data disks and the file system of the last data disk is not initialized, the system automatically formats this data disk to ext4 and mounts it to /var/lib/docker and /var/lib/kubelet.
+-   If no data disk is mounted to the ECS instances, the system does not purchase a new data disk.
 
--   If data disks have been mounted to the ECS instances and the file system of the last data disk is not initialized, the system automatically formats the last data disk to ext4 and mounts this data disk to /var/lib/docker and /var/lib/kubelet.
--   If no data disk is mounted to the ECS instances, the system does not purchase a new data disk. |
+**Note:** If you choose to store container data and images on data disks and a data disk is already mounted to the ECS instance, the original data on this data disk will be cleared. You can back up the disk to avoid data loss. |
 |keep\_instance\_name|Boolean|No|true|Specifies whether to keep the instance name. Valid values:
 
--   `true`: keeps the instance name.
+ -   `true`: keeps the instance name.
 -   `false`: does not keep the instance name.
 
-Default value:`true`. |
+ Default value: `true`. |
 |is\_edge\_worker|Boolean|No|false|Specifies whether the nodes that you want to add are Edge Node Service \(ENS\) nodes. Valid values:
 
--   `true`: The nodes that you want to add are ENS nodes.
+ -   `true`: The nodes that you want to add are ENS nodes.
 -   `false`: The nodes that you want to add are not ENS nodes.
 
-Default value: `false`.
+ Default value: `false`.
 
-**Note:** : If the nodes you want to add are ENS nodes, you must set this parameter to `true`. This allows you to identify these ENS nodes. |
+ **Note:** If the nodes you want to add are ENS nodes, you must set this parameter to `true`. This allows you to identify these nodes. |
 |nodepool\_id|String|No|np615c0e0966124216a0412e10afe0\*\*\*\*|The ID of the node pool to which the nodes are added. If you do not set this parameter, the nodes are added to a default node pool. |
 |image\_id|String|No|aliyun\_2\_1903\_x64\_20G\_alibase\_20200529.vhd|The ID of the custom image. If you do not set this parameter, the default system image is used.
 
-**Note:** : If you specify a custom image, the custom image is used to deploy the operating systems on the system disks of the nodes. |
-|cpu\_policy|String|No|none|The CPU management policy of the nodes. The following policies are supported for clusters of Kubernetes 1.12.6 and later:
+ **Note:** If you specify a custom image, the custom image is used to deploy the operating systems on the system disks of the nodes. |
+|cpu\_policy|String|No|none|The CPU policy. The following policies are supported for clusters of Kubernetes 1.12.6 and later:
 
--   `static`: This policy allows pods with specific resource characteristics on the node to be granted enhanced CPU affinity and exclusivity.
+ -   `static`: This policy allows pods with specific resource characteristics on the node to be granted enhanced CPU affinity and exclusivity.
 -   `none`: This policy indicates that the default CPU affinity is used. This is the default policy.
 
-Default value: `none`. |
-|user\_data|String|No|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFDSyEi|The user-defined data. For more information, see [Prepare user-defined data](https://www.alibabacloud.com/help/doc-detail/49121.htm). |
-|rds\_instances|Array of String|No|rm-67yawhau\*\*\*\*|The IDs of the Relational Database Service \(RDS\) instances. |
+ Default value: `none`. |
+|user\_data|String|No|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFDSyEi|The user-defined data. For more information, see [Prepare user-defined data](~~49121~~). |
+|rds\_instances|Array of String|No|rm-67yawhau\*\*\*\*|The IDs of the ApsaraDB RDS instances. |
 |runtime|[runtime](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The name of the container runtime. |
 |tags|Array of [tag](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The labels of the nodes. You must add labels based on the following rules:
 
--   A label is a case-sensitive key-value pair. You can add up to 20 labels to a node.
--   A key must be unique and 1 to 64 characters in length. A value can be empty and can contain up to 128 characters. Neither keys or values can start with aliyun, acs:, https://, or http://. For more information, see [Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set). |
+ -   A label is a case-sensitive key-value pair. You can add up to 20 labels to a node.
+-   A key must be unique and 1 to 64 characters in length. A value can be empty and can contain up to 128 characters. Neither keys nor values can start with `aliyun`, `acs:``, https://`, or `http://`. For more information, see [Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set). |
 
 ## Response syntax
 
@@ -115,7 +115,7 @@ Content-Type:application/json
 |code|String|200|The code that indicates the task result. |
 |instanceId|String|i-2ze0lgm3y6iylcbt\*\*\*\*|The IDs of the added ECS instances. |
 |message|String|successful|Indicates whether the ECS instances are successfully added to the ACK cluster. |
-|task\_id|String|T-5a544aff80282e39ea000039|The ID of the task. |
+|task\_id|String|T-5a544aff80282e39ea000039|The ID of the scaling task. |
 
 ## Examples
 
