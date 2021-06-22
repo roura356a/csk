@@ -41,12 +41,13 @@ keyword: [安装云原生AI套件, 云原生AI运维控制台, 云原生AI开发
 
 1.  在云原生AI套件一键部署页面中**交互方式**选中**运维控制台**时，会弹出下图所示的**提示**对话框。
 
-    ![K-AI-2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4971381261/p237448.png)
+    ![K-AI-2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4950724261/p237448.png)
 
     **说明：**
 
     -   云原生AI运维控制台使用**公网域名**访问时，请注意控制访问范围。
     -   云原生AI运维控制台选择**私网**网络类型访问时，在**提示**对话框中选中**私网IP**。
+    -   控制台数据存储方式选择**集群内置MySQL**时，数据安全无SLA保障，操作集群时请谨慎。
 2.  单击**提示**对话框中的授权策略链接。
 
     1.  在**RAM角色管理**页面中，选择**权限管理**页签，单击目标授权策略名称。
@@ -71,11 +72,33 @@ keyword: [安装云原生AI套件, 云原生AI运维控制台, 云原生AI开发
 
     3.  添加完成后，单击**确定**。
 
-3.  在一键部署**云原生AI套件**页面选中**监控组件**。
+3.  选择控制台数据存储方式。
+
+    -   当选择**集群内置MySQL**时，云原生AI套件会自动在集群内安装部署MySQL，该方式不需要再单独购买RDS产品，但数据安全没有SLA保障。如果集群故障或误删MySQL，可能导致数据丢失。
+    -   当选择**阿里云RDS**时，需要单独购买阿里云RDS，并使用以下YAML示例模板在集群kube-ai命名空间下创建名为kubeai-rds的Secret，Secret中需要包含RDS地址、数据库名字、用户名、密码。
+
+        ```
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: kubeai-rds
+          namespace: kube-ai
+        type: Opaque
+        stringData:
+          MYSQL_HOST: "Your RDS URL"
+          MYSQL_DB_NAME: "Database name"
+          MYSQL_USER: "Database username"
+          MYSQL_PASSWORD: "Database password"
+        ```
+
+        **说明：**
+
+        -   如果需要修改数据存储方式，需要卸载云原生AI套件，再重新安装。如果集群中有kubeai-rds Secret，需要通过kubectl一并删除。
+4.  在一键部署**云原生AI套件**页面选中**监控组件**。
 
     ![K-AI-3](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0771859161/p237487.png)
 
-4.  单击**部署云原生AI套件**。
+5.  单击**部署云原生AI套件**。
 
 
 ## 安装配置云原生AI开发控制台
