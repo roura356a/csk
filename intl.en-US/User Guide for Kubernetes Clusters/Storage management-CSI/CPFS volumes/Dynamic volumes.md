@@ -76,7 +76,7 @@ ACK allows you to mount CPFS file systems as static or dynamic volumes. To mount
     -   Deploy csi-plugin.
 
         ```
-        apiVersion: storage.k8s.io/v1beta1
+        apiVersion: storage.k8s.io/v1
         kind: CSIDriver
         metadata:
           name: cpfsplugin.csi.alibabacloud.com
@@ -86,7 +86,7 @@ ACK allows you to mount CPFS file systems as static or dynamic volumes. To mount
         ---
         # This YAML defines all API objects to create RBAC roles for csi node plugin.
         kind: DaemonSet
-        apiVersion: apps/v1beta2
+        apiVersion: apps/v1
         metadata:
           name: csi-cpfsplugin
           namespace: kube-system
