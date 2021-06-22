@@ -10,7 +10,7 @@ To avoid resource wasting in some scenarios, Container Service for Kubernetes \(
 -   Helm 2.11.0 or later is installed on your on-premises machine. For more information, see [Install Helm](https://github.com/helm/helm?spm=a2c4g.11186623.2.28.36d61fa8fxvUaY).
 -   You are connected to the cluster by using kubectl before you run commands to perform the following operations. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
-kubernetes-cronhpa-controller is a Kubernetes HPA controller that can scale a Kubernetes cluster based on a schedule, which is similar to a crontab. You can use CronHPA with Kubernetes objects whose subresources can be scaled. The objects include Deployments and StatefulSets. In addition, the subresources must be open source projects on GitHub. For more information, see [kubernetes-cronhpa-controller](https://github.com/AliyunContainerService/kubernetes-cronhpa-controller).
+kubernetes-cronhpa-controller is a Kubernetes HPA controller that can scale a Kubernetes cluster based on a schedule that is similar to a crontab. You can use CronHPA with Kubernetes objects whose subresources can be scaled. The objects include Deployments and StatefulSets. In addition, the subresources must be open source projects on GitHub. For more information, see [kubernetes-cronhpa-controller](https://github.com/AliyunContainerService/kubernetes-cronhpa-controller).
 
 The following table describes the parameters in the CronHPA configuration.
 
@@ -47,13 +47,13 @@ spec:
 |scaleTargetRef|scaleTargetRef specifies the object that you want to scale. If the subresources of the object can be scaled, you can enable CronHPA for the object.|
 |excludeDates|The value of excludeDates must be an array of dates. Scaling jobs are not executed on dates that are specified in excludeDates. **Note:** The minimum time period is **one day**.
 
-The value is in the `- "* * * * * *"` format, which indicates -"<seconds\> <minutes\> <hours\> <days of month\> <months\>".
+The value is in the `- "* * * * * *"` format, which indicates -"<seconds\> <minutes\> <hours\> <days of month\> <months\>" format.
 
 For example, if you do not want to execute scaling jobs on November 15, set excludeDates to the following value: ```
 excludeDates:
   - "* * * 15 11 *"
 ``` |
-|jobs|You can set multiple CronHPA jobs in the spec section. You can set the following parameters for each CronHPA job: -   name: Names are used to distinguish CronHPA jobs. Therefore, the name of each CronHPA job must be unique in the CronHPA configuration.
+|jobs|You can set multiple CronHPA jobs in the spec section. You can set the following parameters for each CronHPA job: -   name: Names are used to distinguish CronHPA jobs. Therefore, the name of each CronHPA job must be unique in the CronHPA configurations.
 -   schedule: the scaling schedule, which is similar to a crontab. kubernetes-cronhpa-controller uses a Golang library to support a variety of rules. For more information, see [go-cron](https://github.com/ringtail/go-cron). The format of cron expressions must conform to the following rules. Otherwise, you cannot create cron expressions.
 
 Create cron expressions based on the following rules:
@@ -69,8 +69,8 @@ Field name   | Mandatory? | Allowed values  | Allowed special characters
   Day of week  | Yes        | 0-6 or SUN-SAT  | * / , - ?
     ```
 
--   targetSize: The number of pods to which you want to scale at the scheduled time.
--   runOnce: If you set runOnce to true, the job is executed only once. The job exits after it is executed. |
+-   targetSize: the number of pods to which you want to scale at the scheduled time.
+-   runOnce: If you set runOnce to true, the job is executed only once. The job exits after one run. |
 
 ## Install the CronHPA controller
 
@@ -108,10 +108,12 @@ You can install the CronHPA controller ack-kubernetes-cronhpa-controller by usin
 
 2.  In the left-side navigation pane of the ACK console, choose **Marketplace** \> **App Catalog**.
 
-3.  On the **App Catalog** page, enter kubernetes-cronhpa-controller into the **Name** search box and click the search icon. Click **ack-kubernetes-cronhpa-controller** after it appears.
+3.  You can search for the component on the **Alibaba Cloud Apps** tab. In the upper-left corner of the page, enter kubernetes-cronhpa-controller into the **Name** search box and click the search icon. Find and click **ack-kubernetes-cronhpa-controller**.
 
 4.  On the right side of the **App Catalog - ack-kubernetes-cronhpa-controller** page, select a cluster to deploy the controller in the **Deploy** section and click **Create**.
 
+
+You can uninstall the CronHPA controller if CronHPA is no longer used. For more information about how to uninstall ack-kubernetes-cronhpa-controller, see [Manage system components](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Upgrade cluster/Manage system components.md) or [Delete a release](/intl.en-US/User Guide for Kubernetes Clusters/Release management/Manage releases by using Helm.md).
 
 ## Create CronHPA jobs
 
@@ -128,7 +130,7 @@ The ACK console automatically checks whether the CronHPA controller is installed
 |Parameter|Description|
 |---------|-----------|
 |Job Name|Enter a name for the CronHPA job. The name of each CronHPA job must be unique.|
-|Desired Number of Replicas|Replicated pods are scaled to the desired number at the scheduled time.|
+|Desired Number of Replicas|Pod replicas are scaled to the desired number at the scheduled time.|
 |Scaling Schedule|Set the scaling schedule. For more information about how to set the scaling schedule for a CronHPA job, see [AliyunContainerService/kubernetes-cronhpa-controller](https://github.com/AliyunContainerService/kubernetes-cronhpa-controller). |
 
 **Scenario 2: Create CronHPA jobs for an existing application**
@@ -182,11 +184,11 @@ The following YAML template shows the configurations of CronHPA and HPA:
 
 After you compare the configurations of CronHPA and HPA, you can find that:
 
--   scaleTargetRef field is used in the configurations of both CronHPA and HPA to specify the object to be scaled.
+-   The scaleTargetRef field is used in the configurations of both CronHPA and HPA to specify the object to be scaled.
 -   The crontab rules in the jobs section of the CronHPA configuration specify the number to which pods are scaled at the scheduled time.
 -   HPA triggers scaling activities based on resource usage.
 
-When CronHPA and HPA are both deployed, CronHPA and HPA may scale pods for the same application that is specified by scaleTargetRef. CronHPA and HPA are independent and unaware of each other. As a result, the CronHPA controller and the HPA controller scale pods for the application separately. The later scaling activity overwrites the earlier one.
+If both CronHPA and HPA are deployed, CronHPA and HPA may scale pods for the same application that is specified by scaleTargetRef. CronHPA and HPA are independent and unaware of each other. As a result, the CronHPA controller and the HPA controller scale pods for the application separately. The later scaling activity overwrites the earlier one.
 
 **Solution**
 
@@ -219,7 +221,7 @@ spec:
      runOnce: true
 ```
 
-After you deploy the preceding YAML template, CronHPA is aware of the values of minReplicas, maxReplicas, and desiredReplicas in the HPA configuration. CronHPA is also aware of the current number of pods provisioned for the application that is specified by scaleTargetRef. CronHPA can detect the state of HPA by modifying the HPA configuration. CronHPA compares the desired number of pods with the current number of pods and then determines whether to trigger scaling activities and change the maximum number of pods in the HPA configuration. CronHPA also compares the desired number of pods with the maximum and minimum numbers of pods that are specified in the HPA configuration and then determines whether to change the minimum numbers of pods in the HPA configuration.
+After you deploy the preceding YAML template, CronHPA is aware of the values of minReplicas, maxReplicas, and desiredReplicas in the HPA configuration. CronHPA is also aware of the current number of pods provisioned for the application that is specified by scaleTargetRef. CronHPA can detect the state of HPA by modifying the HPA configurations. CronHPA compares the desired number of pods with the current number of pods and then determines whether to trigger scaling activities and change the maximum number of pods in the HPA configuration. CronHPA also compares the desired number of pods with the maximum and minimum numbers of pods that are specified in the HPA configuration and then determines whether to change the minimum numbers of pods in the HPA configuration.
 
 The following table describes the rules that enable CronHPA and HPA to interact without conflicts.
 
@@ -237,7 +239,7 @@ The following table describes the rules that enable CronHPA and HPA to interact 
 -   Deployment: 6
 
 |-   If the number of pods desired by CronHPA is greater than the current number of pods, CronHPA adds pods to reach the desired number.
--   If the number of pods desired by CronHPA is smaller than the value of minReplicas in the HPA configuration, CronHPA changes the value of minReplicas. |
+-   If the number of pods desired by CronHPA is greater than the value of minReplicas in the HPA configuration, CronHPA changes the value of minReplicas. |
 |5/10|4|5|-   HPA \(min/max\): 4/10
 -   Deployment: 5
 
