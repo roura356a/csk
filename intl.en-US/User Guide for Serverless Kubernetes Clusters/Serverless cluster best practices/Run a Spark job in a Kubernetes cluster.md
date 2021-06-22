@@ -164,7 +164,7 @@ In the following example, the Spark stdout and stderr logs are collected. To col
 
 
 
-You can automate log collection by setting the environment variables for the executors and drivers when you submit jobs. In the preceding code block, the stdout and stderr logs are collected and delivered to the test-stdout Logstore in the liumi-k8s-spark project of Log Service. The following figure shows the collected log entries.
+You can automate log collection by setting the environment variables for the executors and drivers when you submit jobs. In the preceding code block, the stdout and stderr logs are collected and delivered to the test-stdout Logstore in the liumi-k8s-spark project of Log Service. 
 
 For more information, see https://github.com/aliyuneci/Virtual-Kubelet-Example/blob/master/eci-sls/sls-config.yaml.
 
