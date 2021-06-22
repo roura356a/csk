@@ -1,74 +1,120 @@
 ---
-keyword: [external Kubernetes cluster, multi-cluster, enable Log Service for Kubernetes clusters]
+keyword: [registered external cluster, enable Log Service]
 ---
 
 # Enable Log Service for an external Kubernetes cluster
 
-You can enable Log Service for external Kubernetes clusters that are registered in the Container Service for Kubernetes \(ACK\) console. This allows you to centrally manage Kubernetes clusters that are deployed across regions. This topic describes how to enable Log Service for an external cluster by deploying an application.
+You can enable Log Service for external Kubernetes clusters that are registered in the Container Service for Kubernetes \(ACK\) console. This way, you can manage Kubernetes clusters that are deployed across regions in a centralized manner. This topic describes how to enable Log Service for a registered external Kubernetes cluster.
 
-An external Kubernetes cluster is registered in the ACK console. For more information, see [Create a cluster registration proxy and register an on-premises cluster](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of registered clusters/Create a cluster registration proxy and register an on-premises cluster.md).
+An external Kubernetes cluster is registered in the ACK console. For more information, see [Create a cluster registration proxy and register an on-premises cluster](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of external clusters/Create a cluster registration proxy and register an on-premises cluster.md).
 
-1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
+## Step 1: Configure RAM permissions for the Log Service component
 
-2.  In the left-side navigation pane of the ACK console, choose **Marketplace** \> **App Catalog**.
+Before you can install the component in an external cluster, you must set the AccessKey pair to grant the external cluster the permissions to access Alibaba Cloud resources. Before you set the AccessKey pair, create a Resource Access Management \(RAM\) user and grant the RAM user the permissions to access Alibaba Cloud resources.
 
-3.  On the **App Catalog** page, click the **Alibaba Cloud Apps** tab. On the Alibaba Cloud Apps tab, find and click **ack-sls-logtail**.
+1.  Create a RAM user. For more information, see [Create a RAM user](/intl.en-US/RAM User Management/Basic operations/Create a RAM user.md).
 
-    A great number of applications are displayed on the **Alibaba Cloud Apps** tab. You can enter **ack-sls-logtail** into the Name search box to search for the component. You can also enter a keyword to perform a fuzzy match.
+2.  Create a permission policy. For more information, see [Create a custom policy](/intl.en-US/Policy Management/Custom policies/Create a custom policy.md).
 
-4.  On the **App Catalog - ack-sls-logtail** page, set the parameters in the **Deploy** section.
+    The following code block shows the content of the permission policy for the Logtail component:
 
-    -   **Cluster**: Select the cluster where you want to deploy the application. The resource objects are deployed in the selected cluster.
-    -   **Namespace**: Select the namespace to which the resource objects belong. By default, the default namespace is selected. Except for underlying computing resources such as nodes and persistent volumes \(PVs\), most resource objects are scoped to namespaces.
-    -   **Release Name**: Enter the release name of the resource object.
-5.  On the **App Catalog - ack-sls-logtail** page, click the **Parameters** tab and set the parameters.
+    ```
+    {
+        "Version": "1",
+        "Statement": [
+            {
+                "Action": [
+                    "log:CreateProject",
+                    "log:GetProject",
+                    "log:DeleteProject",
+                    "log:CreateLogStore",
+                    "log:GetLogStore",
+                    "log:UpdateLogStore",
+                    "log:DeleteLogStore",
+                    "log:CreateConfig",
+                    "log:UpdateConfig",
+                    "log:GetConfig",
+                    "log:DeleteConfig",
+                    "log:CreateMachineGroup",
+                    "log:UpdateMachineGroup",
+                    "log:GetMachineGroup",
+                    "log:DeleteMachineGroup",
+                    "log:ApplyConfigToGroup",
+                    "log:GetAppliedMachineGroups",
+                    "log:GetAppliedConfigs",
+                    "log:RemoveConfigFromMachineGroup",
+                    "log:CreateIndex",
+                    "log:GetIndex",
+                    "log:UpdateIndex",
+                    "log:DeleteIndex",
+                    "log:CreateSavedSearch",
+                    "log:GetSavedSearch",
+                    "log:UpdateSavedSearch",
+                    "log:DeleteSavedSearch",
+                    "log:CreateDashboard",
+                    "log:GetDashboard",
+                    "log:UpdateDashboard",
+                    "log:DeleteDashboard",
+                    "log:CreateJob",
+                    "log:GetJob",
+                    "log:DeleteJob",
+                    "log:UpdateJob",
+                    "log:PostLogStoreLogs",
+                    "log:CreateSortedSubStore",
+                    "log:GetSortedSubStore",
+                    "log:ListSortedSubStore",
+                    "log:UpdateSortedSubStore",
+                    "log:DeleteSortedSubStore",
+                    "log:CreateApp",
+                    "log:UpdateApp",
+                    "log:GetApp",
+                    "log:DeleteApp",
+                    "cs:DescribeTemplates",
+                    "cs:DescribeTemplateAttribute"
+                ],
+                "Resource": [
+                    "*"
+                ],
+                "Effect": "Allow"
+            }
+        ]
+    }
+    ```
 
-    ![Log Service parameters](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3465359951/p76771.png)
+3.  Grant permissions to the RAM user. For more information, see [Grant permissions to a RAM user](/intl.en-US/RAM User Management/Authorization management/Grant permissions to a RAM user.md).
 
-    |Parameter|Description|
-    |---------|-----------|
-    |**AccessKeyId**|The AccessKey ID of your Alibaba Cloud account. Your account must be authorized to access Application Real-Time Monitoring Service \(ARMS\).|
-    |**AccessKeySecret**|The AccessKey secret of your Alibaba Cloud account.|
+4.  Create an AccessKey pair for the RAM user. For more information, see [Obtain an AccessKey pair]().
+
+5.  Use the AccessKey pair to create a Secret named `alibaba-addon-secret` in the registered external cluster.
+
+    Run the following command to create the Secret. The Logtail component uses the Secret.
+
+    ```
+    kubectl -n kube-system create secret generic alibaba-addon-secret --from-literal='access-key-id=<your AccessKey ID>' --from-literal='access-key-secret=<your AccessKey Secret>'
+    ```
+
+    **Note:** Replace `<your AccessKey ID>` and `<your AccessKey Secret>` with the AccessKey pair that you obtained.
 
 
-After the application is deployed, you can execute the following YAML file in the ACK console to check whether Log Service is enabled.
+## Step 2: Install the logtail-ds component
 
-```
-apiVersion: v1
-kind: Pod
-metadata:
-  name: my-demo
-spec:
-  containers:
-  - name: my-demo-app
-    image: 'registry.cn-hangzhou.aliyuncs.com/log-service/docker-log-test:latest'
-    env:
-    ######### Configure environment variables ###########
-    - name: aliyun_logs_log-stdout
-      value: stdout
-    - name: aliyun_logs_log-varlog
-      value: /var/log/*.log
-    - name: aliyun_logs_mytag1_tags
-      value: tag1=v1
-    ###############################
-    ######### Configure volume mounting ###########
-    volumeMounts:
-    - name: volumn-sls-mydemo
-      mountPath: /var/log
-  volumes:
-  - name: volumn-sls-mydemo
-    emptyDir: {}
-  ###############################
-```
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-If you can find log data in the log-stdou and log-varlog Logstores under the related Log Service project, it indicates that Log Service is working normally.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-**Note:** The display of log data may have latency.
+3.  On the Clusters page, find the cluster that you want to manage and choose **More** \> **Manage System Components** in the **Actions** column.
 
-If Ingress-nginx is deployed in the cluster, see [Monitor and analyze the logs of nginx-ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Monitor and analyze the logs of nginx-ingress.md).
+4.  Click the Logs and Monitoring tab. Find the **logtail-ds** component and click **Install**.
+
+5.  In the Note dialog box, click **OK**.
+
+
+## Step 3: Configure Log Service
+
+For more information about how to configure Log Service when you create an application, see [Step 2: Configure Log Service when you create an application](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md).
 
 **Related topics**  
 
 
-[Overview of registered clusters](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of registered clusters/Overview of registered clusters.md)
+[Overview of registered clusters](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of external clusters/Overview of registered clusters.md)
 
