@@ -7,7 +7,7 @@ keyword: [ACK Windows nodes, disks, storage resources, Kubernetes]
 You can use Alibaba Cloud disks as the storage resources for Windows containers that run in a Container Service for Kubernetes \(ACK\) cluster. This topic describes how to mount Alibaba Cloud disks to Windows containers.
 
 -   [Create a Windows node pool](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a Windows node pool.md)
--   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md)
+-   [Connect to an ACK cluster by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md)
 
 ## Procedure
 
@@ -42,7 +42,7 @@ You can use Alibaba Cloud disks as the storage resources for Windows containers 
           selector:
             app: nginx
         ---
-        apiVersion: apps/v1beta2
+        apiVersion: apps/v1
         kind: StatefulSet
         metadata:
           name: disk-windows
@@ -91,7 +91,7 @@ You can use Alibaba Cloud disks as the storage resources for Windows containers 
 
     ```
     NAME                     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM              STORAGECLASS        REASON   AGE
-    d-2zeh2yew2t48lu75joy1   20Gi       RWO            Delete           Bound    default/pvc-disk   alicloud-disk-ssd            2m46s
+    d-2zeh2yew2t48lu75****   20Gi       RWO            Delete           Bound    default/pvc-disk   alicloud-disk-ssd            2m46s
     ```
 
 
