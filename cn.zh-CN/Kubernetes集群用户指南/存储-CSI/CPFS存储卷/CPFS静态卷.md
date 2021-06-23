@@ -17,7 +17,7 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
     如果您需要挂载CPFS存储卷，需要按照以下步骤在ACK集群中先部署cpfs-plugin组件。
 
     ```
-    apiVersion: storage.k8s.io/v1beta1
+    apiVersion: storage.k8s.io/v1
     kind: CSIDriver
     metadata:
       name: cpfsplugin.csi.alibabacloud.com
@@ -27,7 +27,7 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
     ---
     # This YAML defines all API objects to create RBAC roles for csi node plugin.
     kind: DaemonSet
-    apiVersion: apps/v1beta2
+    apiVersion: apps/v1
     metadata:
       name: csi-cpfsplugin
       namespace: kube-system
@@ -59,7 +59,6 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
               mountPath: /var/lib/kubelet/
             - name: registration-dir
               mountPath: /registration
-    
           - name: csi-cpfsplugin
             securityContext:
               privileged: true
@@ -102,10 +101,15 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
         type: RollingUpdate
     ```
 
-    执行以下命令检查运行状态。
+    执行以下命令检查应用运行状态。
 
     ```
-    # kubectl get pod -nkube-system |grep cpfs
+    kubectl get pod -nkube-system |grep cpfs
+    ```
+
+    预期输出：
+
+    ```
     csi-cpfsplugin-8t585                               2/2     Running   0          4h43m
     csi-cpfsplugin-9z5xj                               2/2     Running   0          4h43m
     csi-cpfsplugin-bdm22                               2/2     Running   0          4h43m
@@ -116,11 +120,11 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
 
 2.  使用CPFS存储卷。
 
-    1.  创建CPFS文件系统。具体步骤请参见[创建文件系统]()。
+    1.  创建CPFS文件系统。具体操作，请参见[创建文件系统]()。
 
     2.  创建PV和PVC。
 
-        拷贝以下模板，创建CPFS类型的PV和PVC。
+        使用以下模板，创建CPFS类型的PV和PVC。
 
         ```
         apiVersion: v1
@@ -160,10 +164,9 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
 
     3.  创建应用。
 
-        拷贝以下模板创建应用消费上述PVC。
+        使用以下模板引用上述PVC创建应用。
 
         ```
-        ---
         apiVersion: apps/v1
         kind: Deployment
         metadata:
