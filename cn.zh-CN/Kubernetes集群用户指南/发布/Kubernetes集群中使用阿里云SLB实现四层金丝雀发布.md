@@ -30,7 +30,7 @@ keyword: [SLB, 金丝雀发布]
     本例是一个Nginx的编排，通过SLB对外暴露的服务。
 
     ```
-     apiVersion: extensions/v1beta1
+     apiVersion: apps/v1
      kind: Deployment
      metadata:
        labels:
@@ -114,7 +114,7 @@ keyword: [SLB, 金丝雀发布]
     本示例的编排模板如下。
 
     ```
-     apiVersion: extensions/v1beta1
+     apiVersion: apps/v1
      kind: Deployment
      metadata:
        labels:
