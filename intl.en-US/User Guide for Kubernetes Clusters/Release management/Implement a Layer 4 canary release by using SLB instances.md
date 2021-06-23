@@ -30,7 +30,7 @@ In a Kubernetes cluster, Layer 7 Ingresses cannot provide high performance for h
     The following code provides an example on how to create an NGINX application that provides external services through an SLB instance.
 
     ```
-     apiVersion: extensions/v1beta1
+     apiVersion: apps/v1
      kind: Deployment
      metadata:
        labels:
@@ -114,7 +114,7 @@ In a Kubernetes cluster, Layer 7 Ingresses cannot provide high performance for h
     The following template is used as an example:
 
     ```
-     apiVersion: extensions/v1beta1
+     apiVersion: apps/v1
      kind: Deployment
      metadata:
        labels:
