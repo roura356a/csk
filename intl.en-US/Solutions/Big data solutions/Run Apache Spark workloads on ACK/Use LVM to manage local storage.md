@@ -6,7 +6,7 @@ keyword: [LVM, Disk formatting, Simplify the mounting of data disks]
 
 In big data scenarios, you can use ECS instances of the ecs.d1ne.6xlarge type to run Apache Spark jobs. Each instance has twelve 5 TB hard disk drives \(HDDs\). You must manually partition, format, and mount these disks. The manual partitioning, formatting, and mounting operations on disks are tedious and time-consuming if the Kubernetes cluster has a large number of nodes. This topic describes a simple way to format and mount data disks by using Logical Volume Manager \(LVM\).
 
--   [Create a cluster of ACK Managed Edition](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a cluster of ACK Managed Edition.md).
+-   [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 -   Data disks on worker nodes of the cluster have not been formatted or mounted.
 
 ## Deploy LVM plug-ins
