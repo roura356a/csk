@@ -17,7 +17,7 @@ ACK allows you to mount CPFS file systems as static or dynamic volumes. To mount
     To mount CPFS volumes, you must first perform the following steps to deploy cpfs-plugin in your ACK cluster:
 
     ```
-    apiVersion: storage.k8s.io/v1beta1
+    apiVersion: storage.k8s.io/v1
     kind: CSIDriver
     metadata:
       name: cpfsplugin.csi.alibabacloud.com
@@ -27,7 +27,7 @@ ACK allows you to mount CPFS file systems as static or dynamic volumes. To mount
     ---
     # This YAML defines all API objects to create RBAC roles for csi node plugin.
     kind: DaemonSet
-    apiVersion: apps/v1beta2
+    apiVersion: apps/v1
     metadata:
       name: csi-cpfsplugin
       namespace: kube-system
@@ -118,12 +118,6 @@ ACK allows you to mount CPFS file systems as static or dynamic volumes. To mount
 
     1.  Create a CPFS file system. For more information, see [Create a file system]().
 
-        Obtain the mount target of the NAS file system. Log on to the NAS console, find the created Apsara File Storage NAS. The URL \(file-system-id.region.nas.aliyuncs.com\) in the **Mount Command** column is the mount target, as shown in the following figure.
-
-        ![NAS](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8665359951/p95499.png)
-
-        **Note:** file-system-id.region.nas.aliyuncs.com is the address of the mount target. You can obtain the address of the mount target in the NAS console. Log on to the [NAS console](https://nas.console.aliyun.com/), click the name of the NAS file system. In the left-side navigation pane, click **Mounting Usage**. You can find the address of the mount target in the Mount Command column.
-
     2.  Create a PV and a PVC.
 
         Use the following template to create a PV and a PVC for the CPFS file system:
@@ -169,7 +163,6 @@ ACK allows you to mount CPFS file systems as static or dynamic volumes. To mount
         Use the following template to create a Deployment that uses the preceding PVC:
 
         ```
-        ---
         apiVersion: apps/v1
         kind: Deployment
         metadata:
