@@ -6,8 +6,8 @@ keyword: [ACK Windows nodes, SMB, storage resource, Kubernetes]
 
 You can mount Server Message Block \(SMB\) file systems of Apsara File Storage NAS \(NAS\) to Windows containers that run in a Container Service for Kubernetes \(ACK\) cluster. This topic describes how to mount SMB file systems to Windows containers.
 
--   [Create a node pool that runs Windows](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a node pool that runs Windows.md).
--   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+-   [Create a Windows node pool](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a Windows node pool.md).
+-   [Connect to an ACK cluster by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 -   In the NAS console, create an SMB file system in the virtual private cloud \(VPC\) where the ACK cluster is deployed, and create a mount target for the SMB file system. For more information, see [Mount an SMB file system on Windows]().
 
 ## Step 1: Deploy the FlexVolume plug-in
@@ -44,7 +44,7 @@ For more information, see the [Deploy the FlexVolume plug-in in the ACK cluster]
 1.  Use the following YAML template to deploy an application.
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: nginx-smb
