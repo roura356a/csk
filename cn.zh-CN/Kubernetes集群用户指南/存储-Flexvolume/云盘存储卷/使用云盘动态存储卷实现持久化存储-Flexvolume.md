@@ -19,9 +19,9 @@ keyword: [云盘动态存储卷, 持久化存储]
 
 ## 前提条件
 
--   您已成功创建一个Kubernetes集群，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   您可以通过kubectl连接到Kubernetes集群，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
--   集群中需要安装Provisioner插件，该插件可以根据StorageClass自动创建云盘。
+-   已创建Kubernetes集群，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
+-   已通过kubectl连接到Kubernetes集群，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   集群中已安装Provisioner插件，该插件可以根据StorageClass自动创建云盘。
 
 ## Provisioner插件
 
@@ -40,7 +40,7 @@ keyword: [云盘动态存储卷, 持久化存储]
 
     ```
     kind: StorageClass
-    apiVersion: storage.k8s.io/v1beta1
+    apiVersion: storage.k8s.io/v1
     metadata:
       name: alicloud-disk-ssd-hangzhou-b
     provisioner: alicloud/disk
