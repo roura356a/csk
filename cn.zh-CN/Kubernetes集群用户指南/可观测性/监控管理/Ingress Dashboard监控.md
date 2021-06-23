@@ -52,9 +52,9 @@
 
 5.  在无状态页面右上角单击**使用YAML创建资源**。
 
-6.  选择**示例模板**，并在**模板**（YAML格式）中将以下`annotations`添加到spec \> template \> metadata层级下。
+6.  选择**示例模板**，并在**模板**（YAML格式）中将以下`annotations`添加到spec / template / metadata层级下。
 
-    **说明：** 请将<your-deployment-name\>替换为您的应用名称。
+    **说明：** 请将your-deployment-name替换为您的应用名称。
 
     ```
     annotations:
