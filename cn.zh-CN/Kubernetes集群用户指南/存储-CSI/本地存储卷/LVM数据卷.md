@@ -133,7 +133,7 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     kubectl get pod
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME                             READY   STATUS    RESTARTS   AGE
@@ -146,11 +146,11 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     kubectl get pvc
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME      STATUS   VOLUME                                      CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-    lvm-pvc   Bound    disk-afacf7a9-3d1a-45da-b443-24f8fb3599c1   2Gi        RWO            csi-local      16s
+    lvm-pvc   Bound    disk-afacf7a9-3d1a-45da-b443-24f8fb35****   2Gi        RWO            csi-local      16s
     ```
 
     执行以下命令查看PV信息。
@@ -159,11 +159,11 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     kubectl get pv
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM             STORAGECLASS   REASON   AGE
-    disk-afacf7a9-3d1a-45da-b443-24f8fb3599c1   2Gi        RWO            Delete           Bound    default/lvm-pvc   csi-local               12s
+    disk-afacf7a9-3d1a-45da-b443-24f8fb35****   2Gi        RWO            Delete           Bound    default/lvm-pvc   csi-local               12s
     ```
 
     执行以下命令查看Pod挂载详情。
@@ -172,11 +172,11 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     kubectl exec -ti deployment-lvm-9f798687c-mqfht sh df /data
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
-    Filesystem                                                              1K-blocks  Used Available Use% Mounted on
-    /dev/mapper/volumegroup1-disk--afacf7a9--3d1a--45da--b443--24f8fb3599c1   1998672  6144   1976144   1% /data
+    Filesystem                                                                1K-blocks  Used   Available Use% Mounted on
+    /dev/mapper/volumegroup1-disk--afacf7a9--3d1a--45da--b443--24f8fb35****   1998672    6144   1976144   1%   /data
     ```
 
     执行以下命令列出/data下的目录。
@@ -185,7 +185,7 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     ls /data
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     lost+found
@@ -198,7 +198,7 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     ls /data
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     lost+found  test
@@ -216,7 +216,7 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     kubectl delete pod deployment-lvm-9f798687c-mqfht
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     pod "deployment-lvm-9f798687c-mqfht" deleted
@@ -228,7 +228,7 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     kubectl get pod
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME                             READY   STATUS    RESTARTS   AGE
@@ -241,7 +241,7 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     kubectl exec deployment-lvm-9f798687c-jsdnk ls /data
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     lost+found  
@@ -256,11 +256,11 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     kubectl get pvc
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME      STATUS   VOLUME                                      CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-    lvm-pvc   Bound    disk-afacf7a9-3d1a-45da-b443-24f8fb3599c1   2Gi        RWO            csi-local      6m50s
+    lvm-pvc   Bound    disk-afacf7a9-3d1a-45da-b443-24f8fb35****   2Gi        RWO            csi-local      6m50s
     ```
 
     执行以下命令将PVC扩容到4 GiB。
@@ -269,7 +269,7 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     kubectl patch pvc lvm-pvc -p '{"spec":{"resources":{"requests":{"storage":"4Gi"}}}}'
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     persistentvolumeclaim/lvm-pvc patched
@@ -281,11 +281,11 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     kubectl get pvc
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME      STATUS   VOLUME                                      CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-    lvm-pvc   Bound    disk-afacf7a9-3d1a-45da-b443-24f8fb3599c1   4Gi        RWO            csi-local      7m26s
+    lvm-pvc   Bound    disk-afacf7a9-3d1a-45da-b443-24f8fb35****   4Gi        RWO            csi-local      7m26s
     ```
 
     执行以下命令查看LVM卷扩容到4 GiB。
@@ -294,11 +294,11 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     kubectl exec deployment-lvm-9f798687c-jsdnk df /data
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
-    Filesystem                                                              1K-blocks  Used Available Use% Mounted on
-    /dev/mapper/volumegroup1-disk--afacf7a9--3d1a--45da--b443--24f8fb3599c1   4062912  8184   4038344   1% /data
+    Filesystem                                                                1K-blocks  Used   Available Use% Mounted on
+    /dev/mapper/volumegroup1-disk--afacf7a9--3d1a--45da--b443--24f8fb35****   4062912    8184   4038344   1%   /data
     ```
 
 6.  执行以下命令监控LVM卷。
@@ -307,7 +307,7 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     curl -s localhost:10255/metrics | grep lvm-pvc
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     kubelet_volume_stats_available_bytes{namespace="default",persistentvolumeclaim="lvm-pvc"} 1.917165568e+09
@@ -318,6 +318,6 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     kubelet_volume_stats_used_bytes{namespace="default",persistentvolumeclaim="lvm-pvc"} 5.873664e+06
     ```
 
-    可以将上述监控数据接入Prometheus并在前端展示。详情请参见[开源Prometheus监控](/cn.zh-CN/Kubernetes集群用户指南/可观测性/监控管理/开源Prometheus监控.md)。
+    可以将上述监控数据接入Prometheus并在前端展示。具体操作，请参见[开源Prometheus监控](/cn.zh-CN/Kubernetes集群用户指南/可观测性/监控管理/开源Prometheus监控.md)。
 
 
