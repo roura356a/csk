@@ -16,7 +16,7 @@ How to use a dynamically provisioned disk:
 ## Prerequisites
 
 -   An ACK cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
--   You are connected to the cluster through kubectl. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+-   You are connected to the cluster through kubectl. For more information, see [Connect to an ACK cluster by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 -   A provisioner is installed for the cluster. The provisioner can automatically create a disk of the specified StorageClass.
 
 ## Provisioner
@@ -36,7 +36,7 @@ By default, ACK creates four StorageClasses when the system is initialized. All 
 
     ```
     kind: StorageClass
-    apiVersion: storage.k8s.io/v1beta1
+    apiVersion: storage.k8s.io/v1
     metadata:
       name: alicloud-disk-ssd-hangzhou-b
     provisioner: alicloud/disk
