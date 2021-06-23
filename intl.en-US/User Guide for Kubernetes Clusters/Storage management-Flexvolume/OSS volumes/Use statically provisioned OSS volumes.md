@@ -7,7 +7,7 @@ This topic describes how to use statically provisioned Object Storage Service \(
 1.  Create the oss-deploy.yaml file and copy the following content to the file.
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: nginx-oss-deploy
@@ -93,7 +93,7 @@ This topic describes how to use statically provisioned Object Storage Service \(
             |Parameter|Description|
             |---------|-----------|
             |**PV Type**|In this example, OSS is selected.|
-            |**Volume Plug-in**|By default, Flexvolume is selected. For more information about volume plug-ins, see [Differences between Flexvolume and CSI](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Volume plug-ins.md).|
+            |**Volume Plug-in**|By default, Flexvolume is selected. For more information about volume plug-ins, see [Differences between FlexVolume and CSI](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Volume plug-ins.md).|
             |**Access Mode**|By default, ReadWriteMany is selected.|
             |**Cloud ID**|In the **Select Disk** dialog box, find the disk that you want to use and click Select in the Actions column of the disk.|
             |**File System Type**|The type of the file system.|
@@ -204,7 +204,7 @@ This topic describes how to use statically provisioned Object Storage Service \(
     Specify the secret in the secretRef field of the volume.
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: nginx-oss-deploy1
