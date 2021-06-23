@@ -8,7 +8,7 @@ To dynamically provision a disk as a persistent volume \(PV\), you must manually
 
     ```
     kind: StorageClass
-    apiVersion: storage.k8s.io/v1beta1
+    apiVersion: storage.k8s.io/v1
     metadata:
       name: alicloud-disk-ssd-hangzhou-b
     provisioner: alicloud/disk
