@@ -39,9 +39,9 @@ keyword: [PMEM, 非易失性存储器NVM, Optane DIMMs, Intel Optane DC Persiste
 
 |方式|碎片化|在线扩容|持久化|应用修改|时延 \(4K/RW\)|吞吐 （4K/RW\)|单盘最大容量（ecs.ebmre6p.26xlarge）|
 |--|---|----|---|----|------------|-----------|----------------------------|
-|PMEM-LVM|无|支持|是|否|10 us|10W|1536GB|
-|PMEM-Direct|是|否|否|是|1.2 us|56W|768GB|
-|SSD|无|支持|是|否|100 us|1W|32TB|
+|PMEM-LVM|无|支持|是|否|10 us|10W|1536 GB|
+|PMEM-Direct|是|否|否|是|1.2 us|56W|768 GB|
+|SSD|无|支持|是|否|100 us|1W|32 TB|
 
 ## 插件部署
 
@@ -61,7 +61,7 @@ ACK对非易失性内存支持方案的系统组件包含：
 
 1.  创建ACK集群。
 
-    ACK集群中添加AEP的PMEM类型的ECS节点实例，例如：ecs.ebmre6p.26xlarge。有关创建集群的具体步骤请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
+    ACK集群中添加AEP的PMEM类型的ECS节点实例，例如：ecs.ebmre6p.26xlarge。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 
 2.  配置AEP的PMEM节点类型。
 
@@ -95,7 +95,7 @@ ACK对非易失性内存支持方案的系统组件包含：
         kind: PersistentVolumeClaim
         metadata:
           annotations:
-            volume.kubernetes.io/selected-node: cn-zhangjiakou.192.168.1.12
+            volume.kubernetes.io/selected-node: cn-zhangjiakou.192.168.XX.XX
           name: pmem-lvm
         spec:
           accessModes:
@@ -142,34 +142,43 @@ ACK对非易失性内存支持方案的系统组件包含：
 
     3.  查看结果。
 
-        ```
-        kubectl get pvc 
-        ```
+        -   执行以下命令查看创建的PVC。
 
-        ```
-        pmem-lvm           Bound    disk-334cb6fa-fabd-4687-96dc-0d2b15564822   10Gi       RWO            pmem-lvm                  10m
-        ```
+            ```
+            kubectl get pvc 
+            ```
 
-        ```
-        kubectl get pod
-        ```
+            预期输出：
 
-        ```
-        NAME                                READY   STATUS    RESTARTS   AGE
-        deployment-lvm-5bf65c7f76-jb6nl     1/1     Running   0          10m
-        ```
+            ```
+            pmem-lvm           Bound    disk-****   10Gi       RWO            pmem-lvm                  10m
+            ```
+
+        -   执行以下命令查看创建的Pod。
+
+            ```
+            kubectl get pod
+            ```
+
+            预期输出：
+
+            ```
+            NAME                                READY   STATUS    RESTARTS   AGE
+            deployment-lvm-5bf65c7f76-jb6nl     1/1     Running   0          10m
+            ```
+
+    4.  执行以下命令进入应用查看挂载路径详情。
 
         ```
         kubectl exec -ti deployment-lvm-5bf65c7f76-jb6nl sh
-        ```
-
-        ```
         df /data
         ```
 
+        预期输出：
+
         ```
-        Filesystem                                                               1K-blocks  Used Available Use% Mounted on
-        /dev/mapper/pmemvgregion0-disk--334cb6fa--fabd--4687--96dc--0d2b15564822  10255636 36888  10202364   1% /data
+        Filesystem                            1K-blocks  Used   Available Use% Mounted on
+        /dev/mapper/pmemvgregion0-disk--****  10255636   36888  10202364  1%   /data
         ```
 
         可见已经动态创建了一个块存储数据卷，并挂载给Pod使用。
@@ -184,7 +193,7 @@ ACK对非易失性内存支持方案的系统组件包含：
         kind: PersistentVolumeClaim
         metadata:
           annotations:
-            volume.kubernetes.io/selected-node: cn-zhangjiakou.192.168.1.14
+            volume.kubernetes.io/selected-node: cn-zhangjiakou.192.168.XX.XX
           name: pmem-direct
         spec:
           accessModes:
@@ -231,35 +240,44 @@ ACK对非易失性内存支持方案的系统组件包含：
 
     3.  查看结果。
 
-        ```
-        kubectl get pvc pmem-direct
-        ```
+        -   执行以下命令查看PVC。
 
-        ```
-        NAME          STATUS   VOLUME                                      CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-        pmem-direct   Bound    disk-15c75a5d-469e-4dd7-b67e-6bdc489288a2   9Gi        RWO            pmem-direct    17m
-        ```
+            ```
+            kubectl get pvc pmem-direct
+            ```
 
-        ```
-        kubectl get pod
-        ```
+            预期输出：
 
-        ```
-        NAME                                READY   STATUS    RESTARTS   AGE
-        deployment-direct-64d448d96-9znfk   1/1     Running   0          17m
-        ```
+            ```
+            NAME          STATUS   VOLUME      CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+            pmem-direct   Bound    disk-****   9Gi        RWO            pmem-direct    17m
+            ```
+
+        -   执行以下命令查看Pod。
+
+            ```
+            kubectl get pod
+            ```
+
+            预期输出：
+
+            ```
+            NAME                                READY   STATUS    RESTARTS   AGE
+            deployment-direct-64d448d96-9znfk   1/1     Running   0          17m
+            ```
+
+    4.  执行以下命令进入应用查看挂载目录详情。
 
         ```
         kubectl exec -ti deployment-direct-64d448d96-9znfk sh
-        ```
-
-        ```
         df /data
         ```
 
+        预期输出：
+
         ```
-        Filesystem     1K-blocks  Used Available Use% Mounted on
-        /dev/pmem0       9076344 36888   9023072   1% /data
+        Filesystem     1K-blocks  Used    Available  Use%  Mounted on
+        /dev/pmem0     9076344    36888   9023072    1%    /data
         ```
 
         可见已经动态创建了一个PMEM数据卷，并挂载给Pod使用。
