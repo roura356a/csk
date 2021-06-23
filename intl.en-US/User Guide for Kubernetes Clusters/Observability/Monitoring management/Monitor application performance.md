@@ -25,7 +25,7 @@ Perform the following steps to grant ACK the permissions to access ARMS.
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -52,7 +52,7 @@ To enable ARMS when you create an application, perform the following steps:
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -83,7 +83,7 @@ To enable ARMS when you create an application, perform the following steps:
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -129,7 +129,7 @@ To enable ARMS to monitor existing applications, perform the following steps:
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
