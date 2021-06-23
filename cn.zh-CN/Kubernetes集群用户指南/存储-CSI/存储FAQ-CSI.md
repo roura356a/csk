@@ -95,17 +95,17 @@ keyword: [云盘存储, NAS存储, FAQ]
 
             ```
             podid=`kubectl get pod -nkube-system | grep alicloud-disk-controller | awk '{print $1}'`
-            kubectl logs {PodID} -nkube-system
+            kubectl logs <PodID> -nkube-system
             ```
 
         -   若集群部署了CSI插件，则执行以下命令查询csi-provisioner日志。
 
             ```
             podid=`kubectl get pod -nkube-system | grep csi-provisioner | awk '{print $1}'`
-            kubectl logs {PodID} -nkube-system -c csi-provisioner
+            kubectl logs <PodID> -nkube-system -c csi-provisioner
             ```
 
-            **说明：** csi-provisioner有2个Pod，上述`kubectl get pod -nkube-system | grep csi-provisioner | awk '{print $1}'`命令操作会输出2个`podid`，请分别执行`kubectl logs {PodID} -nkube-system -c csi-provisioner`命令。
+            **说明：** csi-provisioner有2个Pod，上述`kubectl get pod -nkube-system | grep csi-provisioner | awk '{print $1}'`命令操作会输出2个`podid`，请分别执行`kubectl logs <PodID> -nkube-system -c csi-provisioner`命令。
 
     -   若Pod启动时挂载报错，则需要查看Flexvolume或csi-plugin日志。
         -   若集群部署了Flexvolume插件，则执行以下命令查询Flexvolume日志。
@@ -121,7 +121,7 @@ keyword: [云盘存储, NAS存储, FAQ]
             ```
             nodeID=`kubectl get pod {pod-name} -owide | awk 'NR>1 {print $7}'`
             podID=`kubectl get pods -nkube-system -owide -lapp=csi-plugin | grep $nodeID|awk '{print $1}'`
-            kubectl logs {PodID} -nkube-system
+            kubectl logs <PodID> -nkube-system
             ```
 
     -   查看Kubelet日志。
