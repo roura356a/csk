@@ -7,11 +7,11 @@ keyword: [Windows node, Logtail, collect application logs]
 You can use Logtail to collect application logs from Windows nodes. This topic describes how to use Logtail to collect application logs from Windows nodes.
 
 -   A Container Service for Kubernetes \(ACK\) cluster is created and **Enable Log Service** is selected when you create the cluster. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
--   A Windows node pool is created. For more information, see [Create a node pool that runs Windows](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a node pool that runs Windows.md).
+-   A Windows node pool is created. For more information, see [Create a Windows node pool](/intl.en-US/User Guide for Kubernetes Clusters/Windows container/Create a Windows node pool.md).
 
 ## Deploy Logtail on a Windows node
 
-1.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+1.  [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
 2.  Run the following command to deploy Logtail as a DaemonSet on a Windows node:
 
@@ -228,7 +228,7 @@ You can use Logtail to collect application logs from Windows nodes. This topic d
 After Logtail is deployed on the Windows node, use the following template to deploy a sample application to verify that Logtail works as expected:
 
 ```
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
