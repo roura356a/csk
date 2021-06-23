@@ -7,7 +7,7 @@ keyword: [ACK Windows节点, 云盘, 存储资源, Kubernetes]
 您可以在ACK Windows容器上使用云盘存储资源。本文介绍如何在Windows容器上使用云盘。
 
 -   [创建Windows节点池](/intl.zh-CN/Kubernetes集群用户指南/Windows容器/创建Windows节点池.md)
--   [通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)
+-   [通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)
 
 ## 操作步骤
 
@@ -42,7 +42,7 @@ keyword: [ACK Windows节点, 云盘, 存储资源, Kubernetes]
           selector:
             app: nginx
         ---
-        apiVersion: apps/v1beta2
+        apiVersion: apps/v1
         kind: StatefulSet
         metadata:
           name: disk-windows
@@ -91,7 +91,7 @@ keyword: [ACK Windows节点, 云盘, 存储资源, Kubernetes]
 
     ```
     NAME                     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM              STORAGECLASS        REASON   AGE
-    d-2zeh2yew2t48lu75joy1   20Gi       RWO            Delete           Bound    default/pvc-disk   alicloud-disk-ssd            2m46s
+    d-2zeh2yew2t48lu75****   20Gi       RWO            Delete           Bound    default/pvc-disk   alicloud-disk-ssd            2m46s
     ```
 
 
