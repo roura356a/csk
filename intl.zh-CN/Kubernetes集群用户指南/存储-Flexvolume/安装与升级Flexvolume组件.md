@@ -4,13 +4,13 @@ keyword: [Flexvolume组件, Disk Controller组件, NAS Controller组件]
 
 # 安装与升级Flexvolume组件
 
-对于阿里云Kubernetes 1.16之前版本的集群，若创建集群时存储插件选择为Flexvolume，则控制台默认安装Flexvolume与Disk-Controller组件，但不会默认安装NAS Controller组件。本文介绍如何对Flexvolume组件升级管理及如何安装NAS Controller组件。
+创建阿里云Kubernetes 1.16之前版本的集群时，若存储插件选择为Flexvolume，则控制台默认安装Flexvolume与Disk-Controller组件，但不会默认安装NAS Controller组件。本文介绍如何对Flexvolume组件升级管理及如何安装NAS Controller组件。
 
 ## 前提条件
 
--   您已创建一个ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   您的阿里云Kubernetes集群存储插件为Flexvolume。
--   您已通过kubectl连接Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   已创建ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
+-   阿里云Kubernetes集群存储插件为Flexvolume。
+-   已通过kubectl连接Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 ## 使用限制
 
@@ -107,6 +107,8 @@ spec:
 ## 升级组件
 
 Flexvolume与Disk Controller组件支持在控制台升级，NAS Controller组件不支持在控制台升级。
+
+若阿里云Kubernetes 1.16之前版本的集群升级到1.16及之后版本，升级后的集群仍支持Flexvolume存储插件，且可通过控制台升级。
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
