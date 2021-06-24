@@ -1,37 +1,37 @@
-# 服务网格ASM
+# ASM
 
-您可以将部署在容器服务Kubernetes版（ACK）中的应用接入阿里云服务网格ASM，简化服务的网格化治理，实现服务的可观测性，减轻开发与运维的工作负担。
+You can deploy applications from a Container Service for Kubernetes \(ACK\) cluster to Alibaba Cloud Service Mesh \(ASM\). This simplifies service management by using service meshes, makes services observable, and reduces the workload of development and operations and maintenance \(O&M\).
 
-阿里云服务网格（Alibaba Cloud Service Mesh，简称ASM）提供一个全托管式的服务网格平台，兼容社区Istio开源服务网格，用于简化服务的治理，包括服务调用之间的流量路由与拆分管理、服务间通信的认证安全以及网格可观测性能力。服务网格ASM适用于需要对应用服务进行流量管理、安全管理、故障恢复、观测监控以及微服务架构迁移的应用场景。
+ASM is a fully managed service mesh platform. ASM is compatible with the open source Istio service mesh. ASM allows you to manage services in a simplified manner. For example, you can use ASM to route and split inter-service traffic, secure inter-service communication with authentication, and observe the behavior of services in meshes. ASM provides the following features for you to manage application services: traffic management, security management, fault recovery, observability and monitoring, and microservices architectures.
 
-## 产品架构
+## Architecture
 
-ASM的产品架构如下图所示。
+The following figure shows the architecture of ASM.
 
-![ASM产品架构 ](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0970649951/p73368.png)
+![ASM architecture ](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5806193261/p73368.png)
 
-在ASM中，Istio控制平面的组件全部托管，降低您使用的复杂度，您只需要专注于业务应用的开发部署。同时，保持与Istio社区的兼容，支持声明式的方式定义灵活的路由规则，支持网格内服务之间的统一流量管理。
+ASM integrates and manages all components on the Istio control plane to simplify your use of ASM. This way, you can focus on application development and deployment. In addition, ASM is compatible with the Istio community. You can use declarative parameters to define flexible routing rules, and centrally manage traffic between services in a mesh.
 
-一个托管了控制平面的ASM实例可以支持来自多个Kubernetes集群的应用服务或者运行于ECI Pod上的应用服务。此外，也可以把一些非Kubernetes服务（例如运行于虚拟机或物理裸机中的服务）集成到同一个服务网格中。
+An ASM instance with the managed control plane supports application services from multiple Kubernetes clusters or application services that run in elastic container instance pods. You can also deploy non-Kubernetes services, such as services that run on virtual machines or bare metal hosts, into the same service mesh.
 
-## 功能特性
+## Benefits
 
-ASM定位于混合云、多云、多集群、非容器应用迁移等核心场景中，构建托管式统一的服务网格能力，能够为阿里云用户提供以下功能：
+ASM builds the managed and unified service mesh capabilities in core scenarios, such as hybrid cloud, multi-cloud, multi-cluster, and non-containerized application migration. ASM provides you with the following benefits:
 
--   一致的管理方式
+-   Centralized management mode
 
-    以一致的方式来管理运行于ACK托管Kubernetes集群、专有Kubernetes集群、Serverless Kubernetes集群、混合云或多云场景下的接入集群上的应用服务，从而提供一致的可观测性和流量控制。
+    ASM manages application services that run in managed, dedicated, and serverless clusters of Container Service for Kubernetes \(ACK\) and registered clusters in hybrid cloud and multi-cloud environments in a centralized manner. This provides unified observability and throttling for application services.
 
--   统一的流量管理
+-   Centralized traffic management
 
-    支持容器或者虚拟机混合环境下统一的流量管理。
+    ASM centrally manages the traffic between application services that are deployed in a hybrid environment where containers and virtual machines coexist.
 
--   控制平面核心组件托管化
+-   Managed core components of the control plane
 
-    托管控制平面的核心组件，最大限度地降低用户资源开销和运维成本。
+    ASM manages core components of the Istio control plane. This helps minimize your resource overhead and O&M costs.
 
 
-## 相关操作
+## Related operations
 
-关于ASM的入门操作，请参见[入门指引]()。
+For more information about how to get started with ASM, see [Overview]().
 
