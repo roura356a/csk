@@ -30,7 +30,6 @@ keyword: [共享GPU, 托管Prometheus监控, GPU资源隔离]
     ```
     apiVersion: apps/v1
     kind: StatefulSet
-    
     metadata:
       name: app-3g-v1
       labels:
@@ -136,7 +135,6 @@ keyword: [共享GPU, 托管Prometheus监控, GPU资源隔离]
         ```
         apiVersion: apps/v1
         kind: StatefulSet
-        
         metadata:
           name: app-3g-v1
           labels:
@@ -289,9 +287,8 @@ keyword: [共享GPU, 托管Prometheus监控, GPU资源隔离]
     该应用声明使用的GPU显存是4 GB，但是它实际使用的GPU显存为6 GB。
 
     ```
-    apiVersion: apps/v1beta1
+    apiVersion: apps/v1
     kind: StatefulSet
-    
     metadata:
       name: app-6g-v1
       labels:
