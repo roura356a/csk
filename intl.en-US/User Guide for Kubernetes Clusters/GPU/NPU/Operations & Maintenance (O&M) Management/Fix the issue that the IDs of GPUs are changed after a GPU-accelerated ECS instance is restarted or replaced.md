@@ -114,7 +114,7 @@ When a failed GPU-accelerated instance in the cluster is restarted or replaced, 
     The following YAML template is used to create the pod:
 
     ```
-    apiVersion: apps/v1beta1
+    apiVersion: apps/v1
     kind: StatefulSet
     metadata:
       name: app-3g-v1
