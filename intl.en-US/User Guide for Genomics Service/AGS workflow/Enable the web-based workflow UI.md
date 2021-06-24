@@ -2,8 +2,8 @@
 
 This topic describes how to enable and access the web-based workflow UI by creating an Ingress. You can view the status of all workflows and the container logs for each step of a workflow by using the web-based workflow UI.
 
--   A Container Service for Kubernetes \(ACK\) cluster is created. For more information, see [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md).
--   A master node is connected. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+-   A Container Service for Kubernetes \(ACK\) cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+-   A master node is connected. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
 1.  Run the htpasswd command to generate an auth file. You can store the username and password in the file.
 
@@ -31,7 +31,7 @@ This topic describes how to enable and access the web-based workflow UI by creat
 3.  Create an ingress yaml file, copy the following content to the file, and then run the `kubectl apply -f ingress.yaml` command to create the Ingress named workflow-ingress.
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       name: workflow-ingress
