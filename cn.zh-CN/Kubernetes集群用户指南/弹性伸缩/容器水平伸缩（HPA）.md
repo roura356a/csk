@@ -126,7 +126,7 @@ ACK支持在控制台界面上快速创建支持HPA的应用，实现容器资�
     通过scaleTargetRef设置当前HPA绑定的对象，在本例中绑定是名叫nginx的Deployment。
 
     ```
-    apiVersion: autoscaling/v2beta1
+    apiVersion: autoscaling/v2
     kind: HorizontalPodAutoscaler
     metadata:
       name: nginx-hpa
