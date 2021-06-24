@@ -30,7 +30,7 @@ This topic describes how to deploy applications that provide services by using a
     You can use the following YAML template to create applications and an Ingress that is used to enable access to the applications:
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: coffee
@@ -63,7 +63,7 @@ This topic describes how to deploy applications that provide services by using a
         app: coffee
       clusterIP: None
     ---
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: tea
@@ -97,7 +97,7 @@ This topic describes how to deploy applications that provide services by using a
         app: tea
       clusterIP: None
     ---
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       name: cafe-ingress
