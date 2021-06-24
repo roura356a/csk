@@ -9,7 +9,7 @@ You can create an application that has Horizontal Pod Autoscaling \(HPA\) enable
 Before you enable HPA, make sure that you have completed the following steps:
 
 -   [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)
--   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md)
+-   [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md)
 
 ## Create an application that has HPA enabled in the ACK console
 
@@ -19,7 +19,7 @@ ACK is integrated with HPA. You can create an application that has HPA enabled i
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -64,7 +64,7 @@ This example describes how to enable HPA for a stateless application.
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -127,7 +127,7 @@ In the following example, HPA is enabled for an NGINX application.
     Use scaleTargetRef to associate the Horizontal Pod Autoscaler with the Deployment named nginx.
 
     ```
-    apiVersion: autoscaling/v2beta1
+    apiVersion: autoscaling/v2
     kind: HorizontalPodAutoscaler
     metadata:
       name: nginx-hpa
