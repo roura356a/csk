@@ -6,6 +6,8 @@ keyword: [configure a TLS certificate, HTTPS access]
 
 This topic describes how to use a Secret to configure a TLS certificate to enable HTTPS access to an Ingress.
 
+-   A serverless Kubernetes \(ASK\) cluster is created. You must configure a network address translation \(NAT\) gateway for the virtual private cloud \(VPC\) where the cluster is created so that the cluster can download container images from the Internet. For more information, see [Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md).
+-   The kubectl client is connected to the ASK cluster. For more information, see [Use kubectl to connect to an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Cluster/Manage and access clusters/Use kubectl to connect to an ASK cluster.md).
 
 ## Procedure
 
