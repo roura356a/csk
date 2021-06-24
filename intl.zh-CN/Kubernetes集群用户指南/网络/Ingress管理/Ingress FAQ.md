@@ -9,7 +9,7 @@
 -   [nginx-ingress-controller组件支持HSTS吗？](#section_ycn_qs2_rb2)
 -   [Ingress-Nginx支持哪些Rewrite配置？](#section_l15_amm_2ht)
 -   [当版本升级后SLS解析日志不正常怎样修复？](#section_10k_mmd_5e0)
--   [如何配置Nginx Ingress Controller的私网SLB？](~~142097~~)
+-   [t1860692.dita\#task\_2401024](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/部署Ingress Controller使用私网SLB.md)
 -   [在ACK组件管理中升级Nginx Ingress Controller组件时，系统所做的更新是什么？](#section_99r_gia_5ax)
 
 ## Ingress支持哪些SSL/TLS版本？
