@@ -169,38 +169,22 @@ keyword: [HTTPS安全访问, HTTPS访问配置]
     您也可采用YAML文件的方式创建路由（Ingress），本例对应的YAML示例文件如下。
 
     ```
-    apiVersion: extensions/v1beta1
-    
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
-    
     metadata:
-    
        name: tomcat-https
-    
     spec:
-    
       tls:
-    
       - hosts:
-    
         - foo.bar.com
-    
         secretName: secret-https
-    
       rules:
-    
       - host: foo.bar.com
-    
         http:
-    
           paths:
-    
           - path: /
-    
             backend:
-    
               serviceName: tomcat-svc
-    
               servicePort: 8080
     ```
 
