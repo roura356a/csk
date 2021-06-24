@@ -31,7 +31,7 @@ This topic describes how to disable the memory isolation capability of cGPU by u
 2.  Use the following YAML template to create a container for which GPU sharing is enabled and memory isolation is disabled:
 
     ```
-    apiVersion: apps/v1beta1
+    apiVersion: apps/v1
     kind: StatefulSet
     
     metadata:
