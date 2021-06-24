@@ -30,7 +30,7 @@ keyword: [部署Ingress, Ingress应用]
     您可以使用如下YAML示例模板创建Ingress。
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: coffee
@@ -63,7 +63,7 @@ keyword: [部署Ingress, Ingress应用]
         app: coffee
       clusterIP: None
     ---
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: tea
@@ -97,7 +97,7 @@ keyword: [部署Ingress, Ingress应用]
         app: tea
       clusterIP: None
     ---
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       name: cafe-ingress
