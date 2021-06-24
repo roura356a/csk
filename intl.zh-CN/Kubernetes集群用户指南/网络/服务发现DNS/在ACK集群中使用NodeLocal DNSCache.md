@@ -12,7 +12,7 @@ keyword: [node-local-dns, NodeLocal DNSCache, DaemonSet]
 ## 使用限制
 
 -   NodeLocal DNSCache不支持ASK集群、以及托管版、专有版集群中部署的ECI类型的Pod。
--   如果集群网络类型为Terway，请更新Terway至v1.0.10.301及以上版本。
+-   如果集群网络类型为Terway，请更新Terway至v1.0.10.301及以上版本。如果是基于IPVLAN的Terway多IP模式，需要对Terway进行配置修改。更多信息，请参见[修改Terway配置](#section_wcp_x4c_oyc)。
 -   组件管理中的NodeLocal DNSCache和应用目录中的ack-node-local-dns为同一应用，不需要重复安装。
 -   NodeLocal DNSCache不提供Hosts、Rewrite等插件能力，仅作为CoreDNS的透明缓存代理。如有需要，可在CoreDNS配置中修改。
 -   如果集群使用了PrivateZone的，需要修改CoreDNS配置后启用。更多信息，请参见[PrivateZone兼容性说明](#section_ajk_4vf_oqk)。
@@ -376,6 +376,82 @@ kubelet通过--cluster-dns和--cluster-domain两个参数来全局控制Pod DNSC
 ## PrivateZone兼容性说明
 
 NodeLocal DNSCache会默认采用TCP协议与CoreDNS进行通信，CoreDNS会根据请求来源使用的协议与上游进行通信。如果您集群中使用了PrivateZone，经过DNS本地缓存组件的解析请求最终会以TCP协议请求至PrivateZone服务。目前阿里云部分地域的PrivateZone服务尚未支持TCP协议，因此PrivateZone的解析结果可能会失败。
+
+## 修改Terway配置
+
+1.  执行以下命令，查看Terway配置文件。
+
+    ```
+    kubectl -n kube-system edit cm eni-config -o yaml
+    ```
+
+2.  检查Terway配置文件。
+
+    -   检查配置文件中`eniip_virtual_type`字段是否开启IPVLAN模式。如果配置文件中此项不存在或不是IPVLAN，则您不需要按后续步骤进行配置，可以直接安装NodeLocal DNSCache。具体操作，请参见[安装NodeLocal DNSCache](#section_rzr_wqx_ss3)。
+    -   检查配置文件中是否已配置`host_stack_cidrs`字段。如果配置文件中已配置`host_stack_cidrs`字段，则您不需要按后续步骤进行配置，可以直接安装NodeLocal DNSCache。具体操作，请参见[安装NodeLocal DNSCache](#section_rzr_wqx_ss3)。
+3.  在Terway配置文件中添加`host_stack_cidrs`字段，并输入网段169.254.20.10/32，保存并退出。
+
+    ```
+     10-terway.conf: |
+      {
+        "cniVersion": "0.3.0",
+        "name": "terway",
+        "eniip_virtual_type": "IPVlan",
+        "host_stack_cidrs": ["169.254.20.10/32"], 
+        "type": "terway"
+      }
+    ```
+
+4.  执行以下命令，查看当前Terway的所有DaemonSet容器组。
+
+    ```
+    kubectl -n kube-system get pod | grep terway-eniip
+    ```
+
+    预期输出：
+
+    ```
+    terway-eniip-7d56l         2/2     Running   0          30m
+    terway-eniip-s7m2t         2/2     Running   0          30m
+    ```
+
+5.  执行以下命令，触发Terway容器组重建。
+
+    ```
+     kubectl -n kube-system delete pod terway-eniip-7d56l terway-eniip-s7m2t
+    ```
+
+6.  登录任意集群节点，执行以下命令，查看Terway配置文件。
+
+    如果Terway配置文件包含添加的网段，则说明配置成功。
+
+    ```
+    cat /etc/cni/net.d/*
+    ```
+
+    预期输出：
+
+    ```
+     {
+       "cniVersion": "0.3.0",
+       "name": "terway-chainer",
+       "plugins": [
+         {
+           "eniip_virtual_type": "IPVlan",
+           "host_stack_cidrs": [ 
+             "169.254.20.10/32",
+           ],
+           "type": "terway"
+         },
+         {
+           "type": "cilium-cni"
+         }
+       ]
+     }
+    ```
+
+    所有Terway Pod重建并正常后，您可以继续安装NodeLocal DNSCache了。
+
 
 **相关文档**  
 
