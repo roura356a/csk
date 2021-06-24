@@ -7,7 +7,7 @@ keyword: [Workflow, 暴露UI访问端点]
 Workflow提供了一套UI来展示目前工作流的状态，方便查看每个步骤的容器日志，下面为您介绍如何使用Ingress暴露UI访问端点。
 
 -   您已成功创建一个Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   您已连接到Kubernetes集群的Master节点。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   您已连接到Kubernetes集群的Master节点。具体操作，请参见[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 1.  执行htpasswd命令生成auth文件，用于存放用户名密码。
 
@@ -35,7 +35,7 @@ Workflow提供了一套UI来展示目前工作流的状态，方便查看每个�
 3.  创建并复制内容到ingress yaml文件中，并执行`kubectl apply -f ingress.yaml`命令，创建workflow-ingress路由。
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       name: workflow-ingress
