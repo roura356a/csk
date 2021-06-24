@@ -87,7 +87,7 @@ To control access to AI Dashboard, you can use the Ingress controllers developed
     2.  Use the following YAML template to create an internal-facing Ingress that is used to access AI Dashboard:
 
         ```
-        apiVersion: extensions/v1beta1
+        apiVersion: networking.k8s.io/v1
         kind: Ingress
         metadata:
           name: admin-ui-ingress
