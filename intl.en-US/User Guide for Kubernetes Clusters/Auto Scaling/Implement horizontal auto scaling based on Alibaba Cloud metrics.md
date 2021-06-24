@@ -75,7 +75,7 @@ The following example shows how to configure HPA by creating a Deployment and a 
     2.  On the Templates page, select **hpa** and click **Create Application** to deploy an application with the following YAML file:
 
         ```
-        apiVersion: autoscaling/v2beta2
+        apiVersion: autoscaling/v2
         kind: HorizontalPodAutoscaler
         metadata:
           name: ingress-hpa
@@ -167,7 +167,7 @@ The following example shows how to configure HPA by creating a Deployment and a 
         -   If the value of ScalingActive is False in the Conditions field, proceed to the next step.
     2.  Run the `kubectl get --raw "/apis/external.metrics.k8s.io/v1beta1/"` command. If Error from server \(NotFound\): the server could not find the requested resource is returned, verify the status of alibaba-cloud-metrics-adapter.
 
-        If the status of alibaba-cloud-metrics-adapter is normal, check whether the HPA metrics are related to the Ingress. If the metrics are related to the Ingress, make sure that you deploy the Log Service component before ack-alibaba-cloud-metrics-adapter is deployed. For more information, see [Monitor and analyze the logs of nginx-ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Monitor and analyze the logs of nginx-ingress.md).
+        If the status of alibaba-cloud-metrics-adapter is normal, check whether the HPA metrics are related to the Ingress. If the metrics are related to the Ingress, make sure that you deploy the Log Service component before ack-alibaba-cloud-metrics-adapter is deployed. For more information, see [Monitor nginx-ingress and analyze the access log of nginx-ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Monitor nginx-ingress and analyze the access log of nginx-ingress.md).
 
     3.  Make sure that the values of the HPA metrics are valid. The value of sls.ingress.route must be in the `<namespace>-<svc>-<port>` format.
         -   `<namespace>` specifies the namespace to which the Ingress belongs.
