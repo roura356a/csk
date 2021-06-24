@@ -216,7 +216,7 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
 
     ```
     kind: HorizontalPodAutoscaler
-    apiVersion: autoscaling/v2beta1
+    apiVersion: autoscaling/v2
     metadata:
       name: sample-app
     spec:
