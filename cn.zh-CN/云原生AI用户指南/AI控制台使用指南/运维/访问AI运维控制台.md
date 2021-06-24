@@ -6,7 +6,7 @@ keyword: AI运维控制台
 
 AI运维控制台提供四种访问方式（Sshuttle，SSL VPN、私网Ingress和公网Ingress）。本文介绍如何在ACK Pro版集群中访问AI运维控制台。
 
--   已创建ACK Pro版集群，且在组件配置页面，需要选中**监控插件**和**日志服务**。具体操作，请参见[t1914281.md\#](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
+-   已创建ACK Pro版集群，且在组件配置页面，需要选中**监控插件**和**日志服务**。具体操作，请参见[创建ACK Pro版集群](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
 -   ACK Pro托管版集群的Kubernetes版本不低于1.18。
 -   配置Sshuttle访问方式需要满足以下条件：
     -   集群有一台启动SSH，且公网可访问的跳板机。具体操作，请参见[如何为已有集群开启SNAT](/cn.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/为已有集群开启SNAT公网访问能力.md)。
@@ -27,7 +27,7 @@ AI运维控制台提供四种访问方式（Sshuttle，SSL VPN、私网Ingress�
 
 **方式一：使用公网Ingress访问AI运维控制台**
 
-1.  在云原生AI套件一键部署页面选中**运维控制台**，在**提示**对话框中，选中**公网域名（需要安装公网Ingress）**。更多相关操作，请参见[t2038811.md\#](/cn.zh-CN/云原生AI用户指南/环境准备/安装云原生AI套件.md)。
+1.  在云原生AI套件一键部署页面选中**运维控制台**，在**提示**对话框中，选中**公网域名（需要安装公网Ingress）**。更多相关操作，请参见[安装云原生AI套件](/cn.zh-CN/云原生AI用户指南/环境准备/安装云原生AI套件.md)。
 
     ![ai15](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4771859161/p261809.png)
 
@@ -62,19 +62,19 @@ AI运维控制台提供四种访问方式（Sshuttle，SSL VPN、私网Ingress�
 **方式三：使用SSL VPN访问AI运维控制台**
 
 -   使用VPN网关的SSL-VPN功能从客户端远程访问AI运维控制台。具体操作，请参见[在经典网络中使用SSL VPN](/cn.zh-CN/最佳实践/在经典网络中使用SSL VPN/Mac客户端.md)。
--   -   如果您使用Linux操作系统访问AI运维控制台，具体操作，请参见[t13374.md\#section\_qdz\_j4g\_xdb](/cn.zh-CN/最佳实践/在经典网络中使用SSL VPN/Linux客户端.md)。
--   如果您使用OS X操作系统访问AI运维控制台，具体操作，请参见[t13375.md\#section\_qdz\_j4g\_xdb](/cn.zh-CN/最佳实践/在经典网络中使用SSL VPN/Mac客户端.md)。
--   如果您使用Windows操作系统访问AI运维控制台，具体操作，请参见[t13376.md\#section\_qdz\_j4g\_xdb](/cn.zh-CN/最佳实践/在经典网络中使用SSL VPN/Windows客户端.md)。
+-   -   如果您使用Linux操作系统访问AI运维控制台，具体操作，请参见[步骤四：配置客户端](/cn.zh-CN/最佳实践/在经典网络中使用SSL VPN/Linux客户端.md)。
+-   如果您使用OS X操作系统访问AI运维控制台，具体操作，请参见[步骤四：客户端配置](/cn.zh-CN/最佳实践/在经典网络中使用SSL VPN/Mac客户端.md)。
+-   如果您使用Windows操作系统访问AI运维控制台，具体操作，请参见[步骤四：客户端配置](/cn.zh-CN/最佳实践/在经典网络中使用SSL VPN/Windows客户端.md)。
 
 **方式四：使用私网Ingress访问AI运维控制台**
 
-为了控制AI运维控制台的访问范围，可以利用阿里云增强版Ingress插件，配置只能由VPC内部访问的Ingress。更多关于Ingress的内容，请参考[t2021501.md\#](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress概述.md)。
+为了控制AI运维控制台的访问范围，可以利用阿里云增强版Ingress插件，配置只能由VPC内部访问的Ingress。更多关于Ingress的内容，请参考[Ingress概述](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress概述.md)。
 
 1.  配置私网（集群VPC网络）Ingress的AI运维控制台访问地址。
 
     **说明：** 创建ACK Pro版集群时，控制台默认会在**kube-system**命名空间下安装一个公网类型的**ack-ingress-nginx**组件。为了开启私网Ingress，您需要单独部署私网访问的Ingress Controller。
 
-    1.  在**kube-ai**命名空间下，部署**ack-ingress-nginx**组件，且配置`privateService.enable=true`和`publicService:enabled=false`。具体操作，请参见[t1860788.md\#](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/部署多个Ingress Controller.md)。
+    1.  在**kube-ai**命名空间下，部署**ack-ingress-nginx**组件，且配置`privateService.enable=true`和`publicService:enabled=false`。具体操作，请参见[部署多个Ingress Controller](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/部署多个Ingress Controller.md)。
 
         相关参数配置如下所示：
 
@@ -87,7 +87,7 @@ AI运维控制台提供四种访问方式（Sshuttle，SSL VPN、私网Ingress�
     2.  使用以下YAML文件样例创建AI运维控制台的私网Ingress。
 
         ```
-        apiVersion: extensions/v1beta1
+        apiVersion: networking.k8s.io/v1
         kind: Ingress
         metadata:
           name: admin-ui-ingress
