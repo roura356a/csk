@@ -31,7 +31,7 @@ keyword: [GPU, 共享GPU显存隔离]
 2.  使用以下模板创建GPU共享容器，同时该容器不使用共享GPU的隔离能力。
 
     ```
-    apiVersion: apps/v1beta1
+    apiVersion: apps/v1
     kind: StatefulSet
     
     metadata:
