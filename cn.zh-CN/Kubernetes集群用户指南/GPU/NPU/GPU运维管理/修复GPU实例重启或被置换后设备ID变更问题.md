@@ -114,7 +114,7 @@ spec:
     部署Pod的YAML文件样例如下：
 
     ```
-    apiVersion: apps/v1beta1
+    apiVersion: apps/v1
     kind: StatefulSet
     metadata:
       name: app-3g-v1
