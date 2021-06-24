@@ -6,6 +6,8 @@ keyword: existing SLB instance
 
 This topic describes how to use an existing Server Load Balancer \(SLB\) instance with an Ingress to set up forwarding. You can use an annotation to specify an SLB instance by ID when you create an Ingress.
 
+-   A serverless Kubernetes \(ASK\) cluster is created. You must configure a network address translation \(NAT\) gateway for the virtual private cloud \(VPC\) where the cluster is created so that the cluster can download container images from the Internet. For more information, see [Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md).
+-   The kubectl client is connected to the ASK cluster. For more information, see [Use kubectl to connect to an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Cluster/Manage and access clusters/Use kubectl to connect to an ASK cluster.md).
 -   A guaranteed-performance SLB instance is created in the virtual private cloud \(VPC\) where the ASK cluster is deployed. Guaranteed-performance SLB instances support elastic network interfaces \(ENIs\).
     -   If you have an SLB instance in the VPC where the ASK cluster is deployed, you can log on to the [SLB console](https://slb.console.aliyun.com/slb/cn-hangzhou/slbs) and obtain the ID of the SLB instance on the **Instances** page.
     -   If you have no SLB instance, you must create a guaranteed-performance SLB instance in the VPC where the ASK cluster is deployed. For example, you can select the slb.s2.small instance type. The SLB instance can be internal-facing or Internet-facing. For more information, see [Create a CLB instance](/intl.en-US/Classic Load Balancer/User Guide/Instance/Create a CLB instance.md).
