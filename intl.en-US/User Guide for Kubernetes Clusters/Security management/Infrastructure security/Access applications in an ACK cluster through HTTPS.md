@@ -169,38 +169,22 @@ Examples:
     You can also create an Ingress by using YAML files. The following YAML template is an example:
 
     ```
-    apiVersion: extensions/v1beta1
-    
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
-    
     metadata:
-    
        name: tomcat-https
-    
     spec:
-    
       tls:
-    
       - hosts:
-    
         - foo.bar.com
-    
         secretName: secret-https
-    
       rules:
-    
       - host: foo.bar.com
-    
         http:
-    
           paths:
-    
           - path: /
-    
             backend:
-    
               serviceName: tomcat-svc
-    
               servicePort: 8080
     ```
 
