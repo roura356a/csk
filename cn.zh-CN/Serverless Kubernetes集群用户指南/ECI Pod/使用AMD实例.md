@@ -25,7 +25,7 @@ Pod声明中增加`annotations: k8s.aliyun.com/eci-use-specs`。
 在Pod的`metadata`中添加指定规格的`annotations`。
 
 ```
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
