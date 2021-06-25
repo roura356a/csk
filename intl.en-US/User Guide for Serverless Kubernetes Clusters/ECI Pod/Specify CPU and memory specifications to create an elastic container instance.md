@@ -37,7 +37,7 @@ Examples
 For a Kubernetes-native container, you can directly configure the resource `request` of the `container`.
 
 ```
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
@@ -84,7 +84,7 @@ Examples
 You can set annotations: k8s.aliyun.com/eci-use-specs in the pod configuration to specify multiple ECS instance types. Separate multiple ECS instance types with commas \(,\).
 
 ```
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment-basic
