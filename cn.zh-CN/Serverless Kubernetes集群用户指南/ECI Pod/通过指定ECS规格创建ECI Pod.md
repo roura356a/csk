@@ -26,7 +26,7 @@ ECI指定规格完全参考ECS规格定义。ECI单价与对应规格的ECS价�
 通过在Pod定义中设置annotations: k8s.aliyun.com/eci-use-specs，可以配置多个规格，以逗号分割。
 
 ```
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
