@@ -14,13 +14,13 @@ keyword: [自定义镜像, 创建Kubernetes集群]
     -   使用阿里云NTP Server进行NTP时间同步。
 -   若需使用自定义镜像请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请。
 
-容器服务支持用户使用自定义镜像创建Kubernetes集群，但用户在制作打包自定义镜像时，往往会遇到以下情况：
+容器服务支持您使用自定义镜像创建Kubernetes集群，但在制作打包自定义镜像时，往往会遇到以下情况：
 
 -   人工操作步骤，效率低。
 -   镜像变更历史记录缺失，不便于故障定位。
 -   无法对自定义镜像进行校验并判断是否符合Kubernetes集群节点要求。
 
-基于以上痛点，我们开源了[ack-image-builder](https://github.com/AliyunContainerService/ack-image-builder)项目帮助用户快速制作符合Kubernetes集群节点要求的自定义镜像。
+基于以上痛点，容器服务团队开源了[ack-image-builder](https://github.com/AliyunContainerService/ack-image-builder)项目帮助您快速制作符合Kubernetes集群节点要求的自定义镜像。
 
 ACK-image-builder项目基于开源工具[HashiCorp Packer](https://www.packer.io/)，提供默认配置模板和校验脚本。
 
@@ -86,13 +86,13 @@ ACK-image-builder项目基于开源工具[HashiCorp Packer](https://www.packer.i
 
     |参数|描述|
     |--|--|
-    |access\_key|您的AccessKey ID|
-    |secret\_key|您的AccessKey Secret|
-    |region|创建自定义镜像时使用临时资源的地域|
-    |image\_name|自定义镜像的名称|
-    |source\_image|基础镜像的名称，可以从阿里云公共镜像列表获得|
-    |instance\_type|创建自定义镜像时生成的临时实例的类型|
-    |provisioners|创建自定义镜像时使用的Packer配置器类型|
+    |access\_key|您的AccessKey ID。|
+    |secret\_key|您的AccessKey Secret。|
+    |region|创建自定义镜像时使用临时资源的地域。|
+    |image\_name|自定义镜像的名称。|
+    |source\_image|基础镜像的名称，可以从阿里云公共镜像列表获得。|
+    |instance\_type|创建自定义镜像时生成的临时实例的类型。|
+    |provisioners|创建自定义镜像时使用的Packer配置器类型。|
 
 3.  创建子账号并生成AccessKey。
 
@@ -172,15 +172,15 @@ ACK-image-builder项目基于开源工具[HashiCorp Packer](https://www.packer.i
 
     2.  在控制台左侧导航栏中，单击**集群**。
 
-    3.  在集群列表页面中，单击页面右上角的**集群模板**。
+    3.  在集群列表页面中，单击页面右上角的**创建集群**。
 
     4.  在弹出的选择集群模板中，选择**标准专有集群**页面，单击**创建**。请参见[创建Kubernetes专有版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
 
-    5.  配置集群创建需要的相关基础信息后，单击下方的**显示高级选项**，在**自定义镜像**中单击**选择**。
+    5.  在**ACK托管版**页签，配置使用自定义镜像创建集群的参数。关于创建集群的参数说明，请参见[创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
 
-    6.  在选择自定义镜像页面，在目标镜像右侧单击**使用**。
-
-    7.  配置完成后，单击**创建集群**。
+        1.  创建需要的相关基础信息后，单击下方的**显示高级选项**，在**自定义镜像**中单击**选择**。
+        2.  在选择自定义镜像页面，在目标镜像右侧单击**使用**。
+    6.  配置完成后，单击**创建集群**。
 
         待集群创建完成后，该集群就是使用了自定义镜像，后续的扩容等均会使用该镜像。
 
