@@ -16,6 +16,18 @@ csi-plugin支持数据卷的挂载、卸载功能。ACK默认提供云盘、NAS�
 
 ## 变更记录
 
+**2021年06月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.1.4|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.47-30ba5d25-aliyun|2021年06月25日|-   支持CNFS创建PV。
+-   VolumeSnapshot、 VolumeSnapshotClass及VolumeSnapshotContent 的apiVersion同时支持`snapshot.storage.k8s.io/v1`及`snapshot.storage.k8s.io/v1beta1`，请及时升级至`snapshot.storage.k8s.io/v1`版本。
+-   升级csi-snapshotter及snapshot-controller组件版本至4.0.0。
+-   修复NAS loopsetup问题。
+-   修复List Snapshot偶发的Token过期问题。
+
+|此次升级不会对业务造成影响。|
+
 **2021年05月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
