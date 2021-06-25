@@ -16,6 +16,15 @@ csi-provisioner支持数据卷的自动创建能力。本文介绍csi-provisione
 
 ## 变更记录
 
+**2021年06月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.1.4|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.47-30ba5d25-aliyun|2021年06月25日|-   NAS删除`volumeCapacity`字段，通过`allowVolumeExpansion`字段控制Quota能力是否开启。
+-   NAS删除`selflink`字段。
+
+|此次升级不会对业务造成影响。|
+
 **2021年05月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
