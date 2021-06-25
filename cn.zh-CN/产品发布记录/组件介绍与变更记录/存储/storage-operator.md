@@ -25,9 +25,18 @@ Storage-Operator会优先使用自定义的组件配置，只有没有指定具�
 
 ## 使用说明
 
-关于在应用目录中部署storage-operator组件的具体操作，请参见[使用Storage Operator进行存储组件的部署与升级](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/容器存储运维/使用Storage Operator进行存储组件的部署与升级.md)。
+关于在应用目录中部署storage-operator组件的具体操作，请参见[使用storage-operator进行存储组件的部署与升级](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/容器存储运维/使用storage-operator进行存储组件的部署与升级.md)。
 
 ## 变更记录
+
+**2021年06月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.18.8.37-c63030b-aliyun|registry-vpc.$\{region\}.aliyuncs.com/acs/storage-operator:v1.18.8.37-c63030b-aliyun|2021年06月25日|-   支持自动扩容能力。
+-   支持CNFS。
+
+|此次升级不会对业务造成影响。|
 
 **2021年03月**
 
