@@ -17,7 +17,7 @@ ACK supports the BoundServiceAccountTokenVolume feature to enhance the security 
 
 ## Step 1: Enable service account token volume projection
 
-When you create an ACK cluster, select **Enable** to enable **service account token volume projection**. For more information, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md).
+When you create an ACK cluster, select **Enable** to enable **service account token volume projection**. For more information, see [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Create a professional managed Kubernetes cluster.md).
 
 ![Enable service account token volume projection](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6255359951/p96425.png)
 
