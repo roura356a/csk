@@ -2,8 +2,8 @@
 
 Pod使用Host网络即让Pod使用Node节点的网络空间和网络资源。将Pod的网络配置成Host网络后，Pod可以直接访问到Node上Loopback设备，可以在Node节点上监听地址，也可以用于监控Node上别的Pod的网络流量。本文介绍如何使用Host网络。
 
--   您已经成功创建一个Kubernetes集群，参见[创建Kubernetes专有版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
--   您可以通过Kubectl连接到Kubernetes集群，参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   您已经成功创建一个Kubernetes集群，参见[创建ACK Pro版集群](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
+-   您可以通过Kubectl连接到Kubernetes集群，参见[通过kubectl管理Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 1.  打开您的YAML文件host-network.yaml，在spec下指定`hostNetwork: true`。
 
