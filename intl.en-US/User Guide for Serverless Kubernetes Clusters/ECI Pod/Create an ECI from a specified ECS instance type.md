@@ -26,7 +26,7 @@ You can check the ECS instance types supported in each region and zone in [Overv
 You can set annotations: k8s.aliyun.com/eci-use-specs in the definition of a pod to specify multiple ECS instance types. Separate ECS instance types with commas \(,\).
 
 ```
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
