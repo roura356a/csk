@@ -25,7 +25,7 @@ ECI支持通过指定ECS GPU规格来创建ECI GPU实例。支持的ECS GPU规�
 -   在Container的`resources`中声明GPU资源。
 
 ```
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-gpu-demo
