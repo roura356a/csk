@@ -16,7 +16,7 @@ logtail-windows目前仍然需要手动安装。具体操作，请参见[为Wind
 
 logtail-windows v1.0.x适用于所有Windows工作节点。在v1.0.20及之后版本，不再支持Windows Server Core，version 1903的工作节点，您需要完成业务容器的SAC（Semi-Annual Channel）版本适配，使用Windows Server Core，version 1909或version 2004工作节点。
 
-logtail-windows v1.1.x依赖Windows工作节点上的特权托管进程，镜像大小相较于v1.0.x的镜像要缩小90%，启动速度更快。logtail-windows v1.1.x仅适用于从集群节点池创建节点时已含有`window.alibabacloud.com/deployment-topology=2.0`标签的Windows工作节点。如果您创建完Windows工作节点后，再在Windows工作节点上添加`window.alibabacloud.com/deployment-topology=2.0`标签，则该Windows工作节点不支持logtail-windows v1.1.x。
+logtail-windows v1.1.x依赖Windows工作节点上的特权托管进程，镜像大小相较于v1.0.x的镜像要缩小90%，启动速度更快。logtail-windows v1.1.x仅适用于从集群节点池创建节点时已含有`windows.alibabacloud.com/deployment-topology=2.0`标签的Windows工作节点。如果您创建完Windows工作节点后，再在Windows工作节点上添加`windows.alibabacloud.com/deployment-topology=2.0`标签，则该Windows工作节点不支持logtail-windows v1.1.x。
 
 ## 变更记录
 
