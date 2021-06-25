@@ -37,7 +37,7 @@ ECI Pod支持的CPU和内存规格，如下表所示。
 基于Kubernetes原生方式，直接定义对应`container`的`request`即可。
 
 ```
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
@@ -84,7 +84,7 @@ spec:
 通过在Pod定义中设置annotations: k8s.aliyun.com/eci-use-specs，可以配置多个规格，以逗号分割。
 
 ```
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment-basic
