@@ -51,7 +51,7 @@ spec:
                 operator: In
                 values:
                 - windows
-              - key: window.alibabacloud.com/deployment-topology
+              - key: windows.alibabacloud.com/deployment-topology
                 operator: DoesNotExist
             - matchExpressions:
               - key: type
@@ -62,7 +62,7 @@ spec:
                 operator: In
                 values:
                 - windows
-              - key: window.alibabacloud.com/deployment-topology
+              - key: windows.alibabacloud.com/deployment-topology
                 operator: DoesNotExist
       containers:
       - name: logtail
@@ -221,7 +221,7 @@ spec:
 
 ## 为Windows节点安装Logtail v1.1.x
 
-**说明：** Logtail v1.1.x依赖Windows工作节点上的特权托管进程，仅适用于集群内节点池默认含有`window.alibabacloud.com/deployment-topology=2.0`标签的Windows工作节点。
+**说明：** Logtail v1.1.x依赖Windows工作节点上的特权托管进程，仅适用于集群内节点池默认含有`windows.alibabacloud.com/deployment-topology=2.0`标签的Windows工作节点。
 
 使用以下YAML模板将Logtail以Daemonset方式部署至Windows节点上。
 
@@ -260,7 +260,7 @@ spec:
                 operator: In
                 values:
                 - windows
-              - key: window.alibabacloud.com/deployment-topology
+              - key: windows.alibabacloud.com/deployment-topology
                 operator: In
                 values:
                 - "2.0"
@@ -273,7 +273,7 @@ spec:
                 operator: In
                 values:
                 - windows
-              - key: window.alibabacloud.com/deployment-topology
+              - key: windows.alibabacloud.com/deployment-topology
                 operator: In
                 values:
                 - "2.0"
