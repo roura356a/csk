@@ -26,7 +26,7 @@ annotations:
     k8s.aliyun.com/eci-instance-type : "ecs.c5.large"  # Replace the value with the actual ECS instance type in the following format: ecs.instance family.instance specification. For example, ecs.c6.3xlarge.
 ```
 
-**Note:** `annotations` must be added to the `spec` field of pod configurations. Specify the ECS instance type based on your requirements. For more information about the supported ECS instance types, see [Instance families](/intl.en-US/Instance/Instance families.md).
+**Note:** `annotations` must be added to the `spec` field of pod configurations. Specify the ECS instance type based on your requirements. For more information about the supported ECS instance types, see [Instance family](/intl.en-US/Instance/Instance family.md).
 
 Deployment example
 
@@ -35,7 +35,7 @@ Deployment example
 **Note:** The zone of the reserved instance must be the same as that of your cluster. Otherwise, the reserved instance cannot match the elastic container instance created in your serverless Kubernetes \(ASK\) cluster.
 
 ```
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
