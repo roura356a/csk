@@ -39,7 +39,7 @@ Alibaba Cloud Linux 2的操作系统是针对阿里云飞天虚拟化平台开�
 
         解决问题：IPVS的统计定时器（estimation timer）会定期计算各个连接当前的速率，在连接数多的情况下，该操作会长时间占用CPU，导致网络收包不及时，引起Ping命令高达200 ms的波动。
 
-        优化方案：将IPVS的统计定时器放到kworker中执行；同时添加sysctl命令关掉IPVS的统计。
+        优化方案：将IPVS的统计定时器放到worker中执行；同时添加sysctl命令关掉IPVS的统计。
 
         效果：不再有由于统计定时器引起的波动。
 
