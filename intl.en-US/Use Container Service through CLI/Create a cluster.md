@@ -1,8 +1,8 @@
 # Create a cluster
 
-You can call this operation to create a cluster of Container Service for Kubernetes \(ACK\) and specify the number of nodes in the ACK cluster.
+Creates a Container Service for Kubernetes \(ACK\) cluster and adds the specified number of nodes to the cluster.
 
-For more information about the API operation, see [Create a managed cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a managed cluster.md).
+For more information about this command, see [Create a dedicated Kubernetes cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a dedicated Kubernetes cluster.md) and [CreateCluster](/intl.en-US/API Reference/Clusters/Create a cluster/CreateCluster.md).
 
 ## API request and response formats
 
@@ -17,9 +17,9 @@ Request parameters:
 -   `--header`: You must set Content-Type to application/json.
 -   `--body`: The content that is sent to the server. The content can be saved in a local file and must be in valid JSON format. The `create.json` file contains the following content:
 
-Sample requests
+Sample request:
 
--   **Kubernetes clusters**
+-   **Kubernetes cluster**
 
 ```
 {
@@ -60,10 +60,10 @@ Sample requests
 }
 ```
 
-    Sample request description
+    Description of the sample request
 
     ```
-    If you create a cluster that uses the Terway plug-in, the pod_vswitch_ids parameter is required.
+    If you create a cluster that uses the Terway plug-in, the pod_vswitch_ids parameter is required. 
     {
         "cluster_type":"Kubernetes",
         "name":"webService-terway",
@@ -101,7 +101,7 @@ Sample requests
     }
     ```
 
--   **Managed Kubernetes clusters**
+-   **Managed Kubernetes cluster**
 
 ```
 {
@@ -169,7 +169,7 @@ Sample requests
 }
 ```
 
--   **Serverless Kubernetes \(ASK\) clusters**
+-   **Serverless Kubernetes \(ASK\) cluster**
 
 ```
 {
