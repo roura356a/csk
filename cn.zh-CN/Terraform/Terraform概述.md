@@ -49,8 +49,8 @@ resource "alicloud_slb" "default" {
 
 |Terraform工具分为2部分：
 
--   Terrform CLI：Terrafrom客户端命令。
--   Terafform Provider：各个云厂商都提供了自己的Provider，用于将云产品接入到Terrafrom中。关于Terraform Provider的更多信息，请参见[Provider](https://registry.terraform.io/browse/providers)。
+-   Terraform CLI：Terraform客户端命令。
+-   Terraform Provider：各个云厂商都提供了自己的Provider，用于将云产品接入到Terraform中。关于Terraform Provider的更多信息，请参见[Provider](https://registry.terraform.io/browse/providers)。
 
 您可以下载Terraform工具。具体操作，请参见[在本地安装和配置Terraform]()和[在Cloud Shell中使用Terraform]()。 |
 
