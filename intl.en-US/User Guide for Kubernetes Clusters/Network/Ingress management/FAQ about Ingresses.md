@@ -10,6 +10,7 @@ This topic provides answers to some frequently asked questions about Ingresses.
 -   [Which rewrite rules are supported by ingress-nginx?](#section_l15_amm_2ht)
 -   [How do I fix the issue that Log Service cannot parse logs as expected after ingress-nginx-controller is upgraded?](#section_10k_mmd_5e0)
 -   [How do I configure the internal-facing SLB instance for the NGINX Ingress controller?](~~142097~~)
+-   [What are the system updates after I upgrade the NGINX Ingress controller on the Add-ons page in the console?](#section_99r_gia_5ax)
 
 ## Which Secure Sockets Layer \(SSL\) or Transport Layer Security \(TLS\) protocol versions are supported by Ingresses?
 
@@ -24,7 +25,7 @@ ssl-protocols: "TLSv1 TLSv1.1 TLSv1.2 TLSv1.3"
 
 ## Do Ingresses pass Layer 7 request headers?
 
-By default, ingress-nginx passes Layer 7 request headers. However, request headers that do not conform to HTTP rules are filtered out before they are forwarded to the backend Services. For example, the Mobile Version request header is filtered out. If you do not want to filter out these request headers, run the following command to add the required configurations to the nginx-configuration ConfigMap. For more information, see [ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-underscores-in-headers).
+By default, ingress-nginx passes Layer 7 request headers. However, request headers that do not conform to HTTP rules are filtered out before requests are forwarded to the backend Services. For example, the Mobile Version request header is filtered out. If you do not want to filter out these request headers, run the following command to add the required configurations to the nginx-configuration ConfigMap. For more information, see [ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-underscores-in-headers).
 
 ```
 enable-underscores-in-headers: true
@@ -46,7 +47,7 @@ metadata:
 
 ## Do Ingresses pass client IP addresses at Layer 7?
 
-By default, ingress-nginx adds the X-Forward-For and X-Real-IP header fields to carry client IP address. However, if the X-Forward-For and X-Real-IP header fields are already added to the request by a client, the backend server cannot obtain the client IP address.
+By default, ingress-nginx adds the X-Forward-For and X-Real-IP header fields to carry client IP addresses. However, if the X-Forward-For and X-Real-IP header fields are already added to the request by a client, the backend server cannot obtain the client IP address.
 
 Run the following command to modify the `nginx-configuration` ConfigMap in the kube-system namespace. This allows ingress-nginx to pass client IP addresses at Layer 7.
 
@@ -81,7 +82,7 @@ You can use other snippets to add global configurations, as shown in the followi
 
 ## How do I fix the issue that Log Service cannot parse logs as expected after ingress-nginx-controller is upgraded?
 
-The ingress-nginx-controller component has two commonly used versions: ingress-nginx-controller 0.20 and 0.30. The default log format of ingress-nginx-controller 0.20 is different from that of ingress-nginx-controller 0.30. Therefore, after you upgrade from ingress-nginx-controller 0.20 to 0.30 on the **Add-ons** page in the console, the Ingress dashboard may not show the actual statistics of access to the backend Services when you perform canary releases or blue-green releases with an Ingress.
+The ingress-nginx-controller component has two commonly used versions: ingress-nginx-controller 0.20 and 0.30. The default log format of ingress-nginx-controller 0.20 is different from that of ingress-nginx-controller 0.30. Therefore, after you upgrade ingress-nginx-controller from 0.20 to 0.30 on the **Add-ons** page in the console, the Ingress dashboard may not show the actual statistics of access to the backend Services when you perform canary releases or blue-green releases with an Ingress.
 
 To fix the issue, perform the following steps to update the `nginx-configuration` ConfigMap and the configuration of `k8s-nginx-ingress`.
 
@@ -183,4 +184,40 @@ To fix the issue, perform the following steps to update the `nginx-configuration
                 SourceKey: content
     ```
 
+
+## What are the system updates after I upgrade the NGINX Ingress controller on the Add-ons page in the console?
+
+If the version of the NGINX Ingress controller is earlier than 0.44, the component includes the following resources:
+
+-   serviceaccount/ingress-nginx
+-   configmap/nginx-configuration
+-   configmap/tcp-service
+-   configmap/udp-services
+-   clusterrole.rbac.authorization.k8s.io/ingress-nginx
+-   clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx
+-   role.rbac.authorization.k8s.io/ingress-nginx
+-   rolebinding.rbac.authorization.k8s.io/ingress-nginx
+-   service/nginx-ingress-lb
+-   deployment.apps/nginx-ingress-controller
+
+If the version of the NGINX Ingress controller is 0.44 or later, the component includes the following resources in addition to the previously mentioned resources:
+
+-   validatingwebhookconfiguration.admissionregistration.k8s.io/ingress-nginx-admission
+-   service/ingress-nginx-controller-admission
+-   serviceaccount/ingress-nginx-admission
+-   clusterrole.rbac.authorization.k8s.io/ingress-nginx-admission
+-   clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx-admission
+-   role.rbac.authorization.k8s.io/ingress-nginx-admission
+-   rolebinding.rbac.authorization.k8s.io/ingress-nginx-admission
+-   job.batch/ingress-nginx-admission-create
+-   job.batch/ingress-nginx-admission-patch
+
+When you upgrade the NGINX Ingress controller on the Add-ons page in the console, the configurations of the following resources are unchanged:
+
+-   configmap/nginx-configuration
+-   configmap/tcp-services
+-   configmap/udp-services
+-   service/nginx-ingress-lb
+
+The configurations of other resources are overwritten to default values. For example, the default value of the replicas parameter of deployment.apps/nginx-ingress-controller is 2. If you set the value of replicas to 5 before you upgrade the NGINX Ingress controller, the replicas parameter uses the default value 2 after you upgrade the component on the Add-ons page.
 
