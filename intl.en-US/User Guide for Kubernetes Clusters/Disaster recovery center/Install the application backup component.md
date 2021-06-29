@@ -98,7 +98,7 @@ If you use a managed or dedicated Kubernetes cluster, you must grant the require
         |---------|-----------|
         |Authorized Scope|Valid values: **Alibaba Cloud Account** and **Specific Resource Group**.|
         |Principal|Enter the worker RAM role that you obtained.|
-        |Select Policy|Click **Custom Policy**, enter the name of the permission policy that is created in [Step 1](#step_5lw_hv6_b8p), and then click the name of the policy.|
+        |Select Policy|Click **Custom Policy**, enter the name of the permission policy that is created in [Step 1](#step_2re_95z_jqb), and then click the name of the policy.|
 
 
 **Grant OSS permissions to a registered Kubernetes cluster**
@@ -107,7 +107,7 @@ If your applications are deployed in a registered Kubernetes cluster, you must c
 
 1.  Create a RAM user. For more information, see [Create a RAM user](/intl.en-US/RAM User Management/Basic operations/Create a RAM user.md).
 
-2.  Create a custom permission policy that is used to access OSS. For more information, see [Step 1](#step_5lw_hv6_b8p).
+2.  Create a custom permission policy that is used to access OSS. For more information, see [Step 1](#step_2re_95z_jqb).
 
 3.  Grant permissions to the RAM user. For more information, see [Grant permissions to a RAM user](/intl.en-US/RAM User Management/Authorization management/Grant permissions to a RAM user.md).
 
@@ -131,7 +131,7 @@ If your applications are deployed in a registered Kubernetes cluster, you must c
         kubectl -n velero create secret generic alibaba-addon-secret --from-literal='access-key-id=<your AccessKey ID>' --from-literal='access-key-secret=<your AccessKey Secret>'
         ```
 
-        Replace your AccessKey ID and your AccessKey Secret with the AccessKey ID and AccessKey secret that are obtained in [Substep 4](#step_2ec_27e_p4q).
+        Replace your AccessKey ID and your AccessKey Secret with the AccessKey ID and AccessKey secret that are obtained in [Step 4](#step_zjj_ovc_n96).
 
 
 ## Step 2: Install the application backup component
@@ -158,7 +158,7 @@ If your applications are deployed in a registered Kubernetes cluster, you must c
 **Related topics**  
 
 
-[Back up and restore applications](/intl.en-US/User Guide for Kubernetes Clusters/Disaster recovery center/Use migrate-controller to back up and restore applications.md)
+[Back up and restore applications](/intl.en-US/User Guide for Kubernetes Clusters/Disaster recovery center/Back up and restore applications.md)
 
-[Migrate applications across clusters](/intl.en-US/User Guide for Kubernetes Clusters/Disaster recovery center/Use migrate-controller to migrate applications across clusters.md)
+[Migrate applications across clusters](/intl.en-US/User Guide for Kubernetes Clusters/Disaster recovery center/Migrate applications across clusters.md)
 
