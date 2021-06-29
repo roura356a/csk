@@ -127,8 +127,8 @@ The console automatically checks whether the alerting configuration meets the re
     |**Alert Rules**|    -   By default, ACK provides an alert template that is used to generate alerts for exceptions and metrics.
     -   Alert rules are classified into several alert rule sets. You can configure multiple alert contact groups for each alert rule set and enable or disable alert rule sets.
     -   An alert rule set consists of multiple alert rules, and each alert rule corresponds to an alert item. You can create a YAML file to configure multiple alert rule sets on a cluster. You can also update the YAML file to generate alert rules.
-    -   For more information about how to configure alert rules by using a YAML file, see [\#d7e258](#d7e258).
-    -   For more information about the default alert template, see [\#d7e292](#d7e292). |
+    -   For more information about how to configure alert rules by using a YAML file, see [Configure alert rules by using CRDs](#section_9ua_z95_ugc).
+    -   For more information about the default alert template, see [The default alert template](#section_mrd_x9o_nrr). |
     |**Alert History**|You can view up to 100 historical alerts. You can select an alert and click the link in the **Alert Rule** column to view rule details in the monitoring system. You can click **Details** to go to the resource page where the alert is triggered. The alert may be triggered by an exception or an abnormal metric. ![Alert history](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4082062261/p255435.png) |
     |**Alert Contacts**|You can create, edit, or delete alert contacts.|
     |**Alert Contact Groups**|You can create, edit, or delete alert contact groups. When no alert contact group exists, the console automatically creates the default alert contact group based on your registration information.|
