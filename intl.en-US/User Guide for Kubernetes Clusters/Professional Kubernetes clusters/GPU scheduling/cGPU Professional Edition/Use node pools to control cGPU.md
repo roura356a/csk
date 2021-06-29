@@ -118,7 +118,7 @@ Create a node pool that supports both GPU sharing and memory isolation. Create a
 
 ## Step 3: Add GPU-accelerated nodes
 
-After the node pool is created, you can add GPU-accelerated nodes to the node pool. When you add GPU-accelerated nodes, you must select the instance types for **heterogeneous computing**, including GPU-accelerated, FPGA-accelerated, and NPU-accelerated instances. For more information, see [Add existing ECS instances to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node/Add existing ECS instances to an ACK cluster.md) or [Scale out a node pool]().
+After the node pool is created, you can add GPU-accelerated nodes to the node pool. When you add GPU-accelerated nodes, you must select the instance types for **heterogeneous computing**, including GPU-accelerated, FPGA-accelerated, and NPU-accelerated instances. For more information, see [Add existing ECS instances to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node/Add existing ECS instances to an ACK cluster.md) or [Scale out a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Manage a node pool.md).
 
 **Note:** If you have already added GPU-accelerated nodes to the node pool when you create the node pool, skip this step.
 
