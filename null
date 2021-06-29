@@ -20,7 +20,7 @@ Terraform是HashiCorp公司提供的一种开源工具，用于安全高效地�
     export ALICLOUD_REGION="cn-beijing"
     ```
 
-    **说明：** 为提高权限管理的灵活性和安全性，建议您创建名为Terraform的RAM用户，并为该RAM用户创建AccessKey和授权。具体步骤，请参见[创建RAM用户](/cn.zh-CN/用户管理/基本操作/创建RAM用户.md)和[为RAM用户授权](/cn.zh-CN/用户管理/授权管理/为RAM用户授权.md)。
+    **说明：** 为提高权限管理的灵活性和安全性，建议您创建名为Terraform的RAM用户，并为该RAM用户创建AccessKey和授权。具体步骤，请参见[创建RAM用户](/intl.zh-CN/用户管理/基本操作/创建RAM用户.md)和[为RAM用户授权](/intl.zh-CN/用户管理/授权管理/为RAM用户授权.md)。
 
 
 ## 使用Terraform创建ACK托管版集群
@@ -197,11 +197,11 @@ Destroy complete! Resources: 5 destroyed.
 **相关文档**  
 
 
-[OpenAPI开发者门户](https://next.api.aliyun.com/api/CS/2015-12-15/CallbackClusterToken?sdkStyle=old&tab=DEBUG)
+[OpenAPI Explorer](https://api.alibabacloud.com/#/?product=Ons)
 
 [阿里云容器服务Terraform资源](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes)
 
 [阿里云Terraform Provider](https://github.com/hashicorp/terraform-provider-alicloud)
 
-[使用Terraform创建具备自动伸缩功能的节点池](/cn.zh-CN/Terraform/使用Terraform创建具备自动伸缩功能的节点池.md)
+[使用Terraform创建具备自动伸缩功能的节点池](/intl.zh-CN/Terraform/使用Terraform创建具备自动伸缩功能的节点池.md)
 
