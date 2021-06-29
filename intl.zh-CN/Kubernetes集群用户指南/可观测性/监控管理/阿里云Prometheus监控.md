@@ -47,7 +47,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
     -   阿里云Prometheus监控支持一键安装、一键卸载，以及通过健康检查功能调试Prometheus监控。您的时间成本可由原来使用开源Prometheus监控的1天左右降低至3分钟左右。
 
-有关阿里云Prometheus监控的更多信息，请参见[阿里云Prometheus监控概述]()。
+有关阿里云Prometheus监控的更多信息，请参见[什么是Prometheus监控？]()。
 
 ## 开启阿里云Prometheus监控
 
@@ -143,7 +143,7 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
     5.  在报警规则说明列表单击对应报警**操作**列的**编辑**，输入PromQL语句配置报警规则，配置完成后单击**确定**。或者单击**开启**可直接开启预置的报警规则。
 
-        关于PromQL语句的配置，请参见[快速创建ARMS报警](/intl.zh-CN/快速入门/快速创建ARMS报警.md)。
+        关于PromQL语句的配置，请参见[快速创建ARMS报警（旧版）](/intl.zh-CN/快速入门/快速创建ARMS报警.md)。
 
     **说明：** 报警规则也可在[ARMS控制台](https://arms-ap-southeast-1.console.aliyun.com/#/home)的**报警管理** \> **报警策略管理** 进行管理。
 
@@ -192,15 +192,13 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 6.  在服务页面创建服务。
 
-    1.  在集群管理页左侧导航栏中，选择**网络** \> **服务**。
+    1.  单击服务页面右上角的**创建**。
 
-    2.  单击服务页面右上角的**创建**。
+    2.  在**类型**中选择**负载均衡**型服务及**公网访问**。
 
-    3.  在**类型**中选择**负载均衡**型服务及**公网访问**。
+    3.  在**关联**中选择[步骤4](#step_fez_f3e_d8s)创建的应用。
 
-    4.  在**关联**中选择[步骤4](#step_fez_f3e_d8s)创建的应用。
-
-    5.  单击**创建**，完成服务创建任务。
+    4.  单击**创建**，完成服务创建任务。
 
     具体操作，请参见[创建服务](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/管理服务.md)。
 
@@ -259,21 +257,19 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 
 5.  在服务页面创建服务。
 
-    1.  在集群管理页左侧导航栏中，选择**网络** \> **服务**。
+    1.  单击服务页面右上角的**创建**。
 
-    2.  单击服务页面右上角的**创建**。
+    2.  在**类型**中选择**负载均衡**型服务及**公网访问**。
 
-    3.  在**类型**中选择**负载均衡**型服务及**公网访问**。
+    3.  在**关联**中选择[步骤4](#step_fez_f3e_d8s)创建的应用。
 
-    4.  在**关联**中选择[步骤4](#step_fez_f3e_d8s)创建的应用。
-
-    5.  添加标签。
+    4.  添加标签。
 
         该标签将被用于serviceMonitor的selector。
 
         ![创建服务](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5684815161/p246409.png)
 
-    6.  单击**创建**，完成服务创建任务。
+    5.  单击**创建**，完成服务创建任务。
 
     具体操作，请参见[创建服务](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/管理服务.md)。
 
