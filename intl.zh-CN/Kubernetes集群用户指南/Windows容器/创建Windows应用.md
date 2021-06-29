@@ -89,7 +89,7 @@ keyword: [Web应用, Windows应用]
     **说明：**
 
     -   镜像`registry-vpc.{region}.aliyuncs.com/acs/sample-web-windows:v1.0.1`是阿里云容器服务提供的Windows Web容器示例镜像（基于[mcr.microsoft.com/windows/nanoserver](https://hub.docker.com/_/microsoft-windows-nanoserver)。
-    -   也可以使用微软提供的ASP.NET示例镜像：`mcr.microsoft.com/dotnet/samples:aspnetapp`。更多信息，请参见[.NET Samples](https://hub.docker.com/_/microsoft-dotnet-samples)
+    -   也可以使用微软提供的ASP.NET示例镜像：`mcr.microsoft.com/dotnet/samples:aspnetapp`。更多信息，请参见[.NET Samples](https://hub.docker.com/_/microsoft-dotnet-samples)。
 7.  单击**创建**后，会提示部署状态信息。成功后，返回**无状态**页面可以查看新创建的Web应用。
 
 8.  访问Web应用。
