@@ -268,7 +268,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "appVersion: 1.0.3\ndescription: ARMS Prometheus Operator\nhome: https://www.aliyun.com/product/arms\nicon: logo.png\nintroduction:\n- 使用ARMS Prometheus实现容器服务集群监控。\n- Using ARMS Prometheus to implement ACK cluster monitoring\ndoc:\n- https://help.aliyun.com/document_detail/161304.html\n- https://www.alibabacloud.com/help/doc-detail/161304.html\nchangelog:\n- https://help.aliyun.com/document_detail/161820.html\n- https://www.alibabacloud.com/help/doc-detail/161820.html\nkeywords:\n- arms\n- prometheus\n- namespace:arms-prom\n- releaseName:arms-prom\n- category:ops\nname: ack-arms-prometheus\nversion: 0.1.5\n",
+      "description": "appVersion: 1.0.3\ndescription: ARMS Prometheus Operator\nhome: https://www.aliyun.com/product/arms\nicon: logo.png\nintroduction:\n- 使用ARMS Prometheus实现容器服务集群监控。\n- Using ARMS Prometheus to implement ACK cluster monitoring\ndoc:\n- https://help.aliyun.com/document_detail/161304.html\n- https://www.alibabacloud.com/help/doc-detail/161304.html\nchangelog:\n- keywords:\n- arms\n- prometheus\n- namespace:arms-prom\n- releaseName:arms-prom\n- category:ops\nname: ack-arms-prometheus\nversion: 0.1.5\n",
       "properties": null
     },
     "cloud-controller-manager": {
@@ -338,7 +338,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "\nintroduction:\n  zh: 使用gatekeeper管理和应用OPA策略。\n  en: Using gatekeeper to manage and apply OPA policy\ndoc:\n  zh: https://help.aliyun.com/document_detail/180803.html\n  en: https://www.alibabacloud.com/help/doc-detail/180803.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/180804.html\n  en: https://www.alibabacloud.com/help/doc-detail/180804.html\n",
+      "description": "\nintroduction:\n  zh: 使用gatekeeper管理和应用OPA策略。\n  en: Using gatekeeper to manage and apply OPA policy\ndoc:\n  zh: https://help.aliyun.com/document_detail/180803.html\n  en: https://www.alibabacloud.com/help/doc-detail/180803.html\nchangelog:\n",
       "properties": null
     },
     "kritis-validation-hook": {
@@ -448,7 +448,7 @@ arc-cs addon get  --region cn-beijing
       "required": "false",
       "config": "",
       "value": "",
-      "description": "\nintroduction:\n  zh: 使用security-inspector实现集群安全扫描。\n  en: Using security-inspector to scan security risks\ndoc:\n  zh: https://help.aliyun.com/document_detail/173306.html\n  en: https://www.alibabacloud.com/help/doc-detail/173306.html\nchangelog:\n  zh: https://help.aliyun.com/document_detail/173307.html\n  en: https://www.alibabacloud.com/help/doc-detail/173307.html\n",
+      "description": "\nintroduction:\n  zh: 使用security-inspector实现集群安全扫描。\n  en: Using security-inspector to scan security risks\ndoc:\n  zh: https://help.aliyun.com/document_detail/173306.html\n  en: https://www.alibabacloud.com/help/doc-detail/173306.html\nchangelog:\n",
       "properties": null
     },
     "sgx-device-plugin": {
