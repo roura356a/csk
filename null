@@ -1,207 +1,117 @@
 ---
-keyword: [Terraform, managed Kubernetes cluster]
+keyword: [0 Worker节点, terraform, k8s集群, 节点池]
 ---
 
-# Use Terraform to create a managed Kubernetes cluster
+# 使用Terraform创建零Worker节点集群
 
-Terraform is an open source tool provided by HashiCorp. Terraform enables you to securely and efficiently preview, configure, and manage cloud infrastructures and resources. You can use Terraform to automatically create and update Alibaba Cloud infrastructures and resources, and implement version management based on your requirements. This topic describes how to create a managed Kubernetes cluster by using Terraform.
+如果您想将已有的ECS节点添加至ACK集群，又想节省ECS资源，您可以创建零Worker节点的ACK集群。ACK Pro版托管集群支持创建零Worker节点集群。您也可以通过使用Terraform创建零Worker节点的ACK集群。本文介绍如何通过Terraform工具创建零Worker节点的ACK集群，并在后期通过创建节点池为集群添加节点。
 
--   Terraform is installed.
+-   您已安装Terraform工具。具体操作，请参见[t41667.dita\#task\_bts\_tlz\_dfb]()。
+-   如果您需要使用自动伸缩节点池来管理节点，由于自动伸缩功能依赖弹性伸缩（Auto Scaling，旧称ESS）服务，启动节点自动伸缩前，您需要开通弹性伸缩服务，并完成默认角色授权。具体操作，请参见[开通弹性伸缩服务](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/节点自动伸缩.md)。
 
-    **Note:** You must install Terraform 0.12.28 or later. You can run the `terraform --version` command to query the Terraform version.
+ACk Pro版托管集群支持创建零Worker节点。零Worker节点集群有以下优点：
 
-    -   By default, Cloud Shell is preinstalled with Terraform and configured with your account information. You do not need to make any configuration change.
-    -   If you do not use Cloud Shell, you can directly install Terraform. For more information, see [Install and configure Terraform in the local PC]().
--   Your account information is configured. Environment variables are created to store identity information.
+-   成本更低：在最大程度上保证您的利益，同时也节约了成本。
+-   配置更为灵活：零Worker节点集群，托管配置和用户节点配置分离，用户能更加灵活的配置管理集群和集群节点。
+
+Terraform是一种开源工具，通过Provider来支持新的基础架构，用于安全高效地预览，配置和管理云基础架构和资源。更多信息，请参见[什么是Terraform]()。Alibaba Terraform Provider从1.109.1版本开始提供了创建零Worker节点集群的能力，下面详细展示如何通过Terraform来创建零Worker节点的集群，然后在通过节点池来管理Worker节点。
+
+## 使用Terraform创建零Worker节点集群
+
+使用Terraform创建零Worker节点集群的配置文件如下。
+
+```
+variable "name" {
+  default = "zero-worker-cluster"
+}
+
+data "alicloud_zones" default {
+  available_resource_creation  = "VSwitch"
+}
+
+resource "alicloud_vpc" "default" {
+  name                         = var.name
+  cidr_block                   = "10.x.x.x/xx"
+}
+
+resource "alicloud_vswitch" "default" {
+  name                         = var.name
+  vpc_id                       = alicloud_vpc.default.id
+  cidr_block                   = "10.x.x.x/xx"
+  availability_zone            = "data.alicloud_zones.default.zones.0.id
+}
+
+resource "alicloud_key_pair" "default" {
+  key_name                     = var.name
+}
+
+resource "alicloud_cs_managed_kubernetes" "default" {
+  name                         = var.name
+  # 只有ACK Pro托管版集群才支持创建0节点集群。
+  cluster_spec                 = "ack.pro.small"
+  password                     = "Hello1234"
+  pod_cidr                     = "172.20.0.0/16"
+  service_cidr                 = "172.21.0.0/20"
+  is_enterprise_security_group = true
+  # 创建零Worker节点的集群，需要传节点使用的Vswitch。
+  worker_vswitch_ids           = [alicloud_vswitch.default.id]
+}
+```
+
+## 通过节点池为集群添加节点
+
+当您创建完零Worker节点的ACK集群后，想添加节点时，您可以通过Terraform创建节点池来为集群添加Worker节点。配置方式有以下两种：
+
+-   通过节点池来管理Worker节点的配置如下。
 
     ```
-    export ALICLOUD_ACCESS_KEY="************"
-    export ALICLOUD_SECRET_KEY="************"
-    export ALICLOUD_REGION="cn-beijing"
+    # 依赖上文中使用Terraform创建零Worker节点集群步骤中的变量以及配置。
+    resource "alicloud_cs_kubernetes_node_pool" "custom-np" {
+      name                         = var.name
+      cluster_id                   = alicloud_cs_managed_kubernetes.default.0.id
+      vswitch_ids                  = [alicloud_vswitch.default.id]
+      instance_types               = [data.alicloud_instance_types.default.instance_types.0.id]
+      system_disk_category         = "cloud_efficiency"
+      system_disk_size             = 40
+      key_name                     = alicloud_key_pair.default.key_name
+    
+      # 为节点池创建1个Worker节点。
+      node_count                   = 1
+    }
     ```
 
-    **Note:** To improve the flexibility and security of permission management, we recommend that you create a Resource Access Management \(RAM\) user named Terraform. Then, create an AccessKey pair for the RAM user and grant permissions to the RAM user. For more information, see [Create a RAM user](/intl.en-US/RAM User Management/Basic operations/Create a RAM user.md) and [Grant permissions to a RAM user](/intl.en-US/RAM User Management/Authorization management/Grant permissions to a RAM user.md).
+-   通过开启了自动伸缩配置的节点池来管理Worker节点的配置如下。
 
+    **说明：** 使用开启了自动伸缩配置的节点池，需要先开启本文[前提条件](#prereq_yjz_13n_fb1)中提到的ESS权限。
 
-## Use Terraform to create a managed Kubernetes cluster
-
-1.  Create a working directory and a file named main.tf under the directory.
-
-    The main.tf file is used to configure the following settings for Terraform:
-
-    -   Create a new virtual private cloud \(VPC\) and vSwitches in the VPC.
-    -   Create a managed Kubernetes cluster that contains two worker nodes.
     ```
-    provider "alicloud" {
-    }
-    variable "k8s_name_prefix" {
-      description = "The name prefix used to create managed kubernetes cluster."
-      default     = "tf-ack"
-    }
-    resource "random_uuid" "this" {}
-    # The default resource names.
-    locals {
-      k8s_name     = substr(join("-", [var.k8s_name_prefix, random_uuid.this.result]), 0, 63)
-      new_vpc_name = "vpc-for-${local.k8s_name}"
-      new_vsw_name = "vsw-for-${local.k8s_name}"
-      log_project_name = "log-for-${local.k8s_name}"
-    }
-    # The Elastic Compute Service (ECS) instance specifications of the worker nodes.
-    data "alicloud_instance_types" "default" {
-      cpu_core_count       = 4
-      memory_size          = 8
-      kubernetes_node_role = "Worker"
-    }
-    // The zone that has sufficient ECS instances of the required specifications.
-    data "alicloud_zones" "default" {
-      available_instance_type = data.alicloud_instance_types.default.instance_types[0].id
-    }
-    # The VPC.
-    resource "alicloud_vpc" "default" {
-      name       = local.new_vpc_name
-      cidr_block = "10.1.0.0/21"
-    }
-    # The vSwitches.
-    resource "alicloud_vswitch" "vswitches" {
-      name              = local.new_vsw_name
-      vpc_id            = alicloud_vpc.default.id
-      cidr_block        = "10.1.1.0/24"
-      availability_zone = data.alicloud_zones.default.zones[0].id
-    }
-    # The Log Service project.
-    resource "alicloud_log_project" "log" {
-      name        = local.log_project_name
-      description = "created by terraform for managedkubernetes cluster"
-    }
-    # The managed Kubernetes cluster.
-    resource "alicloud_cs_managed_kubernetes" "default" {
-      # The name of the cluster.
-      name                      = local.k8s_name
-      # The vSwitches of the new Kubernetes cluster. Specify the IDs of one or more vSwitches. The vSwitches must be in the zone specified by availability_zone.
-      worker_vswitch_ids        = split(",", join(",", alicloud_vswitch.vswitches. *.id))
-      # Specify whether to create a new Network Address Translation (NAT) gateway when the Kubernetes cluster is created. Default value: true.
-      new_nat_gateway           = true
-      # The ECS instance types of the worker nodes.
-      worker_instance_types     = [data.alicloud_instance_types.default.instance_types[0].id]
-      # The total number of worker nodes in the Kubernetes cluster. Default value: 3. Maximum value: 50.
-      worker_number             = 2
-      # The password that is used to log on to the nodes through SSH.
-      password                  = "Yourpassword1234"
-      # The CIDR block of the pods. When cluster_network_type is set to flannel, you must set this parameter. It cannot be the same as the CIDR block of the VPC or the CIDR blocks of the Kubernetes clusters in the VPC. It cannot be modified after the cluster is created. Maximum number of hosts in the cluster: 256.
-      pod_cidr                  = "172.20.0.0/16"
-      # The CIDR block of the Services. It cannot be the same as the CIDR block of the VPC or the CIDR blocks of the Kubernetes clusters in the VPC. It cannot be modified after the cluster is created.
-      service_cidr              = "172.21.0.0/20"
-      # Specify whether to install the Cloud Monitor agent on nodes.
-      install_cloud_monitor     = true
-      # Specify whether to create an Internet-facing Server Load Balancer (SLB) instance for the API server. Default value: false.
-      slb_internet_enabled      = true
-      # The type of the system disks for worker nodes. Valid values: cloud_ssd and cloud_efficiency. Default value: cloud_efficiency.
-      worker_disk_category      = "cloud_efficiency"
-      # The type of the data disks for worker nodes. Valid values: cloud_ssd and cloud_efficiency. If you do not specify this parameter, no data disk will be created.
-      worker_data_disk_category = "cloud_ssd"
-      # The size of each data disk for each worker node. Valid values: 20 to 32768. Unit: GB. Default value: 40.
-      worker_data_disk_size     = 200
-      # Logging configuration.
-      addons {
-        name     = "logtail-ds"
-        config   = "{\"IngressDashboardEnabled\":\"true\",\"sls_project_name\":alicloud_log_project.log.name}"
+    resource "alicloud_cs_kubernetes_node_pool" "auto-np" {
+      name                         = var.name
+      cluster_id                   = alicloud_cs_managed_kubernetes.default.0.id
+      vswitch_ids                  = [alicloud_vswitch.default.id]
+      instance_types               = [data.alicloud_instance_types.default.instance_types.0.id]
+      system_disk_category         = "cloud_efficiency"
+      system_disk_size             = 40
+      key_name                     = alicloud_key_pair.default.key_name
+      
+      # automatic scaling node pool configuration.
+      scaling_config {
+        min_size      = 1
+        max_size      = 10
       }
+    
     }
     ```
 
-2.  Run the following command to initialize the environment for Terraform.
 
-    ```
-    terraform init
-    ```
-
-    The following output is returned:
-
-    ```
-    Initializing the backend...
-    
-    Initializing provider plugins...
-    - Checking for available provider plugins...
-    - Downloading plugin for provider "alicloud" (hashicorp/alicloud) 1.90.1...
-    ...
-    
-    You may now begin working with Terraform. Try running "terraform plan" to see
-    any changes that are required for your infrastructure. All Terraform commands
-    should now work.
-    
-    If you ever set or change modules or backend configuration for Terraform,
-    rerun this command to reinitialize your working directory. If you forget, other
-    commands will detect it and remind you to do so if necessary.
-    ```
-
-3.  Run the following command to create an execution plan.
-
-    ```
-    terraform plan
-    ```
-
-    The following output is returned:
-
-    ```
-    Refreshing Terraform state in-memory prior to plan...
-    The refreshed state will be used to calculate this plan, but will not be
-    persisted to local or remote state storage.
-    ...
-    Plan: 5 to add, 0 to change, 0 to destroy.
-    ...
-    ```
-
-4.  Run the following command to create the cluster.
-
-    ```
-    terraform apply
-    ```
-
-    The following output is returned:
-
-    ```
-    ...
-    Do you want to perform these actions?
-      Terraform will perform the actions described above.
-      Only 'yes' will be accepted to approve.
-    
-      Enter a value: yes
-    ...
-    alicloud_cs_managed_kubernetes.default: Creation complete after 8m26s [id=************]
-    
-    Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
-    ```
+**相关文档**  
 
 
-## Use Terraform to delete a managed Kubernetes cluster
+[使用Terraform创建Kubernetes托管版集群]()
 
-You can run the `terraform destroy` command to delete a managed Kubernetes cluster that is created by using Terraform.
+[阿里云容器服务Terraform资源](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes)
 
-```
-terraform destroy
-```
+[阿里云Terraform Provider](https://github.com/hashicorp/terraform-provider-alicloud)
 
-The following output is returned:
-
-```
-...
-Do you really want to destroy all resources?
-  Terraform will destroy all your managed infrastructure, as shown above.
-  There is no undo. Only 'yes' will be accepted to confirm.
-
-  Enter a value: yes
-...
-Destroy complete! Resources: 5 destroyed.
-```
-
-**Related topics**  
-
-
-[Alibaba Cloud OpenAPI Explorer](https://api.aliyun.com/#/cli?tool=Terraform&module=managed-kubernetes&namespace=terraform-alicloud-modules)
-
-[Terraform resources for ACK](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes)
-
-[Terraform provider for Alibaba Cloud](https://github.com/hashicorp/terraform-provider-alicloud)
-
-[Use Terraform to create an auto-scaling node pool](/intl.en-US/Terraform/Use Terraform to create an auto-scaling node pool.md)
+[使用Terraform创建具备自动伸缩功能的节点池](/cn.zh-CN/Terraform/使用Terraform创建具备自动伸缩功能的节点池.md)
 
