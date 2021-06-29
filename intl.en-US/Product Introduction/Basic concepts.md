@@ -1,14 +1,14 @@
 ---
-keyword: [basic concepts, K8s, terms, term explanation]
+keyword: [basic concepts, K8s, terms, term description]
 ---
 
 # Basic concepts
 
-Before you start with Container Service for Kubernetes \(ACK\), we recommend that you familiarize yourself with the basic concepts of ACK. This topic introduces the basic concepts and terms that are commonly used in ACK.
+Before you start with Container Service for Kubernetes \(ACK\), you must familiarize yourself with the basic concepts of ACK. This topic introduces the basic concepts and terms that are commonly used in ACK.
 
 -   **Cluster**
 
-    A cluster is a collection of cloud resources that are required to run containers. These cloud resources include Elastic Compute Service \(ECS\) instances, Server Load Balancer \(SLB\) instances, and virtual private clouds \(VPCs\).
+    A cluster is a collection of cloud resources that are required for running containers. These cloud resources include Elastic Compute Service \(ECS\) instances, Server Load Balancer \(SLB\) instances, and virtual private clouds \(VPCs\).
 
     The following table describes the cluster types provided by ACK.
 
@@ -34,18 +34,17 @@ Before you start with Container Service for Kubernetes \(ACK\), we recommend tha
 
     A node pool contains one or more nodes in a cluster. The nodes in a node pool have the same configurations.
 
-    ACK provides two types of node pools: regular node pools and managed node pools. Regular node pools include default node pools and custom node pools. You can enable auto scaling of custom node pools and managed node pools.
+    ACK provides regular node pools and managed node pools.
 
-    |Type|Category|Description|
-    |----|--------|-----------|
-    |Regular node pool|Default node pool|A default node pool is associated with the scaling group that is automatically assigned when you create a cluster. No other scaling group is created for the default node pool.|
-    |Custom node pool|Each custom node pool corresponds to a scaling group. When you scale a custom node pool, ACK uses the Auto Scaling \(ESS\) service to add or remove nodes.|
-    |Managed node pool|Managed node pool|Managed node pools support auto upgrading and auto repairing. This provides centralized, managed, and operations and maintenance \(O&M\)-free lifecycle management of nodes. You do not need to be concerned about the O&M of nodes, such as component upgrading, OS upgrading, and patching to fix Common Vulnerabilities and Exposures \(CVE\)-identified vulnerabilities. ACK automatically fixes exceptions in nodes of a managed node pool.|
+    |Type|Description|
+    |----|-----------|
+    |Regular node pool|A regular node pool contains one or more nodes that have the same configurations in a cluster. Each node pool corresponds to a scaling group. When you scale a node pool, ACK uses the Auto Scaling service to add or remove nodes. You can create and manage multiple node pools based on your requirements.|
+    |Managed node pool|Managed node pools are provided by ACK. Managed node pools support auto upgrade and auto repair. This provides centralized, managed, and operations and maintenance \(O&M\)-free lifecycle management of nodes. You do not need to be concerned about the maintenance of cluster nodes, such as component upgrades, OS upgrades, and patching of Common Vulnerabilities and Exposures \(CVE\)-identified vulnerabilities. ACK automatically fixes faulty nodes in a managed node pool. For more information, see [Overview](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Managed node pools/Overview.md). |
 
 
--   **Virtual Private Cloud \(VPC\)**
+-   **VPC**
 
-    A VPC is a private network dedicated for your use in the cloud. You can configure the CIDR block, route table, and gateways of your VPC. You can use Alibaba Cloud services in a VPC, such as Elastic Compute Service \(ECS\), ApsaraDB RDS \(RDS\), and Server Load Balancer \(SLB\).
+    A VPC is a private network dedicated for your use in the cloud. You can configure the CIDR block, route table, and gateways of your VPC. You can use Alibaba Cloud services in a VPC, such as ECS, SLB, and ApsaraDB RDS \(RDS\).
 
 
 -   **Security group**
@@ -85,7 +84,7 @@ Before you start with Container Service for Kubernetes \(ACK\), we recommend tha
 
 -   **Image repository**
 
-    An image repository is used to store container images of Kubernetes and application development.
+    An image repository is used to store container images of Kubernetes and containerized applications.
 
 
 -   **Master node**
@@ -95,12 +94,12 @@ Before you start with Container Service for Kubernetes \(ACK\), we recommend tha
 
 -   **Worker node**
 
-    A worker node runs workloads in a Kubernetes cluster. A worker node can be either a VM or a physical server. A worker node servers pod scheduling and communicates with master nodes. A worker node runs components, such as the Docker runtime environment, kubelet, kube-proxy, and other optional components.
+    A worker node runs workloads in a Kubernetes cluster. A worker node can be either a VM or a physical server. A worker node hosts the scheduled pods and communicates with master nodes. A worker node runs components, such as the Docker runtime environment, kubelet, kube-proxy, and other optional components.
 
 
 -   **Namespace**
 
-    Namespaces are used to divide Kubernetes cluster resources into virtual and isolated spaces. By default, a Kubernetes is initialized with three namespaces: default, kube-system, and kube-public. The cluster administrator can also create new namespaces based on business requirements.
+    Namespaces are used to divide Kubernetes cluster resources into virtual and isolated spaces. By default, a Kubernetes cluster is initialized with three namespaces: default, kube-system, and kube-public. The cluster administrator can also create new namespaces based on business requirements.
 
 
 -   **Pod**
@@ -134,17 +133,17 @@ Before you start with Container Service for Kubernetes \(ACK\), we recommend tha
 
 -   **Label**
 
-    Labels are key-value pairs that are added to resource objects. Labels are intended to specify attributes of objects that are useful and relevant to users. The labels do not imply semantics to the core system. Labels can be added to an object when it is created, and added or modified at any time after it is created. Each object can have multiple labels. However, the key of each label must be unique.
+    Labels are key-value pairs that are added to resource objects. Labels are intended to specify attributes of objects that are useful and relevant to users. Labels do not imply semantics to the core system. Labels can be added to an object when it is created, and added or modified at any time after it is created. Each object can have multiple labels. However, the key of each label must be unique.
 
 
 -   **Service**
 
-    Service is a basic operation unit in Kubernetes. A Service is an abstraction of real applications and services. Each Service has multiple containers as its backend. The ports opened by kube-proxy port and the selectors specified in Service configurations determine the backend container to which a request is forwarded by a Service. Then, a single access interface is provided to handle external requests. In this case, external users do not need to be concerned about how the backend works. This brings great convenience for the scaling and maintenance of the backend.
+    Service is a basic operation unit in Kubernetes. A Service is an abstraction of real applications and services. Each Service has multiple containers as its backend. The ports opened by kube-proxy port and the selectors specified in Service configurations determine the backend container to which a request is forwarded by a Service. Then, a single access interface is provided to handle external requests.
 
 
 -   **Ingress**
 
-    An Ingress is a collection of rules that authorize external access to cluster services. You can use Ingresses to configure URLs, SLB instances, Secure Sockets Layer \(SSL\) connections, and name-based virtual hosts that provide external access to services. You can request an Ingress by posting the Ingress resource to the cluster API server. An Ingress controller is used to implement an Ingress. In most cases, a load balancer is used for the implementation. An Ingress controller can also be used to configure edge routes and additional frontends and handle traffic with high availability.
+    An Ingress is a collection of rules that authorize external access to cluster services. You can use Ingresses to configure URLs, SLB instances, Secure Sockets Layer \(SSL\) connections, and name-based virtual hosts that provide external access to services. You can request an Ingress by posting the Ingress resource to the cluster API server. An Ingress controller is used to implement an Ingress. In most cases, a load balancer is used for the implementation. An Ingress controller can also be used to configure edge routes and additional frontends. This enables you to handle traffic with high availability.
 
 
 -   **ConfigMap**
@@ -159,12 +158,12 @@ Before you start with Container Service for Kubernetes \(ACK\), we recommend tha
 
 -   **Volume**
 
-    Similar to Docker volumes, which serve a container, Kubernetes volumes serve a pod within its lifetime. The volumes declared in a pod are shared by all containers in the pod.
+    Volumes in Kubernetes are similar to volumes in Docker. A Docker volume serves a container. A Kubernetes volume serves a pod within its lifetime. The volumes declared in a pod are shared by all containers in the pod.
 
 
 -   **Persistent volume \(PV\)**
 
-    A PV is a storage resource in a Kubernetes cluster just like a node is a cluster resource. A PV has a lifecycle independent of any pod that uses the PV. You can create different types of PVs by using different types of StorageClasses.
+    A PV is a storage resource in a Kubernetes cluster, just like a node is a cluster resource. A PV has a lifecycle independent of any pod that uses the PV. You can create different types of PVs by using different types of StorageClasses.
 
 
 -   **Persistent volume claim \(PVC\)**
@@ -174,7 +173,7 @@ Before you start with Container Service for Kubernetes \(ACK\), we recommend tha
 
 -   **StorageClass**
 
-    StorageClasses enable the dynamic provisioning of PVs. You can use dynamic provisioning to automatically create PVs based on your requirements.
+    StorageClasses enable dynamic provisioning of PVs. You can use dynamic provisioning to automatically create PVs based on your requirements.
 
 
 -   **Auto scaling**
@@ -184,9 +183,9 @@ Before you start with Container Service for Kubernetes \(ACK\), we recommend tha
     |Scaling aspect|Scaling category|Description|
     |--------------|----------------|-----------|
     |Workload scaling|Horizontal pod autoscaling|Horizontal Pod Autoscaler \(HPA\) automatically scales pods based on CPU usage. HPA can be used to scale only workloads that can be scaled, such as Deployments and StatefulSets.|
-    |Cron horizontal pod autoscaling|To reduce resource waste in some scenarios, ACK provides the kubernetes-cronhpa-controller component to automatically scale resources based on predefined schedules. CronHPA can be used to scale only workloads that can be scaled, such as Deployments and StatefulSets. CronHPA is also compatible with Horizontal Pod Autoscaler \(HPA\). You can use CronHPA and HPA in combination to scale workloads.|
+    |CronHPA|To reduce resource waste in some scenarios, ACK provides the kubernetes-cronhpa-controller component to automatically scale resources based on predefined schedules. CronHPA can be used to scale only workloads that can be scaled, such as Deployments and StatefulSets. CronHPA is also compatible with HPA. You can use CronHPA and HPA in combination to scale workloads.|
     |Vertical pod autoscaling|Vertical pod autoscaling automatically sets limits on the usage of cluster resources based on the resource usage of pods. This way, ACK can schedule pods to nodes with sufficient resources. Vertical Pod Autoscaler \(VPA\) also maintains the amount of resources specified by `request` and `limit` in the initial container configuration. Vertical pod autoscaling is applicable to applications that cannot be horizontally scaled. In most cases, vertical pod autoscaling is used when exceptions in pods are resolved.|
-    |Resource scaling|Auto scaling of nodes|ACK provides a component for the auto scaling of nodes. Regular instances, GPU-accelerated instances, and preemptible instances can be automatically added to or removed from an ACK cluster based on your requirements. This feature provides multiple scaling modes, supports various instance types and multi-zone instances, and meets your scaling requirements in different scenarios. This feature is applicable to all scenarios, especially online workloads, deep learning, and large-scale computing.|
+    |Resource scaling|Auto scaling of nodes|ACK provides the auto scaling component to automatically scale nodes. Regular instances, GPU-accelerated instances, and preemptible instances can be automatically added to or removed from an ACK cluster to meet your business requirements. This component supports multiple scaling modes, various instance types, and instances that are deployed across zones. This component is applicable to diverse scenarios. This feature is applicable to all scenarios, especially online workloads, deep learning, and large-scale computing.|
 
 
 -   **Observability**
