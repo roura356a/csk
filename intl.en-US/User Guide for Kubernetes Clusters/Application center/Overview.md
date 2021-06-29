@@ -4,7 +4,7 @@ keyword: [application center, GitOps, multiple clusters]
 
 # Overview
 
-Application center is a declarative, GitOps continuous delivery tool for Kubernetes based on Argo CD. In GitOps pattern, application definitions,configurations and environments are declarative and version controlled, application deployment and lifecycle management are automated and easy to understand. This topic describes the features, architecture, concepts, and core components of **Application Center**.
+Application center is a declarative, GitOps continuous delivery tool for Kubernetes based on Argo CD. In GitOps pattern, application definitions, configurations are declarative and version controlled, application deployment and lifecycle management are automated and easy to understand. This topic describes the features, architecture, concepts, and core components of **Application Center**.
 
 ## Features
 
