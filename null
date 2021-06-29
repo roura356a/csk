@@ -107,9 +107,9 @@ ACK支持通过Terraform管理以下Resource和Data Source。
 
 [在本地安装和配置Terraform]()
 
-[使用Terraform创建Kubernetes托管版集群](/cn.zh-CN/Terraform/使用Terraform创建Kubernetes托管版集群.md)
+[使用Terraform创建Kubernetes托管版集群](/intl.zh-CN/Terraform/使用Terraform创建Kubernetes托管版集群.md)
 
-[使用Terraform创建零Worker节点集群](/cn.zh-CN/Terraform/使用Terraform创建零Worker节点集群.md)
+[使用Terraform创建零Worker节点集群](/intl.zh-CN/Terraform/使用Terraform创建零Worker节点集群.md)
 
-[使用Terraform创建具备自动伸缩功能的节点池](/cn.zh-CN/Terraform/使用Terraform创建具备自动伸缩功能的节点池.md)
+[使用Terraform创建具备自动伸缩功能的节点池](/intl.zh-CN/Terraform/使用Terraform创建具备自动伸缩功能的节点池.md)
 
