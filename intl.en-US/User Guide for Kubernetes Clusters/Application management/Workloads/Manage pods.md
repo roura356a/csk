@@ -27,11 +27,17 @@ Pods are the smallest deployable units in Kubernetes. A pod runs an instance of 
     **Note:** On the Pods page, you can modify and delete pods. For pods that are created by using a Deployment, we recommend that you use the Deployment to manage the pods.
 
 
-**View pod log**
+**View pod logs**
 
 You can view a pod log by using the following methods:
 
-Navigate to the Pods tab, find the pod that you want to manage, and then click **Logs** on the right side to view the log data.
+Navigate to the Pods page, find the pod that you want to manage, and then click **Logs** on the right side to view the log data.
+
+**Filter pods**
+
+On the Pods page, you can filter pods by name, node, host IP, pod IP, and label.
+
+![Pod](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1431394261/p274317.png)
 
 ## Modify pod configurations
 
@@ -52,7 +58,7 @@ Navigate to the Pods tab, find the pod that you want to manage, and then click *
 
 ## Manually scale the number of pods for an application
 
-After an application is created, you can scale in or out the pods that are provisioned for the application.
+After an application is created, you can scale the number of pods that are provisioned for the application.
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
