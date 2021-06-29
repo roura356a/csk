@@ -1,5 +1,5 @@
 ---
-keyword: [Kube API Serve, API服务器]
+keyword: [Kube API Server, API服务器]
 ---
 
 # Kube API Server
