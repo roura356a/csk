@@ -11,11 +11,11 @@ This topic provides answers to some frequently asked questions about container n
 -   [How do I plan the network of a cluster?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
 -   [Can I use hostPorts to create port mappings in an ACK cluster?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
 -   [Can I configure multiple route tables for the VPC where my cluster is deployed?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
--   [How do I check the network type and vSwitches of the cluster?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
+-   [How do I check the network type and vSwitches of a cluster?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
 -   [How do I check the cloud resources used in an ACK cluster?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
 -   [Network errors of pods in the cluster](~~142373~~)
 -   [How do I obtain the public IP address of an application in the cluster?](~~142274~~)
--   [Network errors in the exclusive ENI mode when the Terway network plug-in is used](~~147426~~)
+-   [Network errors that occur when the Terway network plug-in is used in the exclusive ENI mode](~~147426~~)
 -   [How do I troubleshoot cluster access issues?](~~149275~~)
 -   [The number of IP addresses provided by the vSwitch is insufficient when the Terway network plug-in is used](~~189784~~)
 -   [The cluster cannot connect to the public IP address of the SLB instance that is associated with the LoadBalancer Service](~~171437~~)
@@ -24,38 +24,39 @@ This topic provides answers to some frequently asked questions about container n
 
 **FAQ about Server Load Balancer \(SLB\)**
 
--   [Why is the event of a Service synchronizing with the SLB instance not collected?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
+-   [Why are no events collected during the synchronization between a Service and an SLB instance?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 -   [How do I handle an SLB instance that remains in the Pending state?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
--   [What do I do if the vServer groups of an SLB instance are not upgraded?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
+-   [What do I do if the vServer groups of an SLB instance are not updated?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 -   [What do I do if the annotations of a Service do not take effect?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 -   [Why is the configuration of an SLB instance modified?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 -   [Why does the cluster fail to access the IP address of the SLB instance?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 -   [What do I do if I accidentally delete an SLB instance?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
--   [Is the corresponding SLB instance deleted after I delete a Service?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
+-   [If I delete a Service, is the SLB instance associated with the Service automatically deleted?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 -   [How do I rename an SLB instance when the CCM version is V1.9.3.10 or earlier?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 -   [How does CCM calculate node weights in Local mode?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 
 **FAQ about Cloud Controller Manager \(CCM\) upgrades**
 
--   [What do I do if CCM fails to upgrade?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
+-   [How do I troubleshoot failures to upgrade CCM?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 
 **FAQ about using existing SLB instances**
 
 -   [Why does the system fail to use an existing SLB instance for more than one Services?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 -   [Why is no listener created when I reuse an existing SLB instance?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 
-**Others**
+**Other FAQ**
 
--   [How do I connect CCM to a Kubernetes cluster that is created on top of Elastic Compute Service \(ECS\)?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
+-   [How Do I Perform Session Persistence for a Kubernetes Service?](~~149276~~)
 
 ## Ingress FAQ
 
 -   [Which Secure Sockets Layer \(SSL\) or Transport Layer Security \(TLS\) protocol versions are supported by Ingresses?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
--   [Does Ingress pass Layer 7 request headers?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
+-   [Do Ingresses pass Layer 7 request headers?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
 -   [Can ingress-nginx forward requests to HTTPS Services at the backend?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
--   [Does Ingress pass client IP addresses at Layer 7?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
+-   [Do Ingresses pass client IP addresses at Layer 7?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
 -   [Does nginx-ingress-controller support HTTP Strict Transport Security \(HSTS\)?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
 -   [Which rewrite rules are supported by ingress-nginx?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
--   [How do I fix the issue that Log Service cannot parse logs as normal after ingress-nginx-controller is upgraded?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
+-   [How do I fix the issue that Log Service cannot parse logs as expected after ingress-nginx-controller is upgraded?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
 -   [How do I configure the internal-facing SLB instance for the NGINX Ingress controller?](~~142097~~)
+-   [t2011727.md\#section\_99r\_gia\_5ax](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
 
