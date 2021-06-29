@@ -47,7 +47,7 @@ Compared with the open source Prometheus, Alibaba Cloud Prometheus Service has t
 
     -   Alibaba Cloud Prometheus Service supports easy installation and removal. You can debug the service by performing health checks. Compared with the open source Prometheus, Alibaba Cloud Prometheus Service reduces your time cost from about 1 day to about 3 minutes.
 
-For more information about ARMS Prometheus, see [ARMS Prometheus overview]().
+For more information about ARMS Prometheus, see [What is Prometheus Service?]().
 
 ## Enable ARMS Prometheus
 
