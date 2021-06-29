@@ -26,7 +26,7 @@ The following requirements are met:
 Background information 
 -------------------------------------------
 
-Container Registry provides Container Registry Enterprise Edition instances and default instances. Container Registry Enterprise Edition is an enterprise-grade platform used to manage the lifecycle of cloud native application artifacts. These artifacts include container images, Helm charts, and Open Container Initiative (OCI) artifacts. Container Registry Enterprise Edition can seamlessly integrate with Container Service for Kubernetes (ACK) in large-scale business deployment scenarios to simplify application delivery for enterprises. For more information, see [What is Container Registry Enterprise Edition?]() 
+Container Registry provides Container Registry Enterprise Edition instances and default instances. Container Registry Enterprise Edition is an enterprise-grade platform used to manage the lifecycle of cloud native application artifacts. These artifacts include container images, Helm charts, and Open Container Initiative (OCI) artifacts. Container Registry Enterprise Edition can seamlessly integrate with Container Service for Kubernetes (ACK) in large-scale business deployment scenarios to simplify application delivery for enterprises. For more information, see [What is Container Registry?]()
 
 The following situations exist when you use Container Registry images:
 
