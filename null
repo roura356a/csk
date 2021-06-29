@@ -7,11 +7,11 @@ keyword: [Terraform, 自动伸缩, Alibaba Cloud Provider, 创建]
 ACK的节点池及托管节点池中的节点默认不具备自动伸缩能力，您也可以通过使用Terraform工具创建开启自动伸缩功能的节点池。本文介绍如何通过Terraform创建开启自动伸缩功能的节点池。
 
 -   您已安装Terraform工具。具体操作，请参见[t41667.dita\#task\_bts\_tlz\_dfb]()。
--   自动伸缩功能依赖弹性伸缩（Auto Scaling，旧称ESS）服务。启动节点自动伸缩前，您需要开通弹性伸缩服务，并完成默认角色授权。具体操作，请参见[开通弹性伸缩服务](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/节点自动伸缩.mdstep_t9t_hu3_cbw)。
+-   自动伸缩功能依赖弹性伸缩（Auto Scaling，旧称ESS）服务。启动节点自动伸缩前，您需要开通弹性伸缩服务，并完成默认角色授权。具体操作，请参见[开通弹性伸缩服务](/intl.zh-CN/Kubernetes集群用户指南/弹性伸缩/节点自动伸缩.mdstep_t9t_hu3_cbw)。
 
     **说明：** 如果您之前已经使用了alicloud\_cs\_kubernetes\_autoscaler组件，默认已开通弹性伸缩服务。
 
--   在RAM控制台，为当前集群添加弹性伸缩服务授权策略。关于如何授权的详细信息，请参见[授权](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/节点自动伸缩.mdstep_dkz_59w_xec)。
+-   在RAM控制台，为当前集群添加弹性伸缩服务授权策略。关于如何授权的详细信息，请参见[授权](/intl.zh-CN/Kubernetes集群用户指南/弹性伸缩/节点自动伸缩.mdstep_dkz_59w_xec)。
 
 Terraform是一种开源工具，通过Provider来支持新的基础架构，用于安全高效地预览，配置和管理云基础架构和资源。更多信息，请参见[什么是Terraform]()。
 
@@ -161,15 +161,13 @@ Alibaba Terraform Provider从1.111.0版本开始可通过组件[alicloud\_cs\_ku
 
     完成创节点池后，在节点池列表中可以看到新建的节点池，该节点池名称下会标注**已开启自动伸缩**。
 
-    ![nodepool](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3272339061/p207806.png)
-
 
 **相关文档**  
 
 
-[节点池概述](/cn.zh-CN/Kubernetes集群用户指南/节点与节点池/节点池/节点池概述.md)
+[节点池概述](/intl.zh-CN/Kubernetes集群用户指南/节点与节点池/节点池/节点池概述.md)
 
-[节点自动伸缩](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/节点自动伸缩.md)
+[节点自动伸缩](/intl.zh-CN/Kubernetes集群用户指南/弹性伸缩/节点自动伸缩.md)
 
 [使用Terraform创建Kubernetes托管版集群]()
 
