@@ -23,7 +23,7 @@ keyword: [CoreDNS版本过低, 升级CoreDNS, 手动]
 
 1.  确认集群版本与CoreDNS版本的兼容性。
 
-    您需先确认集群版本号，然后进一步确认与CoreDNS 1.6.2版本的兼容性。ACK Kubernetes集群版本与CoreDNS 1.6.2版本兼容情况如下表（Kubernetes 1.11/1.12/1.14/1/16均兼容CoreDNS 1.6.2版本）。
+    您需先确认集群版本号，然后进一步确认与CoreDNS 1.6.2版本的兼容性。ACK Kubernetes集群版本与CoreDNS 1.6.2版本兼容情况如下表（Kubernetes 1.11/1.12/1.14/1.16均兼容CoreDNS 1.6.2版本）。
 
     |版本|兼容信息|
     |--|----|
@@ -43,7 +43,7 @@ keyword: [CoreDNS版本过低, 升级CoreDNS, 手动]
 2.  确认集群CoreDNS的版本。
 
     -   您可以在ACK控制台确认CoreDNS的版本。
-        1.  登录[容器服务管理控制台](https://cs.console.aliyun.com).
+        1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
         2.  在控制台左侧导航栏，单击**集群**，然后单击目标集群右侧**操作**列下的**应用管理**。
         3.  在**无状态**页签中，选择**kube-system**命名空间，然后查看CoreDNS的版本。
@@ -67,7 +67,7 @@ keyword: [CoreDNS版本过低, 升级CoreDNS, 手动]
     1.6.2版本CoreDNS废弃了Proxy插件，使用forward来替代。您需要先将kube-system命名空间下的配置项**coredns**内的proxy字段替换为forward字段。
 
     -   您可以在ACK控制台上直接更新配置项**coredns**。
-        1.  登录[容器服务管理控制台](https://cs.console.aliyun.com).
+        1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
         2.  在控制台左侧导航栏，单击**集群**，然后单击目标集群名称。
         3.  在集群管理左侧导航栏，选择**配置管理** \> **配置项**。
@@ -125,7 +125,7 @@ linux/amd64, go1.13.6, da7f65b
 
     -   通过控制台操作。
 
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com).
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏，单击**集群**，然后单击目标集群右侧**操作**列下的**应用管理**。
 3.  在**无状态**页签，找到**coredns**，然后在其右侧选择**更多** \> **查看Yaml**。
