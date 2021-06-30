@@ -33,7 +33,7 @@ keyword: [arms-prometheus, 注册集群]
     -   如果您的集群和专有网络VPC之间有专线，专线会被自动使用。
     -   如果您是通过公网注册的外部集群，需要删除镜像参数中的vpc。例如，删除vpc后的镜像参数为registry.cn-hangzhou.aliyuncs.com/arms-docker-repo/arms-prom-operator:v0.1。
 
-安装完成后，可查看监控数据和定义告警规则。更多信息，请参见[t855956.dita\#concept\_1062555]()和[创建Prometheus监控报警](/intl.zh-CN/大盘和报警/创建报警.md)。
+安装完成后，可查看监控数据和定义告警规则。更多信息，请参见[t1881582.dita\#task\_2461398](/intl.zh-CN/Kubernetes集群用户指南/可观测性/监控管理/阿里云Prometheus监控.md)和[创建Prometheus监控报警](/intl.zh-CN/大盘和报警/创建报警.md)。
 
 **相关文档**  
 
