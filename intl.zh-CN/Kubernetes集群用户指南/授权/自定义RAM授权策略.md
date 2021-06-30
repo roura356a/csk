@@ -157,7 +157,7 @@ keyword: [RAM, 自定义授权策略]
 |DeleteClusterNodepool|DeleteNodepool|删除节点池。|
 |DescribeClusterNodePoolDetail|GetNodepoolDetail|获取节点池详细信息。|
 |DescribeClusterNodePools|GetNodepools|获取节点池信息。|
-|ModifyClusterNodePool|UpdateNodepools|修改节点池信息。|
-|ScaleClusterNodePool|ScaleNodepools|扩缩容节点池。|
+|ModifyClusterNodePool|UpdateNodepool|修改节点池信息。|
+|ScaleClusterNodePool|ScaleNodepool|扩缩容节点池。|
 |MigrateCluster|MigrateCluster|迁移集群。|
 
