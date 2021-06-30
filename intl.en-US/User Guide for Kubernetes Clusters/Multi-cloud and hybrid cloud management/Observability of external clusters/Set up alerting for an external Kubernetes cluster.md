@@ -109,8 +109,6 @@ The console automatically checks whether the alerting configuration meets the re
 
     ![Alert rules](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6627952261/p249722.png)
 
-    For more information, see [Step 2: Configure alert rules](#step_pjq_wu5_deg).
-
 
 **Step 2: Configure alert rules**
 
