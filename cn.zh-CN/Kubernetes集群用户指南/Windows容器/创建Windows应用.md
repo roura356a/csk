@@ -38,7 +38,7 @@ keyword: [Web应用, Windows应用]
     metadata:
       labels:
         app: web-windows
-        name: web-windows
+      name: web-windows
     spec:
       type: LoadBalancer
       ports:
@@ -53,7 +53,7 @@ keyword: [Web应用, Windows应用]
     metadata:
       labels:
         app: web-windows
-        name: web-windows
+      name: web-windows
     spec:
       selector:
         matchLabels:
