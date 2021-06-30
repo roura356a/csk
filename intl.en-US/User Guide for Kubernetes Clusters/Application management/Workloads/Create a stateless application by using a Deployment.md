@@ -663,11 +663,11 @@ When you create an application from a private image, you must set a Secret for i
 
 5.  On the **Deployments** page, select the namespace and click **Create from Image** in the upper-right corner of the page.
 
-6.  On the **Basic Information** wizard page, set the parameters. For more information, see [Create a stateless application by using a Deployment](#task_p2s_2rl_vdb).
+6.  On the **Basic Information** wizard page, set the parameters. For more information, see [Basic Information](#step_3x6_ac3_kqd).
 
 7.  Configure containers.
 
-    The following example describes how to configure an image pull Secret. For more information about container configurations, see [Create a stateless application by using a Deployment](#task_p2s_2rl_vdb).
+    The following example describes how to configure an image pull Secret. For more information about container configurations, see [Configure containers](#step_21s_gr8_xps).
 
     1.  On the **Container** wizard page, enter the address of the private image in the **Image Name** field. The address must be in the following format: `domainname/namespace/imagename`.
 
