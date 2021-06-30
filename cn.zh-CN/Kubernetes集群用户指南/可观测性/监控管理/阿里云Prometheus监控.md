@@ -371,7 +371,5 @@ keyword: [ACK接入Prometheus, Prometheus监控报警, Prometheus监控指标, G
 **相关文档**  
 
 
-[大盘列表]()
-
 [配置Prometheus监控采集规则]()
 
