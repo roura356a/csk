@@ -372,8 +372,3 @@ If you delete only the namespace of ARMS Prometheus, resource configurations may
     ```
 
 
-**Related topics**  
-
-
-[View monitoring dashboards]()
-
