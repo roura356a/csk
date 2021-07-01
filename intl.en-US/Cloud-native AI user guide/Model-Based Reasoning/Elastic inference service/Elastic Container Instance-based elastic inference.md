@@ -12,7 +12,7 @@ After a model training job is completed, the model is usually referenced in infe
     -   ack-virtual-node
     -   ack-kubernetes-elastic-workload
     -   ack-alibaba-cloud-metrics-adapter
--   AI Dashboard is installed. For more information, see [Deploy cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy cloud-native AI component set.md).
+-   AI Dashboard is installed. For more information, see [Deploy the cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy the cloud-native AI component set.md).
 
 ## Procedure
 
@@ -274,10 +274,10 @@ After a model training job is completed, the model is usually referenced in infe
 
 8.  Perform a stress test on the inference service. Then, log on to AI Dashboard.
 
-    You must first install and configure access to AI Dashboard. For more information, see [Deploy cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy cloud-native AI component set.md).
+    You must first install and configure access to AI Dashboard. For more information, see [Deploy the cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy the cloud-native AI component set.md).
 
 9.  In the left-side navigation pane of the AI Dashboard page, choose **Elastic Job** \> **Job List**. You can view the details of the inference service.
 
-    The following figure indicates that both standard and preemptible elastic container instances are created by scale-out events.
+    You can see that there are both standard and preemptible elastic container instances are created by scale-out events.
 
 
