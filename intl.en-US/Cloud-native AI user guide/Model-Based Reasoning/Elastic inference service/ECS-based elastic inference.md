@@ -8,7 +8,7 @@ After a model training job is completed, the model is usually referenced in infe
 
 -   Model training is completed. In this topic, an image recognition model trained by TensorFlow is used.
 -   The ack-alibaba-cloud-metrics-adapter component is installed. For more information, see [Manage system components](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Upgrade cluster/Manage system components.md).
--   AI Dashboard is installed. For more information, see [Deploy cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy cloud-native AI component set.md).
+-   AI Dashboard is installed. For more information, see [Deploy the cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy the cloud-native AI component set.md).
 
 ## Procedure
 
@@ -218,10 +218,10 @@ After a model training job is completed, the model is usually referenced in infe
 
 7.  Perform a stress test on the inference service. Then, log on to AI Dashboard.
 
-    You must first install and configure access to AI Dashboard. For more information, see [Deploy cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy cloud-native AI component set.md).
+    You must first install and configure access to AI Dashboard. For more information, see [Deploy the cloud-native AI component set](/intl.en-US/Cloud-native AI user guide/Environment preparation/Deploy the cloud-native AI component set.md).
 
 8.  In the left-side navigation pane of the AI Dashboard page, choose **Elastic Job** \> **Job List**. You can view the details of the inference service.
 
-    The following figure indicates that all pods that are created during scale-out event run on ECS instances. Both pay-as-you-go and preemptible ECS instances are provisioned. The ratio of the two instance types is based on the percentage value that you specified when you created the node pool.
+    You can see that the expanded pods are all running on ECS instances. Both pay-as-you-go and preemptible ECS instances are provisioned. The ratio of the two instance types is based on the percentage value that you specified when you created the node pool.
 
 
