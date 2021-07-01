@@ -395,7 +395,7 @@ spec:
     finished!
     ```
 
-3.  根据[CPU拓扑感知调度](#task_1935079)，请删除cpu-policy前的`#`，在Pod及Deployment中使用CPU拓扑感知调度并控制自动绑核策略。
+3.  根据[使用CPU拓扑感知调度](#section_xr4_ec7_r5z)，请删除cpu-policy前的`#`，在Pod及Deployment中使用CPU拓扑感知调度并控制自动绑核策略。
 
 4.  Pod或Deployment成功运行后，执行以下命令，查看Pod。
 
