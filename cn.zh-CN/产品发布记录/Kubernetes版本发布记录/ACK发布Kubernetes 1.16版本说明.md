@@ -66,7 +66,7 @@ ACK针对Kubernetes 1.16版本做了以下方面的增强：
 
 ## 参考链接
 
--   关于Kubernetes 1.16与其他版本的性能对比和功能演进的更多信息，请参考[Kubernetes 1.15和1.16版解读](https://yq.aliyun.com/articles/748085?spm=a2c4e.11155435.0.0.5a9a3312R7b0dn)和[Kubernetes 1.16和1.14性能对比](https://yq.aliyun.com/articles/747908?spm=a2c4e.11155435.0.0.5a9a3312R7b0dn)。
+-   关于Kubernetes 1.16与其他版本的性能对比和功能演进的更多信息，请参见[Kubernetes 1.15和1.16版解读](https://yq.aliyun.com/articles/748085?spm=a2c4e.11155435.0.0.5a9a3312R7b0dn)和[Kubernetes 1.16和1.14性能对比](https://yq.aliyun.com/articles/747908?spm=a2c4e.11155435.0.0.5a9a3312R7b0dn)。
 
 -   [CHANGELOG-1.16.md](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.16.md)
 -   [CHANGELOG-1.15.md](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.15.md)
