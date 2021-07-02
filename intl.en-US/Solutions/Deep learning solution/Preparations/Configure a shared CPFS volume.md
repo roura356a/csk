@@ -4,7 +4,7 @@ keyword: [shared CPFS volumes, Arena, distributed storage, configure PVs and PVC
 
 # Configure a shared CPFS volume
 
-Cloud Paralleled File System \(CPFS\) is a type of parallel file system provided by Alibaba Cloud. CPFS stores data across multiple data nodes in a cluster and allows data to be simultaneously accessed by multiple clients. Therefore, CPFS can provide data storage services with high input/output operations per second \(IOPS\), high throughput, and low latency for large, high-performance computing clusters. This topic describes how to configure a shared CPFS volume.
+Cloud Paralleled File System \(CPFS\) is a type of parallel file system provided by Alibaba Cloud. CPFS stores data across multiple data nodes in a cluster and allows data to be simultaneously accessed by multiple clients. Therefore, CPFS can provide data storage services with high input/output operations per second \(IOPS\), high throughput, and low latency for large and high-performance computing clusters. This topic describes how to configure a shared CPFS volume.
 
 Data scientists may want to persist their data or retrieve the same copy of training data. To meet this requirement, we recommend that you configure a shared NAS volume and mount it to the runtime where you use Arena to submit jobs. This prevents data loss because the code and data that are stored in the shared NAS volume are not deleted with containers.
 
@@ -18,7 +18,7 @@ For more information about how to create a CPFS file system, see [Create a file 
 
 **Note:**
 
-When you create a CPFS file system, set the region, Virtual Private Cloud \(VPC\) network and VSwitches to those of the target cluster of Alibaba Cloud Container Service for Kubernetes \(ACK\).
+When you create a CPFS file system, set the region, virtual private cloud \(VPC\), and vSwitches to those of the specified cluster of Container Service for Kubernetes \(ACK\).
 
 ## Step 2: Add a mount target
 
@@ -26,22 +26,26 @@ When you create a CPFS file system, set the region, Virtual Private Cloud \(VPC\
 
 2.  In the left-side navigation pane, choose **File System** \> **File System List**.
 
-3.  Find the newly created CPFS file system and click **Management** in the **Operations** column.
+3.  Find the CPFS file system that you created in Step 1 and click **Management** in the **Operations** column.
 
-    On the **Basic Information** tab, you can view the ID and mount target of the newly created file system.
+    On the **Basic Information** tab, you can view the ID and mount target of the CPFS file system.
 
     ![CPFS](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5976258951/p134706.png)
 
 
-## Step 3: Create a PV and a PVC for the target ACK cluster
+## Step 3: Create a PV and a PVC for the specified ACK cluster
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, choose **Applications** \> **Deployments**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  In the upper-right corner of the Deployments page, click **Create from Template**.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-    Select the target cluster from the Cluster drop-down list, select the target namespace from the Namespace drop-down list, and select **** from the Sample Template drop-down list.
+4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
+
+5.  On the Deployments page, click **Create from Template** in the upper-right corner.
+
+    Select the specified cluster from the Cluster drop-down list, select the specified namespace from the Namespace drop-down list, and then select **Resource-PersistentVolumeClaim** from the Sample Template drop-down list.
 
     Copy the following content to the template:
 
@@ -84,10 +88,10 @@ When you create a CPFS file system, set the region, Virtual Private Cloud \(VPC\
 
     Set the following parameters when you configure the persistent volume \(PV\) and persistent volume claim \(PVC\):
 
-    -   server: Enter the mount target of the CPFS file system that is obtained in Step 2.
+    -   server: Enter the mount target of the CPFS file system that is obtained in [Step 2: Add a mount target](#section_dhs_svi_aui).
     -   fileSystem: Enter the ID of the CPFS file system.
     -   subPath: Enter tf\_data.
-4.  Click **Create**.
+6.  Click **Create**.
 
     After the PV and PVC are created, you can find the PV in the **Persistent Volumes** list and the PVC in the **Persistent Volume Claims** list.
 
