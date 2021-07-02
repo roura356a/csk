@@ -11,9 +11,9 @@ This topic describes how to upgrade the components in an edge Kubernetes cluster
 
 ## Procedure
 
-1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the **Clusters** page, find the cluster that you want to manage and choose **More** \> **Manage System Components** in the **Actions** column.
 
@@ -22,25 +22,29 @@ This topic describes how to upgrade the components in an edge Kubernetes cluster
     -   Find the component that you want to install and click **Install**.
     -   Find the component that you want to uninstall and click **Uninstall**.
     -   Find the component that you want to upgrade and click **Upgrade**.
-5.  Upgrade the **edge-tunnel-server** and **edge-tunnel-agent** components.
 
-    **Note:** If the Kubernetes version of your cluster is 1.12.6-aliyunedge.1, you must perform the following steps to upgrade **edge-tunnel-server** and **edge-tunnel-agent**.
+If the version of your Kubernetes cluster is 1.12.6-aliyunedge.1, you must perform the following steps to upgrade **edge-tunnel-server** and **edge-tunnel-agent**.
 
-    1.  Manually delete the DaemonSets, Deployments, and Services that are related to the **frps or frpc** component. To do this, perform the following steps:
+1.  Manually delete the DaemonSets, Deployments, and Services that are related to the **frps or frpc** component. To do this, perform the following steps:
 
-        1.  In the left-side navigation pane, click **Clusters**.
-        2.  On the **Clusters** page, click the name of the cluster that you want to manage or click **Details** in the **Actions** column.
-        3.  On the **details** page of the cluster, click the **Connection Information** tab. Click the **Public Access** tab and copy the content of the **kubeconfig** file to the $HOME/.kube/config file of your on-premises machine.
-        4.  Run the following command:
+    1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
-            ```
-            docker run -v ~/.kube:/root/.kube registry.cn-hangzhou.aliyuncs.com/acs/edge-upgrade-addon:v1.0 tunnel
-            ```
+    2.  In the left-side navigation pane, click **Clusters**.
 
-    2.  On the **Add-ons** page, find **edge-tunnel-server** and click **Upgrade** in the **Actions** column.
+    3.  On the Clusters page, find the cluster that you want to manage, and click the name of the cluster or click **Details** in the **Actions** column.
 
-    3.  On the **Add-ons** page, find the **edge-tunnel-agent** component and click **Upgrade** in the **Actions** column.
+    4.  On the **details** page of the cluster, click the **Connection Information** tab. Click the **Public Access** tab and copy the content of the **kubeconfig** file to the $HOME/.kube/config file of your on-premises machine.
 
+    5.  Run the following command:
+
+        ```
+        docker run -v ~/.kube:/root/.kube registry.cn-hangzhou.aliyuncs.com/acs/edge-upgrade-addon:v1.0 tunnel
+        ```
+
+2.  In the left-side navigation pane of the details page, choose **Operations** \> **Add-ons**.
+
+    -   Find **edge-tunnel-server** and click **Upgrade** in the **Actions** column.
+    -   Find **edge-tunnel-agent** and click **Upgrade** in the **Actions** column.
 
 **Related topics**  
 
