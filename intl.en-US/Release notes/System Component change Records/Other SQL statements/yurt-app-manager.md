@@ -4,7 +4,7 @@ keyword: [yurt-app-manager, edge Kubernetes clusters, edge computing]
 
 # yurt-app-manager
 
-The yurt-app-manager component provides cell-based management at the edge for edge Kubernetes clusters. This topic describes usage notes and latest changes to the yurt-app-manager component.
+The yurt-app-manager component provides cell-based management at the edge for edge Kubernetes clusters. This topic describes the usage notes of and the latest changes to the yurt-app-manager component.
 
 ## Introduction
 
@@ -20,7 +20,7 @@ ACK@Edge provides a solution to solve these issues, as shown in the following fi
 -   Application cell: You can deploy workloads to different node pools. This way, you can manage the number of pods and the image version of containers by node pool.
 -   Traffic cell: You can configure a Service topology to limit access to Service endpoints. For example, you can expose an application on an edge node to only the current node or other nodes in the same edge node pool.
 
-The yurt-app-manager component supports edge node management \(NodePool\) and workload management \(UnitedDeployment\).
+The yurt-app-manager component supports edge node management \(based on the NodePool controller\) and workload management \(based on the UnitedDeployment controller\).
 
 ## Usage notes
 
@@ -30,9 +30,18 @@ The NodePool controller is used to create node pools. The UnitedDeployment contr
 
 ## Release notes
 
+**April 2021**
+
+|Version|Image address|Release date|Description|Impact|
+|-------|-------------|------------|-----------|------|
+|v0.10.6-8207677-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/yurt-app-manager:v0.10.6-8207677-aliyun|2021-04-13|-   By default, Lease election is supported.
+-   The Patch field is supported when you deploy applications by using the UnitedDeployment controller. This allows you to configure custom attributes for a node pool. For example, you can use a custom image version to deploy a node pool.
+
+|No impacts on your workloads|
+
 **January 2021**
 
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
-|v0.9.11-c2c8cce-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/yurt-app-manager:v0.9.11-c2c8cce-aliyun|2021-01-14|The yurt-app-manager component is released.|No impacts on your workloads.|
+|v0.9.11-c2c8cce-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/yurt-app-manager:v0.9.11-c2c8cce-aliyun|2021-01-14|The yurt-app-manager component is released.|No impacts on your workloads|
 
