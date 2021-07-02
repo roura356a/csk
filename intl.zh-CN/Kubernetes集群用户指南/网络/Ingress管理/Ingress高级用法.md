@@ -8,7 +8,7 @@ keyword: [安全路由服务, Rewrite配置, 路由域名, HTTPS双向认证, �
 
 -   已创建Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   ACK集群中的Ingress Controller运行正常。
--   可以使用kubectl命令行连接集群。具体操作，请参见[t16645.dita\#task\_ubf\_lhg\_vdb](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   已通过kubectl连接Kubernetes集群。具体操作，请参见[t16645.dita\#task\_2076136/section\_2za\_tyw\_p71](t16645.dita#task_2076136/section_2za_tyw_p71)。
 -   已创建示例Deployment和Service。具体操作，请参见[Kubectl操作指导](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/创建Ingress路由.md)。
 
 ## 配置说明
@@ -17,7 +17,7 @@ keyword: [安全路由服务, Rewrite配置, 路由域名, HTTPS双向认证, �
 
 目前其主要支持三种配置方式：
 
--   基于Annotation的方式：在每个Ingress YAML的Annotation里配置，仅仅只对本Ingress生效。更多信息，请参见[Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)。
+-   基于Annotation的方式：在每个Ingress YAML的Annotation里配置，只对本Ingress生效。更多信息，请参见[Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)。
 -   基于ConfigMap的方式：通过kube-system/nginx-configuration configmap的配置，是一个全局的配置，对所有的Ingress生效。更多信息，请参见[ConfigMaps](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)。
 -   自定义NGINX Template模板的方式：对Ingress Controller内部的NGINX template有特殊配置要求，且当前通过Annotation和ConfgMap方式都无法满足诉求的情况下采用该方式。更多信息，请参见[Custom NGINX template](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/custom-template/)。
 
@@ -29,7 +29,7 @@ keyword: [安全路由服务, Rewrite配置, 路由域名, HTTPS双向认证, �
 
     ```
     cat <<-EOF | kubectl apply -f -
-    apiVersion: networking.k8s.io/v1beta1
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       name: rewrite-test-ingress
@@ -54,7 +54,7 @@ keyword: [安全路由服务, Rewrite配置, 路由域名, HTTPS双向认证, �
     替换**IP\_ADDRESS**为Ingress对应的IP，可通过`kubectl get ing`获取。
 
     ```
-    curl -k -H "Host: rewrite-test-ingress.com"  http://{IP_ADDRESS}/svc/foo
+    curl -k -H "Host: rewrite-test-ingress.com"  http://<IP_ADDRESS>/svc/foo
     ```
 
     预期输出：
@@ -69,7 +69,7 @@ keyword: [安全路由服务, Rewrite配置, 路由域名, HTTPS双向认证, �
 使用`inginx.ingress.kubernetes.io/rewrite-target`注解支持基本的Rewrite配置，对于一些复杂高级的Rewrite需求，可以通过如下注解来实现：
 
 -   `nginx.ingress.kubernetes.io/server-snippet`：扩展配置到Server章节。
--   `nginx.ingress.kubernetes.io/configuration-snippet`：扩展配置到Locaton章节。
+-   `nginx.ingress.kubernetes.io/configuration-snippet`：扩展配置到Location章节。
 
 配置示例：
 
@@ -100,7 +100,7 @@ annotations:
     ## end server foo.bar.com
 ```
 
-同时，snippet也支持一些全局配置。详细信息，请参见[server-snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#main-snippet)。
+同时，`snippet`也支持一些全局配置。详细信息，请参见[server-snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#main-snippet)。
 
 ## 配置安全的路由服务
 
@@ -130,7 +130,7 @@ annotations:
 
     ```
     cat <<EOF | kubectl create -f - 
-    apiVersion: networking.k8s.io/v1beta1
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       name: test-test-ingress
@@ -154,14 +154,14 @@ annotations:
 3.  执行以下命令，查询Ingress信息。
 
     ```
-    kubectl get ing
+    kubectl get ingress
     ```
 
     预期输出：
 
     ```
-    NAME                   HOSTS         ADDRESS          PORTS     AGE
-    test-test-ingress      *             101.37.XX.XX     80        11s
+    NAME                   HOSTS                           ADDRESS          PORTS     AGE
+    test-test-ingress      ****.nginx.ingress.com          101.37.XX.XX     80        11s
     ```
 
 4.  配置`hosts`文件或者设置域名来访问该TLS服务。
@@ -193,7 +193,7 @@ annotations:
     1.  执行以下命令，生成Server端证书的请求文件。
 
         ```
-        openssl req -new -newkey rsa:4096 -keyout server.key -out server.csr -nodes -subj '/CN=test.nginx.ingress.com'
+        openssl req -new -newkey rsa:4096 -keyout server.key -out server.csr -nodes -subj '/CN=****.nginx.ingress.com'
         ```
 
         预期输出：
@@ -215,7 +215,7 @@ annotations:
 
         ```
         Signature ok
-        subject=/CN=test.nginx.ingress.com
+        subject=/CN=****.nginx.ingress.com
         Getting CA Private Key
         ```
 
@@ -303,7 +303,7 @@ annotations:
       namespace: default
     spec:
       rules:
-      - host: test.nginx.ingress.com
+      - host: ****.nginx.ingress.com
         http:
           paths:
           - backend:
@@ -312,7 +312,7 @@ annotations:
             path: /
       tls:
       - hosts:
-        - test.nginx.ingrss.com
+        - ****.nginx.ingrss.com
         secretName: tls-secret
     EOF
     ```
@@ -333,13 +333,13 @@ annotations:
 
     ```
     NAME         HOSTS                    ADDRESS         PORTS     AGE
-    nginx-test   test.nginx.ingress.com   39.102.xx.xx   80, 443   4h42m
+    nginx-test   ****.nginx.ingress.com   39.102.XX.XX   80, 443   4h42m
     ```
 
 9.  执行以下命令，更新Hosts文件，替换下面的IP地址为真实获取的Ingress的IP地址。
 
     ```
-    sudo echo "39.102.xx.xx  test.nginx.ingress.com" >> /etc/hosts
+    sudo echo "39.102.XX.XX  ****.nginx.ingress.com" >> /etc/hosts
     ```
 
     **结果验证：**
@@ -347,7 +347,7 @@ annotations:
     -   客户端不传证书访问
 
         ```
-        curl --cacert ./ca.crt  https://test.nginx.ingress.com
+        curl --cacert ./ca.crt  https://****.nginx.ingress.com
         ```
 
         预期输出：
@@ -366,7 +366,7 @@ annotations:
     -   客户端传证书访问
 
         ```
-        curl --cacert ./ca.crt --cert ./client.crt --key ./client.key https://test.nginx.ingress.com
+        curl --cacert ./ca.crt --cert ./client.crt --key ./client.key https://****.nginx.ingress.com
         ```
 
         预期输出：
@@ -407,7 +407,7 @@ annotations:
 Ingress配置示例如下：
 
 ```
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: backend-https
@@ -417,16 +417,16 @@ metadata:
 spec:
   tls:
   - hosts:
-    - your-host-name
-    secretName: your-sercret-cert-name
+    - <your-host-name>
+    secretName: <your-sercret-cert-name>
   rules:
-  - host: your-host-name
+  - host: <your-host-name>
     http:
       paths:
       - path: /
         backend:
-          serviceName: your-service-name
-          servicePort: your-service-port
+          serviceName: <your-service-name>
+          servicePort: <your-service-port>
 ```
 
 ## 配置域名支持正则化
@@ -514,7 +514,7 @@ spec:
     -   执行以下命令，通过`Host: foo.bar.com`访问服务。
 
         ```
-        curl -H "Host: foo.bar.com" {IP_ADDRESS}/foo
+        curl -H "Host: foo.bar.com" <IP_ADDRESS>/foo
         ```
 
         预期输出：
@@ -526,7 +526,7 @@ spec:
     -   执行以下命令，通过`Host: www.123.example.com`访问服务。
 
         ```
-        curl -H "Host: www.123.example.com" {IP_ADDRESS}/foo
+        curl -H "Host: www.123.example.com" <IP_ADDRESS>/foo
         ```
 
         预期输出：
@@ -538,7 +538,7 @@ spec:
     -   执行以下命令，通过`Host: www.321.example.com`访问服务。
 
         ```
-        curl -H "Host: www.321.example.com" {IP_ADDRESS}/foo
+        curl -H "Host: www.321.example.com" <IP_ADDRESS>/foo
         ```
 
         预期输出：
@@ -550,12 +550,12 @@ spec:
 
 ## 配置域名支持泛化
 
-在Kubernetes集群中，Ingress资源支持对域名配置泛域名，例如可配置`*. ingress-regex.com`泛域名。
+在Kubernetes集群中，Ingress资源支持对域名配置泛域名，例如，可配置`****. ingress-regex.com`泛域名。
 
 1.  部署以下模板，创建Ingress。
 
     ```
-    $ cat <<-EOF | kubectl apply -f -
+    cat <<-EOF | kubectl apply -f -
     apiVersion: networking.k8s.io/v1beta1
     kind: Ingress
     metadata:
@@ -563,7 +563,7 @@ spec:
       namespace: default
     spec:
       rules:
-      - host: '*.ingress-regex.com'
+      - host: '****.ingress-regex.com'
         http:
           paths:
           - path: /foo
@@ -576,7 +576,7 @@ spec:
 2.  执行以下命令，查看对应Nginx Ingress Controller的配置，可以发现生效的配置（Server\_Name字段）。
 
     ```
-    kubectl exec -n kube-system {ningx-ingress-pod-name} cat /etc/nginx/nginx.conf | grep -C3 "ingress-regex.com"
+    kubectl exec -n kube-system <ningx-ingress-pod-name> cat /etc/nginx/nginx.conf | grep -C3 "ingress-regex.com"
     ```
 
     **说明：** 替换ningx-ingress-pod-name为实际环境的nginx-ingress pod。
@@ -614,7 +614,7 @@ spec:
     -   执行以下命令，通过`Host: abc.ingress-regex.com`访问服务。
 
         ```
-        curl -H "Host: abc.ingress-regex.com" {IP_ADDRESS}/foo
+        curl -H "Host: abc.ingress-regex.com" <IP_ADDRESS>/foo
         ```
 
         预期输出：
@@ -626,7 +626,7 @@ spec:
     -   执行以下命令，通过`Host: 123.ingress-regex.com`访问服务。
 
         ```
-        curl -H "Host: 123.ingress-regex.com" {IP_ADDRESS}/foo
+        curl -H "Host: 123.ingress-regex.com" <IP_ADDRESS>/foo
         ```
 
         预期输出：
@@ -638,7 +638,7 @@ spec:
     -   执行以下命令，通过`Host: a1b1.ingress-regex.com`访问服务。
 
         ```
-        curl -H "Host: a1b1.ingress-regex.com" {IP_ADDRESS}/foo
+        curl -H "Host: a1b1.ingress-regex.com" <IP_ADDRESS>/foo
         ```
 
         预期输出：
@@ -653,9 +653,9 @@ spec:
 灰度发布功能可以通过设置注解来实现，为了启用灰度发布功能，需要设置注解`nginx.ingress.kubernetes.io/canary: "true"` , 通过不同注解可以实现不同的灰度发布功能：
 
 -   `nginx.ingress.kubernetes.io/canary-weight`：设置请求到指定服务的百分比（值为0~100的整数）。
--   `nginx.ingress.kubernetes.io/canary-by-header`：基于request header的流量切分，当配置的`hearder`值为always时，请求流量会被分配到灰度服务入口；当`hearder`值为never时，请求流量不会分配到灰度服务；将忽略其他hearder值，并通过灰度优先级将请求流量分配到其他规则设置的灰度服务。
--   `nginx.ingress.kubernetes.io/canary-by-header-value`和`nginx.ingress.kubernetes.io/canary-by-header`：当请求中的`hearder`和`header-value`与设置的值匹配时，请求流量会被分配到灰度服务入口；将忽略其他hearder值，并通过灰度优先级将请求流量分配到其他规则设置的灰度服务。
--   `nginx.ingress.kubernetes.io/canary-by-cookie`：基于cookie的流量切分，当配置的`cookie`值为always时，请求流量将被分配到灰度服务入口；当配置的`cookie`值为never时，请求流量将不会分配到灰度服务入口。
+-   `nginx.ingress.kubernetes.io/canary-by-header`：基于Request Header的流量切分，当配置的`hearder`值为`always`时，请求流量会被分配到灰度服务入口；当`hearder`值为`never`时，请求流量不会分配到灰度服务；将忽略其他`hearder`值，并通过灰度优先级将请求流量分配到其他规则设置的灰度服务。
+-   `nginx.ingress.kubernetes.io/canary-by-header-value`和`nginx.ingress.kubernetes.io/canary-by-header`：当请求中的`hearder`和`header-value`与设置的值匹配时，请求流量会被分配到灰度服务入口；将忽略其他`hearder`值，并通过灰度优先级将请求流量分配到其他规则设置的灰度服务。
+-   `nginx.ingress.kubernetes.io/canary-by-cookie`：基于Cookie的流量切分，当配置的`cookie`值为`always`时，请求流量将被分配到灰度服务入口；当配置的`cookie`值为`never`时，请求流量将不会分配到灰度服务入口。
 
 不同注解配置示例如下：
 
@@ -671,7 +671,7 @@ spec:
         nginx.ingress.kubernetes.io/canary-weight: "20"
     ```
 
--   基于header灰度：请求header为 `ack：always`时将访问灰度服务；请求header为 `ack：never`时将不访问灰度服务；其它header将根据灰度权重将流量分配给灰度服务。
+-   基于Header灰度：请求Header为 `ack：always`时将访问灰度服务；请求Header为 `ack：never`时将不访问灰度服务；其它Header将根据灰度权重将流量分配给灰度服务。
 
     ```
     apiVersion: extensions/v1beta1
@@ -684,7 +684,7 @@ spec:
         nginx.ingress.kubernetes.io/canary-by-header: "ack"
     ```
 
--   基于header灰度（自定义header值）：当请求header为`ack: alibaba`时将访问灰度服务；其它header将根据灰度权重将流量分配给灰度服务。
+-   基于Header灰度（自定义header值）：当请求Header为`ack: alibaba`时将访问灰度服务；其它Header将根据灰度权重将流量分配给灰度服务。
 
     ```
     apiVersion: extensions/v1beta1
@@ -698,7 +698,7 @@ spec:
         nginx.ingress.kubernetes.io/canary-by-header-value: "alibaba"
     ```
 
--   基于cookie灰度：当header不匹配时，请求的cookie为`hangzhou_region=always`时将访问灰度服务。
+-   基于Cookie灰度：当Header不匹配时，请求的Cookie为`hangzhou_region=always`时将访问灰度服务。
 
     ```
     apiVersion: extensions/v1beta1
@@ -716,8 +716,8 @@ spec:
 
 **说明：**
 
--   基于cookie的灰度不支持设置自定义，只有always和never。
--   灰度优先级顺序：基于header \> 基于cookie \> 基于权重（从高到低）。
+-   基于Cookie的灰度不支持设置自定义，只有`always`和`never`。
+-   灰度优先级顺序：基于Header \> 基于Cookie \> 基于权重（从高到低）。
 
 ## 使用cert-manager申请免费的HTTPS证书
 
@@ -755,7 +755,7 @@ cert-manager是一个云原生证书管理开源工具，用于在Kubernetes集�
     spec:
       acme:
         server: https://acme-v02.api.letsencrypt.org/directory
-        email: your_email_name@gmail.com  #替换为您的邮箱名。
+        email: <your_email_name@gmail.com>  #替换为您的邮箱名。
         privateKeySecretRef:
           name: letsencrypt-http01
         solvers:
@@ -792,16 +792,16 @@ cert-manager是一个云原生证书管理开源工具，用于在Kubernetes集�
     spec:
       tls:
       - hosts:
-        - your_domain_name        # 替换为您的域名。
+        - <your_domain_name>        # 替换为您的域名。
         secretName: ingress-tls   
       rules:
-      - host: your_domain_name    # 替换为您的域名。
+      - host: <your_domain_name>    # 替换为您的域名。
         http:
           paths:
           - path: /
             backend:
-              serviceName: your_service_name  # 替换为您的后端服务名。
-              servicePort: your_service_port  # 替换为您的服务端口。
+              serviceName: <your_service_name>  # 替换为您的后端服务名。
+              servicePort: <your_service_port>  # 替换为您的服务端口。
     EOF
     ```
 
