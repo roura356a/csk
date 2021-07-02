@@ -138,7 +138,7 @@ CoreDNS中内置了发送DNSTap报文的DNSTAP插件，DNSTAP插件收到和发�
 
 -   Messages字段：DNS请求上下文Session中Messages字段记录了DNS请求、响应的原始报文的JSON输出，可以根据[dns-parameters-6](https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6)对报文内容进行问题诊断。
 
-## 步骤五：通过SLS仪表盘查看异常DNS报文信息
+## （可选）步骤五：通过SLS仪表盘查看异常DNS报文信息
 
 如果您配置了阿里云日志服务SLS的仪表盘，并且在ACK CoreDNS DNSTAP Analyser组件安装时使用了推荐的`env`日志采集配置（参考[步骤4](#step_i60_qp4_61q)中的**说明**页签的内容），您可以在ACK集群对应的SLS Project的Kubernetes CoreDNS DNSTAP报文监控仪表盘中看到异常DNS报文信息。具体操作，请参见[分析和监控CoreDNS日志](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/分析和监控CoreDNS日志.md)。
 
