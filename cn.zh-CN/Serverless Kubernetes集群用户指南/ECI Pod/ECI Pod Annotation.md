@@ -12,7 +12,6 @@ ECI目前支持的Annotation如下表所示。
 |                       参数                       |              示例值               |                                                                                            描述                                                                                             |                      相关文档                       |
 |------------------------------------------------|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
 | k8s.aliyun.com/eci-security-group              | sg-bp1dktddjsg5nktv\*\*\*\*    | 安全组ID。                                                                                                                                                                                    | [配置安全组]()                       |
-| k8s.aliyun.com/eci-resource-group-id           | rg-acfmzvwytch\*\*\*\*         | 资源组ID                                                                                                                                                                                     | 无，详见下文。                                         |
 | k8s.aliyun.com/eci-vswitch                     | vsw-bp1xpiowfm5vo8o3c\*\*\*\*  | 交换机ID，支持指定多个交换机实现多可用区功能。                                                                                                                                                                  | [多可用区创建实例]()                    |
 | k8s.aliyun.com/eci-schedule-strategy           | VSwitchOrdered                 | 多可用区调度策略。取值范围： * VSwitchOrdered：按顺序   * VSwitchRandom：随机                               | [多可用区创建实例]()                    |
 | k8s.aliyun.com/eci-ram-role-name               | AliyunECIContainerGroupRole    | RAM角色，赋予ECI访问阿里云产品的能力。                                                                                                                                                                    | [授权RAM角色]()                     |
@@ -26,14 +25,14 @@ ECI目前支持的Annotation如下表所示。
 | k8s.aliyun.com/eci-image-snapshot-id           | imc-2zebxkiifuyzzlhl\*\*\*\*   | 指定镜像缓存ID。 **说明** 使用镜像缓存支持手动指定和自动匹配两种方式，建议使用自动匹配方式。                                                                                                                        | [使用镜像缓存CRD加速创建Pod]()            |
 | k8s.aliyun.com/eci-image-cache                 | "true"                         | 自动匹配镜像缓存。 **说明** 使用镜像缓存支持手动指定和自动匹配两种方式，建议使用自动匹配方式。                                                                                                                        | [使用镜像缓存CRD加速创建Pod]()            |
 | k8s.aliyun.com/acr-instance-id                 | cri-j36zhodptmyq\*\*\*\*       | ACR企业版实例ID。                                                                                                                                                                               | [配置ACR企业版免密]()                  |
-| k8s.aliyun.com/eci-eip-instanceid              | eip-bp1q5n8cq4p7f6dzu\*\*\*\*  | EIP实例ID。                                                                                                                                                                                  | [如何给Pod挂载弹性公网IP]()              |
-| k8s.aliyun.com/eci-with-eip                    | "true"                         | 是否自动创建并绑定EIP。                                                                                                                                                                             | [如何给Pod挂载弹性公网IP]()              |
-| k8s.aliyun.com/eip-bandwidth                   | 5                              | EIP带宽。                                                                                                                                                                                    | [如何给Pod挂载弹性公网IP]()              |
-| k8s.aliyun.com/eip-common-bandwidth-package-id | cbwp-2zeukbj916scmj51m\*\*\*\* | 共享带宽包ID。                                                                                                                                                                                  | [如何给Pod挂载弹性公网IP]()              |
-| k8s.aliyun.com/eip-isp                         | BGP                            | EIP线路类型，仅按量付费的EIP支持指定。取值范围： * BPG：BGP（多线）线路   * BGP_PRO：BGP（多线）精品线路                    | [如何给Pod挂载弹性公网IP]()              |
-| k8s.aliyun.com/eip-internet-charge-type        | PayByBandwidth                 | EIP的计量方式。取值范围： * PayByBandwidth：按带宽计费   * PayByTraffic：按流量计费                           | [如何给Pod挂载弹性公网IP]()              |
-| k8s.aliyun.com/eci-enable-ipv6                 | "true"                         | 是否分配IPv6。 **说明** 目前仅支持为Pod分配1个IPv6，k8s.aliyun.com/eci-enable-ipv6和k8s.aliyun.com/eci-ipv6-count的配置效果一致，您可以选择其一。                                                           | [使用IPv6]()                      |
-| k8s.aliyun.com/eci-ipv6-count                  | 1                              | IPv6个数，目前仅支持配置1个。 **说明** 目前仅支持为Pod分配1个IPv6，k8s.aliyun.com/eci-enable-ipv6和k8s.aliyun.com/eci-ipv6-count的配置效果一致，您可以选择其一。                                                   | [使用IPv6]()                      |
+| k8s.aliyun.com/eci-eip-instanceid              | eip-bp1q5n8cq4p7f6dzu\*\*\*\*  | EIP实例ID。                                                                                                                                                                                  | [为ECI实例绑定EIP]()                 |
+| k8s.aliyun.com/eci-with-eip                    | "true"                         | 是否自动创建并绑定EIP。                                                                                                                                                                             | [为ECI实例绑定EIP]()                 |
+| k8s.aliyun.com/eip-bandwidth                   | 5                              | EIP带宽。                                                                                                                                                                                    | [为ECI实例绑定EIP]()                 |
+| k8s.aliyun.com/eip-common-bandwidth-package-id | cbwp-2zeukbj916scmj51m\*\*\*\* | 共享带宽包ID。                                                                                                                                                                                  | [为ECI实例绑定EIP]()                 |
+| k8s.aliyun.com/eip-isp                         | BGP                            | EIP线路类型，仅按量付费的EIP支持指定。取值范围： * BPG：BGP（多线）线路   * BGP_PRO：BGP（多线）精品线路                    | [为ECI实例绑定EIP]()                 |
+| k8s.aliyun.com/eip-internet-charge-type        | PayByBandwidth                 | EIP的计量方式。取值范围： * PayByBandwidth：按带宽计费   * PayByTraffic：按流量计费                           | [为ECI实例绑定EIP]()                 |
+| k8s.aliyun.com/eci-enable-ipv6                 | "true"                         | 是否分配IPv6。 **说明** 目前仅支持为Pod分配1个IPv6地址，k8s.aliyun.com/eci-enable-ipv6和k8s.aliyun.com/eci-ipv6-count的配置效果一致，您可以选择其一。                                                         | [配置IPv6地址]()    |
+| k8s.aliyun.com/eci-ipv6-count                  | 1                              | IPv6个数，目前仅支持配置1个。 **说明** 目前仅支持为Pod分配1个IPv6地址，k8s.aliyun.com/eci-enable-ipv6和k8s.aliyun.com/eci-ipv6-count的配置效果一致，您可以选择其一。                                                 | [配置IPv6地址]()    |
 | kubernetes.io/ingress-bandwidth                | 40M                            | 入方向带宽。                                                                                                                                                                                    | [ECI实例进行带宽限速]()                 |
 | kubernetes.io/egress-bandwidth                 | 20M                            | 出方向带宽。                                                                                                                                                                                    | [ECI实例进行带宽限速]()                 |
 | k8s.aliyun.com/eci-extra-ephemeral-storage     | 50Gi                           | 临时存储空间大小。                                                                                                                                                                                 | [自定义临时存储空间大小]()                 |
@@ -42,10 +41,10 @@ ECI目前支持的Annotation如下表所示。
 
 
 
-设置安全组和资源组 
-------------------------------
+设置安全组 
+--------------------------
 
-Virtual Kubelet启动时，将通过环境变量设置默认的安全组和资源组。所有创建在虚拟节点上的Pod默认使用Virtual Kubelet配置的。如果您有特殊需求，可以通过添加Annotation的方式，为Pod设置特定的安全组和资源组。
+Virtual Kubelet启动时，将通过环境变量设置默认的安全组。所有创建在虚拟节点上的Pod默认使用Virtual Kubelet配置的。如果您有特殊需求，可以通过添加Annotation的方式，为Pod设置特定的安全组。
 
 配置示例如下：
 
@@ -63,9 +62,7 @@ Virtual Kubelet启动时，将通过环境变量设置默认的安全组和资�
       template:
         metadata:
             annotations: 
-    
                 k8s.aliyun.com/eci-security-group: "sg-bp1dktddjsg5nktv****"      #设置安全组
-                k8s.aliyun.com/eci-resource-group-id: "rg-acfmzvwytch****"    #设置资源组
             labels:
                 app: nginx
         spec:
@@ -103,7 +100,7 @@ Virtual Kubelet启动时，将通过环境变量设置默认的安全组和资�
 您可以通过添加Annotation的方式为Pod设置RAM角色，授予Pod访问阿里云产品的能力。
 **注意**
 
-请确保设置的RAM角色能被ECS扮演。
+请确保RAM角色的受信服务为云服务器。
 
 配置示例如下：
 
@@ -427,7 +424,7 @@ Pod创建失败置为Failed
 配置IPv6 
 ---------------------------
 
-相比IPv4，IPv6不仅可以解决网络地址资源有限的问题，还可以解决多种接入设备连入互联网障碍的问题。您可以通过添加Annotation的方式为Pod分配IPv6地址。更多信息，请参见[使用IPv6]()。
+相比IPv4，IPv6不仅可以解决网络地址资源有限的问题，还可以解决多种接入设备连入互联网障碍的问题。您可以通过添加Annotation的方式为Pod分配IPv6地址。更多信息，请参见[配置IPv6地址]()。
 
 配置示例如下：
 
