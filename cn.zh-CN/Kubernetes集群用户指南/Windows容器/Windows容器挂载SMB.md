@@ -27,7 +27,7 @@ keyword: [ACK Windows节点, SMB, 存储资源, Kubernetes]
     |driver|配置挂载驱动，必须为alicloud/smb.exe。|
     |server|SMB存储盘的挂载点域名，所在网络需要和集群所在VPC相同。|
     |path|SMB存储盘的挂载路径，必须以\\myshare开头，后面可以为空或者子目录。|
-    |user|集群节点的登录用户名，推荐使用workshop\\administrator。|
+    |user|集群节点的登录用户名，推荐使用workgroup\\administrator。|
     |password|集群节点的登录密码。|
 
 2.  执行以下命令查看创建的PVC。
