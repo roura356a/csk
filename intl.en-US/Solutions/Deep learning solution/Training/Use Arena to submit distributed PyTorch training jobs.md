@@ -6,18 +6,20 @@ keyword: [PyTorch, distributed training, shared file system, Arena]
 
 This topic describes how to use the Arena client to submit distributed PyTorch training jobs and use TensorBoard to visualize training results.
 
--   [A cluster of Container Service for Kubernetes \(ACK\) that contains GPU-accelerated nodes is created](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/GPU scheduling for ACK clusters with GPU-accelerated nodes.md).
+-   [A Container Service for Kubernetes \(ACK\) cluster that contains GPU-accelerated nodes is created](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Use GPU scheduling for ACK clusters.md).
 -   [Nodes in the cluster can access the Internet](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Access the Kubernetes API server over the Internet.md).
--   [The Arena add-on that supports the latest Arena version is installed](/intl.en-US/Solutions/Deep learning solution/Preparations/Install the latest version of Arena.md).
--   A persistent volume claim \(PVC\) is created for the specified ACK cluster, and the datasets used in this topic are downloaded to the corresponding persistent volume \(PV\). For more information, see [Configure a shared NAS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared NAS volume.md) or [Configure a shared CPFS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared CPFS volume.md).
+-   [Install the latest version of Arena](/intl.en-US/Solutions/Deep learning solution/Preparations/Install the latest version of Arena.md).
+-   A persistent volume claim \(PVC\) is created for the ACK cluster and the datasets used in this topic are downloaded to the corresponding persistent volume \(PV\). For more information, see [Configure a shared NAS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared NAS volume.md) or [Configure a shared CPFS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared CPFS volume.md).
 
-In this topic, the source training code is downloaded from a Git repository. The datasets are stored in a shared Apsara File Storage \(NAS\) volume that is mounted by using a PV and a PVC. In this example, a PVC that is named **training-data** is created. The PVC uses a shared PV. The datasets are stored in the pytorch\_data directory of the shared PV.
+In this topic, the source training code is downloaded from a Git repository. The datasets are stored in a shared Apsara File Storage NAS \(NAS\) volume that is mounted by using a PV and a PVC. In this example, a PVC that is named **training-data** is created. The PVC uses a shared PV. The datasets are stored in the pytorch\_data directory of the shared PV.
 
 1.  Run the following command to query the available GPU resources in the cluster:
 
     ```
     arena top node
     ```
+
+    Expected output:
 
     ```
     NAME                       IPADDRESS     ROLE    STATUS  GPU(Total)  GPU(Allocated)
@@ -53,6 +55,8 @@ In this topic, the source training code is downloaded from a Git repository. The
             "python /root/code/mnist-pytorch/mnist.py --epochs 10 --backend nccl --dir /mnist_data/pytorch_data/logs --data /mnist_data/pytorch_data/"
     ```
 
+    Expected output:
+
     ```
     configmap/pytorch-dist-pytorchjob created
     configmap/pytorch-dist-pytorchjob labeled
@@ -68,19 +72,19 @@ In this topic, the source training code is downloaded from a Git repository. The
     -   \[job\_name\] specifies the name of the job.
     -   \[role\_name\] specifies the role of a node. In this example, the training job runs on one master node and two worker nodes. The name of the master node contains master, such as pytorch-dist-master-0. The nodes on which a distributed training job runs contain only one node whose name contains master.
     -   The rank of each worker node equals the value of \[index\] plus 1. The RANK environment variable is injected into each node. Therefore, you can use the RANK environment variable to obtain the rank of each worker node.
-    The following table describes the parameters in the preceding sample code block.
+    The following table describes the parameters in the preceding code block.
 
     |Parameter|Required|Description|Default|
     |---------|--------|-----------|-------|
-    |--name|Yes|Specifies the name of the job that you want to submit. The name must be globally unique.|No|
+    |--name|Yes|Specifies the name of the job that you want to submit. The name must be globally unique.|N/A|
     |--working-dir|No|Specifies the directory where the command is executed.|/root|
-    |--gpus|No|Specifies the number of GPUs that are used by the worker nodes where the training job runs.|0|
-    |--workers|This parameter is required for distributed PyTorch training jobs.|Specifies the number of worker nodes. The master node is included. For example, a value of 3 indicates that the training job runs on 1 master node and 2 worker nodes.|0|
-    |--image|Yes|Specifies the address of the image that is used to deploy the runtime.|No|
-    |--worker-image|This parameter is required if you do not specify --image.|Specifies the address of the image for worker nodes. If --image is also specified, this parameter overwrites the --image parameter.|No|
-    |--sync-mode|No|Specifies the synchronization mode. Valid values: git and rsync. The git-sync mode is used in this example.|No|
-    |--sync-source|No|The address of the repository from which the source code is synchronized. This parameter is used in combination with the --sync-mode parameter. The git-sync mode is used in this example. Therefore, you must specify a Git repository address, such as the URL of a project on GitHub or Alibaba Cloud. The source code is downloaded to the code/ directory under --working-dir. The directory is /root/code/mnist-pytorch in this example.|No|
-    |--data|No|Mount a shared PV to the runtime where the training job runs. The value of this parameter consists of two parts that are separated by a colon \(`:`\). Specify the name of the PVC on the left side of the colon. To obtain the name of the PVC, run the `arena data list` command. This command queries the PVCs that are available for the cluster. Specify the path to which the PV claimed by the PVC is mounted on the right side of the colon. This way, your training job can retrieve the data stored in the corresponding PV claimed by the PVC.**Note:** Run the `arena data list` command to query the PVCs that are available for the specified cluster.
+    |--gpus|No|Specifies the number of GPUs that are used by the worker nodes where the distributed PyTorch training job runs.|0|
+    |--workers|This parameter is required for distributed training jobs.|Specifies the number of worker nodes. The master node is included. For example, a value of 3 indicates that the training job runs on one master node and two worker nodes.|0|
+    |--image|Yes|Specifies the address of the image that is used to deploy the runtime.|N/A|
+    |--worker-image|This parameter is required if you do not specify --image.|Specifies the address of the image for worker nodes. If --image is also specified, this parameter overwrites the --image parameter.|N/A|
+    |--sync-mode|No|Specifies the synchronization mode. Valid values: git and rsync. The git-sync mode is used in this example.|N/A|
+    |--sync-source|No|The address of the repository from which the source code is synchronized. This parameter is used in combination with the --sync-mode parameter. The git-sync mode is used in this example. Therefore, you must specify a Git repository address, such as the URL of a project on GitHub or Alibaba Cloud. The source code is downloaded to the code/ directory under --working-dir. The directory is /root/code/mnist-pytorch in this example.|N/A|
+    |--data|No|Mount a shared PV to the runtime where the training job runs. The value of this parameter consists of two parts that are separated by a colon \(`:`\). Specify the name of the PVC on the left side of the colon. To obtain the name of the PVC, run the `arena data list` command. This command queries the PVCs that are available for the cluster. Specify the path to which the PV claimed by the PVC is mounted on the right side of the colon. This way, your training job can retrieve the data stored in the corresponding PV claimed by the PVC. **Note:** Run the `arena data list` command to query the PVCs that are available for the specified cluster.
 
     ```
 NAME           ACCESSMODE     DESCRIPTION  OWNER  AGE
@@ -89,11 +93,11 @@ training-data  ReadWriteMany                      35m
 
 If no PVC is available, you can create one. For more information, see [Configure a shared NAS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared NAS volume.md) or [Configure a shared CPFS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared CPFS volume.md).
 
-|No|
-    |--tensorboard|No|Specifies that TensorBoard is used to visualize training results. You can set the --logdir parameter to specify the path from which TensorBoard reads event files. If you do not specify this parameter, TensorBoard is not used.|No|
+|N/A|
+    |--tensorboard|No|Specifies that TensorBoard is used to visualize training results. You can set the --logdir parameter to specify the path from which TensorBoard reads event files. If you do not specify this parameter, TensorBoard is not used.|N/A|
     |--logdir|No|Specifies the path from which TensorBoard reads event files. You must specify both this parameter and the --tensorboard parameter.|/training\_logs|
 
-    **Note:** If you use a non-public Git repository, run the following command to submit a distributed training job:
+    **Note:** If you use a non-public Git repository, run the following command to submit a training job:
 
     ```
       arena --loglevel info submit pytorch \
@@ -113,6 +117,8 @@ If no PVC is available, you can create one. For more information, see [Configure
     arena list
     ```
 
+    Expected output:
+
     ```
     NAME          STATUS     TRAINER     AGE  NODE
     pytorch-dist  RUNNING    PYTORCHJOB  21s  192.16x.x.xx
@@ -126,6 +132,8 @@ If no PVC is available, you can create one. For more information, see [Configure
     ```
     arena top job
     ```
+
+    Expected output:
 
     ```
     NAME          GPU(Requests)  GPU(Allocated)  STATUS     TRAINER     AGE  NODE
@@ -148,6 +156,8 @@ If no PVC is available, you can create one. For more information, see [Configure
     arena top node
     ```
 
+    Expected output:
+
     ```
     NAME                       IPADDRESS     ROLE    STATUS  GPU(Total)  GPU(Allocated)
     cn-huhehaote.192.1xx.x.xx  192.1xx.x.xx  master  ready   0           0
@@ -166,6 +176,8 @@ If no PVC is available, you can create one. For more information, see [Configure
     ```
     arena get pytorch-dist
     ```
+
+    Expected output:
 
     ```
     STATUS: RUNNING
@@ -199,19 +211,21 @@ If no PVC is available, you can create one. For more information, see [Configure
     sshuttle -r root@39.104.xx.xxx  0/0
     ```
 
-    **Note:** 39.104.xx. xxx is the public IP address of the ACK cluster. In addition, you must check whether port 22 is opened in your security group. By default, port 22 is opened.
+    **Note:** 39.104.xx. xxx is the public IP address of the ACK cluster. In addition, you must check whether port 22 is open in your security group. By default, port 22 is open.
 
-    Copy the URL \(http://192.1xx.x.xx:31870\) that is obtained in Step 6 to the address bar of your browser and press Enter. The TensorBoard page appears.
+    Copy the URL \(http://192.1xx.x.xx:31870\) that is obtained in Step 6 into the address bar of your browser and press Enter. The TensorBoard page appears.
 
     ![PyTorch](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0286258951/p135105.png)
 
     **Note:** The source code that is used to submit the distributed PyTorch job in this topic indicates that training results are written into events after every 10 epochs. If you want to modify the value of --epochs, set the value to a multiple of 10. Otherwise, the training results cannot be visualized in TensorBoard.
 
-8.  Run the following command to print the job log:
+8.  Run the following command to print the log of the job:
 
     ```
     arena logs pytorch-dist
     ```
+
+    Expected output:
 
     ```
     WORLD_SIZE: 3, CURRENT_RANK: 0
@@ -234,6 +248,8 @@ If no PVC is available, you can create one. For more information, see [Configure
     arena get pytorch-dist
     ```
 
+    Expected output:
+
     ```
     # Output:
     STATUS: SUCCEEDED
@@ -250,12 +266,15 @@ If no PVC is available, you can create one. For more information, see [Configure
     http://192.16x.x.xx:30131
     ```
 
+    Run the following command to print the log of the job:
+
     ```
     arena logs pytorch-dist -i pytorch-dist-worker-0
     ```
 
+    Expected output:
+
     ```
-    # Output:
     WORLD_SIZE: 3, CURRENT_RANK: 1
     args: Namespace(backend='nccl', batch_size=64, data='/mnist_data/pytorch_data/', dir='/mnist_data/pytorch_data/logs', epochs=10, log_interval=10, lr=0.01, momentum=0.5, no_cuda=False, save_model=False, seed=1, test_batch_size=1000)
     Using CUDA
@@ -268,13 +287,15 @@ If no PVC is available, you can create one. For more information, see [Configure
     accuracy=0.9904
     ```
 
-    You can run the `arena logs $job_name -f` command to print the job log in real time and run the `arena logs $job_name -t N` command to print N lines from the bottom of the log. You can also run the `arena logs --help` command to query parameters for printing logs.
+    You can run the `arena logs $job_name -f` command to print the log of the job in real time and run the `arena logs $job_name -t N` command to print N lines from the bottom of the log. You can also run the `arena logs --help` command to query parameters for printing log.
 
     The following sample code provides an example on how to print N lines from the bottom of the log:
 
     ```
     arena logs pytorch-dist -t 5
     ```
+
+    Expected output:
 
     ```
     Train Epoch: 10 [58880/60000 (98%)] loss=0.0106
