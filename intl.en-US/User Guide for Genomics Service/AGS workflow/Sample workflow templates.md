@@ -4,7 +4,7 @@ This topic provides multiple sample workflow templates that can be used to creat
 
 ## Steps
 
-This type of workflow template can be used to create multi-step workflows, define more than one template in a workflow specification, and create nested workflows. We recommend that you read the comments to ensure the readability of the code.
+This type of workflow template can be used to create multi-step workflows, define multiple templates in a workflow specification, and create nested workflows. To ensure a correct understanding of the code, read the comments carefully.
 
 ```
 apiVersion: argoproj.io/v1alpha1
@@ -50,7 +50,7 @@ spec:
       args: ["{{inputs.parameters.message}}"]
 ```
 
-The preceding workflow prints a hello-hello-hello template that contains three distinct steps. The first step named hello1 runs in sequence. The next two steps named hello2a and hello2b run in parallel with each other. You can run commands in the AGS command-line interface \(CLI\) to display the running records of this workflow specification. The following tree-structure diagram shows that the steps hello2a and hello2b are performed in parallel with each other.
+The preceding workflow prints three hellos in different styles. The hello-hello-hello template consists of three steps. The first step named hello1 runs before the other steps. The next two steps named hello2a and hello2b run in parallel. You can run commands in the AGS CLI to display the execution records of this workflow specification. The following tree-structure diagram shows that the steps hello2a and hello2b are performed in parallel.
 
 The following output is returned:
 
@@ -64,9 +64,9 @@ STEP                                     PODNAME
 
 ## DAG
 
-This type of workflow template can also be used to specify the sequence of steps in a workflow. You can define the workflow as a directed acyclic graph \(DAG\) by specifying the dependencies of each task. This method allows you to simplify complex workflows and enable a maximum number of tasks to run in parallel with each other.
+This type of workflow template can also be used to specify the sequence of steps in a workflow. You can define the workflow as a directed acyclic graph \(DAG\) by specifying the dependencies of each task. This method allows you to simplify complex workflows and run a maximum number of tasks in parallel.
 
-The following workflow template shows that Task A has no dependencies and runs first. After Task A is completed, Tasks B and C run in parallel with each other. Then, after Tasks B and C are completed, Task D runs.
+The following workflow template shows that Task A has no dependencies and runs first. After Task A is completed, Tasks B and C run in parallel. Then, after Tasks B and C are completed, Task D starts running.
 
 ```
 apiVersion: argoproj.io/v1alpha1
@@ -213,7 +213,7 @@ The script feature can also be used to assign the standard output of the script 
 
 ## Output Parameters
 
-This type of workflow template allows you to use the result of a step as a parameter, rather than as an artifact. In addition to the results of scripts, you can also use the results from a type of step. These results apply to condition tests, loops, and arguments. Output parameters are used in a similar way as script results. However, the values of output parameters are set to the content of a generated file rather than the content of stdout.
+This type of workflow template allows you to use the result of a step as a parameter, rather than as an artifact. In addition to the results of scripts, you can also use the results from a type of step. These results apply to condition tests, loops, and arguments. Output parameters are used in a similar way as script results. However, the values of output parameters are set to the content of a generated file rather than the content of stdout files.
 
 ```
 apiVersion: argoproj.io/v1alpha1
@@ -256,13 +256,13 @@ spec:
       args: ["{{inputs.parameters.message}}"]
 ```
 
-However, DAG template uses a task prefix to specify another task. For example, `{{tasks.generate-parameter.outputs.parameters.hello-param}}` can be specified.
+However, a DAG template uses a task prefix to specify another task, for example, `{{tasks.generate-parameter.outputs.parameters.hello-param}}`.
 
 ## Loops
 
 This type of workflow template allows you to configure a loop workflow.
 
--   The following template is used to iterate over a set of inputs:
+-   The following template is most commonly used to iterate over a set of inputs:
 
     ```
     apiVersion: argoproj.io/v1alpha1
@@ -539,7 +539,7 @@ STEP                          PODNAME                              MESSAGE
                └-○ tails
 ```
 
-In the first round of running the template to flip the coin, the coin lands on heads and the coin is no longer flipped. In the second round of flipping the coin, the coin lands on tails three times before it lands on heads. Then, the coin is no longer flipped.
+In the first round of running the template to flip the coin, the coin lands on heads and the coin is no longer flipped. In the second round, the coin lands on tails three times before it lands on heads. Then, the coin is no longer flipped.
 
 ## Exit handlers
 
@@ -581,7 +581,7 @@ spec:
         when: "{{workflow.status}} == Succeeded"
       - name: cry
         template: cry
-        when: "{{workflow.status}} ! = Succeeded"
+        when: "{{workflow.status}} != Succeeded"
   - name: send-email
     container:
       image: alpine:latest
@@ -601,7 +601,7 @@ spec:
 
 ## Timeouts
 
-This type of workflow template can be used to limit the timeout of a workflow. In such template, you can set the variable activeDeadlineSeconds to the required timeout value.
+This type of workflow template can be used to limit the timeout period of a workflow. In such a template, you can set the variable activeDeadlineSeconds to the required timeout value.
 
 ```
 # To enforce a timeout for a container template, specify a value for activeDeadlineSeconds.
@@ -806,7 +806,7 @@ A DAG template uses a task prefix to specify another task. For example, `{{tasks
 
 A sidecar is a container that runs in the same pod where the main container is executed. Sidecars allow you to create a pod that contains multiple containers.
 
-In the following workflow template of the sidecar type, a sidecar container is created to run NGINX as a simple web server. The sidecar container may be ready at any time in a workflow. Therefore, the main container checks the health status of the sidecar container in cycles. When the main container detects that the sidecar container is in the ready state, the main container starts to process requests for the application. We recommend that you use this mechanism for multi-container systems. Before Container Service for Kubernetes \(ACK\) can run your application, all required services must be ready.
+In the following workflow template of the sidecar type, a sidecar container is created to run NGINX as a simple web server. The sidecar container may be ready at any time in a workflow. Therefore, the main container checks the health status of the sidecar container in cycles. When the main container detects that the sidecar container is in the ready state, the main container starts to process requests for the application. You can use this mechanism for multi-container systems. Before Container Service for Kubernetes \(ACK\) can run your application, all required services must be ready.
 
 ```
 apiVersion: argoproj.io/v1alpha1
@@ -877,7 +877,7 @@ Resources that are created based on this type of workflow template are independe
 
 **Note:**
 
-When you patch the Kubernetes resources, the resources gain the mergeStrategy attribute. The attribute can be set to strategy, merge, or json. By default, strategy is used. The strategy value cannot be used to patch custom resources. You must use one of the other two mergeStrategy values. The following example shows the Custom Resource Definition that defines the CronTab:
+When you patch the Kubernetes resources, the resources gain the mergeStrategy attribute. The attribute can be set to strategy, merge, or json. By default, strategy is used. The strategy value cannot be used to patch custom resources. You must use one of the other two mergeStrategy values. The following example shows the CustomResourceDefinition \(CRD\) that defines the CronTab:
 
 ```
 apiVersion: "stable.example.com/v1"
