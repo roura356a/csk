@@ -1,17 +1,26 @@
 ---
-keyword: [use cGPU to isolate GPU memory, containers that share one GPU, examples]
+keyword: [cGPU, enable GPU sharing]
 ---
 
 # Enable GPU sharing
 
-This topic describes how to use cGPU to isolate GPU memory after you create containers that share one GPU by using YAML. This improves GPU resource usage.
+This topic describes how to use GPU sharing in a Container Service for Kubernetes \(ACK\) cluster after you install the cGPU component.
 
 [Install the cGPU component](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Install the cGPU component.md)
 
+**Note:**
+
+-   Only dedicated Kubernetes clusters with GPU-accelerated nodes support the cGPU component. Managed Kubernetes clusters with GPU-accelerated nodes do not support the cGPU component.
+-   If you want to use GPU sharing in professional Kubernetes clusters, see [Enable GPU sharing](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/GPU scheduling/cGPU Professional Edition/Enable GPU sharing.md).
+
 ## Procedure
 
-1.  Run the following command to query information about GPU sharing in your cluster:
+1.  Log on to a master node and run the following command to query the status of GPU sharing in your Kubernetes cluster.
 
+    **Note:**
+
+    -   For more information about how to log on to a master node, see [Connect to a Linux instance by using password authentication](/intl.en-US/Instance/Connect to instances/Connect to an instance by using VNC/Connect to a Linux instance by using password authentication.md) and [Connect to a Windows instance by using password authentication](/intl.en-US/Instance/Connect to instances/Connect to an instance by using VNC/Connect to a Windows instance by using password authentication.md).
+    -   If you want to query the GPU sharing status of a cluster from an on-premises machine, you must install the cGPU component and tools for managing cGPU. For more information, see [Step 4: Install and use the GPU scheduling inspection tool \(Optional\)](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/GPU scheduling/cGPU Professional Edition/Install and use ack-ai-installer and the GPU scheduling inspection tool.md).
     ```
     kubectl inspect cgpu
     ```
@@ -28,10 +37,10 @@ This topic describes how to use cGPU to isolate GPU memory after you create cont
 
     **Note:** To query detailed information about GPU sharing, run the kubectl inspect cgpu -d command.
 
-2.  Use the following YAML file to create containers that share one GPU:
+2.  Deploy a sample application that has GPU sharing enabled and request 3 GB of GPU memory for the application.
 
     ```
-    apiVersion: apps/v1beta1
+    apiVersion: apps/v1
     kind: StatefulSet
     
     metadata:
@@ -65,9 +74,9 @@ This topic describes how to use cGPU to isolate GPU memory after you create cont
                 aliyun.com/gpu-mem: 3
     ```
 
-    **Note:** aliyun.com/gpu-mem specifies the size of GPU memory.
+    **Note:** aliyun.com/gpu-mem: specifies the requested amount of GPU memory.
 
-3.  Run the following command to query the result of resource scheduling performed by cGPU:
+3.  Run the following command to query the memory usage of the GPU:
 
     ```
     kubectl inspect cgpu
@@ -83,10 +92,12 @@ This topic describes how to use cGPU to isolate GPU memory after you create cont
     3/14 (21%)
     ```
 
+    The output shows that the total GPU memory of the cn-beijing.192.168.1.105 node is 14 GB and 3 GB of GPU memory is allocated.
 
-You can use one of the following methods to check whether cGPU has isolated the GPU memory that is allocated to different containers:
 
--   Run the following command to view the log data of the application that is deployed in Step 2.
+You can use the following method to check whether cGPU has isolated the GPU memory that is allocated to different containers:
+
+-   Run the following command to view the log of the application that is deployed in Step 2.
 
     You can check whether GPU memory is isolated by cGPU based on the log data.
 
@@ -126,23 +137,12 @@ You can use one of the following methods to check whether cGPU has isolated the 
     | Processes:                                                       GPU Memory |
     |  GPU       PID   Type   Process name                             Usage      |
     |=============================================================================|
-    +-----------------------------------------------------------------------------+ ECC |
-    | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-    |===============================+======================+======================|
-    |   0  Tesla T4            On   | 00000000:00:07.0 Off |                    0 |
-    | N/A   41C    P0    26W /  70W |   3043MiB /  3231MiB |      0%      Default |
-    +-------------------------------+----------------------+----------------------+
-    
-    +-----------------------------------------------------------------------------+
-    | Processes:                                                       GPU Memory |
-    |  GPU       PID   Type   Process name                             Usage      |
-    |=============================================================================|
     +-----------------------------------------------------------------------------+
     ```
 
-    The output indicates that the amount of GPU memory allocated to the container is 3,231 MiB \(3 x 1,024 = 3,072\).
+    The output indicates that the amount of GPU memory allocated to the container is 3,231 MiB.
 
--   Run the following command to view the total GPU memory of the host:
+-   Run the following command to query the total GPU memory of the node where the application is deployed. Perform this operation on the node.
 
     ```
     nvidia-smi
@@ -178,7 +178,9 @@ You can use one of the following methods to check whether cGPU has isolated the 
 **Related topics**  
 
 
-[Overview](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Overview.md)
+[Overview of cGPU](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Overview of cGPU.md)
+
+[Install the cGPU component](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Install the cGPU component.md)
 
 [Monitor and isolate GPU resources](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Monitor and isolate GPU resources.md)
 
