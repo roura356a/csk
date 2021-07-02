@@ -4,7 +4,9 @@ keyword: GPU-accelerated elastic container instances
 
 # Use GPU-accelerated elastic container instances
 
-This topic describes how to use GPU-accelerated elastic container instances. A TensorFlow job for image recognition is used as an example. This feature is applicable to serverless Kubernetes \(ASK\) clusters and virtual nodes that are created in Container Service for Kubernetes \(ACK\) clusters.
+In this topic, a TensorFlow job for image recognition is used as an example in an ASK cluster to demonstrate how to use GPU-accelerated elastic container instances.
+
+A serverless Kubernetes \(ASK\) cluster is created or a virtual node is created in a Container Service for Kubernetes \(ACK\) cluster. For more information, see [Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md) or [Deploy the virtual node controller and use it to create Elastic Container Instance-based pods](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Deploy the virtual node controller and use it to create Elastic Container Instance-based pods.md).
 
 ASK supports GPU-accelerated elastic container instances. This allows you to run Artificial Intelligence \(AI\) computing tasks in a serverless framework. Using GPU-accelerated elastic container instances greatly reduces the loads of resource maintenance on the AI computing platform and improves the computing efficiency.
 
@@ -14,25 +16,21 @@ When you create pods that are mounted with GPU resources in an ASK cluster, you 
 
 **Note:** Pods that are mounted with vGPU resources are not supported.
 
-## Prerequisites
+## Procedure
 
-An ASK cluster is created or Elastic Container Instance-based pods are created in an ACK cluster. For more information, see [Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md) and [Deploy the virtual node controller and use it to create Elastic Container Instance-based pods](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Deploy the virtual node controller and use it to create Elastic Container Instance-based pods.md).
-
-The following is an example on how to run a TensorFlow job for image recognition in an ASK cluster.
+A TensorFlow job for image recognition is used as an example in the ASK cluster to demonstrate how to use GPU-accelerated elastic container instances.
 
 ![image](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5397297951/p47460.png)
 
 1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column.
 
 4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
-5.  In the left-side navigation pane, choose **Applications** \> **Deployments**. On the page that appears, click **Create from Template** in the upper-right corner.
-
-6.  On the **Deployments** page, click **Create from Template**. On the page that appears, select a sample template from the drop-down list or create a custom template, and click **Create**.
+5.  On the **Deployments** page, click **Create from YAML**, select a sample template or customize a template, and then click **Create**.
 
     You can use the following YAML template to create a pod. In this example, the specified GPU model in the pod is P4 and the number of GPUs is 1.
 
@@ -57,14 +55,14 @@ The following is an example on how to run a TensorFlow job for image recognition
       restartPolicy: OnFailure
     ```
 
-7.  In the left-side navigation pane, click **Pods** to go to the Pods page where you can view the states of pods.
+6.  In the left-side navigation pane, choose **Workloads** \> **Pods** to view the states of pods.
 
-8.  Click the pod that you want to view. On the Pods - tensorflow page, click the **Logs** tab. If the content in the following red box appears, the image is recognized.
+7.  Click the pod that you want to view. On the Pods - tensorflow page, click the **Logs** tab. If the content in the following red box appears, the image is recognized.
 
     ![Pods - tensorflow](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5397297951/p47463.png)
 
 
-For more information about how to use this feature on a virtual node in a Kubernetes cluster, see [Deploy the virtual node controller and use it to create Elastic Container Instance-based pods](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Deploy the virtual node controller and use it to create Elastic Container Instance-based pods.md). You need to schedule the pod to the virtual node, or create the pod in a namespace that contains the virtual-node-affinity-injection=enabled label. Then, use the following file to replace the YAML file in Step [6](#step_a0i_3au_ds9).
+For more information about how to use this feature on a virtual node in an ACK cluster, see [Deploy the virtual node controller and use it to create Elastic Container Instance-based pods](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Deploy the virtual node controller and use it to create Elastic Container Instance-based pods.md). You need to schedule the pod to the virtual node, or create the pod in a namespace that contains the virtual-node-affinity-injection=enabled label. Then, use the following file to replace the YAML file in Step [5](#step_a0i_3au_ds9).
 
 ```
 apiVersion: v1
