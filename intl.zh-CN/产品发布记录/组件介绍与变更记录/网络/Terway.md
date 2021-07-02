@@ -18,6 +18,17 @@ Terway网络插件是ACK自研的容器网络接口（CNI）插件，基于阿�
 
 ## 变更记录
 
+**2021年07月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.0.10.390-g5f3c461-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.390-g5f3c461-aliyun|2021年07月02日|-   修复Terway网络模式下使用EIP时，无权修改Pod Annotation的问题。
+-   修复Terway模式下使用独占ENI时Terway无法启动的问题。
+-   适配Containerd模式下网络命名空间路径。
+-   支持Alibaba Cloud Linux 3。
+
+|此次升级不会对业务造成影响。 |
+
 **2021年05月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
