@@ -16,7 +16,7 @@ Log Service and Knative are enabled for a serverless Kubernetes \(ASK\) cluster.
 
 3.  On the **Logstores** tab of the **Log Storage** page, click the **+** icon.
 
-4.  In the Create Logstore panel, set the parameters and click **OK**. For more information about the parameters that are required to **create a Logstore**, see [Manage a Logstore](/intl.en-US/Data Collection/Preparation/Manage a Logstore.md).
+4.  In the Create Logstore panel, set the parameters and click **OK**. For more information about the parameters that are required to **create a Logstore**, see [Manage a Logstore](/intl.en-US/Preparation/Manage a Logstore.md).
 
 5.  In the **Created.** dialog box, click **Data Import Wizard**.
 
@@ -65,6 +65,8 @@ Log Service and Knative are enabled for a serverless Kubernetes \(ASK\) cluster.
         |httpRequest.latency|text|latency|
         |httpRequest.status|long|status|
         |httpRequest.revisionName|text|revision|
+
+        ![K13](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8566025261/p264340.png)
 
 
 ## Create a QPS chart
@@ -131,7 +133,7 @@ Log Service and Knative are enabled for a serverless Kubernetes \(ASK\) cluster.
 6.  Enter the following SQL statement into the **Search & Analyze** field.
 
     ```
-    objectRef.resource: deployments and responseStatus.code: 200 and ( verb: update or verb: get)| select case when "revision" is null then 'none' else "revision" end as "revision", "t" as timestamp, total,concat('total:', cast(total AS varchar), ', ready: ', cast(ready AS varchar), ', notReady',cast((total-ready) AS varchar)) as detail from (select date_trunc('minute' ,  __time__) as t, max(replicas) as total, max(readyReplicas) as ready, revision from log where service='event-display-common' group by t, revision order by t)
+    objectRef.resource: deployments and responseStatus.code: 200 and ( verb: update or verb: get)| select case when "revision" is null then '无' else "revision" end as "revision", "t" as timestamp, total,concat('total:', cast(total AS varchar), ', ready: ', cast(ready AS varchar), ', notReady',cast((total-ready) AS varchar)) as detail from (select date_trunc('minute' ,  __time__) as t, max(replicas) as total, max(readyReplicas) as ready, revision from log where service='event-display-common' group by t, revision order by t)
     ```
 
 7.  Click the **Flow Chart** icon. Set the parameters on the **Properties** tab and click **Add to New Dashboard**.
@@ -144,7 +146,7 @@ Log Service and Knative are enabled for a serverless Kubernetes \(ASK\) cluster.
 To monitor the application status, you can add the preceding charts to one dashboard by using the following methods:
 
 -   Select the same dashboard for each chart.
--   Create a global dashboard and add the preceding charts to the dashboard. For more information, see [Create a dashboard](/intl.en-US/Visualization/Dashboard/Create a dashboard.md) and [Add an analysis chart to a dashboard](/intl.en-US/Visualization/Dashboard/Add an analysis chart to a dashboard.md).
+-   Create a global dashboard and add the preceding charts to the dashboard. For more information, see [Create a dashboard](/intl.en-US/Visualization/Create a dashboard.md) and [Add an analysis chart to a dashboard](/intl.en-US/Visualization/Add an analysis chart to a dashboard.md).
 
     ![96](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9342234161/p206990.png)
 
