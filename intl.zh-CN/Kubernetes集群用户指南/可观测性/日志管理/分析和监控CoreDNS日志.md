@@ -6,9 +6,9 @@ keyword: [CoreDNS, 日志, DNS服务, 监控]
 
 阿里云容器服务ACK部署了CoreDNS作为集群内的DNS服务器，您可以通过查看CoreDNS日志来分析CoreDNS解析慢、访问高危请求域名等问题。本文介绍如何开启CoreDNS日志分析与监控能力。
 
--   您已安装日志组件alibaba-log-controller。
+-   已安装日志组件alibaba-log-controller。
 
-    在创建集群时，ACK默认安装日志组件。如果您未安装日志组件，关于如何手动安装的步骤，请参见[通过日志服务采集Kubernetes容器日志](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/通过日志服务采集Kubernetes容器日志.md)。
+    在创建集群时，ACK默认安装日志组件。如果您未安装日志组件，关于如何手动安装的操作，请参见[通过日志服务采集Kubernetes容器日志](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/通过日志服务采集Kubernetes容器日志.md)。
 
 -   请确保日志组件alibaba-log-controller版本不低于0.2.0.0-76648ee-aliyun。关于如何升级组件，请参见[管理组件](/intl.zh-CN/Kubernetes集群用户指南/集群/升级集群/管理组件.md)。
 
@@ -24,7 +24,7 @@ keyword: [CoreDNS, 日志, DNS服务, 监控]
   Corefile: |
     .:53 {
         errors
-        log // 此处添加log插件。
+        log // 此处添加Log插件。
         health {
            lameduck 5s
         }
@@ -42,10 +42,10 @@ keyword: [CoreDNS, 日志, DNS服务, 监控]
         reload
         loadbalance
     }
-    // 如果有其它的域，且该域容器需要被采集日志，也需要增加log插件，格式一致。
+    // 如果有其它的域，且该域容器需要被采集日志，也需要增加Log插件，格式一致。
     demo.com:53 {
         ... 
-        log //此处添加log插件。
+        log //此处添加Log插件。
     }
 ```
 
@@ -152,8 +152,9 @@ spec:
 
 在**Kubernetes CoreDNS日志分析**仪表盘页面中，您可以根据仪表盘中单个图表进行告警设置。
 
-1.  在目标图表卡片右上方，选择**![more](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4484619161/p267496.png)** \> **另存为告警 \(旧版\)**。关于告警配置的参数设置，请参见[设置告警](/intl.zh-CN/告警/告警（旧版）/设置告警.md)。
+在目标图表卡片右上方，选择**![more](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4484619161/p267496.png)** \> **另存为告警（旧版）**。关于告警配置的参数设置，请参见[设置告警](/intl.zh-CN/告警/告警（旧版）/设置告警.md)。
 
+创建完成告警规则后，您可以[查看告警配置信息](/intl.zh-CN/告警/告警（旧版）/管理告警配置.md)或[查看告警记录](/intl.zh-CN/告警/告警（旧版）/查看告警记录.md)。
 
 **相关文档**  
 
