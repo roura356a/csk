@@ -100,7 +100,7 @@ spec:
             path: /etc/systemd/system
 ```
 
-成功部署该DaemonSet后，GPU集群会自动在所有Worker节点执行以下操作:
+成功部署该DaemonSet后，GPU集群会自动在所有Worker节点执行以下操作：
 
 -   将GPUOps复制到/usr/local/bin/目录下，并赋予可执行权限。
 -   把GPUOps添加到开机自动启动的服务。
