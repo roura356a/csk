@@ -96,8 +96,9 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 |即为该应用预留资源额度，包括CPU和内存两种资源，即容器独占该资源，防止因资源不足而被其他服务或进程争夺资源，导致应用不可用。 |
     |容器启动项
 
-|    -   stdin：将控制台输入发送到容器。
-    -   tty：将标准输入控制台作为容器的控制台输入。 |
+|    -   stdin：表示为该容器开启标准输入。
+    -   tty：表示为该容器分配一个虚拟终端，以便于向容器发送信号。
+通常这两个选项是一起使用的，表示将终端（tty）绑定到容器的标准输入（stdin）上。例如，一个交互式的程序从用户获取标准输入，并显示到终端中。 |
     |特权容器
 
 |    -   选择特权容器，则privileged=true，开启特权模式。
@@ -306,7 +307,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 **说明：** 您的服务类型为**节点端口**或**负载均衡**时，才能设置**外部流量策略**。 |
         |注解
 
-|为该服务添加一个注解（annotation），配置负载均衡的参数。例如设置`service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20`表示将该服务的带宽峰值设置为20Mbit/s，从而控制服务的流量。更多参数，请参见[通过Annotation配置负载均衡](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/通过Annotation配置负载均衡.md)。 |
+|为该服务添加一个注解（Annotation），配置负载均衡的参数。例如设置`service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20`表示将该服务的带宽峰值设置为20Mbit/s，从而控制服务的流量。更多参数，请参见[通过Annotation配置负载均衡](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/通过Annotation配置负载均衡.md)。 |
         |标签
 
 |为该服务添加一个标签，标识该服务。 |
