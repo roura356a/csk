@@ -90,7 +90,7 @@ In most cases, data scientists use Jupyter to set up an environment for TensorFl
 
     This solution requires you to manually modify the template if you want to schedule the GPUs to other clusters. However, in Kubernetes 1.9.3 and later, you do not need to set hostPath. The NVIDIA plug-in automatically identifies the links of the libraries and executable files that are required by NVIDIA drivers.
 
-7.  In the left-side navigation pane of the details page, choose **Services and Ingresses** \> **Services**. Select the required cluster and namespace, find the tf-notebook Service, and then check its external endpoint.
+7.  In the left-side navigation pane of the details page, choose **Network** \> **Services**. Select the required cluster and namespace, find the tf-notebook Service, and then check its external endpoint.
 
     ![View the Service](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1935359951/p10867.png)
 
