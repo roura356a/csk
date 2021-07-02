@@ -12,7 +12,7 @@ keyword: [工作负载, 有状态, StatefulSet]
 
 -   [创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
 -   [创建持久化存储卷声明](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/创建持久化存储卷声明.md)
--   [t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)
+-   [通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)
 
 ## 背景信息
 
@@ -20,9 +20,9 @@ StatefulSet包括以下特性：
 
 |场景|说明|
 |--|--|
-|Pod一致性|包含次序（启动、停止次序）、网络一致性。此一致性与Pod相关，与被调度到哪个node节点无关。|
+|Pod一致性|包含次序（启动、停止次序）、网络一致性。此一致性与Pod相关，与被调度到哪个Node节点无关。|
 |稳定的持久化存储|通过VolumeClaimTemplate为每个Pod创建一个PV。删除、减少副本，不会删除相关的卷。|
-|稳定的网络标志|Pod的hostname模式为：`（statefulset名称）−（序号）`。|
+|稳定的网络标志|Pod的`hostname`模式为：`（statefulset名称）−（序号）`。|
 |稳定的次序|对于N个副本的StatefulSet，每个Pod都在 \[0，N）的范围内分配一个数字序号，且是唯一的。|
 
 ## 操作步骤
@@ -44,11 +44,11 @@ StatefulSet包括以下特性：
     |配置项|描述|
     |---|--|
     |应用名称|设置应用的名称。|
-    |命名空间|设置应用部署所处的命名空间，默认使用default命名空间。|
+    |命名空间|设置应用部署所处的命名空间，默认使用**default**命名空间。|
     |副本数量|应用包含的Pod数量。|
     |类型|定义资源对象的类型，可选择**无状态**、**有状态**、**任务**、**定时**、**定时任务**、**守护进程集**。|
     |标签|为该应用添加一个标签，标识该应用。|
-    |注解|为该应用添加一个注解（annotation）。|
+    |注解|为该应用添加一个注解（Annotation）。|
     |时区同步|容器与节点是否使用相同的时区。|
 
 7.  单击**下一步**进入**容器配置**页签。
@@ -87,8 +87,8 @@ StatefulSet包括以下特性：
         |所需资源|即为该应用预留资源额度，包括CPU和内存两种资源，即容器独占该资源，防止因资源不足而被其他服务或进程争夺资源，导致应用不可用。|
         |容器启动项|        -   stdin：将控制台输入发送到容器。
         -   tty：将标准输入控制台作为容器的控制台输入。 |
-        |特权容器|        -   选择特权容器，则privileged=true，开启特权模式。
-        -   不选择特权容器，则privileged=false，关闭特权模式。 |
+        |特权容器|        -   选择特权容器，则`privileged=true`，开启特权模式。
+        -   不选择特权容器，则`privileged=false`，关闭特权模式。 |
         |Init Container|选中该项，表示创建一个Init Container。Init Container包含一些实用的工具，详情请参见[Init Containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/?spm=a2c4g.11186623.2.13.3fdd30dfnyevPx)。|
 
     -   端口设置
@@ -116,30 +116,34 @@ StatefulSet包括以下特性：
         -   变量/变量引用：设置变量引用的值。
     -   健康检查
 
-        支持存活检查（liveness）和就绪检查（Readiness）。存活检查用于检测何时重启容器；就绪检查确定容器是否已经就绪，且可以接受流量。关于健康检查的更多信息，请参见[Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)。
+        支持存活检查（Liveness）、就绪检查（Readiness）和启动探测。存活检查用于检测何时重启容器；就绪检查确定容器是否已经就绪，且可以接受流量；启动探测用于检测何时启动容器。
+
+        **说明：** 仅Kubernetes集群1.18及之后版本支持启动探测。
+
+        关于健康检查的更多信息，请参见[Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)。
 
         |请求类型|配置说明|
         |----|----|
         |HTTP请求|即向容器发送一个HTTPget请求，支持的参数包括：        -   协议：HTTP/HTTPS。
         -   路径：访问HTTP server的路径。
         -   端口：容器暴露的访问端口或端口名，端口号必须介于1~65535。
-        -   HTTP头：即HTTPHeaders，HTTP请求中自定义的请求头，HTTP允许重复的header。支持键值对的配置方式。
+        -   HTTP头：即HTTP Headers，HTTP请求中自定义的请求头，HTTP允许重复的Header。支持键值对的配置方式。
         -   延迟探测时间（秒）：即initialDelaySeconds，容器启动后第一次执行探测时需要等待多少秒，默认为3秒。
         -   执行探测频率（秒）：即periodSeconds，指执行探测的时间间隔，默认为10秒，最小为1秒。
         -   超时时间（秒）：即timeoutSeconds，探测超时时间。默认1秒，最小1秒。
-        -   健康阈值：探测失败后，最少连续探测成功多少次才被认定为成功。默认是1，最小值是1。对于存活检查（liveness）必须是1。
+        -   健康阈值：探测失败后，最少连续探测成功多少次才被认定为成功。默认是1，最小值是1。对于存活检查（Liveness）必须是1。
         -   不健康阈值：探测成功后，最少连续探测失败多少次才被认定为失败。默认是3，最小值是1。 |
         |TCP连接|即向容器发送一个TCP Socket，kubelet将尝试在指定端口上打开容器的套接字。 如果可以建立连接，容器被认为是健康的，如果不能就认为是失败的。支持的参数包括：        -   端口：容器暴露的访问端口或端口名，端口号必须介于1~65535。
         -   延迟探测时间（秒）：即initialDelaySeconds，容器启动后第一次执行探测时需要等待多少秒，默认为15秒。
         -   执行探测频率（秒）：即periodSeconds，指执行探测的时间间隔，默认为10秒，最小为1秒。
         -   超时时间（秒）：即timeoutSeconds，探测超时时间。默认1秒，最小1秒。
-        -   健康阈值：探测失败后，最少连续探测成功多少次才被认定为成功。默认是1，最小值是1。对于存活检查（liveness）必须是1。
+        -   健康阈值：探测失败后，最少连续探测成功多少次才被认定为成功。默认是1，最小值是1。对于存活检查（Liveness）必须是1。
         -   不健康阈值：探测成功后，最少连续探测失败多少次才被认定为失败。默认是3，最小值是1。 |
         |命令行|通过在容器中执行探针检测命令，来检测容器的健康情况。支持的参数包括：        -   命令行：用于检测容器健康情况的探测命令。
         -   延迟探测时间（秒）：即initialDelaySeconds，容器启动后第一次执行探测时需要等待多少秒，默认为5秒。
         -   执行探测频率（秒）：即periodSeconds，指执行探测的时间间隔，默认为10秒，最小为1秒。
         -   超时时间（秒）：即timeoutSeconds，探测超时时间。默认1秒，最小1秒。
-        -   健康阈值：探测失败后，最少连续探测成功多少次才被认定为成功。默认是1，最小值是1。对于存活检查（liveness）必须是1。
+        -   健康阈值：探测失败后，最少连续探测成功多少次才被认定为成功。默认是1，最小值是1。对于存活检查（Liveness）必须是1。
         -   不健康阈值：探测成功后，最少连续探测失败多少次才被认定为失败。默认是3，最小值是1。 |
 
     -   生命周期
@@ -155,7 +159,7 @@ StatefulSet包括以下特性：
 
         支持增加本地存储和云存储声明（PVC）。
 
-        -   **本地存储**：支持主机目录（hostpath）、配置项（configmap）、保密字典（secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息参见[volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。
+        -   **本地存储**：支持主机目录（Hostpath）、配置项（ConfigMap）、保密字典（Secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息参见[Volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。
         -   **云存储声明（PVC）**：支持云存储。
         本例中配置了一个云存储类型的数据卷声明disk-ssd，将其挂载到容器的/tmp路径下。
 
@@ -198,7 +202,7 @@ StatefulSet包括以下特性：
         |路由（Ingress）|在**路由（Ingress）**右侧，单击**创建**。在弹出的对话框中，为后端Pod配置路由规则。详细的路由配置信息，请参见[创建Ingress](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/创建Ingress路由.md)。**说明：** 通过镜像创建应用时，您仅能为一个服务创建路由（Ingress）。本例中使用一个虚拟主机名称作为测试域名，您需要在Hosts中添加一条记录。在实际工作场景中，请使用备案域名。
 
         ```
-101.37.224.146   foo.bar.com    #即ingress的IP
+101.37.XX.XX   foo.bar.com    #即ingress的IP
         ``` |
 
         在**访问设置**区域中，您可看到创建完毕的服务和路由，您可单击**变更**和**删除**进行二次配置。
@@ -256,7 +260,7 @@ StatefulSet包括以下特性：
 
     -   标签和注释
         -   Pod标签：为该Pod添加一个标签，标识该应用。
-        -   Pod注解：为该Pod添加一个注解（annotation）。
+        -   Pod注解：为该Pod添加一个注解（Annotation）。
 11. 单击**创建**。
 
 12. 创建成功后，默认进入创建完成页面，会列出应用包含的对象，您可以单击**查看应用详情**进行查看。
@@ -271,44 +275,61 @@ StatefulSet包括以下特性：
 
         ![验证服务伸缩](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5975659951/p12438.png)
 
-    2.  单击左侧导航栏中的**存储卷** \> **存储声明**，您可发现，随着应用扩容，会随着Pod创建新的云存储卷。缩容后，已创建的PV/PVC不会删除。
+    2.  单击左侧导航栏中的**存储卷** \> **存储声明**，您可发现，随着应用扩容，会随着Pod创建新的云存储卷。缩容后，已创建的PV和PVC不会删除。
 
 
 ## 相关操作
 
-在左侧导航栏单击**集群**，单击目标集群名称或目标集群**操作**列下的**应用管理**，在集群管理页左侧导航栏中选择**工作负载**，单击**有状态**页签，在有状态页面单击目标应用名称或目标应用**操作**列下的**详情**，在应用详情页面您可以**编辑**、**伸缩**、**查看Yaml**、**重新部署**、**刷新**应用。
+在左侧导航栏单击**集群**，单击目标集群名称或目标集群**操作**列下的**应用管理**，在集群管理页左侧导航栏中选择**工作负载**，在有状态页面单击目标应用名称或目标应用**操作**列下的**详情**。
+
+**说明：** 在有状态列表中单击**标签**字段，输入对应应用标签的key与`value`，单击**确定**后可过滤列表中的应用。
+
+在应用详情页面您可以**编辑**、**伸缩**、**查看YAML**、**重新部署**、**刷新**应用。
 
 -   编辑：在应用详情页面单击**编辑**，您可以修改应用信息。
 -   伸缩：在应用详情页面单击**伸缩**，您可以修改所需容器组数量。
--   查看Yaml：在应用详情页面单击**查看Yaml**，您可以**更新**、**下载**、**另存为**Yaml文件。
+-   查看YAML：在应用详情页面单击**查看YAML**，您可以**更新**、**下载**、**另存为**YAML文件。
 -   重新部署：在应用详情页面单击**重新部署**，您可以重新部署应用。
 -   刷新：在应用详情页面单击**刷新**，您可以刷新应用。
 
 连接到Master节点，执行以下命令，验证持久化存储特性。
 
-1.  在云盘中创建临时文件：
+1.  执行以下命令在云盘中创建临时文件。
 
     ```
     kubectl exec nginx-1 ls /tmp            #列出该目录下的文件lost+found
-    
     kubectl exec nginx-1 touch /tmp/statefulset         #增加一个临时文件statefulset
-    
     kubectl exec nginx-1 ls /tmp
+    ```
+
+    预期输出：
+
+    ```
     lost+found
     statefulset
     ```
 
-2.  删除Pod，验证数据持久性：
+2.  执行以下命令删除Pod，验证数据持久性。
 
     ```
     kubectl delete pod nginx-1
+    ```
+
+    预期输出：
+
+    ```
     pod"nginx-1" deleted
     ```
 
 3.  过一段时间，待Pod自动重启后，验证数据持久性，证明StatefulSet应用的高可用性。
 
     ```
-    kubectl exec nginx-1 ls /tmp                         #数据持久化存储lost+found
+    kubectl exec nginx-1 ls /tmp   #数据持久化存储lost+found。
+    ```
+
+    预期输出：
+
+    ```
     statefulset
     ```
 
