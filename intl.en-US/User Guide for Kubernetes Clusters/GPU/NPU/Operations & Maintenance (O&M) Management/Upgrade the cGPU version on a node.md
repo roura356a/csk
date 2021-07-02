@@ -4,21 +4,25 @@ keyword: [upgrade cGPU, cGPU version]
 
 # Upgrade the cGPU version on a node
 
-Container Service for Kubernetes \(ACK\) supports GPU sharing. To enable GPU sharing, you must install cGPU on the nodes. This topic describes how to upgrade the cGPU version on a node by using a command-line interface \(CLI\) and the ACK console.
+Container Service for Kubernetes \(ACK\) supports GPU sharing. To enable GPU sharing, you must install cGPU on a node. This topic describes how to upgrade the cGPU version on a node by using a CLI and the ACK console.
 
--   You are connected to the cluster by using kubectl. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
--   The ack-cgpu component is installed in the cluster. For more information, see [Install the ack-cgpu component](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Install the cGPU component.md).
+-   Your machine is connected to the cluster by using kubectl. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
+-   ack-cgpu is installed in the cluster. For more information, see [Install ack-cgpu](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Install the cGPU component.md).
 -   No workload is running on the node that you want to upgrade.
 
 ## Upgrade the cGPU version on a node by using a CLI
 
 The cgpu-installer component runs as a DaemonSet, which is used to install cGPU on nodes. To upgrade cGPU, you must change the image version of cgpu-installer to the version to which you want to upgrade.
 
-ACK supports two image versions of cGPU: V0.8.10 and V0.8.12.
+The following cGPU image versions are supported:
+
+-   v0.8.10
+-   v0.8.12
+-   v0.8.13
 
 **Note:** During the upgrade process, the node where cGPU is deployed is restarted. Make sure that no workload is running on the node before you upgrade cGPU.
 
-1.  Run the following command to modify the image version of cgpu-installer:
+1.  Run the following command to modify the image version of cgpu-installer.
 
     ```
     kubectl  edit ds cgpu-installer -n kube-system
@@ -46,13 +50,13 @@ ACK supports two image versions of cGPU: V0.8.10 and V0.8.12.
 
         **Note:**
 
-        If /usr/local/cgpu-installer/uninstall.sh does not exist, run the following command to uninstall the earlier version of cGPU:
+        If /usr/local/cgpu-installer/uninstall.sh does not exist, run the following command to uninstall the earlier version of cGPU.
 
         ```
         wget http://aliacs-k8s-cn-beijing.oss-cn-beijing.aliyuncs.com/gpushare/cgpu-uninstall.sh -O /usr/local/cgpu-installer/uninstall.sh
         ```
 
-3.  Restart the node. For more information, see [Reboot the instance](/intl.en-US/Instance/Manage instances/Restart an instance.md).
+3.  Restart the node. For more information about how to restart a node, see [Reboot the instance](/intl.en-US/Instance/Manage instance status/Restart an instance.md).
 
 
 **Verify the result**
@@ -71,13 +75,17 @@ Expected output:
 
 The output indicates that the cGPU version is upgraded to V0.8.10.
 
-## Upgrade the cGPU version on a node by using the console
+## Upgrade the cGPU version on a node by using the ACK console
 
 The cgpu-installer component runs as a DaemonSet, which is used to install cGPU on nodes. To upgrade cGPU, you must change the image version of cgpu-installer to the version to which you want to upgrade.
 
-ACK supports two image versions of cGPU: V0.8.10 and V0.8.12.
+The following cGPU image versions are supported:
 
-1.  Run the following command to modify the image version of cgpu-installer:
+-   v0.8.10
+-   v0.8.12
+-   v0.8.13
+
+1.  Run the following command to modify the image version of cgpu-installer.
 
     ```
     kubectl  edit ds cgpu-installer -n kube-system
@@ -109,7 +117,7 @@ ACK supports two image versions of cGPU: V0.8.10 and V0.8.12.
 
     Create a node pool and add the node that you removed to the node pool.
 
-    For more information, see [Create a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Create a node pool.md).
+    For more information, see [Manage a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Manage a node pool.md).
 
     1.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node Pools**.
 
@@ -117,7 +125,7 @@ ACK supports two image versions of cGPU: V0.8.10 and V0.8.12.
 
     3.  In the Create Node Pool dialog box, configure the parameters.
 
-        For more information about the parameters, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md). The following table describes the parameters.
+        For more information about the parameters, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md). The following list describes some of the parameters:
 
         |Parameter|Description|Recommended value|
         |---------|-----------|-----------------|
@@ -169,6 +177,6 @@ After the node is added to the node pool, verify that the cGPU version is upgrad
     0.8.10
     ```
 
-    The output indicates that the cGPU version is upgraded to V0.8.10.
+    The output indicates that the cGPU version is V0.8.10.
 
 
