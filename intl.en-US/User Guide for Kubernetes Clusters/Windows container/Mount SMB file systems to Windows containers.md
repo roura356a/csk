@@ -27,7 +27,7 @@ For more information, see the [Deploy the FlexVolume plug-in in the ACK cluster]
     |driver|The driver that is used to mount the SMB file system. Set the value to alicloud/smb.exe.|
     |server|The domain name of the mount target for the SMB file system. The mount target must be in the same VPC as the ACK cluster.|
     |path|The path where the SMB file system is mounted. Set the value to \\myshare or a subdirectory that starts with \\myshare.|
-    |user|The username that is used to log on to a node. We recommend that you use workshop\\administrator.|
+    |user|The username that is used to log on to a node. We recommend that you use workgroup\\administrator.|
     |password|The password that is used to log on to a node.|
 
 2.  Run the `kubectl get pvc |grep pvc-smb` command to view the newly created PVC.
