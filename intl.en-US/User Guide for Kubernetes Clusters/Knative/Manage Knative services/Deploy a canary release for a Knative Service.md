@@ -6,13 +6,16 @@ keyword: [Knative, canary release based on traffic splitting]
 
 Knative supports canary releases. You can deploy a canary release to split traffic between two application versions based on a specified ratio. This topic describes how to deploy a canary release for a Knative Service.
 
-[Knative is deployed in the cluster.](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative components/Deploy Knative.md)
+Deploy Knative:
+
+-   If you want to deploy Knative in a Container Service for Kubernetes \(ACK\) cluster, see [Deploy Knative](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative components/Deploy Knative.md).
+-   If you want to deploy Knative in a serverless Kubernetes \(ASK\) cluster, see [Enable Knative](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Knative/Component management/Enable Knative.md).
 
 ## Step 1: Create a Knative Service
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -33,7 +36,7 @@ Knative supports canary releases. You can deploy a canary release to split traff
 **Note:** gRPC is developed based on the HTTP/2 standard and Protocol Buffers \(protobuf\) serialization protocol, and supports various programming languages. Compared with HTTP/1.1, HTTP/2 allows you to send and receive packets more efficiently. |
     |**Container Port**|The container port that you want to expose. The port number must be from 1 to 65535. |
 
-    For more information about the other parameters, see [Create a Knative Service](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative services/Create a Knative Service.md).
+    For more information about the other parameters, see [Create a Knative Service](/intl.en-US/User Guide for Kubernetes Clusters/Knative/Manage Knative services/Use Knative to deploy serverless applications.md).
 
 7.  Click **Create**.
 
@@ -58,7 +61,7 @@ Knative supports canary releases. You can deploy a canary release to split traff
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -74,17 +77,17 @@ Knative supports canary releases. You can deploy a canary release to split traff
 
         ![11](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1689880261/p252004.png)
 
-    4.  Click **Next**.
+    4.  Click **Next Step**.
 
     5.  On the **Traffic Splitting Settings** wizard page, set the **Percent %** parameter of the revision to 0. Then, click **Create**.
 
-        **Note:** The sum of the traffic percentage values of all revisions must be 100.
+        **Note:** The sum of traffic ratios of all revisions must be 100.
 
     6.  After the revision is created, you can find details about the new version on the **Services** tab.
 
     7.  Run the following command to access the Service:
 
-        **Note:** The **Percent** parameter is set to 0 for the new version. This means that all requests to access the helloworld-go Service are sent to the old version.
+        **Note:** The **Percent** parameter is set to 0 for the new version. This means that all requests to access the helloworld-go Service are sent to the earlier version.
 
         ```
         curl -H "host: helloworld-go.default.example.com" http://39.106.XX.XX
@@ -102,7 +105,7 @@ Knative supports canary releases. You can deploy a canary release to split traff
 
     2.  Click **Split Traffic**.
 
-    3.  In the **Split Traffic** dialog box, set the **Percent** parameter to 50% for both the old and new versions. Then, click **OK**.
+    3.  In the **Split Traffic** dialog box, set the **Percent** parameter to 50% for both the earlier and new versions. Then, click **OK**.
 
     4.  After you change the values of the **Percent** parameters, check the details about the old and new versions on the **Services** tab.
 
@@ -116,8 +119,8 @@ Knative supports canary releases. You can deploy a canary release to split traff
 
         ![12](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1689880261/p252029.png)
 
-        The **Percent** parameter is set to 50% for both the old and new versions. This means that requests to access the helloworld-go Service are evenly distributed to the old and new version.
+        The **Percent** parameter is set to 50% for both the earlier and new versions. This means that requests to access the helloworld-go Service are evenly distributed to the earlier and new version.
 
-        You can change the value of the **Percent** parameter to implement canary releases. The new version is fully released if you set the **Percent** parameter to 100% for the new version. During the process, you can change the value of the **Percent** parameter to roll back if issues are found in the new version.
+        You can change the value of the **Percent** parameter to implement canary releases. The new version is completely released if you set the **Percent** parameter to 100% for the new version. During the process, you can change the value of the **Percent** parameter to roll back if issues are found in the new version.
 
 
