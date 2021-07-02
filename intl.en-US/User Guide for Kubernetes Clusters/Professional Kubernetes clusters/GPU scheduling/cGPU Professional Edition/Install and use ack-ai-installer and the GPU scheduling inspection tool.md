@@ -4,7 +4,7 @@ keyword: [install cGPU, GPU scheduling inspection tool, GPU sharing]
 
 # Install and use ack-ai-installer and the GPU scheduling inspection tool
 
-Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU\) sharing based on cGPU. You can use cGPU to share one GPU in model inference scenarios. In addition, the NVIDIA kernel driver ensures that the GPU memory allocated to each container is isolated from each other. This topic describes how to install ack-ai-installer and the GPU scheduling inspection tool on a GPU-accelerated node. You can use them to implement GPU sharing and memory isolation.
+Container Service for Kubernetes \(ACK\) provides GPU sharing based on cGPU. You can use cGPU to share one GPU in model inference scenarios. In addition, the NVIDIA kernel driver ensures that the GPU memory allocated to each container is isolated from each other. This topic describes how to install ack-ai-installer and the GPU scheduling inspection tool on a GPU-accelerated node. You can use them to implement GPU sharing and memory isolation.
 
 -   A professional Kubernetes cluster is created. When you create the cluster, you must select a **heterogeneous computing** instance family, including GPU-accelerated, FPGA-accelerated, and NPU-accelerated instances. For more information, see [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Create a professional managed Kubernetes cluster.md).
 
@@ -37,7 +37,7 @@ Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU
 |Helm|V3.0 and later|
 |NVIDIA driver|V418.87.01 and later|
 |Docker|19.03.5|
-|Operating system|CentOS 7.6, CentOS 7.7, Ubuntu 16.04 and 18.04, and Aliyun Cloud Linux 2.x.|
+|Operating system|CentOS 7.6, CentOS 7.7, Ubuntu 16.04 and 18.04, and Alibaba Cloud Linux 2.x|
 |GPU|Tesla P4, Tesla P100, Tesla T4, and Tesla v100.|
 
 ## Step 1: Install ack-ai-installer
@@ -69,7 +69,7 @@ Container Service for Kubernetes \(ACK\) provides graphics processing unit \(GPU
 
     -   Quantity: Specify the initial number of nodes in the node pool. If you do not want to create nodes in the node pool, set this parameter to 0.
     -   Operating System: Select an operating system for the nodes in the node pool. Supported operating systems include CentOS, Aliyun Cloud Linux 2.x, and Windows.
-    -   ECS Label: You can add labels to the ECS instances in the node pool.
+    -   ECS Label: You can add labels to the Elastic Compute Service \(ECS\) instances in the node pool.
     -   Custom Resource Group: You can specify the resource group to which the nodes in the node pool belong.
     -   Node Label: You can add labels to the nodes. For more information about node labels, see [Labels used by ACK to control GPUs](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Labels used by ACK to control GPUs.md).
         -   Enable both GPU sharing and memory isolation.
@@ -91,7 +91,7 @@ After the node pool is created, you can add GPU-accelerated nodes to the node po
 
 **Note:** If you have already added GPU-accelerated nodes to the node pool when you created the node pool, skip this step.
 
-## Step 4: \(Optional\) Install and use the GPU scheduling inspection tool
+## Step 4: Install and use the GPU scheduling inspection tool \(Optional\)
 
 1.  Configure the kubeconfig file. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
@@ -109,7 +109,7 @@ After the node pool is created, you can add GPU-accelerated nodes to the node po
         wget http://aliacs-k8s-cn-beijing.oss-cn-beijing.aliyuncs.com/gpushare/kubectl-inspect-cgpu-darwin -O /usr/local/bin/kubectl-inspect-cgpu
         ```
 
-3.  Run the following command to grant kubectl-inspect-cgpu execution permissions:
+3.  Run the following command to make kubectl-inspect-cgpu executable:
 
     ```
     chmod +x /usr/local/bin/kubectl-inspect-cgpu
