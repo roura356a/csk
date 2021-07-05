@@ -15,7 +15,7 @@ The development of AI is fueled by high hash rates, large amounts of data, and o
 
 ## Use the managed Prometheus plug-in to monitor dedicated GPUs
 
-1.  Log on to the[Application Real-Time Monitoring Service \(ARMS\) console](https://arms-intl.console.aliyun.com/).
+1.  Log on to the [Application Real-Time Monitoring Service \(ARMS\) console](https://arms-intl.console.aliyun.com/).
 
 2.  In the left-side navigation pane, click **Prometheus Monitoring**.
 
