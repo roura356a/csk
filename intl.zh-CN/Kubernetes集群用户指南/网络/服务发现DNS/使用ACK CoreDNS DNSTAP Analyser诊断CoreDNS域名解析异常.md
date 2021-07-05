@@ -140,7 +140,7 @@ CoreDNS中内置了发送DNSTap报文的DNSTAP插件，DNSTAP插件收到和发�
 
 ## （可选）步骤五：通过SLS仪表盘查看异常DNS报文信息
 
-如果您配置了阿里云日志服务SLS的仪表盘，并且在ACK CoreDNS DNSTAP Analyser组件安装时使用了推荐的`env`日志采集配置（参考[步骤4](#step_i60_qp4_61q)中的**说明**页签的内容），您可以在ACK集群对应的SLS Project的Kubernetes CoreDNS DNSTAP报文监控仪表盘中看到异常DNS报文信息。具体操作，请参见[分析和监控CoreDNS日志](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/分析和监控CoreDNS日志.md)。
+如果您配置了阿里云日志服务SLS的仪表盘，并且在ACK CoreDNS DNSTAP Analyser组件安装时使用了推荐的`env`日志采集配置（参考[步骤4](#step_jrp_up5_e1e)中的**说明**页签的内容），您可以在ACK集群对应的SLS Project的Kubernetes CoreDNS DNSTAP报文监控仪表盘中看到异常DNS报文信息。具体操作，请参见[分析和监控CoreDNS日志](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/分析和监控CoreDNS日志.md)。
 
 **相关文档**  
 
