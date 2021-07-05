@@ -232,9 +232,12 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
     |**Ingress**|设置是否安装Ingress组件。默认选中**安装Ingress组件**，请参见[Ingress高级用法](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress高级用法.md)。 |
     |**存储插件**|设置存储插件，支持Flexvolume和CSI。Kubernetes集群通过Pod可自动绑定阿里云云盘、NAS、OSS存储服务。请参见[存储管理-Flexvolume](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/概述.md)和[存储管理-CSI](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/存储CSI概述.md)。 |
     |**监控插件**|设置是否启用云监控插件。默认选中**在ECS节点上安装云监控插件**和**使用Prometheus监控服务**，前者用于在云监控控制台查看所创建ECS实例的监控信息。 |
+    |**报警配置**|选中**使用默认报警模板配置报警**，开启默认报警规则。详细介绍，请参见[容器服务报警管理](/cn.zh-CN/Kubernetes集群用户指南/可观测性/容器服务报警管理.md)。 |
     |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。默认选中**使用日志服务**。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[通过日志服务采集Kubernetes容器日志](/cn.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/通过日志服务采集Kubernetes容器日志.md)。
 
-默认选中**安装node-problem-detector并创建事件中心**。您可以选择是否在日志服务控制台中**创建Ingress Dashboard**。 |
+默认选中**创建Ingress Dashboard**，您可以选择是否在日志服务控制台中**创建Ingress Dashboard**。更多信息，请参见[Ingress访问日志分析与监控](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress访问日志分析与监控.md)。
+
+默认选中**安装node-problem-detector并创建事件中心**，您可以选择是否在日志服务控制台中添加事件中心。更多信息，请参见[创建并使用Kubernetes事件中心](/cn.zh-CN/应用中心（App）/K8S事件中心/创建并使用Kubernetes事件中心.md)。 |
     |**工作流引擎**|设置是否使用AGS。
 
 **说明：** 当前只有白名单用户可以使用该功能。
