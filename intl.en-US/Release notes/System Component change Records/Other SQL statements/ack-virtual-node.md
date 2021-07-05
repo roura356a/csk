@@ -27,7 +27,7 @@ The ack-virtual-node component is developed based on the open source Virtual Kub
 |v2.0.0.102-045a06eb4-aliyun|registry-vpc.$RegionId.aliyuncs.com/acs/virtual-nodes-eci:v2.0.0.102-045a06eb4-aliyun|2021-04-22|The issue of displaying nodes that are managed by Virtual Kubelet is fixed.|No impact on workloads.|
 |v2.0.0.101-cd8bcfa04-aliyun|registry-vpc.$RegionId.aliyuncs.com/acs/virtual-nodes-eci:v2.0.0.101-cd8bcfa04-aliyun|2021-04-16|The Alibaba Cloud DNS PrivateZone API is optimized. This saves you the need to call BindZoneVpc repeatedly.|No impact on workloads.|
 |v2.0.0.93-ef86bbfa1-aliyun|registry-vpc.$RegionId.aliyuncs.com/acs/virtual-nodes-eci:v2.0.0.93-ef86bbfa1-aliyun|2021-04-13|The value of eciLogtailMacheineGroupKey is modified to support the log collection feature for environment variables and custom resource definitions \(CRDs\).|No impact on workloads.|
-|v2.0.0.90-15deb126e-aliyun|registry-vpc.$RegionId.aliyuncs.com/acs/virtual-nodes-eci:v2.0.0.90-15deb126e-aliyun|2021-04-06|The feature of Elastic Container Instance Profile is supported. For more information, see [Configure Elastic Container Instance Profile]().|No impact on workloads.|
+|v2.0.0.90-15deb126e-aliyun|registry-vpc.$RegionId.aliyuncs.com/acs/virtual-nodes-eci:v2.0.0.90-15deb126e-aliyun|2021-04-06|The feature of Elastic Container Instance Profile is supported.|No impact on workloads.|
 
 ## March 2021
 
