@@ -16,6 +16,15 @@ csi-provisioner支持数据卷的自动创建能力。本文介绍csi-provisione
 
 ## 变更记录
 
+**2021年07月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.1.5|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.47-06405694-aliyun|2021年07月06日|-   修复CNFS无法扩容NAS的问题。
+-   支持OSS使用Alibaba Cloud Linux 3镜像。
+
+|此次升级不会对业务造成影响。|
+
 **2021年06月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
