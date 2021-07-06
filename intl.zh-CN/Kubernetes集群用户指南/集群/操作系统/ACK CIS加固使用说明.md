@@ -107,7 +107,9 @@ CIS-CAT分为Lite和Pro版，Lite提供的功能有限，且仅支持的系统�
 
 CIS-CAT Pro具有v4和v3两个版本系列。以v4为例，本文将阐述如何使用CIS-CAT Pro进行扫描验证ACK集群的CIS加固效果。
 
-1.  登录[CIS SecureSuite](https://enroll.cisecurity.org/memberships/#/)，然后注册成为CIS SecureSuite会员，并下载CIS-CAT Pro工具包（Assessor-CLI-v4.0.23.zip）。
+1.  登录[CIS SecureSuite](https://enroll.cisecurity.org/memberships/#/)，注册成为CIS SecureSuite会员，并下载CIS-CAT Pro工具包（Assessor-CLI-v4.0.23.zip）。
+
+    ![CIS Pro](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4633455261/p291687.png)
 
 2.  登录到ACK集群的任一Alibaba Cloud Linux 2操作系统的节点。
 
