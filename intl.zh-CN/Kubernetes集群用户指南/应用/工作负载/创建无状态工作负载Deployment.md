@@ -6,9 +6,9 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 您可以通过镜像、编排模板及命令创建一个无状态应用。容器服务Kubernetes集群支持通过Web界面使用镜像密钥。本文以Nginx为例说明如何通过镜像、编排模板及命令来创建无状态应用。
 
--   您已成功创建一个Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   在本地使用命令前，您需要先设置[通过Kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
--   您已构建一个私有镜像仓库，并将镜像上传到该仓库中。本例中使用阿里云容器镜像服务作为示例，请参见[管理镜像](/intl.zh-CN/Kubernetes集群用户指南/应用/镜像/管理镜像.md)。
+-   已创建Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
+-   已通过kubectl连接kubernetes集群。具体操作，请参见[通过Kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   已构建私有镜像仓库，并将镜像上传到该仓库中。本例中以阿里云容器镜像服务为示例，在，请参见[管理镜像](/intl.zh-CN/Kubernetes集群用户指南/应用/镜像/管理镜像.md)。
 
 ## 使用镜像创建无状态Deployment应用
 
@@ -529,7 +529,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
     -   **命名空间**：选择资源对象所属的命名空间，默认是Default。除了节点、持久化存储卷等底层计算资源以外，大多数资源对象需要作用于命名空间。
     -   **示例模板**：阿里云容器服务提供了多种资源类型的Kubernetes YAML示例模板，让您快速部署资源对象。您可以根据Kubernetes YAML编排的格式要求自主编写，来描述您想定义的资源类型。
-    -   **添加部署**：您可通过此功能快速定义一个YAML模板。
+    -   **添加工作负载**：您可通过此功能快速定义一个YAML模板。
     -   **使用已有模板**：您可将已有编排模板导入到模板配置页面。
     -   **保存模板**：您可以保存设置好的编排模板。
     下面是一个Nginx应用的示例编排，基于容器服务内置的编排模板。通过该编排模板，即可快速创建一个属于Nginx应用的Deployment。
