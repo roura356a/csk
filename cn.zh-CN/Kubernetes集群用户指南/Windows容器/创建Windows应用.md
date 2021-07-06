@@ -23,7 +23,7 @@ keyword: [Web应用, Windows应用]
 
     -   **命名空间**：选择资源对象所属的命名空间，默认是Default。除了节点、持久化存储卷等底层计算资源以外，大多数资源对象需要作用于命名空间。
     -   **示例模板**：阿里云容器服务提供了多种资源类型的Kubernetes YAML示例模板，让您快速部署资源对象。您可以根据Kubernetes YAML编排的格式要求自主编写，来描述您想定义的资源类型。
-    -   **添加部署**：您可通过此功能快速定义一个YAML模板。
+    -   **添加工作负载**：您可通过此功能快速定义一个YAML模板。
     -   **使用已有模板**：您可将已有编排模板导入到模板配置页面。
     -   **保存模板**：您可以保存设置好的编排模板。
     ![配置模板信息](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1206659951/p41759.png)
@@ -88,8 +88,8 @@ keyword: [Web应用, Windows应用]
 
     **说明：**
 
-    -   镜像`registry-vpc.{region}.aliyuncs.com/acs/sample-web-windows:v1.0.1`是阿里云容器服务提供的Windows Web容器示例镜像（基于[mcr.microsoft.com/windows/nanoserver](https://hub.docker.com/_/microsoft-windows-nanoserver)。
-    -   也可以使用微软提供的ASP.NET示例镜像：`mcr.microsoft.com/dotnet/samples:aspnetapp`。更多信息，请参见[.NET Samples](https://hub.docker.com/_/microsoft-dotnet-samples)。
+    -   镜像`registry-vpc.{region}.aliyuncs.com/acs/sample-web-windows`是阿里云容器服务提供的Windows Web容器示例镜像（基于[mcr.microsoft.com/windows/nanoserver](https://hub.docker.com/_/microsoft-windows-nanoserver)）。
+    -   也可使用微软提供的ASP.NET示例镜像：`mcr.microsoft.com/dotnet/samples:aspnetapp`。更多信息，请参见[.NET Samples](https://hub.docker.com/_/microsoft-dotnet-samples)。
 7.  单击**创建**后，会提示部署状态信息。成功后，返回**无状态**页面可以查看新创建的Web应用。
 
 8.  访问Web应用。
