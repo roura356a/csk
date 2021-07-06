@@ -5,7 +5,7 @@ This topic provides answers to some frequently asked questions about cluster man
 -   [Can I add nodes that support Intel Software Guard Extensions \(Intel SGX\) to an existing cluster?](#section_f5n_8ir_imk)
 -   [Are ACK clusters that run Alibaba Cloud Linux 2 compatible with container images of CentOS?](#section_g8z_g18_h2h)
 -   [How do I troubleshoot cluster creation failures?](~~86762~~)
--   [How do I troubleshoot cluster scale-out errors?](178936)
+-   [How do I troubleshoot cluster scale-out errors?](~~178936~~)
 -   [How do I troubleshoot cluster deletion failures?](~~86763~~)
 -   [Timeout errors in cluster management by using Cloud Shell](~~141857~~)
 
