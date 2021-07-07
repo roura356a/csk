@@ -4,65 +4,46 @@ keyword: [Worker节点, 资源升配]
 
 # Worker节点的资源升配
 
-随着Kubernetes集群负载的增加，用户常常面临资源不足的情况，此时您可以对集群的基础资源做一些扩展。例如，当集群规模达到10台以上后，您可以优先考虑升级Worker节点的配置，这样既可以提高资源的利用率，也可以降低集群运维的复杂度。本文为您介绍如何升级Worker节点的配置。
+随着Kubernetes集群负载的增加，用户常常面临资源不足的情况，此时您可以对集群的基础资源做一些扩展。例如，当集群的节点数达到10个以上后，您可以优先考虑升级Worker节点的配置，这样既可以提高资源的利用率，也可以降低集群运维的复杂度。本文为您介绍如何升级Worker节点的配置。
 
-您已经成功创建Kubernetes集群，参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
+已创建Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏中，单击**集群**。
 
-3.  根据需要选择购买新节点或添加已有节点，升配节点资源。
+3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-    -   如果您想通过购买新节点的方法升级配置，请参见[扩容集群](/intl.zh-CN/Kubernetes集群用户指南/集群/扩容集群.md)，并按照如下步骤操作。
-        1.  在目标集群右侧单击**操作**列下**更多** \> **集群扩容**。
-        2.  设置新增的Worker节点配置。
+4.  在集群管理页左侧导航栏中，选择**节点管理** \> **节点**。
 
-            ![集群扩容](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3528079951/p50574.png)
+5.  单击目标Worker节点的实例ID，进入实例详情页面（本文以worker-k8s-for-cs实例为例）。
 
-        3.  设置需要扩容的Worker节点的数量。
+    此时，您可以看到目标节点的实例规格等信息。
 
-            ![集群扩容](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3528079951/p10905.png)
+    本例仅介绍了按量付费类型的Worker节点的升配方式，关于更多类型升配方式，请参见[升降配方式概述](/intl.zh-CN/实例/升降配实例/升降配方式概述.md)。
 
-        4.  设置新增的Worker节点的登录方式。
+6.  若**实例规格**右侧的**更改实例规格**为灰显，说明实例正在运行 ，您需要单击界面的**停止**。
 
-            ![集群扩容](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7463659951/p9041.png)
+    ![实例详情](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9221465261/p50527.png)
 
-        5.  设置RDS白名单。
+    在停止实例对话框选中**停止方式**及**停止模式**后，单击**确定**。
 
-            ![集群扩容](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7463659951/p21270.png)
+7.  在**实例规格**右侧，单击**更改实例规格**。
 
-        6.  为新增节点绑定标签。
+    ![实例规格变更](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1321465261/p292164.png)
 
-            ![集群扩容](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7463659951/p50326.png)
+8.  在更改实例规格页面，选择合适的实例规格，单击**立即变更**。
 
-        7.  配置完成后，单击**确定**。
-    -   如果您想通过添加已有节点的方法升级配置，请按照如下步骤操作。
-        1.  在目标集群右侧单击**操作**列**更多** \> **添加已有节点**。
+    关于节点实例规格，请参见[选择Worker节点规格](/intl.zh-CN/最佳实践/集群/ECS选型.md)。
 
-            进入添加节点页面，您可以选择**自动添加**或**手动添加**的方式，添加现有云服务器实例。请参见[添加已有节点](/intl.zh-CN/Kubernetes集群用户指南/节点与节点池/节点/添加已有节点.md)。本例以自动添加为例进行升配。
+9.  在调整规格成功对话框，单击**管理控制台**。
 
-        2.  添加方式选择**自动添加**，在已有云服务器的列表中，选择所需的ECS云服务器，然后单击**下一步**。
+    此时自动跳转到实例页面。
 
-            ![自动添加](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7463659951/p10826.png)
+    ![实例列表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3727465261/p50514.png)
 
-        3.  填写实例信息，设置CPU Policy、登录密码和标签，然后单击**下一步**。
+    可以看到worker-k8s-for-cs节点的规格已经调整成功。
 
-            ![实例信息](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7463659951/p10827.png)
+10. 在目标实例右侧**操作**列，选择**更多** \> **实例状态** \> **启动**，在启动实例对话框单击**确定**后，等待升配的worker-k8s-for-cs节点自动加入集群且状态变成**运行中**即可完成Worker节点的资源升配。
 
-        4.  在弹出的对话框中，单击**确定**，选择的ECS云服务器会自动添加到该集群中。
-
-            ![ ECS 云服务器](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7463659951/p10828.png)
-
-4.  在集群管理页面，单击**节点管理**，查看新增节点的状态。
-
-    待新增的节点的状态为**运行中**时，此时Worker节点升配完成。
-
-
-如果您想要移除节点，您可以在节点列表，单击目标节点右侧**操作**列的**更多** \> **移除**，在弹出的对话框中单击**确定**。
-
-**说明：**
-
--   为了确保升级过程中应用的稳定，建议您先加入新节点，再移除多余节点。
--   移除的过程中，为了让应用更稳定，可以配置[pdb](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/)。
 
