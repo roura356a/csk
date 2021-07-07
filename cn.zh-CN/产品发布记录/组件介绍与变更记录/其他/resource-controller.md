@@ -12,9 +12,27 @@ resource-controller是实现动态控制Pod资源的关键组件，使用ACK Pro
 
 ## 使用说明
 
-有关resource-controller组件的使用详情，请参见[CPU拓扑感知调度](/cn.zh-CN/Kubernetes集群用户指南/调度/CPU和内存调度/CPU拓扑感知调度.md)。
+有关resource-controller组件的使用详情，请参见[CPU拓扑感知调度](/cn.zh-CN/Kubernetes集群用户指南/调度/CPU拓扑感知调度/CPU拓扑感知调度.md)。
 
 ## 变更记录
+
+**2021年06月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.2.2-0ac97de0-aliyun|-   registry.cn-hangzhou.aliyuncs.com/acs/node-resource-agent:v21.3.9.0-adecd8a-aliyun
+-   registry.cn-hangzhou.aliyuncs.com/acs/resource-controller:v1.2.2-0ac97de0-aliyun
+
+|2021年06月21日|增加MBA控制、修复Change Memory和Containerd、升级client-go 。|无|
+
+**2021年05月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.2.1-d1e280f-aliyun|-   registry.cn-hangzhou.aliyuncs.com/acs/node-resource-agent:v21.3.9.0-adecd8a-aliyun
+-   registry.cn-hangzhou.aliyuncs.com/acs/resource-controller:v1.2.1-d1e280f-aliyun
+
+|2021年05月21日|增加L3控制、适配AMD拓扑感知调度。|无|
 
 **2021年04月**
 
