@@ -88,7 +88,7 @@ EAA远程证明以关联了带有硬件可执行环境的Quote的TLS证书为信
               - --xfer
               - 127.0.0.1:1234
               - --attester
-              - sgx_ecdsa_qve
+              - sgx_ecdsa
               - --verifier 
               - sgx_ecdsa_qve
               - --mutual
@@ -368,12 +368,12 @@ EAA远程证明以关联了带有硬件可执行环境的Quote的TLS证书为信
 **说明：** 执行命令前请将<$IP\>替换为Woker节点的EIP。
 
 ```
-shelter remoteattestation --verifier sgx_ecdsa --tls wolfssl --crypto wolfcrypt --addr=tcp://<$IP>:1236
+shelter remoteattestation --verifier sgx_ecdsa --tls openssl --crypto openssl --addr=tcp://<$IP>:1236
 ```
 
 -   如果在SGX环境中运行Shelter，预期输出如下。
 
-    ![jm67](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2760473261/p282846.png)
+    ![jm67](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9311465261/p282846.png)
 
     如果输出结果中包含`Remote attestation is successful`，则表明您已成功实现远程证明。
 
