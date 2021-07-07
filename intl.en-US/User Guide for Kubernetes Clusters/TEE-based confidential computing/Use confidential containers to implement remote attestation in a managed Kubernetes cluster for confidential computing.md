@@ -84,7 +84,7 @@ The following table describes the components of EAA.
               - --xfer
               - 127.0.0.1:1234
               - --attester
-              - sgx_ecdsa_qve
+              - sgx_ecdsa
               - --verifier 
               - sgx_ecdsa_qve
               - --mutual
@@ -364,12 +364,12 @@ Run the following command on each node in the cluster to launch Shelter:
 **Note:** Before you run the command, replace <$IP\> with the EIP of the worker node.
 
 ```
-shelter remoteattestation --verifier sgx_ecdsa --tls wolfssl --crypto wolfcrypt --addr=tcp://<$IP>:1236
+shelter remoteattestation --verifier sgx_ecdsa --tls openssl --crypto openssl --addr=tcp://<$IP>:1236
 ```
 
 -   If Shelter is running in an SGX environment, the following output is returned:
 
-    ![jm67](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5519344261/p282846.png)
+    ![jm67](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9411465261/p282846.png)
 
     If remote attestation is implemented, `Remote attestation is successful` appears in the output.
 
