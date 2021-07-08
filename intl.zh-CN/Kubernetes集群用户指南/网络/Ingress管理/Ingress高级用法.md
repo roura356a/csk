@@ -13,13 +13,13 @@ keyword: [安全路由服务, Rewrite配置, 路由域名, HTTPS双向认证, �
 
 ## 配置说明
 
-针对ingress-nginx-controller，我们采用与社区完全兼容的配置方式。关于所有的配置说明，请参见[NGINX Configuration](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)。
+针对Nginx Ingress Controller，我们采用与社区完全兼容的配置方式。关于所有的配置说明，请参见[NGINX Configuration](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)。
 
 目前其主要支持三种配置方式：
 
 -   基于Annotation的方式：在每个Ingress YAML的Annotation里配置，只对本Ingress生效。更多信息，请参见[Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)。
 -   基于ConfigMap的方式：通过kube-system/nginx-configuration configmap的配置，是一个全局的配置，对所有的Ingress生效。更多信息，请参见[ConfigMaps](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)。
--   自定义NGINX Template模板的方式：对Ingress Controller内部的NGINX template有特殊配置要求，且当前通过Annotation和ConfgMap方式都无法满足诉求的情况下采用该方式。更多信息，请参见[Custom NGINX template](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/custom-template/)。
+-   自定义NGINX Template模板的方式：对Ingress Controller内部的NGINX Template有特殊配置要求，且当前通过Annotation和ConfigMap方式都无法满足诉求的情况下采用该方式。更多信息，请参见[Custom NGINX template](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/custom-template/)。
 
 ## 配置URL重定向的路由服务
 
@@ -291,7 +291,7 @@ annotations:
 
     ```
     cat <<-EOF | kubectl apply -f -
-    apiVersion: networking.k8s.io/v1beta1
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       annotations:
@@ -556,7 +556,7 @@ spec:
 
     ```
     cat <<-EOF | kubectl apply -f -
-    apiVersion: networking.k8s.io/v1beta1
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       name: ingress-regex
@@ -662,7 +662,7 @@ spec:
 -   基于权重灰度：配置灰度服务的权重为20%。
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       annotations:
@@ -674,7 +674,7 @@ spec:
 -   基于Header灰度：请求Header为 `ack：always`时将访问灰度服务；请求Header为 `ack：never`时将不访问灰度服务；其它Header将根据灰度权重将流量分配给灰度服务。
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       annotations:
@@ -687,7 +687,7 @@ spec:
 -   基于Header灰度（自定义header值）：当请求Header为`ack: alibaba`时将访问灰度服务；其它Header将根据灰度权重将流量分配给灰度服务。
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       annotations:
@@ -701,7 +701,7 @@ spec:
 -   基于Cookie灰度：当Header不匹配时，请求的Cookie为`hangzhou_region=always`时将访问灰度服务。
 
     ```
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       annotations:
@@ -782,7 +782,7 @@ cert-manager是一个云原生证书管理开源工具，用于在Kubernetes集�
 
     ```
     cat <<EOF | kubectl apply -f -
-    apiVersion: extensions/v1beta1
+    apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
       name: ingress-tls
@@ -823,7 +823,7 @@ cert-manager是一个云原生证书管理开源工具，用于在Kubernetes集�
     ingress-tls   True    ingress-tls   52m
     ```
 
-    **说明：** 如果**READY**状态不为**True**，可通过`kubect describe cert ingress-tls`查看证书处理过程。
+    **说明：** 如果**READY**状态不为**True**，可通过`kubectl describe cert ingress-tls`查看证书处理过程。
 
 7.  执行以下命令，查看Secret。
 
