@@ -14,7 +14,17 @@ CoreDNS是ACK集群和边缘集群中默认采用的DNS服务发现插件，其�
 
 关于CoreDNS的功能和使用，请参见[ACK集群内DNS原理和配置说明](/intl.zh-CN/Kubernetes集群用户指南/网络/服务发现DNS/ACK集群内DNS原理和配置说明.md)。
 
+## 注意事项
+
+升级CoreDNS前，请务必阅读CoreDNS升级的说明。更多信息，请参见[CoreDNS升级说明](/intl.zh-CN/Kubernetes集群用户指南/网络/服务发现DNS/CoreDNS升级说明.md)。
+
 ## 变更记录
+
+**2021年07月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.7.0.0-f59c03d-aliyun（该版本适用于非边缘集群。）|registry.\{\{.Region\}\}.aliyuncs.com/acs/coredns:v1.7.0.0-f59c03d-aliyun|2021年07月08日|修改了CoreDNS默认的优雅退出的时间及CoreDNS Deployment中的容器内存限制。|[注意事项](#section_pmu_oyp_5v8)|
 
 **2021年04月**
 
