@@ -1,6 +1,6 @@
 # Monitor application performance
 
-You can use Application Real-Time Monitoring Service \(ARMS\) to monitor Java and PHP applications that are deployed in a Container Service for Kubernetes \(ACK\) cluster. ARMS can automatically discover application topologies, generate 3D topologies, discover and monitor API endpoints, and detect abnormal and slow transactions. ARMS provides an easier method to diagnose and troubleshoot application issues.
+Container Service for Kubernetes \(ACK\) allows you to use Application Real-Time Monitoring Service \(ARMS\) to monitor Java and PHP applications that are deployed in clusters. ARMS can automatically discover application topologies, generate 3D topologies, discover and monitor API endpoints, and detect abnormal and slow transactions. ARMS provides an efficient method to diagnose and troubleshoot application issues.
 
 -   [Create a cluster]()
 -   [Activate and upgrade ARMS](/intl.en-US/Quick Start/Activate and upgrade ARMS.md)
@@ -8,7 +8,7 @@ You can use Application Real-Time Monitoring Service \(ARMS\) to monitor Java an
     **Note:** The PHP application monitoring feature is in public preview and free of charge.
 
 
-[ARMS](/intl.en-US/Product Overview/What is ARMS?.md) is an application performance management \(APM\) service of Alibaba Cloud. After you install the ARMS application monitoring agent in an ACK cluster, you can use ARMS to monitor Java applications in the cluster without coding. ARMS allows you to quickly locate abnormal and slow transactions, reproduce the parameters of API calls, detect memory leaks, and discover system bottlenecks. This significantly improves the efficiency to diagnose and troubleshoot application issues. For more information, see [Overview](/intl.en-US/Application Monitoring/Overview.md).
+[ARMS](/intl.en-US/Product Overview/What is ARMS?.md) is an application performance management \(APM\) service of Alibaba Cloud. After you install the ARMS application monitoring agent in an ACK cluster, you can use ARMS to monitor Java applications in the cluster without code modifications. ARMS allows you to quickly locate abnormal and slow transactions, reproduce the parameters of API calls, detect memory leaks, and discover system bottlenecks. This significantly improves the efficiency of diagnosing and troubleshooting application issues. For more information, see [Overview](/intl.en-US/Application Monitoring/Overview.md).
 
 ## Install the ARMS application monitoring agent
 
@@ -16,7 +16,7 @@ You can use Application Real-Time Monitoring Service \(ARMS\) to monitor Java an
 
 2.  In the left-side navigation pane, choose **Marketplace** \> **App Catalog**. On the **Alibaba Cloud Apps** tab, find and click **ack-arms-pilot**.
 
-3.  On the App Catalog - ack-arms-pilot page, select the created ACK cluster in the Deploy section and click **Create**.
+3.  On the App Catalog - ack-arms-pilot page, select the cluster that you want to monitor in the Deploy section and click **Create**.
 
 
 ## Authorize ACK to access ARMS
@@ -33,7 +33,7 @@ Perform the following steps to grant ACK the permissions to access ARMS.
 
 5.  You are redirected to the **RAM Roles** page in the **RAM** console. On the RAM Roles page, click the policy name on the **Permissions** tab.
 
-6.  On the **Policy Document** tab, click **Modify Policy Document**. On the Modify Policy Document panel, copy the following content to the Policy Document field and click **OK**.
+6.  On the **Policy Document** tab, click **Modify Policy Document**. In the Modify Policy Document panel, copy the following content to the Policy Document field and click **OK**.
 
     ```
     {
@@ -46,7 +46,7 @@ Perform the following steps to grant ACK the permissions to access ARMS.
 
 ## Enable ARMS to monitor Java applications
 
-The following steps describe how to enable ARMS to monitor newly created Java applications or existing Java applications.
+The following steps describe how to enable ARMS to monitor newly created Java applications and existing Java applications.
 
 To enable ARMS when you create an application, perform the following steps:
 
@@ -58,9 +58,9 @@ To enable ARMS when you create an application, perform the following steps:
 
 4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
-5.  On the Deployments tab, click **Create from Template** in the upper-right corner.
+5.  On the Deployments page, click **Create from YAML** in the upper-right corner.
 
-6.  On the Create page, select a template from the **Sample Template** drop-down list and add the following `annotations` to the spec / template / metadata section in **Template**.
+6.  On the Create page, select a template from the **Sample Template** drop-down list and add the following `annotations` to the spec/template/metadata section in **Template**.
 
     **Note:** Replace <your-deployment-name\> with the name of your application.
 
@@ -77,7 +77,7 @@ To enable ARMS when you create an application, perform the following steps:
 
 ## Enable ARMS to monitor PHP applications
 
-The following steps describe how to enable ARMS to monitor newly created PHP applications or existing PHP applications.
+The following steps describe how to enable ARMS to monitor newly created PHP applications and existing PHP applications.
 
 To enable ARMS when you create an application, perform the following steps:
 
@@ -91,7 +91,7 @@ To enable ARMS when you create an application, perform the following steps:
 
 5.  On the Deployments tab, click **Create from Template** in the upper-right corner.
 
-6.  On the Create page, select a template from the **Sample Template** drop-down list and add the following `annotations` to the spec / template / metadata section in **Template**.
+6.  On the Create page, select a template from the **Sample Template** drop-down list and add the following `annotations` to the spec/template/metadata section in **Template**.
 
     **Note:** Replace <your-deployment-name\> with the name of your application.
 
@@ -106,7 +106,7 @@ To enable ARMS when you create an application, perform the following steps:
 
     **Note:** In the extension=/usr/local/arms/arms-php-agent/arms-7.2.so configuration, arms-7.2.so indicates that the version of the PHP application is V7.2. You can change the version value to 5.4, 5.5, 5.6, 7.0, 7.1, or 7.2.
 
-8.  Copy the content of the arms-php.ini ConfigMap to the spec / template / spec / containers section in the php.ini file. Set mountPath to the path of the php.ini file.
+8.  Copy the content of the arms-php.ini ConfigMap to the spec/template/spec/containers section in the php.ini file. Set mountPath to the path of the php.ini file.
 
     ```
     volumeMounts:
@@ -135,9 +135,9 @@ To enable ARMS to monitor existing applications, perform the following steps:
 
 4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
 
-5.  Select a namespace from the **Namespace** drop-down list. In the list of Deployments, find the application and then choose **More** \> **View in YAML** in the **Actions** column.
+5.  Select a namespace from the **Namespace** drop-down list. In the Deployments list, find the application that you want to monitor and then choose **More** \> **View in YAML** in the **Actions** column.
 
-6.  In the Edit YAML dialog box, add the following `annotations` to the spec / template / metadata section and click **Update**.
+6.  In the Edit YAML dialog box, add the following `annotations` to the spec/template/metadata section and click **Update**.
 
     **Note:** Replace <your-deployment-name\> with the name of your application.
 
@@ -148,7 +148,7 @@ To enable ARMS to monitor existing applications, perform the following steps:
       armsAppType: PHP                                
     ```
 
-7.  Copy the content of the arms-php.ini ConfigMap to the spec / template / spec / containers section in the php.ini file. Set mountPath to the path of the php.ini file.
+7.  Copy the content of the arms-php.ini ConfigMap to the spec/template/spec/containers section in the php.ini file. Set mountPath to the path of the php.ini file.
 
     ```
     volumeMounts:
