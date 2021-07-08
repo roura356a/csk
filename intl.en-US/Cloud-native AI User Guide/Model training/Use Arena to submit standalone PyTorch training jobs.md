@@ -9,7 +9,7 @@ This topic describes how to use the Arena client to submit standalone PyTorch jo
 -   [A cluster of Alibaba Cloud Container Service for Kubernetes \(ACK\) that contains GPU-accelerated nodes is created](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Use GPU scheduling for ACK clusters.md).
 -   [Nodes in the cluster can access the Internet](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Access the Kubernetes API server over the Internet.md).
 -   [Install Arena]().
--   A persistent volume claim \(PVC\) is created for the target ACK cluster and the datasets used in this topic are downloaded to the corresponding persistent volume \(PV\). For more information, see [Configure a shared NAS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared NAS volume.md) or [Configure a shared CPFS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared CPFS volume.md).
+-   A persistent volume claim \(PVC\) is created for the target ACK cluster and the datasets used in this topic are downloaded to the corresponding persistent volume \(PV\). For more information, see [Configure a shared NAS volume]() or [Configure a shared CPFS volume]().
 
 In this topic, the source training code is downloaded from a Git repository. The datasets are stored in a shared Network Attached Storage \(NAS\) volume that is declared by a PV and a PVC. In this example, a PVC that is named **training-data** is created. The PVC uses a shared PV. The datasets in this example are stored in the tf\_data directory of the share PV.
 
@@ -79,7 +79,7 @@ NAME           ACCESSMODE     DESCRIPTION  OWNER  AGE
 training-data  ReadWriteMany                      35m
     ```
 
-If no PVC is available, create one. For more information, see [Configure a shared NAS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared NAS volume.md) or [Configure a shared CPFS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared CPFS volume.md).
+If no PVC is available, create one. For more information, see [Configure a shared NAS volume]() or [Configure a shared CPFS volume]().
 
 |N/A|
     |--tensorboard|No|Specifies that TensorBoard is used to visualize training results. You can set this parameter in combination with the --logdir parameter to specify the path from which TensorBoard reads event files. If you do not specify this parameter, TensorBoard is not used.|N/A|
