@@ -9,7 +9,7 @@ keyword: [域名解析, dnspolicy, CoreDNS, 服务发现]
 在进行内置DNS配置前，请确保您已完成以下操作：
 
 -   [创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
--   [通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)
+-   [t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)
 
 ACK集群默认部署了一套DNS服务，通过kube-dns的服务名暴露DNS服务。您可执行以下命令查看kube-dns的服务详情。
 
@@ -131,7 +131,7 @@ ACK支持通过dnsPolicy字段为每个Pod配置不同的DNS策略。目前ACK�
 
 -   **场景三：采用阿里云ECS的DNS配置**
 
-    当您的应用Pod不需要访问集群内的其它服务，只需要通过阿里云DNS来做解析，也不希望DNS解析经过CoreDNS，可以采用`dnsPolicy: Defualt`策略。示例配置如下：
+    当您的应用Pod不需要访问集群内的其它服务，只需要通过阿里云DNS来做解析，也不希望DNS解析经过CoreDNS，可以采用`dnsPolicy: Default`策略。示例配置如下：
 
     ```
     apiVersion: v1
@@ -181,7 +181,7 @@ ACK支持通过dnsPolicy字段为每个Pod配置不同的DNS策略。目前ACK�
 
 **CoreDNS的默认配置**
 
-在命名空间kube-system下，ACK集群有一个coredns配置项（有关如何查看配置项的具体步骤，请参见[t15755.md\#section\_hly\_ioi\_ozy](/intl.zh-CN/Kubernetes集群用户指南/应用/配置项及密钥/创建配置项.md)）。其Corefile字段的文件配置内容如下（CoreDNS功能都是通过Corefile内的插件提供）。
+在命名空间kube-system下，ACK集群有一个coredns配置项（有关如何查看配置项的具体步骤，请参见[查看配置项](/intl.zh-CN/Kubernetes集群用户指南/应用/配置项及保密字典/管理配置项.md)）。其Corefile字段的文件配置内容如下（CoreDNS功能都是通过Corefile内的插件提供）。
 
 ```
   Corefile: |
