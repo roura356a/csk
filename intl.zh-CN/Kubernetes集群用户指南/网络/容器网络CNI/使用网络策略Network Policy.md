@@ -14,6 +14,11 @@ Kubernetes网络策略（Network Policy）提供基于策略的网络控制。�
 
 ## 开启网络策略
 
+**说明：**
+
+-   如果您想通过控制台的方式使用网络策略功能，请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请成为白名单用户。
+-   如果通过命令行方式使用网络策略功能，无需申请成为白名单用户。
+
 您可以在创建Terway集群时开启网络策略功能，也可以在创建Terway集群后再开启网络策略功能：
 
 -   如果您在创建Terway集群时，选中了**NetworkPolicy支持**配置，可自动开启网络策略功能。具体操作，请参见[创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
