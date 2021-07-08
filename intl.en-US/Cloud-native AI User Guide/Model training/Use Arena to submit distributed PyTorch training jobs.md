@@ -8,7 +8,7 @@ This topic describes how to use the Arena client to submit distributed PyTorch t
 
 -   [A cluster of Alibaba Cloud Container Service for Kubernetes \(ACK\) that contains GPU-accelerated nodes is created](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Use GPU scheduling for ACK clusters.md).
 -   [Nodes in the cluster can access the Internet](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Access the Kubernetes API server over the Internet.md).
--   [The latest versions of the ack-arena add-on and the Arena client are installed]().
+-   [Install Arena]().
 -   A persistent volume claim \(PVC\) is created for the target ACK cluster and the datasets used in this topic are downloaded to the corresponding persistent volume \(PV\). For more information, see [Configure a shared NAS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared NAS volume.md) or [Configure a shared CPFS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared CPFS volume.md).
 
 In this topic, the source training code is downloaded from a Git repository. The datasets are stored in a shared Network Attached Storage \(NAS\) volume that is mounted by using a PV and a PVC. In this example, a PVC that is named **training-data** is created. The PVC uses a shared PV. The datasets are stored in the pytorch\_data directory of the shared PV.
