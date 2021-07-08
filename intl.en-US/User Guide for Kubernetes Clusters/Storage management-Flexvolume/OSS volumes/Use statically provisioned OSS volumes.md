@@ -1,13 +1,17 @@
+---
+keyword: [statically provisioned OSS volumes, K8s]
+---
+
 # Use statically provisioned OSS volumes
 
 This topic describes how to use statically provisioned Object Storage Service \(OSS\) volumes in Container Service for Kubernetes \(ACK\).
 
 ## Use an OSS bucket as a statically provisioned volume
 
-1.  Create the oss-deploy.yaml file and copy the following content to the file.
+1.  Create a file named oss-deploy.yaml and copy the following content to the file.
 
     ```
-    apiVersion: apps/v1
+    apiVersion: extensions/v1beta1
     kind: Deployment
     metadata:
       name: nginx-oss-deploy
@@ -53,7 +57,7 @@ This topic describes how to use statically provisioned Object Storage Service \(
 
 ## Use an OSS bucket to create a PV and a PVC
 
-1.  Create a PV.
+1.  Create a persistent volume \(PV\).
 
     You can create a PV in the ACK console or by using a YAML file.
 
@@ -85,19 +89,24 @@ This topic describes how to use statically provisioned Object Storage Service \(
     -   Create a PV in the ACK console
         1.  Log on to the [ACK console](https://cs.console.aliyun.com).
         2.  In the left-side navigation pane, click **Clusters**.
-        3.  On the Clusters page, find the cluster that you want to manage and click **Details** in the **Actions** column of the cluster.
-        4.  The Cluster Information page appears. In the left-side navigation pane, click **Persistent Volumes**. The Persistent Volume Claims tab appears.
+        3.  On the Clusters page, find the cluster that you want to manage, and click the name of the cluster or click **Details** in the **Actions** column.
+        4.  In the left-side navigation pane of the details page, choose **Volumes** \> **Persistent Volumes**.
         5.  Click the **Persistent Volumes** tab and click **Create**.
         6.  In the **Create PV** dialog box, set the required parameters.
 
             |Parameter|Description|
             |---------|-----------|
             |**PV Type**|In this example, OSS is selected.|
-            |**Volume Plug-in**|By default, Flexvolume is selected. For more information about volume plug-ins, see [Differences between FlexVolume and CSI](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Volume plug-ins.md).|
-            |**Access Mode**|By default, ReadWriteMany is selected.|
-            |**Cloud ID**|In the **Select Disk** dialog box, find the disk that you want to use and click Select in the Actions column of the disk.|
-            |**File System Type**|The type of the file system.|
-            |**Labels**|Add labels to the PV.|
+            |**Volume Name**|The name of the PV that you want to create. The name must be unique in the cluster. In this example, pv-oss is used.|
+            |**Volume Plug-in**|In this example, Flexvolume is selected. For more information about volume plug-ins, see [Differences between FlexVolume and CSI](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Volume plug-ins.md).|
+            |**Capacity**|The capacity of the PV.|
+            |**Access Mode**|Default value: ReadWriteMany.|
+            |**AccessKey ID**|The AccessKey pair that is required to access the OSS bucket.|
+            |**AccessKey Secret**|
+            |**Optional Parameters**|Enter custom parameters in the format of `-o *** -o ***`.|
+            |**Bucket ID**|The name of the OSS bucket that you want to mount. Click **Select Bucket**. In the dialog box that appears, select the OSS bucket that you want to mount and click **Select**.|
+            |**Endpoint**|Select **Public Endpoint** if the OSS bucket and the Elastic Compute Service \(ECS\) instances in the cluster are deployed in different regions.**** Select **Internal Endpoint** if the OSS bucket is deployed in a classic network.|
+            |**Label**|Add labels to the PV.|
 
         7.  Click **Create**.
 2.  Create a PVC.
@@ -162,21 +171,21 @@ This topic describes how to use statically provisioned Object Storage Service \(
     ```
 
 
-## Use a secret to provide your AccessKey information
+## Use a Secret to provide AccessKey information
 
-1.  Run the following command to create a secret:
+1.  Run the following command to create a Secret:
 
     ```
     kubectl create secret generic osssecret --from-literal=akId='111111' --from-literal=akSecret='2222222' --type=alicloud/oss -n default
     ```
 
-    -   osssecret: the name of the secret. You can specify a secret name.
-    -   akId: your AccessKey ID.
-    -   akSecret: your AccessKey secret.
-    -   type: Set this parameter to alicloud/oss. This is the namespace to which the required pod belongs.
-2.  Use the secret in a PV.
+    -   osssecret: The name of the Secret.
+    -   akId: The AccessKey ID.
+    -   akSecret: The AccessKey secret.
+    -   type: Set this parameter to alicloud/oss. The Secret and the pod that uses the Secret must belong to the same namespace.
+2.  Use the Secret in a PV.
 
-    Specify the secret in the secretRef field of the PV.
+    Specify the Secret in the secretRef field of the PV.
 
     ```
     apiVersion: v1
@@ -199,12 +208,12 @@ This topic describes how to use statically provisioned Object Storage Service \(
           otherOpts: "-o max_stat_cache_size=0 -o allow_other"
     ```
 
-3.  Use the secret in a volume.
+3.  Use the Secret in a volume.
 
-    Specify the secret in the secretRef field of the volume.
+    Specify the Secret in the secretRef field of the volume.
 
     ```
-    apiVersion: apps/v1
+    apiVersion: extensions/v1beta1
     kind: Deployment
     metadata:
       name: nginx-oss-deploy1
@@ -234,6 +243,6 @@ This topic describes how to use statically provisioned Object Storage Service \(
                   otherOpts: "-o max_stat_cache_size=0 -o allow_other"
     ```
 
-    **Note:** When you use a secret to configure your AccessKey information, the secret and the required pod must belong to the same namespace.
+    **Note:** When you use a Secret to configure the AccessKey pair, the Secret and the pod that uses the Secret must belong to the same namespace.
 
 
