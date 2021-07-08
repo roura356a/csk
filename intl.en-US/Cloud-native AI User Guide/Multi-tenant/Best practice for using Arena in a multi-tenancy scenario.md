@@ -252,7 +252,7 @@ To complete Task 5, you must create two types of shared volumes. The first type 
 
 1.  Create a NAS file system.
 
-    Log on to the [Apsara File Storage NAS console](https://nasnext.console.aliyun.com/overview), create a NAS file system, and add a mount target. For more information, see [Configure a shared NAS volume](/intl.en-US/Solutions/Deep learning solution/Preparations/Configure a shared NAS volume.md).
+    Log on to the [Apsara File Storage NAS console](https://nasnext.console.aliyun.com/overview), create a NAS file system, and add a mount target. For more information, see [Configure a shared NAS volume]().
 
 2.  Create persistent volumes \(PVs\) and persistent volume claims \(PVCs\) for the ACK cluster.
 
