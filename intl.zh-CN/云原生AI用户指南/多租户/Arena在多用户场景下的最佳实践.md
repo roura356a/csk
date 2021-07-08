@@ -13,7 +13,7 @@ keyword: [Arena, K8s集群, 多用户, 存储]
 
     本示例中，ECS实例被称为Client机器。Client机器作为Arena的工作站，提交作业至ACK集群。
 
--   安装最新版本Arena。具体操作步骤请参见[安装Arena](/intl.zh-CN/解决方案/AI解决方案/环境准备/通过组件安装最新版的Arena.md)。
+-   安装最新版本Arena。具体操作步骤请参见[安装Arena]()。
 
 当多个开发人员在一个公司或大团体下使用Arena进行工作时，为了有效管理，您可能需要对这些人员进行小组划分，且每个小组需要彼此隔离。这样在同一个集群内，小组就是您分配、隔离资源和权限的基本单元。
 
@@ -60,7 +60,7 @@ keyword: [Arena, K8s集群, 多用户, 存储]
 
     1.  通过kubectl连接ACK集群。
 
-        使用kubectl命令连接ACK集群时，您需要安装kubectl客户端工具和配置供集群管理员admin操作ACK集群的KubeConfig文件。有关具体的操作步骤，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+        使用kubectl命令连接ACK集群时，您需要安装kubectl客户端工具和配置供集群管理员admin操作ACK集群的KubeConfig文件。有关具体的操作步骤，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
         **说明：** 要求kubectl的版本大于或等于1.10。
 
@@ -114,7 +114,7 @@ keyword: [Arena, K8s集群, 多用户, 存储]
 
 1.  安装Arena。
 
-    集群管理员在Client机器上安装Arena。首先集群管理员以root身份登录到Client机器，下载社区最新Arena发行的release安装包，然后解压、执行安装包中install.sh脚本。有关具体的操作步骤，请参见[安装Arena](/intl.zh-CN/解决方案/AI解决方案/环境准备/通过组件安装最新版的Arena.md)。
+    集群管理员在Client机器上安装Arena。首先集群管理员以root身份登录到Client机器，下载社区最新Arena发行的release安装包，然后解压、执行安装包中install.sh脚本。有关具体的操作步骤，请参见[安装Arena]()。
 
     **说明：** 在同一台Linux操作机上，您只需安装一份Arena工具。管理员通过为每位用户配置各自的配置文件，从而实现隔离，便于用户以不同的权限使用Arena工具。
 
@@ -262,7 +262,7 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
 
 1.  创建NAS实例。
 
-    在[阿里云NAS控制台](https://nasnext.console.aliyun.com/overview)开通、购买NAS示例，并创建挂载点。有关详细步骤，请参见[配置NAS共享存储](/intl.zh-CN/解决方案/AI解决方案/环境准备/配置NAS共享存储.md)。
+    在[阿里云NAS控制台](https://nasnext.console.aliyun.com/overview)开通、购买NAS示例，并创建挂载点。有关详细步骤，请参见[配置NAS共享存储]()。
 
 2.  配置ACK集群的存储卷（PV）和存储声明（PVC）。
 
@@ -366,7 +366,7 @@ AI平台通过ACK统一管理所有集群资源。为了保证不同组和用户
 
     ```
     # 使用tom账号登录Client机器。
-    ssh tom@39.98.xxx.xx
+    ssh tom@39.98.xx.xx
     
     # 通过arena data list查看当前用户可用共享数据卷。
     arena data list
