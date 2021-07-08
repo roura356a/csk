@@ -1,6 +1,12 @@
+---
+keyword: [workloads, stateful application, StatefulSet]
+---
+
 # Use a StatefulSet to create a stateful application
 
-Container Service for Kubernetes \(ACK\) allows you to create stateful applications by using the ACK console. In this topic, a stateful NGINX application is created as an example. The features of StatefulSets are also demonstrated.
+Container Service for Kubernetes \(ACK\) allows you to create stateful applications by using the ACK console. This topic provides an example on how to create a stateful NGINX application and demonstrates the features of StatefulSets.
+
+## Prerequisites
 
 Before you deploy a stateful application from an image, make sure that you have performed the following steps:
 
@@ -8,12 +14,14 @@ Before you deploy a stateful application from an image, make sure that you have 
 -   [Create a PVC](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Create a PVC.md)
 -   [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md)
 
+## Background information
+
 StatefulSets provide the following features:
 
 |Feature|Description|
 |-------|-----------|
-|Pod consistency|Pod consistency guarantees that pods are started and terminated in the specified order and also guarantees the consistency of networks. The consistency of pods is determined by the configurations of the pods, regardless of the node to which a pod is scheduled.|
-|Stable and persistent storage|VolumeClaimTemplate allows you to mount a persistent volume \(PV\) to each pod. The mounted PVs are not deleted after you delete or scale in the pod replicas.|
+|Pod consistency|Pod consistency ensures that pods are started and terminated in the specified order and ensures network consistency. Pod consistency is determined by pod configurations, regardless of the node to which a pod is scheduled.|
+|Stable and persistent storage|VolumeClaimTemplate allows you to mount a persistent volume \(PV\) to each pod. The mounted PVs are not deleted after you delete or scale in the number of pod replicas.|
 |Stable network identifiers|Each pod in a StatefulSet derives its hostname from the name of the StatefulSet and the ordinal of the pod. The pattern of the hostname is `StatefulSet name-pod ordinal`.|
 |Stable orders|For a StatefulSet with N pod replicas, each pod is assigned an integer ordinal from 0 to N-1. The ordinals assigned to pods within the StatefulSet are unique.|
 
@@ -31,14 +39,14 @@ StatefulSets provide the following features:
 
 6.  On the **Basic Information** wizard page, configure the basic settings.
 
-    In this example, the Type parameter is set to **StatefulSets** to deploy a stateful application.
+    In this example, the Type parameter is set to **StatefulSet** to deploy a stateful application.
 
     |Parameter|Description|
     |---------|-----------|
     |Name|The name of the application.|
     |Namespace|The namespace where you want to deploy the application. The default namespace is automatically selected. You can select another namespace.|
     |Replicas|The number of pods that are provisioned for the application.|
-    |Type|The type of application. You can select **Deployments**, **StatefulSets**, **Jobs**, **Cron Jobs**, or **DaemonSets**.|
+    |Type|The type of the application. You can select **Deployment**, **StatefulSet**, **Job**, **CronJob**, or **DaemonSet**.|
     |Label|Add a label to the application. The label is used to identify the application.|
     |Annotations|Add an annotation to the application.|
     |Synchronize Timezone|Specify whether to synchronize the time zone between nodes and containers.|
@@ -55,10 +63,10 @@ StatefulSets provide the following features:
 
         |Parameter|Description|
         |---------|-----------|
-        |Image Name|        -   To use a Docker image or an image from Container Registry, click **Select Image**. In the dialog box that appears, select an image and click **OK**. In this example, an NGINX image is selected. On the **Search** tab, select **Docker Images** from the drop-down list, enter NGINX in the search bar, and then click Search.
-            -   Alibaba Cloud Container Registry: On the **Alibaba Cloud Container Registry** tab, you can select an image from Container Registry. Specify the region and the Container Registry instance to which the image belongs. For more information about Container Registry, see [What is Container Registry?]().
+        |Image Name|        -   You can click **Select Image**. In the dialog box that appears, select an image and click **OK**. In this example, an NGINX image is selected. On the **Search** tab, select **Docker Images** from the drop-down list, enter NGINX into the search box, and then click Search.
+            -   Images from Container Registry: On the **Alibaba Cloud Container Registry** tab, you can select an image from Container Registry. You must select the region and the Container Registry instance to which the image belongs. For more information about Container Registry, see [What is Container Registry?]().
 
-**Note:** On the **Alibaba Cloud Container Registry** tab, you can enter an image name to search for an image.
+**Note:** On the **Alibaba Cloud Container Registry** tab, you can search for images by name.
 
             -   Docker Official Images: On the **Docker Official Images** tab, you can select a Docker image.
             -   Favorite Images: On the **Favorite Images** tab, you can select a Docker image that you have added to your favorite list.
@@ -76,9 +84,9 @@ StatefulSets provide the following features:
 
         -   To pull the image without a password, click **Set Image Pull Secret** to set a Secret that is used to pull the image. For more information, see [Use aliyun-acr-credential-helper to pull images without a password](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Image/Use aliyun-acr-credential-helper to pull images without a password.md). |
         |Resource Limit|You can specify an upper limit for the CPU, memory, and ephemeral storage space that the container can consume. This prevents the container from occupying an excess amount of resources. The CPU resource is measured in millicores \(one thousandth of one core\). The memory resource is measured in MiB. The ephemeral storage resource is measured in GiB.|
-        |Required Resources|The amount of CPU and memory resources that are reserved for this application. These resources are exclusive to the container. This prevents the application from becoming unavailable when other services or processes occupy these resources.|
-        |Container Start Parameter|        -   stdin: specifies that start parameters defined in the console are sent to the container.
-        -   tty: specifies that start parameters defined in a virtual terminal are sent to the console. |
+        |Required Resources|The amount of CPU and memory resources that are reserved for this application. These resources are exclusive to the container. This prevents the application from becoming unavailable if other services or processes compete for computing resources.|
+        |Container Start Parameter|        -   stdin: Pass stdin to the container.
+        -   tty: Stdin is a TeleTYpewriter \(TTY\). |
         |Privileged Container|        -   If you select Privileged Container, privileged=true is set for the container and the privilege mode is enabled.
         -   If you do not select Privileged Container, privileged=false is set for the container and the privilege mode is disabled. |
         |Init Container|If you select Init Container, an init container is created. An init container contains useful utilities. For more information, see [Init Containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/?spm=a2c4g.11186623.2.13.3fdd30dfnyevPx).|
@@ -92,13 +100,13 @@ StatefulSets provide the following features:
         -   Protocol: Select TCP or UDP.
     -   Environments
 
-        You can configure environment variables in key-value pairs for pods. Environment variables are used to apply pod configurations to containers. For more information, see [Pod variables](https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/?spm=0.0.0.0.8VJbrE).
+        You can configure environment variables for pods in key-value pairs. Environment variables are used to apply pod configurations to containers. For more information, see [Pod variables](https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/?spm=0.0.0.0.8VJbrE).
 
-        -   Type: Select the type of environment variable. You can select **Custom**, **ConfigMaps**, **Secret**, or **Value/ValueFrom**. If you select ConfigMaps or Secret as the type of environment variable, all values in the selected ConfigMap or Secret are passed to the container environment variables. In this example, Secret is selected.
+        -   Type: Select the type of environment variable. You can select **Custom**, **ConfigMaps**, **Secrets**, or **Value/ValueFrom**. If you select ConfigMaps or Secrets as the type of environment variable, all values in the selected ConfigMap or Secret are passed to the container environment variables. In this example, Secrets is selected.
 
-            Select **Secret** from the Type drop-down list and select a Secret from the **Value/ValueFrom** drop-down list. All values in the selected Secret are passed to the environment variable.
+            Select **Secrets** from the Type drop-down list and select a Secret from the **Value/ValueFrom** drop-down list. All values in the selected Secret are passed to the environment variable.
 
-            ![Environment variable](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9007846161/p130410.png)
+            ![Environments](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9007846161/p130410.png)
 
             In this case, the YAML file used to deploy the application contains the settings that reference all values in the specified Secret.
 
@@ -112,16 +120,16 @@ StatefulSets provide the following features:
 
         |Request type|Description|
         |------------|-----------|
-        |HTTP request|Sends an HTTP GET request to the container. You can configure the following parameters:        -   Protocol: HTTP or HTTPS.
-        -   Path: the requested path on the server.
-        -   Port: the container port that you want to open. Enter a port number from 1 to 65535.
-        -   HTTP Header: the custom headers in the HTTP request. Duplicate headers are allowed. Key-value pairs are supported.
+        |HTTP|Sends an HTTP GET request to the container. You can configure the following parameters:        -   Protocol: HTTP or HTTPS.
+        -   Path: Enter the requested path on the server.
+        -   Port: Enter the container port that you want to open. Enter a port number from 1 to 65535.
+        -   HTTP Header: Enter the custom headers in the HTTP request. Duplicate headers are allowed. Key-value pairs are supported.
         -   Initial Delay \(s\): the initialDelaySeconds field in the YAML file. This field specifies the wait time \(in seconds\) before the first probe is performed after the container is started. Default value: 3.
         -   Period \(s\): the periodSeconds field in the YAML file. This field specifies the time interval \(in seconds\) at which probes are performed. Default value: 10. Minimum value: 1.
         -   Timeout \(s\): the timeoutSeconds field in the YAML file. This field specifies the time \(in seconds\) after which the probe times out. Default value: 1. Minimum value: 1.
         -   Healthy Threshold: the minimum number of consecutive successes that must occur before a container is considered healthy after a failed probe. Default value: 1. Minimum value: 1. For liveness probes, this parameter must be set to 1.
         -   Unhealthy Threshold: the minimum number of consecutive failures that must occur before a container is considered unhealthy after a success. Default value: 3. Minimum value: 1. |
-        |TCP|Sends a TCP socket to the container. Kubelet attempts to open the socket on the specified port. If the connection can be established, the container is considered healthy. Otherwise, the container is considered unhealthy. You can configure the following parameters:        -   Port: the container port that you want to open. Enter a port number from 1 to 65535.
+        |TCP|Sends a TCP socket to the container. kubelet attempts to open the socket on the specified port. If the connection can be established, the container is considered healthy. Otherwise, the container is considered unhealthy. You can configure the following parameters:        -   Port: Enter the container port that you want to open. Enter a port number that ranges from 1 to 65535.
         -   Initial Delay \(s\): the initialDelaySeconds field in the YAML file. This field specifies the wait time \(in seconds\) before the first probe is performed after the container is started. Default value: 15.
         -   Period \(s\): the periodSeconds field in the YAML file. This field specifies the time interval \(in seconds\) at which probes are performed. Default value: 10. Minimum value: 1.
         -   Timeout \(s\): the timeoutSeconds field in the YAML file. This field specifies the time \(in seconds\) after which the probe times out. Default value: 1. Minimum value: 1.
@@ -129,23 +137,23 @@ StatefulSets provide the following features:
         -   Unhealthy Threshold: the minimum number of consecutive failures that must occur before a container is considered unhealthy after a success. Default value: 3. Minimum value: 1. |
         |Command|Runs a probe command in the container to check the health status of the container. You can configure the following parameters:        -   Command: Enter the probe command that is run to check the health status of the container.
         -   Initial Delay \(s\): the initialDelaySeconds field in the YAML file. This field specifies the wait time \(in seconds\) before the first probe is performed after the container is started. Default value: 5.
-        -   Period \(s\): the periodSeconds field in the YAML file. This field specifies the time interval \(in seconds\) at which probles are performed. Default value: 10. Minimum value: 1.
+        -   Period \(s\): the periodSeconds field in the YAML file. This field specifies the interval \(in seconds\) at which probes are performed. Default value: 10. Minimum value: 1.
         -   Timeout \(s\): the timeoutSeconds field in the YAML file. This field specifies the time \(in seconds\) after which the probe times out. Default value: 1. Minimum value: 1.
         -   Healthy Threshold: the minimum number of consecutive successes that must occur before a container is considered healthy after a failed probe. Default value: 1. Minimum value: 1. For liveness probes, this parameter must be set to 1.
         -   Unhealthy Threshold: the minimum number of consecutive failures that must occur before a container is considered unhealthy after a success. Default value: 3. Minimum value: 1. |
 
     -   Lifecycle
 
-        You can configure the lifecycle of the container by using the following parameters: Start, Post Start, and Pre Stop. For more information, see [Attach Handlers to Container Lifecycle Events](https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/).
+        You can set the following parameters to configure the lifecycle of the container: Start, Post Start, and Pre Stop. For more information, see [Attach Handlers to Container Lifecycle Events](https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/).
 
         -   **Start**: Set the command and parameter that take effect before the container starts.
         -   **Post Start**: Set the command that takes effect after the container starts.
         -   **Pre Stop**: Set the command that takes effect before the container stops.
-        ![Lifecycle](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6136769161/p134222.png)
+        ![Lifecycle settings](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6136769161/p134222.png)
 
     -   Volume
 
-        You can mount on-premises volumes and persistent volume claims \(PVCs\) to the container.
+        You can mount local volumes and persistent volume claims \(PVCs\) to the container.
 
         -   **Add Local Storage**: You can select HostPath, ConfigMap, Secret, and EmptyDir. The specified volume is mounted to a path in the container. For more information, see [Volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE).
         -   **Add PVC**: You can select Cloud Storage.
@@ -161,14 +169,14 @@ StatefulSets provide the following features:
 
         |Parameter|Description|
         |---------|-----------|
-        |Collection Configuration|Logstore: Create a Logstore in Log Service to store log data.|
-        |Log Path in Container: Specify stdout or a path to collect log data
+        |Collection Configuration|Logstore: creates a Logstore in Log Service to store collected logs.|
+        |Log Path in Container: specifies stdout or a path to collect logs.
 
         -   stdout: specifies that the stdout files are collected.
-        -   Text Logs: specifies that logs in the specified path of the container are collected. In this example, /var/log/nginx is specified as the path. Wildcard characters can be used to specify the path. |
-        |Custom Tag|You can also add custom tags. Custom tags are added to the logs of the container when the logs are collected. Log data with tags is easier to aggregate and filter.|
+        -   Text Logs: specifies that logs in the specified path of the container are collected. In this example, /var/log/nginx is specified as the path. Wildcard characters can be used in the path. |
+        |Custom Tag|You can also add custom tags. Custom tags are added to the log of the container when the log is collected. Custom tags provide an easy method to filter collected logs and perform statistical analytics.|
 
-9.  Configure the parameters based on your business requirements and click **Next**.
+9.  Set the parameters based on your business requirements and click **Next**.
 
 10. Configure advanced settings.
 
@@ -186,8 +194,8 @@ StatefulSets provide the following features:
 
         |Parameter|Description|
         |---------|-----------|
-        |Service|Click **Create** on the right side of **Services**. In the **Create Service** dialog box, configure the parameters. For more information about the parameters, see [Manage Services](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Manage Services.md). **Cluster IP** is selected in this example.|
-        |Ingress|Click **Create** on the right side of **Ingresses**. In the Create dialog box, configure the parameters. For more information about how to configure an Ingress, see [Create an Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Basic operations of an Ingress.md). **Note:** When you deploy an application from an image, you can create an Ingress for only one Service. In this example, the name of a virtual host is used as the test domain name. You must add the following entry to the hosts file to map the domain name to the IP address of the Ingress. In actual scenarios, use a domain name that has obtained an Internet Content Provider \(ICP\) number.
+        |Services|Click **Create** on the right side of **Service**. In the **Create Service** dialog box, set the parameters. For more information about the parameters, see [Manage Services](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Manage Services.md). **Cluster IP** is selected in this example.|
+        |Ingresses|Click **Create** on the right side of **Ingresses**. In the Create dialog box, set the parameters. For more information about how to configure an Ingress, see [Create an Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Basic operations of an Ingress.md). **Note:** When you deploy an application from an image, you can create an Ingress only for one Service. In this example, a virtual hostname is used as the test domain name. You must add the following entry to the hosts file to map the domain name to the IP address of the Ingress. In actual scenarios, use a domain name that has obtained an ICP number.
 
         ```
 101.37.224.146   foo.bar.com    #The IP address of the Ingress.
@@ -197,7 +205,7 @@ StatefulSets provide the following features:
 
     -   Scaling
 
-        In the **Scaling** section, specify whether to enable **HPA** and **CronHPA**. This allows you to meet the resource requirements of the application at different load levels.
+        In the **Scaling** section, specify whether to enable **HPA** and **CronHPA**. Horizontal Pad Autoscaler \(HPA\) allows you to meet the resource requirements of the application at different load levels.
 
         ![Scaling](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4104519061/p10978.png)
 
@@ -208,9 +216,9 @@ StatefulSets provide the following features:
             |Parameter|Description|
             |---------|-----------|
             |Metric|Select CPU Usage or Memory Usage. The selected resource type must be the same as that specified in the Required Resources field.|
-            |Condition|Specify the resource usage threshold. HPA triggers scaling activities when the threshold is exceeded.|
-            |Max. Replicas|Specify the maximum number of pod replicas to which the application can be scaled.|
-            |Min. Replicas|Specify the minimum number of pod replicas that must run.|
+            |Condition|Specify the resource usage threshold. HPA triggers scale-out activities when the threshold is exceeded.|
+            |Max. Replica|Specify the maximum number of pod replicas to which the application can be scaled.|
+            |Min. Replica|Specify the minimum number of pod replicas that must run.|
 
         -   CronHPA can scale an ACK cluster at a scheduled time. For more information about CronHPA, see [Create CronHPA jobs](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/CronHPA.md).
     -   Scheduling
@@ -224,9 +232,9 @@ StatefulSets provide the following features:
         |Update Method|Select Rolling Update or OnDelete. For more information, see [Deployments](https://kubernetes.io/zh/docs/concepts/workloads/controllers/deployment/?spm=a2c4g.11186623.2.32.3fdd30dfnyevPx). |
         |Node Affinity|Add labels to worker nodes to set **Node Affinity**. Node Affinity supports required and preferred rules, and various operators, such as In, NotIn, Exists, DoesNotExist, Gt, and Lt.
 
-        -   **Required**: Specify the rules that must be matched for a pod to be scheduled to a node. In the YAML file, these rules are defined by the requiredDuringSchedulingIgnoredDuringExecution field of the nodeAffinity parameter. These rules have the same effect as the `NodeSelector` parameter. In this example, pods can be scheduled to only nodes with the specified labels. You can create multiple required rules. However, only one of them must be met.
-        -   **Preferred**: Specify the rules that are not required to be matched for pod scheduling. Pods are scheduled to a node that matches the preferred rules when multiple nodes match the required rules. In the YAML file, these rules are defined by the preferredDuringSchedulingIgnoredDuringExecution field of the nodeAffinity parameter. In this example, the scheduler attempts to schedule a pod to a node that matches the preferred rules. You can set node weights in preferred rules. If multiple nodes match the required and preferred rules, the node with the highest weight is preferred for pod scheduling. You can create multiple preferred rules. However, all of them must be met before the pod can be scheduled. |
-        |Pod Affinity|Pod affinity specifies that pods can be scheduled to nodes or topological domains where pods with matching labels are deployed. For example, you can use pod affinity to deploy services that communicate with each other to the same topological domain, such as a host. This reduces the network latency between these services. Pod affinity enables you to specify to which node pods can be scheduled based on the labels on other running pods. Pod affinity supports required and preferred rules, and the following operators: `In, NotIn, Exists, and DoesNotExist`.
+        -   **Required**: Specify the rules that must be matched for pod scheduling. In the YAML file, these rules are defined by the requiredDuringSchedulingIgnoredDuringExecution field of the nodeAffinity parameter. These rules have the same effect as the `NodeSelector` parameter. In this example, pods can be scheduled only to nodes with the specified labels. You can create multiple required rules. However, only one of them must be met.
+        -   **Preferred**: Specify the rules that are not required to be matched for pod scheduling. Pods are scheduled to a node that matches the preferred rules when multiple nodes match the required rules. In the YAML file, these rules are defined by the preferredDuringSchedulingIgnoredDuringExecution field of the nodeAffinity parameter. In this example, the scheduler attempts to not schedule a pod to a node that matches the preferred rules. You can also set weights for preferred rules. If multiple nodes match the rule, the node with the highest weight is preferred. You can create multiple preferred rules. However, all of them must be met before the pod can be scheduled. |
+        |Pod Affinity|Pod affinity rules specify how pods are deployed relative to other pods in the same topology domain. For example, you can use pod affinity to deploy services that communicate with each other to the same topological domain, such as a host. This reduces the network latency between these services. Pod affinity enables you to specify to which node pods can be scheduled based on the labels on other running pods. Pod affinity supports required and preferred rules, and the following operators: `In, NotIn, Exists, and DoesNotExist`.
 
         -   **Required**: Specify rules that must be matched for pod scheduling. In the YAML file, these rules are defined by the requiredDuringSchedulingIgnoredDuringExecution field of the podAffinity parameter. A node must match the required rules before pods can be scheduled to the node.
             -   **Namespace**: Specify the namespace to apply the required rule. Pod affinity rules are defined based on the labels that are added to pods and therefore must be scoped to a namespace.
@@ -234,17 +242,17 @@ StatefulSets provide the following features:
             -   **Selector**: Click Add to add pod labels.
             -   **View Applications**: Click **View Applications** and set the namespace and application in the dialog box that appears. You can view the pod labels on the selected application and add the labels as selectors.
             -   Required Rules: Specify labels on existing applications, the operator, and the label value. In this example, the required rule specifies that the application to be created is scheduled to a host that runs applications with the `app:nginx` label.
-        -   **Preferred**: Specify rules that are not required to be matched for pod scheduling. In the YAML file, preferred rules are defined by the preferredDuringSchedulingIgnoredDuringExecution field of the podAffinity parameter. The scheduler attempts to schedule the pod to a node that matches the preferred rules. You can set node weights in preferred rules. Configure the other parameters as described in the preceding settings.
+        -   **Preferred**: Specify rules that are not required to be matched for pod scheduling. In the YAML file, preferred rules are defined by the preferredDuringSchedulingIgnoredDuringExecution field of the podAffinity parameter. The scheduler attempts to schedule the pod to a node that matches the preferred rules. You can set weights for preferred rules. The other parameters are the same as those of required rules.
 
 **Note:** **Weight**: Set the weight of a preferred rule to a value from 1 to 100. The scheduler calculates the weight of each node that meets the preferred rule based on an algorithm, and then schedules the pod to the node with the highest weight. |
         |Pod Anti Affinity|Pod anti-affinity rules specify that pods are not scheduled to topological domains where pods with matching labels are deployed. Pod anti-affinity rules apply to the following scenarios:
 
         -   Schedule the pods of an application to different topological domains, such as multiple hosts. This allows you to enhance the stability of the service.
-        -   Grant a pod exclusive access to a node. This enables resource isolation and ensures that no other pod can share the resources of the specified node.
+        -   Grant a pod exclusive access to a node. This enables resource isolation and ensures that no other pods can share the resources of the specified node.
         -   Schedule pods of an application to different hosts if the pods may interfere with each other.
 **Note:** The parameters of pod anti-affinity rules are the same as those of pod affinity rules. You can create the rules for different scenarios. |
         |Toleration|Configure toleration rules to allow pods to be scheduled to nodes with matching taints.|
-        |Schedule to Virtual Nodes|Specify whether to schedule pods to virtual nodes. This option is unavailable if the cluster does not contain a virtual node.|
+        |Schedule to Virtual Nodes|Specify whether to schedule pods to virtual nodes. This parameter is unavailable if the cluster does not contain a virtual node.|
 
     -   Labels and Annotations
         -   Pod Labels: Add a label to the pod. The label is used to identify the application.
@@ -268,7 +276,7 @@ StatefulSets provide the following features:
 
 ## Related operations
 
-In the left-side navigation pane, click **Clusters**. On the Clusters page, click the name of the cluster where the application is deployed or click **Applications** in the **Actions** column. In the left-side navigation pane, click **Workloads** and **StatefulSets**. On the StatefulSets page, click the name of the application that you want to manage or click **Details** in the **Actions** column. On the details page of the application, you can **edit**, **scale**, **redeploy**, and **refresh** the application. You can also **view the YAML file** of the application.
+In the left-side navigation pane, click **Clusters**. On the Clusters page, click the name of the cluster where the application is deployed or click **Applications** in the **Actions** column. In the left-side navigation pane, choose **Workloads** \> **StatefulSets**. On the StatefulSets page, click the name of the application that you want to manage or click **Details** in the **Actions** column. On the details page of the application, you can **edit**, **scale**, **redeploy**, and **refresh** the application. You can also **view the YAML file** of the application.
 
 -   Edit: On the details page of the application, click **Edit** in the upper-right corner of the page to modify the configurations of the application.
 -   Scale: On the details page of the application, click **Scale** in the upper-right corner of the page to scale the application to a required number of pods.
@@ -278,7 +286,7 @@ In the left-side navigation pane, click **Clusters**. On the Clusters page, clic
 
 Log on to a master node and run the following commands to test persistent storage.
 
-1.  Run the following commands to create a temporary file in the cloud disk that is mounted to pod nginx-1:
+1.  Run the following commands to create a temporary file in the disk that is mounted to pod nginx-1:
 
     ```
     kubectl exec nginx-1 ls /tmp            #Query files in the /tmp directory.
@@ -297,7 +305,7 @@ Log on to a master node and run the following commands to test persistent storag
     pod"nginx-1" deleted
     ```
 
-3.  After the system recreates and starts pod nginx-1, query the files in the /tmp directory. The following result shows that the statefulset file still exists. This indicates the high availability of the application that runs on the StatefulSet.
+3.  After the system recreates and starts a new pod, query the files in the /tmp directory. The following result shows that the statefulset file still exists. This shows the high availability of the stateful application.
 
     ```
     kubectl exec nginx-1 ls /tmp                         #Query files in the /tmp directory.
