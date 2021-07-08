@@ -109,7 +109,7 @@ Ingress是Kubernetes中的一个资源对象，用来管理集群外部访问集
     单击**添加**，在**类型**下拉框中，您可以：
 
     -   选择**自定义注解**：输入注解名称和值，即Ingress的Annotation键值对，Ingress的注解请参见[Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)。
-    -   选择**Ingress-Nginx**：根据名称选择要配置的注解。
+    -   选择**Ingress-Nginx**：根据名称选择或搜索要配置的注解。
 
         您可为路由添加一条典型的重定向注解。即`nginx.ingress.kubernetes.io/rewrite-target：/`，表示将/path路径重定向到后端服务能够识别的根路径/上面。
 
