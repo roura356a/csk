@@ -22,7 +22,7 @@ Containers and images have become industry standards for software packaging and 
 |None|
 |Node OS|Supports:-   CentOS
 -   Alibaba Cloud Linux 2
--   ACK v1.20.4 version of Windows node.
+-   ACK v1.20.4 version of Windows
 
 |Supports:-   CentOS
 -   Alibaba Cloud Linux 2
