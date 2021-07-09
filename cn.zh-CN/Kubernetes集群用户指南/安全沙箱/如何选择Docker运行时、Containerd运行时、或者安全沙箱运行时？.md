@@ -22,7 +22,7 @@ keyword: [安全沙箱运行时, Containerd运行时, 核心优势, Docker容器
 |无|
 |节点OS|支持：-   CentOS
 -   Alibaba Cloud Linux 2
--   ACK v1.20.4版本的Windows节点。
+-   ACK v1.20.4版本的Windows
 
 |支持：-   CentOS
 -   Alibaba Cloud Linux 2
