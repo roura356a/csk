@@ -4,7 +4,7 @@ keyword: [容器服务ACK, k8s, 开通服务, 角色授权]
 
 # 首次使用容器服务Kubernetes版
 
-您首次使用容器服务Kubernetes版ACK（Container Service for Kubernetes），简称容器服务ACK时，需要为服务账号授予系统默认角色。当且仅当该角色被正确授予后，容器服务才能正常地调用相关服务（ECS，OSS、NAS、SLB等），创建集群以及保存日志等。本文介绍在首次使用ACK时如何授权容服务默认角色以及开通相关云产品。
+您首次使用容器服务Kubernetes版（Alibaba Cloud Container Service for Kubernetes，简称容器服务ACK）时，需要为服务账号授予系统默认角色。当且仅当该角色被正确授予后，容器服务才能正常地调用相关服务（ECS，OSS、NAS、SLB等），创建集群以及保存日志等。本文介绍在首次使用ACK时如何授权容服务默认角色以及开通相关云产品。
 
 ## 步骤一：开通容器服务ACK
 
