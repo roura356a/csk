@@ -97,7 +97,7 @@ The following tables describe how to plan CIDR blocks for clusters that use Flan
 
     If two VPCs are connected, you can use the route table of one VPC to specify the packets that you want to send to the other VPC. The CIDR block of VPC 1 is 192.168.0.0/16 and the CIDR block of VPC 2 is 172.16.0.0/12, as shown in the following figure. You can use the route table of VPC 1 to forward all packets that are destined for 172.16.0.0/12 to VPC 2.
 
-    ![Route tables](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4635359951/p8765.png)
+    ![Route tables](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1595185261/p8765.png)
 
     |VPC|CIDR block|Destination CIDR block|Destination VPC|
     |---|----------|----------------------|---------------|
@@ -127,9 +127,9 @@ The following tables describe how to plan CIDR blocks for clusters that use Flan
 
 [Overview](/intl.en-US/User Guide for Kubernetes Clusters/Network/Overview.md)
 
-[Work with Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md)
+[Use the Terway plug-in](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use the Terway plug-in.md)
 
 [Use network policies for access control](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use network policies for access control.md)
 
-[FAQ](/intl.en-US/User Guide for Kubernetes Clusters/Network/FAQ.md)
+[FAQ about network management](/intl.en-US/User Guide for Kubernetes Clusters/Network/FAQ about network management.md)
 
