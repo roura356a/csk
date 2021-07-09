@@ -695,7 +695,7 @@ China \(Hohhot\)
 
 |[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
 |FPGA and HugePages are supported by Kubernetes 1.10.|None|All regions|None|
-|Application monitoring and alerting|Application monitoring and alerting are supported.|All regions|[Integration and usage with CloudMonitor]()|
+|Application monitoring and alerting|Application monitoring and alerting are supported.|All regions|[Monitor application performance](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Monitoring management/Monitor application performance.md)|
 |The subscription billing method is supported when you create a Kubernetes cluster.|None|All regions|[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
 |Ingresses and the exec and attach commands are supported.|None|All regions|[Features](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Features.md)|
 
