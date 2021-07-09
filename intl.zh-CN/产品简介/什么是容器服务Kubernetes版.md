@@ -4,7 +4,7 @@ keyword: [ACK, K8s, 容器服务, 容器服务Kubernetes版]
 
 # 什么是容器服务Kubernetes版
 
-阿里云容器服务Kubernetes版ACK（Alibaba Cloud Container Service for Kubernetes）是全球首批通过Kubernetes一致性认证的服务平台，提供高性能的容器应用管理服务，支持企业级Kubernetes容器化应用的生命周期管理，让您轻松高效地在云端运行Kubernetes容器化应用。
+阿里云容器服务Kubernetes版（Alibaba Cloud Container Service for Kubernetes，简称容器服务ACK）是全球首批通过Kubernetes一致性认证的服务平台，提供高性能的容器应用管理服务，支持企业级Kubernetes容器化应用的生命周期管理，让您轻松高效地在云端运行Kubernetes容器化应用。
 
 ## 产品形态
 
