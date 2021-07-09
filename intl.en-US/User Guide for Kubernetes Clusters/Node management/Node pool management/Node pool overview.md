@@ -74,18 +74,42 @@ ACK provides regular node pools and managed node pools.
 
 |Item|Regular node pool|Managed node pool|
 |----|-----------------|-----------------|
-|Manual scaling| | |
-|Deletable| | |
-|Pay-as-you-go and subscription instance| | |
-|Auto repair| | |
-|Enable auto scaling| | |
-|Manual upgrade| | |
-|Kubelet upgrade| | |
-|Docker upgrade and CVE fix| | |
-|Auto upgrade during the maintenance window| | |
-|Upgrade by replacing system disks| | |
-|Key pair logon| | |
-|Password logon| | |
+|Manual scaling|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
+
+|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
+|Deletable|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
+
+|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
+|Pay-as-you-go and subscription instance|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
+
+|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
+|Auto repair|![×](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2188373261/p278629.png)
+
+|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
+|Enable auto scaling|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
+
+|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
+|Manual upgrade|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
+
+|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
+|Kubelet upgrade|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
+
+|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
+|Docker upgrade and CVE fix|![×](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2188373261/p278629.png)
+
+|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
+|Auto upgrade during the maintenance window|![×](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2188373261/p278629.png)
+
+|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
+|Upgrade by replacing system disks|![×](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2188373261/p278629.png)
+
+|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
+|Key pair logon|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
+
+|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
+|Password logon|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
+
+|![×](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2188373261/p278629.png) |
 
 **Note:**
 
