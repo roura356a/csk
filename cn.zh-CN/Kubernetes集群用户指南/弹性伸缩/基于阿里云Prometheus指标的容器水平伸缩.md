@@ -31,9 +31,9 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
 
     3.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**。
 
-    4.  在**无状态**页面，单击**使用模板创建**。
+    4.  在**无状态**页面，单击**使用YAML创建资源**。
 
-    5.  在使用模板创建页面，部署以下YAML文件创建一个名为sample-app的应用及对应的Service，然后单击**创建**。
+    5.  在**创建**页面，部署以下YAML文件创建一个名为sample-app的应用及对应的Service，然后单击**创建**。
 
         **说明：** 此容器暴露出http\_requests\_total的指标用来标识访问次数。
 
@@ -119,11 +119,11 @@ keyword: [容器水平伸缩, 阿里云prometheus, adapter, arms]
 
     1.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-    2.  在集群管理页左侧导航栏中，单击**发布**。
+    2.  在集群管理页左侧导航栏中，选择**应用** \> **Helm**。
 
-    3.  找到alibaba-cloud-metrics-adapter，并单击右侧的**更新**。
+    3.  在**Helm**页面的**发布名称**列，找到alibaba-cloud-metrics-adapter，并单击右侧的**更新**。
 
-    4.  复制[alibaba-cloud-metrics-adapter](https://github.com/AliyunContainerService/alibaba-cloud-metrics-adapter/blob/master/docs/metrics/arms_prometheus.md)中完整的YAML文件内容，然后单击**更新**。
+    4.  将[alibaba-cloud-metrics-adapter](https://github.com/AliyunContainerService/alibaba-cloud-metrics-adapter/blob/master/docs/metrics/arms_prometheus.md)中完整的YAML文件内容复制粘贴至模板中，然后单击**更新**。
 
         以下为部分YAML文件内容。
 
