@@ -8,25 +8,52 @@ keyword: [配置巡检, Workload配置, 安全隐患]
 
 您已经成功创建一个Kubernetes 1.14.8或以上版本的托管版或专有版集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 
-## 子账号RAM授权
+## 子账号（即RAM用户）RAM授权
 
-如果您当前使用的是子账号，请先完成日志服务指定logproject的RAM授权，否则会出现权限不足的情况，详细介绍请参见[RAM自定义授权场景](/intl.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。
+如果您当前使用的是子账号，请先完成ACK容器服务配置巡检页面的RAM授权操作，确保当前子账号拥有操作当前集群配置巡检页面的权限，否则会出现权限不足无法操作配置巡检页面功能的问题。具体操作，请参见[自定义RAM授权策略](/intl.zh-CN/Kubernetes集群用户指南/授权/自定义RAM授权策略.md)。
 
 ```
 {
-    "Version": "1",
-    "Statement": [
-        {
-            "Action": [
-                "log:Get*",
-                "log:List*"
-            ],
-            "Resource": "acs:log:*:*:project/<指定的Project名称>/*",
-            "Effect": "Allow"
-        }
-    ]
+  "Statement": [
+    {
+      "Action": [
+        "cs:DescribePolarisConfig",
+        "cs:DescribePolarisJob",
+        "cs:DescribePolarisCronJob",
+        "cs:UpdatePolarisJob",
+        "cs:UpdatePolarisCronJob"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "acs:cs:*:*:cluster/<yourclusterID>"
+      ]
+    }
+  ],
+  "Version": "1"
 }
 ```
+
+如果您当前使用的是子账号，且需要使用巡检报告功能，请先完成日志服务指定`logproject`（当前集群logtail-ds组件所使用的`logproject`）的RAM授权，确保当前子账号拥有日志服务指定`logproject`的数据读取权限，否则会出现权限不足无法查看巡检报告的问题。具体操作，请参见[RAM自定义授权场景](/intl.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。
+
+```
+{
+    "Version": "1",
+    "Statement": [
+        {
+            "Action": [
+                "log:Get*",
+                "log:List*"
+            ],
+            "Resource": "acs:log:*:*:project/<指定的Project名称>/*",
+            "Effect": "Allow"
+        }
+    ]
+}
+```
+
+## 子账号RBAC授权
+
+如果您当前使用的是子账号，请先完成ACK容器服务配置巡检页面涉及资源的RBAC授权，需要授予子账号指定集群的管理员权限，以确保子账号拥有操作配置巡检页面中涉及的Kubernetes资源的权限。具体操作，请参见[配置RAM用户RBAC权限](/intl.zh-CN/Kubernetes集群用户指南/授权/配置RAM用户RBAC权限.md)。
 
 ## 扫描集群Workload
 
