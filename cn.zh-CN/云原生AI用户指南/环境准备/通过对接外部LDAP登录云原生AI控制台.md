@@ -19,16 +19,15 @@ keyword: [LDAP, 云原生AI套件对接外部账号体系]
     更多信息，请参见[LDAP](https://ldap.com/?spm=a2c4g.11186623.2.12.48d333f3CKmwHN)。
 
 -   IDaaS（Alibaba Cloud Identity as a Service）：应用身份服务IDaaS是阿里云为企业用户提供的一套集中式身份、权限、应用管理服务，帮助您整合部署在本地或云端的内部办公系统、业务系统及三方SaaS系统的所有身份，实现一个账号打通所有应用服务。提供接入第三方认证源（IdP）以及数据的交换同步。
--   IdP（Identity Provider）：登录时的身份提供方。
 -   RAM（Resource Access Management）：阿里云资源访问控制，提供用户、角色、权限管理以及SSO能力。
 -   SSO（Single-Sign On）：单点登录，也称为身份联合登录。在多个应用系统中，您只需要登录一次，就可以访问所有相互信任的应用系统。
--   OAuth2.0（Authoration Protocal）：授权访问用户资源的协议。更多信息，请参见[OAuth2.0](https://oauth.net/2/)。
+-   OAuth2.0（Authoration Protocol）：授权访问用户资源的协议。更多信息，请参见[OAuth2.0](https://oauth.net/2/)。
 -   OIDC（OpenID Connector）：基于OAuth的ID交换协议。
 -   SAML（Security assertion markup language）：实现企业级用户身份认证的标准协议，它是SP和IdP之间实现沟通技术的实现方式之一。SAML 2.0已经是目前实现企业级SSO的一种事实标准。
 
     -   SP（Service Provider）： 即业务提供方，SP会使用IdP提供的用户信息。一些非SAML协议的身份系统（例如：OpenID Connect），也把服务提供商称作IdP的信赖方。
-    -   IDP（Identity Provider）：登录时的身份提供方，认证源。
-    SAML同时支持由IDP发起和SP发起的登录， 即在登录IDP后，可以跳转到任意一个应用。也可以从一个应用发起登录，跳转到IDP，登录认证后，再跳转回这个应用，继续SSO。
+    -   IdP（Identity Provider）：登录时的身份提供方，认证源。
+    SAML同时支持由IdP发起和SP发起的登录， 即在登录IdP后，可以跳转到任意一个应用。也可以从一个应用发起登录，跳转到IdP，登录认证后，再跳转回这个应用，继续SSO。
 
 -   SCIM（System for Cross-domain Identity Management）：主要用于多用户的云应用身份管理。阿里云通过SCIM标准协议，结合OAuth应用的安全授权，可以将企业内部系统中的账号数据同步到阿里云访问控制（RAM）中。更多信息，请参见[SCIM](http://www.simplecloud.info/?spm=a2c4g.11186623.2.6.aca865fe9KDRKX#Overview)。
 
