@@ -9,7 +9,7 @@ This topic describes how to update the Kubernetes cluster certificates that are 
 
 ## Updates all certificates in the Container Service for Kubernetes console
 
-In the Container Service for Kubernetes console, click the **Update Certificate** label next to the cluster. For more information, see [Renew a certificate](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Infrastructure security/Renew a certificate.md).
+In the Container Service for Kubernetes console, click the **Update Certificate** label next to the cluster. For more information, see [Update the Kubernetes cluster certificates that are about to expire](#task_1780612).
 
 ## Run a command to update all certificates
 
