@@ -14,11 +14,11 @@ Flexvolume插件是Kubernetes社区较早实现的存储卷扩展机制。ACK从
 -   Disk-Controller：支持云盘卷的自动创建。
 -   Nas-Controller：支持NAS卷的自动创建。
 
-更多信息，请参见[概述](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/概述.md)。
+更多信息，请参见[Flexvolume存储插件](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/存储CSI概述.md)。
 
 ## 使用说明
 
-关于Flexvolume的使用说明，请参见[存储插件说明](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/存储插件说明.md)。
+关于Flexvolume的使用说明，请参见[概述](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/概述.md)。
 
 ## 变更记录
 
