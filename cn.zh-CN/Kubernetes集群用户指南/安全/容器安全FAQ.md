@@ -92,8 +92,8 @@ keyword: 安全组常见问题
 
 ## Kubernetes专有版本集群怎么更换证书有效期，以及更换各个组件的证书？
 
--   集群临近过期前两个月左右您会收到站内和短信通知，收到通知后在控制台集群列表页面单击证书更新按钮即可。具体操作，请参见[更新即将过期证书](/cn.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/更新即将过期证书.md)。
--   如果Kubernetes集群证书已过期，具体操作，请参见[更新Kubernetes集群已过期的证书](/cn.zh-CN/Kubernetes集群用户指南/集群/更新Kubernetes集群已过期的证书.md)。
+-   集群临近过期前两个月左右您会收到站内和短信通知，收到通知后在控制台集群列表页面单击证书更新按钮即可。具体操作，请参见[更新Kubernetes专有版集群即将过期的证书](/cn.zh-CN/Kubernetes集群用户指南/集群/管理集群/集群证书/更新Kubernetes专有版集群即将过期的证书.md)。
+-   如果Kubernetes集群证书已过期，具体操作，请参见[更新Kubernetes集群已过期的证书](/cn.zh-CN/Kubernetes集群用户指南/集群/管理集群/集群证书/更新Kubernetes集群已过期的证书.md)。
 
 ## Pod无法创建，报错详情：no providers available to validate pod request
 
