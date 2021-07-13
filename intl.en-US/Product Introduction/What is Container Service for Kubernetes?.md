@@ -69,6 +69,10 @@ ACK provides the following three types of Kubernetes clusters: dedicated Kuberne
 
 ## Architecture
 
+The following figure shows the architecture of the ACK portfolio.
+
+![Architecture](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3768516261/p169914.png)
+
 -   [Container Registry]() provides managed security services and lifecycle management of cloud-native assets. Container Registry distributes images to clusters in different scenarios and is seamlessly integrated with ACK to provide an all-in-one solution for cloud-native application management.
 -   [Alibaba Cloud Service Mesh \(ASM\)]() is a managed service mesh platform that allows you to manage the traffic of an application that uses the microservices architecture in a unified manner. ASM is compatible with the open source Istio service mesh platform and allows you to manage the traffic of multiple Kubernetes clusters. ASM provides a unified way to manage the communications among containerized applications and applications on VMs.
 -   [ASK](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Introduction.md) provides serverless clusters based on the elastic computing infrastructures of Alibaba Cloud. You can create containerized applications without managing or maintaining clusters.
