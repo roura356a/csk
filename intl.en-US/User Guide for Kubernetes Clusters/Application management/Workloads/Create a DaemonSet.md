@@ -12,23 +12,23 @@ A DaemonSet ensures that each node runs a copy of a pod. You can use a DaemonSet
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Workloads** \> **DaemonSets**.
 
-5.  In the upper-right corner of the **DaemonSets** page, click **Create from Image**.
+5.  On the **DaemonSets** page, click **Create from Image** in the upper-right corner.
 
 6.  Set parameters for the DaemonSet.
 
-    1.  On the **Basic Information** wizard page, configure the basic settings. For more information, see [Create a stateless application from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
+    1.  On the **Basic Information** wizard page, configure the basic settings. For more information, see [Create a Deployment from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a stateless application by using a Deployment.md).
 
-    2.  On the **Container** wizard page, configure one or more containers. For more information, see [t17653.md\#section\_ne4\_jlh\_d4r](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
+    2.  On the **Container** wizard page, configure one or more containers. For more information, see [Create a Deployment from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a stateless application by using a Deployment.md).
 
     3.  On the **Advanced** wizard page, configure the advanced settings.
 
-        A DaemonSet can schedule a pod to a node that is in the Unschedulable state. To run a pod on only a specific node, set node affinity, pod affinity, or toleration rules. For more information, see [t17653.md\#section\_49e\_62x\_44j](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
+        A DaemonSet can schedule a pod to a node that is in the Unschedulable state. To run a pod on only a specific node, set node affinity, pod affinity, or toleration rules. For more information, see [Create a Deployment from an image](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a stateless application by using a Deployment.md).
 
 7.  Click **Create**.
 
@@ -37,7 +37,7 @@ A DaemonSet ensures that each node runs a copy of a pod. You can use a DaemonSet
 
 **Create a DaemonSet from a YAML template**
 
-1.  In the upper-right corner of the **DaemonSets** page, click **Create from YAML**.
+1.  On the **DaemonSets** page, click **Create from YAML** in the upper-right corner.
 
 2.  On the Create page, configure the DaemonSet in the **Template** section.
 
@@ -48,15 +48,15 @@ A DaemonSet ensures that each node runs a copy of a pod. You can use a DaemonSet
 
 ## Create a DaemonSet by using kubectl
 
-Before you use kubectl to create a DaemonSet, you must download kubectl and connect to your cluster by using kubectl. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+Before you use kubectl to create a DaemonSet, you must download kubectl and connect to your cluster ubeby using kctl. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
 A DaemonSet can schedule a pod to a node that is in the Unschedulable state. To run a pod on only a specific node, set the following parameters.
 
 |Parameter|Description|
 |---------|-----------|
-|nodeSelector|A pod is scheduled to only the node with the specified labels.|
+|nodeSelector|A pod is scheduled only to the node with the specified labels.|
 |nodeAffinity|Node affinity. Pods are scheduled to nodes based on node labels. Node affinity allows you to set other matching rules.|
-|podAffinity|Pod affinity. Pods are scheduled to nodes based on pod labels. A pod is scheduled to only the node that runs a pod that matches the affinity rules.|
+|podAffinity|Pod affinity. Pods are scheduled to nodes based on pod labels. A pod is scheduled only to the node that runs a pod that matches the affinity rules.|
 
 To demonstrate how to create a DaemonSet by using kubectl, a DaemonSet named fluentd-elasticsearch is created in this example.
 
@@ -109,7 +109,7 @@ To demonstrate how to create a DaemonSet by using kubectl, a DaemonSet named flu
               path: /var/lib/docker/containers
     ```
 
-2.  Run the following command to create a DaemonSet:
+2.  Run the following command to create the DaemonSet:
 
     ```
     kubectl create -f daemonset.yaml
@@ -122,6 +122,7 @@ To demonstrate how to create a DaemonSet by using kubectl, a DaemonSet named flu
 
 After you create a DaemonSet, you can perform the following operations:
 
+-   On the DaemonSets page, click the **Label** field, enter the key and `value` that you specified for the application, and then click **OK** to filter the applications.
 -   On the DaemonSets page, find the created DaemonSet and click **Details** in the **Actions** column. On the details page, you can view basic information about the DaemonSet. The information includes pods, access method, events, and logs.
 -   On the DaemonSets page, find the created DaemonSet. You can choose **More** \> **View in YAML** in the **Actions** column to view the YAML file of the DaemonSet. You can also choose **More** \> **Delete** to delete the DaemonSet.
 
