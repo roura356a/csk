@@ -7,10 +7,6 @@ This topic describes how to update the Kubernetes cluster certificates that are 
 -   A Kubernetes cluster is created. For more information, see [Create a Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md).
 -   The Kubernetes cluster is connected based on kubectl. For more information, see [Connect to a Kubernetes cluster by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
-## Updates all certificates in the Container Service for Kubernetes console
-
-In the Container Service for Kubernetes console, click the **Update Certificate** label next to the cluster. For more information, see [Update the Kubernetes cluster certificates that are about to expire](#task_1780612).
-
 ## Run a command to update all certificates
 
 Log on to a master node. In the command-line interface \(CLI\), run the following command:
