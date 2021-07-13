@@ -13,7 +13,7 @@ keyword: [CoreDNS版本过低, 升级CoreDNS, 手动]
 
 您可以选择以下两种升级方案以解决低版本CoreDNS带来的稳定性问题：
 
--   长期解决方案：升级Kubernetes集群到1.16及以上版本，集群升级时会自动将CoreDNS升级到1.6.2及以上版本。有关在控制台中升级集群的具体操作步骤，请参见[升级集群](/intl.zh-CN/Kubernetes集群用户指南/集群/升级集群/升级集群.md)；有关通过API升级集群的详细信息，请参见[升级集群](/intl.zh-CN/API参考/升级/升级集群.md)。
+-   长期解决方案：升级Kubernetes集群到1.16及以上版本，集群升级时会自动将CoreDNS升级到1.6.2及以上版本。有关在控制台中升级集群的具体操作步骤，请参见[升级集群](/intl.zh-CN/Kubernetes集群用户指南/集群/管理集群/升级集群.md)；有关通过API升级集群的详细信息，请参见[升级集群](/intl.zh-CN/API参考/升级/升级集群.md)。
 -   短期解决方案：如果不方便升级集群版本，您可以选择手动升级CoreDNS到1.6.2及以上版本。有关如何手动升级CoreDNS版本的具体步骤，请参见本文[升级步骤](#section_7wd_grs_c5s)。
 
     **说明：** 对于1.4及之前的版本的CoreDNS，您才需要进行手动升级。
@@ -71,7 +71,7 @@ keyword: [CoreDNS版本过低, 升级CoreDNS, 手动]
 
         2.  在控制台左侧导航栏，单击**集群**，然后单击目标集群名称。
         3.  在集群管理左侧导航栏，选择**配置管理** \> **配置项**。
-        4.  在**配置项**页面，找到**coredns**并单击其右侧的**YAML 编辑**。
+        4.  在**配置项**页面，找到**coredns**并单击其右侧的**YAML编辑**。
         5.  在**编辑YAML**页面，将**proxy**修改为**forward**。
 
             ![forward](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3622073061/p176548.png)
@@ -128,7 +128,7 @@ linux/amd64, go1.13.6, da7f65b
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏，单击**集群**，然后单击目标集群右侧**操作**列下的**应用管理**。
-3.  在**无状态**页签，找到**coredns**，然后在其右侧选择**更多** \> **查看Yaml**。
+3.  在**无状态**页签，设置命名空间为**kube-system**，找到**coredns**，然后在其右侧选择**更多** \> **查看Yaml**。
 4.  在**编辑YAML**页面，更新image中的版本为**1.6.2**。
 
     ![image](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3622073061/p176558.png)
