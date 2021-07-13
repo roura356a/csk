@@ -90,8 +90,8 @@ Yes. You can disable cluster auditing when you create a cluster and enable clust
 
 ## How do I renew the certificate of a dedicated Kubernetes cluster and renew the certificates of the components in the cluster?
 
--   Approximately two months before a certificate expires, an internal message and SMS notification are sent to remind you about the expiration of the certificate. You can go to the clusters page in the console and click Renew to renew the certificate. For more information, see [Renew a certificate](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Infrastructure security/Renew a certificate.md).
--   For more information about how to renew an expired certificate, see [Update expired certificates of a Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Update expired certificates of a Kubernetes cluster.md).
+-   Approximately two months before a certificate expires, an internal message and SMS notification are sent to remind you about the expiration of the certificate. You can go to the clusters page in the console and click Renew to renew the certificate. For more information, see [Update the Kubernetes cluster certificates that are about to expire](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Manage clusters/Cluster certificates/Update the Kubernetes cluster certificates that are about to expire.md).
+-   For more information about how to renew an expired certificate, see [Update expired certificates of a Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Manage clusters/Cluster certificates/Update expired certificates of a Kubernetes cluster.md).
 
 ## How do I fix the "no providers available to validate pod request" error during pod creation?
 
