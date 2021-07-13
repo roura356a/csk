@@ -46,9 +46,9 @@ keyword: [CoreDNS版本过低, 升级CoreDNS, 手动]
         1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
         2.  在控制台左侧导航栏，单击**集群**，然后单击目标集群右侧**操作**列下的**应用管理**。
-        3.  在**无状态**页签中，选择**kube-system**命名空间，然后查看CoreDNS的版本。
+        3.  在**无状态**页面中，选择**kube-system**命名空间，然后查看CoreDNS的版本。
 
-            ![dns](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8393963061/p176315.png)
+            ![dns](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0800616261/p176315.png)
 
     -   您还可以通过以下kubectl命令查找CoreDNS的版本。
 
@@ -72,7 +72,7 @@ keyword: [CoreDNS版本过低, 升级CoreDNS, 手动]
         2.  在控制台左侧导航栏，单击**集群**，然后单击目标集群名称。
         3.  在集群管理左侧导航栏，选择**配置管理** \> **配置项**。
         4.  在**配置项**页面，找到**coredns**并单击其右侧的**YAML编辑**。
-        5.  在**编辑YAML**页面，将**proxy**修改为**forward**。
+        5.  在**查看YAML**页面，将**proxy**修改为**forward**。
 
             ![forward](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3622073061/p176548.png)
 
@@ -128,7 +128,7 @@ linux/amd64, go1.13.6, da7f65b
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
 2.  在控制台左侧导航栏，单击**集群**，然后单击目标集群右侧**操作**列下的**应用管理**。
-3.  在**无状态**页签，设置命名空间为**kube-system**，找到**coredns**，然后在其右侧选择**更多** \> **查看Yaml**。
+3.  在**无状态**页面，设置命名空间为**kube-system**，找到**coredns**，然后在其右侧选择**更多** \> **查看Yaml**。
 4.  在**编辑YAML**页面，更新image中的版本为**1.6.2**。
 
     ![image](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3622073061/p176558.png)
