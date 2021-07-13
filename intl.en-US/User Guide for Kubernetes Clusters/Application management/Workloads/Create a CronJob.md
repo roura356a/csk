@@ -1,10 +1,10 @@
 ---
-keyword: [CronJob, CronJobs, Job, Kubernetes]
+keyword: [CronJob, CronJob, Job, Kubernetes]
 ---
 
 # Create a CronJob
 
-CronJobs are used to process periodic and recurring tasks. For example, you can create CronJobs to create backups or send emails. Jobs are used to process short-lived, one-off tasks. A CronJob creates one or more Jobs based on a specific schedule. This topic describes how to create a CronJob.
+CronJobs are used to create periodic and recurring tasks. For example, you can create CronJobs to run backups or send emails. Jobs are used to process short-lived, one-off tasks. A CronJob creates one or more Jobs based on a specific schedule. This topic describes how to create a CronJob.
 
 ## Create a CronJob in the ACK console
 
@@ -12,25 +12,25 @@ CronJobs are used to process periodic and recurring tasks. For example, you can 
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Workloads** \> **CronJobs**.
 
-5.  In the upper-right corner of the **CronJobs** page, click **Create from Image**.
+5.  On the **CronJobs** page, click **Create from Image** in the upper-right corner.
 
 6.  Set parameters for the CronJob.
 
-    1.  On the **Basic Information** wizard page, configure the basic settings. For more information, see [Step 5: Configure basic settings](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a Job application by using an image.md).
+    1.  On the **Basic Information** wizard page, configure the basic settings. For more information, see [Step 5: Configure basic settings](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a Job.md).
 
-    2.  On the **Container** wizard page, configure one or more containers. For more information, see [Container configurations](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a Job application by using an image.md).
+    2.  On the **Container** wizard page, configure one or more containers. For more information, see [Container configurations](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a Job.md).
 
     3.  On the **Advanced** wizard page, configure the advanced settings.
 
         |Section|Parameter|Description|
         |-------|---------|-----------|
-        |CronJobs|Schedule|You can specify a schedule on a daily, weekly, or monthly basis. You can also specify a schedule by using cron expressions. A cron expression is a string that consists of six or seven fields. These fields are separated with space characters and describe individual details of the schedule. Cron expressions support the following formats:
+        |CronJobs|Schedule|You can specify a schedule on a daily, weekly, or monthly basis. You can also specify a cron expression. A con expression is a string of six or seven fields that are separated with five or six spaces. Each field describes an individual detail of the schedule. Specify the cron expression in the following format:
 
         -   ```
 Seconds Minutes Hours DayofMonth Month DayofWeek Year
@@ -41,11 +41,13 @@ Seconds Minutes Hours DayofMonth Month DayofWeek
 ```
 
 For more information, see [Cron Expressions](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). |
-        |Concurrency Policy|You can select one of the following concurrency polices:        -   Allow: allows Jobs to run concurrently. Concurrent Jobs compete for cluster resources.
-        -   Forbid: disallows Jobs to run concurrently. If a Job is not complete within the schedule, the next Job is skipped.
+        |Concurrency Policy|You can select one of the following concurrency polices:
+
+        -   Allow: allows Jobs to concurrently run. Concurrent Jobs may compete for cluster resources.
+        -   Forbid: disallows Jobs to concurrently run. If a Job is not complete within the schedule, the next Job is skipped.
         -   Replace: If a Job is not complete within the schedule, the Job is skipped. |
-        |Job History|You can specify the numbers of successful and failed Jobs for which you want to retain records. If you set the parameters to 0, the system does not retain the records of Jobs.|
-        |Job Settings|Completions|For more information about how to set parameters in the Job Settings section, see [Job settings](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a Job application by using an image.md).|
+        |Job History|You can specify the numbers of successful or failed Jobs for which you want to retain records. If you set the parameters to 0, the system does not retain the records of Jobs. |
+        |Job Settings|Completions|For more information about how to set parameters in the Job Settings section, see [Job settings](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a Job.md).|
         |Parallelism|
         |Timeout|
         |BackoffLimit|
@@ -60,7 +62,7 @@ For more information, see [Cron Expressions](https://docs.oracle.com/cd/E12058_0
 
 **Create a CronJob from a YAML template**
 
-1.  In the upper-right corner of the **CronJobs** page, click **Create from YAML**.
+1.  On the **CronJobs** page, click **Create from YAML** in the upper-right corner.
 
 2.  On the Create page, configure the CronJob in the **Template** section.
 
@@ -69,9 +71,9 @@ For more information, see [Cron Expressions](https://docs.oracle.com/cd/E12058_0
 
 ## Create a CronJob by using kubectl
 
-Before you use kubectl to create a CronJob, you must download kubectl and connect to your cluster by using kubectl. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+Before you use kubectl to create a CronJob, you must download kubectl and connect to your cluster by using kubectl. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
-The following table describes the key parameters that are required to create a CronJob.
+The following table describes the key parameters that are used to create a CronJob.
 
 |Parameter|Description|
 |---------|-----------|
@@ -82,7 +84,7 @@ The following table describes the key parameters that are required to create a C
 -   Forbid: disallows Jobs to run concurrently. If a Job is not complete within the schedule, the next Job is skipped.
 -   Replace: If a Job is not complete within the schedule, the Job is skipped. |
 
-To demonstrate how to create a CronJob by using kubectl, a CronJob named hello is created in this example.
+A CronJob named hello is created in this example to demonstrate how to create a CronJob by using kubectl.
 
 1.  Create a cronjob.yaml file and copy the following content into the file:
 
