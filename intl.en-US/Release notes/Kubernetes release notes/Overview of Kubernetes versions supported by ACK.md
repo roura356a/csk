@@ -1,5 +1,5 @@
 ---
-keyword: [Kubernetes versions, ACK, overview]
+keyword: [Kubernetes version, ACK, overview]
 ---
 
 # Overview of Kubernetes versions supported by ACK
