@@ -23,9 +23,11 @@ Kubernetes网络策略（Network Policy）提供基于策略的网络控制。�
 
 -   如果您在创建Terway集群时，选中了**NetworkPolicy支持**配置，可自动开启网络策略功能。具体操作，请参见[创建ACK Pro版集群](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
 
--   如果您在创建Terway集群时，未开启网络策略功能，可以通过**配置管理**入口，在kube-system命名空间下的**eni-config**配置项中，将disable\_network\_policy设置成false，以开启网络策略功能。关于配置项的设置，请参见[修改配置项](/cn.zh-CN/Kubernetes集群用户指南/应用/配置项及保密字典/管理配置项.md)。
+-   如果您在创建Terway集群时，未开启网络策略功能，可以通过**配置管理**入口，在kube-system命名空间下的**eni-config**配置项中，将disable\_network\_policy设置成false。关于配置项的设置，请参见[修改配置项](/cn.zh-CN/Kubernetes集群用户指南/应用/配置项及保密字典/管理配置项.md)。
 
     ![配置项](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9910454261/p287848.png)
+
+    修改**eni-config**配置项后，需要重启Terway以开启网络策略功能。关于如何重启Terway的具体操作，请参见[重建全部Terway Pod](/cn.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/扩容Terway场景下的虚拟交换机.md)。
 
 
 ## 使用场景
