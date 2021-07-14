@@ -14,7 +14,7 @@ keyword: [LDAP, 云原生AI套件对接外部账号体系]
 
 -   LDAP（Lightweight Directory Access Protocol）：账号管理及访问协议，有以下两种主流的实现方式：
 
-    -   AD（Active Dictionary）：Microsoft出品，支持LDAP 2.0和3.0。
+    -   AD（Active Directory）：Microsoft出品，支持LDAP 2.0和3.0。
     -   Open LDAP：Open source LDAP，支持LDAP 2.0和LDAP 3.0。
     更多信息，请参见[LDAP](https://ldap.com/?spm=a2c4g.11186623.2.12.48d333f3CKmwHN)。
 
@@ -22,7 +22,7 @@ keyword: [LDAP, 云原生AI套件对接外部账号体系]
 -   RAM（Resource Access Management）：阿里云资源访问控制，提供用户、角色、权限管理以及SSO能力。
 -   SSO（Single-Sign On）：单点登录，也称为身份联合登录。在多个应用系统中，您只需要登录一次，就可以访问所有相互信任的应用系统。
 -   OAuth2.0（Authoration Protocol）：授权访问用户资源的协议。更多信息，请参见[OAuth2.0](https://oauth.net/2/)。
--   OIDC（OpenID Connector）：基于OAuth的ID交换协议。
+-   OIDC（OpenID Connect）：基于OAuth的ID交换协议。
 -   SAML（Security assertion markup language）：实现企业级用户身份认证的标准协议，它是SP和IdP之间实现沟通技术的实现方式之一。SAML 2.0已经是目前实现企业级SSO的一种事实标准。
 
     -   SP（Service Provider）： 即业务提供方，SP会使用IdP提供的用户信息。一些非SAML协议的身份系统（例如：OpenID Connect），也把服务提供商称作IdP的信赖方。
@@ -135,7 +135,7 @@ keyword: [LDAP, 云原生AI套件对接外部账号体系]
                 ![55](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6289254261/p286153.png)
 
             -   用户获取API的获取方法如下：
-                1.  在IDaaS实例详情的左侧导航中，选择**账户** \> **应用列表**。
+                1.  在IDaaS实例详情的左侧导航中，选择**应用** \> **应用列表**。
                 2.  单击应用名称为**阿里云RAM-用户SSO**右侧操作列下的**详情**。
                 3.  在**应用信息**区域，单击**查看详情**。在**应用详情（阿里云RAM-用户SSO）**面板中，**账户同步地址**即为用户获取API。
         -   用户账户同步接口认证的**client\_id**和**client\_secret**。
