@@ -58,7 +58,7 @@ Jobs can manage pods based on the settings of `.spec.completions` and `.spec.Par
 
         -   **Image Name**: Select an image.
             -   To use a Docker image or an image from Container Registry, click **Select Image**. In the dialog box that appears, select an image and click **OK**. In this example, an NGINX image is selected. On the **Search** tab, you can select **Docker Images** from the drop-down list, enter NGINX in the search box, and then click Search.
-                -   Alibaba Cloud Container Registry: On the **Alibaba Cloud Container Registry** tab, you can select an image from Container Registry. You must specify the region and Container Registry instance to which the image belongs. For more information about Container Registry, see [What is Container Registry Enterprise Edition?]().
+                -   Alibaba Cloud Container Registry: On the **Alibaba Cloud Container Registry** tab, you can select an image from Container Registry. You must specify the region and Container Registry instance to which the image belongs. For more information about Container Registry, see [What is Container Registry?]().
 
                     **Note:** On the **Alibaba Cloud Container Registry** tab, you can search images by name in Container Registry.
 
