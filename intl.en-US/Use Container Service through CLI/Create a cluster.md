@@ -9,12 +9,13 @@ For more information about this command, see [Create a dedicated Kubernetes clus
 Request format
 
 ```
-aliyun cs  POST /clusters --header "Content-Type=application/json" --body "$(cat create.json)"
+aliyun cs  POST /clusters --region=${regionId} --header "Content-Type=application/json" --body "$(cat create.json)"
 ```
 
 Request parameters:
 
 -   `--header`: You must set Content-Type to application/json.
+-   `--region`：The region where your cluster is hosted.
 -   `--body`: The content that is sent to the server. The content can be saved in a local file and must be in valid JSON format. The `create.json` file contains the following content:
 
 Sample request:
