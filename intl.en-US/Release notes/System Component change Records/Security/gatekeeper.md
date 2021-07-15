@@ -4,19 +4,19 @@ keyword: [gatekeeper, introduction, OPA]
 
 # gatekeeper
 
-The gatekeeper component facilitates the management and enforcement of policies executed by Open Policy Agent \(OPA\) in Kubernetes clusters. This topic describes the architecture of gatekeeper and provides an example of how to use gatekeeper.
+The gatekeeper component facilitates the management and enforcement of policies executed by Open Policy Agent \(OPA\) in Kubernetes clusters. This allows you to manage the labels of namespaces. This topic describes the features and usage notes of gatekeeper. It also lists the latest changes to gatekeeper.
 
-For more information about OPA, see [Open Policy Agent](https://www.openpolicyagent.org/).
+## Introduction
 
-## Architecture
+OPA is an open source policy engine that is commonly used to implement policies in stacks in a standardized and context-aware manner. gatekeeper is used to manage and implement OPA policies, and manage labels of namespaces in ACK cluster For more information about OPA, see [Open Policy Agent](https://www.openpolicyagent.org/). The following figure shows the architecture of gatekeeper.
 
-![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6334479951/p165176.png)
+![Component architecture](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2406336261/p143242.png)
 
-## Examples
+## Usage notes
 
-You can use gatekeeper to constrain pod deployments in specified namespaces based on labels. In this example, a Constraint is defined to declare that all pods created in a specified namespace must be labeled with gatekeeper-test-label.
+You can use gatekeeper to constrain pod deployments in specified namespaces based on labels. In this example, a Constraint is defined to declare that all pods created in a specified namespace must be labeled with gatekeeper-test-label. For more information about how to use gatekeeper, see [Use gatekeeper](https://open-policy-agent.github.io/gatekeeper/website/docs/howto).
 
-1.  Run the following commands to create a test-gatekeeper namespace and attach the name=test-gatekeeper label to the namespace:
+1.  Run the following commands to create a test-gatekeeper namespace and add the name=test-gatekeeper label to the namespace:
 
     ```
     kubectl create ns test-gatekeeper
@@ -57,9 +57,9 @@ You can use gatekeeper to constrain pod deployments in specified namespaces base
     EOF
     ```
 
-    It takes about 10 seconds to initialize the Constraint template.
+    It requires about 10 seconds to initialize the Constraint template.
 
-3.  Run the following command to create a Constraint from the preceding Constraint template. This Constraint declares that all pods created in a namespace that is attached with the name=test-gatekeeper label must be labeled with gatekeeper-test-label.
+3.  Run the following command to create a Constraint from the preceding Constraint template. This Constraint declares that all pods created in a namespace that is added with the name=test-gatekeeper label must be labeled with gatekeeper-test-label.
 
     ```
     kubectl apply -f - <<EOF
@@ -85,36 +85,65 @@ You can use gatekeeper to constrain pod deployments in specified namespaces base
 
     It takes about 10 seconds to initialize the Constraint.
 
-4.  Perform the following steps to verify the enforcement of the Constraint:
+4.  Check whether the namespace is constrained.
 
-    -   Run the following command to create a pod that is not labeled with gatekeeper-test-label in the test-gatekeeper namespace. The namespace is not attached with name=test-gatekeeper. Therefore, the creation fails.
+    -   Run the following command to create a pod that is not labeled with `gatekeeper-test-label` in the test-gatekeeper namespace. The test-gatekeeper namespace is added with `name=test-gatekeeper`.
 
         ```
         kubectl -n test-gatekeeper run test-deny --image=nginx --restart=Never
         ```
 
+        Expected output:
+
         ```
         Error from server ([denied by pod-must-have-gatekeeper-test-label] you must provide labels: {"gatekeeper-test-label"}): admission webhook "validation.gatekeeper.sh" denied the request: [denied by pod-must-have-gatekeeper-test-label] you must provide labels: {"gatekeeper-test-label"}
         ```
 
-    -   Run the following command to create a pod that is labeled with gatekeeper-test-label in the test-gatekeeper namespace. The namespace is attached with name=test-gatekeeper. Therefore, the creation succeeds.
+        The test-gatekeeper namespace is added with `name=test-gatekeeper`. The pod is to be created without the `gatekeeper-test-label` label. Therefore, the creation fails.
+
+    -   Run the following command to create a pod that is labeled with `gatekeeper-test-label` in the test-gatekeeper namespace. The test-gatekeeper namespace is added with `name=test-gatekeeper`.
 
         ```
         kubectl -n test-gatekeeper run test-pass -l gatekeeper-test-label=pass --image=nginx --restart=Never
         ```
 
+        Expected output:
+
         ```
         pod/test-pass created
         ```
 
-    -   Run the following command to create a pod that is not labeled with gatekeeper-test-label in the default namespace. The namespace is not subject to the Constraint. Therefore, the creation succeeds.
+        The test-gatekeeper namespace is added with `name=test-gatekeeper`. The pod is to be created with the `gatekeeper-test-label` label. Therefore, the creation succeeds.
+
+    -   Run the following command to create a pod that is not labeled with `name=test-gatekeeper` in a namespace that is not subject to the Constraint:
 
         ```
         kubectl -n default run test-deny --image=nginx --restart=Never
         ```
 
+        Expected output:
+
         ```
         pod/test-deny created
         ```
 
+        The namespace is not subject to the Constraint. Therefore, the creation succeeds. The created pod is added with `name=test-gatekeeper`
+
+    The preceding steps show that gatekeeper can be used to constrain pod creations in a specific namespace. In this example, the pod to be created in the namespace must be added with the gatekeeper-test-label label.
+
+
+## Release notes
+
+**March 2021**
+
+|Version|Image address|Release date|Description|
+|-------|-------------|------------|-----------|
+|v3.3.0.24-8e68abc-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/gatekeeper:v3.3.0.24-8e68abc-aliyun|2021-03-16|-   gatekeeper can be installed in registered Kubernetes clusters.
+-   OPA Gatekeeper is upgraded to V3.3.0. The gatekeeper component is dependent on OPA Gatekeeper. |
+
+**August 2020**
+
+|Version|Image address|Release date|Description|
+|-------|-------------|------------|-----------|
+|v3.1.0.11-24bab09-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/gatekeeper:v3.1.0.11-24bab09-aliyun|2020-08-20|OPA Gatekeeper is upgraded to V3.1.0-beta.12. The gatekeeper component is dependent on OPA Gatekeeper.|
 
