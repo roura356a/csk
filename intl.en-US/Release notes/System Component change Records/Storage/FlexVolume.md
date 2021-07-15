@@ -18,7 +18,7 @@ For more information, see [Overview](/intl.en-US/User Guide for Kubernetes Clust
 
 ## Usage notes
 
-For more information about how to use FlexVolume, see [Volume plug-ins](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Volume plug-ins.md).
+For more information about how to use FlexVolume, see [Storage overview](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Storage overview.md).
 
 ## Release notes
 
