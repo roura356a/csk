@@ -98,7 +98,7 @@ This topic describes how to use statically provisioned Object Storage Service \(
             |---------|-----------|
             |**PV Type**|In this example, OSS is selected.|
             |**Volume Name**|The name of the PV that you want to create. The name must be unique in the cluster. In this example, pv-oss is used.|
-            |**Volume Plug-in**|In this example, Flexvolume is selected. For more information about volume plug-ins, see [Differences between FlexVolume and CSI](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Volume plug-ins.md).|
+            |**Volume Plug-in**|In this example, Flexvolume is selected. For more information about volume plug-ins, see [Differences between the CSI and FlexVolume plug-ins](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Storage overview.md).|
             |**Capacity**|The capacity of the PV.|
             |**Access Mode**|Default value: ReadWriteMany.|
             |**AccessKey ID**|The AccessKey pair that is required to access the OSS bucket.|
