@@ -14,7 +14,7 @@ aliyun cs  POST /clusters --region=${regionId} --header "Content-Type=applicatio
 
 Request parameters:
 
--   `--region`：The region where your cluster is hosted.
+-   `--region`: The region where your cluster is hosted.
 -   `--header`: You must set Content-Type to application/json.
 -   `--body`: The content that is sent to the server. The content can be saved in a local file and must be in valid JSON format. The `create.json` file contains the following content:
 
