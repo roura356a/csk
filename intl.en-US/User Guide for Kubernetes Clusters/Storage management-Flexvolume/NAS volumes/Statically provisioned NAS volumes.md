@@ -7,7 +7,7 @@ keyword: [statically provisioned volumes, NAS, FlexVolume]
 You can use the FlexVolume plug-in provided by Alibaba Cloud to use Apsara File Storage NAS in Container Service for Kubernetes \(ACK\). This topic describes how to use a statically provisioned NAS volume.
 
 -   Upgrade the FlexVolume plug-in to the latest version.
--   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+-   [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
 The FlexVolume plug-in allows you to use a NAS file system as a volume. You can also use a NAS file system to create a PV and a PVC.
 
@@ -112,7 +112,7 @@ You can use a NAS file system to create a PV and a PVC and associate them with a
             |---------|-----------|
             |**PV Type**|In this example, NAS is selected.|
             |**Name**|The name of the PV. The name must be unique in the cluster. In this example, pv-nas is used.|
-            |**Volume Plug-in**|In this example, FlexVolume is selected. For more information about volume plug-ins, see [Differences between Flexvolume and CSI](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Volume plug-ins.md).|
+            |**Volume Plug-in**|In this example, FlexVolume is selected. For more information about volume plug-ins, see [Differences between the CSI and FlexVolume plug-ins](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Storage overview.md).|
             |**Capacity**|The capacity of the PV. The capacity of the PV cannot exceed that of the NAS file system.|
             |**Access Mode**|By default, ReadWriteMany is selected.|
             |**Mount Target Domain Name**|The domain name of the mount target that is used to mount the NAS file system to the cluster.|
