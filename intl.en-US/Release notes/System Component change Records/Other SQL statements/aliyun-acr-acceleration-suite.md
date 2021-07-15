@@ -1,16 +1,20 @@
 ---
-keyword: [aliyun-acr-acceleration-suite, release notes for aliyun-acr-acceleration-suite]
+keyword: [aliyun-acr-acceleration-suite, aliyun-acr-acceleration-suite release notes]
 ---
 
 # aliyun-acr-acceleration-suite
 
 This topic describes the features of the aliyun-acr-acceleration-suite component and lists the latest changes to aliyun-acr-acceleration-suite.
 
-## Overview
+## Introduction
 
-The aliyun-acr-acceleration-suite component is a client plug-in that enables on-demand image loading. This accelerates image loading. You can deploy this component on a worker node as a DaemonSet. Container Registry can automatically convert base images to accelerated images. You can use this feature with aliyun-acr-acceleration-suite to deploy applications from accelerated images. Image packages can be decompressed online and you do not need to download all files in the image package. This significantly accelerates application deployment and provides great elasticity for your business. For more information, see [Load resources of a container image on demand]().
+The aliyun-acr-acceleration-suite component is a client plug-in that enables on-demand image loading. This accelerates image loading. You can deploy this component on a worker node as a DaemonSet. Container Service for Kubernetes \(ACK\) collaborates with Container Registry to enable accelerated images. After you deploy aliyun-acr-acceleration-suite in a cluster, the system automatically converts a source image into an accelerated image. When an image pull request is received, the system decompresses data based on your needs without interrupting services. In this case, the system does not have to download or decompress full data. This speeds up application deployment and enables on-demand image loading.
 
 **Note:** Only managed and dedicated Kubernetes clusters of Kubernetes 1.16.9 or later support accelerated images. When you create the cluster, set the container runtime to Docker and select one of the following operating systems: Aliyun Linux 2.1903, CentOS 7.6, CentOS 7.7, CentOS 7.8, and CentOS 7.9.
+
+## Usage notes
+
+For more information about aliyun-acr-acceleration-suite, see [Load resources of a container image on demand]().
 
 ## Release notes
 
@@ -24,7 +28,7 @@ The aliyun-acr-acceleration-suite component is a client plug-in that enables on-
 **Note:** For more information about how to configure on-demand image loading, see [Load resources of a container image on demand]().
 
 
-|No impact on workloads.|
+|No impact on workloads|
 
 **November 2020**
 
