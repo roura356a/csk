@@ -16,13 +16,11 @@ Serverless Kubernetes \(ASK\) clusters support the FlexVolume and Container Stor
 
 |For more information about FlexVolume, see [Overview](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Overview.md).
 
-For more information about how to upgrade FlexVolume, see [Manage system components](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Upgrade cluster/Manage system components.md). |
+For more information about how to upgrade FlexVolume, see [Manage system components](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Manage clusters/Manage system components.md). |
 |CSI|CSI is recommended by the Kubernetes community. The CSI plug-in used in ASK clusters supports the features of the open source CSI version. CSI consists of the following parts: -   CSI-Plugin: allows you to mount and unmount volumes. By default, ASK allows you to mount Alibaba Cloud disks and Apsara File Storage NAS \(NAS\) file systems as volumes.
 -   CSI-Provisioner: automatically mounts disks and NAS file systems as volumes.
 
-|For more information about CSI, see [Overview](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Overview.md) and [alibaba-cloud-csi-driver](https://github.com/kubernetes-sigs/alibaba-cloud-csi-driver).
-
-有关如何升级CSI存储插件，请参见[CSI存储插件升级指南](https://yq.aliyun.com/articles/745944)。 |
+|For more information about CSI, see [Overview](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Storage overview.md) and [alibaba-cloud-csi-driver](https://github.com/kubernetes-sigs/alibaba-cloud-csi-driver). |
 
 ## How to choose
 
