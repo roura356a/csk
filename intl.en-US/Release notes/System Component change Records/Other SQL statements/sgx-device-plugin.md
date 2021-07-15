@@ -1,54 +1,59 @@
 ---
-keyword: [sgx-device-plugin, release notes]
+keyword: sgx-device-plugin
 ---
 
 # sgx-device-plugin
 
-This topic describes sgx-device-plugin and lists the latest changes to the component.
+This topic describes the features of sgx-device-plugin and lists the latest changes to the component.
 
-## Overview
+## Introduction
 
-sgx-device-plugin is a plug-in that applies to Container Service for Kubernetes \(ACK\). The plug-in is developed by Alibaba Cloud and Ant Financial. sgx-device-plugin facilitates the use of Intel \(R\) Software Guard Extensions \(SGX\) in containers. Intel \(R\) SGX is a set of CPU instructions provided by Intel. Intel \(R\) SGX increases the security of application code and data. This extra protection allows you to prevent against disclosure and malicious tampering. For more information, see [software-guard-extensions](https://software.intel.com/content/www/us/en/develop/topics/software-guard-extensions.html).
+sgx-device-plugin is a Kubernetes device plug-in developed by Container Service for Kubernetes \(ACK\) and Ant Financial. sgx-device-plugin facilitates the use of Intel \(R\) Software Guard Extensions \(SGX\) in containers. Intel \(R\) SGX is a set of CPU instructions provided by Intel. Intel \(R\) SGX increases the security of application code and data. This protects your code and data against disclosure and malicious tampering. For more information, see [software-guard-extensions](https://software.intel.com/content/www/us/en/develop/topics/software-guard-extensions.html).
 
 **Features**
 
 sgx-device-plugin provides the following features:
 
--   Intel \(R\) SGX is supported. You do not need to enable the privilege mode.
+-   Intel \(R\) SGX can be used without the need to enable the privilege mode.
 -   The Enclave Page Cache \(EPC\) size can be automatically retrieved.
 -   Declarative EPC resource allocation is supported.
 
-**Prerequisites**
+**Dependencies**
 
-sgx-device-plugin depends on the following components and tools:
+sgx-device-plugin is dependent on the following components and tools:
 
--   [Intel SGX Drivers](https://github.com/intel/linux-sgx-driver)
--   [Intel \(R\) SGX Platform Software \(PSW\)](https://github.com/intel/linux-sgx). This component is required if you want to enable Intel \(R\) SGX Architectural Enclave Service Manager \(Intel \(R\) SGX AESM\).
--   The Kubernetes version must be V1.10 and later.
--   The Go version must be V1.10 and later.
+-   TEE-SDK. TEE-SDK enables the compatibility between and Intel SGX and Intel SGX Platform Software \(PSW\).
+-   The Kubernetes version must be V1.10 or later.
+-   The Go version must be V1.10 or later.
 
 **FAQ**
 
 -   Can I deploy sgx-device-plugin in Kubernetes clusters that are deployed outside Alibaba Cloud?
 
-    Yes, sgx-device-plugin can be deployed in all types of Kubernetes clusters. However, you can run sgx-device-plugin on only SGX-enabled nodes.
+    Yes, sgx-device-plugin can be deployed in all types of Kubernetes clusters. However, you can run sgx-device-plugin only on SGX-enabled nodes.
 
 -   Can I use sgx-device-plugin to control the EPC size for SGX-enabled containers?
 
-    No, you cannot use sgx-device-plugin to control the EPC size for SGX-enabled containers. The EPC size limit specified by the alibabacloud.com/sgx\_epc\_MiB parameter applies to only kube-scheduler. Intel \(R\) SGX Driver does not support this parameter.
+    No, you cannot use sgx-device-plugin to control the EPC size for SGX-enabled containers. The EPC size limit specified by the alibabacloud.com/sgx\_epc\_MiB parameter applies only to kube-scheduler. Intel \(R\) SGX Driver does not support this parameter.
 
 -   Is sgx-device-plugin open source?
 
     Yes, sgx-device-plugin is open source. For more information, see [sgx-device-plugin](https://github.com/AliyunContainerService/sgx-device-plugin).
 
 
+## Usage notes
+
+By default, sgx-device-plugin is installed in ACK clusters. You can use sgx-device-plugin without extra configurations.
+
 ## Release notes
+
+**April 2021**
 
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
-|v1.0.0-5f5b5ef-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/sgx-device-plugin:v1.0.0-5f5b5ef-aliyun|February 21, 2020|-   Intel \(R\) SGX is supported. You do not need to enable the privilege mode.
--   The Enclave Page Cache \(EPC\) size can be automatically retrieved.
+|v1.1.0-bb1f5f9-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/sgx-device-plugin:v1.1.0-bb1f5f9-aliyu|2021-04-30|-   Intel \(R\) SGX can be used without the need to enable the privilege mode.
+-   The EPC size can be automatically retrieved.
 -   Declarative EPC resource allocation is supported.
 
-|No impact on workloads.|
+|No impact on workloads|
 
