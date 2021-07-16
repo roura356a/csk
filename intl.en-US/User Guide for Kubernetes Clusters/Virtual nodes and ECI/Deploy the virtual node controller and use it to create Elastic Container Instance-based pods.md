@@ -169,7 +169,7 @@ You can use one of the following methods to create an Elastic Container Instance
 
 -   After you delete all the Elastic Container Instance-based pods in a dedicated Kubernetes cluster, you can uninstall ack-virtual-node on the Helm page.
 
-2.  Run the ``kubectl delete node <node name>`` command to delete related virtual nodes.
+2.  Run the `kubectl delete node <node name>` command to delete related virtual nodes.
 
     **Note:** If you do not delete the Elastic Container Instance-based pods in the cluster before you uninstall ack-virtual-node, the elastic container instances are retained in the cluster.
 
