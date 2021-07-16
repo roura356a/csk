@@ -20,12 +20,6 @@ aliyun-acr-credential-helper会默认安装在所有ACK集群中。通过读取A
 
 ## 变更记录
 
-**2021年04月**
-
-|版本号|镜像地址|变更时间|变更内容|变更影响|
-|---|----|----|----|----|
-|v21.04.22.0-273c079-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/aliyun-acr-credential-helper:v21.04.22.0-273c079-aliyun|2021年04月22日|支持线下IDC机房部署。|此次升级不会对业务造成影响。|
-
 **2021年01月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
