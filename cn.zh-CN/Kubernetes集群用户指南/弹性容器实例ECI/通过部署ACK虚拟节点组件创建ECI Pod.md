@@ -187,7 +187,7 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
 -   在ACK专有版集群中，删除所有ECI Pod后，在Helm管理页面删除ack-virtual-node组件即可。
 
-2.  通过命令`kubectl delete no`删除相关虚拟节点。
+2.  通过命令`kubectl delete node <node name>`删除相关虚拟节点。
 
     **说明：** 当集群中存在ECI Pod时，卸载ack-virtual-node组件会导致ECI实例的残留。
 
