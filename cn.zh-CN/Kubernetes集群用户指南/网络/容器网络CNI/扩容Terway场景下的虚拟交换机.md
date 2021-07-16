@@ -97,7 +97,7 @@ Terway网络场景下，VSwitch IP资源不足的特征如下：
 
 **Terway网络下，增加虚拟交换机（VSwitch）后，为何不能正常访问公网？**
 
-问题现象：在Terway网络下，因Pod没有IP资源而手动增加虚拟交换机，在增加虚拟交换机后，发现不能通过公网访问集群。
+问题现象：在Terway网络下，因Pod没有IP资源而手动增加虚拟交换机，在增加虚拟交换机后，发现集群不能正常访问公网。
 
 问题原因：Pod IP所属的虚拟交换机不具备公网访问的能力。
 
@@ -108,5 +108,5 @@ Terway网络场景下，VSwitch IP资源不足的特征如下：
 
 [使用Terway网络插件](/cn.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/使用Terway网络插件.md)
 
-[使用网络策略（Network Policy）](/cn.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/使用网络策略（Network Policy）.md)
+[使用网络策略Network Policy](/cn.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/使用网络策略Network Policy.md)
 
