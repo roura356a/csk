@@ -30,7 +30,7 @@ Related cloud services are activated. For more information, see [Quick start for
     |Worker Instance|Add worker nodes by creating new ECS instances.|
     |Instance Type|Select ECS Bare Metal Instance.|
     |Mount Data Disk|Mount a data disk of at least 200 GiB. We recommend that you mount a data disk of at least 1 TB.|
-    |Operating System|By default, the AliyunLinux operating system is used. You cannot not change the operating system.|
+    |Operating System|By default, the Alibaba Cloud Linux operating system is used. You cannot not change the operating system.|
 
 
 ## Procedure
@@ -55,12 +55,12 @@ Related cloud services are activated. For more information, see [Quick start for
 
 **Note:** The name must be 1 to 63 characters in length, and can contain digits, letters, and hyphens \(-\). |
         |**Region**|Select a region to deploy the cluster. |
-        |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group to which the cluster belongs. The name of the selected resource group is displayed, as shown in the following figure.
+        |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group that you want to use. After you select a resource group, virtual private clouds \(VPCs\) and vSwitches are filtered based on the selected resource group. When you create a cluster, only the VPCs and vSwitches that belong to the selected resource group are displayed in the console.
 
-![Resource Group](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
+![Resource Groups](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
         |**Kubernetes Version**|Select a Kubernetes version.|
         |**Container Runtime**|Select **Sandboxed-Container**.|
-        |**VPC**|Select a virtual private cloud \(VPC\) to deploy the cluster. Standard VPCs and shared VPCs are supported.
+        |**VPC**|Select a VPC to deploy the cluster. Standard VPCs and shared VPCs are supported.
 
         -   Shared VPC: The owner of a VPC \(resource owner\) can share the vSwitches in the VPC with other accounts in the same organization.
         -   Standard VPC: The owner of a VPC \(resource owner\) cannot share the vSwitches in the VPC with other accounts.
@@ -109,7 +109,7 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
 **Note:** To enable an RDS instance to access the cluster, you must deploy the RDS instance in the VPC where the cluster is deployed. |
         |**Security Group**|You can select **Create Basic Security Group**, **Create Advanced Security Group**, or **Select Existing Security Group**. For more information, see [Overview](/intl.en-US/Security/Security groups/Overview.md).
 
-**Note:** To select **Select Existing Security Group**, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm). |
+**Note:** To select **Select Existing Security Group**, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply to be added to a whitelist. |
 
     2.  Configure advanced settings of the cluster.
 
@@ -128,14 +128,14 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
         -   Keys are not case-sensitive. A key must be 1 to 64 characters in length, and cannot start with aliyun, http://, or https://.
         -   Values are not case-sensitive. A value can be empty and can contain up to 128 characters in length. It cannot be http:// or https://.
         -   The keys of labels that are added to the same resource must be unique. If you add a label with a used key, the label overwrites the others that use the same key.
-        -   You can add up to 20 labels to each resource. If you add more than 20 labels to a resource, all labels become invalid. You must remove unused labels for the other labels to take effect. |
+        -   If you add more than 20 labels to a resource, all labels become invalid. You must remove excess labels for the remaining labels to take effect. |
         |**Cluster Domain**|Set the domain name of the cluster.
 
 **Note:** The default domain name is **cluster.local**. You can enter a custom domain name. A domain name consists of two parts. Each part must be 1 to 63 characters in length and can contain only letters and digits. You cannot leave these parts empty. |
         |**Custom Certificate SANs**|You can enter custom subject alternative names \(SANs\) for the API server certificate of the cluster to accept requests from specified IP addresses or domain names. |
         |**Service Account Token Volume Projection**|**Service account token volume projection** reduces security risks when pods use service accounts to access the API server. This feature enables kubelet to request and store the token on behalf of the pod. This feature also allows you to configure token properties, such as the audience and validity duration. For more information, see [Enable service account token volume projection](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Infrastructure security/Enable service account token volume projection.md). |
         |**Cluster CA**|If you select this check box, upload a Certificate Authority \(CA\) certificate for the ACK cluster to ensure secure data transmission between the server and client.|
-        |**Deletion Protection**|Specify whether to enable deletion protection. Deletion protection prevents the cluster from being accidentally deleted in the console or by calling the API. This prevents user errors. |
+        |**Deletion Protection**| |
 
 6.  Click **Next:Master Configurations** to configure master nodes.
 
@@ -164,7 +164,7 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
 **Note:**
 
         -   You can select **Enable Backup** to back up disk data.
-        -   If you select an **enhanced SSD** as the system disk, you can set a custom **performance level** for the disk.
+        -   If you select **enhanced SSD** as the system disk type, you can set a custom **performance level** for the system disk.
 
 You can select higher performance levels for enhanced SSDs with larger storage capacities. For example, you can select performance level 2 for an enhanced SSD with a storage capacity of more than 460 GiB. You can select performance level 3 for an enhanced SSD with a storage capacity of more than 1,260 GiB. For more information, see [Capacity and PLs](/intl.en-US/Block Storage/Block Storage overview/ESSDs.md). |
         |**Mount Data Disk**|**Enhanced SSDs**, **standard SSDs**, and **ultra disks** are supported. You can enable **disk encryption** and **disk backup** when you mount a data disk.
@@ -190,7 +190,7 @@ You can select higher performance levels for enhanced SSDs with larger storage c
 
 A node name consists of a prefix, an IP substring, and a suffix.
 
-        -   Both the prefix and suffix can contain one or more parts that are separated with periods \(**.**\).These parts can contain lowercase letters, digits, and hyphens \(-\), and must start and end with a lowercase letter or digit.
+        -   Both the prefix and suffix can contain one or more parts that are separated by periods \(**.**\).These parts can contain lowercase letters, digits, and hyphens \(-\), and must start and end with a lowercase letter or digit.
         -   The IP substring length specifies the number of digits to be truncated from the end of the returned node IP address. Valid values: 5 to 12.
 For example, if the node IP address is 192.1xx.x.xx, the prefix is aliyun.com, the IP substring length is 5, and the suffix is test, the node name will be aliyun.com00055test. |
         |**Node Port Range**|Set the node port range.|
@@ -204,15 +204,15 @@ For example, if the node IP address is 192.1xx.x.xx, the prefix is aliyun.com, t
 
     |Parameter|Description|
     |---------|-----------|
-    |**Ingress**|Specify whether to install Ingress controllers. By default, **Install Ingress Controllers** is selected. For more information, see [Advanced Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Configure an Ingress.md). |
-    |**Volume Plug-in**|Select **CSI**. Only the Container Storage Interface \(CSI\) plug-in is supported by sandboxed containers in ACK clusters. ACK clusters can be automatically bound to Alibaba Cloud disks, Apsara File Storage NAS \(NAS\) file systems, and Object Storage Service \(OSS\) buckets that are mounted to pods. For more information, see [Storage management-CSI](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Overview.md).|
-    |**Monitoring Agents**|Specify whether to install the CloudMonitor agent. By default, **Install CloudMonitor Agent on ECS Instance** and **Enable Prometheus Monitoring** are selected. After the CloudMonitor agent is installed on ECS instance-based nodes, you can view monitoring data about the nodes in the CloudMonitor console. |
+    |**Ingress**|Specify whether to install Ingress controllers. By default, **Install Ingress Controllers** is selected. For more information, see [Advanced Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Advanced Ingress configurations.md). |
+    |**Volume Plug-in**|Select **CSI**. Only the Container Storage Interface \(CSI\) plug-in is supported by sandboxed containers in ACK clusters. ACK clusters can be automatically bound to Alibaba Cloud disks, Apsara File Storage NAS \(NAS\) file systems, and Object Storage Service \(OSS\) buckets that are mounted to pods. For more information, see [Storage management-CSI](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Storage overview.md).|
+    |**Monitoring Agents**|Specify whether to install the CloudMonitor agent. By default, **Install CloudMonitor Agent on ECS Instance** and **Enable Prometheus Monitoring** are selected. After the CloudMonitor agent is installed on ECS nodes, you can view monitoring data about the nodes in the CloudMonitor console. |
     |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create one. By default, **Enable Log Service** is selected. When you create an application, you can enable Log Service through a few steps. For more information, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md).
 
 By default, **Install node-problem-detector and Create Event Center** is selected. You can also specify whether to **create Ingress dashboards** in the Log Service console. |
     |**Workflow Engine**|Specify whether to enable Alibaba Cloud Genomics Service \(AGS\).
 
-**Note:** To use this feature, submit a ticket.
+**Note:** To use this feature, submit a ticket to apply to be added to a whitelist.
 
     -   If you select this check box, the system automatically installs the AGS workflow plug-in when the system creates the cluster.
     -   If you clear this check box, you must manually install the AGS workflow plug-in. For more information, see [Introduction to AGS CLI](/intl.en-US/User Guide for Genomics Service/AGS workflow/Introduction to AGS CLI.md). |
