@@ -39,7 +39,7 @@ Perform the following steps to deploy ack-virtual-node in a managed Kubernetes c
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
@@ -169,7 +169,7 @@ You can use one of the following methods to create an Elastic Container Instance
 
 -   After you delete all the Elastic Container Instance-based pods in a dedicated Kubernetes cluster, you can uninstall ack-virtual-node on the Helm page.
 
-2.  Run the `kubectl delete no` command to delete related virtual nodes.
+2.  Run the ``kubectl delete node <node name>`` command to delete related virtual nodes.
 
     **Note:** If you do not delete the Elastic Container Instance-based pods in the cluster before you uninstall ack-virtual-node, the elastic container instances are retained in the cluster.
 
