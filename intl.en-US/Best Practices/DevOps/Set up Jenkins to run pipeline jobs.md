@@ -39,7 +39,9 @@ We recommend that you perform the following steps to install ack-jenkins in the 
 
     2.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-    3.  Select the namespace in which Jenkins is deployed. Find the **ack-jenkins-default** Service and then click the endpoint in the **External Endpoint** column to log on to Jenkins.
+    3.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
+
+    4.  Select the namespace in which Jenkins is deployed. Find the **ack-jenkins-default** Service and then click the endpoint in the **External Endpoint** column to log on to Jenkins.
 
 6.  Configure the settings on the Getting Started page.
 
