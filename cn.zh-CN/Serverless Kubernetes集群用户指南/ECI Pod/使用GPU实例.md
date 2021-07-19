@@ -6,7 +6,7 @@ keyword: [GPU实例, ECI GPU实例, ECI Pod]
 
 GPU实例内置了对应的Docker镜像，因此使用ECI GPU实例时无需安装Tensorflow、CUDA Toolkit等软件。本文介绍如何使用ECI GPU实例。
 
-当前ECI GPU支持的驱动版本是NVIDIA 410.79，支持的CUDA Toolkit版本是10.0。
+当前ECI GPU支持的驱动版本为NVIDIA 460.73.01，可支持的CUDA Tookit版本为11.2。
 
 ECI支持通过指定ECS GPU规格来创建ECI GPU实例。支持的ECS GPU规格，如下所示：
 
