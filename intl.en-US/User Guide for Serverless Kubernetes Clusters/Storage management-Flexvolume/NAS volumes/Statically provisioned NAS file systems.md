@@ -7,7 +7,7 @@ keyword: [statically provisioned volumes, NAS, FlexVolume]
 You can use the FlexVolume plug-in provided by Alibaba Cloud to use Apsara File Storage NAS in Container Service for Kubernetes \(ACK\). This topic describes how to use a statically provisioned NAS volume.
 
 -   Upgrade the FlexVolume plug-in to the latest version.
--   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+-   [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
 The FlexVolume plug-in allows you to use a NAS file system as a volume. You can also use a NAS file system to create a PV and a PVC.
 
@@ -101,19 +101,18 @@ You can create a pair of persistent volume \(PV\) and persistent volume claim \(
         ```
 
     -   Create the PV in the ACK console.
-        1.  Log on to the [ACK console](https://cs.console.aliyun.com)[ACK console](https://partners-intl.console.aliyun.com/#/cs).
+        1.  Log on to the [ACK console](https://cs.console.aliyun.com).
         2.  In the left-side navigation pane, click **Serverless Clusters**.
         3.  On the Clusters page, find the cluster that you want to manage and click **Details** in the **Actions** column of the cluster.
-        4.  In the left-side navigation pane, choose **Clusters** \> **Persistent Volumes**.
-        5.  The Cluster Information page appears. In the left-side navigation pane, click **Persistent Volumes**. The Persistent Volume Claims tab appears.
-        6.  Click the **Persistent Volumes** tab and click **Create**.
-        7.  In the Create PV dialog box, set the parameters.
+        4.  The Cluster Information page appears. In the left-side navigation pane, click **Persistent Volumes**. The Persistent Volume Claims tab appears.
+        5.  Click the **Persistent Volumes** tab and click **Create**.
+        6.  In the Create PV dialog box, set the parameters.
 
             |Parameter|Description|
             |---------|-----------|
             |**PV Type**|In this example, NAS is selected.|
             |**Name**|The name of the PV. The name must be unique in the cluster. In this example, pv-nas is used.|
-            |**Volume Plug-in**|In this example, FlexVolume is selected. For more information about volume plug-ins, see [Differences between FlexVolume and CSI](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Volume plug-ins.md).|
+            |**Volume Plug-in**|In this example, FlexVolume is selected. For more information about volume plug-ins, see [Differences between the CSI and FlexVolume plug-ins](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Storage overview.md).|
             |**Capacity**|The capacity of the PV. The capacity of the PV cannot exceed that of the NAS file system.|
             |**Access Mode**|By default, ReadWriteMany is selected.|
             |**Mount Target Domain Name**|The domain name of the mount target that is used to mount the NAS file system to the cluster.|
@@ -137,7 +136,7 @@ If the mounted directory is a sub-directory of the NAS file system, the Permissi
             |**Version**|The version of the NFS protocol. We recommend that you use version 3. NAS Extreme file systems support only NFS version 3.|
             |**Labels**|Add labels to the PV.|
 
-        8.  Click **Create**.
+        7.  Click **Create**.
 2.  Create a PVC.
 
     Use the following nas-pvc.yaml file to create a PVC.
