@@ -6,7 +6,7 @@ keyword: [GPU-accelerated ECI, GPU-accelerated ECI, ECI Pod]
 
 GPU-accelerated elastic container instances \(ECIs\) are pre-installed with Docker images. Therefore, when you use GPU-accelerated ECIs, you do not need to install software such as TensorFlow and CUDA Toolkit. This topic describes how to use a GPU-accelerated ECI.
 
-The GPU driver version supported by GPU-accelerated ECIs is NVIDIA 410.79. The CUDA Toolkit version supported by GPU-accelerated ECIs is V10.0.
+The GPU driver version supported by GPU-accelerated ECIs is NVIDIA 460.73.01. The CUDA Toolkit version supported by GPU-accelerated ECIs is V11.2.
 
 You can specify GPU-accelerated Eastic Compute Service \(ECS\) instance types to create GPU-accelerated ECIs. Supported GPU-accelerated ECS instance types include:
 
@@ -15,7 +15,7 @@ You can specify GPU-accelerated Eastic Compute Service \(ECS\) instance types to
 -   gn5, GPU \(NVIDIA P100\)-accelerated and compute optimized instance family, for example, ecs.gn5-c4g1.xlarge.
 -   gn5i, GPU \(NVIDIA P4\)-accelerated and compute optimized instance family, for example, ecs.gn5i-c2g1.large.
 
-For more information about GPU-accelerated ECS instance types, see [Instance family](/intl.en-US/Instance/Instance family.md).
+For more information about GPU-accelerated ECS instance types, see [Instance families](/intl.en-US/Instance/Instance families.md).
 
 ## Procedure
 
