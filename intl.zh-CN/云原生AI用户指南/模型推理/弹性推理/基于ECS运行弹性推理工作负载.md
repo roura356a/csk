@@ -101,11 +101,11 @@ keyword: [ECS, 弹性推理]
 
     推理服务参数说明如下：
 
-    -   `nodeSelector`：设置为弹性节点池的节点标签，推理服务通过nodeSelector把Pod调度到弹性节点池。本例设置为`seldon：fashion-mnist`。
+    -   `nodeSelector`：设置为弹性节点池的节点标签，推理服务通过nodeSelector把Pod调度到弹性节点池。本例设置为`inference: tensorflow`。
     -   `limits: nvidia.com/gpu`：最多可使用的GPU卡。
     -   `requests: nvidia.com/gpu`：需要使用的GPU卡。
-    -   `model_name`：模型的名称。
-    -   `model_base_path`：模型的访问路径。
+    -   `model-name`：模型的名称。
+    -   `model-path`：模型的访问路径。
 5.  创建HPA。
 
     1.  创建hpa.yaml。
