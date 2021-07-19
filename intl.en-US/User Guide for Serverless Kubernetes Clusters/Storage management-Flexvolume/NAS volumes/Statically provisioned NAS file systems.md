@@ -102,7 +102,7 @@ You can create a pair of persistent volume \(PV\) and persistent volume claim \(
 
     -   Create the PV in the ACK console.
         1.  Log on to the [ACK console](https://cs.console.aliyun.com).
-        2.  In the left-side navigation pane, click **Serverless Clusters**.
+        2.  In the left-side navigation pane, click **Clusters**.
         3.  On the Clusters page, find the cluster that you want to manage and click **Details** in the **Actions** column of the cluster.
         4.  The Cluster Information page appears. In the left-side navigation pane, click **Persistent Volumes**. The Persistent Volume Claims tab appears.
         5.  Click the **Persistent Volumes** tab and click **Create**.
