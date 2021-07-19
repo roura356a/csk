@@ -4,9 +4,9 @@ keyword: [cGPU, node pool, GPU sharing, memory isolation]
 
 # Use node pools to control cGPU
 
-You can use node pools to enforce the GPU sharing and memory isolation policies of cGPU. In this topic, two labeled node pools are created to demonstrate how to use node pools to control the GPU sharing and memory isolation capabilities of cGPU.
+Container Service for Kubernetes \(ACK\) allows you to use node pools to control cGPU. This way, you can create more flexible GPU sharing and memory isolation policies. In this topic, two labeled node pools are created to demonstrate how to use node pools to control the GPU sharing and memory isolation capabilities of cGPU.
 
-Make sure that the following prerequisites are met:
+Before you start, make sure that you have performed the following operations:
 
 -   [Install the cGPU component](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Shared GPU scheduling/Install the cGPU component.md).
 
@@ -27,7 +27,7 @@ Make sure that the following prerequisites are met:
     -   cgpu.disable.isolation=true |
 
 
-When you use cGPU in a Container Service for Kubernetes \(ACK\) cluster, you may come across the following scenarios:
+When you use cGPU in an ACK cluster, you may come across the following scenarios:
 
 -   The amount of GPU memory that can be allocated to Job A is already specified in the script. In this case, the ACK cluster needs only to enable GPU sharing for Job A. Memory isolation is not required.
 -   The amount of GPU memory that can be allocated to Job B is not specified in the script. In this case, the ACK cluster must enable both GPU sharing and memory isolation for Job B.
@@ -39,7 +39,7 @@ To resolve this problem, you can use node pools to control cGPU. You need only t
 -   Create a node pool that supports only GPU sharing. This node pool is used to run Job A.
 -   Create another node pool that supports both GPU sharing and memory isolation. This node pool is used to run Job B.
 
-## Considerations
+## Precautions
 
 When you use node pools to control cGPU, take note of the following limits:
 
@@ -49,7 +49,7 @@ When you use node pools to control cGPU, take note of the following limits:
 
 -   When the label of a node is changed, for example, the node label is changed from cgpu.disable.isolation=false to cgpu.disable.isolation=true, you must restart the pod of gpushare-device-plugin on the node for the configuration to take effect.
 
-    The restart strategy deletes the pod of gpushare-device-plugin on the node. Then, ACK automatically creates a new pod. To complete this task, perform the following operations:
+    To do this, you must delete the pod of gpushare-device-plugin on the node. Then, ACK automatically creates a new pod. You can perform the following operations:
 
     1.  Run the following command to query the pods of gpushare-device-plugin in the ACK cluster:
 
@@ -65,7 +65,7 @@ When you use node pools to control cGPU, take note of the following limits:
         gpushare-device-plugin-ds-pjrvn   1/1     Running   0          15h   192.168.7.158   cn-shanghai.192.168.7.158   <none>           <none>
         ```
 
-    2.  In this example, run the following command to delete the pod of gpushare-device-plugin on node cn-shanghai.192.168.7.157:
+    2.  In this example, node cn-shanghai.192.168.7.157 is used. Run the following command to delete the pod of gpushare-device-plugin on this node:
 
         ```
         kubectl delete po gpushare-device-plugin-ds-6r8gs -n kube-system
@@ -78,21 +78,23 @@ When you use node pools to control cGPU, take note of the following limits:
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node Pools**.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  In the upper-right corner of the Node Pools page, click **Create Node Pool**.
+4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node Pools**.
+
+5.  In the upper-right corner of the Node Pools page, click **Create Node Pool**.
 
     In the upper-right corner of the Node Pools page, you can also click **Create Managed Node Pool** to create a managed node pool, or click **Configure Auto Scaling** to create an auto-scaling node pool.
 
-5.  In the **Create Node Pool** dialog box, set the parameters.
+6.  In the **Create Node Pool** dialog box, set the parameters.
 
-    For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md). The following describes some of the parameters:
+    For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md). The following list describes some of the parameters:
 
-    -   **Quantity**: the initial number of nodes in the node pool. If you do not want to create nodes in the node pool, set this parameter to 0.
-    -   **Operating System**: the operating system of the nodes. CentOS, Alibaba Cloud Linux 2.x, and Windows are supported.
-    -   **Node Label**: the labels of the nodes.
-    -   **ECS Label**: the labels of the Elastic Compute Service \(ECS\) instances.
-    -   **Custom Resource Group**: the resource group for scale-out. When the node pool is scaled out, nodes from the specified resource group are added to the node pool.
+    -   **Quantity**: Specify the initial number of nodes in the node pool. If you do not want to create nodes in the node pool, set this parameter to 0.
+    -   **Operating System**: Select the operating system of the nodes. CentOS 7.x and Alibaba Cloud Linux 2.x are supported.
+    -   **Node Label**: You can add labels to the nodes.
+    -   **ECS Label**: You can add labels to the Elastic Compute Service \(ECS\) instances.
+    -   **Custom Resource Group**: You can specify the resource group to which the nodes in the node pool belong.
     In the **Node Label** section, you can add specified labels to the nodes in the node pool.
 
     -   You must add the following labels to the nodes in the cgpu node pool: cgpu=true and cgpu.disable.isolation=false.
@@ -101,18 +103,18 @@ When you use node pools to control cGPU, take note of the following limits:
 
     ![Node labels](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0946876061/p178925.png)
 
-6.  Click **Confirm Order**.
+7.  Click **Confirm Order**.
 
-    On the Node Pools page, check the **Status** column of the managed node pool. If the node pool is in the **Initializing** state, it indicates that the node pool is being created. After the node pool is created, the **Status** of the node pool changes to **Active**.
+    On the Node Pools page, check the **Status** column of the node pool. If the node pool is in the **Initializing** state, it indicates that the node pool is being created. After the node pool is created, the **Status** of the node pool changes to **Active**.
 
 
-**Note:** If you want to add GPU-accelerated nodes to the node pool, you can scale out the node pool. For more information, see [Scale out a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Manage a node pool.md).
+**Note:** If you want to add GPU-accelerated nodes to the node pool, you can scale out the node pool. For more information, see [Scale out a node pool]().
 
 ## Step 2: Submit jobs
 
 Submit two jobs named cgpu-test and cgpu-test-no-isolation. You must set nodeSelector in the YAML files of both jobs.
 
--   cgpu-test: The amount of GPU memory to be allocated to this job is not specified in the script of the job. Therefore, memory isolation is required for running this job. The following YAML template is an example:
+-   cgpu-test: The amount of GPU memory to be allocated to this job is not specified in the script of the job. Therefore, memory isolation is required for running this job. The following YAML template is provided as an example:
 
     ```
     apiVersion: apps/v1
@@ -156,7 +158,7 @@ Submit two jobs named cgpu-test and cgpu-test-no-isolation. You must set nodeSel
     -   **nodeSelector**: selects the cgpu node pool.
     -   **cgpu.disable.isolation=false**: schedules the job to the nodes in the cgpu node pool.
     -   **aliyun.com/gpu-mem**: specifies the amount of GPU memory.
--   cgpu-test-no-isolation: The amount of memory to be allocated to this job per GPU is specified in the script of the job. Therefore, memory isolation is not required for running this job. The following YAML template is an example:
+-   cgpu-test-no-isolation: The amount of memory to be allocated to this job per GPU is specified in the script of the job. Therefore, memory isolation is not required for running this job. The following YAML template is provided as an example:
 
     ```
     apiVersion: apps/v1
@@ -269,7 +271,7 @@ Submit two jobs named cgpu-test and cgpu-test-no-isolation. You must set nodeSel
     +-----------------------------------------------------------------------------+
     ```
 
-    The preceding output shows that 16,130 MiB of GPU memory can be used by the containers. The total GPU memory is 16 GiB. This indicates that GPU memory isolation is disabled. In this case, you must add the following environment variables to apply for a required amount of GPU memory that can be used by the containers. Run the following command to query the amount of memory that can be allocated from a GPU to the containers:
+    The preceding output shows that 16,130 MiB of GPU memory can be discovered by the containers. The total GPU memory is 16 GiB. This indicates that GPU memory isolation is disabled. In this case, you must use the following environment variable to query the amount of GPU memory that can be used by the containers. Run the following command to query the amount of memory that can be used by the containers:
 
     ```
     kubectl exec cgpu-test-no-isolation-0 env | grep ALIYUN
@@ -278,13 +280,13 @@ Submit two jobs named cgpu-test and cgpu-test-no-isolation. You must set nodeSel
     Expected output:
 
     ```
-    ALIYUN_COM_GPU_MEM_CONTAINER=3    # specifies the amount of memory that can be allocated from a GPU to the containers. In this example, 3 GiB is specified. 
-    ALIYUN_COM_GPU_MEM_DEV=15      # the total memory of the GPU. 
+    ALIYUN_COM_GPU_MEM_CONTAINER=3    # The amount of GPU memory that can be used by the containers. In this example, 3 GiB is specified. 
+    ALIYUN_COM_GPU_MEM_DEV=15      # The total memory of the GPU. 
     ...
     ```
 
 4.  After you run the `nvidia-smi` command, compare the results returned from pod cgpu-test-no-isolation-0 and pod cgpu-test-0.
 
-    Pod cgpu-test-no-isolation-0 is returned with the total amount of GPU memory and pod cgpu-test-0 is returned with the amount of GPU memory for which you have applied. This indicates that you can use node pools to control cGPU for GPU sharing and memory isolation.
+    The result of pod cgpu-test-no-isolation-0 shows the total amount of GPU memory and the result of pod cgpu-test-0 shows only the amount of GPU memory that you have requested. This indicates that you can use node pools to control cGPU for GPU sharing and memory isolation.
 
 
