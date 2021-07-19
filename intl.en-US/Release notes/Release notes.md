@@ -705,7 +705,7 @@ China \(Hohhot\)
 |-------|-----------|-------|----------|
 |New region|ACK is available in the China East 2 Finance region on Alibaba Finance Cloud. Alibaba Finance Cloud provides services in compliance with security regulations.|China East 2 Finance|[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
 |ASK is released.|None|All regions|[Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md)|
-|Blue-green releases, canary releases, and A/B testing are supported.|None|All regions|[Overview]()|
+|Blue-green releases, canary releases, and A/B testing are supported.|None|All regions|[Use Ingresses to implement canary releases](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Use Ingresses to implement canary releases.md)|
 
 ## April 2018
 
