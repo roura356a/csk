@@ -4,26 +4,26 @@ keyword: [create an Ingress to secure data transmission, rewrite rules, domain n
 
 # Advanced Ingress configurations
 
-An Ingress is an API object that provides Layer 7 load balancing to manage external access to Services in a Kubernetes cluster. Ingresses provide advanced features, which allow you to specify URLs for external access, set rewrite rules, configure HTTPS services, and implement canary releases. This topic describes how to secure data transmission, set mutual TLS authentication, use regular expressions as domain names, use wildcard domain names, apply for free TLS certificates, and customize other related features.
+An Ingress is an API object that provides Layer 7 load balancing to manage external access to Services in a Kubernetes cluster. Container Service for Kubernetes \(ACK\) allows you to use the advanced features of Ingresses to configure specific URLs to allow external access, set rewrite rules, configure HTTPS, and implement canary releases. This topic describes how to configure secure data transmission, set mutual TLS authentication, use regular expressions to specify domain names, use wildcard domain names, apply for free TLS certificates, and customize other related features.
 
--   A Container Service for Kubernetes \(ACK\) cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+-   An ACK cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 -   An Ingress controller is running as normal in the ACK cluster.
--   [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) is installed.
+-   A kubectl client is connected to the cluster. For more information, see [t16645.dita\#task\_ubf\_lhg\_vdb](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 -   A Deployment and a Service are created. For more information, see [t16682.md\#section\_mw2\_7f1\_d2c](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Basic operations of an Ingress.md).
 
 ## Configurations
 
-The methods that are used to configure the ingress-nginx-controller component for ACK are fully compatible with the open source version of the component. For more information about the configuration methods, see [NGINX Configuration](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/).
+The configuration methods of the ingress-nginx-controller component in ACK are fully compatible with the open source version of the component. For more information about the configuration methods, see [NGINX Configuration](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/).
 
 The following configuration methods are supported:
 
--   Annotation: You can modify annotations in the YAML template of each Ingress. The annotations take effect on only a specific Ingress. For more information, see [Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/).
--   ConfigMap: You can modify kube-system/nginx-configuration configmap to set a global configuration for all Ingresses. For more information, see [ConfigMaps](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/).
+-   Annotation: You can modify annotations in the YAML template of each Ingress. The annotations take effect on individual Ingresses. For more information, see [Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/).
+-   ConfigMap: You can modify the kube-system/nginx-configuration ConfigMap to set a global configuration for all Ingresses. For more information, see [ConfigMaps](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/).
 -   Custom NGINX template: You can customize the NGINX template of an Ingress controller if the preceding methods cannot meet your requirements. For more information, see [Custom NGINX template](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/custom-template/).
 
 ## Configure routing rules to redirect traffic from specific URLs
 
-Run the following command to create an Ingress. The Ingress redirects traffic that is destined for the /svc path to the / path. The / path can be recognized by Services.
+Run the following command to create an Ingress. The Ingress redirects traffic that is destined for the /svc path to the / path. The / path can be recognized by backend Services.
 
 1.  The following template shows the configuration of the Ingress:
 
@@ -68,8 +68,8 @@ Run the following command to create an Ingress. The Ingress redirects traffic th
 
 The `inginx.ingress.kubernetes.io/rewrite-target` annotation can be used to configure basic rewrite rules. To configure advanced rewrite rules, use the following annotations:
 
--   `nginx.ingress.kubernetes.io/server-snippet`: This annotation adds custom configurations to the Location block.
--   `nginx.ingress.kubernetes.io/configuration-snippet`: This annotation adds custom configurations to the Server block.
+-   `nginx.ingress.kubernetes.io/server-snippet`: This annotation adds custom configurations to the Server configuration block.
+-   `nginx.ingress.kubernetes.io/configuration-snippet`: This annotation adds custom configurations to the Location configuration block.
 
 Examples:
 
@@ -90,10 +90,10 @@ The following example shows the configuration of the nginx.conf file:
         listen 80;
         listen [::]:80;
         set $proxy_upstream_name "-";
-    ### Configuration of server-snippet.
+    ### Configuration of server-snippet. 
         rewrite ^/v4/(.*)/card/query http://m.maizuo.com/v5/#!/card/query permanent;
         ...
-    ### Configuration of configuration-snippet.
+    ### Configuration of configuration-snippet. 
       rewrite ^/v6/(.*)/card/query http://m.maizuo.com/v7/#!/card/query permanent;
       ...
     }
@@ -104,7 +104,7 @@ Snippet also supports some global configurations. For more information, see [ser
 
 ## Create an Ingress to secure data transmission
 
-ACK allows you to use multiple types of certificates to reinforce the security of your applications.
+ACK allows you to use multiple types of certificate to reinforce the security of your services.
 
 1.  Prepare your certificate.
 
@@ -112,7 +112,7 @@ ACK allows you to use multiple types of certificates to reinforce the security o
 
     **Note:** The domain name must be the same as the one that is specified in the Ingress configuration.
 
-    1.  Run the following command to generate a certificate file tls.crt and a private key file tls.key:
+    1.  Run the following command to generate a certificate file named tls.crt and a private key file named tls.key:
 
         ```
         openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=foo.bar.com/O=foo.bar.com"
@@ -120,10 +120,10 @@ ACK allows you to use multiple types of certificates to reinforce the security o
 
     2.  Run the following command to create a Kubernetes Secret.
 
-        The Kubernetes Secret named foo.bar stores the certificate and private key. You must refer to the Secret when you create an Ingress.
+        Use the certificate and private key to create a Secret named tls-test-ingress. The Secret is referenced when you create the Ingress.
 
         ```
-        kubectl create secret tls foo.bar --key tls.key --cert tls.crt
+        kubectl create secret tls tls-test-ingress --key tls.key --cert tls.crt
         ```
 
 2.  Run the following command to create an Ingress to secure data transmission:
@@ -151,7 +151,7 @@ ACK allows you to use multiple types of certificates to reinforce the security o
     EOF
     ```
 
-3.  Run the following command to query information about the Ingress:
+3.  Run the following command to query the Ingress:
 
     ```
     kubectl get ing
@@ -251,7 +251,7 @@ Mutual TLS authentication is required in some scenarios. This feature is support
         Getting CA Private Key
         ```
 
-4.  Run the following command to query the created certificates:
+4.  Run the following command to query the created certificate files:
 
     ```
     ls
@@ -263,7 +263,7 @@ Mutual TLS authentication is required in some scenarios. This feature is support
     ca.crt  ca.key  client.crt  client.csr  client.key  server.crt  server.csr  server.key
     ```
 
-5.  Run the following command to create a Secret for the created CA certificate:
+5.  Run the following command to create a Secret based on the created CA certificate:
 
     ```
     kubectl create secret generic ca-secret --from-file=ca.crt=ca.crt
@@ -275,7 +275,7 @@ Mutual TLS authentication is required in some scenarios. This feature is support
     secret/ca-secret created
     ```
 
-6.  Run the following command to create a Secret for the created server certificate:
+6.  Run the following command to create a Secret based on the created server certificate:
 
     ```
     kubectl create secret generic tls-secret --from-file=tls.crt=server.crt --from-file=tls.key=server.key
@@ -412,7 +412,7 @@ kind: Ingress
 metadata:
   name: backend-https
   annotations:
-    # You must specify HTTPS Services.
+    # You must specify an HTTPS Service. 
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   tls:
@@ -429,9 +429,9 @@ spec:
           servicePort: your-service-port
 ```
 
-## Use regular expressions as domain names
+## Use regular expressions to specify domain names
 
-By default, you are not allowed to use regular expressions as domain names when you configure Ingresses for Kubernetes clusters. However, you can enable Ingresses to support regular expressions by adding the `nginx.ingress.kubernetes.io/server-alias` annotation.
+By default, you cannot use regular expressions to specify domain names when you configure Ingresses for Kubernetes clusters. However, you can enable Ingresses to support regular expressions by adding the `nginx.ingress.kubernetes.io/server-alias` annotation.
 
 1.  Create an Ingress. In the following example, the domain name is set to the regular expression `~^www\.\d+\.example\.com`.
 
@@ -650,14 +650,14 @@ In Kubernetes clusters, Ingresses support wildcard domain names. For example, yo
 
 ## Use annotations to implement canary releases
 
-You can implement canary releases by adding annotations to Ingresses. To enable canary release, you must add the annotation `nginx.ingress.kubernetes.io/canary: "true"`. This section describes how to use different annotations to implement canary releases.
+You can implement canary releases by adding annotations to Ingresses. To enable canary releases, you must add the `nginx.ingress.kubernetes.io/canary: "true"` annotation. This section describes how to use different annotations to implement canary releases.
 
 -   `nginx.ingress.kubernetes.io/canary-weight`: This annotation allows you to set the percentage of requests that are sent to the specified Service. You can enter an integer from 1 to 100.
--   `nginx.ingress.kubernetes.io/canary-by-header`: This annotation enables traffic splitting based on the request header. If the `header` value is always, requests are distributed to new Services. If the `header` value is never, requests are not distributed to new Services. If the header value is not always or never, requests are distributed to new Services based on other matching rules in descending order of priority.
+-   `nginx.ingress.kubernetes.io/canary-by-header`: This annotation enables traffic splitting based on the request header. If the `header` value is always, requests are distributed to new Services. If the `header` value is never, requests are not distributed to new Services. If the header value is neither always nor never, requests are distributed to new Services based on other matching rules in descending order of priority.
 -   `nginx.ingress.kubernetes.io/canary-by-header-value` and `nginx.ingress.kubernetes.io/canary-by-header-value`: When the values of `header` and `header-value` in the requests match the specified values in the annotations, requests are distributed to new Services. Otherwise, requests are distributed to new Services based on other matching rules in descending order of priority.
 -   `nginx.ingress.kubernetes.io/canary-by-cookie`: This annotation enables cookie-based traffic splitting. If the `cookie` value is always, requests are distributed to new Services. If the `cookie` value is never, requests are not distributed to new Services.
 
-Examples on how to configure different annotations:
+Examples of different annotations:
 
 -   Weight-based canary release: Set the weight of Services to 20%.
 
@@ -671,7 +671,7 @@ Examples on how to configure different annotations:
         nginx.ingress.kubernetes.io/canary-weight: "20"
     ```
 
--   Header-based canary release: When the request header is `ack:always`, requests are forwarded to new Services. When the request header is `ack:never`, requests are not distributed to new Services. If the header is not ack:always or ack:never, requests are distributed to new Services based on weights.
+-   Header-based canary release: When the request header is `ack:always`, requests are forwarded to new Services. When the request header is `ack:never`, requests are not distributed to new Services. If the header is neither ack:always nor ack:never, requests are distributed to new Services based on weights.
 
     ```
     apiVersion: extensions/v1beta1
@@ -684,7 +684,7 @@ Examples on how to configure different annotations:
         nginx.ingress.kubernetes.io/canary-by-header: "ack"
     ```
 
--   Header-based canary release with custom header values: If the request header is `ack: alibaba`, requests are distributed to new Services. Otherwise, requests are distributed to new Services based on weights.
+-   Header-based canary release with custom header values: If the request header is `ack:alibaba`, requests are distributed to new Services. Otherwise, requests are distributed to new Services based on weights.
 
     ```
     apiVersion: extensions/v1beta1
@@ -698,7 +698,7 @@ Examples on how to configure different annotations:
         nginx.ingress.kubernetes.io/canary-by-header-value: "alibaba"
     ```
 
--   Cookie-based canary release: If the request header is not matched and the request cookie is `nginx.ingress.kubernetes.io/canary-by-cookie`, requests are distributed to new Services.
+-   Cookie-based canary release: If the request header is not matched and the request cookie is `hangzhou_region=always`, requests are distributed to new Services.
 
     ```
     apiVersion: extensions/v1beta1
@@ -755,7 +755,7 @@ cert-manager is an open source tool used to manage cloud-native certificates. Yo
     spec:
       acme:
         server: https://acme-v02.api.letsencrypt.org/directory
-        email: your_email_name@gmail.com  #Replace the value with your email address.
+        email: your_email_name@gmail.com  #Replace the value with your email address. 
         privateKeySecretRef:
           name: letsencrypt-http01
         solvers:
@@ -792,25 +792,25 @@ cert-manager is an open source tool used to manage cloud-native certificates. Yo
     spec:
       tls:
       - hosts:
-        -your_domain_name# Replace the value with your domain name.
+        -your_domain_name # Replace the value with your domain name. 
         secretName: ingress-tls   
       rules:
-      -Host: your_domain_name# Replace the value with your domain name.
+      -Host: your_domain_name # Replace the value with your domain name. 
         http:
           paths:
           - path: /
             backend:
-              serviceName: your_service_name# Replace the value with the Service name.
-              servicePort: your_service_port# Replace the value with the Service name.
+              serviceName: your_service_name # Replace the value with the Service name. 
+              servicePort: your_service_port # Replace the value with the Service port. 
     EOF
     ```
 
-    **Note:** The domain name that you specify to replace your\_domain\_name in the template must meet the following conditions:
+    **Note:** The domain name that you use to replace your\_domain\_name in the template must meet the following conditions:
 
     -   The domain name cannot exceed 64 characters in length.
     -   The domain name cannot be a wildcard domain name.
     -   The domain name is accessible from the Internet over HTTP.
-6.  Run the following command to view the certificate:
+6.  Run the following command to query the certificate:
 
     ```
     kubectl get cert
