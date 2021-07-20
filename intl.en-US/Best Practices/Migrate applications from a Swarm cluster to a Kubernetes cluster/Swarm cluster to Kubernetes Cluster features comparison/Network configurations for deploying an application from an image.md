@@ -7,7 +7,7 @@ This topic describes the differences in network configurations when you deploy a
 The user interfaces for deploying an application from an image in a Container Service for Swarm cluster and in an ACK cluster are quite different.
 
 -   For more information about how to deploy an application from an image in a Container Service for Swarm cluster, see [Create an application](/intl.en-US/User Guide/Applications/Create an application.md).
--   For more information about how to deploy an application from an image in an ACK cluster, see [Use a Deployment to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
+-   For more information about how to deploy an application from an image in an ACK cluster, see [Create a stateless application by using a Deployment](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a stateless application by using a Deployment.md).
 
 Network configurations
 
@@ -31,7 +31,7 @@ You can create a **NodePort** Service to expose your application to external acc
 
     ![Advanced](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5546858951/p35379.png)
 
-2.  Select **Node Port** from the **Type** drop-down list. For more information, see [Use a Deployment to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
+2.  Select **Node Port** from the **Type** drop-down list. For more information, see [Create a stateless application by using a Deployment](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a stateless application by using a Deployment.md).
 
     ![Node Port](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4546858951/p35381.png)
 
@@ -61,7 +61,7 @@ You can configure **simple routing** to expose your application through a domain
 
 ACK cluster
 
-You can create an Ingress to implement simple routing and other related features. You can also use Ingresses to implement blue-green releases and canary releases for applications in ACK clusters. For more information, see [Overview]().
+You can create an Ingress to implement simple routing and other related features. You can also use Ingresses to implement blue-green releases and canary releases for applications in ACK clusters. For more information, see [Use Ingresses to implement canary releases](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Use Ingresses to implement canary releases.md).
 
 ## Method 1: Create an Ingress when you deploy an application
 
@@ -71,7 +71,7 @@ You can use one of the following methods to create an Ingress:
 
     ![Advanced](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4546858951/p35395.png)
 
-2.  Deploy a stateless application from an image. For more information, see [Use a Deployment to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
+2.  Deploy a stateless application from an image. For more information, see [Create a stateless application by using a Deployment](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a stateless application by using a Deployment.md).
 
     ![Container configurations](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4546858951/p35397.png)
 
@@ -111,7 +111,7 @@ You can use one of the following methods to create a LoadBalancer Service:
 
     ![Advanced](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5546858951/p35379.png)
 
-2.  Select **Server Load Balancer** from the **Type** drop-down list. For more information, see [Use a Deployment to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
+2.  Select **Server Load Balancer** from the **Type** drop-down list. For more information, see [Create a stateless application by using a Deployment](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a stateless application by using a Deployment.md).
 
     ![Server Load Balancer](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5546858951/p35440.png)
 
