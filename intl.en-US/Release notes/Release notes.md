@@ -554,7 +554,7 @@ Compared with other remote storage solutions provided by the community, TSDB is 
 |Istio|Istio is upgraded to V1.1. Istio 1.1 allows you to manage Istio applications in the ACK console. You can create and manage Istio applications and services on a graphical interface. You can create different application versions, implement canary releases, set canary release policies, and also configure fault injection policies.
 
 |All regions|None|
-|ASK|GPU-accelerated pods are supported when you create applications in an ASK cluster. When you create an application from a template, specify the pod type as GPU in the YAML file.|All regions|[t220322.md\#]()|
+|ASK|GPU-accelerated pods are supported when you create applications in an ASK cluster. When you create an application from a template, specify the pod type as GPU in the YAML file.|All regions|None|
 |Container Registry Enterprise Edition|Container Registry Enterprise Edition is available in the China \(Beijing\) region.|China \(Beijing\)|[t2058233.dita\#concept\_2058233]()|
 |FPGA cluster|FPGA clusters are released. This type of cluster uses FPGA F3 instances as worker nodes and is used for H265 video encoding and image conversion from JPEG to HEIF. FPGA-based video encoding reduces the processing time from more than 1 week to a short period of time. This significantly reduces the bitrate and reduces bandwidth costs when transcoding videos of the same quality. In the ACK console, choose **Clusters** \> **Clusters** and click Create Kubernetes Cluster. In the Select Cluster Template dialog box, select **Dedicated FPGA Cluster** to create a dedicated FPGA cluster.|All regions|None|
 
@@ -683,7 +683,7 @@ India \(Mumbai\)
 |Feature|Description|Regions|References|
 |-------|-----------|-------|----------|
 |New region|None|Australia \(Sydney\)|[Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md)|
-|Canary releases and phased releases are supported.|None|All regions|[Overview](). Phased releases are no longer supported by ACK.|
+|Canary releases and phased releases are supported.|None|All regions|[Use Ingresses to implement canary releases](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Use Ingresses to implement canary releases.md). Phased releases are no longer supported by ACK.|
 
 ## June 2018
 
