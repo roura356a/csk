@@ -108,7 +108,7 @@ When you use node pools to control cGPU, take note of the following limits:
     On the Node Pools page, check the **Status** column of the node pool. If the node pool is in the **Initializing** state, it indicates that the node pool is being created. After the node pool is created, the **Status** of the node pool changes to **Active**.
 
 
-**Note:** If you want to add GPU-accelerated nodes to the node pool, you can scale out the node pool. For more information, see [Scale out a node pool]().
+**Note:** If you want to add GPU-accelerated nodes to the node pool, you can scale out the node pool. For more information, see [t1880229.md\#section\_851\_l8a\_fj3](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Manage a node pool.md).
 
 ## Step 2: Submit jobs
 
