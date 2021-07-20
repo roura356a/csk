@@ -111,7 +111,7 @@ keyword: [云盘存储, NAS存储, FAQ]
         -   若集群部署了Flexvolume插件，则执行以下命令查询Flexvolume日志。
 
             ```
-            kubectl get pod {pod-name} -owide
+            kubectl get pod <pod-name> -owide
             ```
 
             登录Pod所在节点，在`/var/log/alicloud/flexvolume_**.log`查看Flexvolume日志。
@@ -119,20 +119,20 @@ keyword: [云盘存储, NAS存储, FAQ]
         -   若集群部署了CSI插件，则执行以下命令查询csi-plugin日志。
 
             ```
-            nodeID=`kubectl get pod {pod-name} -owide | awk 'NR>1 {print $7}'`
+            nodeID=`kubectl get pod <pod-name> -owide | awk 'NR>1 {print $7}'`
             podID=`kubectl get pods -nkube-system -owide -lapp=csi-plugin | grep $nodeID|awk '{print $1}'`
             kubectl logs <PodID> -nkube-system
             ```
 
     -   查看Kubelet日志。
 
-        执行以下命令获取Pod所在的Node节点。
+        执行以下命令获取Pod所在节点。
 
         ```
-        kubectl get pod deployment-disk-5c795d7976-bjhkj -owide | awk 'NR>1 {print $7}'
+        kubectl get pod <pod-name> -owide | awk 'NR>1 {print $7}'
         ```
 
-        登录到该Node节点上查看/var/log/message日志文件。
+        登录到该节点上查看/var/log/message日志文件。
 
 
 **快速恢复**
