@@ -25,7 +25,7 @@ The sharp growth of smart devices connected to the Internet and the needs for de
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  On the Clusters page, click **Create Kubernetes Cluster** in the upper-right corner of the page.
+3.  In the upper-right corner of the Clusters page, click **Create Kubernetes Cluster**.
 
 4.  Click the **Managed Edge Kubernetes** tab and configure the cluster.
 
@@ -40,18 +40,18 @@ The sharp growth of smart devices connected to the Internet and the needs for de
 
 Select **Standard edition** to create a managed edge Kubernetes cluster. |
     |**Region**|Select a region to deploy the cluster. |
-    |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group to which the cluster belongs. The name of the selected resource group is displayed, as shown in the following figure.
+    |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group that you want to use. After you select a resource group, virtual private clouds \(VPCs\) and vSwitches are filtered based on the selected resource group. When you create a cluster, only the VPCs and vSwitches that belong to the selected resource group are displayed in the console.
 
-![Resource Group](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
+![Resource Groups](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
     |**Kubernetes Version**|The supported Kubernetes versions are displayed.|
-    |**VPC**|Select a virtual private cloud \(VPC\) to deploy the cluster. Standard VPCs and shared VPCs are supported.
+    |**VPC**|Select a VPC to deploy the cluster. Standard VPCs and shared VPCs are supported.
 
     -   Shared VPC: The owner of a VPC \(resource owner\) can share the vSwitches in the VPC with other accounts in the same organization.
     -   Standard VPC: The owner of a VPC \(resource owner\) cannot share the vSwitches in the VPC with other accounts.
-**Note:** ACK clusters support only VPCs. You can select a VPC from the drop-down list. If no VPC is available, click **Create VPC** to create one. For more information, see [Work with VPCs](/intl.en-US/VPCs and vSwitchs/Work with VPCs.md). |
+**Note:** ACK clusters support only VPCs. You can select a VPC from the drop-down list. If no VPC is available, click **Create VPC** to create one. For more information, see [Create a VPC](/intl.en-US/VPCs and vSwitchs/Work with VPCs.md). |
     |**VSwitch**|Select vSwitches.
 
-You can select up to three vSwitches that are deployed in different **zones**. If no vSwitch is available, click **Create VSwitch** to create one. For more information, see [Work with vSwitches](/intl.en-US/VPCs and vSwitchs/Work with vSwitches.md). |
+You can select up to three vSwitches that are deployed in different **zones**. If no vSwitch is available, click **Create VSwitch** to create one. For more information, see [Create a vSwitch](/intl.en-US/VPCs and vSwitchs/Work with vSwitches.md). |
     |**IP Addresses per Node**|If you select **Flannel** as the network plug-in, you must set **IP Addresses per Node**.
 
 **Note:**
@@ -77,8 +77,8 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
 **Note:** To enable an RDS instance to access the cluster, you must deploy the RDS instance in the VPC where the cluster is deployed. |
     |**Security Group**|You can select **Create Basic Security Group**, **Create Advanced Security Group**, or **Select Existing Security Group**. For more information, see [Overview](/intl.en-US/Security/Security groups/Overview.md).
 
-**Note:** To select **Select Existing Security Group**, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm). |
-    |**Deletion Protection**|Specify whether to enable deletion protection. Deletion protection prevents the cluster from being accidentally deleted in the console or by calling the API. This prevents user errors. |
+**Note:** To select **Select Existing Security Group**, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply to be added to a whitelist. |
+    |**Deletion Protection**| |
 
     Configure advanced settings of the cluster.
 
@@ -96,7 +96,7 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
     -   Keys are not case-sensitive. A key must be 1 to 64 characters in length, and cannot start with aliyun, http://, or https://.
     -   Values are not case-sensitive. A value can be empty and can contain up to 128 characters in length. It cannot be http:// or https://.
     -   The keys of labels that are added to the same resource must be unique. If you add a label with a used key, the label overwrites the others that use the same key.
-    -   You can add up to 20 labels to each resource. If you add more than 20 labels to a resource, all labels become invalid. You must remove unused labels for the other labels to take effect. |
+    -   If you add more than 20 labels to a resource, all labels become invalid. You must remove excess labels for the remaining labels to take effect. |
 
 5.  Click **Next:Worker Configurations** to configure worker nodes.
 
@@ -115,7 +115,7 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
 **Note:**
 
     -   You can select **Enable Backup** to back up disk data.
-    -   If you select an **enhanced SSD** as the system disk, you can set a custom **performance level** for the disk.
+    -   If you select **enhanced SSD** as the system disk type, you can set a custom **performance level** for the system disk.
 
 You can select higher performance levels for enhanced SSDs with larger storage capacities. For example, you can select performance level 2 for an enhanced SSD with a storage capacity of more than 460 GiB. You can select performance level 3 for an enhanced SSD with a storage capacity of more than 1,260 GiB. For more information, see [Capacity and PLs](/intl.en-US/Block Storage/Block Storage overview/ESSDs.md). |
     |**Logon Type**|**Note:** You must set the logon type if you select **Install CloudMonitor Agent on ECS Instance** or **Enable Log Service**. |
@@ -129,7 +129,7 @@ You can select higher performance levels for enhanced SSDs with larger storage c
     |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create one. By default, **Enable Log Service** is selected. When you create an application, you can enable Log Service through a few steps. For more information, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md). |
     |**Workflow Engine**|Specify whether to enable Alibaba Cloud Genomics Service \(AGS\).
 
-**Note:** To use this feature, submit a ticket.
+**Note:** To use this feature, submit a ticket to apply to be added to a whitelist.
 
     -   If you select this check box, the system automatically installs the AGS workflow plug-in when the system creates the cluster.
     -   If you clear this check box, you must manually install the AGS workflow plug-in. For more information, see [Introduction to AGS CLI](/intl.en-US/User Guide for Genomics Service/AGS workflow/Introduction to AGS CLI.md). |
@@ -160,7 +160,7 @@ The following information is displayed.
     **Note:** To rebind the domain name, click **Rebind Domain Name**.
 
 
-You can [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md) and run the `kubectl get node` command to view information about the nodes in the cluster.
+You can [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md) and run the `kubectl get node` command to view information about the nodes in the cluster.
 
 ![Check the results](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2883068951/p51375.png)
 
@@ -172,6 +172,4 @@ You can [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Ku
 [Upgrade an edge cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Upgrade an edge cluster.md)
 
 [Add an edge node](/intl.en-US/User Guide for Edge Container Service/Node management/Add an edge node.md)
-
-[Enhance the monitoring on edge Kubernetes clusters](/intl.en-US/User Guide for Edge Container Service/Application management/Enhance the monitoring on edge Kubernetes clusters.md)
 
