@@ -4,12 +4,12 @@ keyword: [CoreDNS, Analyser, 域名解析异常, DNSTAP]
 
 # 使用ACK CoreDNS DNSTAP Analyser诊断CoreDNS域名解析异常
 
-ACK集群的ACK CoreDNS DNSTAP Analyser组件，可以从CoreDNS和客户端之间，CoreDNS和上游DNS服务器之间的请求和相应过程中，对所有产生的DNS网络报文进行归类和识别。借助此工具，您可以快速定位域名无法解析的原因。本文介绍如何使用ACK CoreDNS DNSTAP Analyser诊断CoreDNS域名解析异常。
+ACK集群的ACK CoreDNS DNSTAP Analyser组件，可以从CoreDNS和客户端之间，CoreDNS和上游DNS服务器之间的请求和响应过程中，对所有产生的DNS网络报文进行归类和识别。借助此工具，您可以快速定位域名无法解析的原因。本文介绍如何使用ACK CoreDNS DNSTAP Analyser诊断CoreDNS域名解析异常。
 
 -   [创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)
 -   [通过kubectl管理Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)
 
-DNSTap是一种DNS报文日志格式协议，可以被用于诊断DNS服务器上异常解析问题。更多信息，请参见[dnstap](https://dnstap.info/)。
+DNSTAP是一种DNS报文日志格式协议，可以被用于诊断DNS服务器上异常解析问题。更多信息，请参见[dnstap](https://dnstap.info/)。
 
 ## 步骤一：安装ACK CoreDNS DNSTAP Analyser
 
@@ -26,7 +26,7 @@ DNSTap是一种DNS报文日志格式协议，可以被用于诊断DNS服务器�
 
 ## 步骤二：配置CoreDNS的DNSTAP插件
 
-CoreDNS中内置了发送DNSTap报文的DNSTAP插件，DNSTAP插件收到和发出的DNS报文可以发送至ACK CoreDNS DNSTAP Analyser。使用ACK CoreDNS DNSTAP Analyser诊断CoreDNS域名解析异常前，您需要先配置CoreDNS的DNSTAP插件。
+CoreDNS中内置了发送DNSTAP报文的DNSTAP插件，DNSTAP插件收到和发出的DNS报文可以发送至ACK CoreDNS DNSTAP Analyser。使用ACK CoreDNS DNSTAP Analyser诊断CoreDNS域名解析异常前，您需要先配置CoreDNS的DNSTAP插件。
 
 1.  执行以下命令，获取kube-system命名空间下ACK CoreDNS DNSTAP Analyser服务的ClusterIP地址（例如172.21.0.10）用于配置DNSTAP插件。
 
