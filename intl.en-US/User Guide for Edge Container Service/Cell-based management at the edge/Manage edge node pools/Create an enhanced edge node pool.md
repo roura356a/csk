@@ -20,8 +20,8 @@ Edge node pools support two types of modes for collaborative cloud-edge networki
 |Whether edge nodes can access VPCs|No.|Yes.|
 |Network quality|Low.|High. Edge nodes can connect to CCN instances through the nearest access points.|
 |Security|Low.|High. Connections between the cloud and edge are encrypted.|
-|Costs|Low.|High.|
-|Scenarios|Workloads that are deployed at the edge and are not strongly reliant on cloud computing.|Applies to the following scenarios:-   Workloads that require intercommunication between the cloud and edge.
+|Cost-effectiveness|Low.|High.|
+|Scenarios|Workloads that are deployed at the edge and are not strongly reliant on cloud computing.|Applicable scenarios:-   Workloads that require intercommunication between the cloud and edge.
 -   Latency-sensitive workloads that require high network quality.
 -   Workloads that require high network security. |
 
@@ -31,14 +31,14 @@ Edge node pools support two types of modes for collaborative cloud-edge networki
 -   Each enhanced edge node pool must contain at least two AMD64 nodes.
 -   In an enhanced edge node pool, the gateway components are installed in pods on edge nodes. These pods support only the Flannel network plug-in. Host networking is not supported.
 -   When you create a basic or enhanced edge node pool, you must specify the maximum number of nodes that the edge node pool supports. This value is saved in an annotation of the NodePool object and cannot be modified. We recommend that you set the size of your edge node pool to a proper value.
--   The metadata of an enhanced edge node pool is saved in the annotations of the NodePool object. You must not modify or delete these annotations. Otherwise, the enhanced edge node pool may fail to work in enhanced mode. For more information about the annotations, see [Annotations for an edge node pool](#table_r0v_lda_822).
+-   The metadata of an enhanced edge node pool is saved in the annotations of the NodePool object. You must not modify or delete these annotations. Otherwise, the enhanced edge node pool may fail to work in enhanced mode. For more information, see [Annotations for an edge node pool](#table_r0v_lda_822).
 -   The `openyurt.io/desired-nodepool` label specifies the node pool to which a node belongs. You cannot move a node from an enhanced edge node pool to another enhanced edge node pool by modifying this label. To move the node, you must remove the node from the current node pool and then add it to another enhanced edge node pool. Otherwise, the node cannot work in enhanced mode. For more information, see [Remove edge nodes](/intl.en-US/User Guide for Edge Container Service/Node management/Remove edge nodes.md).
 
 ## How an enhanced edge node pool works
 
 Enhanced cloud-edge networking is based on the SDN solution of ACK@Edge and the global network infrastructure of Alibaba Cloud. It enables reliable and secure communication between the cloud and edge. After you create an enhanced edge node pool and add edge nodes to the node pool, the gateway components are automatically installed in pods on edge nodes. The gateway components enable edge nodes to connect to CCN instances through the nearest access points. The CCN instances can communicate with the VPCs that are connected to the same CEN instance. This connects the cloud and edge. In enhanced mode, data exchanged between the cloud and edge is encrypted. Data is transmitted over the internal network of Alibaba Cloud. This ensures the efficiency and security of data transmission. In addition, edge nodes can access services that are deployed in VPCs.
 
-When you create an enhanced edge node pool, the following components are deployed for the node pool: **edge-gateway-core\(egw-core\)** and **edge-gateway-helper\(egw-helper\)**. **edge-gateway-core** is the key component of an enhanced gateway. This component is deployed in the node pool as a Deployment. The Deployment creates and manages two pods in the node pool: one serves as the primary pod while the other serves as the secondary pod. The two pods are deployed on different nodes to ensure high availability. **edge-gateway-helper** is a component that synchronizes routes among nodes. This component is deployed on each node as a DaemonSet. It is used to configure the routing information for nodes.
+When you create an enhanced edge node pool, the following components are deployed for the node pool: **edge-gateway-core\(egw-core\)** and **edge-gateway-helper\(egw-helper\)**. **edge-gateway-core** is the key component of an enhanced gateway. This component is deployed in the node pool as a Deployment. The Deployment creates and manages two pods in the node pool: One serves as the primary pod while the other serves as the secondary pod. The two pods are deployed on different nodes to ensure high availability. **edge-gateway-helper** is a component that synchronizes routes among nodes. This component is deployed on each node as a DaemonSet. It is used to configure routing information for nodes.
 
 ![G-5](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0817896161/p224127.png)
 
@@ -54,10 +54,13 @@ When you create an enhanced edge node pool, the following components are deploye
 
 5.  On the Node Pools page, click **Create Edge Node Pool \(Beta\)** in the upper-right corner of the page.
 
-6.  On the **Create Edge Node Pool \(Beta\)** page, set the required parameters. For more information, see [Create an edge node pool](/intl.en-US/User Guide for Edge Container Service/Cell-based management at the edge/Manage edge node pools/Create an edge node pool.md).
+6.  On the **Create Edge Node Pool \(Beta\)** dialog box, set the required parameters. For more information, see [Create an edge node pool](/intl.en-US/User Guide for Edge Container Service/Cell-based management at the edge/Manage edge node pools/Create an edge node pool.md).
 
     -   Set **Coordination Network between Cloud and Edge** to **Enhanced**.
-    -   Select an existing CEN instance from the **CEN Instance** drop-down list and select an existing CCN instance from the **CCN Instance** drop-down list.
+    -   **CEN Instance**:
+        -   To use a CEN instance that belongs to your account, select **Use CEN Instance of Current Account** and then select the CEN instance.
+        -   To use a CEN instance that belongs to another account, you must first acquire the permissions to connect the VPC of the current cluster and the CCN instance to the CEN instance that you want to use. For more information, see [Acquire permissions from another Alibaba Cloud account]() and [Attach networks](). Then, select **Use CEN Instance of Other Accounts** and enter the UID of the account that owns the CEN instance and the ID of the CEN instance.
+    -   **CCN Instance**: Select the CCN instance that you have created.
 7.  Click **Submit**.
 
 8.  After the edge node pool is created, add at least two nodes to the node pool. For more information, see [Add nodes to an edge node pool](/intl.en-US/User Guide for Edge Container Service/Cell-based management at the edge/Manage edge node pools/Add nodes to an edge node pool.md).
@@ -72,10 +75,10 @@ When you create an enhanced edge node pool, the following components are deploye
 
 |Annotation|Description|
 |----------|-----------|
-|nodepool.openyurt.io/max-nodes|Specifies the maximum number of nodes that a node pool supports. This annotation is applicable to only non-default edge node pools.|
-|nodepool.openyurt.io/pod-cidrs|Specifies the pod CIDR blocks that are assigned to a node pool. This annotation is applicable to only non-default edge node pools.|
-|nodepool.openyurt.io/cen-id|The ID of the CEN instance that is specified for an enhanced edge node pool.|
-|nodepool.openyurt.io/ccn-id|The ID of the CCN instance that is specified for an enhanced edge node pool.|
-|nodepool.openyurt.io/ccn-region|The region of the CCN instance that is specified for an enhanced edge node pool. Only the China \(Shanghai\) region is supported in China.|
-|nodepool.openyurt.io/is-default|Specifies whether a node pool is a default edge node pool.|
+|nodepool.openyurt.io/max-nodes|Specifies the maximum number of nodes that the enhanced edge node pool supports. This annotation is applicable to only non-default edge node pools.|
+|nodepool.openyurt.io/pod-cidrs|Specifies the pod CIDR blocks that are assigned to the enhanced edge node pool. This annotation is applicable to only non-default edge node pools.|
+|nodepool.openyurt.io/cen-id|Specifies the ID of the CEN instance for the enhanced edge node pool.|
+|nodepool.openyurt.io/ccn-id|Specifies the ID of the CCN instance for the enhanced edge node pool.|
+|nodepool.openyurt.io/ccn-region|Specifies the region of the CCN instance for the enhanced edge node pool. Only the China \(Shanghai\) region is supported in China.|
+|nodepool.openyurt.io/is-default|Specifies whether to set the enhanced edge node pool as a default edge node pool.|
 
