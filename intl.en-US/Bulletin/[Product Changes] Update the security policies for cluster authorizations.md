@@ -1,0 +1,4 @@
+# \[Product Changes\] Update the security policies for cluster authorizations
+
+Container Service for Kubernetes \(ACK\) will update the security policies for cluster authorizations a week later. After the security policies are updated, unauthorized Resource Access Management \(RAM\) users cannot access cluster resources. You can grant role-based access control \(RBAC\) permissions and RAM permissions to RAM users to manage your clusters. For more information, see [t17456.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Assign RBAC roles to a RAM user.md). After the security policies are updated, RAM users are granted limited permissions only on clusters within the authorization domain. RAM users are no longer allowed to access clusters outside the authorization domain in compatibility mode.
+
