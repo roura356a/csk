@@ -1,12 +1,12 @@
 # Create a managed edge Kubernetes cluster
 
-Creates a managed edge Kubernetes cluster.
+You can call the CreateCluster operation to create a managed edge Kubernetes cluster.
 
 ## Debugging
 
 [OpenAPI Explorer automatically calculates the signature value. For your convenience, we recommend that you call this operation in OpenAPI Explorer. OpenAPI Explorer dynamically generates the sample code of the operation for different SDKs.](https://api.aliyun.com/#product=CS&api=CreateCluster&type=ROA&version=2015-12-15)
 
-## Request structure
+## Request syntax
 
 ```
 POST /clusters HTTP/1.1
@@ -62,7 +62,7 @@ Content-Type:application/json
 |---------|----|--------|-------|-----------|
 |name|String|Yes|demo-edge-cluster|The name of the cluster.
 
-The name must be 1 to 63 characters in length, and can contain digits, letters, and hyphens \(-\). It cannot start with a hyphen. |
+The name must be 1 to 63 characters in length, and can contain digits, letters, and hyphens \(-\). It cannot start with a hyphen \(-\). |
 |cluster\_type|String|Yes|ManagedKubernetes|The type of cluster. Set the value to `ManagedKubernetes` to create a managed edge Kubernetes cluster.|
 |disable\_rollback|Boolean|No|true|Specifies whether to perform a rollback when the cluster fails to be created. Valid values:
 
@@ -73,12 +73,12 @@ Default value: `false`. |
 |timeout\_mins|Long|No|60|The timeout period in minutes during which a resource must be created. Default value: 60.|
 |kubernetes\_version|String|No|1.16.9-aliyun.1|The version of the cluster. The cluster versions provided by Container Service for Kubernetes \(ACK\) are consistent with the open source versions. We recommend that you select the latest version. If you do not specify this parameter, the latest version is used.
 
-You can create clusters of the latest two versions in the ACK console. You can create ACK clusters of earlier versions by calling API operations. For more information about the Kubernetes versions supported by ACK, see [t1960241.md\#](/intl.en-US/Release notes/Kubernetes release notes/Overview of Kubernetes release notes.md). |
-|region\_id|String|Yes|cn-beijing|The ID of the region where you want to deploy the cluster.|
+You can create clusters of the latest two versions in the ACK console. You can create ACK clusters of earlier versions by calling API operations. For more information about the Kubernetes versions supported by ACK, see [Overview of Kubernetes versions supported by ACK](/intl.en-US/Release notes/Kubernetes release notes/Overview of Kubernetes versions supported by ACK.md). |
+|region\_id|String|Yes|cn-beijing|The ID of the region where the cluster is deployed.|
 |key\_pair|String|Yes|demo-key|The name of the key pair. You must set this parameter or the `login_password` parameter.|
 |login\_password|String|Yes|HelloWorld123|The password for Secure Shell \(SSH\) logon. You must set this parameter or the `key_pair` parameter. The password must be 8 to 30 characters in length, and must contain at least three of the following character types: uppercase letters, lowercase letters, digits, and special characters.|
 |num\_of\_nodes|Long|Yes|1|The number of worker nodes to be created. Valid values: 0 to 100.|
-|profile|String|Yes|Edge|Specifies whether the cluster to be created is an edge cluster. Default value: Edge.|
+|profile|String|Yes|Edge|Specifies whether the cluster to be created is an edge Kubernetes cluster. Default value: Edge.|
 |snat\_entry|Boolean|No|true|Specifies whether to configure Source Network Address Translation \(SNAT\) rules for the virtual private cloud \(VPC\) where your cluster is deployed.
 
 -   If the VPC supports Internet access, set the value to `false`.
@@ -89,11 +89,11 @@ You can create clusters of the latest two versions in the ACK console. You can c
 If your applications deployed in the cluster need to access the Internet, we recommend that you set the value to `true`.
 
 Default value: `false`. |
-|vswitch\_ids|Array of String|Yes|vsw-2ze48rkq464rsdts1\*\*\*\*|The IDs of vSwitches. You can specify up to three vSwitches.|
+|vswitch\_ids|Array of String|Yes|vsw-2ze48rkq464rsdts1\*\*\*\*|The IDs of the vSwitches. You can specify at most three vSwitches.|
 |worker\_system\_disk\_category|String|Yes|cloud\_efficiency|The type of system disk that is specified for worker nodes. Valid values:
 
--   `cloud_efficiency`: ultra disk.
--   `cloud_ssd`: standard SSD.
+-   `cloud_efficiency`: ultra disk
+-   `cloud_ssd`: standard SSD
 
 Default value: `cloud_ssd`. |
 |worker\_system\_disk\_size|Long|Yes|100|The size of the system disk that is specified for worker nodes. Unit: GiB.
@@ -103,7 +103,7 @@ Valid values: 40 to 500.
 The value of this parameter must be at least 40 and greater than or equal to the size of the image.
 
 Default value: `120`. |
-|container\_cidr|String|Yes|172.20.0.0|The CIDR block of pods. This CIDR block cannot overlap with the CIDR block of the VPC in which the cluster is deployed. If the VPC is automatically created by the system, the CIDR block of pods is set to 172.16.0.0/16 by default.
+|container\_cidr|String|Yes|172.20.0.0|The CIDR block of pods. This CIDR block cannot overlap with the CIDR block of the VPC where the cluster is deployed. If the VPC is automatically created by the system, the CIDR block of pods is set to 172.16.0.0/16 by default.
 
 **Note:** This parameter is required if the cluster uses the Flannel plug-in. |
 |cloud\_monitor\_flags|Boolean|No|true|Specifies whether to install the CloudMonitor agent. Valid values:
@@ -124,34 +124,32 @@ Default value: `true`.
 |addons|Array of [addon](/intl.en-US/API Reference/Commonly used parameters.md)|No|\[\{"name":"flannel","config":""\},\{"name":"logtail-ds-docker","config":""\},\{"name":"alibaba-log-controller","config":"\{"IngressDashboardEnabled":"false"\}"\}\]|The add-ons to be installed for the cluster. Parameter description:
 
 -   `name`: the name of the add-on. This parameter is required.
--   `config`: This parameter is optional. If this parameter is left empty, it indicates that no configurations are required.
--   `disabled`: specifies whether to disable automatic installation. This parameter is optional.
+-   `config`: optional. If this parameter is left empty, it indicates that no configurations are required.
+-   `disabled`: optional. This parameter specifies whether to disable automatic installation.
 
-**Network plug-in**: Required. Supported network plug-ins are Flannel and Terway. Select one of the plug-ins for the cluster.
+**Network plug-in**: required. Supported network plug-ins are Flannel and Terway. Select one of the plug-ins for the cluster.
 
 -   Specify the Flannel plug-in in the following format: \[\{"name":"flannel","config":""\}\].
 -   Specify the Terway plug-in in the following format: \[\{"name": "terway-eniip","config": ""\}\].
 
-**Volume plug-in**: Required. Supported volume plug-ins are `CSI` and `FlexVolume`.
+**Volume plug-in**: required. Supported volume plug-ins are `CSI` and `FlexVolume`.
 
 -   Specify the `CSI` plug-in in the following format: \[\{"name":"csi-plugin","config": ""\},\{"name": "csi-provisioner","config": ""\}\].
 -   Specify the `FlexVolume` plug-in in the following format: \[\{"name": "flexvolume","config": ""\}\].
 
-**Log Service component**: Optional.
+**Log Service component**: optional.
 
 **Note:** If Log Service is disabled, you cannot use the cluster auditing feature.
 
 -   To use an existing Log Service project, specify the component in the following format: \[\{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\",\\"sls\_project\_name\\":\\"your\_sls\_project\_name\\"\}"\}\].
 -   To create a Log Service project, specify the component in the following format: \[\{"name": "logtail-ds","config": "\{\\"IngressDashboardEnabled\\":\\"true\\"\}"\}\].
 
-**Ingress controller**: Optional. By default, the nginx-ingress-controller component is installed for dedicated Kubernetes clusters.
+**Ingress controller**: optional. By default, the nginx-ingress-controller component is installed for dedicated Kubernetes clusters.
 
--   To install nginx-ingress-controller and enable Internet access, specify the component in the following format: \[\{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\].
--   If you do not want to install nginx-ingress-controller, specify the component in the following format: \[\{"name": "nginx-ingress-controller","config": "","disabled": true\}\].
+-   To install nginx-ingress-controller and enable Internet access, specify the Ingress controller in the following format: \[\{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\].
+-   To disable the automatic installation of nginx-ingress-controller, specify the component in the following format: \[\{"name": "nginx-ingress-controller","config": "","disabled": true\}\].
 
-**Event center**: Optional. By default, the event center feature is enabled. The event center feature allows you to log Kubernetes events, query events, and raise alerts. Logstores that are associated with the Kubernetes event center are free of charge for the first 90 days. For more information, see [t1857672.md\#](/intl.en-US/Application/K8s Event Center/Create and use a Kubernetes event center.md).
-
-**Event center**: Optional. By default, the event center feature is enabled. The event center feature allows you to log Kubernetes events, query events, and raise alerts. Logstores that are associated with the Kubernetes event center are free of charge for the first 90 days.
+**Event center**: optional. By default, the event center feature is enabled. The event center feature allows you to log Kubernetes events, query events, and raise alerts. Logstores that are associated with the Kubernetes event center are free of charge for the first 90 days. For more information, see [Create and use a Kubernetes event center](/intl.en-US/Application/K8s Event Center/Create and use a Kubernetes event center.md).
 
 Enable the ack-node-problem-detector component in the following format: \[\{"name":"ack-node-problem-detector","config":"\{\\"sls\_project\_name\\":\\"
 
@@ -159,7 +157,7 @@ your\_sls\_project\_name\\"\}"\}\]. |
 |tags|Array of [tag](/intl.en-US/API Reference/Commonly used parameters.md)|No|\[\{"key": "env", "value": "prod"\}\]|The labels to be added to the cluster. -   key: the key of the label.
 -   value: the value of the label. |
 |vpcid|String|Yes|vpc-2zeik9h3ahvv2zz95\*\*\*\*|The VPC where the cluster is deployed. You must specify a VPC when you create the cluster. **Note:** Leave both `vpc_id` and `vswitch_ids` empty or make sure that the vSwitches specified by vswitch\_ids belong to the VPC that is specified by vswitch\_ids. |
-|worker\_data\_disks|Array of [data\_disk](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The configurations of data disks that are mounted to worker nodes. Each configuration includes disk type and disk size.|
+|worker\_data\_disks|Array of[data\_disk](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The configurations of the data disks that are mounted to worker nodes. Each configuration includes disk type and disk size.|
 |deletion\_protection|Boolean|No|true|Specifies whether to enable deletion protection for the cluster. After deletion protection is enabled, the cluster cannot be deleted in the ACK console or by calling API operations. Valid values:
 
 -   `true`: enables deletion protection for the cluster. This way, the cluster cannot be deleted in the ACK console or by calling API operations.
@@ -169,7 +167,7 @@ Default value: `false`. |
 |node\_cidr\_mask|String|No|25|The maximum number of IP addresses that can be assigned to each node. This number is determined by the specified pod CIDR block. This parameter takes effect only if the cluster uses the Flannel plug-in.
 
 Default value: `26`. |
-|worker\_instance\_types|Array of String|Yes|ecs.n4.large|The instance types of worker nodes. You must specify at least one instance type. For more information, see [t9548.md\#](/intl.en-US/Instance/Instance families.md).
+|worker\_instance\_types|Array of String|Yes|ecs.n4.large|The instance types of worker nodes. You must specify at least one instance type. For more information, see [Instance families](/intl.en-US/Instance/Instance families.md).
 
 **Note:** The instance types are listed in descending order of priority. If worker nodes fail to be created based on the instance type of the highest priority, the system attempts to create worker nodes by using the instance type of the next highest priority. |
 |worker\_instance\_charge\_type|String|Yes|PrePaid|The billing method of worker nodes. Valid values:
@@ -193,9 +191,9 @@ Default value: `true`. |
 
 Default valid: `ack.standard`. If you leave this parameter empty, a standard edge Kubernetes cluster is created.
 
-For more information, see [t2056664.md\#](/intl.en-US/User Guide for Edge Container Service/ACK@Edge Pro edition cluster/Introduction to professional edge Kubernetes clusters.md). |
+For more information, see [Introduction to professional edge Kubernetes clusters](/intl.en-US/User Guide for Edge Container Service/ACK@Edge Pro edition cluster/Introduction to professional edge Kubernetes clusters.md). |
 
-## Response structure
+## Response syntax
 
 ```
 HTTP/1.1 200
@@ -255,7 +253,7 @@ POST /clusters
             "name":"alicloud-monitor-controller"
         }
     ],
-    "profile":"Edge",            //Specifies whether the cluster to be created is an edge cluster.
+    "profile":"Edge",            //Specifies whether the cluster to be created is an edge cluster. 
     "worker_instance_types":[
         "ecs.hfc6.large"
     ],
