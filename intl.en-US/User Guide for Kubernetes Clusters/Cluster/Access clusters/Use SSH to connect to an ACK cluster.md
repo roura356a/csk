@@ -1,6 +1,6 @@
 # Use SSH to connect to an ACK cluster
 
-If you do not enable SSH logon when you create a cluster of Container Service for Kubernetes \(ACK\), you cannot connect to the cluster by using SSH or kubectl. To use SSH to connect to such a cluster after it is created, you can manually attach elastic IP addresses \(EIPs\) to ECS instances in the cluster, configure security group rules, and open SSH port 22.
+If you do not enable SSH logon when you create a Container Service for Kubernetes \(ACK\) cluster, you cannot directly connect to the cluster by using SSH or kubectl. To use SSH to connect to an ACK cluster that has SSH logon disabled, you must manually attach elastic IP addresses \(EIPs\) to Elastic Compute Service \(ECS\) instances in the cluster, configure security group rules, and then open SSH port 22.
 
 For more information about how to enable SSH logon when you create a cluster, see [Bind an EIP to the Kubernetes API server when you create an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Access the Kubernetes API server over the Internet.md).
 
@@ -14,13 +14,13 @@ For more information about how to enable SSH logon when you create a cluster, se
 
 4.  In the left-side navigation pane of the ACK console, choose **Clusters** \> **Clusters**.
 
-5.  On the Clusters page, find the cluster for which you want to enable SSH logon or click **Manage** in the **Actions** column.
+5.  On the Clusters page, find the cluster that you want to manage, and then click the name of the cluster or click **Manage** in the **Actions** column.
 
-6.  On the **details** page of the cluster, click the Cluster Resources tab. On the Cluster Resources tab, click the ID on the right side of **APIServer SLB**.
+6.  On the **Cluster Information** page, click the Cluster Resources tab. Find **APIServerSLB** and click the ID of the Server Load Balancer \(SLB\) instance.
 
-7.  In the left-side navigation pane, choose **CLB \(FKA SLB\)** \> **Instances**. On the Instances page, click the **Listener** tab. On the Listener tab, click **Add Listener**.
+7.  In the left-side navigation pane, choose **Instances** \> **Instances**. On the Instances page, click the **Listener** tab and then click **Add Listener**.
 
-8.  Add an SSH listener. Add an SSH listener. For more information, see [Add a TCP listener](/intl.en-US/Classic Load Balancer/User Guide/Listeners/Add a TCP listener.md).
+8.  Add an SSH listener. For more information, see [Add a TCP listener](/intl.en-US/Classic Load Balancer/User Guide/Listeners/Add a TCP listener.md).
 
     After the listener is created, you can use SSH to connect to your cluster through the public IP address of the SLB instance.
 
