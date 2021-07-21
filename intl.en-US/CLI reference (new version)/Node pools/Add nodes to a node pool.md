@@ -11,7 +11,7 @@ For more information about this command, see [ScaleClusterNodePool](/intl.en-US/
 Sample request:
 
 ```
-arc-cs nodepools scaleout caa73d115830746e0942c9554ecae**** npd4cc395c77ee467b9c68db3cabed**** \
+arc-cs nodepool scaleout caa73d115830746e0942c9554ecae**** npd4cc395c77ee467b9c68db3cabed**** \
 --count 1
 ```
 
