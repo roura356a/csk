@@ -123,7 +123,7 @@ keyword: [LDAP, 云原生AI套件对接外部账号体系]
 
     **说明：** 通过上述3个操作步骤，LDAP中的用户信息已经同步到IDaaS的**阿里云RAM-用户SSO**应用中，您还需要通过SCIM协议把IDaaS应用中的用户，同步到RAM即可。
 
-    1.  配置SCIM同步。具体操作，请参见[配置SCIM同步]()。
+    1.  配置SCIM同步。
 
         ![11](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6289254261/p286146.png)
 
@@ -159,7 +159,7 @@ keyword: [LDAP, 云原生AI套件对接外部账号体系]
         3.  单击步骤3中从LDAP同步到IDaaS的用户右侧**操作**列下的**账户同步**。
         4.  在**账户同步**面板，单击**同步**。
 
-            **说明：** 您也可以配置自动同步，这样每次从LDAP导入用户到IDaaS时，IDaaS会自动同步用户到RAM。具体操作请参见[自动同步账户配置](https://help.aliyun.com/document_detail/162215.html?spm=a2c4g.11186623.6.579.7f7b36cdjMMABk)。
+            **说明：** 您也可以配置自动同步，这样每次从LDAP导入用户到IDaaS时，IDaaS会自动同步用户到RAM。
 
     结果验证
 
