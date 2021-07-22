@@ -4,11 +4,24 @@ keyword: [OpenKruise, CloneSet, Advanced StatefulSet]
 
 # 使用OpenKruise部署云原生应用
 
-OpenKruise是Kubernetes的一个标准扩展，可以配合原生Kubernetes使用。OpenKruise核心在于自动化，从不同维度解决Kubernetes上应用的自动化，包括部署、升级、弹性扩缩容等。本文介绍如何使用OpenKruise部署云原生应用。
+OpenKruise是基于Kubernetes的一个标准扩展组件，可以配合原生Kubernetes使用，高效管理应用容器、Sidecar及镜像分发等功能。本文介绍如何使用OpenKruise部署云原生应用。
+
+已安装Kubernetes集群，且集群版本不低于1.13。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 
 OpenKruise是阿里云开源的云原生应用自动化引擎，也是阿里巴巴经济体上云全面使用的部署基座，已正式加入CNCF Sandbox。
 
 OpenKruise包含了多种自定义Workload，用于无状态应用、有状态应用、Sidecar容器、Daemon应用等部署管理，提供了原地升级、灰度、流式、配置优先级等扩展策略。
+
+## 组件架构
+
+![OpenKruise](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9032876261/p296863.png)
+
+OpenKruise是Kubernetes的一个标准扩展，所以也可以原生的部署到K8s集群当中，主要包含以下两个组件：
+
+|组件|说明|
+|--|--|
+|Kruise-manager|Kruise-manager是一个运行Controller和Webhook的中心组件，通过Deployment部署在kruise-system命名空间中。通过Controller以及Webhook实现原地升级及Sidecar管理等核心能力。|
+|Kruise-daemon|通过DaemonSet部署到每个节点上，提供镜像预热及容器重启等功能。|
 
 ## 使用说明
 
@@ -60,12 +73,27 @@ OpenKruise包含CloneSet、Advanced StatefulSet、Advanced DaemonSet等控制器
 
 ## 安装OpenKruise
 
-您可以通过ACK应用目录和Helm Chart安装OpenKruise，推荐使用Helm Chart安装OpenKruise。以下为两种安装方式对比：
+**说明：** 安装OpenKruise前，请确保Kubernetes版本不低于1.13。如果您使用的是Kubernetes 1.13或1.14版本，必须先在kube-apiserver中打开`CustomResourceWebhookConversion` feature-gate。更多信息，请参见[特性门控](https://kubernetes.io/zh/docs/reference/command-line-tools-reference/feature-gates/)。
 
-**说明：** 安装OpenKruise前，请确保Kubernetes版本≥1.13。如果您使用的是Kubernetes 1.13或1.14版本，必须先在kube-apiserver中打开`CustomResourceWebhookConversion`feature-gate。
+您可以通过ACK应用目录和组件管理安装OpenKruise。推荐通过ACK组件管理安装OpenKruise，以下为两种安装方式对比：
 
--   通过ACK应用目录安装：一键安装，无需使用Helm命令行工具，后续只能通过执行`helm upgrade`命令，升级OpenKruise版本。
--   通过Helm Chart安装：适用于所有原生Kubernetes集群，可自主管理版本、配置参数，但是需要命令行操作。
+-   通过ACK组件管理安装：一键安装，后续也可通过组件管理升级及卸载OpenKruise。
+-   通过ACK应用目录安装：一键安装，后续只能通过执行`helm upgrade`命令，升级OpenKruise版本。
+
+**通过ACK组件管理安装OpenKruise**
+
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+
+2.  在控制台左侧导航栏中，单击**集群**。
+
+3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
+
+4.  在集群管理页左侧导航栏中，选择**运维管理** \> **组件管理**。
+
+5.  在组件管理页面，单击应用管理页签。在**ack-kruise**区域，单击**安装**。
+
+    在**提示**对话框确认组件信息后，单击**确定**。
+
 
 **通过ACK应用目录安装OpenKruise**
 
@@ -76,31 +104,6 @@ OpenKruise包含CloneSet、Advanced StatefulSet、Advanced DaemonSet等控制器
 3.  在**阿里云应用**页签下单击**应用管理**，然后选择**ack-kruise**。
 
 4.  在应用目录 - ack-kruise页面**创建**区域，选择安装的**集群**和**命名空间**设置**发布名称**，然后单击**创建**。
-
-
-**通过Helm Chart安装OpenKruise**
-
-1.  安装Helm命令行工具。关于Helm工具的下载地址，请参见[Helm Release](https://github.com/helm/helm/releases)。
-
-    **说明：** 请确保安装的Helm命令行工具的版本≥3.1.0。
-
-2.  安装OpenKruise。
-
-    **说明：** 如果您需要对OpenKruise进行特殊配置，请参见[安装OpenKruise](https://openkruise.io/zh-cn/docs/quick_start.html)。
-
-    -   如果您使用的是Kubernetes 1.13或1.14版本，执行以下命令安装OpenKruise。
-
-        ```
-        # Kubernetes 1.13或1.14版本
-        helm install kruise https://github.com/openkruise/kruise/releases/download/v0.7.0/kruise-chart.tgz --disable-openapi-validation
-        ```
-
-    -   如果您使用的是Kubernetes 1.15及以上版本，执行以下命令安装OpenKruise。
-
-        ```
-        # Kubernetes 1.15和更新的版本
-        helm install kruise https://github.com/openkruise/kruise/releases/download/v0.7.0/kruise-chart.tgz
-        ```
 
 
 ## 使用CloneSet部署无状态应用
@@ -119,23 +122,11 @@ OpenKruise包含CloneSet、Advanced StatefulSet、Advanced DaemonSet等控制器
           selector:
             matchLabels:
               app: guestbook
-          template: #pod template和deployment的结构完全一致。
+          template: #Pod template和Deployment的结构完全一致。
             metadata:
               labels:
                 app: guestbook
             spec:
-              affinity:
-                podAntiAffinity:
-                  preferredDuringSchedulingIgnoredDuringExecution:
-                  - podAffinityTerm:
-                      labelSelector:
-                        matchExpressions:
-                        - key: app
-                          operator: In
-                          values:
-                          - guestbook
-                      topologyKey: kubernetes.io/hostname
-                    weight: 100
               containers:
               - name: guestbook
                 image: registry.cn-hangzhou.aliyuncs.com/kruise-test/guestbook:v1
@@ -146,7 +137,7 @@ OpenKruise包含CloneSet、Advanced StatefulSet、Advanced DaemonSet等控制器
             type: InPlaceIfPossible     #尽量使用原地升级，否则重建升级。
             maxUnavailable: 20%        #发布过程最多20%不可用。
             inPlaceUpdateStrategy:
-              gracePeriodSeconds: 3    #每个Pod原地升级前not ready优雅等待时间。
+              gracePeriodSeconds: 3    #每个Pod原地升级前Not Ready优雅等待时间。
         ```
 
         -   type：设置升级策略，支持以下3种升级方式。
@@ -154,7 +145,7 @@ OpenKruise包含CloneSet、Advanced StatefulSet、Advanced DaemonSet等控制器
             -   InPlaceIfPossible：控制器会优先尝试原地升级Pod，如果不行再采用重建升级。
             -   InPlaceOnly：控制器只允许采用原地升级。
         -   maxUnavailable：发布过程中，限制最多不可用的Pod数量，可以设置为一个绝对值或者百分比。
-        -   gracePeriodSeconds：每个Pod原地升级前not ready优雅等待时间。
+        -   gracePeriodSeconds：每个Pod原地升级前Not Ready优雅等待时间。
     2.  使cloneset.yaml在ACK集群中生效。
 
         ```
@@ -220,23 +211,11 @@ OpenKruise包含CloneSet、Advanced StatefulSet、Advanced DaemonSet等控制器
             matchLabels:
               app: guestbook-sts
           podManagementPolicy: Parallel
-          template: #Pod template和官方statefulset的结构完全一致。
+          template: #Pod template和官方StatefulSet的结构完全一致。
             metadata:
               labels:
                 app: guestbook-sts
             spec:
-              affinity:
-                podAntiAffinity:
-                  preferredDuringSchedulingIgnoredDuringExecution:
-                  - podAffinityTerm:
-                      labelSelector:
-                        matchExpressions:
-                        - key: app
-                          operator: In
-                          values:
-                          - guestbook-sts
-                      topologyKey: kubernetes.io/hostname
-                    weight: 100
               containers:
               - name: guestbook
                 image: registry.cn-hangzhou.aliyuncs.com/kruise-test/guestbook:v1
@@ -254,10 +233,10 @@ OpenKruise包含CloneSet、Advanced StatefulSet、Advanced DaemonSet等控制器
           updateStrategy:
             type: RollingUpdate
             rollingUpdate:
-              podUpdatePolicy: InPlaceIfPossible #尽量使用原地升级，否则重建升级
+              podUpdatePolicy: InPlaceIfPossible #尽量使用原地升级，否则重建升级。
               maxUnavailable: 20% #发布过程最多20%不可用。
               inPlaceUpdateStrategy:
-                gracePeriodSeconds: 3 #每个Pod原地升级前not ready优雅等待时间。
+                gracePeriodSeconds: 3 #每个Pod原地升级前Not ready优雅等待时间。
         ```
 
         -   type：设置Pod升级策略，支持以下3种方式升级。
@@ -265,7 +244,7 @@ OpenKruise包含CloneSet、Advanced StatefulSet、Advanced DaemonSet等控制器
             -   InPlaceIfPossible：控制器会优先尝试原地升级Pod，如果不行再采用重建升级。
             -   InPlaceOnly：控制器只允许采用原地升级。
         -   maxUnavailable：发布过程中，限制最多不可用的Pod数量，可以设置为一个绝对值或者百分比。
-        -   gracePeriodSeconds：每个Pod原地升级前not ready优雅等待时间。
+        -   gracePeriodSeconds：每个Pod原地升级前Not ready优雅等待时间。
     2.  使statefulset.yaml在ACK集群中生效。
 
         ```
