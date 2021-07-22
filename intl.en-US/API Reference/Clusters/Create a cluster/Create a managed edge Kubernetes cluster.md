@@ -157,7 +157,7 @@ your\_sls\_project\_name\\"\}"\}\]. |
 |tags|Array of [tag](/intl.en-US/API Reference/Commonly used parameters.md)|No|\[\{"key": "env", "value": "prod"\}\]|The labels to be added to the cluster. -   key: the key of the label.
 -   value: the value of the label. |
 |vpcid|String|Yes|vpc-2zeik9h3ahvv2zz95\*\*\*\*|The VPC where the cluster is deployed. You must specify a VPC when you create the cluster. **Note:** Leave both `vpc_id` and `vswitch_ids` empty or make sure that the vSwitches specified by vswitch\_ids belong to the VPC that is specified by vswitch\_ids. |
-|worker\_data\_disks|Array of[data\_disk](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The configurations of the data disks that are mounted to worker nodes. Each configuration includes disk type and disk size.|
+|worker\_data\_disks|Array of [data\_disk](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The configurations of the data disks that are mounted to worker nodes. Each configuration includes disk type and disk size.|
 |deletion\_protection|Boolean|No|true|Specifies whether to enable deletion protection for the cluster. After deletion protection is enabled, the cluster cannot be deleted in the ACK console or by calling API operations. Valid values:
 
 -   `true`: enables deletion protection for the cluster. This way, the cluster cannot be deleted in the ACK console or by calling API operations.
