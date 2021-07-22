@@ -47,7 +47,7 @@ ACK provides the following three cluster types: dedicated Kubernetes clusters, m
     -   Release applications: Phased release and blue-green release are supported.
     -   App Catalog: You can use App Catalog to simplify the integration of Alibaba Cloud services.
     -   [Application center](/intl.en-US/User Guide for Kubernetes Clusters/Application center/Overview.md): After an application is deployed, the application center displays the topology of the application on one page. You can also manage and roll back the application version in scenarios such as continuous deployment.
-    -   Back up and restore applications: You can back up Kubernetes applications and restore applications from backup data. For more information, see [Back up and restore applications in Kubernetes clusters]().
+    -   Back up and restore applications: You can back up Kubernetes applications and restore applications from backup data. For more information, see [Back up and restore applications](/intl.en-US/User Guide for Kubernetes Clusters/Disaster recovery center/Back up and restore applications.md).
 -   Storage and networking
     -   [Storage plug-ins](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Storage overview.md): FlexVolume and CSI are supported.
     -   Volumes and persistent volume claims \(PVCs\):
