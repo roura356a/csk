@@ -124,7 +124,7 @@ The following figure shows the procedure of how an administrator logs on to the 
 
     **Note:** After you complete the preceding three steps, user information is synchronized from LDAP to the **Alibaba Cloud RAM - User SSO** application. Now, you need only to synchronize the user information from the IDaaS application to RAM based on SCIM.
 
-    1.  Configure SCIM. For more information, see [t1857331.md\#section-oa8-sfw-1ce]().
+    1.  Configure SCIM. .
 
         ![11](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5503386261/p286146.png)
 
@@ -160,7 +160,7 @@ The following figure shows the procedure of how an administrator logs on to the 
         3.  Select an account that is synchronized from LDAP to IDaaS and click **Provision Account** in the **Actions** column.
         4.  In the **Provision Account** panel, click **Provision**.
 
-            **Note:** You can also automate the synchronization process. This way, accounts that are imported from LDAP to IDaaS are automatically synchronized to RAM. For more information, see [Configure automatic account synchronization](https://help.aliyun.com/document_detail/162215.html?spm=a2c4g.11186623.6.579.7f7b36cdjMMABk).
+            **Note:** You can also automate the synchronization process. This way, accounts that are imported from LDAP to IDaaS are automatically synchronized to RAM. .
 
     Verify the result.
 
