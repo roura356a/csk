@@ -14,7 +14,7 @@ The following flowchart shows how to get started with ACK in steps.
 
 1.  Assign roles to your Alibaba Cloud account. For more information, see [ACK default roles](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/ACK default roles.md).
 
-    For more information about how to create a Resource Access Management \(RAM\) permission policy and assign role-based access control \(RBAC\) roles to a RAM user, see [Create a custom RAM policy](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Create a custom RAM policy.md) and [Assign RBAC roles to a RAM user](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Assign RBAC roles to a RAM user.md).
+    For more information about how to create a Resource Access Management \(RAM\) permission policy and assign role-based access control \(RBAC\) roles to a RAM user, see [Create a custom RAM policy](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Create a custom RAM policy.md) and [Assign RBAC roles to RAM users](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Assign RBAC roles to a RAM user.md).
 
 2.  Create a standard managed Kubernetes cluster. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 
@@ -25,11 +25,11 @@ The following flowchart shows how to get started with ACK in steps.
     -   [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Create a professional managed Kubernetes cluster.md).
     -   [Create a managed edge Kubernetes cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Create a managed edge Kubernetes cluster.md).
     -   [Create a managed Kubernetes cluster with GPU-accelerated nodes](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/Create heterogeneous computing clusters/Create a managed Kubernetes cluster with GPU-accelerated nodes.md) and [Create a dedicated Kubernetes cluster with GPU-accelerated nodes](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/Create heterogeneous computing clusters/Create a dedicated Kubernetes cluster with GPU-accelerated nodes.md).
-    -   [Create a managed Kubernetes cluster that runs sandboxed containers](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Create a security sandbox cluster/Create a managed Kubernetes cluster that runs sandboxed containers.md) and [Create a dedicated Kubernetes cluster that runs sandboxed containers](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Create a security sandbox cluster/Create a dedicated Kubernetes cluster that runs sandboxed containers.md).
+    -   [Create a managed Kubernetes cluster that runs sandboxed containers](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Create a security sandbox cluster/Create a managed Kubernetes cluster that runs sandboxed containers.md) and [Create a dedicated Kubernetes cluster that supports sandboxed containers](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Create a security sandbox cluster/Create a dedicated Kubernetes cluster that supports sandboxed containers.md).
     -   [Create a managed Kubernetes cluster for confidential computing](/intl.en-US/User Guide for Kubernetes Clusters/TEE-based confidential computing/Create a managed Kubernetes cluster for confidential computing.md).
 3.  Deploy an application by using an image or orchestration template.
 
-    For more information, see [Use a Deployment to create a stateless application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
+    For more information, see [Create a stateless application by using a Deployment](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a stateless application by using a Deployment.md).
 
     **Note:** If your application consists of multiple Services created from different images, we recommend that you use a YAML file to deploy the application.
 
@@ -37,11 +37,11 @@ The following flowchart shows how to get started with ACK in steps.
 
     |Cluster O&M|Application O&M|
     |-----------|---------------|
-    |Cluster management    -   [Upgrade a cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Upgrade cluster/Upgrade a cluster.md)
-    -   [Expand an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Expand an ACK cluster.md)
-    -   [Manage system components](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Upgrade cluster/Manage system components.md)
+    |Cluster management    -   [Upgrade a cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Manage clusters/Upgrade a cluster.md)
+    -   [Expand an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Manage clusters/Expand an ACK cluster.md)
+    -   [Manage system components](/intl.en-US/User Guide for Kubernetes Clusters/Component/Manage system components.md)
 |Application deployment    -   [Use a StatefulSet to create a stateful application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a StatefulSet to create a stateful application.md)
-    -   [Use a Job to create an application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Job to create an application.md)
+    -   [Create a Job](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a Job.md)
     -   [Create an application from a private image repository](/intl.en-US/Quick Start/Advanced operations/Create an application from a private image repository.md) |
     |Node maintenance    -   [Add existing ECS instances to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node/Add existing ECS instances to an ACK cluster.md)
     -   [Mark a node as unschedulable](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node/Mark a node as unschedulable.md)
@@ -61,7 +61,7 @@ The following flowchart shows how to get started with ACK in steps.
 
     -   Log management
 
-[Audit logs](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Infrastructure security/Enable cluster auditing.md), [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md), [Use Log-pilot to collect ACK cluster logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log-pilot to collect ACK cluster logs.md), and [Configure Log4jAppender for Kubernetes and Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Configure Log4jAppender for Kubernetes and Log Service.md) |
+[Audit logs](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Infrastructure security/Enable cluster auditing.md), [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md), [Configure Log4jAppender for Kubernetes and Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Configure Log4jAppender for Kubernetes and Log Service.md), [Collect the logs of control plane components in a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect the logs of control plane components in a managed Kubernetes cluster.md), and [Monitor and analyze the log of CoreDNS](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Monitor and analyze the log of CoreDNS.md) |
 
 
 ## FAQ
@@ -92,7 +92,7 @@ The following flowchart shows how to get started with ACK in steps.
 
     -   Access a node port.
     -   [Use a Server Load Balancer \(SLB\) instance](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Use an existing SLB instance to expose an application.md).
-    -   [Nginx Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Basic operations of an Ingress.md)
+    -   [Nginx Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Create an Ingress.md)
     -   [Use a Domain Name System \(DNS\) server](https://developer.aliyun.com/article/633412).
     -   Use a NAT gateway. The NAT gateway must have Destination Network Address Translation \(DNAT\) entries configured.
 -   **If multiple workloads exist in a cluster, how can a workload be accessed by other workloads in the cluster?**
