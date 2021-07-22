@@ -10,11 +10,11 @@ PodSecurityPolicy（简称PSP）是Kubernetes中Pod部署时重要的安全校�
 -   以主账号（即阿里云账号）登录控制台，或赋予子账号（即RAM用户）管理员权限，请参见[配置RAM用户RBAC权限](/intl.zh-CN/Kubernetes集群用户指南/授权/配置RAM用户RBAC权限.md)，然后以子账号登录控制台。
 -   如果您使用子账号进行PSP策略管理，子账号需要拥有以下RAM授权条件：
 
-    -   `cs:DescribeClusterPSPState`：获取集群PSP开启状态
-    -   `cs:DescribeServiceAccountBindingPSP`：获取指定`serviceaccount`绑定的PSP策略
-    -   `cs:UpdateClusterPodSecurityPolicy`：更新集群中的PSP策略模型实例
-    -   `cs:CreatePSPBinding`：创建对指定`serviceaccount`的PSP绑定
-    -   `cs:UnbindingServiceAccountPSP`：解绑指定`serviceaccount`的PSP策略模型实例
+    -   `cs:DescribeClusterPSPState`：获取集群PSP开启状态。
+    -   `cs:DescribeServiceAccountBindingPSP`：获取指定`serviceaccount`绑定的PSP策略。
+    -   `cs:UpdateClusterPodSecurityPolicy`：更新集群中的PSP策略模型实例。
+    -   `cs:CreatePSPBinding`：创建对指定`serviceaccount`的PSP绑定。
+    -   `cs:UnbindingServiceAccountPSP`：解绑指定`serviceaccount`的PSP策略模型实例。
     更多自定义RAM授权策略，请参见[自定义RAM授权策略](/intl.zh-CN/Kubernetes集群用户指南/授权/自定义RAM授权策略.md)。
 
 
@@ -29,17 +29,19 @@ PodSecurityPolicy（简称PSP）是Kubernetes中Pod部署时重要的安全校�
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
-2.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
+2.  在控制台左侧导航栏中，单击**集群**。
 
-3.  在集群详情页面选择**安全管理** \> **策略管理**。
+3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-4.  在策略管理页面单击**创建**，在选择策略模板编辑框中选择目标策略模板，单击目标策略模板上的**使用**。
+4.  在集群详情页面选择**安全管理** \> **策略管理**。
+
+5.  在策略管理页面单击**创建**，在选择策略模板编辑框中选择目标策略模板，单击目标策略模板上的**使用**。
 
     除了集群默认设置的特权策略（默认放开所有安全校验）ack.privileged之外，默认提供了两个PSP策略实例模板：
 
     -   privileged-restricted：限制`privileged`，共用主机网络、端口、Namespace等特权容器的部署。
     -   privileged-root-volumes-restricted：限制`privileged`，共用主机网络、端口、Namespace等特权容器的部署，同时限制挂载卷的类型和root权限的使用。
-5.  在创建YAML页面根据不同的安全等级需求修改对应的配置项，从而创建不同应用场景下的PSP策略。PSP模板中的配置项详细说明请参见[Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)。
+6.  在创建YAML页面根据不同的安全等级需求修改对应的配置项，从而创建不同应用场景下的PSP策略。PSP模板中的配置项详细说明请参见[Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)。
 
     |配置项|描述|
     |---|--|
@@ -59,7 +61,7 @@ PodSecurityPolicy（简称PSP）是Kubernetes中Pod部署时重要的安全校�
     |annotations|配置Pod中容器使用的AppArmor或seccomp。|
     |forbiddenSysctls，allowedUnsafeSysctls|控制Pod中容器使用的sysctl配置。|
 
-6.  单击**确定**。
+7.  单击**确定**。
 
     策略实例创建成功后，您可以在策略管理页面中查看创建的PSP策略实例。
 
