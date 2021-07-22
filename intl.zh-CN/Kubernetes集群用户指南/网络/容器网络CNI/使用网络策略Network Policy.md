@@ -815,6 +815,9 @@ Kubernetes网络策略（Network Policy）提供基于策略的网络控制。�
       - to:
         - ipBlock:
             cidr: 0.0.0.0/0
+        - namespaceSelector:
+            matchLabels:
+              ns: kube-system
     ```
 
     ```
