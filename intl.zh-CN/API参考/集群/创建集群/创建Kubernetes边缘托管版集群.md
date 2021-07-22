@@ -73,7 +73,7 @@ Content-Type:application/json
 |timeout\_mins|Long|否|60|集群资源栈创建超时时间，以分钟为单位，默认值60分钟。|
 |kubernetes\_version|String|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。
 
-目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[Kubernetes版本发布概览](/intl.zh-CN/新功能发布记录/Kubernetes版本发布说明/Kubernetes版本发布概览.md)。 |
+目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[Kubernetes版本发布概览](/intl.zh-CN/产品发布记录/Kubernetes版本发布记录/Kubernetes版本发布概览.md)。 |
 |region\_id|String|是|cn-beijing|集群所在地域ID。|
 |key\_pair|String|是|demo-key|密钥对名称，和`login_password`二选一。|
 |login\_password|String|是|HelloWorld123|SSH登录密码，和`key_pair`二选一。密码规则为8~30个字符，且至少同时包含三项（大小写字母、数字和特殊符号）。|
@@ -151,15 +151,13 @@ Content-Type:application/json
 
 **事件中心**：可选，默认开启。事件中心提供对Kubernetes事件的存储、查询、告警等能力。Kubernetes事件中心关联的Logstore在90天内免费。关于免费策略的更多信息，请参见[创建并使用Kubernetes事件中心](/intl.zh-CN/应用中心（App）/K8S事件中心/创建并使用Kubernetes事件中心.md)。
 
-**事件中心**：可选，默认开启。事件中心提供对Kubernetes事件的存储、查询、告警等能力。Kubernetes事件中心关联的Logstore在90天内免费。关于免费策略的更多信息，请参见
-
 开启事件中心：\[\{"name":"ack-node-problem-detector","config":"\{\\"sls\_project\_name\\":\\"
 
 your\_sls\_project\_name\\"\}"\}\]。 |
 |tags|Array of [tag](/intl.zh-CN/API参考/通用数据结构.md)|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签： -   key：标签名称。
 -   value：标签值。 |
 |vpcid|String|是|vpc-2zeik9h3ahvv2zz95\*\*\*\*|集群使用的专有网络，创建集群时必须为集群提供。**说明：** `vpc_id`和`vswitch_ids`只能同时为空或者同时都设置对应的值。 |
-|worker\_data\_disks|Array of[data\_disk](/intl.zh-CN/API参考/通用数据结构.md)|否| |Worker节点数据盘类型、大小等配置的组合。|
+|worker\_data\_disks|Array of [data\_disk](/intl.zh-CN/API参考/通用数据结构.md)|否| |Worker节点数据盘类型、大小等配置的组合。|
 |deletion\_protection|Boolean|否|true|集群删除保护，防止通过控制台或API误删除集群。取值：
 
 -   `true`：启用集群删除保护，将不能通过控制台或API删除集群。
@@ -193,7 +191,7 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 
 默认值：`ack.standard`。取值可以为空，为空时则创建边缘标准版集群。
 
-更多信息，请参见[ACK@Edge Pro版集群介绍](/intl.zh-CN/边缘容器服务ACK@Edge用户指南/ACK Edge Pro版集群/ACK@Edge Pro版集群介绍.md)。 |
+更多信息，请参见[ACK@Edge Pro版集群介绍](/intl.zh-CN/边缘容器服务ACK@Edge用户指南/ACK@Edge Pro版集群/ACK@Edge Pro版集群介绍.md)。 |
 
 ## 响应体语法
 
