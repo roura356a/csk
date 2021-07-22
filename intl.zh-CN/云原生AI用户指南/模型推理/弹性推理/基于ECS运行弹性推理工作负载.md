@@ -140,8 +140,8 @@ keyword: [ECS, 弹性推理]
 -   `minReplicas`：最小副本数。
 -   `maxReplicas`：最大副本数。
 -   `sls.project`：集群的日志项目名称，配置规则为`k8s-log-{cluster id}`。
--   `sls.logstore`：日志库的名称，配置规则为`{namespace}-{service name}-{service port}`。
--   `sls.ingress.route`：Ingress路由。
+-   `sls.logstore`：日志库的名称。
+-   `sls.ingress.route`：Ingress路由，配置规则为`{namespace}-{service name}-{service port}`。
 -   `metricName`：QPS的指标名称。
 -   `targetAverageValue`：触发弹性扩容的QPS值。本例设置为10，表示当QPS大于10时，触发弹性扩容。
     2.  执行以下命令，部署HPA。
