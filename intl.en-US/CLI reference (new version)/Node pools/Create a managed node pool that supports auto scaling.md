@@ -2,7 +2,7 @@
 
 You can run the following command to create a managed node pool that supports auto scaling: `arc-cs nodepools create <cluster_id> --nodepool-info '{xxx}' --scaling-group '{xxx}' --kubernetes-config '{xxx}' --auto-scaling '{xxx}' --management '{xxx}'`.
 
-For more information about this command, see [t1956932.md\#](/intl.en-US/API Reference/Node pools/Create a node pool.md).
+For more information about this command, see [Create a node pool](/intl.en-US/API Reference/Node pools/Create a node pool.md).
 
 ## Example by using Alibaba Cloud CLI
 
