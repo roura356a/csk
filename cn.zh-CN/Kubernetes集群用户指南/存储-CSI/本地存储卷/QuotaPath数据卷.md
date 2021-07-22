@@ -6,7 +6,7 @@ keyword: [QuotaPath, 本地存储卷]
 
 您可以在本地盘上通过文件系统（如Ext4）的ProjectQuota功能，实现目录级别的容量Quota控制，通过CSI插件实现QuotaPath数据卷的切分、限额、挂载等生命周期管理。本文介绍如何使用QuotaPath数据卷。
 
-已部署LVM CSI插件。具体步骤，请参见[插件部署](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/本地存储卷/LVM数据卷.md)。
+已部署LVM CSI插件。具体操作，请参见[插件部署](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/本地存储卷/LVM数据卷.md)。
 
 ## QuotaPath与HostPath、LVM的区别
 
@@ -27,6 +27,7 @@ keyword: [QuotaPath, 本地存储卷]
 
 -   QuotaPath为本地存储类型，不适用于高可用数据场景。
 -   QuotaPath根目录运维、本地存储容量感知为可选项（暂缓提供）。
+-   若使用Root特权模式启动容器，则Quota限制不会生效（Ext4特性）。
 
 ## 使用QuotaPath示例
 
@@ -35,88 +36,112 @@ keyword: [QuotaPath, 本地存储卷]
 -   StorageClass中需要指定rootPath名字。
 -   如果期望创建的PV在某个节点，需要给PVC添加Label：volume.kubernetes.io/selected-node: nodeName。
 
-1.  使用以下模板创建StorageClass。
+1.  创建StorageClass。
 
-    ```
-    apiVersion: storage.k8s.io/v1
-    kind: StorageClass
-    metadata:
-      name: alicloud-local-quota
-    parameters:
-      volumeType: QuotaPath
-      rootPath: /mnt/quota
-    provisioner: localplugin.csi.alibabacloud.com
-    reclaimPolicy: Delete
-    allowVolumeExpansion: true
-    volumeBindingMode: WaitForFirstConsumer
-    ```
+    1.  使用以下内容创建alicloud-local-quota.yaml文件。
 
-    |参数|描述|
-    |--|--|
-    |volumeType|本地存储类型，本示例中存储类型为QuotaPath。|
-    |rootPath|可选，表示QuotaPath所在目录名称。|
+        ```
+        apiVersion: storage.k8s.io/v1
+        kind: StorageClass
+        metadata:
+          name: alicloud-local-quota
+        parameters:
+          volumeType: QuotaPath
+          rootPath: /mnt/quota
+        provisioner: localplugin.csi.alibabacloud.com
+        reclaimPolicy: Delete
+        allowVolumeExpansion: true
+        volumeBindingMode: WaitForFirstConsumer
+        ```
 
-2.  使用以下模板创建PVC。
+        |参数|描述|
+        |--|--|
+        |volumeType|本地存储类型，本示例中存储类型为QuotaPath。|
+        |rootPath|可选，表示QuotaPath所在目录名称。|
 
-    默认CSI插件会使用/mnt/quotapath.namespacex.x作为QuotaPath的根目录，所有的PV都将在这个目录下面分配并创建子目录。
+    2.  执行以下命令创建StorageClass。
 
-    可以在PVC上添加以下Annotation，用来自定义QuotaPath父目录volume.kubernetes.io/selected-storage: /mnt/xxx。
+        ```
+        kubectl create -f alicloud-local-quota.yaml
+        ```
 
-    ```
-    apiVersion: v1
-    kind: PersistentVolumeClaim
-    metadata:
-      name: csi-quota
-    spec:
-      accessModes:
-      - ReadWriteOnce
-      resources:
-        requests:
-          storage: 2Gi
-      storageClassName: alicloud-local-quota
-    ```
+2.  创建PVC。
+
+    1.  使用以下内容创建csi-quota.yaml文件。
+
+        默认CSI插件会使用/mnt/quotapath.namespacex.x作为QuotaPath的根目录，所有的PV都将在这个目录下面分配并创建子目录。
+
+        可以在PVC上添加以下Annotation，用来自定义QuotaPath父目录volume.kubernetes.io/selected-storage: /mnt/xxx。
+
+        ```
+        apiVersion: v1
+        kind: PersistentVolumeClaim
+        metadata:
+          name: csi-quota
+        spec:
+          accessModes:
+          - ReadWriteOnce
+          resources:
+            requests:
+              storage: 2Gi
+          storageClassName: alicloud-local-quota
+        ```
+
+    2.  执行以下命令创建PVC。
+
+        ```
+        kubectl create -f csi-quota.yaml
+        ```
 
 3.  使用以下模板创建应用。
 
-    ```
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: nginx
-      labels:
-        app: nginx
-    spec:
-      ports:
-      - port: 80
-        name: web
-      selector:
-        app: nginx
-    ---
-    apiVersion: apps/v1
-    kind: StatefulSet
-    metadata:
-      name: web-quota
-    spec:
-      selector:
-        matchLabels:
-          app: nginx
-      serviceName: "nginx"
-      template:
+    1.  使用以下内容创建web-quota.yaml文件。
+
+        ```
+        apiVersion: v1
+        kind: Service
         metadata:
+          name: nginx
           labels:
             app: nginx
         spec:
-          containers:
-          - name: nginx
-            image: nginx
-            volumeMounts:
-            - name: disk-ssd
-              mountPath: /data
-          volumes:
-            - name: "disk-ssd"
-              persistentVolumeClaim:
-                claimName: csi-quota
-    ```
+          ports:
+          - port: 80
+            name: web
+          selector:
+            app: nginx
+        ---
+        apiVersion: apps/v1
+        kind: StatefulSet
+        metadata:
+          name: web-quota
+        spec:
+          selector:
+            matchLabels:
+              app: nginx
+          serviceName: "nginx"
+          template:
+            metadata:
+              labels:
+                app: nginx
+            spec:
+              containers:
+              - name: nginx
+                image: nginx
+                volumeMounts:
+                - name: disk-ssd
+                  mountPath: /data
+              volumes:
+                - name: "disk-ssd"
+                  persistentVolumeClaim:
+                    claimName: csi-quota
+        ```
+
+    2.  执行以下命令创建应用。
+
+        ```
+        kubectl create -f web-quota.yaml
+        ```
 
 4.  查看应用状态。
 
@@ -126,7 +151,7 @@ keyword: [QuotaPath, 本地存储卷]
     kubectl get pod |grep quota
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME          READY   STATUS    RESTARTS   AGE
@@ -139,7 +164,7 @@ keyword: [QuotaPath, 本地存储卷]
     kubectl get pvc
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME        STATUS   VOLUME                CAPACITY   ACCESS MODES   STORAGECLASS           AGE
@@ -152,7 +177,7 @@ keyword: [QuotaPath, 本地存储卷]
     kubectl get pv |grep quota
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME                  CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM               STORAGECLASS           REASON   AGE
@@ -166,7 +191,7 @@ keyword: [QuotaPath, 本地存储卷]
     df |grep data
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     Filesystem  1K-blocks  Used Available Use% Mounted on
@@ -179,7 +204,7 @@ keyword: [QuotaPath, 本地存储卷]
     ls /data
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     lost+found
@@ -192,7 +217,7 @@ keyword: [QuotaPath, 本地存储卷]
     ls /data
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     lost+found test
@@ -206,7 +231,7 @@ keyword: [QuotaPath, 本地存储卷]
     kubectl get pvc
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME        STATUS   VOLUME                CAPACITY   ACCESS MODES   STORAGECLASS           AGE
@@ -219,7 +244,7 @@ keyword: [QuotaPath, 本地存储卷]
     kubectl patch pvc csi-quota -p '{"spec":{"resources":{"requests":{"storage":"3Gi"}}}}'
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     persistentvolumeclaim/csi-quota patched
@@ -231,7 +256,7 @@ keyword: [QuotaPath, 本地存储卷]
     kubectl get pvc
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     NAME        STATUS   VOLUME                CAPACITY   ACCESS MODES   STORAGECLASS           AGE
@@ -245,7 +270,7 @@ keyword: [QuotaPath, 本地存储卷]
     df |grep data
     ```
 
-    返回结果如下：
+    预期输出：
 
     ```
     Filesystem  1K-blocks  Used Available Use% Mounted on
