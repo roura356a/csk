@@ -58,7 +58,7 @@ The following table describes the mappings between the ACK API operations and th
 |CancelClusterUpgrade|CancelK8sCluster|Cancels the upgrade of an ACK cluster.|
 |CancelComponentUpgrade|CancelComponentUpgrade|Cancels the upgrade of a component.|
 |CreateCluster|CreateCluster|Creates an ACK cluster.|
-|CreateTriggerHook|CreateTrigger|Creates and modifies an application trigger.|
+|CreateTriggerHook|CreateKubernetesTrigger|Creates and modifies an application trigger.|
 |CreateTemplate|CreateTemplate|Creates an application deployment template.|
 |DeleteCluster|DeleteCluster|Deletes an ACK cluster.|
 |DeleteClusterNodes|DeleteClusterNodes|Removes nodes and releases the ECS instances.|
