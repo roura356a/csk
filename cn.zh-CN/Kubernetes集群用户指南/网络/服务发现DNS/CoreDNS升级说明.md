@@ -9,6 +9,17 @@ keyword: [CoreDNS升级, DNS解析请求失败, 超时]
 -   [创建ACK Pro版集群](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)
 -   [通过kubectl管理Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)
 
+## 升级CoreDNS过程说明
+
+CoreDNS升级过程中，ACK会用新版本的YAML模板覆盖您集群中旧版本的CoreDNS YAML模板，只有以下类型变更会被保留：
+
+-   CoreDNS的副本数。
+-   CoreDNS配置项，即ConfigMap **coredns**。
+
+从1.7.0版本起，CoreDNS的默认内存限制会被调整至2 GB，正常情况下不会出现Pod OOM（内存溢出）情况，无需对内存限制再次修改。
+
+若您此前对YAML模板进行手动自定义变更，修改了容忍Toleration、内存和CPU的资源请求和限制等字段，将会被覆盖。针对这种情况，您可以手动升级CoreDNS，或者在自动升级CoreDNS后再次更新YAML模板内容。具体操作，请参见[【组件升级】CoreDNS升级公告](/cn.zh-CN/产品公告/【组件升级】CoreDNS升级公告.md)。
+
 升级CoreDNS组件前，进行以下操作可降低DNS解析请求失败或者超时的可能性：
 
 -   [配置IPVS类型集群的UDP超时时间](#section_m9z_3lo_iv4)
@@ -19,7 +30,7 @@ keyword: [CoreDNS升级, DNS解析请求失败, 超时]
 
 如果您的ACK集群使用了kube-proxy IPVS模式，需要降低IPVS UDP类型的会话保持超时时间至10秒。如果ACK集群中有UDP类型的业务，请确认业务影响面后再进行操作。
 
-**说明：** 如果您的集群不是IPVS类型，请忽略配置IPVS类型集群的UDP超时时间的操作。关于如何查看kube-proxy代理模式，请参见[查看基本信息](/cn.zh-CN/Kubernetes集群用户指南/集群/查看集群信息.md)。
+**说明：** 如果您的集群不是IPVS类型，请忽略配置IPVS类型集群的UDP超时时间的操作。关于如何查看kube-proxy代理模式，请参见[查看基本信息](/cn.zh-CN/Kubernetes集群用户指南/集群/管理集群/查看集群信息.md)。
 
 **K8s 1.18及以上版本集群**
 
