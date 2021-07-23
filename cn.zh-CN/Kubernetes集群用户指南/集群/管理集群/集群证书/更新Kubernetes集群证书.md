@@ -91,7 +91,7 @@
 
     其中：
 
-    -   $\{jobname\}为Job和Pod的名称，此处设置为cert-job-2。
+    -   $\{jobname\}为Job的名称，此处设置为cert-job-2。
     -   $\{hostname\}为集群master节点的名称，此处请将hostname替换为步骤2中查看到的master名称。
 4.  执行以下命令创建Job。
 
