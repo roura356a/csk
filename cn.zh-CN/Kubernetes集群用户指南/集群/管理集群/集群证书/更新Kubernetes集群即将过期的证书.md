@@ -12,7 +12,7 @@ keyword: [更新即将过期的证书, Kubernetes专有版集群]
 
     **说明：** 您无需担心托管版集群中Master节点证书过期情况，容器服务ACK会自动更新托管版集群中Master节点的证书。
 
--   您已通过kubectl连接集。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   您已通过kubectl连接集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 ## 控制台更新所有节点证书
 
@@ -142,7 +142,7 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
 
     其中：
 
-    -   $\{jobname\}为Job和Pod的名称，此处设置为cert-job-2。
+    -   $\{jobname\}为Job的名称，此处设置为cert-job-2。
     -   $\{hostname\}为集群Master节点的名称，此处请将hostname替换为步骤2中查看到的Master名称。
 4.  执行以下命令创建Job。
 
@@ -264,7 +264,7 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
 
     其中：
 
-    -   $\{jobname\}为Job和Pod的名称，此处设置为cert-node-2。
+    -   $\{jobname\}为Job的名称，此处设置为cert-node-2。
     -   $\{nodesize\}为Worker节点个数，获取方法可参见[手动更新Worker节点证书](#section_f3i_kk1_7dz)的步骤1。此处请将nodesize替换为集群的Worker个数。
     -   $\{key\}为集群的CAKey，此处请将key替换为[手动更新Worker节点证书](#section_f3i_kk1_7dz)步骤2获取到的CAKey。
 4.  执行以下命令创建Job。
