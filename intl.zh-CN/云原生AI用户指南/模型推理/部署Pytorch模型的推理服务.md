@@ -9,7 +9,7 @@ keyword: [Pytorch模型, 推理服务]
 -   [创建包含GPU的Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU调度/使用Kubernetes默认GPU调度.md)。
 -   [集群节点可以访问公网](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过公网访问集群API Server.md)。
 -   [安装Arena]()。
--   您已经完成Pytorch单机训练。把Pytorch模型转换成Torchscript，具体操作，请参见[TensorFlow单机训练](/intl.zh-CN/云原生AI用户指南/模型训练/TensorFlow单机训练.md)。
+-   您已经完成Pytorch单机训练。把Pytorch模型转换成Torchscript，具体操作，请参见[PyTorch单机训练](/intl.zh-CN/云原生AI用户指南/模型训练/PyTorch单机训练.md)。
 
     **说明：** 本文采用的是Pytorch 1.16训练的Bert模型，并把模型转换成Torchscript，存储在PVC的triton目录下，然后通过`nvidia triton server`来部署模型。
 
@@ -86,7 +86,7 @@ keyword: [Pytorch模型, 推理服务]
           storage: 5Gi
     ```
 
-4.  执行以下命令，使用`tensorflow serving`部署模型。
+4.  执行以下命令，使用`nvidia triton server`部署模型。
 
     ```
     arena serve triton \
@@ -110,7 +110,7 @@ keyword: [Pytorch模型, 推理服务]
     INFO[0001] You can run `arena get bert-triton --type triton-serving` to check the job status
     ```
 
-5.  执行以下命令，查看`tensorflow serving`部署情况。
+5.  执行以下命令，查看`nvidia triton server`部署情况。
 
     ```
     arena serve list -n inference
@@ -149,11 +149,11 @@ keyword: [Pytorch模型, 推理服务]
       bert-triton-202106251740-tritoninferenceserver-667cf4c74c-s6nst  Running  5m   1/1    0         cn-beijing.192.168.0.89
     ```
 
-    从上述输出可知，通过`tensorflow serving`部署模型成功，并提供了8001（GRPC）和8000（RESTFUL）两个API端口。
+    从上述输出可知，通过`nvidia triton server`部署模型成功，并提供了8001（GRPC）和8000（RESTFUL）两个API端口。
 
 7.  配置公网Ingress。具体操作，请参见[创建Ingress路由](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/创建Ingress路由.md)。
 
-    **说明：** 通过`arena serve tensorflow`部署的推理服务默认提供的是ClusterIP，不能直接访问。您需要为推理服务创建Ingress，具体参数设置如下：
+    **说明：** 通过`nvidia triton server`部署的推理服务默认提供的是ClusterIP，不能直接访问。您需要为推理服务创建Ingress，具体参数设置如下：
 
     -   **命名空间**选择**inference**。
     -   服务的**端口**配置为8501端口（RESTFUL）。
