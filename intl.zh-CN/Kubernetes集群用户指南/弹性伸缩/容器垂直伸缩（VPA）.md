@@ -18,7 +18,7 @@ keyword: [kubernetes, 垂直伸缩, VPA \(vertical-pod-autoscaler\)]
 -   VPA不会驱逐没有在副本控制器管理下的Pod。目前对于这类Pod，Auto模式等同于Initial模式。
 -   目前VPA不能和监控CPU和内存度量的Horizontal Pod Autoscaler （HPA）同时运行，除非HPA只监控其他定制化的或者外部的资源度量。
 -   VPA使用admission webhook作为其准入控制器。如果集群中有其他的admission webhook，需要确保它们不会与VPA发生冲突。准入控制器的执行顺序定义在API Server的配置参数中。
--   VPA会处理绝大多数OOM（Out Of Memory）的事件，但不保证所有的场景下都有效。
+-   VPA会处理出现的绝大多数OOM（Out Of Memory）的事件，但不保证所有的场景下都有效。
 -   VPA的性能还没有在大型集群中测试过。
 -   VPA对Pod资源requests的修改值可能超过实际的资源上限，例如节点资源上限、空闲资源或资源配额，从而造成Pod处于Pending状态无法被调度。同时使用集群自动伸缩（ClusterAutoscaler）可以一定程度上解决这个问题。
 -   多个VPA同时匹配同一个Pod会造成未定义的行为。
