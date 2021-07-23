@@ -58,7 +58,7 @@ acs:service-name:region:account-id:resource-relative-id
 |CancelClusterUpgrade|CancelK8sCluster|取消升级集群。|
 |CancelComponentUpgrade|CancelComponentUpgrade|取消升级组件。|
 |CreateCluster|CreateCluster|创建Kubernetes集群。|
-|CreateTriggerHook|CreateTrigger|创建和修改应用触发器。|
+|CreateTriggerHook|CreateKubernetesTrigger|创建和修改应用触发器。|
 |CreateTemplate|CreateTemplate|创建应用部署模板。|
 |DeleteCluster|DeleteCluster|删除集群。|
 |DeleteClusterNodes|DeleteClusterNodes|移除节点并释放ECS。|
