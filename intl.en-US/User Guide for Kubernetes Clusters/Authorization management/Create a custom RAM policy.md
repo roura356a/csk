@@ -110,54 +110,53 @@ After the RAM user is granted the required RAM permissions on the cluster, use R
 
 |API operation|RAM Action|Description|
 |-------------|----------|-----------|
-|AttachInstances|AttachInstances|Adds existing ECS instances to a specified ACK cluster.|
-|CancelClusterUpgrade|CancelK8sCluster|Cancels the upgrade of a specified ACK cluster.|
-|CancelComponentUpgrade|CancelComponentUpgrade|Cancels the upgrade of a specified component.|
+|AttachInstances|AttachInstances|Adds existing ECS instances to an ACK cluster.|
+|CancelClusterUpgrade|CancelK8sCluster|Cancels the upgrade of an ACK cluster.|
+|CancelComponentUpgrade|CancelComponentUpgrade|Cancels the upgrade of a component.|
 |CreateCluster|CreateCluster|Creates an ACK cluster.|
-|CreateKubernetesTrigger|GenerateTriggerHook|Creates an application trigger.|
+|CreateTriggerHook|CreateKubernetesTrigger|Creates and modifies an application trigger.|
 |CreateTemplate|CreateTemplate|Creates an application deployment template.|
 |DeleteCluster|DeleteCluster|Deletes an ACK cluster.|
-|DeleteClusterNodes|DeleteClusterNodes|Removes a node and releases the ECS instance.|
-|DeleteKubernetesTrigger|RevokeTriggers|Deletes an application trigger.|
+|DeleteClusterNodes|DeleteClusterNodes|Removes nodes and releases the ECS instances.|
+|DeleteTrigger|RevokeTriggers|Deletes an application trigger.|
 |DeleteTemplate|V2DeleteTemplateInfo|Deletes an application deployment template.|
-|DescribeAddons|Queryk8sComponentsVersion|Queries information about the components in a specified ACK cluster.|
-|DescribeClusterAddonsVersion|Queryk8sComponentsUpdateVersion|Queries the versions of the components in a specified ACK cluster.|
-|DescribeClusterAddonUpgradeStatus|QueryK8sComponentUpgradeStatus|Queries the upgrade status of a specified component in an ACK cluster.|
-|DescribeClusterAttachScripts|GetClusterJoinScript|Queries the script that is used to manually add nodes to a specified ACK cluster.|
-|DescribeClusterDetail|GetClusterById|Queries the details of a specified ACK cluster.|
-|DescribeClusterLogs|GetClusterLogs|Queries the log of a specified ACK cluster.|
-|DescribeClusterNodes|DescribeClusterNodes|Queries the nodes in a specified ACK cluster.|
-|DescribeClusterResources|DescribeClusterResources|Queries all resources in a specified ACK cluster.|
+|DescribeAddons|Queryk8sComponentsVersion|Queries information about the components in an ACK cluster.|
+|DescribeClusterAddonsVersion|Queryk8sComponentsUpdateVersion|Queries the versions of the components in an ACK cluster.|
+|DescribeClusterAddonUpgradeStatus|QueryK8sComponentUpgradeStatus|Queries the upgrade status of a component in an ACK cluster.|
+|DescribeClusterAttachScripts|GetClusterJoinScript|Queries the script that is used to manually add a node to an ACK cluster.|
+|DescribeClusterDetail|GetClusterById|Queries the details of an ACK cluster.|
+|DescribeClusterLogs|GetClusterLogs|Queries the log of an ACK cluster.|
+|DescribeClusterNodes|DescribeClusterNodes|Queries the nodes in an ACK cluster.|
+|DescribeClusterResources|DescribeClusterResources|Queries all resources in an ACK cluster.|
 |DescribeClusters|GetClustersByUid and GetClusters|Queries all ACK clusters that belong to your account.|
 |DescribeClustersV1|ListClusters|Queries all ACK clusters that belong to your account.|
-|DescribeClusterUserKubeconfig|GetUserConfig|Queries the kubeconfig file of a specified ACK cluster.|
-|DescribeClusterV2UserKubeconfig|GetUserConfig|Queries the kubeconfig file of a specified ACK cluster.|
+|DescribeClusterUserKubeconfig|GetUserConfig|Queries the kubeconfig file of an ACK cluster.|
+|DescribeClusterV2UserKubeconfig|GetUserConfig|Queries the kubeconfig file of an ACK cluster.|
 |DescribeExternalAgent|DescribeExternalClusterAgentDeployment|Queries the configurations of an agent that is used to register an external Kubernetes cluster.|
 |DescribeTemplates|V2ListTemplates|Queries application deployment templates.|
 |DescribeUserQuota|GetUserQuota|Queries resource quotas of your account.|
-|GetKubernetesTrigger|GetK8sTrigger|Queries the details about application triggers.|
-|GetUpgradeStatus|GetK8sClusterState|Queries the upgrade status of a specified ACK cluster.|
-|InstallClusterAddons|InstallK8sComponents|Installs a specified component in an ACK cluster.|
-|ModifyCluster|ModifyCluster|Modifies information about a specified ACK cluster.|
-|ModifyClusterTags|UpdateClusterTags|Modifies the labels of a specified ACK cluster.|
-|PauseClusterUpgrade|UpgradeCluster|Suspends the upgrade of a specified ACK cluster.|
-|PauseComponentUpgrade|PauseComponentUpgrade|Suspends the upgrade of a specified component.|
+|GetTrigger|GetK8sTrigger|Queries the details about application triggers.|
+|GetUpgradeStatus|GetK8sClusterState|Queries the upgrade status of an ACK cluster.|
+|InstallClusterAddons|InstallK8sComponents|Installs a component in an ACK cluster.|
+|ModifyCluster|ModifyCluster|Modifies information about an ACK cluster.|
+|ModifyClusterTags|UpdateClusterTags|Modifies the labels of an ACK cluster.|
+|PauseClusterUpgrade|UpgradeCluster|Suspends the upgrade of an ACK cluster.|
+|PauseComponentUpgrade|PauseComponentUpgrade|Suspends the upgrade of a component.|
 |ReBindSecurityGroup|ReBindSecurityGroup|Rebinds an ACK cluster to another security group.|
-|RemoveClusterNodes|DeleteClusterNode|Removes nodes from a specified ACK cluster.|
-|ResumeComponentUpgrade|ResumeComponentUpgrade|Resumes the upgrade of a specified component.|
-|ResumeUpgradeCluster|UpgradeCluster|Resumes the upgrade of a specified ACK cluster.|
-|ScaleCluster|ScaleCluster|Scales out an ACK cluster.|
-|ScaleOutCluster|ScaleCluster|Adds existing nodes to a specified ACK cluster.|
-|UnInstallClusterAddons|UnInstallK8sComponents|Uninstalls components from a specified ACK cluster.|
+|RemoveClusterNodes|DeleteClusterNode|Removes nodes from an ACK cluster.|
+|ResumeComponentUpgrade|ResumeComponentUpgrade|Resumes the upgrade of a component.|
+|ResumeUpgradeCluster|UpgradeCluster|Resumes the upgrade of an ACK cluster.|
+|ScaleOutCluster|ScaleCluster|Scales out an ACK cluster.|
+|UnInstallClusterAddons|UnInstallK8sComponents|Uninstalls components from an ACK cluster.|
 |UpdateK8sClusterUserConfigExpire|UpdateK8sClusterUserConfigExpire|Updates the expiration time of custom configurations.|
 |UpgradeCluster|UpgradeCluster|Upgrades an ACK cluster.|
-|UpgradeClusterAddons|UpgradeK8sComponents|Upgrades the components of a specified ACK cluster.|
+|UpgradeClusterAddons|UpgradeK8sComponents|Upgrades a component of an ACK cluster.|
 |DescribeUserPermission|GetUserPermissions|Queries the permissions that are granted to a RAM user to manage ACK clusters.|
-|GrantPermissions|GrantPermission|Updates the permissions of a specified RAM user to manage ACK clusters.|
+|GrantPermissions|GrantPermission|Updates the permissions that are granted to a RAM user to manage ACK clusters.|
 |CreateClusterNodePool|CreateNodepool|Creates a node pool.|
 |DeleteClusterNodepool|DeleteNodepool|Deletes a node pool.|
 |DescribeClusterNodePoolDetail|GetNodepoolDetail|Queries detailed information about a node pool.|
-|DescribeClusterNodePools|GetNodepools|Queries a node pool.|
+|DescribeClusterNodePools|GetNodepools|Queries the node pools in an ACK cluster.|
 |ModifyClusterNodePool|UpdateNodepool|Modifies a node pool.|
 |ScaleClusterNodePool|ScaleNodepool|Scales out a node pool.|
 |MigrateCluster|MigrateCluster|Migrates an ACK cluster.|
