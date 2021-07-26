@@ -4,11 +4,11 @@ keyword: [disk volume, NAS volume, FAQ]
 
 # FAQ about CSI
 
-This topic describes how to troubleshoot common issues related to storage and how to resolve common issue related to disk volumes and NAS volumes.
+This topic describes how to troubleshoot common issues related to storage and how to resolve common issues related to disk volumes and NAS volumes.
 
 ## Troubleshoot common issues
 
-Perform the following operations to view the log of a specified volume plug-in. This allows you to identify the problems.
+Perform the following operations to view the log of a specified volume plug-in. This allows you to locate issues.
 
 1.  Run the following command to check whether events occur in persistent volume claims \(PVCs\) or pods:
 
@@ -25,7 +25,7 @@ Perform the following operations to view the log of a specified volume plug-in. 
     3m31s       Normal    Provisioning           persistentvolumeclaim/pvc-nas-dynamic-create-subpath8   External provisioner is provisioning volume for claim "default/pvc-nas-dynamic-create-subpath8"
     ```
 
-2.  Run the following command to check whether the FlexVolume or CSI plug-in is deployed in the cluster:
+2.  Run the following command to check whether the FlexVolume or CSI plug-in is deployed in the cluster.
 
     -   Run the following command to check whether the FlexVolume plug-in is deployed in the cluster:
 
@@ -72,7 +72,7 @@ Perform the following operations to view the log of a specified volume plug-in. 
         image: registry.cn-hangzhou.aliyuncs.com/acs/Flexvolume:v1.14.8.109-649dc5a-aliyun
         ```
 
-        For more information about the FlexVolume plug-in, see [Flexvolume](/intl.en-US/Release notes/System Component change Records/Storage/Flexvolume.md).
+        For more information about the FlexVolume plug-in, see [FlexVolume](/intl.en-US/Release notes/System Component change Records/Storage/FlexVolume.md).
 
     -   Run the following command to query the image version of the CSI plug-in:
 
@@ -95,17 +95,17 @@ Perform the following operations to view the log of a specified volume plug-in. 
 
             ```
             podid=`kubectl get pod -nkube-system | grep alicloud-disk-controller | awk '{print $1}'`
-            kubectl logs {PodID} -nkube-system
+            kubectl logs <PodID> -nkube-system
             ```
 
         -   If the CSI plug-in is deployed in the cluster, run the following command to print the log of csi-provisioner:
 
             ```
             podid=`kubectl get pod -nkube-system | grep csi-provisioner | awk '{print $1}'`
-            kubectl logs {PodID} -nkube-system -c csi-provisioner
+            kubectl logs <PodID> -nkube-system -c csi-provisioner
             ```
 
-            **Note:** Two pods are created to run csi-provisioner. After you run the `kubectl get pod -nkube-system | grep csi-provisioner | awk '{print $1}'` command, two `podid` are returned. Then, run the `kubectl logs {PodID} -nkube-system -c csi-provisioner` command for each of the two pods.
+            **Note:** Two pods are created to run csi-provisioner. After you run the `kubectl get pod -nkube-system | grep csi-provisioner | awk '{print $1}'` command, two `podid` are returned. Then, run the `kubectl logs <PodID> -nkube-system -c csi-provisioner` command for each of the two pods.
 
     -   If a mounting error occurs when the system starts a pod, you must check the log of FlexVolume or csi-plugin.
         -   If the FlexVolume plug-in is deployed in the cluster, run the following command to print the log of FlexVolume:
@@ -121,7 +121,7 @@ Perform the following operations to view the log of a specified volume plug-in. 
             ```
             nodeID=`kubectl get pod {pod-name} -owide | awk 'NR>1 {print $7}'`
             podID=`kubectl get pods -nkube-system -owide -lapp=csi-plugin | grep $nodeID|awk '{print $1}'`
-            kubectl logs {PodID} -nkube-system
+            kubectl logs <PodID> -nkube-system
             ```
 
     -   View the log of Kubelet.
