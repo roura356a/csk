@@ -4,19 +4,19 @@ This topic describes how to run a job by using a virtual node. This method minim
 
 Pods cannot run as expected when the nodes in a cluster have insufficient computing resources. However, creating a large number of nodes in a cluster may result in resource wastes. A virtual node offers near unlimited computing resources to a Kubernetes cluster and avoids resource wastes such as idle nodes. It allows you to create pods in a cluster based on your business requirements and ensures that the cluster can handle fluctuations in resource demands.
 
-![Kubernetes clusters](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9152005061/p49860.png)
+![Kubernetes clusters](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3538627261/p49860.png)
 
 For example, you create a managed Kubernetes cluster. The cluster contains two worker nodes and a managed master node that is free of change. The specification of each worker node is 4 cores and 8 GB of memory. Therefore, the total computing capacity of the cluster is 8 cores and 16 GB of memory. You want to run an offline job to process data. This job requires 16 cores and 32 GB of memory. You cannot run the job in the managed Kubernetes cluster because the cluster can provide only 8 cores and 16 GB of memory. The computing resources provided by the cluster do not meet the requirement of the job. To resolve this problem, you can schedule the job to a virtual node and run the job without using the computing resources of the nodes in the cluster.
 
 ## Prerequisites
 
--   A managed Kubernetes cluster is created. For more information, see [Create a managed kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed kubernetes cluster.md).
--   A virtual node is deployed in the cluster. For more information, see [Deploy ack-virtual-node in an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Deploy ack-virtual-node in an ACK cluster.md).
--   The virtual-node-affinity-injection: enabled label is added to the namespace vk. For more information, see [create a pod by adding a label to a namespace](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Deploy ack-virtual-node in an ACK cluster.md).
+-   A managed Kubernetes cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+-   A virtual node is deployed in the cluster. For more information, see [Deploy the virtual node controller and use it to create Elastic Container Instance-based pods](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Deploy the virtual node controller and use it to create Elastic Container Instance-based pods.md).
+-   The virtual-node-affinity-injection: enabled label is added to the namespace vk. For more information, see [create a pod by adding a label to a namespace](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Deploy the virtual node controller and use it to create Elastic Container Instance-based pods.md).
 
 ## Procedure
 
-1.  [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+1.  [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
 
 2.  Copy the following content to job.yaml, and run the `kubectl -n vk apply -f job.yaml` command to deploy a job in the cluster:
 
