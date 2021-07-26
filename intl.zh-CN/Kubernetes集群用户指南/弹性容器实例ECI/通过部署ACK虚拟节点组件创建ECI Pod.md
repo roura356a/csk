@@ -4,7 +4,7 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
 # 通过部署ACK虚拟节点组件创建ECI Pod
 
-虚拟节点（Virtual Node）实现了Kubernetes与弹性容器实例ECI的无缝连接，让Kubernetes集群轻松获得极大的弹性能力，而不必受限于集群的节点计算容量。您可以灵活动态的按需创建ECI Pod，免去集群容量规划的麻烦。本文主要介绍虚拟节点和ECI，通过ack-virtual-node组件如何部署虚拟节点及如何创建ECI Pod。
+虚拟节点（Virtual Node）实现了Kubernetes与弹性容器实例ECI的无缝连接，让Kubernetes集群轻松获得极大的弹性能力，而不必受限于集群的节点计算容量。您可以灵活动态地按需创建ECI Pod，免去集群容量规划的麻烦。本文主要介绍虚拟节点和ECI，通过ack-virtual-node组件如何部署虚拟节点及如何创建ECI Pod。
 
 -   您需要创建一个Kubernetes托管版或者专有版集群（高于1.14版本）。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)或[创建Kubernetes专有版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
 -   您需要开通弹性容器实例服务。登录[弹性容器实例控制台](https://eci.console.aliyun.com/)开通相应的服务。
@@ -14,7 +14,7 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
 [阿里云弹性容器实例ECI（Elastic Container Instance）](https://www.alibabacloud.com/zh/products/elastic-container-instance)是面向容器的无服务器弹性计算服务，提供免运维、强隔离、快速启动的容器运行环境。使用ECI无需购买和管理底层ECS服务器，让您更加关注在容器应用而非底层基础设施的维护工作。您可按需创建ECI，仅为容器配置的资源付费（按量按秒计费）。
 
-虚拟节点Virtual Node实现了Kubernetes与弹性容器实例ECI的无缝连接，让Kubernetes集群轻松获得极大的弹性能力，而不必受限于集群的节点计算容量。您可以灵活动态的按需创建ECI Pod，免去集群容量规划的麻烦。它非常适合运行在如下多个场景，帮助用户极大降低计算成本，提升计算弹性效率。
+虚拟节点Virtual Node非常适合运行在如下多个场景，帮助用户极大降低计算成本，提升计算弹性效率：
 
 -   在线业务的波峰波谷弹性伸缩：如在线教育、电商等行业有着明显的波峰波谷计算特征。使用虚拟节点可以显著减少固定资源池的维护，降低计算成本。
 -   数据计算：使用虚拟节点承载Spark、Presto等计算场景，有效降低计算成本。
@@ -62,7 +62,7 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
 3.  在**应用目录**页面单击**阿里云应用**页签，然后选中**ack-virtual-node**应用。
 
-    **阿里云应用**包含较多应用，您可在页面右上角搜索**ack-virtual-node**，支持关键字搜索。
+    **阿里云应用**包含较多应用，您可在**应用目录**页面左上角的**名称**文本框中搜索**ack-virtual-node**，支持关键字搜索。
 
 4.  在应用目录-ack-virtual-node页面右侧的创建页面，选择目标集群。
 
