@@ -10,7 +10,7 @@ ACK基于新版的Scheduling framework实现CPU拓扑感知调度及控制自动
 
     **说明：** 目前CPU拓扑感知调度仅支持ACK Pro托管版集群。如果您需要专有版集群，请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请白名单。
 
--   在使用CPU拓扑感知调度前，需要预先部署组件resource-controller。具体步骤，请参见[管理组件](/intl.zh-CN/Kubernetes集群用户指南/集群/升级集群/管理组件.md)。
+-   在使用CPU拓扑感知调度前，需要预先部署组件resource-controller。具体步骤，请参见[管理组件](/intl.zh-CN/Kubernetes集群用户指南/组件/管理组件.md)。
 -   系统组件版本要求具体如下表所示。
 
     |组件|版本要求|
@@ -130,7 +130,7 @@ Kubernetes的节点会运行多个Pod，其中部分的Pod属于CPU密集型工�
 本示例使用场景为：
 
 -   ACK Pro版集群版本为1.20。
--   所选实例的处理器型号为Intel Xeon\(Cascade Lake\) Platinum 8269CY或AMD ROMA 7H12。
+-   所选实例的处理器型号为Intel Xeon\(Cascade Lake\) Platinum 8269CY或AMD Rome 7H12。
 -   需要包含两个节点：一台压测机、一台测试机。
 
 1.  执行以下命令，为测试机打上标签。
