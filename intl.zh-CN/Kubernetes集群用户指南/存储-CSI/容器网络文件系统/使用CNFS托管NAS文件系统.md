@@ -174,7 +174,7 @@ EOF
         |parameters.protocolType|文件传输协议类型为NFS，目前仅支持NFS V3协议。|
         |parameters.encryptType|加密方式，None表示不加密，SSE-KMS表示使用NAS服务端KMS加密。|
         |parameters.enableTrashCan|是否开启回收站功能，false表示不开启回收站功能，true表示开启回收站功能。|
-        |parameters.trashCanReservedDays|表示回收站保留文件的时间，默认为5天。|
+        |parameters.trashCanReservedDays|表示回收站文件保留的最长时间，默认为7天。示例中`trashCanReservedDays: 5`，表示回收站的文件最长保留5天。|
         |parameters.vSwitchId|创建出的NAS文件系统需要使用的交换机ID。|
 
     2.  执行以下命令查看创建的NAS文件系统。
