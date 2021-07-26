@@ -26,8 +26,8 @@ keyword: [快速部署Serverless应用, Knative]
     |参数|描述|
     |--|--|
     |**服务名称**|自定义该服务的名称。本例为helloworld-go。|
-    |**镜像名称**|您可以单击选择镜像，在弹出的对话框中选择所需的镜像并单击**确定**。您还可以填写私有registry。填写的格式为domainname/namespace/imagename:tag。本例中为registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go。|
-    |**镜像版本**|您可以单击选择镜像版本选择镜像的版本。若不指定，默认为latest。本例中为73fbdd56。|
+    |**镜像名称**|您可以单击**选择镜像**，在弹出的对话框中选择所需的镜像并单击**确定**。您还可以填写私有registry。填写的格式为domainname/namespace/imagename:tag。本例中为registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go。|
+    |**镜像版本**|您可以单击**选择镜像版本**。若不指定，默认为latest。本例中为73fbdd56。|
     |**环境变量**|支持通过键值对的形式配置环境变量。本例中，`TARGET=Knative`。|
 
     界面其他参数详细信息请参见[参数说明](/cn.zh-CN/Kubernetes集群用户指南/Knative/Knative服务管理/快速部署Serverless应用.md)。
@@ -43,11 +43,9 @@ keyword: [快速部署Serverless应用, Knative]
 
 1.  在Kubernetes菜单下，单击左侧导航栏的**Knative** \> **组件管理**，进入组件管理页面。可以看到访问网关。
 
-2.  将访问网关地址与需要访问的域名进行Host绑定，在Hosts文件中添加绑定信息。
+2.  将访问网关地址与需要访问的域名进行Host绑定，在Hosts文件中添加绑定信息，具体格式如下。
 
-    ```
     网关+ 域名
-    ```
 
     样例如下：
 
