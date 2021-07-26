@@ -125,9 +125,9 @@ If your ACK cluster is upgraded to Kubernetes 1.16 or later, the cluster still s
     After the plug-ins are upgraded, the system prompts that the upgrades are completed and the current versions of the plug-ins are displayed.
 
 
--   When you upgrade FlexVolume in the following scenarios, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm)to request technical support.
+-   When you upgrade FlexVolume in the following scenarios, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to request technical support.
     -   The system fails to update FlexVolume in the ACK console.
     -   The version of FlexVolume is 1.12 or earlier, and volumes that use disks and Object Storage Service \(OSS\) buckets are provisioned in the cluster.
     -   You want to ensure a successful upgrade because sensitive business data is stored in the cluster and a large number of volumes are used.
--   The system fails to upgrade Disk Controller. In this case, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm)to request technical support.
+-   The system fails to upgrade Disk Controller. In this case, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to request technical support.
 
