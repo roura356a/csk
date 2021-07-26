@@ -41,18 +41,19 @@ ASK支持在控制台界面上快速创建支持HPA的应用，实现容器资�
 9.  在高级设置页选中**指标伸缩**的**开启**，设置伸缩的条件和配置。
 
     -   **指标**：支持CPU和内存，需要和设置的所需资源类型相同。
-    -   **触发条件**：资源使用率的百分比，超过该使用量，容器开始扩容。
+    -   **触发条件**：资源使用率的百分比，超过该使用量，容器开始扩容。有关Pod水平自动扩缩的算法，请参见[算法细节](https://kubernetes.io/zh/docs/tasks/run-application/horizontal-pod-autoscale/#algorithm-details)。
     -   **最大副本数**：该Deployment可扩容的容器数量上限。
     -   **最小副本数**：该Deployment可缩容的容器数量下限。
 10. 单击右下角的**创建**，一个支持HPA的Deployment就已经创建完毕。
 
-    **验证结果**
 
-    1.  单击**查看应用详情**或者在**工作负载** \> **无状态**中单击**应用名称**或**操作**列的**详情**，单击**容器伸缩**，您可在部署的详情中查看伸缩组信息。
+**结果验证**
 
-    2.  在实际使用环境中，应用会根据CPU负载进行伸缩。您也可在测试环境中验证弹性伸缩，通过给Pod进行CPU压测，可以发现Pod在半分钟内即可完成水平的扩展。
+1.  单击**查看应用详情**或者在**工作负载** \> **无状态**中单击**应用名称**或**操作**列的**详情**，单击**容器伸缩**，您可在部署的详情中查看伸缩组信息。
 
-## 通过kubectl命令进行
+2.  在实际使用环境中，应用会根据CPU负载进行伸缩。您也可在测试环境中验证弹性伸缩，通过给Pod进行CPU压测，可以发现Pod在半分钟内即可完成水平的扩展。
+
+## 通过kubectl命令创建HPA应用
 
 您也可通过编排模板来手动创建HPA，并将其绑定到要伸缩的Deployment对象上，通过kubectl命令实现容器自动伸缩配置。
 
@@ -97,10 +98,10 @@ ASK支持在控制台界面上快速创建支持HPA的应用，实现容器资�
 
 3.  创建HPA。
 
-    通过scaleTargetRef设置当前HPA绑定的对象，在本例中绑定是名叫nginx的Deployment。
+    通过scaleTargetRef设置当前HPA绑定的对象，在本例中绑定名叫nginx的Deployment。
 
     ```
-    apiVersion: autoscaling/v2beta1
+    apiVersion: autoscaling/v2
     kind: HorizontalPodAutoscaler
     metadata:
       name: nginx-hpa
