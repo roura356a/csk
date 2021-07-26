@@ -28,8 +28,8 @@ keyword: [部署Serverless应用, 创建Knative服务]
     |--|--|
     |**命名空间**|选择该服务所属的命名空间。|
     |**服务名称**|自定义该服务的名称。|
-    |**镜像名称**|您可以单击选择镜像，在弹出的对话框中选择所需的镜像并单击**确定**。您还可以填写私有registry。填写的格式为domainname/namespace/imagename:tag。本例中为registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go。 |
-    |**镜像版本**|您可以单击选择镜像版本。本例中为73fbdd56。
+    |**镜像名称**|您可以单击**选择镜像**，在弹出的对话框中选择所需的镜像并单击**确定**。您还可以填写私有registry。填写的格式为domainname/namespace/imagename:tag。本例中为registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go。 |
+    |**镜像版本**|您可以单击**选择镜像版本**。本例中为73fbdd56。
 
 ![举例](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8895659951/p127510.png) |
     |**访问协议**|支持**HTTP**和**gRPC**两种访问协议。 |
@@ -38,14 +38,14 @@ keyword: [部署Serverless应用, 创建Knative服务]
     |**请求最大并发数**|容器允许的最大请求并发数。默认0，表示不限制并发数。 |
     |**最小缩容实例数**|在无访问请求的情况下，最小缩容的运行实例数。设置为0时，表示没有访问请求时，实例缩为0。 |
     |**最大扩容实例数**|允许扩容出来的最多实例个数。 |
-    |**资源限制**|可指定该应用所能使用的资源上限，包括CPU、内存和GPU三种资源，防止占用过多资源。其中，CPU资源的单位为cores，即一个核；内存的单位为Bytes，可以为Mi。 |
+    |**资源限制**|可指定该应用所能使用的资源上限，包括CPU、内存和GPU三种资源，防止占用过多资源。其中，CPU资源的单位为cores，即一个核；内存的单位为Bytes，可以为MiB。 |
     |**生命周期**|包含命令（Command）和参数（Args），配置说明如下：
 
     -   如果均不配置，则使用镜像默认的命令和参数。
     -   如果仅配置参数，则使用镜像默认的命令及新配置的参数。
     -   如果均配置，则会覆盖镜像默认的配置。 |
     |**环境变量**|支持通过键值对的形式配置环境变量。 |
-    |**数据卷**|支持增加本地存储和云存储声明（PVC）。    -   本地存储：支持主机目录（hostpath）、配置项（configmap）、保密字典（secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息参见[volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)
+    |**数据卷**|支持增加本地存储和云存储声明（PVC）。    -   本地存储：支持主机目录（hostpath）、配置项（configmap）、保密字典（secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息参见[volumes。](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)
     -   云存储声明（PVC）：支持云存储。 |
 
 7.  单击**创建**。
