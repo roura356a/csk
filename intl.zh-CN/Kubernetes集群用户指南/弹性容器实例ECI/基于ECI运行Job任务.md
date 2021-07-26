@@ -6,9 +6,12 @@ keyword: [虚拟节点, Job任务]
 
 本文主要为您介绍通过虚拟节点运行Job任务的方式，您可以用最小的运维成本（无需调整节点数量）来应对集群计算资源高峰压力。
 
-Kubernetes集群的节点资源配置不足会导致Pod无法及时运行，购买过多的节点又会导致资源的闲置浪费。而虚拟节点就像是kubernetes集群的“魔法口袋”，让我们摆脱节点计算力不足的烦扰，也避免了节点的闲置浪费，满足无限计算力的想象，Pod按需创建，轻松应对计算的波峰波谷。
+Kubernetes集群的节点资源配置不足会导致Pod无法及时运行，购买过多的节点又会导致资源的闲置浪费。而虚拟节点就像是kubernetes集群的“魔法口袋”，让我们摆脱节点计算力不足的烦扰，也避免了节点的闲置浪费，满足无限计算力的想象，Pod按需创建，轻松应对计算的波峰波谷。Kubernetes集群大规模使用虚拟节点有以下特点：
 
-![Kuberntes集群](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5106659951/p49860.png)
+-   业务有明显的波峰谷特征。
+-   使用ECI作为弹性资源池，应对突发流量和Job任务，最大程度降低计算成本。
+
+![Kuberntes集群](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8438627261/p49860.png)
 
 本例中，创建的Kubernetes托管版集群中，Master节点被托管（用户无需付费），2台Worker均为4c8g规格，所以整个Kubernetes托管版集群的可用计算容量是8c16g。需要运行一个Job离线任务做数据处理，Job的cpu/mem需求为16c32g。此时Job无法在您创建的Kubernetes托管版集群中运行，因为其资源需求已经超过Kubernetes托管版集群的8c16g计算容量。因此，您可以选择把这个Job任务调度到虚拟节点上，而不占用集群本身节点的计算资源。
 
@@ -17,7 +20,7 @@ Kubernetes集群的节点资源配置不足会导致Pod无法及时运行，购�
 -   您已经创建了一个Kubernetes托管版集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   您已经在该集群上部署了一个虚拟节点。具体操作，请参见[通过部署ACK虚拟节点组件创建ECI Pod](/intl.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/通过部署ACK虚拟节点组件创建ECI Pod.md)。
 -   您已经给namespace vk打上virtual-node-affinity-injection: enabled标签。具体操作，请参见[通过配置namespace标签的方式创建Pod](/intl.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/通过部署ACK虚拟节点组件创建ECI Pod.md)。
--   通过kubectl连接Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+-   通过kubectl连接Kubernetes集群。具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 ## 操作步骤
 
