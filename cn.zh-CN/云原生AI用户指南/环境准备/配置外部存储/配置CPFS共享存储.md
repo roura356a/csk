@@ -4,7 +4,7 @@ keyword: [CPFS共享存储, Arena, 分布式存储, 配置PV和PVC]
 
 # 配置CPFS共享存储
 
-阿里云文件存储CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数据存储在集群中的多个数据节点，并可由多个客户端同时访问，从而能够为大型高性能计算机集群提供高IOPS、高吞吐、低时延的数据存储服务。文本介绍如何配置CPFS共享存储。
+阿里云文件存储CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数据存储在集群中的多个数据节点，并可由多个客户端同时访问，从而能够为大型高性能计算机集群提供高IOPS、高吞吐、低时延的数据存储服务。本文介绍如何配置CPFS共享存储。
 
 为了保留数据科学家的工作内容，或者读取同一份训练数据。建议您配置共享存储卷，并挂载到Arena提交作业的运行环境中，确保数据科学家的工作内容（代码、数据）得以保留，不会随着容器删除而丢失。
 
@@ -28,9 +28,11 @@ keyword: [CPFS共享存储, Arena, 分布式存储, 配置PV和PVC]
 
 3.  在目标CPFS实例右侧的**操作**列下，单击**管理**。
 
-    在**基本信息**页签，查看文件系统ID和挂载点信息。
+    在**基本信息**页签和**挂载使用**页签，分别查看文件系统ID和挂载点信息。
 
-    ![CPFS](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4704359951/p134706.png)
+    ![CPFS](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7063307261/p134706.png)
+
+    ![17](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7063307261/p298054.png)
 
 
 ## 步骤三：配置ACK集群的存储卷（PV）和存储声明（PVC）
