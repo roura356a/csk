@@ -14,7 +14,7 @@ Virtual nodes enable seamless integration between Kubernetes and Elastic Contain
 
 [Elastic Container Instance](https://www.alibabacloud.com/zh/products/elastic-container-instance) is a serverless compute service that is provided by Alibaba Cloud for containerization. You can use elastic container instances to set up an operations and maintenance \(O&M\)-free and isolated runtime environment for your containers. Elastic container instances allow you to focus on containerized applications without the need to purchase or manage Elastic Compute Service \(ECS\) instances. This way, you do not need to perform infrastructure maintenance. You can create elastic container instances to meet your business requirements. You are charged for resource usage on a per second basis.
 
-Virtual nodes enable seamless integration between Kubernetes and Elastic Container Instance. Virtual nodes empower Kubernetes clusters with high elasticity. This way, Kubernetes clusters are no longer limited by the computing capacity of cluster nodes. You can dynamically create Elastic Container Instance-based pods to meet your business requirements. This saves the trouble of cluster sizing. Virtual nodes can significantly reduce computing costs and improve cluster elasticity in the following scenarios:
+Virtual nodes can significantly reduce computing costs and improve cluster elasticity in the following scenarios:
 
 -   Online business that requires elastic scaling to withstand traffic fluctuations, such as online education and e-commerce. Virtual nodes optimize the maintenance of resource pools. This can help you reduce computing costs.
 -   Virtual nodes can reduce costs in computing scenarios where Spark or Presto is used to process data.
