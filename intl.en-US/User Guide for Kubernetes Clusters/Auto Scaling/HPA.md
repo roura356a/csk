@@ -38,11 +38,11 @@ ACK is integrated with HPA. You can create an application that has HPA enabled i
     |Annotations|Add an annotation to the application.|
     |Synchronize Timezone|Specify whether to synchronize the time zone between nodes and containers.|
 
-7.  On the Container wizard page, set the container parameters, select an image, and then configure the required computing resources. Click **Next**. For more information, see [Configure containers for an application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
+7.  On the Container wizard page, set the container parameters, select an image, and then configure the required computing resources. Click **Next**. For more information, see [Configure containers for an application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a stateless application by using a Deployment.md).
 
     **Note:** You must configure the required computing resources for the Deployment. Otherwise, you cannot enable HPA.
 
-8.  On the Advanced wizard page, find the Access Control section, click **Create** on the right side of Services, and then set the parameters. For more information, see [Configure advanced settings for an application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a Deployment to create a stateless application.md).
+8.  On the Advanced wizard page, find the Access Control section, click **Create** on the right side of Services, and then set the parameters. For more information, see [Configure advanced settings for an application](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Create a stateless application by using a Deployment.md).
 
 9.  On the Advanced wizard page, select **Enable** for **HPA** and configure the scaling threshold and related settings.
 
@@ -52,11 +52,12 @@ ACK is integrated with HPA. You can create an application that has HPA enabled i
     -   **Min. Replicas**: Specify the minimum number of pods that must run for the Deployment.
 10. In the lower-right corner of the Advanced wizard page, click **Create**. The application is created with HPA enabled.
 
-    **Verify the result**
 
-    1.  Click **View Details** or choose **Workloads** \> **Deployments**. On the page that appears, click the **name of the created application** or click **Details** in the **Actions** column. Then, click the **Pod Scaling** tab to view information about the scaling group of the application.
+**Verify the result**
 
-    2.  After the application starts to run, container resources are automatically scaled based on the CPU utilization. You can check whether HPA is enabled in the staging environment by performing a CPU stress test on the pods of the application. Verify that the pods are automatically scaled within 30 seconds.
+1.  Click **View Details** or choose **Workloads** \> **Deployments**. On the page that appears, click the **name of the created application** or click **Details** in the **Actions** column. Then, click the **Pod Scaling** tab to view information about the scaling group of the application.
+
+2.  After the application starts to run, container resources are automatically scaled based on the CPU utilization. You can check whether HPA is enabled in the staging environment by performing a CPU stress test on the pods of the application. Verify that the pods are automatically scaled within 30 seconds.
 
 **Enable HPA after an application is created**
 
