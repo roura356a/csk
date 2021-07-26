@@ -8,7 +8,7 @@ keyword: [ARC, AlibabaCloud Resourcification CLI, 阿里云CLI工具]
 
 ## 背景信息
 
-旧版阿里云CLI工具不支持结构化参数，使用成本高，对用户不友好。新版阿里云CLI工具 ARC是以资源为视角的CLI工具，提供交互式输入，提升参数输入的体验。更多信息，请参见[alibabacloud-resourcify-cli](https://github.com/aliyun/alibabacloud-resourcify-cli)和[发布版本](https://github.com/aliyun/alibabacloud-resourcify-cli/releases)。
+旧版阿里云CLI工具不支持结构化参数，使用成本高，对用户不友好。新版阿里云CLI工具ARC是以资源为视角的CLI工具，提供交互式输入，提升参数输入的体验。更多信息，请参见[alibabacloud-resourcify-cli](https://github.com/aliyun/alibabacloud-resourcify-cli)和[发布版本](https://github.com/aliyun/alibabacloud-resourcify-cli/releases)。
 
 ## 安装ARC
 
@@ -210,11 +210,11 @@ usage:
 
 |场景示例|CLI命令|描述|适用范围|
 |:---|-----|:-|:---|
-|[查看所有集群](/intl.zh-CN/CLI参考（新版）/查看所有集群.md)|`arc-cs cluster list`|查看您在容器服务中创建的所有集群。|ACK支持的Kubernetes集群。|
-|[查看集群详细信息](/intl.zh-CN/CLI参考（新版）/查看集群详细信息.md)|`arc-cs cluster get <clusterId>`|根据集群ID，查看集群的详细信息。|ACK支持的Kubernetes集群。|
-|[创建专有版集群](/intl.zh-CN/CLI参考（新版）/创建集群/创建专有版集群.md)|`arc-cs cluster create-kubernetes`|创建一个专有版集群，并新建指定数量的节点。|ACK支持的专有版Kubernetes集群。|
-|[创建托管版集群](/intl.zh-CN/CLI参考（新版）/创建集群/创建托管版集群.md)|`arc-cs cluster create-managed`|创建一个托管版集群。|ACK支持的托管版Kubernetes集群。|
-|[创建Serverless集群](/intl.zh-CN/CLI参考（新版）/创建集群/创建Serverless集群.md)|`arc-cs cluster create-ask`|创建一个Serverless版集群。|ACK支持的Serverless版Kubernetes集群。|
-|[扩容集群](/intl.zh-CN/CLI参考（新版）/扩容集群.md)|`arc-cs cluster scaleout <clusterId>`|增加集群中节点的数量。|ACK支持的Kubernetes集群。|
-|[删除集群](/intl.zh-CN/CLI参考（新版）/删除集群.md)|`arc-cs cluster delete <clusterId>`|根据集群ID，删除集群实例，并释放集群所有节点资源。|ACK支持的Kubernetes集群。|
+|[查看所有集群](/intl.zh-CN/CLI参考（新版）/集群/查看所有集群.md)|`arc-cs cluster list`|查看您在容器服务中创建的所有集群。|ACK支持的Kubernetes集群。|
+|[查看集群详细信息](/intl.zh-CN/CLI参考（新版）/集群/查看集群详细信息.md)|`arc-cs cluster get <clusterId>`|根据集群ID，查看集群的详细信息。|ACK支持的Kubernetes集群。|
+|[创建专有版集群](/intl.zh-CN/CLI参考（新版）/集群/创建集群/创建专有版集群.md)|`arc-cs cluster create-kubernetes`|创建一个专有版集群，并新建指定数量的节点。|ACK支持的专有版Kubernetes集群。|
+|[创建托管版集群](/intl.zh-CN/CLI参考（新版）/集群/创建集群/创建托管版集群.md)|`arc-cs cluster create-managed`|创建一个托管版集群。|ACK支持的托管版Kubernetes集群。|
+|[创建Serverless集群](/intl.zh-CN/CLI参考（新版）/集群/创建集群/创建Serverless集群.md)|`arc-cs cluster create-ask`|创建一个Serverless版集群。|ACK支持的Serverless版Kubernetes集群。|
+|[扩容集群](/intl.zh-CN/CLI参考（新版）/集群/扩容集群.md)|`arc-cs cluster scaleout <clusterId>`|增加集群中节点的数量。|ACK支持的Kubernetes集群。|
+|[删除集群](/intl.zh-CN/CLI参考（新版）/集群/删除集群.md)|`arc-cs cluster delete <clusterId>`|根据集群ID，删除集群实例，并释放集群所有节点资源。|ACK支持的Kubernetes集群。|
 
