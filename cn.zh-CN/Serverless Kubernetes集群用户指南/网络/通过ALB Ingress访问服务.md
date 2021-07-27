@@ -4,7 +4,7 @@ keyword: [ALB Ingress, 服务访问]
 
 # 通过ALB Ingress访问服务
 
-ALB Ingress基于阿里云应用型负载均衡ALB（Application Load Balancer） 之上提供更为强大的Ingress流量管理方式，完全兼容Nginx Ingress，具备处理复杂业务路由和证书自动发现的能力，支持HTTP/HTTPS/QUIC协议，完全满足在云原生应用场景下对超强弹性和大规模七层流量处理能力的需求。本文介绍如何使用ALB Ingress访问服务。
+ALB Ingress基于阿里云应用型负载均衡ALB（Application Load Balancer） 之上提供更为强大的Ingress流量管理方式，完全兼容Nginx Ingress，具备处理复杂业务路由和证书自动发现的能力，支持HTTP、HTTPS和QUIC协议，完全满足在云原生应用场景下对超强弹性和大规模七层流量处理能力的需求。本文介绍如何使用ALB Ingress访问服务。
 
 -   您已创建一个ASK集群，集群的VPC需要配置NAT网关，从而可以访问外网，下载容器镜像。具体操作，请参见[创建Serverless Kubernetes集群](/cn.zh-CN/Serverless Kubernetes集群用户指南/快速入门/创建Serverless Kubernetes集群.md)。
 -   您已通过kubectl连接到集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Serverless Kubernetes集群用户指南/集群/管理和访问集群/通过kubectl连接Kubernetes集群.md)。
