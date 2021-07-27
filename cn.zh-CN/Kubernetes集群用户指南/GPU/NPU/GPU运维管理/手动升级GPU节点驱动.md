@@ -8,7 +8,7 @@ keyword: [升级GPU节点驱动, 手动升级]
 
 ## 前提条件
 
-[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)
+[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)
 
 ## 操作步骤
 
@@ -29,7 +29,7 @@ keyword: [升级GPU节点驱动, 手动升级]
 2.  执行以下命令，将待升级驱动的GPU节点从集群中移除。
 
     ```
-    kubectl drain <$Node\_ID\> --grace-period=120 --ignore-daemonsets=true
+    kubectl drain <$Node\_ID\> --grace-period=120 --ignore-daemonsets=true   #设置120秒钟的宽限期限，让任务优雅的关闭。
     ```
 
     预期输出：
@@ -90,11 +90,11 @@ keyword: [升级GPU节点驱动, 手动升级]
 6.  参考以下命令，根据实际情况，添加优化参数。
 
     ```
-    nvidia-smi -pm 1 || true
-    nvidia-smi -acp 0 || true
-    nvidia-smi --auto-boost-default=0 || true
-    nvidia-smi --auto-boost-permission=0 || true
-    nvidia-modprobe -u -c=0 -m || true
+    nvidia-smi -pm 1 || true                            # 代表启用Persistence模式。
+    nvidia-smi -acp 0 || true                           # 切换权限要求为UNRESTRICTED。
+    nvidia-smi --auto-boost-default=0 || true           # 允许非管理员控制自动提升模式，0代表允许，1代表不允许。
+    nvidia-smi --auto-boost-permission=0 || true        # 开启默认的自动提升模式，0代表不允许。
+    nvidia-modprobe -u -c=0 -m || true                  # 加载NVIDIA统一内存内核模块，而不是NVIDIA内核模块，且使用给定的编号创建NVIDIA设备文件。
     ```
 
 7.  如果需要开机自启动NVIDIA驱动，请查看/etc/rc.d/rc.local文件，确认包含以下配置，如果没有请手动添加。
