@@ -8,7 +8,7 @@ keyword: [Intel SGX SDK, 构建SGX2.0应用]
 
 -   [创建加密计算托管集群](/intl.zh-CN/Kubernetes集群用户指南/ACK-TEE机密计算/创建加密计算托管集群.md)。
 -   开发编译环境依赖：
-    -   AliyunLinux 2。
+    -   Alibaba Cloud Linux 2。
     -   Intel SGX Driver。
     -   TEE-SDK：是阿里云提供的开发加密计算应用的开发者套件，该套件提供与Intel Linux SGX SDK一致的开发模型和编程接口，兼容Intel SGX SDK和Intel SGX PSW。
     -   AESM service。
@@ -54,11 +54,10 @@ sgx-device-plugin/samples/hello_world/
                                          │   ├── Enclave.h
                                          │   ├── Enclave.lds
                                          │   └── Enclave_private.pem
-                                         ├── Include
                                          └── Makefile
 ```
 
-**说明：** `src`代码目录和文件说明如下：
+`src`代码目录和文件说明如下：
 
 -   App目录存放不可信区域代码，包括main入口、OCALL函数内具体逻辑代码等。
 -   Enclave目录存放可信区域代码，包括ECALL函数内具体逻辑代码。
@@ -71,7 +70,6 @@ sgx-device-plugin/samples/hello_world/
     |Enclave.config.xml|Enclave配置文件，如堆栈大小、是否开启Debug等。|
     |Enclave.h和Enclave.cpp|应用安全区代码实现。|
 
--   Include目录是不可信代码和可信代码共享的头文件。
 
 1.  在命令行工具连接您创建的加密计算托管集群并编译hello\_world。
 
@@ -162,7 +160,6 @@ sgx-device-plugin/samples/hello_world/
                                                  │   └── Enclave_t.o   #[generated]
                                                  ├── enclave.signed.so #[generated]
                                                  ├── enclave.so        #[generated]
-                                                 ├── Include
                                                  └── Makefile
         ```
 
@@ -247,7 +244,7 @@ enclave {
     };
 };
 ``` |
-|Enclave/Enclave.lds|-|```
+|Enclave/Enclave.lds|无|```
 enclave.so
 {
     global:
@@ -259,7 +256,7 @@ enclave.so
         *;
 };
 ``` |
-|Enclave/Enclave.config.xml|-|```
+|Enclave/Enclave.config.xml|无|```
 <EnclaveConfiguration>
   <ProdID>0</ProdID>
   <ISVSVN>0</ISVSVN>
@@ -278,7 +275,7 @@ enclave.so
 #define _ENCLAVE_H_
 #endif
 ``` |
-|Enclave/Enclave.cpp|-|```
+|Enclave/Enclave.cpp|无|```
 #include "Enclave.h"
 #include "Enclave_t.h" /* print_string */
 #include <string.h>
@@ -300,7 +297,7 @@ void ecall_hello_from_enclave(char *buf, size_t len)
 |Enclave/Enclave\_private.pem|生成签名密钥。|```
 openssl genrsa -out Enclave/Enclave_private.pem -3 3072
 ``` |
-|App/App.h|-|```
+|App/App.h|无|```
 #ifndef _APP_H_
 #define _APP_H_
 
@@ -336,7 +333,7 @@ extern "C" {
 
 #endif /* !_APP_H_ */
 ``` |
-|App/App.cpp|-|```
+|App/App.cpp|无|```
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
