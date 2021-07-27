@@ -244,7 +244,7 @@ enclave {
     };
 };
 ``` |
-|Enclave/Enclave.lds|无|```
+|Enclave/Enclave.lds|无。|```
 enclave.so
 {
     global:
@@ -256,7 +256,7 @@ enclave.so
         *;
 };
 ``` |
-|Enclave/Enclave.config.xml|无|```
+|Enclave/Enclave.config.xml|无。|```
 <EnclaveConfiguration>
   <ProdID>0</ProdID>
   <ISVSVN>0</ISVSVN>
@@ -275,7 +275,7 @@ enclave.so
 #define _ENCLAVE_H_
 #endif
 ``` |
-|Enclave/Enclave.cpp|无|```
+|Enclave/Enclave.cpp|无。|```
 #include "Enclave.h"
 #include "Enclave_t.h" /* print_string */
 #include <string.h>
@@ -297,7 +297,7 @@ void ecall_hello_from_enclave(char *buf, size_t len)
 |Enclave/Enclave\_private.pem|生成签名密钥。|```
 openssl genrsa -out Enclave/Enclave_private.pem -3 3072
 ``` |
-|App/App.h|无|```
+|App/App.h|无。|```
 #ifndef _APP_H_
 #define _APP_H_
 
@@ -333,7 +333,7 @@ extern "C" {
 
 #endif /* !_APP_H_ */
 ``` |
-|App/App.cpp|无|```
+|App/App.cpp|无。|```
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
