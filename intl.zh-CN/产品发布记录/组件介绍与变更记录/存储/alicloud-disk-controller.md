@@ -4,15 +4,15 @@ keyword: [alicloud-disk-controller, alicloud-disk-controller组件变更记录]
 
 # alicloud-disk-controller
 
-alicloud-disk-controller支持自动创建云盘卷。本文介绍alicloud-disk-controller组件相关内容的最新动态。
+alicloud-disk-controller支持自动创建云盘存储卷。本文介绍alicloud-disk-controller组件相关内容的最新动态。
 
 ## 组件介绍
 
-在计算机中，磁盘控制器（Disk Controller）是一种电路，它允许中央处理器（CPU）与其他计算机磁盘（如软盘、硬盘或其他类型的磁盘驱动器）进行通信。磁盘控制器的基本操作包括读写操作的变化，不同类型的磁盘控制器可以作为计算机中的一个组件。alicloud-disk-controller组件支持云盘卷的自动创建。
+在存储插件为Flexvolume的Kubernetes集群中，由于Flexvolume组件不支持动态创建云盘存储卷（PV），所以需要安装alicloud-disk-controller组件用于支持动态创建云盘存储卷（PV）。
 
 ## 使用说明
 
-关于alicloud-disk-controller组件的安装，请参见[安装Disk Controller](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/安装插件.md)。
+关于alicloud-disk-controller组件的安装，请参见[安装与升级Flexvolume组件](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/安装与升级Flexvolume组件.md)。
 
 ## 变更记录
 
