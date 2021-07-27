@@ -130,6 +130,7 @@ Ingress是允许访问集群内Service的规则集合，您可以通过配置转
         kubernetes.io/ingress.class: alb
         alb.ingress.kubernetes.io/name: ingres_test_base
         alb.ingress.kubernetes.io/address-type: internet
+        alb.ingress.kubernetes.io/vswitch-ids: "vsw-k1akdsmts6njkvhasriop,vsw-k1amdv9ax94gr5iwamuwu"
     spec:
       rules:
       - http:
@@ -153,6 +154,7 @@ Ingress是允许访问集群内Service的规则集合，您可以通过配置转
     |alb.ingress.kubernetes.io/name|可选参数，表示ALB实例名称。|
     |alb.ingress.kubernetes.io/address-type|可选参数，表示负载均衡的地址类型。取值如下：    -   Internet（默认值）：负载均衡具有公网IP地址，DNS域名被解析到公网IP，因此可以在公网环境访问。
     -   Intranet：负载均衡只有私网IP地址，DNS域名被解析到私网IP，因此只能被负载均衡所在VPC的内网环境访问。 |
+    |alb.ingress.kubernetes.io/vswitch-ids|用于设置ALB Ingress交换机ID，您需要至少指定两个不同可用区交换机ID。关于ALB Ingress支持的地域与可用区，请参见[支持的地域与可用区](/cn.zh-CN/应用型负载均衡ALB/ALB产品简介/支持的地域与可用区.md)。|
 
 2.  执行以下命令，配置`coffee`和`tea`服务对外暴露的域名和`path`路径
 
