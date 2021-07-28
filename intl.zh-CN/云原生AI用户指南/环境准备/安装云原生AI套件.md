@@ -41,7 +41,7 @@ keyword: [安装云原生AI套件, 云原生AI运维控制台, 云原生AI开发
 
 1.  在云原生AI套件一键部署页面中**交互方式**选中**运维控制台**时，会弹出下图所示的**提示**对话框。
 
-    ![K-AI-2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4950724261/p237448.png)
+    ![K-AI-2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0033447261/p237448.png)
 
     **说明：**
 
