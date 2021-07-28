@@ -8,7 +8,7 @@ csi-plugin支持数据卷的挂载、卸载功能。ACK默认提供云盘、NAS�
 
 ## 组件介绍
 
-阿里云CSI-Plugin组件遵循标准CSI规范，提供了EBS、NAS、OSS等类型阿里云云存储服务的挂载能力。自ACK 1.16版集群开始，部署集群时会默认安装最新版本的CSI组件，您将可以直接通过CSI Plugin插件使用阿里云存储服务。CSI Plugin提供了数据卷的全生命周期管理，包括数据卷的创建、挂载、卸载、删除及扩容等服务。
+阿里云csi-plugin组件遵循标准CSI规范，提供了EBS、NAS、OSS等类型阿里云云存储服务的挂载能力。自ACK 1.16版集群开始，部署集群时会默认安装最新版本的CSI组件，您将可以直接通过csi-plugin插件使用阿里云存储服务。csi-plugin提供了数据卷的全生命周期管理，包括数据卷的创建、挂载、卸载、删除及扩容等服务。
 
 ## 使用说明
 
@@ -21,7 +21,7 @@ csi-plugin支持数据卷的挂载、卸载功能。ACK默认提供云盘、NAS�
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
 |v1.1.5|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.47-06405694-aliyun|2021年07月06日|-   修复CNFS无法扩容NAS的问题。
--   支持OSS使用Alibaba Cloud Linux 3镜像。
+-   使用Alibaba Cloud Linux 3镜像部署的节点支持挂载OSS。
 
 |此次升级不会对业务造成影响。|
 
@@ -32,7 +32,6 @@ csi-plugin支持数据卷的挂载、卸载功能。ACK默认提供云盘、NAS�
 |v1.1.4|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.47-30ba5d25-aliyun|2021年06月25日|-   支持CNFS创建PV。
 -   VolumeSnapshot、 VolumeSnapshotClass及VolumeSnapshotContent 的apiVersion同时支持`snapshot.storage.k8s.io/v1`及`snapshot.storage.k8s.io/v1beta1`，请及时升级至`snapshot.storage.k8s.io/v1`版本。
 -   升级csi-snapshotter及snapshot-controller组件版本至4.0.0。
--   修复NAS loopsetup问题。
 -   修复List Snapshot偶发的Token过期问题。
 
 |此次升级不会对业务造成影响。|
