@@ -27,7 +27,7 @@ RDT提供了一个由多个组件功能（包括CMT、CAT、CDP、MBM和MBA）�
       name: resource-controller-config
       namespace: kube-system
     data:
-      default.qosClass: LS #LS（Latency Sensitive with High priority scheduing)、BE(Best Effort with Low priority scheduling)
+      default.qosClass: LS #LS（Latency Sensitive with High priority scheduling)、BE(Best Effort with Low priority scheduling)
         default.cpushare.qos.low.namespaces: "besteffort-ns1, besteffort-ns2" # By default NULL, suppress existing BE task within specified namespaces immediately.
       default.cpushare.qos.low.l3-percent: "10" #optional
       default.cpushare.qos.low.mb-percent: "20" #optional
