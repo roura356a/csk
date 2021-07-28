@@ -20,7 +20,7 @@ keyword: [Service流量拓扑, 边缘计算]
 
 ## 方式一：通过控制台配置Service拓扑
 
-若您需要创建一个限制在本节点池内被访问的Service，只需要给Service添加注解即可。例如将**名称**配置为`openyurt.io/topologyKeys`，**值**配置为`kubernetes.io/zone`。关于创建服务的更多信息，请参见[管理服务](/intl.zh-CN/Kubernetes集群用户指南/网络管理/Service管理/管理服务.md)。
+若您需要创建一个限制在本节点池内被访问的Service，只需要给Service添加注解即可。例如将**名称**配置为`openyurt.io/topologyKeys`，**值**配置为`kubernetes.io/zone`。关于创建服务的更多信息，请参见[管理服务](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/管理服务.md)。
 
 ![G-9](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5438211161/p224982.png)
 
@@ -63,6 +63,6 @@ keyword: [Service流量拓扑, 边缘计算]
 |annotation Key|annotation Value|说明|
 |--------------|----------------|--|
 |openyurt.io/topologyKeys|kubernetes.io/hostname|限制Service只能被本节点访问。|
-|openyurt.io/topologyKeys|kubernetes.io/zone|限制Service只能被本节点池的节点访问可。|
+|openyurt.io/topologyKeys|kubernetes.io/zone或openyurt.io/nodepool|限制Service只能被本节点池的节点访问可。边缘集群版本如果大于等于1.18，推荐您使用openyurt.io/nodepool。|
 |-|-|Service不做任何拓扑限制。|
 
