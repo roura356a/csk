@@ -8,7 +8,7 @@ csi-provisioner支持数据卷的自动创建能力。本文介绍csi-provisione
 
 ## 组件介绍
 
-阿里云CSI-Provisioner组件提供了数据卷的自动创建能力，目前仅支持云盘、NAS两种存储卷，要求容器服务Kubernetes为1.14及以上版本。
+阿里云csi-provisioner组件提供了数据卷的自动创建能力，目前仅支持云盘、NAS两种存储卷，要求容器服务Kubernetes为1.14及以上版本。
 
 ## 使用说明
 
@@ -21,7 +21,7 @@ csi-provisioner支持数据卷的自动创建能力。本文介绍csi-provisione
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
 |v1.1.5|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.48-cd524404-aliyun|2021年07月06日|-   修复CNFS无法扩容NAS的问题。
--   支持OSS使用Alibaba Cloud Linux 3镜像。
+-   使用Alibaba Cloud Linux 3镜像部署的节点支持挂载OSS。
 
 |此次升级不会对业务造成影响。|
 
