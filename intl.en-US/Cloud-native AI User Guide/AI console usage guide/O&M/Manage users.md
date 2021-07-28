@@ -12,7 +12,7 @@ In AI Dashboard, you can create kubeconfig files that store configurations for n
 
 ## Create a kubeconfig file for a new user
 
-**Note:** For more information about how to manage users by using a CLI, see [Best practice for using Arena in a multi-tenant scenario]().
+**Note:** For more information about how to manage users by using a CLI, see [Best practice for using Arena in a multi-tenancy scenario](/intl.en-US/Cloud-native AI User Guide/Multi-tenant/Best practice for using Arena in a multi-tenancy scenario.md).
 
 1.  After **AI Dashboard** and **AI Developer Console** are installed in the cluster, you can find two hyperlinks on the **Cloud-native AI Component Set** page, as shown in the following figure. Then, click **O&M Console**.
 
