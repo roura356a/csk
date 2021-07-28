@@ -94,7 +94,7 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
     更多信息，请参见[在CloudShell上通过kubectl管理Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/在CloudShell上通过kubectl管理Kubernetes集群.md)。
 
-    执行以下命令查看**virtual-node-controller**部署状。
+    执行以下命令查看**virtual-node-controller**部署状态。
 
     ```
     kubectl -n kube-system get deploy ack-virtual-node-controller
