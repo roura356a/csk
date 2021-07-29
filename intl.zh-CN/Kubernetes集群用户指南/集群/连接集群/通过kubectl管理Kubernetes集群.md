@@ -67,18 +67,7 @@ keyword: [k8s, kubectl, 临时kubeconfig, kubeconfig]
 
 ## 吊销kubeconfig文件
 
-如果您需要吊销当前阿里云账号下所有的kubeconfig访问凭证，操作如下：
-
-1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
-
-2.  在控制台左侧导航栏中，单击**集群**。
-
-3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
-
-4.  在**集群信息**页面，单击**连接信息**页签，然后单击**吊销KubeConfig**。
-
-5.  在**吊销KubeConfig**对话框中，单击**确定**。
-
+您可以吊销集群的kubeconfig文件，以保障集群的安全。具体操作，请参见[吊销集群的KubeConfig凭证](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/吊销集群的KubeConfig凭证.md)。
 
 **相关文档**  
 
