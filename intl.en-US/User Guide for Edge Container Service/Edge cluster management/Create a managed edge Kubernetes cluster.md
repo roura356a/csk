@@ -4,22 +4,22 @@ keyword: [managed Kubernetes clusters, create a managed edge Kubernetes cluster]
 
 # Create a managed edge Kubernetes cluster
 
-Managed edge Kubernetes clusters are designed to bring cloud computing to edges \(clients\). Managed edge Kubernetes clusters can be created, managed, and maintained in the Container Service for Kubernetes \(ACK\) console. ACK is a platform built on top of the edge computing infrastructure. It is also integrated with cloud computing and edge computing. This topic describes how to create a managed edge Kubernetes cluster in the ACK console.
+Managed edge Kubernetes clusters are designed to bring cloud computing to terminal devices at the edge. Managed edge Kubernetes clusters can be created, managed, and maintained in the Container Service for Kubernetes \(ACK\) console. ACK is a platform that integrates cloud computing with edge computing on top of the edge computing infrastructure. This topic describes how to create a managed edge Kubernetes cluster in the ACK console.
 
-ACK, Auto Scaling \(ESS\), and Resource Access Management \(RAM\) are activated.
+ACK, Auto Scaling, and Resource Access Management \(RAM\) are activated.
 
-ACK is activated in the [ACK console](https://cs.console.aliyun.com/). RAM is activated in the [RAM console](https://ram.console.aliyun.com/). ESS is activated in the [ESS console](https://essnew.console.aliyun.com).
+ACK is activated in the [ACK console](https://cs.console.aliyun.com/). RAM is activated in the [RAM console](https://ram.console.aliyun.com/). Auto Scaling is activated in the [Auto Scaling console](https://essnew.console.aliyun.com).
 
 **Note:**
 
 -   Server Load Balancer \(SLB\) instances that are created along with an ACK cluster support only the pay-as-you-go billing method.
 -   ACK clusters support only virtual private clouds \(VPCs\).
--   By default, each account has specific quotas on cloud resources that can be created. You cannot create clusters if the quota is reached. Make sure that you have sufficient quotas before you create a cluster. To request a quota increase, submit a ticket.
-    -   By default, you can create up to 100 security groups with each account.
-    -   By default, you can create up to 60 pay-as-you-go SLB instances with each account.
-    -   By default, you can create up to 20 elastic IP addresses \(EIPs\) with each account.
+-   By default, each account has specific quotas on cloud resources that can be created. You cannot create clusters if the quota is reached. Make sure that you have sufficient resource quotas before you create a cluster. To request a quota increase, submit a ticket.
+    -   By default, you can create at most 100 security groups with each account.
+    -   By default, you can create at most 60 pay-as-you-go SLB instances with each account.
+    -   By default, you can create at most 20 elastic IP addresses \(EIPs\) with each account.
 
-The sharp growth of smart devices connected to the Internet and the needs for deploying business and processing data at edges have significant impacts on edge computing services. To meet these requirements, a variety of new edge computing services have emerged, such as edge intelligence, real-time edge computing, and edge analytics. Traditional cloud computing platforms provide computing and storage services in the cloud. However, this no longer meets the requirements from edge devices for time-efficient computing, larger storage capacity, and enhanced computing capacity. To meet these requirements, ACK provides managed edge Kubernetes clusters to coordinate services in the cloud and edges. A managed edge Kubernetes cluster is a standard, secure, and highly-available Kubernetes cluster deployed in the cloud. This type of cluster is integrated with features of Alibaba Cloud, such as virtualization, storage, networking, and security. This simplifies how to manage and maintain clusters and allows you to focus on your business development. In addition, quick access to a variety of heterogeneous edge computing services is supported at the edges. The cloud control center allows you to manage edge devices, such as IoT gateway devices, terminals, Content Delivery Network \(CDN\) resources, and data centers. The X86 and ARM architectures are supported. Managed edge Kubernetes clusters have been used in various industries, such as edge intelligence, intelligent buildings, intelligent factories, audio and video live streaming, online education, and CDN.
+The sharp growth of smart devices connected to the Internet and the needs to deploy business and process data at edges have significant impacts on edge computing services. To meet these requirements, a variety of new edge computing services have emerged, such as edge intelligence, real-time edge computing, and edge analytics. Traditional cloud computing platforms provide computing and storage services in the cloud. However, this no longer meets the requirements of edge devices for time-efficient computing, larger storage capacity, and enhanced computing capacity. To meet these requirements, ACK provides managed edge Kubernetes clusters to coordinate services in the cloud and edges. A managed edge Kubernetes cluster is a standard, secure, and highly-available Kubernetes cluster deployed in the cloud. This type of cluster is integrated with features of Alibaba Cloud, such as virtualization, storage, networking, and security. This simplifies how to manage and maintain clusters and allows you to focus on your business development. In addition, quick access to a variety of heterogeneous edge computing services is supported at the edges. The cloud control center allows you to manage edge devices, such as IoT gateway devices, terminals, Content Delivery Network \(CDN\) resources, and data centers. The X86 and ARM architectures are supported. Managed edge Kubernetes clusters have been used in various fields, such as edge intelligence, intelligent buildings, intelligent factories, audio and video live streaming, online education, and CDN.
 
 1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
@@ -71,14 +71,15 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
 
     -   If you select this check box, an elastic IP address \(EIP\) is created and associated with an Internet-facing SLB instance. Port 6443 used by the API server is opened on master nodes. You can connect to and manage the ACK cluster by using kubeconfig over the Internet.
     -   If you clear this check box, no EIP is created. You can connect to and manage the ACK cluster by using kubeconfig only within the VPC.
-**Note:** Edge nodes must call the API over the Internet. If you clear **Expose API Server with EIP**, the edge nodes cannot be connected to the edge cluster. As a result, the created cluster cannot be used in edge computing scenarios. |
+**Note:** Edge nodes interact with the API server in the cloud over the Internet. If you clear **Expose API Server with EIP**, the edge nodes cannot connect to the cluster in the cloud. As a result, the created cluster cannot be used in edge computing scenarios. |
     |**RDS Whitelist**|Set the Relational Database Service \(RDS\) whitelist. Add the IP addresses of the nodes in the cluster to the RDS whitelist.
 
 **Note:** To enable an RDS instance to access the cluster, you must deploy the RDS instance in the VPC where the cluster is deployed. |
     |**Security Group**|You can select **Create Basic Security Group**, **Create Advanced Security Group**, or **Select Existing Security Group**. For more information, see [Overview](/intl.en-US/Security/Security groups/Overview.md).
 
 **Note:** To select **Select Existing Security Group**, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply to be added to a whitelist. |
-    |**Deletion Protection**| |
+    |**Deletion Protection**|Specify whether to enable deletion protection. Deletion protection prevents the cluster from being accidentally deleted in the console or by calling the API. This prevents user errors. |
+    |**Resource Group**|The resource group that owns the cluster to be created. Each resource can belong to only one resource group. You can regard a resource group as a project, an application, or an organization based on your business scenarios. For more information, see [Resource groups](/intl.en-US/Tag & Resource/Resource/Resource groups.md). |
 
     Configure advanced settings of the cluster.
 
@@ -125,7 +126,7 @@ You can select higher performance levels for enhanced SSDs with larger storage c
 
     |Parameter|Description|
     |---------|-----------|
-    |**CloudMonitor Agent**|Select whether to install the CloudMonitor agent. If you select **Install CloudMonitor Agent on ECS Instance**, you can view monitoring information about the nodes in the Cloud Monitor console.|
+    |**CloudMonitor Agent**|Select whether to install the CloudMonitor agent. If you select **Install the CloudMonitor Agent on ECS Nodes**, you can view monitoring data about the nodes in the CloudMonitor console.|
     |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create one. By default, **Enable Log Service** is selected. When you create an application, you can enable Log Service through a few steps. For more information, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md). |
     |**Workflow Engine**|Specify whether to enable Alibaba Cloud Genomics Service \(AGS\).
 
@@ -147,29 +148,31 @@ After the cluster is created, you can view the created cluster on the Clusters p
 
 Click **View Logs** in the Actions column. On the Log Information page, you can view the cluster log. To view detailed log information, click **Stack events**.
 
-![Cluster information](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2883068951/p51373.png)
+![View cluster details](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2883068951/p51373.png)
 
 On the Clusters page, find the newly created cluster and click **Details** in the **Actions** column. On the details page of the cluster, you can click the **Basic Information** tab to view basic information about the cluster and click the **Connection Information** tab to view information about how to connect to the cluster.
 
-The following information is displayed.
+The following information is displayed:
 
 -   **API Server Public Endpoint**: the IP address and port that the API server uses to provide services over the Internet. It allows you to manage the cluster by using kubectl or other tools on your terminal.
 -   **API Server Internal Endpoint**: the IP address and port that the API server uses to provide services within the cluster. The IP address belongs to the SLB instance that is bound to the cluster.
 -   **Testing Domain**: the domain name that is used to test Services. The suffix of the domain name is `<cluster_id>.<region_id>.alicontainer.com`.
 
-    **Note:** To rebind the domain name, click **Rebind Domain Name**.
+    **Note:** To remap the domain name, click **Rebind Domain Name**.
 
 
-You can [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md) and run the `kubectl get node` command to view information about the nodes in the cluster.
+You can [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md) and run the `kubectl get node` command to view information about the nodes in the cluster.
 
 ![Check the results](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2883068951/p51375.png)
 
 **Related topics**  
 
 
-[ACK@Edge overview](/intl.en-US/User Guide for Edge Container Service/ACK@Edge overview.md)
+[t1884276.md\#](t1884276.md#)
 
 [Upgrade an edge cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Upgrade an edge cluster.md)
 
 [Add an edge node](/intl.en-US/User Guide for Edge Container Service/Node management/Add an edge node.md)
+
+[Enhance the monitoring on edge Kubernetes clusters]()
 
