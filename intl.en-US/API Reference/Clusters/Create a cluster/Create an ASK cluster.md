@@ -50,11 +50,11 @@ Content-Type:application/json
 The name must be 1 to 63 characters in length, and can contain digits, letters, and hyphens \(-\). It cannot start with a hyphen. |
 |kubernetes\_version|String|No|1.16.9-aliyun.1|The version of the cluster. The cluster versions provided by Container Service for Kubernetes \(ACK\) are consistent with the open source versions. We recommend that you select the latest version. If you do not specify this parameter, the latest version is used.
 
-You can create clusters of the latest two versions in the ACK console. You can create ACK clusters of earlier versions by calling API operations. For more information about the Kubernetes versions supported by ACK, see [Release notes](/intl.en-US/Release notes/Kubernetes release notes/Release notes.md). |
+You can create clusters of the latest two versions in the ACK console. You can create ACK clusters of earlier versions by calling API operations. For more information about the Kubernetes versions supported by ACK, see [Overview of Kubernetes versions supported by ACK](/intl.en-US/Release notes/Kubernetes release notes/Overview of Kubernetes versions supported by ACK.md). |
 |private\_zone|Boolean|No|false|Specifies whether to enable Alibaba Cloud DNS PrivateZone for Service discovery. Valid values:-   `true`: enables Alibaba Cloud DNS PrivateZone for Service discovery.
 -   `false`: disables Alibaba Cloud DNS PrivateZone for Service discovery.
 
-For more information, see [Use the service discovery feature based on Alibaba Cloud DNS PrivateZone in ASK clusters](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Serverless cluster best practices/Use the service discovery feature based on Alibaba Cloud DNS PrivateZone in ASK clusters.md).|
+For more information, see [Use the service discovery feature based on Alibaba Cloud DNS PrivateZone in ASK clusters](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Network management/Best practices/Use the service discovery feature based on Alibaba Cloud DNS PrivateZone in ASK clusters.md).|
 |region\_id|String|Yes|cn-beijing|The ID of the region where you want to deploy the cluster.|
 |endpoint\_public\_access|Boolean|No|true|Specifies whether to enable Internet access for the API server. Valid values:
 
