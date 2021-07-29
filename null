@@ -1,177 +1,134 @@
----
-keyword: [Terraform, auto-scaling node pool, Alibaba Cloud Provider, create]
----
+# 创建触发器
 
-# Use Terraform to create an auto-scaling node pool
+调用CreateKubernetesTrigger为应用创建触发器。
 
-Nodes in an auto-scaling node pool can automatically scale in or out. You can use Terraform to create an auto-scaling node pool. This topic describes how to use Terraform to create an auto-scaling node pool.
+## 调试
 
--   Terraform is installed. For more information, see [t41667.dita\#task\_bts\_tlz\_dfb]().
--   The auto scaling feature is dependent on Auto Scaling \(ESS\). Therefore, you must activate ESS and assign the ESS default role to your account before you enable auto scaling for nodes. For more information, see [Activate ESS](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Auto scaling of nodes.mdstep_t9t_hu3_cbw).
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=CS&api=CreateKubernetesTrigger&type=ROA&version=2015-12-15)
 
-    **Note:** If you have used the alicloud\_cs\_kubernetes\_autoscaler component, ESS is activated.
+## 请求语法
 
--   ESS-related policies are attached to your account in the RAM console. This grants your cluster the required permissions to access ESS. For more information about how to assign RAM policies, see [Authorization](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Auto scaling of nodes.mdstep_dkz_59w_xec).
+```
+POST /triggers HTTP/1.1 
+Content-Type:application/json
+{
+  "cluster_id" : "String",
+  "project_id" : "String",
+  "action" : "String",
+  "type" : "String"
+}
+```
 
-Terraform is an open source tool that supports new infrastructures through Terraform providers. You can use Terraform to preview, configure, and manage cloud infrastructures and resources. For more information, see [What is Terraform?]().
+## 请求参数
 
-In the earlier versions of [Alibaba Cloud Provider](https://registry.terraform.io/providers/aliyun/alicloud/latest), Container Service for Kubernetes \(ACK\) provides a component named [alicloud\_cs\_kubernetes\_autoscaler](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes_autoscaler). The alicloud\_cs\_kubernetes\_autoscaler component can be used to enable auto scaling for nodes. However, the following limits apply:
+|参数名称|类型|是否必选|示例|说明|
+|----|--|----|--|--|
+|cluster\_id|String|是|c5cdf7e3938bc4f8eb0e44b21a80f\*\*\*\*|集群ID。 |
+|project\_id|String|是|default/test-app|触发器项目名称。
 
--   Complex configurations and high costs are required.
--   Each node to be scaled is added to the default node pool and cannot be separately maintained.
--   Some parameters cannot be modified.
+ 由应用所在命名空间及应用名称组成，格式为`${namespace}/${name}`。
 
-Alibaba Terraform Provider 1.111.0 and later allow you to create auto-scaling node pools by using the [alicloud\_cs\_kubernetes\_node\_pool](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes_node_pool) component. This component has the following benefits:
+ 取值示例：`default/test-app`。 |
+|action|String|是|redeploy|触发器行为，取值：
 
--   Provides simple scaling configurations. You only need to set the lower and upper limits of the node quantity in the scaling group.
--   Uses default settings for optional parameters to prevent inconsistent environments among nodes. This prevents user errors. For example, you may configure different operating system \(OS\) images for different nodes.
--   Allows you to explicitly view the changes of nodes in the auto-scaling node pool in the ACK console.
+ `redeploy`：重新部署`project_id`中定义的资源。 |
+|type|String|否|deployment|触发器类型。取值：
 
-## Use Terraform to create an auto-scaling node pool
+ -   `deployment`：针对无状态应用的触发器。
+-   `application`：针对应用中心应用的触发器。
 
-1.  If you have used the alicloud\_cs\_kubernetes\_autoscaler component, grant ESS-related RAM policies on your cluster and perform the following steps to switch the component to alicloud\_cs\_kubernetes\_node\_pool. Then, you can create auo-scaling node pools in your cluster.
+ 默认值：`deployment`。 |
 
-**Note:** If you have not used the alicloud\_cs\_kubernetes\_autoscaler component, skip Step 1 and Step 2. Go to [Step 3](#step_r9b_l96_a5y).
+## 响应体语法
 
-2.  Modify the autoscaler-meta ConfigMap.
+```
+HTTP/1.1 200
+Content-Type:application/json
+{
+  "id" : "String",
+  "cluster_id" : "String",
+  "project_id" : "String",
+  "type" : "String",
+  "action" : "String"
+}
+```
 
-    1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+## 响应参数
 
-    2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+|参数名称|类型|示例|说明|
+|----|--|--|--|
+|id|String|111|触发器ID。 |
+|cluster\_id|String|c5cdf7e3938bc4f8eb0e44b21a80f\*\*\*\*|集群ID。 |
+|project\_id|String|default/test-app|触发器项目名称。 |
+|type|String|deployment|触发器类型。
 
-    3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+ 取值：
 
-    4.  In the left-side navigation pane of the details page, choose **Configurations** \> **ConfigMaps**.
+ -   `deployment`：针对无状态应用的触发器。
+-   `application`：针对应用中心应用的触发器。 |
+|action|String|redeploy|触发器行为。例如，`redeploy`：重新部署。 |
 
-    5.  In the upper-left corner of the ConfigMap page, select **kuber-system** from the **Namespace** drop-down list. Find the autoscaler-meta ConfigMap and click **Edit** in the **Actions** column.
+## 创建触发器示例
 
-    6.  In the Edit panel, modify the value of the **autoscaler-meta** ConfigMap.
+请求示例
 
-        You need to change the value of `taints` from string type to array type. In this case, change `"taints":""` to `"taints":[]` in the **Value** text box.
+```
+POST /triggers HTTP/1.1 
+Content-Type:application/json
+{
+  "cluster_id" : "c5cdf7e3938bc4f8eb0e44b21a80f****",
+  "project_id" : "redeploy",
+  "action" : "default/test-app",
+  "type" : "deployment"
+}
+```
 
-    7.  Click **OK**.
+正常返回示例
 
-3.  Synchronize the node pool.
+`XML`格式
 
-    1.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node Pools**.
+```
+HTTP/1.1 200 OK
+Content-Type:application/xml
 
-    2.  In the upper-right corner of the Node Pools page, click **Sync Node Pool**.
+<id>111</id>
+<cluster_id>c5cdf7e3938bc4f8eb0e44b21a80f****</cluster_id>
+<project_id>default/test-app</project_id>
+<type>deployment</type>
+<action>redeploy</action>
+```
 
-4.  If you have not used the alicloud\_cs\_kubernetes\_autoscaler component, perform the following steps.
-5.  Use Terraform to create an auto-scaling node pool.
+`JSON`格式
 
-    1.  Create the configuration file for an auto-scaling node pool.
+```
+HTTP/1.1 200 OK
+Content-Type:application/json
 
-        -   The following code provides an example on how to create an auto-scaling node pool in an existing ACK cluster.
+{
+  "id" : "111",
+  "cluster_id" : "c5cdf7e3938bc4f8eb0e44b21a80f****",
+  "project_id" : "default/test-app",
+  "type" : "deployment",
+  "action" : "redeploy"
+}
+```
 
-            ```
-            provider "alicloud" {
-              access_key = ""
-              secret_key = ""
-              region     = "cn-hangzhou"
-            }
-            # Create an auto-scaling node pool in an existing ACK cluster.
-            resource "alicloud_cs_kubernetes_node_pool" "at1" {
-              # The ID of the ACK cluster where you want to create an auto-scaling node pool.
-              cluster_id           = ""
-              name                 = "np-test"
-              # The vSwitches that are used by nodes in the node pool. You must specify at least one vSwitch.
-              vswitch_ids          = ["vsw-bp1mdigyhmilu2h4v****"]
-              instance_types       = ["ecs.e3.medium"]
-              password             = "Hello1234"
-             
-              scaling_config {
-                # The minimum number of nodes in the node pool.
-                min_size     = 1
-                # The maximum number of nodes in the node pool.
-                max_size     = 5
-              }
-            
-            }
-            ```
+## 错误码
 
-        -   The following code provides an example on how to create a managed Kubernetes cluster and an auto-scaling node pool in the cluster.
+访问[错误中心](https://error-center.aliyun.com/status/product/CS)查看更多错误码。
 
-            ```
-            provider "alicloud" {
-              access_key = ""
-              secret_key = ""
-              region     = ""
-            }
-            
-            variable "name" {
-              default    = "tf-test"
-            }
-            
-            data "alicloud_zones" default {
-              available_resource_creation  = "VSwitch"
-            }
-            data "alicloud_instance_types" "default" {
-              availability_zone            = data.alicloud_zones.default.zones.0.id
-              cpu_core_count               = 2
-              memory_size                  = 4
-              kubernetes_node_role         = "Worker"
-            }
-            
-            resource "alicloud_vpc" "default" {
-              name                         = var.name
-              cidr_block                   = "10.1.0.0/21"
-            }
-            resource "alicloud_vswitch" "default" {
-              name                         = var.name
-              vpc_id                       = alicloud_vpc.default.id
-              cidr_block                   = "10.1.1.0/24"
-              availability_zone            = "data.alicloud_zones.default.zones.0.id
-            }
-            resource "alicloud_key_pair" "default" {
-              key_name                     = var.name
-            }
-            
-            # Create a managed Kubernetes cluster.
-            resource "alicloud_cs_managed_kubernetes" "default" {
-              name                         = var.name
-              count                        = 1
-              cluster_spec                 = "ack.pro.small"
-              is_enterprise_security_group = true
-              worker_number                = 2
-              password                     = "Hello1234"
-              pod_cidr                     = "172.20.0.0/16"
-              service_cidr                 = "172.21.0.0/20"
-              worker_vswitch_ids           = [alicloud_vswitch.default.id]
-              worker_instance_types        = [data.alicloud_instance_types.default.instance_types.0.id]
-            }
-            
-            # Create an auto-scaling node pool in the cluster.
-            resource "alicloud_cs_kubernetes_node_pool" "at1" {
-              cluster_id                   = alicloud_cs_managed_kubernetes.default.0.id
-              name                         = var.name
-              vswitch_ids                  = [alicloud_vswitch.default.id]
-              instance_types               = [data.alicloud_instance_types.default.instance_types.0.id]
-              key_name                     = alicloud_key_pair.default.key_name
-             
-              scaling_config {
-                min_size     = 1
-                max_size     = 5
-              }
-            
-            }
-            ```
+## 开发者资源
 
-    2.  Run the `terraform apply` command to create the node pool.
+-   [SDK](https://next.api.aliyun.com/api-tools/sdk/CS?version=2015-12-15&)
 
-    After the auto-scaling node pool is created, you can find the newly created node pool on the Node Pools page. **Auto Scaling Enabled** appears below the name of the node pool.
+    阿里云为您提供多种语言的SDK，帮助您快速通过API集成阿里云的产品和服务，推荐您使用SDK调用API，已免除您手动签名验证。
 
+-   [OpenAPI Explorer](https://next.api.aliyun.com/api/CS/2015-12-15/CreateKubernetesTrigger)
 
-**Related topics**  
+    快速检索，可视化调试API，在线命令行工具，同步动态生成可执行的SDK代码示例。
 
+-   [阿里云CLI](https://github.com/aliyun/aliyun-cli)
 
-[Node pool overview](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Node pool overview.md)
+    阿里云资产管理和配置工具，可通过命令方式同时管理多个阿里云产品和服务，简单快捷，是您上云好帮手。
 
-[Auto scaling of nodes](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Auto scaling of nodes.md)
-
-[Use Terraform to create a managed Kubernetes cluster]()
-
-[alicloud\_cs\_kubernetes\_node\_pool](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes_node_pool)
-
-[alicloud\_cs\_kubernetes\_autoscaler](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/cs_kubernetes_autoscaler)
 
