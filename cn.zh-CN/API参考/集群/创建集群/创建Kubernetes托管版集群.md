@@ -57,6 +57,8 @@ Content-Type:application/json
   "cloud_monitor_flags" : Boolean,
   "platform" : "String",
   "os_type" : "String",
+  "soc_enabled" : Boolean,
+  "cis_enabled" : Boolean,
   "cpu_policy" : "String",
   "proxy_mode" : "String",
   "key_pair" : "String",
@@ -80,6 +82,9 @@ Content-Type:application/json
   "instances" : [ "String" ],
   "format_disk" : Boolean,
   "keep_instance_name" : Boolean,
+  "controlplane_log_ttl" : "String",
+  "controlplane_log_project" : "String",
+  "controlplane_log_components" : [ "String" ],
   "deletion_protection" : Boolean,
   "disable_rollback" : Boolean,
   "timeout_mins" : Long
@@ -208,10 +213,10 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 |custom\_san|String|否|cs.aliyun.com|自定义证书SAN，多个IP或域名以英文逗号（,）分隔。 |
 |service\_account\_issuer|String|否|kubernetes.default.svc|ServiceAccount是Pod和集群`apiserver`通讯的访问凭证。而`service-account-issuer`是`serviceaccount token`中的签发身份，即`token payload`中的`iss`字段。
 
-关于`ServiceAccount`更多详情，请参见[t1881266.dita\#task\_2460323](/cn.zh-CN/Kubernetes集群用户指南/安全管理/部署服务账户令牌卷投影.md)。 |
+关于`ServiceAccount`更多详情，请参见[t1881266.dita\#task\_2460323](/cn.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/部署服务账户令牌卷投影.md)。 |
 |api\_audiences|String|否|kubernetes.default.svc|ServiceAccount是Pod和集群`apiserver`通讯的访问凭证，而`api-audiences`是合法的请求`token`身份，用于`apiserver`服务端认证请求`token`是否合法。支持配置多个`audienc`e，通过英文逗号（,）分割。
 
-关于`ServiceAccount`更多详情，请参见[t1881266.dita\#task\_2460323](/cn.zh-CN/Kubernetes集群用户指南/安全管理/部署服务账户令牌卷投影.md)。 |
+关于`ServiceAccount`更多详情，请参见[t1881266.dita\#task\_2460323](/cn.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/部署服务账户令牌卷投影.md)。 |
 |node\_name\_mode|String|否|aliyun.com00055test|自定义节点名称。
 
 节点名称由三部分组成：前缀+节点IP地址子串+后缀：
@@ -287,7 +292,7 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 |runtime|[runtime](/cn.zh-CN/API参考/通用数据结构.md)|否|\{"name": "docker", "version": "19.03.5"\}|容器运行时，支持`containerd`、`docker`、`Sandboxed-Container.runv`三种运行时，默认为`docker`。runtime包括以下2个信息： -   `name`：容器运行时名称。
 -   `version`：容器运行时版本。
 
-有关容器运行时的选择，请参见[t1879872.dita\#task\_2455499](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时与安全沙箱运行时？.md)。 |
+有关容器运行时的选择，请参见[t1879872.dita\#task\_2455499](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？.md)。 |
 |platform|String|否|CentOS|操作系统发行版。取值：
 
 -   `CentOS`
@@ -298,17 +303,38 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 -   `WindowsCore`
 
 默认值：`CentOS`。 |
-|user\_data|String|否|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFD\*\*\*\*|自定义节点数据。更多详情，请参见[t9660.dita\#concept\_fgf\_tjn\_xdb](/cn.zh-CN/实例/管理实例/使用实例自定义数据/生成实例自定义数据.md)。 |
+|user\_data|String|否|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFD\*\*\*\*|自定义节点数据。更多详情，请参见[t9660.dita\#concept\_fgf\_tjn\_xdb](/cn.zh-CN/实例/管理实例内部配置/使用实例自定义数据/ECS实例自定义数据概述.md)。 |
 |os\_type|String|否|Linux|操作系统平台类型。取值：
 
 -   `Windows`
 -   `Linux`
 
 默认值：`Linux`。 |
+|soc\_enabled|Boolean|否|false|等保加固。更多信息，请参见[ACK等保加固使用说明](~~196148~~)。
+
+取值：
+
+-   `true`：开启等保加固。
+-   `false`：不开启等保加固。
+
+默认值：`false`。 |
+|cis\_enabled|Boolean|否|false|CIS安全加固。更多信息，请参见[ACK CIS加固使用说明](~~223744~~)。
+
+取值：
+
+-   `true`：开启CIS安全加固。
+-   `false`：不开启CIS安全加固。
+
+默认值：`false`。 |
 |node\_cidr\_mask|String|否|25|节点IP数量，通过指定网络的CIDR来确定IP的数量，只对于Flannel网络类型集群生效。
 
 默认值：25。 |
-|kubernetes\_version|String|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[Kubernetes版本发布概览](/cn.zh-CN/新功能发布记录/Kubernetes版本发布说明/Kubernetes版本发布概览.md)。 |
+|kubernetes\_version|String|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[Kubernetes版本发布概览](/cn.zh-CN/产品发布记录/Kubernetes版本发布记录/Kubernetes版本发布概览.md)。 |
+|controlplane\_log\_ttl|String|否|30s|控制平面组件日志收集周期。 |
+|controlplane\_log\_project|String|否|k8s-log-xxx|控制平面组件日志服务Project，可以使用已有Project用于日志存储，也可以使用系统自动创建Project用户日志存储。如果选择自动创建日志服务Project将会自动创建一个名称为`k8s-log-{ClusterID}`的日志服务Project。 |
+|controlplane\_log\_components|Array of String|否|\["apiserver","kcm","scheduler"\]|组件名称列表，指定那些控制平面的组件日志需要被收集。
+
+默认采集apiserver、kcm、scheduler组件的日志。 |
 |deletion\_protection|Boolean|否|true|集群是否开启集群删除保护，防止通过控制台或API误删除集群。取值：
 
 -   `true`：集群开启集群删除保护。
@@ -352,7 +378,10 @@ POST /clusters
     "region_id":"cn-zhangjiakou",  // 地域ID, #required。
     "snat_entry":true,             // 为专有网络配置SNAT规则，以开启集群公网访问。
     "cloud_monitor_flags":true,    // 在ECS节点上安装云监控插件。
-    "endpoint_public_access":true, // 开启公网访问。
+    "endpoint_public_access":true, // 开启公网访问。 
+    "controlplane_log_ttl" : "30s",
+    "controlplane_log_project" : "k8s-log-xxx",
+    "controlplane_log_components" : ["apiserver","kcm","scheduler"],
     "deletion_protection":true,    // 集群删除保护。
     "node_cidr_mask":"26",         // 节点IP数量，通过指定节点网段的掩码来决定。
     "proxy_mode":"ipvs",           // kube-proxy代理模式，取值：iptables或者ipvs。
