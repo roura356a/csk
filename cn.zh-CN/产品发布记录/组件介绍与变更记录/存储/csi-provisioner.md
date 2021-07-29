@@ -4,7 +4,7 @@ keyword: [csi-provisioner, csi-provisioner组件变更记录]
 
 # csi-provisioner
 
-csi-provisioner支持数据卷的自动创建能力。本文介绍csi-provisioner组件相关内容的最新动态。
+csi-provisioner支持数据卷的自动创建能力。本文介绍csi-provisioner组件的介绍、使用说明及变更记录。
 
 ## 组件介绍
 
@@ -62,8 +62,7 @@ csi-provisioner支持数据卷的自动创建能力。本文介绍csi-provisione
 -   支持QuotaPath类型的本地卷。
 -   支持VolumeSnapshot List功能。
 -   NAS卷支持配额集。
--   支持按用户自定义磁盘类型。
--   支持NAS Losetup类型卷。
+-   支持用户自定义磁盘类型。
 
 |此次升级不会对业务造成影响。|
 
@@ -72,7 +71,7 @@ csi-provisioner支持数据卷的自动创建能力。本文介绍csi-provisione
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
 |v1.1.0|registry.cn-hangzhou.aliyuncs.com/acs/csi-provisioner:v1.6.0-b6f763a43-aliyun|2020年11月02日|-   更新部署模板并将驱动程序合并到一个容器中。
--   修改极速NAS创建子目录卷失败的问题。
+-   修改极速型NAS创建子目录卷失败的问题。
 -   支持Kubernetes 1.18。
 -   创建NAS卷时支持添加标签。
 
