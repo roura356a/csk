@@ -14,11 +14,11 @@ keyword: [runC容器, 安全沙箱（runV）容器, 对比]
 |容器所在节点型号|ECS、EBM|EBM|
 |容器内核|与宿主机共享内核|独占内核|
 |容器隔离方式|Cgroups和Namespace|轻量虚拟机|
-|Rootfs Graph Driver|OverlayFS|DeviceMapper|
-|Rootfs IO限速|Cgroups|DeviceMapper Block IO Limit**说明：** 仅安全沙箱v1版本支持。 |
+|Rootfs Graph Driver|OverlayFS|OverlayFS|
+|Rootfs IO限速|Cgroups|否|
 |NAS直挂|否|是|
 |云盘直挂|否|是|
-|容器日志文件采集|logtail直接从宿主机侧采集容器内的日志。|logtail sidecar，详情请参见[通过Sidecar-CRD方式采集容器日志](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/通过Sidecar-CRD方式采集容器日志.md)。|
+|容器日志文件采集|logtail可直接从节点侧采集容器内的日志。|logtail sidecar，详情请参见[通过Sidecar-CRD方式采集容器日志](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/通过Sidecar-CRD方式采集容器日志.md)。|
 |Pod Overhead|无|-   如果您使用的是安全沙箱v1版本，计算方式如下。
 
 Memory：512 Mi。Pod Overhead为沙箱本身资源占用。比如Pod申请的`limits.memory = 512 Mi`，那么该Pod最终会申请1024 Mi的内存。
@@ -105,7 +105,7 @@ Memory：M=64 Mi+Pod内存申请 \*2%。当M\>512，M最终取值为512 Mi。当
         EOF
         ```
 
-        **说明：** 如果您的Kubernetes版本小于 1.16（不包括1.16），需添加以下nodeSelector配置；如果您的Kubernetes版本在1.16（包括1.16）以上则不需要添加。
+        **说明：** 如果您的Kubernetes版本小于1.16（不包括1.16），需添加以下nodeSelector配置；如果您的Kubernetes版本在1.16（包括1.16）以上则不需要添加。
 
         ```
         nodeSelector:
