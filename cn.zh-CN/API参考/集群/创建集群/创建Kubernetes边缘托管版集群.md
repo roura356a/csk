@@ -22,6 +22,7 @@ Content-Type:application/json
   "login_password" : "String",
   "num_of_nodes" : Long,
   "profile" : "String",
+ "logging_type" : "String",
   "snat_entry" : Boolean,
   "vswitch_ids" : [ "String" ],
   "worker_system_disk_category" : "String",
@@ -79,6 +80,7 @@ Content-Type:application/json
 |login\_password|String|是|HelloWorld123|SSH登录密码，和`key_pair`二选一。密码规则为8~30个字符，且至少同时包含三项（大小写字母、数字和特殊符号）。|
 |num\_of\_nodes|Long|是|1|Worker节点数。范围是\[0,100\]。|
 |profile|String|是|Edge|边缘集群标识，默认取值：Edge。|
+|logging\_type|String|否|SLS|集群开启日志服务，只针对ASK集群生效，且取值必须是`SLS`。 |
 |snat\_entry|Boolean|否|true|是否为网络配置SNAT：
 
 -   当已有VPC能访问公网环境时，设置为`false`。
@@ -254,6 +256,7 @@ POST /clusters
         }
     ],
     "profile":"Edge",            // 边缘集群标识。
+    "logging_type" : "SLS",
     "worker_instance_types":[
         "ecs.hfc6.large"
     ],
