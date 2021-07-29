@@ -83,10 +83,11 @@ StatefulSet包括以下特性：
 **说明：** 当您选中**镜像拉取策略**时，默认不设置镜像拉取策略。
 
         -   单击**设置镜像密钥**，您可以实现免密拉取镜像。具体操作，请参见[使用免密组件拉取容器镜像](/intl.zh-CN/Kubernetes集群用户指南/应用/镜像/使用免密组件拉取容器镜像.md)。 |
-        |资源限制|可指定该应用所能使用的资源上限，包括CPU、内存和ephemeral-storage三种资源，防止占用过多资源。其中，CPU资源的单位为millicores，即一个核的千分之一；内存的单位为GiB；ephemeral-storage的单位为GiB。|
+        |资源限制|可指定该应用所能使用的资源上限，包括CPU、内存和Ephemeral-storage三种资源，防止占用过多资源。|
         |所需资源|即为该应用预留资源额度，包括CPU和内存两种资源，即容器独占该资源，防止因资源不足而被其他服务或进程争夺资源，导致应用不可用。|
-        |容器启动项|        -   stdin：将控制台输入发送到容器。
-        -   tty：将标准输入控制台作为容器的控制台输入。 |
+        |容器启动项|        -   stdin：表示为该容器开启标准输入。
+        -   tty：表示为该容器分配一个虚拟终端，以便于向容器发送信号。
+通常这两个选项是一起使用的，表示将终端（tty）绑定到容器的标准输入（stdin）上。例如，一个交互式的程序从用户获取标准输入，并显示到终端中。 |
         |特权容器|        -   选择特权容器，则`privileged=true`，开启特权模式。
         -   不选择特权容器，则`privileged=false`，关闭特权模式。 |
         |Init Container|选中该项，表示创建一个Init Container。Init Container包含一些实用的工具，详情请参见[Init Containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/?spm=a2c4g.11186623.2.13.3fdd30dfnyevPx)。|
@@ -102,9 +103,9 @@ StatefulSet包括以下特性：
 
         支持通过键值对的形式为Pod配置环境变量。用于给Pod添加环境标志或传递配置等，具体请参见[Pod variable](https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/?spm=0.0.0.0.8VJbrE)。
 
-        -   类型：设置环境变量的类型，支持**自定义**、**配置项**、**密钥**和**变量/变量引用**。配置项、密钥支持全部文件的引用，以密钥为例。
+        -   类型：设置环境变量的类型，支持**自定义**、**配置项**、**保密字典**、**变量/变量引用**及**资源引用**。配置项、保密字典支持全部文件的引用，以保密字典为例。
 
-            选择**密钥**，选择**变量**，默认全部文件引用。
+            选择**保密字典**，只选择目标保密字典，则默认全部文件引用。
 
             ![环境变量](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9173530261/p130410.png)
 
@@ -163,7 +164,7 @@ StatefulSet包括以下特性：
         -   **云存储声明（PVC）**：支持云存储。
         本例中配置了一个云存储类型的数据卷声明disk-ssd，将其挂载到容器的/tmp路径下。
 
-        ![配置数据卷](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p12307.png)
+        ![配置数据卷](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4331557261/p12307.png)
 
     -   日志配置
 
@@ -297,8 +298,8 @@ StatefulSet包括以下特性：
 1.  执行以下命令在云盘中创建临时文件。
 
     ```
-    kubectl exec nginx-1 ls /tmp            #列出该目录下的文件lost+found
-    kubectl exec nginx-1 touch /tmp/statefulset         #增加一个临时文件statefulset
+    kubectl exec nginx-1 ls /tmp            #列出该目录下的文件lost+found。
+    kubectl exec nginx-1 touch /tmp/statefulset         #增加一个临时文件statefulset。
     kubectl exec nginx-1 ls /tmp
     ```
 
