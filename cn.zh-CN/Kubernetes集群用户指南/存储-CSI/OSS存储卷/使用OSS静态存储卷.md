@@ -9,7 +9,7 @@ keyword: [OSS, 静态存储, K8s]
 -   已创建ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   已创建Bucket。具体操作，请参见[创建存储空间](/cn.zh-CN/快速入门/控制台快速入门/创建存储空间.md)。
 
-    **说明：** 相同地域的OSS Bucket可以使用私网地址进行挂载。
+    **说明：** 若Bucket和ECS实例位于相同地域，请选择私网域名。
 
 -   已通过kubectl连接Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
@@ -80,7 +80,7 @@ keyword: [OSS, 静态存储, K8s]
     |**名称**|创建的数据卷的名称，数据卷名在集群内必须唯一。|
     |**分配模式**|选择已有存储卷。**说明：** 若未创建存储卷，您可以设置**分配模式**为**创建存储卷**，配置创建存储卷参数。具体操作，请参见[步骤一：创建PV](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/OSS存储卷/使用OSS静态存储卷.md)。 |
     |**已有存储卷**|单击**选择已有存储类**，在目标存储卷右侧操作列单击**选择**，选择存储卷。|
-    |**总量**|所创建存储卷的容量。**说明：** 所创建的存储卷容量不能超过磁盘容量。 |
+    |**总量**|所创建存储卷的容量。**说明：** 所创建的存储卷容量不能超过存储空间容量。 |
 
 7.  单击**创建**。
 
@@ -187,7 +187,7 @@ keyword: [OSS, 静态存储, K8s]
     |driver|定义驱动类型。取值为ossplugin.csi.alibabacloud.com，表示使用OSS CSI插件。|
     |nodePublishSecretRef|定义挂载PV时通过Secret对象来获取AccessKey信息。|
     |volumeHandle|配置PV的名称。|
-    |bucket|需要挂载的OSS Bucket。|
+    |bucket|需要挂载的OSS Bucket。目前只支持挂载存储空间Bucket，不支持挂载Bucket下面的子目录或文件。|
     |url|挂载OSS的接入域名。    -   挂载节点和Bucket相同地域时，请使用私网地址。
     -   挂载节点和Bucket不同地域时，请使用公网地址。
     -   禁止使用VPC网络。 |
@@ -299,7 +299,7 @@ spec:
       authType: "sts"
 ```
 
-**步骤二：创建应用。**
+**步骤二：创建应用**
 
 创建一个名为oss-static的应用并挂载PVC。
 
@@ -434,7 +434,7 @@ spec:
     nginx-static-78c7dcb9d7-h****   2/2     Running           0          8s
     ```
 
-6.  验证删除Pod后，云盘里创建的文件是否还存在。
+6.  验证删除Pod后，存储空间里创建的文件是否还存在。
 
     1.  执行以下命令，查看重建的Pod名称。
 
