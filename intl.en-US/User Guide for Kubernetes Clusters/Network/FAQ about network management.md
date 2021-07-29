@@ -4,6 +4,7 @@ This topic provides answers to some frequently asked questions about container n
 
 ## FAQ about container networks
 
+-   [t2011665.md\#section\_7hi\_dnx\_552](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
 -   [How do I solve the issue that Flannel becomes incompatible with clusters of Kubernetes 1.16 or later after I manually upgrade Flannel?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
 -   [How do I resolve the issue that a pod is not immediately ready for communication after it is started?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
 -   [How do I enable a pod to access the Service that is exposed on it?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
@@ -13,12 +14,12 @@ This topic provides answers to some frequently asked questions about container n
 -   [Can I configure multiple route tables for the VPC where my cluster is deployed?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
 -   [How do I check the network type and vSwitches of a cluster?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
 -   [How do I check the cloud resources used in an ACK cluster?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/FAQ about container networks.md)
--   [Network errors of pods in the cluster](~~142373~~)
+-   [How do I resolve network errors of pods in the cluster?](~~142373~~)
 -   [How do I obtain the public IP address of an application in the cluster?](~~142274~~)
--   [Network errors that occur when the Terway network plug-in is used in the exclusive ENI mode](~~147426~~)
--   [How do I troubleshoot cluster access issues?](~~149275~~)
--   [The number of IP addresses provided by the vSwitch is insufficient when the Terway network plug-in is used](~~189784~~)
--   [The cluster cannot connect to the public IP address of the SLB instance that is associated with the LoadBalancer Service](~~171437~~)
+-   [How do I resolve network errors that occur when the Terway network plug-in is used in exclusive ENI mode?](~~147426~~)
+-   [How do I troubleshoot cluster connection issues?](~~149275~~)
+-   [How do I resolve the issue that the number of IP addresses provided by the vSwitch is insufficient when the Terway network plug-in is used?](~~189784~~)
+-   [How do I resolve the issue that the cluster cannot connect to the public IP address of the SLB instance that is associated with the LoadBalancer Service?](~~171437~~)
 
 ## Service FAQ
 
@@ -44,9 +45,9 @@ This topic provides answers to some frequently asked questions about container n
 -   [Why does the system fail to use an existing SLB instance for more than one Services?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 -   [Why is no listener created when I reuse an existing SLB instance?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/FAQ about Services.md)
 
-**Other FAQ**
+**Others**
 
--   [How Do I Perform Session Persistence for a Kubernetes Service?](~~149276~~)
+-   [How is session persistence implemented in Kubernetes Services?](~~149276~~)
 
 ## Ingress FAQ
 
@@ -57,6 +58,6 @@ This topic provides answers to some frequently asked questions about container n
 -   [Does nginx-ingress-controller support HTTP Strict Transport Security \(HSTS\)?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
 -   [Which rewrite rules are supported by ingress-nginx?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
 -   [How do I fix the issue that Log Service cannot parse logs as expected after ingress-nginx-controller is upgraded?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
--   [How do I configure the internal-facing SLB instance for the NGINX Ingress controller?](~~142097~~)
--   [t2011727.md\#section\_99r\_gia\_5ax](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
+-   [t1860692.dita\#task\_2401024](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Configure an Ingress controller to use an internal-facing SLB instance.md)
+-   [What are the system updates after I upgrade the NGINX Ingress controller on the Add-ons page in the console?](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/FAQ about Ingresses.md)
 
