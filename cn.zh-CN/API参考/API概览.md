@@ -145,9 +145,9 @@
 |[删除编排模板](/cn.zh-CN/API参考/应用/删除编排模板.md)
 
 |调用DeleteTemplate删除指定模板。|
-|[创建触发器](/cn.zh-CN/API参考/应用/创建触发器.md)|调用CreateKubernetesTrigger为应用创建触发器。|
-|[查询触发器](/cn.zh-CN/API参考/应用/查询触发器.md)|调用GetKubernetesTrigger查询指定应用触发器。|
-|[删除触发器](/cn.zh-CN/API参考/应用/删除触发器.md)|调用DeleteKubernetesTrigger删除应用触发器。|
+|[创建触发器](/cn.zh-CN/API参考/应用/创建触发器.md)|调用CreateTrigger为应用创建触发器。|
+|[查询触发器](/cn.zh-CN/API参考/应用/查询触发器.md)|调用DescribeTrigger查询指定应用触发器。|
+|[删除触发器](/cn.zh-CN/API参考/应用/删除触发器.md)|调用DeleteTrigger删除应用触发器。|
 
 ## 组件
 
