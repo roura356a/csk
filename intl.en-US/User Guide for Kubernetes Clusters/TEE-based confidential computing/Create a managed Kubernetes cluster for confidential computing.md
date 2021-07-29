@@ -1,5 +1,5 @@
 ---
-keyword: [managed Kubernetes cluster for confidential computing, applications of Intel SGX 2.0]
+keyword: [managed Kubernetes cluster for confidential computing, Intel SGX 2.0 applications]
 ---
 
 # Create a managed Kubernetes cluster for confidential computing
@@ -42,7 +42,7 @@ When you create a managed Kubernetes cluster for confidential computing, take no
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  In the upper-right corner of the Clusters page, click **Cluster Templates**.
+3.  In the upper-right corner of the Clusters page, click **Cluster Template**.
 
 4.  In the Select Cluster Template dialog box, find Confidential Computing Cluster in the **Managed Clusters** section and click **Create**.
 
@@ -57,20 +57,20 @@ When you create a managed Kubernetes cluster for confidential computing, take no
 **Note:** The name must be 1 to 63 characters in length, and can contain digits, letters, and hyphens \(-\). |
         |**Cluster Specification**|Select a cluster type. You can select **Standard edition** or **Professional**. |
         |**Region**|Select a region to deploy the cluster. |
-        |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group to which the cluster belongs. The name of the selected resource group is displayed, as shown in the following figure.
+        |**All Resources**|Move the pointer over **All Resources** at the top of the page and select the resource group that you want to use. After you select a resource group, virtual private clouds \(VPCs\) and vSwitches are filtered based on the selected resource group. When you create a cluster, only the VPCs and vSwitches that belong to the selected resource group are displayed in the console.
 
-![Resource Group](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
+![Resource Groups](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
         |**Kubernetes Version**|The Kubernetes versions that are supported by ACK. |
         |**Confidential Computing**|Select **Enable**.|
-        |**Container Runtime**|Only the containerd runtime is supported. For more information, see [How do I choose between Docker and Sandboxed-Container?](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Comparison of Docker, containerd, and Sandboxed-Container.md). |
-        |**VPC**|Select a virtual private cloud \(VPC\) to deploy the cluster. Standard VPCs and shared VPCs are supported.
+        |**Container Runtime**|Only the containerd runtime is supported. For more information, see [Comparison of Docker, containerd, and Sandboxed-Container](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Comparison of Docker, containerd, and Sandboxed-Container.md). |
+        |**VPC**|Select a VPC to deploy the cluster. Standard VPCs and shared VPCs are supported.
 
         -   Shared VPC: The owner of a VPC \(resource owner\) can share the vSwitches in the VPC with other accounts in the same organization.
         -   Standard VPC: The owner of a VPC \(resource owner\) cannot share the vSwitches in the VPC with other accounts.
-**Note:** ACK clusters support only VPCs. You can select a VPC from the drop-down list. If no VPC is available, click **Create VPC** to create one. For more information, see [Work with VPCs](/intl.en-US/VPCs and vSwitchs/Work with VPCs.md). |
+**Note:** ACK clusters support only VPCs. You can select a VPC from the drop-down list. If no VPC is available, click **Create VPC** to create one. For more information, see [Create a VPC](/intl.en-US/VPCs and vSwitchs/Work with VPCs.md). |
         |**VSwitch**|Select vSwitches.
 
-You can select up to three vSwitches that are deployed in different **zones**. If no vSwitch is available, click **Create VSwitch** to create one. For more information, see [Work with vSwitches](/intl.en-US/VPCs and vSwitchs/Work with vSwitches.md). |
+You can select up to three vSwitches that are deployed in different **zones**. If no vSwitch is available, click **Create VSwitch** to create one. For more information, see [Create a vSwitch](/intl.en-US/VPCs and vSwitchs/Work with vSwitches.md). |
         |**Network Plug-in**|You must select the **Flannel** plug-in if you want to enable confidential computing.|
         |**Pod CIDR Block**|If you select **Flannel** as the network plug-in, you must set **Pod CIDR Block**.
 
@@ -96,8 +96,9 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
 **Note:** To enable an RDS instance to access the cluster, you must deploy the RDS instance in the VPC where the cluster is deployed. |
         |**Security Group**|You can select **Create Basic Security Group**, **Create Advanced Security Group**, or **Select Existing Security Group**. For more information, see [Overview](/intl.en-US/Security/Security groups/Overview.md).
 
-**Note:** To select **Select Existing Security Group**, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm). |
-        |**Secret Encryption**|Select or clear **Select Key**.|
+**Note:** To select **Select Existing Security Group**, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply to be added to a whitelist. |
+        |**Deletion Protection**|Specify whether to enable deletion protection. Deletion protection prevents the cluster from being accidentally deleted in the console or by calling the API. This prevents user errors. |
+        |**Resource Group**|The resource group that owns the cluster to be created. Each resource can belong to only one resource group. You can regard a resource group as a project, an application, or an organization based on your business scenarios. For more information, see [Resource groups](/intl.en-US/Tag & Resource/Resource/Resource groups.md). |
 
     2.  Configure advanced settings of the cluster.
 
@@ -115,7 +116,7 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
         -   Keys are not case-sensitive. A key must be 1 to 64 characters in length, and cannot start with aliyun, http://, or https://.
         -   Values are not case-sensitive. A value can be empty and can contain up to 128 characters in length. It cannot be http:// or https://.
         -   The keys of labels that are added to the same resource must be unique. If you add a label with a used key, the label overwrites the others that use the same key.
-        -   You can add up to 20 labels to each resource. If you add more than 20 labels to a resource, all labels become invalid. You must remove unused labels for the other labels to take effect. |
+        -   If you add more than 20 labels to a resource, all labels become invalid. You must remove excess labels for the remaining labels to take effect. |
         |**Cluster Domain**|Set the domain name of the cluster.
 
 **Note:** The default domain name is **cluster.local**. You can enter a custom domain name. A domain name consists of two parts. Each part must be 1 to 63 characters in length and can contain only letters and digits. You cannot leave these parts empty. |
@@ -123,13 +124,13 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
 
 For more information, see [Customize the SAN of the API server certificate for a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Infrastructure security/Customize the SAN of the API server certificate for a managed Kubernetes cluster.md). |
         |**Service Account Token Volume Projection**|**Service account token volume projection** reduces security risks when pods use service accounts to access the API server. This feature enables kubelet to request and store the token on behalf of the pod. This feature also allows you to configure token properties, such as the audience and validity duration. For more information, see [Enable service account token volume projection](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Infrastructure security/Enable service account token volume projection.md). |
-        |**Deletion Protection**|Specify whether to enable deletion protection. Deletion protection prevents the cluster from being accidentally deleted in the console or by calling the API. This prevents user errors. |
+        |**Secret Encryption**|Select or clear **Select Key** based on your requirements.|
 
 6.  Click **Next:Worker Configurations** to configure worker nodes.
 
     1.  Set worker nodes.
 
-        **Note:** You can select only ECS instances of the **c7t security-enhanced compute optimized** **instance family**. This enables the managed Kubernetes cluster for confidential computing to run applications of Intel SGX 2.0.
+        **Note:** You can select only ECS instances of the **c7t security-enhanced compute optimized** **instance family**. This enables the managed Kubernetes cluster for confidential computing to run Intel SGX 2.0 applications.
 
         -   If you select **Create Instance**, you must set the parameters that are listed in the following table.
 
@@ -140,7 +141,7 @@ For more information, see [Customize the SAN of the API server certificate for a
             -   **Duration**: You can select 1, 2, 3, or 6 months. If you require a longer duration, you can select 1 to 5 years.
             -   **Auto Renewal**: Specify whether to enable auto-renewal.
 The following billing methods are supported: **Pay-As-You-Go** and **Subscription**.|
-            |**Instance Type**|Only ECS instances of the **c7t security-enhanced compute optimized** **instance family** can run applications of Intel SGX 2.0.|
+            |**Instance Type**|Only ECS instances of the **c7t security-enhanced compute optimized** **instance family** can run Intel SGX 2.0 applications.|
             |**Selected Types**|The selected instance types. You can select multiple instance types.|
             |**Quantity**|Specify the number of worker nodes \(ECS instances\) to be created. |
             |**System Disk**|**Enhanced SSDs**, **standard SSDs**, and **ultra disks** are supported.
@@ -148,7 +149,7 @@ The following billing methods are supported: **Pay-As-You-Go** and **Subscriptio
 **Note:**
 
             -   You can select **Enable Backup** to back up disk data.
-            -   If you select an **enhanced SSD** as the system disk, you can set a custom **performance level** for the disk.
+            -   If you select **enhanced SSD** as the system disk type, you can set a custom **performance level** for the system disk.
 
 You can select higher performance levels for enhanced SSDs with larger storage capacities. For example, you can select performance level 2 for an enhanced SSD with a storage capacity of more than 460 GiB. You can select performance level 3 for an enhanced SSD with a storage capacity of more than 1,260 GiB. For more information, see [Capacity and PLs](/intl.en-US/Block Storage/Block Storage overview/ESSDs.md). |
             |**Mount Data Disk**|**Enhanced SSDs**, **standard SSDs**, and **ultra disks** are supported. You can enable **disk encryption** and **disk backup** when you mount a data disk. |
@@ -169,7 +170,7 @@ You can select higher performance levels for enhanced SSDs with larger storage c
         |**Node Protection**|Specify whether to enable node protection.
 
 **Note:** By default, this check box is selected. Node protection prevents nodes from being accidentally deleted in the console or by calling the API. This prevents user errors. |
-        |**User Data**|You can enter custom scripts. Custom scripts are automatically executed after the nodes are initialized. **Note:** Windows nodes support Batch and PowerShell scripts. Before you encode the content in Base64, make sure that the first line includes \[bat\] or \[powershell\]. Linux nodes support shell scripts. For more information about the supported formats, see [cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/format.html) and [Overview of ECS instance user data](/intl.en-US/Instance/Manage instances/Manage instance user data/Overview of ECS instance user data.md).
+        |**User Data**|You can enter custom scripts. Custom scripts are automatically executed after the nodes are initialized. **Note:** Windows nodes support Batch and PowerShell scripts. Before you encode the content in Base64, make sure that the first line includes \[bat\] or \[powershell\]. Linux nodes support shell scripts. For more information about the supported formats, see [cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/format.html) and [Overview of ECS instance user data](/intl.en-US/Instance/Manage instance configurations/Manage instance user data/Overview of ECS instance user data.md).
 
 If your script file is larger than 1 KB, we recommend that you upload the script to an Object Storage Service \(OSS\) bucket and pull the script from the internal endpoint of the OSS bucket. |
         |**Custom Image**|**Note:** Do not use custom images. Some images may not support confidential computing. |
@@ -177,7 +178,7 @@ If your script file is larger than 1 KB, we recommend that you upload the script
 
 A node name consists of a prefix, an IP substring, and a suffix.
 
-        -   Both the prefix and suffix can contain one or more parts that are separated with periods \(**.**\).These parts can contain lowercase letters, digits, and hyphens \(-\), and must start and end with a lowercase letter or digit.
+        -   Both the prefix and suffix can contain one or more parts that are separated by periods \(**.**\).These parts can contain lowercase letters, digits, and hyphens \(-\), and must start and end with a lowercase letter or digit.
         -   The IP substring length specifies the number of digits to be truncated from the end of the returned node IP address. Valid values: 5 to 12. |
         |**CPU Policy**|Set the CPU policy.
 
@@ -189,14 +190,14 @@ A node name consists of a prefix, an IP substring, and a suffix.
 
     |Parameter|Description|
     |---------|-----------|
-    |**Ingress**|Specify whether to install Ingress controllers. By default, **Install Ingress Controllers** is selected. For more information, see [Advanced Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Configure an Ingress.md).
+    |**Ingress**|Specify whether to install Ingress controllers. By default, **Install Ingress Controllers** is selected. For more information, see [Advanced Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Advanced Ingress configurations.md).
 
 **Note:** If you want to select **Create Ingress Dashboard**, you must first enable Log Service. |
-    |**Monitoring Agents**|Select whether to install the CloudMonitor agent. After the CloudMonitor agent is installed on ECS instances, you can view monitoring information about the instances in the CloudMonitor console.|
+    |**CloudMonitor Agent**|Select whether to install the CloudMonitor agent. After the CloudMonitor agent is installed on ECS instances, you can view monitoring information about the instances in the CloudMonitor console.|
     |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create one. By default, **Enable Log Service** is selected. When you create an application, you can enable Log Service through a few steps. For more information, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md). |
     |**Workflow Engine**|Specify whether to enable Alibaba Cloud Genomics Service \(AGS\).
 
-**Note:** To use this feature, submit a ticket.
+**Note:** To use this feature, submit a ticket to apply to be added to a whitelist.
 
     -   If you select this check box, the system automatically installs the AGS workflow plug-in when the system creates the cluster.
     -   If you clear this check box, you must manually install the AGS workflow plug-in. For more information, see [Introduction to AGS CLI](/intl.en-US/User Guide for Genomics Service/AGS workflow/Introduction to AGS CLI.md). |
@@ -205,7 +206,7 @@ A node name consists of a prefix, an IP substring, and a suffix.
 
 9.  Click **Create Cluster** to deploy the cluster.
 
-    You can also view detailed information about how the cluster is created in the log data.
+    You can also view detailed information about how the cluster is created in the log.
 
     **Note:** It requires about 10 minutes to create a managed Kubernetes cluster that consists of multiple nodes.
 
@@ -224,24 +225,24 @@ A node name consists of a prefix, an IP substring, and a suffix.
 
     -   **API Server Public Endpoint**: the IP address and port that the API server uses to provide services over the Internet. It allows you to manage the cluster by using kubectl or other tools on your terminal.
 
-        **Bind EIP** and **Unbind EIP**: These options are available to only managed Kubernetes clusters.
+        **Bind EIP** and **Unbind EIP**: These options are available only to managed Kubernetes clusters.
 
         -   Bind EIP: You can select an existing elastic IP address \(EIP\) or create one.
 
-            The API server restarts after you map an EIP to the API server. We recommend that you do not perform operations on the cluster during the restart process.
+            The API server restarts after you bind an EIP to the API server. We recommend that you do not perform operations on the cluster during the restart process.
 
-        -   Unbind EIP: You cannot access the API server over the Internet after you remove mapping.
+        -   Unbind EIP: You cannot access the API server over the Internet after you unbind the EIP.
 
-            The API server restarts after you remove mapping of the EIP from the API server. We recommend that you do not perform operations on the cluster during the restart process.
+            The API server restarts after you unbind the EIP from the API server. We recommend that you do not perform operations on the cluster during the restart process.
 
-    -   **API Server Internal Endpoint**: the IP address and port that the API server uses to provide services within the cluster. The IP address belongs to the Server Load Balancer \(SLB\) instance that is bound to the cluster.
+    -   **API Server Internal Endpoint**: the IP address and port that the API server uses to provide services within the cluster. The IP address belongs to the SLB instance that is bound to the cluster.
     -   **Testing Domain**: the domain name that is used to test Services. The suffix of the domain name is `<cluster_id>.<region_id>.alicontainer.com`.
 
-        **Note:** To remap the domain name, click **Rebind Domain Name**.
+        **Note:** To rebind the domain name, click **Rebind Domain Name**.
 
--   You can [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md) and run the `kubectl get node` command to query information about the nodes in the cluster.
+-   You can [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md) and run the `kubectl get node` command to query information about the nodes in the cluster.
 
-    ![Query cluster information](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6765359951/p77634.png)
+    ![View node information](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6765359951/p77634.png)
 
 
 **Related topics**  
@@ -249,5 +250,5 @@ A node name consists of a prefix, an IP substring, and a suffix.
 
 [TEE-based confidential computing](/intl.en-US/User Guide for Kubernetes Clusters/TEE-based confidential computing/TEE-based confidential computing.md)
 
-[Use TEE SDK to develop and build applications of Intel SGX 2.0](/intl.en-US/User Guide for Kubernetes Clusters/TEE-based confidential computing/Use TEE SDK to develop and build applications of Intel SGX 2.0.md)
+[Use TEE SDK to develop and build Intel SGX 2.0 applications](/intl.en-US/User Guide for Kubernetes Clusters/TEE-based confidential computing/Use TEE SDK to develop and build Intel SGX 2.0 applications.md)
 
