@@ -57,6 +57,8 @@ Content-Type:application/json
   "cloud_monitor_flags" : Boolean,
   "platform" : "String",
   "os_type" : "String",
+  "soc_enabled" : Boolean,
+  "cis_enabled" : Boolean,
   "cpu_policy" : "String",
   "proxy_mode" : "String",
   "node_port_range" : "String",
@@ -116,7 +118,7 @@ Content-Type:application/json
 -   `ExternalKubernetes`：注册至ACK的外部集群。 |
 |kubernetes\_version|String|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。
 
-目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[t1960241.dita\#task\_1960241](/cn.zh-CN/产品发布记录/Kubernetes版本发布说明/Kubernetes版本发布概览.md)。 |
+目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[t1960241.dita\#task\_1960241](/cn.zh-CN/产品发布记录/Kubernetes版本发布记录/Kubernetes版本发布概览.md)。 |
 |runtime|[runtime](/cn.zh-CN/API参考/通用数据结构.md)|否|\{"name": "docker", "version": "19.03.5"\}|容器运行时，支持`containerd`、`docker`、`Sandboxed-Container.runv`三种运行时，默认为`docker`。runtime包括以下2个信息： -   `name`：容器运行时名称。
 -   `version`：容器运行时版本。
 
@@ -150,7 +152,7 @@ Content-Type:application/json
 -   true：将为您创建NAT网关并自动配置SNAT规则，若您集群内的节点、应用等需要访问公网需要设置为`true`。
 -   false：不为您创建NAT网关及SNAT规则。这种模式下，集群内节点及应用将不能访问公网。
 
-**说明：** 如果创建集群时未开启，后续业务需要访问公网，可[t1936294.dita\#task\_1936294](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/为已有集群开启SNAT公网访问能力.md)。
+**说明：** 如果创建集群时未开启，后续业务需要访问公网，可[t1936294.dita\#task\_1936294](/cn.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/为已有集群开启SNAT公网访问能力.md)。
 
 默认值：true。 |
 |endpoint\_public\_access|Boolean|否|true|是否开启公网访问。通过EIP暴露API Server，实现集群公网访问。
@@ -170,7 +172,7 @@ Content-Type:application/json
 
 默认值：`26`。 |
 |user\_ca|String|否|-----BEGIN CERTIFICATE-----\*\*\*\*|自定义集群CA。 |
-|user\_data|String|否|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFD\*\*\*\*|自定义节点数据。更多详情，请参见[t9660.dita\#concept\_fgf\_tjn\_xdb](/cn.zh-CN/实例/管理实例/使用实例自定义数据/生成实例自定义数据.md)。 |
+|user\_data|String|否|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFD\*\*\*\*|自定义节点数据。更多详情，请参见[t9660.dita\#concept\_fgf\_tjn\_xdb](/cn.zh-CN/实例/管理实例内部配置/使用实例自定义数据/ECS实例自定义数据概述.md)。 |
 |cluster\_domain|String|否|cluster.local|集群本地域名。
 
 命名规则：域名由小数点（.）分隔的一个或多个部分构成，每个部分最长为63个字符，可以使用小写字母、数字和短划线（-），且首尾必须为小写字母或数字。 |
@@ -245,6 +247,22 @@ Content-Type:application/json
 -   Linux
 
 默认值：`Linux`。 |
+|soc\_enabled|Boolean|否|false|等保加固。更多信息，请参见[ACK等保加固使用说明](~~196148~~)。
+
+取值：
+
+-   `true`：开启等保加固。
+-   `false`：不开启等保加固。
+
+默认值：`false`。 |
+|cis\_enabled|Boolean|否|false|CIS安全加固。更多信息，请参见[ACK CIS加固使用说明](~~223744~~)。
+
+取值：
+
+-   `true`：开启CIS安全加固。
+-   `false`：不开启CIS安全加固。
+
+默认值：`false`。 |
 |cpu\_policy|String|否|none|节点CPU管理策略。当集群版本在1.12.6及以上时支持以下两种策略：
 
 -   `static`：允许为节点上具有某些资源特征Pod增强其CPU亲和性和独占性。
@@ -455,6 +473,8 @@ POST /clusters
         }
     ],
     "os_type":"Linux",
+    "soc_enabled" : false,
+    "cis_enabled" : false,
     "platform":"AliyunLinux",
     "user_data":"IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFDSyEi",
     "node_port_range":"30000-32767",      // 指定节点服务端口范围，取值：30000～65535。
