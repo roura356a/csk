@@ -41,6 +41,8 @@ keyword: [kubernetes, 垂直伸缩, VPA \(vertical-pod-autoscaler\)]
     kind: CustomResourceDefinition
     metadata:
       name: verticalpodautoscalers.autoscaling.k8s.io
+      annotations:
+        "api-approved.kubernetes.io": "https://github.com/kubernetes/kubernetes/pull/63797"
     spec:
       group: autoscaling.k8s.io
       scope: Namespaced
@@ -53,11 +55,14 @@ keyword: [kubernetes, 垂直伸缩, VPA \(vertical-pod-autoscaler\)]
       version: v1beta1
       versions:
         - name: v1beta1
-          served: true
+          served: false
           storage: false
         - name: v1beta2
           served: true
           storage: true
+        - name: v1
+          served: true
+          storage: false
       validation:
         # openAPIV3Schema is the schema for validating custom objects.
         openAPIV3Schema:
@@ -81,11 +86,31 @@ keyword: [kubernetes, 垂直伸缩, VPA \(vertical-pod-autoscaler\)]
                       type: array
                       items:
                         type: object
+                        properties:
+                          containerName:
+                            type: string
+                          controlledValues:
+                            type: string
+                            enum: ["RequestsAndLimits", "RequestsOnly"]
+                          mode:
+                            type: string
+                            enum: ["Auto", "Off"]
+                          minAllowed:
+                            type: object
+                          maxAllowed:
+                            type: object
+                          controlledResources:
+                            type: array
+                            items:
+                              type: string
+                              enum: ["cpu", "memory"]
     ---
     apiVersion: apiextensions.k8s.io/v1beta1
     kind: CustomResourceDefinition
     metadata:
       name: verticalpodautoscalercheckpoints.autoscaling.k8s.io
+      annotations:
+        "api-approved.kubernetes.io": "https://github.com/kubernetes/kubernetes/pull/63797"
     spec:
       group: autoscaling.k8s.io
       scope: Namespaced
@@ -98,11 +123,14 @@ keyword: [kubernetes, 垂直伸缩, VPA \(vertical-pod-autoscaler\)]
       version: v1beta1
       versions:
         - name: v1beta1
-          served: true
+          served: false
           storage: false
         - name: v1beta2
           served: true
           storage: true
+        - name: v1
+          served: true
+          storage: false
     ```
 
 2.  安装vertical-pod-autoscaler的组件。
@@ -139,7 +167,7 @@ keyword: [kubernetes, 垂直伸缩, VPA \(vertical-pod-autoscaler\)]
             ports:
             - containerPort: 80
     ---
-    apiVersion: autoscaling.k8s.io/v1beta1
+    apiVersion: autoscaling.k8s.io/v1
     kind: VerticalPodAutoscaler
     metadata:
       name: nginx-deployment-basic-vpa
