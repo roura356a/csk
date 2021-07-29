@@ -21,6 +21,7 @@ Content-Type:application/json
   "endpoint_public_access" : Boolean,
   "service_discovery_types" : [ "String" ],
   "zone_id" : "String",
+  "logging_type" : "String",
   "tags" : [ {
     "key" : "String",
     "value" : "String"
@@ -50,11 +51,11 @@ Content-Type:application/json
 命名规则：由数字、汉字、英文字符或短划线（-）组成，长度范围1~63个字符，且不能以短划线（-）开头。 |
 |kubernetes\_version|String|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。
 
-目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[Kubernetes版本发布概览](/cn.zh-CN/新功能发布记录/Kubernetes版本发布说明/Kubernetes版本发布概览.md)。 |
+目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[Kubernetes版本发布概览](/cn.zh-CN/产品发布记录/Kubernetes版本发布记录/Kubernetes版本发布概览.md)。 |
 |private\_zone|Boolean|否|false|是否开启PrivateZone用于服务发现。取值：-   `true`：开启PrivateZone用于服务发现。
 -   `false`：不开启PrivateZone用于服务发现。
 
-更多信息，请参见[Serverless集群基于云解析PrivateZone的服务发现](/cn.zh-CN/Serverless Kubernetes集群用户指南/应用管理/Serverless集群基于云解析PrivateZone的服务发现.md)。|
+更多信息，请参见[Serverless集群基于云解析PrivateZone的服务发现](/cn.zh-CN/Serverless Kubernetes集群用户指南/网络/网络管理最佳实践/Serverless集群基于云解析PrivateZone的服务发现.md)。|
 |region\_id|String|是|cn-beijing|集群所在地域ID。|
 |endpoint\_public\_access|Boolean|否|true|是否开启公网API Server。取值：
 
@@ -71,6 +72,7 @@ Content-Type:application/json
 |zone\_id|String|否|cn-beiji\*\*\*\*|集群所属地域的可用区ID。
 
 **说明：** 如果不指定`vpc_id`和`vswitch_ids`的情况下，必须指定`zone_id`。 |
+|logging\_type|String|否|SLS|集群开启日志服务，只针对ASK集群生效，且取值必须是`SLS`。 |
 |tags|Array of [tag](/cn.zh-CN/API参考/通用数据结构.md)|否|\[\{"key": "env", "value": "prod"\}\]|给集群打tag标签。包含以下信息： -   `key`：标签名称。
 -   `value`：标签值。 |
 |deletion\_protection|Boolean|否|true|集群是否开启集群删除保护，防止通过控制台或API误删除集群。取值：
@@ -160,6 +162,7 @@ POST /clusters HTTP/1.1
     "name":"test-ask",
     "region_id":"cn-hangzhou",
     "endpoint_public_access":false,
+    "logging_type" : "SLS",
     "private_zone":false,
     "nat_gateway":true,
     "tags":[
@@ -200,6 +203,7 @@ POST /clusters HTTP/1.1
     "name":"ask-cluster",
     "region_id":"cn-shenzhen",
     "endpoint_public_access":true,
+    "logging_type" : "SLS",
     "private_zone":true,
     "tags":[
         {
