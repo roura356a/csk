@@ -1,12 +1,12 @@
-# 创建触发器
+# Create a trigger
 
-调用CreateKubernetesTrigger为应用创建触发器。
+You can call the CreateKubernetesTrigger operation to create an application trigger.
 
-## 调试
+## Debugging
 
-[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=CS&api=CreateKubernetesTrigger&type=ROA&version=2015-12-15)
+[OpenAPI Explorer automatically calculates the signature value. For your convenience, we recommend that you call this operation in OpenAPI Explorer. OpenAPI Explorer dynamically generates the sample code of the operation for different SDKs.](https://api.aliyun.com/#product=CS&api=CreateKubernetesTrigger&type=ROA&version=2015-12-15)
 
-## 请求语法
+## Request syntax
 
 ```
 POST /triggers HTTP/1.1 
@@ -19,27 +19,27 @@ Content-Type:application/json
 }
 ```
 
-## 请求参数
+## Request parameters
 
-|参数名称|类型|是否必选|示例|说明|
-|----|--|----|--|--|
-|cluster\_id|String|是|c5cdf7e3938bc4f8eb0e44b21a80f\*\*\*\*|集群ID。 |
-|project\_id|String|是|default/test-app|触发器项目名称。
+|Parameter|Type|Required|Example|Description|
+|---------|----|--------|-------|-----------|
+|cluster\_id|String|Yes|c5cdf7e3938bc4f8eb0e44b21a80f\*\*\*\*|The ID of the Container Service for Kubernetes \(ACK\) cluster. |
+|project\_id|String|Yes|default/test-app|The name of the project.
 
- 由应用所在命名空间及应用名称组成，格式为`${namespace}/${name}`。
+ The name consists of the namespace where the application is deployed and the name of the application. The format is `${namespace}/${name}`.
 
- 取值示例：`default/test-app`。 |
-|action|String|是|redeploy|触发器行为，取值：
+ Example: `default/test-app`. |
+|action|String|Yes|redeploy|The action that the trigger performs. Set the value to redeploy.
 
- `redeploy`：重新部署`project_id`中定义的资源。 |
-|type|String|否|deployment|触发器类型。取值：
+ `redeploy`: redeploys the resources specified by `project_id`. |
+|type|String|No|deployment|The type of trigger. Valid values:
 
- -   `deployment`：针对无状态应用的触发器。
--   `application`：针对应用中心应用的触发器。
+ -   `deployment`: performs actions on Deployments.
+-   `application`: performs actions on applications that are deployed in Application Center.
 
- 默认值：`deployment`。 |
+ Default value: `deployment`. |
 
-## 响应体语法
+## Response syntax
 
 ```
 HTTP/1.1 200
@@ -53,24 +53,24 @@ Content-Type:application/json
 }
 ```
 
-## 响应参数
+## Response parameters
 
-|参数名称|类型|示例|说明|
-|----|--|--|--|
-|id|String|111|触发器ID。 |
-|cluster\_id|String|c5cdf7e3938bc4f8eb0e44b21a80f\*\*\*\*|集群ID。 |
-|project\_id|String|default/test-app|触发器项目名称。 |
-|type|String|deployment|触发器类型。
+|Parameter|Type|Example|Description|
+|---------|----|-------|-----------|
+|id|String|111|The ID of the trigger. |
+|cluster\_id|String|c5cdf7e3938bc4f8eb0e44b21a80f\*\*\*\*|The ID of the ACK cluster. |
+|project\_id|String|default/test-app|The name of the project. |
+|type|String|deployment|The type of trigger.
 
- 取值：
+ Valid values:
 
- -   `deployment`：针对无状态应用的触发器。
--   `application`：针对应用中心应用的触发器。 |
-|action|String|redeploy|触发器行为。例如，`redeploy`：重新部署。 |
+ -   `deployment`: performs actions on Deployments.
+-   `application`: performs actions on applications that are deployed in Application Center. |
+|action|String|redeploy|The action that the trigger performs. For example, a value of `redeploy` indicates that the trigger redeploys the application. |
 
-## 创建触发器示例
+## Examples
 
-请求示例
+Sample requests
 
 ```
 POST /triggers HTTP/1.1 
@@ -83,9 +83,9 @@ Content-Type:application/json
 }
 ```
 
-正常返回示例
+Sample success responses
 
-`XML`格式
+`XML` format
 
 ```
 HTTP/1.1 200 OK
@@ -98,7 +98,7 @@ Content-Type:application/xml
 <action>redeploy</action>
 ```
 
-`JSON`格式
+`JSON` format
 
 ```
 HTTP/1.1 200 OK
@@ -113,7 +113,7 @@ Content-Type:application/json
 }
 ```
 
-## 错误码
+## Error codes
 
-访问[错误中心](https://error-center.alibabacloud.com/status/product/CS)查看更多错误码。
+For a list of error codes, visit the [API Error Center](https://error-center.alibabacloud.com/status/product/CS).
 
