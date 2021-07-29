@@ -4,9 +4,9 @@ keyword: [professional managed Kubernetes clusters, managed Kubernetes clusters,
 
 # Create a professional managed Kubernetes cluster
 
-Professional managed Kubernetes clusters offer higher reliability, stability, security, and schedulability than standard managed Kubernetes clusters in large-scale production environments for enterprise users. In addition, professional managed Kubernetes clusters are covered by the service level agreement \(SLA\) that supports compensation clauses. This topic describes how to create a professional managed Kubernetes cluster in the Container Service for Kubernetes \(ACK\) console.
+Professional managed Kubernetes clusters offer higher reliability, security, and schedulability than standard managed Kubernetes clusters. In addition, professional managed Kubernetes clusters are covered by the service level agreement \(SLA\) that supports compensation clauses. This type of cluster is suitable for enterprise users who require high stability and security for large-scale workloads. This topic describes how to create a professional managed Kubernetes cluster in the Container Service for Kubernetes \(ACK\) console.
 
-Resource Access Management \(RAM\) is activated in the [RAM console](https://ram.console.aliyun.com/). Auto Scaling \(ESS\) is activated in the [ESS console](https://essnew.console.aliyun.com).
+Resource Access Management \(RAM\) is activated in the [RAM console](https://ram.console.aliyun.com/). Auto Scaling is activated in the [Auto Scaling console](https://essnew.console.aliyun.com).
 
 **Note:**
 
@@ -14,8 +14,11 @@ When you create a Container Service for Kubernetes \(ACK\) cluster, take note of
 
 -   Server Load Balancer \(SLB\) instances that are created along with an ACK cluster support only the pay-as-you-go billing method.
 -   ACK clusters support only VPCs.
--   By default, each account has specific quotas on cloud resources that can be created. You cannot create clusters if the quota is reached. Make sure that you have sufficient quotas before you create a cluster.
-    -   For more information about the maximum numbers of clusters and nodes that can be created with each account, see [Limits](/intl.en-US/Product Introduction/Limits.md).
+-   By default, each account has specific quotas on cloud resources that can be created. You cannot create clusters if the quota is reached. Make sure that you have sufficient quotas before you create a cluster. To increase quotas,[submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
+    -   By default, you can create up to 50 clusters across all regions with each account. Each cluster can contain up to 100 nodes. To increase the quota of clusters or nodes,[submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
+
+        By default, you can add up to 48 route entries to a virtual private cloud \(VPC\). This means that you can deploy up to 48 nodes in an ACK cluster that uses Flannel. An ACK cluster that uses Terway is not subject to this limit. To deploy more nodes in this case,[submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply for an increase on the quota of route entries in the VPC that you want to use.
+
     -   By default, you can create up to 100 security groups with each account.
     -   By default, you can create up to 60 pay-as-you-go SLB instances with each account.
     -   By default, you can create up to 20 elastic IP addresses \(EIPs\) with each account.
@@ -24,7 +27,7 @@ When you create a Container Service for Kubernetes \(ACK\) cluster, take note of
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  In the upper-right corner of the Clusters page, click **Cluster Templates**.
+3.  In the upper-right corner of the Clusters page, click **Cluster Template**.
 
 4.  In the **Select Cluster Template** dialog box, select **Professional Managed Kubernetes Cluster** and click **Create**.
 
@@ -41,18 +44,18 @@ When you create a Container Service for Kubernetes \(ACK\) cluster, take note of
 
 Select **Professional** to create a professional managed Kubernetes cluster. |
         |**Region**|Select a region to deploy the cluster. |
-        |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group to which the cluster belongs. The name of the selected resource group is displayed, as shown in the following figure.
+        |**All Resources**|Move the pointer over **All Resources** at the top of the page and select the resource group that you want to use. After you select a resource group, virtual private clouds \(VPCs\) and vSwitches are filtered based on the selected resource group. When you create a cluster, only the VPCs and vSwitches that belong to the selected resource group are displayed in the console.
 
-![Resource Group](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
+![Resource Groups](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
         |**Kubernetes Version**|The Kubernetes versions that are supported by ACK. |
-        |**Container Runtime**|The **containerd**, **Docker**, and **Sandboxed-Container** runtimes are supported. For more information, see [How do I choose between Docker and Sandboxed-Container?](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Comparison of Docker, containerd, and Sandboxed-Container.md). |
-        |**VPC**|Select a virtual private cloud \(VPC\) to deploy the cluster. Standard VPCs and shared VPCs are supported.
+        |**Container Runtime**|The **containerd**, **Docker**, and **Sandboxed-Container** runtimes are supported. For more information, see [Comparison of Docker, containerd, and Sandboxed-Container](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Comparison of Docker, containerd, and Sandboxed-Container.md). |
+        |**VPC**|Select a VPC to deploy the cluster. Standard VPCs and shared VPCs are supported.
 
         -   Shared VPC: The owner of a VPC \(resource owner\) can share the vSwitches in the VPC with other accounts in the same organization.
         -   Standard VPC: The owner of a VPC \(resource owner\) cannot share the vSwitches in the VPC with other accounts.
-**Note:** ACK clusters support only VPCs. You can select a VPC from the drop-down list. If no VPC is available, click **Create VPC** to create one. For more information, see [Work with VPCs](/intl.en-US/VPCs and vSwitchs/Work with VPCs.md). |
+**Note:** ACK clusters support only VPCs. You can select a VPC from the drop-down list. If no VPC is available, click **Create VPC** to create one. For more information, see [Create a VPC](/intl.en-US/VPCs and vSwitchs/Work with VPCs.md). |
         |**VSwitch**|Select vSwitches. |
-        |**Network Plug-in**|Select a network plug-in. Flannel and Terway are supported. For more information, see [Comparison between Flannel and Terway](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md).
+        |**Network Plug-in**|Select a network plug-in. Flannel and Terway are supported. For more information, see [Terway and Flannel](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use the Terway plug-in.md).
 
         -   Flannel: a simple and stable Container Network Interface \(CNI\) plug-in that is developed by open source Kubernetes. Flannel provides a few simple features. However, it does not support standard Kubernetes network policies.
         -   Terway: a network plug-in that is developed by ACK. Terway allows you to assign elastic network interfaces \(ENIs\) of Alibaba Cloud to containers. It also allows you to customize Kubernetes network policies to regulate how containers communicate with each other and implement bandwidth throttling on individual containers.
@@ -77,14 +80,14 @@ The CIDR block specified by **Pod CIDR Block** cannot overlap with that of the V
 
 -   If you select the check box, an ENI is assigned to each pod.
 -   If you clear the check box, an ENI is shared among multiple pods. A secondary IP address that is provided by the ENI is assigned to each pod.
-**Note:** To select the **Assign One ENI to Each Pod** check box, you must [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply for this option to be available for your account.
+**Note:** To select the **Assign One ENI to Each Pod** check box, you must [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply to be added to a whitelist.
 
         -   Select or clear **IPVLAN**.
 
 -   This option is available only when you clear Assign One ENI to Each Pod.
 -   If you select IPVLAN, IPVLAN and extended Berkeley Packet Filter \(eBPF\) are used for network virtualization when an ENI is shared among multiple pods. This improves network performance. Only the Alibaba Cloud Linux 2 operating system is supported.
 -   If you clear IPVLAN, policy-based routes are used for network virtualization when an ENI is shared among multiple pods. The CentOS 7 and Alibaba Cloud Linux 2 operating systems are supported. This is the default setting.
-For more information about the IPVLAN feature in Terway mode, see [t64408.md\#section\_krj\_kqf\_14s](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Work with Terway.md).
+For more information about the IPVLAN feature in Terway mode, see [Terway IPvlan](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use the Terway plug-in.md).
 
         -   Select or clear **Support for NetworkPolicy**.
 
@@ -106,7 +109,8 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
 **Note:** To enable an RDS instance to access the cluster, you must deploy the RDS instance in the VPC where the cluster is deployed. |
         |**Security Group**|You can select **Create Basic Security Group**, **Create Advanced Security Group**, or **Select Existing Security Group**. For more information, see [Overview](/intl.en-US/Security/Security groups/Overview.md).
 
-**Note:** To select **Select Existing Security Group**, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm). |
+**Note:** To select **Select Existing Security Group**, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply to be added to a whitelist. |
+        |**Deletion Protection**|The resource group that owns the cluster to be created. Each resource can belong to only one resource group. You can regard a resource group as a project, an application, or an organization based on your business scenarios. For more information, see [Resource groups](/intl.en-US/Tag & Resource/Resource/Resource groups.md). |
 
     2.  Configure advanced settings of the cluster.
 
@@ -125,7 +129,7 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
         -   Keys are not case-sensitive. A key must be 1 to 64 characters in length, and cannot start with aliyun, http://, or https://.
         -   Values are not case-sensitive. A value can be empty and can contain up to 128 characters in length. It cannot be http:// or https://.
         -   The keys of labels that are added to the same resource must be unique. If you add a label with a used key, the label overwrites the others that use the same key.
-        -   You can add up to 20 labels to each resource. If you add more than 20 labels to a resource, all labels become invalid. You must remove unused labels for the other labels to take effect. |
+        -   If you add more than 20 labels to a resource, all labels become invalid. You must remove excess labels for the remaining labels to take effect. |
         |**Cluster Domain**|Set the domain name of the cluster.
 
 **Note:** The default domain name is **cluster.local**. You can enter a custom domain name. A domain name consists of two parts. Each part must be 1 to 63 characters in length and can contain only letters and digits. You cannot leave these parts empty. |
@@ -133,8 +137,7 @@ Select or clear **Expose API Server with EIP**. The ACK API server provides mult
 
 For more information, see [Customize the SAN of the API server certificate for a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Infrastructure security/Customize the SAN of the API server certificate for a managed Kubernetes cluster.md). |
         |**Service Account Token Volume Projection**|**Service account token volume projection** reduces security risks when pods use service accounts to access the API server. This feature enables kubelet to request and store the token on behalf of the pod. This feature also allows you to configure token properties, such as the audience and validity duration. For more information, see [Enable service account token volume projection](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Infrastructure security/Enable service account token volume projection.md). |
-        |**Secret Encryption**|If you select **Select Key**, you can use a key that is created in the Key Management Service \(KMS\) console to encrypt Kubernetes Secrets. For more information, see [Use KMS to encrypt Kubernetes secrets at rest in the etcd](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Use KMS to encrypt Kubernetes secrets at rest in the etcd.md).|
-        |**Deletion Protection**|Specify whether to enable deletion protection. Deletion protection prevents the cluster from being accidentally deleted in the console or by calling the API. This prevents user errors. |
+        |**Secret Encryption**|If you select **Select Key**, you can use a key that is created in the Key Management Service \(KMS\) console to encrypt Kubernetes Secrets. For more information, see [Use KMS to encrypt Kubernetes Secrets](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Use KMS to encrypt Kubernetes Secrets.md).|
 
 6.  Click **Next:Worker Configurations** to configure worker nodes.
 
@@ -152,19 +155,24 @@ For more information, see [Customize the SAN of the API server certificate for a
             |**Selected Types**|The selected instance types are displayed. |
             |**Quantity**|Specify the number of worker nodes \(ECS instances\) to be created.
 
-**Note:** **Quantity** can be set to 0. A professional managed Kubernetes cluster cannot contain worker nodes. |
+**Note:** You can set **Quantity** to 0. When you create a professional managed Kubernetes cluster, you can set the number of worker nodes to 0. |
             |**System Disk**|**Enhanced SSDs**, **standard SSDs**, and **ultra disks** are supported.
 
 **Note:**
 
             -   You can select **Enable Backup** to back up disk data.
-            -   If you select an **enhanced SSD** as the system disk, you can set a custom **performance level** for the disk.
+            -   If you select **enhanced SSD** as the system disk type, you can set a custom **performance level** for the system disk.
 
 You can select higher performance levels for enhanced SSDs with larger storage capacities. For example, you can select performance level 2 for an enhanced SSD with a storage capacity of more than 460 GiB. You can select performance level 3 for an enhanced SSD with a storage capacity of more than 1,260 GiB. For more information, see [Capacity and PLs](/intl.en-US/Block Storage/Block Storage overview/ESSDs.md). |
             |**Mount Data Disk**|**Enhanced SSDs**, **standard SSDs**, and **ultra disks** are supported. You can enable **disk encryption** and **disk backup** when you mount a data disk. |
             |**Operating System**|ACK supports the following node operating systems:
 
             -   Alibaba Cloud Linux 2. This is the default operating system.
+
+If you select Alibaba Cloud Linux 2, you can configure security reinforcement for the operating system:
+
+                -   Disable: disables security reinforcement for Alibaba Cloud Linux 2.x.
+                -   CIS Reinforcement: enables security reinforcement for Alibaba Cloud Linux 2.x. For more information about CIS reinforcement, see [CIS reinforcement](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Operating system/CIS reinforcement.md).
             -   CentOS 7.x
 
 **Note:** CentOS 8.x and later are not supported. |
@@ -175,26 +183,26 @@ You can select higher performance levels for enhanced SSDs with larger storage c
                 -   **Password**: Enter the password that is used to log on to the nodes.
                 -   **Confirm Password**: Enter the password again. |
 
-        -   If you select **Add Existing Instance**, you must select Elastic Compute Service \(ECS\) instances that are deployed in the region where the cluster is deployed. Then, set **Operating System**, **Logon Type**, and **Key Pair** based on the preceding settings.
-    2.  Configure advanced settings of the worker nodes.
+        -   If you select **Add Existing Instance**, make sure that you have created ECS instances in the region where the cluster is deployed. Then, set **Operating System**, **Logon Type**, and **Key Pair** based on the preceding settings.
+    2.  Configure advanced settings of worker nodes.
 
         |Parameter|Description|
         |---------|-----------|
         |**Node Protection**|Specify whether to enable node protection.
 
 **Note:** By default, this check box is selected. Node protection prevents nodes from being accidentally deleted in the console or by calling the API. This prevents user errors. |
-        |**User Data**|For more information, see [Overview of ECS instance user data](/intl.en-US/Instance/Manage instances/Manage instance user data/Overview of ECS instance user data.md). |
-        |**Custom Image**|You can select a custom image for your nodes. After you select a custom image, all nodes in the cluster are deployed by using this image. For more information about how to create a custom image, see [Create a Kubernetes cluster by using a custom image](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a Kubernetes cluster by using a custom image.md).
+        |**User Data**|For more information, see [Overview of ECS instance user data](/intl.en-US/Instance/Manage instance configurations/Manage instance user data/Overview of ECS instance user data.md). |
+        |**Custom Image**|You can select a custom image for your ECS nodes. After you select a custom image, all nodes in the cluster are deployed by using this image. For more information about how to create a custom image, see [Create a Kubernetes cluster by using a custom image](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a Kubernetes cluster by using a custom image.md).
 
 **Note:**
 
         -   Only custom images based on CentOS 7.x and Alibaba Cloud Linux 2.x are supported.
-        -   To use this feature, [submit a ticket](https://selfservice.console.aliyun.com/ticket/scene/ecs/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%20ECS/detail) to apply for this feature to be enabled on your account. |
+        -   To use this feature, [submit a ticket](https://selfservice.console.aliyun.com/ticket/scene/ecs/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%20ECS/detail) to apply to be added to a whitelist. |
         |**Custom Node Name**|Specify whether to use a **custom node name**.
 
 A node name consists of a prefix, an IP substring, and a suffix.
 
-        -   Both the prefix and suffix can contain one or more parts that are separated with periods \(**.**\).These parts can contain lowercase letters, digits, and hyphens \(-\), and must start and end with a lowercase letter or digit.
+        -   Both the prefix and suffix can contain one or more parts that are separated by periods \(**.**\).These parts can contain lowercase letters, digits, and hyphens \(-\), and must start and end with a lowercase letter or digit.
         -   The IP substring length specifies the number of digits to be truncated from the end of the returned node IP address. Valid values: 5 to 12.
 For example, if the node IP address is 192.1xx.x.xx, the prefix is aliyun.com, the IP substring length is 5, and the suffix is test, the node name will be aliyun.com00055test. |
         |**CPU Policy**|Set the CPU policy.
@@ -207,15 +215,15 @@ For example, if the node IP address is 192.1xx.x.xx, the prefix is aliyun.com, t
 
     |Parameter|Description|
     |---------|-----------|
-    |**Ingress**|Specify whether to install Ingress controllers. By default, **Install Ingress Controllers** is selected. For more information, see [Advanced Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Configure an Ingress.md). |
-    |**Volume Plug-in**|Select a volume plug-in. FlexVolume and CSI are supported. An ACK cluster can be automatically bound to Alibaba Cloud disks, Apsara File Storage NAS \(NAS\) file systems, and Object Storage Service \(OSS\) buckets that are mounted to pods in the cluster. For more information, see [Storage management-FlexVolume](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Overview.md) and [Storage management-CSI](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Overview.md). |
-    |**Monitoring Agents**|Specify whether to install the CloudMonitor agent. By default, **Install CloudMonitor Agent on ECS Instance** and **Enable Prometheus Monitoring** are selected. After the CloudMonitor agent is installed on ECS instance-based nodes, you can view monitoring data about the nodes in the CloudMonitor console. |
+    |**Ingress**|Specify whether to install Ingress controllers. By default, **Install Ingress Controllers** is selected. For more information, see [Advanced Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Advanced Ingress configurations.md). |
+    |**Volume Plug-in**|Select a volume plug-in. FlexVolume and CSI are supported. An ACK cluster can be automatically bound to Alibaba Cloud disks, Apsara File Storage NAS \(NAS\) file systems, and Object Storage Service \(OSS\) buckets that are mounted to pods in the cluster. For more information, see [Storage management-FlexVolume](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Overview.md) and [Storage management-CSI](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Storage overview.md). |
+    |**Monitoring Agents**|Specify whether to install the CloudMonitor agent. By default, **Install CloudMonitor Agent on ECS Instance** and **Enable Prometheus Monitoring** are selected. After the CloudMonitor agent is installed on ECS nodes, you can view monitoring data about the nodes in the CloudMonitor console. |
     |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create one. By default, **Enable Log Service** is selected. When you create an application, you can enable Log Service through a few steps. For more information, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md).
 
 By default, **Install node-problem-detector and Create Event Center** is selected. You can also specify whether to **create Ingress dashboards** in the Log Service console. |
     |**Workflow Engine**|Specify whether to enable Alibaba Cloud Genomics Service \(AGS\).
 
-**Note:** To use this feature, submit a ticket.
+**Note:** To use this feature, submit a ticket to apply to be added to a whitelist.
 
     -   If you select this check box, the system automatically installs the AGS workflow plug-in when the system creates the cluster.
     -   If you clear this check box, you must manually install the AGS workflow plug-in. For more information, see [Introduction to AGS CLI](/intl.en-US/User Guide for Genomics Service/AGS workflow/Introduction to AGS CLI.md). |
@@ -228,7 +236,7 @@ By default, **Install node-problem-detector and Create Event Center** is selecte
 
 
 -   After the cluster is created, you can find the cluster on the Clusters page in the console.
--   Click **View Logs** in the **Actions** column. On the Log Information page, you can view log data of the cluster. To view detailed log data, click **Stack events**.
+-   Click **View Logs** in the **Actions** column. On the Log Information page, you can view the cluster log. To view detailed log information, click **Stack events**.
 
 -   Click **Details** in the **Actions** column. On the details page of the cluster, click the **Basic Information** tab to view basic information about the cluster. You can also click the **Connection Information** tab to view information about how to connect to the cluster.
 
