@@ -89,7 +89,7 @@ ECI Pod默认每次启动后使用内部的containerd从远端拉取容器镜像
     -   挂载NAS Volume：同标准的Flexvolume用法相同，指定`nas volume Id`进行挂载。
     -   挂载Disk Volume：同标准的Flexvolume用法相同，指定`disk volume Id`进行挂载。
     -   随ECI实例自动创建`disk volume`：为了提供更灵活的云盘挂载能力，ECI支持创建时挂载Flexvolume动态创建一个云盘，可以指定`disk volume`的Size大小，也可以配置当ECI实例结束时是否保留`disk volume`。
--   NFS：[参考示例](https://github.com/AliyunContainerService/serverless-k8s-examples/blob/master/nas-volume/nas-volume.yaml)。
+-   NFS：[参考示例](https://github.com/AliyunContainerService/serverless-k8s-examples/tree/master/volumes)。
 -   PV/PVC：[参考示例](https://github.com/AliyunContainerService/serverless-k8s-examples/tree/master/pvc)。
 
 ## 网络
