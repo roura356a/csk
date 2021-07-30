@@ -7,9 +7,9 @@ keyword: [create an Ingress to secure data transmission, rewrite rules, domain n
 An Ingress is an API object that provides Layer 7 load balancing to manage external access to Services in a Kubernetes cluster. Container Service for Kubernetes \(ACK\) allows you to use the advanced features of Ingresses to configure specific URLs to allow external access, set rewrite rules, configure HTTPS, and implement canary releases. This topic describes how to configure secure data transmission, set mutual TLS authentication, use regular expressions to specify domain names, use wildcard domain names, apply for free TLS certificates, and customize other related features.
 
 -   An ACK cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
--   An Ingress controller is running as normal in the ACK cluster.
--   A kubectl client is connected to the cluster. For more information, see [t16645.dita\#task\_ubf\_lhg\_vdb](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
--   A Deployment and a Service are created. For more information, see [t16682.md\#section\_mw2\_7f1\_d2c](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Basic operations of an Ingress.md).
+-   An Ingress controller is running as normal in the cluster.
+-   A kubectl client is connected to the cluster. For more information, see [t16645.dita\#task\_ubf\_lhg\_vdb](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md).
+-   A Deployment and a Service are created. For more information, see [Manage Ingresses by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Create an Ingress.md).
 
 ## Configurations
 
