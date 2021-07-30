@@ -6,13 +6,21 @@ keyword: [collect log files, Log Service]
 
 This topic describes how to use Log Service to collect stdout files and log files from containers in serverless Kubernetes \(ASK\) clusters.
 
-An ASK cluster is created. For more information, see [t16481.md\#](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md).
+An ASK cluster is created. For more information, see [Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Quick start/Create an ASK cluster.md).
 
 ## Configure log collection by using YAML templates
 
-1.  On the **Deployments** page, click **Create from YAML** in the upper-right corner.
+1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
 
-2.  Create a custom template and copy the following code block into the template.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+
+3.  On the Clusters page, click the name of a cluster or click **Details** in the **Actions** column.
+
+4.  In the left-side navigation pane of the details page, choose **Workloads** \> **Deployments**.
+
+5.  On the **Deployments** page, click **Create from YAML** in the upper-right corner.
+
+6.  Create a custom template and copy the following code block into the template.
 
     The syntax of the YAML template is the same as that of Kubernetes. Log files are collected based on the environment variables that are specified in the env section. To collect log files, you must also specify the volumeMounts and volumes parameters. The following is an example of a Deployment for collecting log files:
 
@@ -93,7 +101,7 @@ An ASK cluster is created. For more information, see [t16481.md\#](/intl.en-US/U
 
         The preceding YAML template specifies that log files are collected from the /log/\*.log directory. Therefore, the volumeMounts parameter is specified and set to /log of `volumnMounts`.
 
-3.  After you modify the YAML template, click **Create** to submit the configurations.
+7.  After you modify the YAML template, click **Create** to submit the configurations.
 
     After the Deployment is created, you can run the following command to query the states of pods:
 
@@ -112,7 +120,11 @@ An ASK cluster is created. For more information, see [t16481.md\#](/intl.en-US/U
 
 ## View log files
 
-1.  In the Logstore list, find the Logstore that is specified when you configure log collection, click the ![Navigation icon](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0397297951/p57137.png) icon, and then select **Search & Analysis** from the drop-down list.
+1.  Log on to the [Log Service console](https://sls.console.aliyun.com).
+
+2.  In the **Projects** section, click the project that is associated with the Kubernetes cluster to go to the **Logstores** tab. By default, the project name is in the format of k8s-log-\{Kubernetes cluster ID\}.
+
+3.  In the Logstore list, find the Logstore that is specified when you configure log collection, click the ![Navigation icon](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0397297951/p57137.png) icon, and then select **Search & Analysis** from the drop-down list.
 
     In this example, find the `test-stdout` Logstore, click the ![Navigation icon](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0397297951/p57137.png) icon, and then select **Search & Analysis** from the drop-down list. On the page that appears, you can check the `stdout` files that are collected from elastic container instances.
 
