@@ -14,7 +14,7 @@ keyword: [ACK@Edge, 版本说明]
 -   Kube-Proxy支持IPVS（IP Virtual Server）模式。
 -   **kubelet**支持通过指定网卡名来配置节点InternalIP。
 
-更多关于ACK版本变更信息，请参见[ACK发布Kubernetes 1.16版本说明](/cn.zh-CN/新功能发布记录/Kubernetes版本发布说明/ACK发布Kubernetes 1.16版本说明.md)。
+更多关于ACK版本变更信息，请参见[ACK发布Kubernetes 1.16版本说明](/cn.zh-CN/产品发布记录/Kubernetes版本发布记录/ACK发布Kubernetes 1.16版本说明.md)。
 
 ## 边缘节点自治
 
@@ -26,7 +26,7 @@ keyword: [ACK@Edge, 版本说明]
 -   增加**prometheus metrics**接口。
 -   **iptables**性能优化：为127.0.0.1:10261和169.254.2.1:10261地址增加**iptables notrack**。
 
-更多信息，请参见[边缘网络自治]()。
+更多信息，请参见[边缘网络自治](/cn.zh-CN/边缘容器服务ACK@Edge用户指南/边缘扩展功能/边缘网络自治.md)。
 
 ## 云边运维通道
 
@@ -37,7 +37,7 @@ keyword: [ACK@Edge, 版本说明]
 -   增加**prometheus metrics**。
 -   **edge-tunnel-agent** Pod部署依赖节点Label调整为`alibabacloud.com/is-edge-worker: "true"`。
 
-更多信息，请参见[边缘运维通道]()。
+更多信息，请参见[边缘运维通道](/cn.zh-CN/边缘容器服务ACK@Edge用户指南/边缘扩展功能/边缘运维通道.md)。
 
 ## 运维监控组件
 
@@ -54,7 +54,7 @@ keyword: [ACK@Edge, 版本说明]
 -   通过UnitedDeployment实现应用的单元化部署。
 -   通过Service拓扑配置来实现流量在节点池内或节点闭环。
 
-更多关于边缘单元化管理的信息，请参见[边缘节点池概述]()。
+更多关于边缘单元化管理的信息，请参见[边缘节点池概述](/cn.zh-CN/边缘容器服务ACK@Edge用户指南/边缘单元化管理/边缘节点池管理/边缘节点池概述.md)。
 
 ## 增强型网络节点池
 
@@ -63,7 +63,7 @@ keyword: [ACK@Edge, 版本说明]
 -   提供更稳定、更安全的云边通信通道。
 -   支持私网环境的边缘应用通过容器网络与云端应用通信。
 
-更多信息，请参见[创建增强型网络边缘节点池（公测）]()。
+更多信息，请参见[创建增强型网络边缘节点池](/cn.zh-CN/边缘容器服务ACK@Edge用户指南/边缘单元化管理/边缘节点池管理/创建增强型网络边缘节点池.md)。
 
 ## 容器运行时
 
@@ -89,5 +89,5 @@ keyword: [ACK@Edge, 版本说明]
 
 ## OpenAPI变更
 
-节点池API支持边缘节点池，更多信息，请参见[节点池](/cn.zh-CN/API参考/节点/节点池/创建节点池.md)。
+节点池API支持边缘节点池，更多信息，请参见[节点池](/cn.zh-CN/API参考/节点池/创建节点池.md)。
 
