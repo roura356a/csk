@@ -26,7 +26,7 @@ ACK@Edge of Kubernetes 1.16 enhances the stability of edge node autonomy. The fo
 -   An interface is added for **prometheus metrics**.
 -   The performance of **iptables** is improved. **iptables notrack** is added for IP addresses 127.0.0.1:10261 and 169.254.2.1:10261.
 
-For more information, see [Autonomy of edge nodes]().
+For more information, see [Autonomy of edge nodes](/intl.en-US/User Guide for Edge Container Service/Application management/Autonomy of edge nodes.md).
 
 ## Cloud-edge tunnels
 
@@ -63,7 +63,7 @@ Enhanced node pools are supported by ACK@Edge of Kubernetes 1.16. An enhanced no
 -   Allows you to establish more stable and secure tunnels between the cloud and enhanced node pool.
 -   Allows applications in on-premises networks at the edge to communicate with applications in the cloud by using container networking.
 
-For more information, see [Create an enhanced edge node pool \(public preview\)](/intl.en-US/User Guide for Edge Container Service/Cell-based management at the edge/Manage edge node pools/Create an enhanced edge node pool (public preview).md).
+For more information, see [Create an enhanced edge node pool](/intl.en-US/User Guide for Edge Container Service/Cell-based management at the edge/Manage edge node pools/Create an enhanced edge node pool.md).
 
 ## Container runtimes
 
