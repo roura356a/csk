@@ -51,12 +51,12 @@ ACK集群包括Pro版本、标准版、专有版三种类型。
 |简单、低成本、高可用，无需管理Master节点。|可以对集群基础设施进行更细粒度的控制，需要自行规划、维护、升级服务器集群。|
 |收费方式|收取集群管理费用，按照集群数量方式收费，同时但需要承担Worker节点以及其他基础资源的费用。更多信息，请参见[产品计费](/intl.zh-CN/.md)。|集群管理免费，但需要承担Worker节点以及其他基础资源的费用。更多信息，请参见[产品计费](/intl.zh-CN/.md)。|集群管理免费，但需要承担Master节点、Worker节点以及其他基础资源的费用。更多信息，请参见[产品计费](/intl.zh-CN/.md)。|
 |应用场景|适用于所有场景。|适用于所有场景。|适用于所有场景。|
-|用户画像|![2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5748490061/p143466.png)
+|用户画像|![2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/5748490061/p143466.png)
 
-|![专有版](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5748490061/p143465.png) |
-|集群创建|![托管版](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4868490061/p143472.png)
+|![专有版](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/5748490061/p143465.png) |
+|集群创建|![托管版](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4868490061/p143472.png)
 
-|![专有版](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4868490061/p143471.png) |
+|![专有版](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4868490061/p143471.png) |
 
 ## 产品功能
 
@@ -70,7 +70,7 @@ ACK集群支持的功能如下表。
 -   [弹性伸缩](/intl.zh-CN/Kubernetes集群用户指南/弹性伸缩/弹性伸缩概述.md)：通过控制台一键垂直扩缩容来快速应对业务波动，同时支持服务级别的亲和性策略和横向扩展。
 -   [多集群管理](/intl.zh-CN/Kubernetes集群用户指南/多云混合云/多云混合云概述.md)：支持线下IDC和多云多区域的集群统一接入实现混合云应用管理。
 -   授权管理：支持RAM授权和RBAC权限管理。 |
-|节点池| |
+|节点池|支持节点池生命周期管理，支持在同一集群中配置不同规格的节点池，例如交换机、运行时、OS、安全组等。更多信息，请参见[节点池概述](/intl.zh-CN/Kubernetes集群用户指南/节点与节点池/节点池/节点池概述.md)。 |
 |应用管理|-   应用创建：支持多种类型应用，从镜像、模版的创建，支持环境变量、应用健康、数据盘、日志等相关配置。
 -   应用全生命周期：支持应用查看、更新、删除，应用历史版本回滚、应用事件查看、应用滚动升级、应用替换升级以及通过触发器重新部署应用。
 -   应用调度：支持节点间亲和性调度、应用间亲和性调度、应用间反亲和性调度三种策略。
@@ -110,36 +110,36 @@ ACK集群支持的白名单功能如下表。
 |-----|--|--------|-------|------|
 |使用带有2080 Ti的GPU节点|可在集群中使用gn6t规格的ECS节点。**说明：** gn6t规格的ECS节点为白名单功能。请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请使用。
 
-|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
+|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
 
-|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
+|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
 
-|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
-|基因计算|提供集群模板，帮助您创建一个用于基因计算的Pro版集群。|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
+|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
+|基因计算|提供集群模板，帮助您创建一个用于基因计算的Pro版集群。|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
 
-|![×](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9577912261/p278629.png)
+|![×](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9577912261/p278629.png)
 
-|![×](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9577912261/p278629.png) |
-|低配置机型|创建集群可选择2 Core规格的节点。|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
+|![×](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9577912261/p278629.png) |
+|低配置机型|创建集群可选择2 Core规格的节点。|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
 
-|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
+|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
 
-|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
-|使用自定义镜像|可在集群创建和节点池创建时选择自定义镜像。|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
+|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
+|使用自定义镜像|可在集群创建和节点池创建时选择自定义镜像。|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
 
-|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
+|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
 
-|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
-|选择已有安全组|可在集群创建和节点池创建时选择已有安全组。|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
+|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
+|选择已有安全组|可在集群创建和节点池创建时选择已有安全组。|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
 
-|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
+|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
 
-|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
-|Terway ENI独占模式|可在集群创建时选择Terway网络插件的ENI独占模式，以获得更高的网络性能。|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
+|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
+|Terway ENI独占模式|可在集群创建时选择Terway网络插件的ENI独占模式，以获得更高的网络性能。|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
 
-|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
+|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
 
-|![勾](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
+|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
 
 ## 开源项目
 
@@ -154,7 +154,7 @@ ACK集群支持的白名单功能如下表。
 -   [Service FAQ](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/Service FAQ.md)
 -   [Ingress FAQ](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress FAQ.md)
 
-|-   [应用管理FAQ](/intl.zh-CN/Kubernetes集群用户指南/应用/应用管理FAQ.md)
+|-   [应用FAQ](/intl.zh-CN/Kubernetes集群用户指南/应用/应用FAQ.md)
 -   [容器安全FAQ](/intl.zh-CN/Kubernetes集群用户指南/安全/容器安全FAQ.md)
 -   [存储FAQ-CSI](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/存储FAQ-CSI.md)
 -   [存储FAQ-Flexvolume](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/存储FAQ-Flexvolume.md)
