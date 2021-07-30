@@ -89,7 +89,7 @@ Elastic Container Instance supports the following storage methods:
     -   You can set the `disk volume Id` parameter to mount a disk volume by using the same method that is used for FlexVolume.
     -   You can set the `disk volume Id` parameter to mount a disk volume by using the same method that is used for FlexVolume.
     -   You can use FlexVolume to dynamically create `disk volumes` when you create an elastic container instance. You can also specify the size of the `disk volume` and whether to retain the `disk volume` when the elastic container instance stops running.
--   Network File System \(NFS\): For more information, see [Example](https://github.com/AliyunContainerService/serverless-k8s-examples/blob/master/nas-volume/nas-volume.yaml).
+-   Network File System \(NFS\): For more information, see [Example](https://github.com/AliyunContainerService/serverless-k8s-examples/tree/master/volumes).
 -   Persistent volumes \(PVs\) and persistent volume claims \(PVCs\): For more information, see [Example](https://github.com/AliyunContainerService/serverless-k8s-examples/tree/master/pvc).
 
 ## Network mode
