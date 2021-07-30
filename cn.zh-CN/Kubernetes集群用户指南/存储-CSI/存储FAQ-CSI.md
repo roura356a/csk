@@ -9,16 +9,16 @@ keyword: [云盘存储, NAS存储, FAQ]
 |类型|问题|
 |--|--|
 |常见问题分析流程|[常见问题分析流程](#section_1ym_k67_i1r)|
-|云盘存储卷常见问题|-   [\#d7e45](#d7e45)
--   [\#d7e65](#d7e65)
--   [\#d7e88](#d7e88)
--   [\#d7e111](#d7e111)
--   [\#d7e131](#d7e131)
--   [\#d7e151](#d7e151)
--   [\#d7e168](#d7e168)
--   [\#d7e185](#d7e185)
--   [\#d7e202](#d7e202) |
-|NAS存储卷常见问题|[使用NAS时，提示chown: option not permitted]()|
+|云盘存储卷常见问题|-   [使用云盘时提示The specified disk is not a portable disk](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md)
+-   [启动挂载了云盘的Pod时提示had volume node affinity conflict](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md)
+-   [启动挂载了云盘的Pod时提示can't find disk](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md)
+-   [动态创建PV失败且提示The specified AZone inventory is insufficient](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md)
+-   [动态创建PV失败且提示disk size is not supported](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md)
+-   [磁盘阻塞导致Pod长时间无法启动](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md)
+-   [启动Pod时出现FailedMount警告](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md)
+-   [Pod卸载失败且Kubelet出现不受ACK管理的Pod日志](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md)
+-   [Pod删除后无法重新启动，提示挂载失败且无法自动恢复。](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md) |
+|NAS存储卷常见问题|[使用NAS时，提示chown: option not permitted](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/NAS存储卷FAQ.md)|
 
 ## 常见问题分析流程
 
