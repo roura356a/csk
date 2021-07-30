@@ -41,10 +41,6 @@ CPFS包括两种存储规格：100 MB/s/TiB基线和200 MB/s/TiB基线。200 MB/
 -   [CPFS静态卷](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/CPFS存储卷/CPFS静态卷.md)
 -   [CPFS动态卷](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/CPFS存储卷/CPFS动态卷.md) |
 
-## 使用限制
-
-关于CPFS的使用限制，请参见[使用限制]()。
-
 ## 计费说明
 
 关于CPFS的计量项、计费方式及相关价格，请参见[计量项和计费项]()。
