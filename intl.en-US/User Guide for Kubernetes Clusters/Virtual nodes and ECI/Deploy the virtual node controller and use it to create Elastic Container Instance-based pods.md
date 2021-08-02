@@ -23,7 +23,7 @@ Virtual nodes can significantly reduce computing costs and improve cluster elast
 
 Based on virtual nodes and elastic container instances, ACK provides multiple serverless container services, such as serverless Kubernetes \(ASK\) and ACK on Elastic Container Instance. You can use these services to deploy elastic and maintenance-free workloads.
 
-![virtual node](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9265359951/p85192.png)
+![virtual node](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9265359951/p85192.png)
 
 ## Step 1: Deploy ack-virtual-node in ACK clusters
 
@@ -49,7 +49,7 @@ Perform the following steps to deploy ack-virtual-node in a managed Kubernetes c
 
     The default vSwitch and security group of the cluster are used for elastic container instances that are deployed by ack-virtual-node. If you want to modify these settings, see [What to do next](#section_9ec_223_45i).
 
-    ![Install ack-virtual-node](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0263548161/p232042.png)
+    ![Install ack-virtual-node](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/0263548161/p232042.png)
 
 
 **Dedicated Kubernetes Clusters**
@@ -70,7 +70,7 @@ Perform the following steps to deploy ack-virtual-node in a dedicated Kubernetes
 
 5.  On the App Catalog - ack-virtual-node page, click the **Parameters** tab and set the parameters. Then, click **Create** in the Deploy section.
 
-    ![Deploy ack-virtual-node](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9265359951/p47256.png)
+    ![Deploy ack-virtual-node](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9265359951/p47256.png)
 
     |Parameter|Description|How to obtain the value|
     |---------|-----------|-----------------------|
@@ -178,6 +178,4 @@ You can use one of the following methods to create an Elastic Container Instance
 
 
 [Run a job by using a virtual node](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Run a job by using a virtual node.md)
-
-[Use elastic container instances in ASK clusters]()
 
