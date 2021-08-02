@@ -1,32 +1,30 @@
 # Use ASM to migrate TCP traffic
 
-You can use Alibaba Cloud Service Mesh \(ASM\) to migrate traffic between different versions of an application. The example in this topic describes how to use ASM to migrate TCP traffic.
+You can use Alibaba Cloud Service Mesh \(ASM\) to migrate traffic between different versions of an application. This topic describes how to use ASM to migrate TCP traffic.
 
 -   The following services are activated:
     -   [Container Service](https://cs.console.aliyun.com/)
     -   [Server Load Balancer \(SLB\)](https://slb.console.aliyun.com/)
--   A Container Service for Kubernetes \(ACK\) cluster is created. For more information, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md) and [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+-   A Container Service for Kubernetes \(ACK\) cluster is created. For more information, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md) and [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 -   An ASM instance is created. The ACK cluster is added to the ASM instance. For more information, see [Create an ASM instance]() and [Add a cluster to an ASM instance]().
 
-This topic describes how to migrate TCP traffic between two versions of a service by using the sample task TCP Traffic Shifting. This sample task is provided by the Istio official website. In this task, a simple tcp-echo service has two versions: v1 and v2. In the version v1, the service adds a prefix "one" to the content of each request as a response. In the version v2, the service adds a prefix "two" to the content of each request as a response.
+This topic describes how to migrate TCP traffic between two versions of a service by using the TCP Traffic Shifting sample task. This sample task is provided by the Istio official website. In this task, a simple tcp-echo service has two versions: v1 and v2. In the version v1, the service adds a prefix "one" to the content of each request as a response. In the version v2, the service adds a prefix "two" to the content of each request as a response.
 
 ## Step 1: Deploy the two versions of the sample application
-
-To deploy an application that has two versions, you must create two deployments in the Container Service console, as shown in the following code snippet. The following steps describe the details.
 
 1.  Deploy the two versions of the tcp-echo application.
 
     1.  Log on to the [Container Service console](https://cs.console.aliyun.com).
 
-    2.  In the left-side navigation pane, click **Clusters**.
+    2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-    3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Applications** in the **Actions** column.
+    3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Applications** in the **Actions** column.
 
     4.  At the top of the **Deployments** page, select a namespace from the **Namespace** drop-down list.
 
-    5.  In the upper-right corner of the Deployments page, click **Create from Template**.
+    5.  In the upper-right corner of the Deployments page, click **Create from YAML**.
 
-    6.  Copy the content of the following YAML file to the **Template** editor and click **Create**.
+    6.  On the **Create** page, copy the following YAML code to the **Template** editor and click **Create**.
 
         ```
         apiVersion: apps/v1
@@ -84,11 +82,11 @@ To deploy an application that has two versions, you must create two deployments 
 
     1.  Log on to the [Container Service console](https://cs.console.aliyun.com).
 
-    2.  In the left-side navigation pane, click **Clusters**.
+    2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-    3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Applications** in the **Actions** column.
+    3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster, or click **Applications** in the **Actions** column.
 
-    4.  In the left-side navigation pane of the details page, click **Services**.
+    4.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
     5.  At the top of the **Services** page, select the namespace where you want to create a service from the **Namespace** drop-down list.
 
@@ -101,7 +99,7 @@ To deploy an application that has two versions, you must create two deployments 
         -   **Name**: the name of the service. In this example, set the service name to tcp-echo.
         -   **Type**: the type of the service, which specifies how to expose the service. Valid values: **Cluster IP**, **Node Port**, and **Server Load Balancer**.
 
-            **Note:** The **Headless Service** check box appears only when you set the service type to **Cluster IP**. If you select this check box, the service can be discovered and accessed by other types of services, instead of only by Kubernetes services.
+            **Note:** The **Headless Service** check box is displayed only when you set the service type to **Cluster IP**. If you select this check box, the service can be discovered and accessed by other types of services, instead of only by Kubernetes services.
 
         -   **Backend**: the deployment to be associated with the service. In this example, select tcp-echo-v1.
 
@@ -109,12 +107,12 @@ To deploy an application that has two versions, you must create two deployments 
 
         -   **External Traffic Policy**: the routing policy for inbound traffic. Valid values: Local and Cluster.
 
-            **Note:** The **External Traffic Policy** parameter appears only when you set the service type to **Node Port** or **Server Load Balancer**.
+            **Note:** The **External Traffic Policy** parameter is displayed only when you set the service type to **Node Port** or **Server Load Balancer**.
 
         -   **Port Mapping**: the mappings of the service and container ports. Set the **Name** parameter to tcp, the **Service Port** parameter to 9000, the **Container Port** parameter to 9000, and the **Protocol** parameter to TCP.
-        -   **Annotations**: the annotations of the service. You can set SLB parameters. For example, `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20` indicates that the service bandwidth is set to 20 Mbit/s. For more information, see [Use an automatically created SLB instance to expose an application](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Service Management/Use an automatically created SLB instance to expose an application.md).
+        -   **Annotations**: the annotations of the service. You can set SLB parameters. For example, an annotation of `service.beta.kubernetes.io/alicloud-loadbalancer-bandwidth:20` specifies that the peak bandwidth of the service is set to 20 Mbit/s. This allows the system to shape the service traffic. For more information, see [t16677.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Use annotations to configure load balancing.md).
         -   **Label**: the one or more tags that you want to add to the service.
-        After you create the service tcp-echo, it appears on the **Services** page.
+        After you create the tcp-echo service, it appears on the **Services** page.
 
 
 ## Step 2: Set routing rules for the ASM instance
@@ -129,9 +127,9 @@ You can create an Istio gateway, a virtual service, and a destination rule for t
 
 4.  Create an Istio gateway.
 
-    1.  In the **Control Plane** section, click the **Gateway** tab and then **Create**.
+    1.  On the details page of the ASM instance, choose **Traffic Management** \> **Gateway** in the left-side navigation pane. On the Gateway page, click **Create**.
 
-    2.  In the **Create** panel, select default from the **Namespace** drop-down list and copy the content of the following YAML file to the code editor. Then, click **OK**.
+    2.  In the **Create** panel, select default from the **Namespace** drop-down list and copy the following YAML code to the code editor. Then, click **OK**.
 
         ```
         apiVersion: networking.istio.io/v1alpha3
@@ -150,13 +148,13 @@ You can create an Istio gateway, a virtual service, and a destination rule for t
             - "*"
         ```
 
-        After you create the Istio gateway tcp-echo-gateway, it appears on the **Gateway** tab.
+        After you create the tcp-echo-gateway Istio gateway, it appears on the **Gateway** page.
 
 5.  Create a virtual service.
 
-    1.  In the **Control Plane** section, click the **VirtualService** tab and then **Create**.
+    1.  On the details page of the ASM instance, choose **Traffic Management** \> **VirtualService** in the left-side navigation pane. On the VirtualService page, click **Create**.
 
-    2.  In the **Create** panel, select default from the **Namespace** drop-down list and copy the content of the following YAML file to the code editor. Then, click **OK**.
+    2.  In the **Create** panel, select default from the **Namespace** drop-down list and copy the following YAML code to the code editor. Then, click **OK**.
 
         ```
         apiVersion: networking.istio.io/v1alpha3
@@ -179,13 +177,13 @@ You can create an Istio gateway, a virtual service, and a destination rule for t
                 subset: v1
         ```
 
-        After you create the virtual service tcp-echo, it appears on the **VirtualService** tab.
+        After you create the tcp-echo virtual service, it appears on the **VirtualService** page.
 
 6.  Create a destination rule.
 
-    1.  In the **Control Plane** section, click the **DestinationRule** tab and then **Create**.
+    1.  On the details page of the ASM instance, choose **Traffic Management** \> **DestinationRule** in the left-side navigation pane. On the DestinationRule page, click **Create**.
 
-    2.  In the **Create** panel, select default from the **Namespace** drop-down list and copy the content of the following YAML file to the code editor. Then, click **OK**.
+    2.  In the **Create** panel, select default from the **Namespace** drop-down list and copy the following YAML code to the code editor. Then, click **OK**.
 
         ```
         apiVersion: networking.istio.io/v1alpha3
@@ -203,7 +201,7 @@ You can create an Istio gateway, a virtual service, and a destination rule for t
               version: v2
         ```
 
-        After you create the destionation rule tcp-echo-destination, it appears on the **DestinationRule** tab.
+        After you create the tcp-echo-destination destination rule, it appears on the **DestinationRule** page.
 
 
 ## Step 3: Deploy an ingress gateway service
@@ -216,24 +214,24 @@ Enable port 31400 in the ingress gateway service and point the port to port 3140
 
 3.  On the **Mesh Management** page, find the ASM instance that you want to configure. Click the name of the ASM instance or click **Manage** in the **Actions** column of the ASM instance.
 
-4.  On the management page of the ASM instance, click the Ingress Gateway tab in the **Data Plane** section and then **Deploy Default Ingress Gateway**.
+4.  On the details page of the ASM instance, click **ASM Gateways** in the left-side navigation pane. On the ASM Gateways page, click **Deploy Default Ingress Gateway**.
 
 5.  In the **Deploy Ingress Gateway** panel, deploy an ingress gateway service in a cluster.
 
-    1.  From the **Cluster** drop-down list, select the cluster where you want to deploy an ingress gateway service.
+    1.  Select the cluster where you want to deploy an ingress gateway service from the **Cluster** drop-down list.
 
     2.  Set SLB Instance Type to **Internet Access**.
 
     3.  Configure an SLB instance.
 
         -   Use Existing SLB Instance: Select an existing SLB instance from the drop-down list.
-        -   **Create SLB Instance**: Select an instance specification type from the drop-down list.
-        **Note:** We recommend that you assign a unique SLB instance to each Kubernetes service in the cluster. If multiple Kubernetes services share the same SLB instance, the following risks and limits may occur:
+        -   Create SLB Instance: Click **Create SLB Instance**. Then, select an instance specification type from the drop-down list.
+        **Note:** We recommend that you assign a dedicated SLB instance to each Kubernetes service in the cluster. If multiple Kubernetes services share the same SLB instance, the following risks and limits may occur:
 
         -   If you assign a Kubernetes service with an SLB instance that is used by another Kubernetes service, the existing listeners of the SLB instance are forcibly overwritten. This may interrupt the original Kubernetes service and make your application unavailable.
         -   If you create an SLB instance when you create a Kubernetes service, the SLB instance cannot be shared among Kubernetes services. Only SLB instances that you create in the SLB console or by calling API operations can be shared.
         -   Kubernetes services that share the same SLB instance must use different frontend listening ports. Otherwise, port conflicts may occur.
-        -   When multiple Kubernetes services share the same SLB instance, you must use the listener names and the VServer group names as unique identifiers in Kubernetes. Do not modify the names of listeners or VServer groups.
+        -   When multiple Kubernetes services share the same SLB instance, you must use the listener names and the vServer group names as unique identifiers in Kubernetes. Do not modify the names of listeners or vServer groups.
         -   You cannot share SLB instances across clusters or regions.
     4.  Click **Add Port** and set the **Name** parameter to tcp, the **Service Port** parameter to 31400, and the **Container Port** parameter to 31400.
 
@@ -246,13 +244,13 @@ Enable port 31400 in the ingress gateway service and point the port to port 3140
 
 Use the kubectl client to check whether the traffic to the tcp-echo service is routed as expected.
 
-1.  Use the kubectl client to connect to the relevant Kubernetes cluster. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Access clusters/Use kubectl to connect to an ACK cluster.md).
+1.  Use the kubectl client to connect to the relevant Kubernetes cluster. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md).
 
 2.  Run the following commands to query the IP address and port number of the tcp-echo service:
 
     ```
     export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-    export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?( @.name=="tcp")].port}')
+    export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="tcp")].port}')
     ```
 
 3.  Run the telnet command to connect to the tcp-echo service.
@@ -264,7 +262,7 @@ Use the kubectl client to check whether the traffic to the tcp-echo service is r
     Escape character is '^]'
     ```
 
-4.  Enter a random string and press Enter. If the returned string is prefixed with "one", the tcp-echo service is properly deployed and all the traffic is routed to the tcp-echo-v1 deployment.
+4.  Enter a random string and press Enter. If the return string is prefixed with "one", the tcp-echo service is properly deployed and all the traffic is routed to the tcp-echo-v1 deployment.
 
 
 ## Step 5: Transfer a specific ratio of the traffic to the tcp-echo-v2 deployment
@@ -273,13 +271,13 @@ In this example, 20% of the traffic is routed to the tcp-echo-v2 deployment and 
 
 1.  Modify the configuration of the virtual service of the ASM instance.
 
-    1.  On the management page of the ASM instance, click the **VirtualService** tab in the **Control Plane** section.
+    1.  On the details page of the ASM instance, choose **Traffic Management** \> **VirtualService** in the left-side navigation pane.
 
-    2.  On the **VirtualService** tab, click **YAML** in the **Actions** column of the tcp-echo virtual service.
+    2.  On the **VirtualService** page, click **YAML** in the **Actions** column of the tcp-echo virtual service.
 
-        On the **VirtualService** tab, you can view the created tcp-echo virtual service.
+        On the **VirtualService** page, you can view the created tcp-echo virtual service.
 
-    3.  In the **Edit** panel, copy the content of the following YAML file to the code editor and click **OK**:
+    3.  In the **Edit** panel, copy the following YAML code to the code editor and click **OK**:
 
         ```
         apiVersion: networking.istio.io/v1alpha3
@@ -309,7 +307,7 @@ In this example, 20% of the traffic is routed to the tcp-echo-v2 deployment and 
               weight: 20
         ```
 
-2.  Run the following command to send 10 requests to the tcp-echo virtual service:
+2.  Run the following command to send 10 requests to the tcp-echo service:
 
     ```
     $ for i in {1..10}; do \
@@ -329,6 +327,6 @@ In this example, 20% of the traffic is routed to the tcp-echo-v2 deployment and 
 
     The preceding command output indicates that 20% of the traffic is routed to the tcp-echo-v2 deployment.
 
-    **Note:** If you send 10 requests in a test, the traffic may not always be routed to the tcp-echo-1 and tcp-echo-v2 deployments at the ratio of 80 to 20. However, the overall ratio is closer to this value as the sample size increases.
+    **Note:** If you send 10 requests in a test, the traffic may not always be routed to the tcp-echo-1 and tcp-echo-v2 deployments at the ratio of 80 to 20. However, the overall ratio is closer to 80:20 as the sample size increases.
 
 
