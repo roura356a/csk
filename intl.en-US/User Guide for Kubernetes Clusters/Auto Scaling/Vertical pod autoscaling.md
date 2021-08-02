@@ -9,7 +9,7 @@ You can deploy the vertical-pod-autoscaler component to a Container Service for 
 Make sure that the following operations are performed:
 
 -   An ACK cluster is created and its version is later than 1.12. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
--   The cluster is connected by using a command-line tool. For more information, see [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md).
+-   The cluster is connected by using a command-line tool. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md).
 -   The VPA deployed to the cluster is uninstalled. Otherwise, the newly created VPA may conflict with the original VPA.
 
 **Note:** Vertical pod autoscaling is in testing. Use this feature with caution.
