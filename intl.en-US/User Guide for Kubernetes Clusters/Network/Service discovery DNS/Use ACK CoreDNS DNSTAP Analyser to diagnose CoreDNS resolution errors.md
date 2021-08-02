@@ -7,7 +7,7 @@ keyword: [CoreDNS, Analyser, DNS resolution error, DNSTAP]
 Container Service for Kubernetes \(ACK\) provides the ACK CoreDNS DNSTAP Analyser component for you to identify and classify DNS messages that are exchanged between a client and CoreDNS, or between CoreDNS and an upstream DNS server. You can use this component to quickly identify the causes of DNS resolution failures. This topic describes how to use ACK CoreDNS DNSTAP Analyser to diagnose CoreDNS resolution errors.
 
 -   [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Create a professional managed Kubernetes cluster.md)
--   [Connect to Kubernetes clusters by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md)
+-   [Connect to ACK clusters by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md)
 
 dnstap is a log format for DNS messages. You can use dnstap to troubleshoot resolution issues on DNS servers. For more information, see [dnstap](https://dnstap.info/).
 
@@ -140,7 +140,7 @@ In the log of ACK CoreDNS DNSTAP Analyser, each line includes the aggregated inf
 
 ## Step 5 \(optional\): View error information in DNS messages in Log Service dashboards
 
-If you configured dashboards in Log Service and set the recommended `env` parameter for log collection when you installed ACK CoreDNS DNSTAP Analyser, you can go to the Kubernetes CoreDNS DNSTAP dashboard of your cluster in Log Service to view error information in DNS messages. For more information about the env parameter, see the **Description** tab introduced in [Step 4](#step_i60_qp4_61q). For more information, see [Monitor and analyze the log of CoreDNS](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Monitor and analyze the log of CoreDNS.md).
+If you configured dashboards in Log Service and set the recommended `env` parameter for log collection when you installed ACK CoreDNS DNSTAP Analyser, you can go to the Kubernetes CoreDNS DNSTAP dashboard of your cluster in Log Service to view error information in DNS messages. For more information about the env parameter, see the **Description** tab introduced in [Step 4](#step_jrp_up5_e1e). For more information, see [Monitor and analyze the log of CoreDNS](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Monitor and analyze the log of CoreDNS.md).
 
 **Related topics**  
 
