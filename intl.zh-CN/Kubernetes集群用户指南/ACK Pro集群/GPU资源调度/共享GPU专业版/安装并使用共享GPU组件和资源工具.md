@@ -6,6 +6,7 @@ keyword: [安装共享GPU资源, GPU资源查询工具, 共享调度]
 
 ACK提供了GPU共享调度能力，服务于共享单GPU的模型预测场景，同时也可以通过Nvidia驱动内核态保障GPU显存的隔离。本文介绍如何在GPU节点上安装共享GPU组件和GPU资源查询工具，实现GPU的调度和隔离能力。
 
+-   支持共享GPU调度的节点不能设置CPU Policy为`static`。
 -   创建ACK Pro集群。ACK Pro集群的实例规格类型需要设置为**异构计算GPU/FPGA/NPU**，其他配置请参见[创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
 
     **说明：** 仅支持在ACK Pro集群安装共享GPU组件，如果您使用的是专有版集群，您可以[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请白名单。
@@ -74,13 +75,13 @@ ACK提供了GPU共享调度能力，服务于共享单GPU的模型预测场景�
     -   节点标签：为集群节点添加标签。关于节点标签的详细说明，请参见[ACK调度GPU使用的节点标签说明](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU调度/ACK调度GPU使用的节点标签说明.md)。
         -   开启GPU共享调度能力，同时开启GPU显存隔离能力。
 
-            单击**节点标签**的![节点标签](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7405585061/p183919.png)，设置**键**为ack.node.gpu.schedule，**值**为cgpu。
+            单击**节点标签**的![节点标签](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7405585061/p183919.png)，设置**键**为ack.node.gpu.schedule，**值**为cgpu。
 
             **说明：** 如果只需要节点池支持共享调度，不支持显存隔离，您可以设置**节点标签**的**键**为ack.node.gpu.schedule，**值**为share。
 
         -   在节点上使用Binpack算法为Pod选择GPU卡。
 
-            单击**节点标签**的![节点标签](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7405585061/p183919.png)，设置**键**为ack.node.gpu.placement，设置**值**为binpack。
+            单击**节点标签**的![节点标签](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7405585061/p183919.png)，设置**键**为ack.node.gpu.placement，设置**值**为binpack。
 
 6.  单击**确认配置**。
 
