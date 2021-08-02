@@ -109,7 +109,7 @@ keyword: [OSS, 静态存储, K8s]
     -   **云存储**：支持云存储类型。
     本例中配置了一个OSS类型的数据卷，将该OSS存储卷挂载到容器中/tmp 路径下。
 
-    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0885659951/p69158.png)
+    ![](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0885659951/p69158.png)
 
 7.  所有的信息都配置完成后，单击**创建**。
 
@@ -191,7 +191,7 @@ keyword: [OSS, 静态存储, K8s]
     |url|挂载OSS的接入域名。    -   挂载节点和Bucket相同地域时，请使用私网地址。
     -   挂载节点和Bucket不同地域时，请使用公网地址。
     -   禁止使用VPC网络。 |
-    |otherOpts|挂载OSS时支持输入定制化参数，格式为：`-o *** -o ***`。本示例`-o max_stat_cache_size=0 -o allow_other`默认包含300秒的元数据缓存时间，会导致在控制台上传的文件在300秒内无法在OSSFS中看到。若需要实时刷新数据，可使用示例`-o max_stat_cache_size=0 -o allow_other -oconnect_timeout=0 -ostat_cache_expire=0`。|
+    |otherOpts|挂载OSS时支持输入定制化参数，格式为：`-o *** -o ***`。|
     |path|表示挂载时相对Bucket根文件的目录结构，默认为/（v1.14.8.32-c77e277b-aliyun及之后版本支持）。|
 
     1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
