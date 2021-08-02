@@ -4,11 +4,15 @@ keyword: [CPFS的数据存储, cpfs-provisioner, cpfs-plugin]
 
 # CPFS动态卷
 
-CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数据存储在集群中的多个数据节点，并可由多个客户端同时访问，从而能够为大型高性能计算机集群提供高IOPS、高吞吐、低时延的数据存储服务。本文演示如何挂载及使用CPFS存储卷。
+CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数据存储在集群中的多个数据节点，并可由多个客户端同时访问，从而能够为大型高性能计算机集群提供高IOPS、高吞吐、低时延的数据存储服务。本文介绍如何挂载及使用CPFS存储卷。
 
-阿里云容器服务Kubernetes（ACK） CSI支持静态存储卷挂载和动态存储卷挂载两种方式挂载CPFS存储卷。在静态存储卷挂载的方式中，通常需要手动编辑和创建一个PV和PVC进行挂载，当需要的PV和PVC数量很大的时候，手动创建就显得非常繁琐了，这时动态存储卷挂载的功能可以满足您的需求。本文演示如何在ACK集群中使用alibaba-cloud-csi-driver挂载CPFS存储卷，请参见[alibaba-cloud-csi-driver](https://github.com/kubernetes-sigs/alibaba-cloud-csi-driver)。
+已开通CPFS服务。
 
-**说明：** ACK CPFS存储卷服务目前只支持CPFS 1.0版，不支持2.0版本。
+若未开通CPFS服务，请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)联系CPFS团队添加白名单。
+
+阿里云容器服务Kubernetes（ACK） CSI支持静态存储卷挂载和动态存储卷挂载两种方式挂载CPFS存储卷。在静态存储卷挂载的方式中，通常需要手动编辑和创建一个PV和PVC进行挂载，当需要的PV和PVC数量很大的时候，手动创建就显得非常繁琐了，这时动态存储卷挂载的功能可以满足您的需求。本文介绍如何在ACK集群中使用alibaba-cloud-csi-driver挂载CPFS存储卷。具体操作，请参见[alibaba-cloud-csi-driver](https://github.com/kubernetes-sigs/alibaba-cloud-csi-driver)。
+
+**说明：** 容器服务ACK的CPFS存储卷服务目前只支持CPFS 1.0版，不支持2.0版本。
 
 ## 操作步骤
 
@@ -16,7 +20,7 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
 
     如果您需要挂载CPFS存储卷，需要按照以下步骤在ACK集群中先部署cpfs-provisioner和cpfs-plugin组件。
 
-    -   拷贝以下目标部署cpfs-provisioner。
+    -   部署cpfs-provisioner。
 
         ```
         kind: Deployment
@@ -76,7 +80,7 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
     -   部署csi-plugin。
 
         ```
-        apiVersion: storage.k8s.io/v1beta1
+        apiVersion: storage.k8s.io/v1
         kind: CSIDriver
         metadata:
           name: cpfsplugin.csi.alibabacloud.com
@@ -86,7 +90,7 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
         ---
         # This YAML defines all API objects to create RBAC roles for csi node plugin.
         kind: DaemonSet
-        apiVersion: apps/v1beta2
+        apiVersion: apps/v1
         metadata:
           name: csi-cpfsplugin
           namespace: kube-system
@@ -118,7 +122,6 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
                   mountPath: /var/lib/kubelet/
                 - name: registration-dir
                   mountPath: /registration
-        
               - name: csi-cpfsplugin
                 securityContext:
                   privileged: true
@@ -163,7 +166,7 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
 
 2.  使用CPFS动态卷。
 
-    1.  拷贝以下模板创建StorageClass。
+    1.  使用以下模板创建StorageClass。
 
         ```
         apiVersion: storage.k8s.io/v1
@@ -181,12 +184,12 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
         |参数|说明|
         |--|--|
         |volumeAs|定义动态卷的类型。目前只支持subpath类型；标志创建的PV实质是CPFS服务器上的一个子目录。|
-        |server|定义CPFS服务器地址。|
+        |server|定义CPFS服务器地址。格式为`挂载点地址@tcp:挂载点地址@tcp:/subpath`。|
         |archiveOnDelete|表示删除PVC、PV时候，处理CPFS子目录的方式：         -   如果reclaimPolicy为Delete，且archiveOnDelete为false：会直接删除远端目录和数据，请谨慎使用。
         -   如果reclaimPolicy为Delete，且archiveOnDelete为true：会将远端的目录更新为其他名字备份。
         -   如果reclaimPolicy为Retain，远端的目录不作处理。 |
 
-    2.  拷贝以下模板创建PVC。
+    2.  使用以下模板创建PVC。
 
         ```
         kind: PersistentVolumeClaim
@@ -204,7 +207,7 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
 
         **说明：** PVC中要指定使用的storageClassName。
 
-    3.  拷贝以下模板创建应用。
+    3.  使用以下模板创建应用。
 
         ```
         apiVersion: apps/v1
