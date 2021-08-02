@@ -12,7 +12,10 @@ resource-controller是实现动态控制Pod资源的关键组件，使用ACK Pro
 
 ## 使用说明
 
-有关resource-controller组件的使用详情，请参见[CPU拓扑感知调度](/cn.zh-CN/Kubernetes集群用户指南/调度/CPU拓扑感知调度/CPU拓扑感知调度.md)。
+有关resource-controller组件的使用详情，请参见以下文档：
+
+-   [管理组件](/cn.zh-CN/Kubernetes集群用户指南/组件/管理组件.md)
+-   [CPU拓扑感知调度](/cn.zh-CN/Kubernetes集群用户指南/调度/CPU拓扑感知调度/CPU拓扑感知调度.md)
 
 ## 变更记录
 
