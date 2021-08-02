@@ -7,8 +7,8 @@ keyword: [JindoFS加速ResNet50模型训练, 数据加速, JIndoRuntime]
 JindoRuntime来源于阿里云EMR团队JindoFS，是基于C++实现的支撑Dataset数据管理和缓存的执行引擎，支持OSS对象存储。Fluid通过管理和调度JIndoRuntime实现数据集的可见性、弹性伸缩和数据迁移。本文介绍如何使用Fluid部署阿里云OSS云端ImageNet数据集到K8s集群，以及如何使用Arena在此数据集上训练ResNet-50模型。
 
 -   已创建ACK Pro版集群，且集群的Kubernetes版本不低于1.14。具体操作，请参见[创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
--   通过kubectl连接Kubernetes集群。具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
--   在Kubernetes集群中已安装好Fluid，且Fluid版本大于等于0.5.0。具体操作，请参见[Fluid](https://github.com/aliyun/alibabacloud-jindofs/blob/master/docs/jindo_fluid/jindo_fluid_introduce.md)。
+-   通过kubectl连接Kubernetes集群。具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   在Kubernetes集群中已安装好Fluid，且Fluid版本大于等于0.5.0。具体操作，请参见[Fluid](https://github.com/fluid-cloudnative/fluid)。
 -   已安装Arena，且版本大于等于0.6.0。具体操作，请参见[Arena](https://github.com/kubeflow/arena)。
 -   已获取Horovod代码，且版本大于等于0.18.1。更多信息，请参见[Horovod](https://github.com/horovod/horovod)。
 -   已获取TensorFlow Benchmark代码。更多信息，请参见[Benchmark](https://github.com/tensorflow/benchmarks/tree/cnn_tf_v1.14_compatible)。
@@ -18,7 +18,7 @@ JindoRuntime来源于阿里云EMR团队JindoFS，是基于C++实现的支撑Data
 **说明：**
 
 -   如果您希望自己准备数据集，可以访问ImageNet官方网站下载。更多信息，请参见[images](http://image-net.org/download-images)。
--   如果你希望使用我们提供的数据集重现这个实验，请在社区开Issue申请数据集下载。更多信息，请参见[Fluid](https://github.com/aliyun/alibabacloud-jindofs/blob/master/docs/jindo_fluid/jindo_fluid_introduce.md)。
+-   如果你希望使用我们提供的数据集重现这个实验，请在社区开Issue申请数据集下载。更多信息，请参见[Fluid](https://github.com/fluid-cloudnative/fluid)。
 
 本文以阿里云的V100四机八卡为例，说明如何用Fluid部署阿里云OSS云端ImageNet数据集到K8s集群。
 
