@@ -310,9 +310,7 @@ your\_sls\_project\_name\\"\}"\}\]。 |
 -   `Linux`
 
 默认值：`Linux`。 |
-|soc\_enabled|Boolean|否|false|等保加固。更多信息，请参见[ACK等保加固使用说明](~~196148~~)。
-
-取值：
+|soc\_enabled|Boolean|否|false|取值：
 
 -   `true`：开启等保加固。
 -   `false`：不开启等保加固。
