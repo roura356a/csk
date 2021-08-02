@@ -45,7 +45,7 @@ Kubernetes专有版集群需要创建至少3个Master节点以保证高可用性
         |**地域**|选择集群所在的地域。 |
         |**账号全部资源组**|将鼠标悬浮于页面上方的**账号全部资源**，选择资源组。在控制台页面顶部选择的资源组可过滤出该资源组内的专有网络及对应的虚拟交换机。在创建集群时，只显示过滤的专有网络实例及专有网络对应的虚拟交换机实例。
 
-![资源组](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png) |
+![资源组](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png) |
         |**Kubernetes版本**|显示当前ACK支持的Kubernetes版本。 |
         |**容器运行时**|支持**Containerd**、**Docker**和**安全沙箱**。更多信息，请参见[如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？](/intl.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？.md)。 |
         |**专有网络**|设置集群的网络，您可以选择普通VPC和共享VPC。
@@ -185,7 +185,7 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
             -   **ESSD云盘**支持自定义**性能级别**。
 
 ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上可选PL2，1260 GiB以上可选PL3）。更多信息，请参见[容量范围与性能级别的关系](/intl.zh-CN/块存储/块存储介绍/ESSD云盘.md)。 |
-            |**挂载数据盘**|支持**ESSD云盘**、**SSD云盘**和**高效云盘**。挂载数据盘时，支持云盘**加密**和**开启云盘备份**。 |
+            |**挂载数据盘**|支持**ESSD云盘**、**SSD云盘**和**高效云盘**。挂载数据盘时，支持云盘**加密**和**开启云盘备份**。节点的数据盘加密时只能使用默认的CMK。 |
             |**操作系统**|ACK支持的节点操作系统包括：
 
             -   Alibaba Cloud Linux 2.x（ACK默认的操作系统）
@@ -232,17 +232,17 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
     |配置项|描述|
     |---|--|
     |**Ingress**|设置是否安装Ingress组件。默认选中**安装Ingress组件**，请参见[Ingress高级用法](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress高级用法.md)。 |
-    |**存储插件**|设置存储插件，支持Flexvolume和CSI。Kubernetes集群通过Pod可自动绑定阿里云云盘、NAS、OSS存储服务。请参见[存储管理-Flexvolume](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/概述.md)和[存储管理-CSI](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/存储CSI概述.md)。 |
+    |**存储插件**|设置存储插件，支持Flexvolume和CSI。Kubernetes集群通过Pod可自动绑定阿里云云盘、NAS、OSS存储服务。请参见[存储管理-Flexvolume](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/存储Flexvolume概述.md)和[存储管理-CSI](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/存储CSI概述.md)。 |
     |**监控插件**|设置是否启用云监控插件。默认选中**在ECS节点上安装云监控插件**。 |
     |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。默认选中**使用日志服务**。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[通过日志服务采集Kubernetes容器日志](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/通过日志服务采集Kubernetes容器日志.md)。
 
-默认选中**安装node-problem-detector并创建事件中心**。您可以选择是否在日志服务控制台中**创建Ingress Dashboard**。 |
+默认选中**安装node-problem-detector并创建事件中心**，您可以选择是否在日志服务控制台中添加事件中心。更多信息，请参见[创建并使用Kubernetes事件中心](/intl.zh-CN/应用中心（App）/K8S事件中心/创建并使用Kubernetes事件中心.md)。 |
     |**工作流引擎**|设置是否使用AGS。
 
 **说明：** 当前只有白名单用户可以使用该功能。
 
     -   如果选中AGS，则创建集群时系统自动安装AGS工作流插件。
-    -   如果不选中，则需要手动安装AGS工作流插件，请参见[AGS命令行帮助]()。 |
+    -   如果不选中，则需要手动安装AGS工作流插件，请参见[AGS命令行帮助](/intl.zh-CN/基因计算服务AGS用户指南/AGS工作流/AGS命令行帮助.md)。 |
 
 8.  单击**下一步：确认配置**。
 
@@ -265,6 +265,6 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
 
 -   您可以[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)，执行`kubectl get node`查看集群的节点信息。
 
-![集群查看结果](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1506659951/p9050.png)
+![集群查看结果](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1506659951/p9050.png)
 
 
