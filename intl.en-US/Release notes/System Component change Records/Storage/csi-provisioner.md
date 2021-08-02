@@ -16,6 +16,24 @@ For more information, see [CSI overview](/intl.en-US/User Guide for Kubernetes C
 
 ## Release notes
 
+**July 2021**
+
+|Version|Image address|Release date|Description|Impact|
+|-------|-------------|------------|-----------|------|
+|v1.1.5|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.48-cd524404-aliyun|2021-07-06|-   The issue that NAS file systems cannot be expanded by using Container Network File System \(CNFS\) is fixed.
+-   Object Storage Service \(OSS\) buckets can be mounted to nodes deployed by using images that are based on Alibaba Cloud Linux 3.
+
+|No impact on workloads|
+
+**June 2021**
+
+|Version|Image address|Release date|Description|Impact|
+|-------|-------------|------------|-----------|------|
+|v1.1.4|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.47-30ba5d25-aliyun|2021-06-25|-   The `volumeCapacity` field is deleted from NAS volume configurations. The `allowVolumeExpansion` field is used to specify whether to enable the quota feature.
+-   The `selflink` field is deleted from NAS volume configurations.
+
+|No impact on workloads|
+
 **May 2021**
 
 |Version|Image address|Release date|Description|Impact|
@@ -54,7 +72,7 @@ For more information, see [CSI overview](/intl.en-US/User Guide for Kubernetes C
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
 |v1.1.0|registry.cn-hangzhou.aliyuncs.com/acs/csi-provisioner:v1.6.0-b6f763a43-aliyun|2020-11-02|-   The deployment template is updated to merge drivers into one container.
--   The issue that subdirectories fail to be created in Extreme NAS volumes is fixed.
+-   The issue that subdirectories fail to be created in Extreme NAS file systems is fixed.
 -   Kubernetes 1.18 is supported.
 -   Labels can be added to NAS volumes when you create NAS volumes.
 
@@ -69,18 +87,18 @@ For more information, see [CSI overview](/intl.en-US/User Guide for Kubernetes C
 -   The check logic of BDF nodes when csi-provisioner is started is fixed.
 -   The use of universally unique identifier \(UUID\) to obtain device paths is no longer supported.
 
-|No impact on workloads.|
+|No impact on workloads|
 
 **July 2020**
 
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
-|v1.0.6|registry.cn-hangzhou.aliyuncs.com/acs/csi-provisioner:v1.4.0-aliyun|2020-07-13|-   EBS snapshots are supported. You can use EBS snapshots to restore csi-plugin to a beta version.
--   Extreme NAS volumes are supported. You can create and delete Extreme NAS volumes.
--   The Config SysConfig of EBS volumes is supported when you configure persistent volumes \(PVs\).
+|v1.0.6|registry.cn-hangzhou.aliyuncs.com/acs/csi-provisioner:v1.4.0-aliyun|2020-07-13|-   Elastic Block Storage \(EBS\) snapshots are supported. You can use EBS snapshots to restore csi-provisioner to a beta version.
+-   Extreme NAS volumes can be created and deleted.
+-   The Config SysConfig parameter of EBS volumes is supported when you configure persistent volumes \(PVs\).
 -   The issue that block volumes are loaded twice in BDF mode is fixed.
 -   EBS and NAS volumes are allowed to access APIs by using internal domain names.
--   The Cloud Paralleled File System \(CPFS\) driver is upgraded and the kernel dependency is removed.
+-   The Cloud Paralleled File System \(CPFS\) driver is upgraded and the dependency on the kernel is removed.
 
 |No impact on workloads|
 
@@ -89,8 +107,8 @@ For more information, see [CSI overview](/intl.en-US/User Guide for Kubernetes C
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
 |v1.0.5|registry.cn-hangzhou.aliyuncs.com/acs/csi-provisioner:v1.4.0-aliyun|2020-04-20|-   EBS volumes can be unmounted before you delete the volumes.
--   The disk provisioning policy is updated. Standard SSDs are created in preference to ultra disks. Ultra disks are created only when no standard SSD is available.
--   UUID is supported to search for devices that use EBS volumes.
+-   The disk creation policy is updated. Standard SSDs are created in preference to ultra disks. Ultra disks are created only when no standard SSD is available.
+-   UUID is supported as a high-priority search option to search for devices that use EBS volumes.
 -   The authentication management in managed Kubernetes clusters is updated.
 -   Security Token Service \(STS\) is supported to connect to OSS buckets.
 -   DuplicateMountPoint errors in EBS are fixed.
@@ -102,8 +120,8 @@ For more information, see [CSI overview](/intl.en-US/User Guide for Kubernetes C
 
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
-|v1.0.4|registry.cn-hangzhou.aliyuncs.com/acs/csi-provisioner:v1.4.0-aliyun|2020-02-18|-   CSI clusters that have no Internet access are supported.
--   The issue of mount path check in EBS is fixed.
+|v1.0.4|registry.cn-hangzhou.aliyuncs.com/acs/csi-provisioner:v1.4.0-aliyun|2020-02-18|-   Kubernetes clusters that use CSI and have no Internet access are supported.
+-   The issues related to mount path checks in EBS are fixed.
 
 |No impact on workloads|
 
@@ -113,9 +131,9 @@ For more information, see [CSI overview](/intl.en-US/User Guide for Kubernetes C
 |-------|-------------|------------|-----------|------|
 |v1.0.2|registry.cn-hangzhou.aliyuncs.com/acs/csi-provisioner:v1.2.2-aliyun|2019-12-20|-   The EBS PV name can be used as the disk ID. This feature is also supported by FlexVolume.
 -   Mount options can be configured for EBS volumes in MKFS Stage.
--   Mount options can be configured to have a higher priority than the volume attributes in NAS volumes.
+-   Mount options can be configured to have a higher priority than the volume attributes of NAS volumes.
 -   Mount options of OSS volumes can be validated in OSS connectors.
--   Subdirectories of OSS buckets can be mounted as volumes.
+-   Subpaths of OSS buckets can be mounted as volumes.
 -   Volume topology can be used to dynamically configure Logical Volume Manager \(LVM\).
 
 |No impact on workloads|
