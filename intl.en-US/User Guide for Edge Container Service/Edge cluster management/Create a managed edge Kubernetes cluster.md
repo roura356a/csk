@@ -42,7 +42,7 @@ Select **Standard edition** to create a managed edge Kubernetes cluster. |
     |**Region**|Select a region to deploy the cluster. |
     |**Resource Group**|Move the pointer over **All Resources** at the top of the page and select the resource group that you want to use. After you select a resource group, virtual private clouds \(VPCs\) and vSwitches are filtered based on the selected resource group. When you create a cluster, only the VPCs and vSwitches that belong to the selected resource group are displayed in the console.
 
-![Resource Groups](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
+![Resource Groups](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
     |**Kubernetes Version**|The supported Kubernetes versions are displayed.|
     |**VPC**|Select a VPC to deploy the cluster. Standard VPCs and shared VPCs are supported.
 
@@ -144,11 +144,11 @@ You can select higher performance levels for enhanced SSDs with larger storage c
 
 After the cluster is created, you can view the created cluster on the Clusters page in the ACK console.
 
-![Clusters](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6036089951/p51372.png)
+![Clusters](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/6036089951/p51372.png)
 
 Click **View Logs** in the Actions column. On the Log Information page, you can view the cluster log. To view detailed log information, click **Stack events**.
 
-![View cluster details](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2883068951/p51373.png)
+![View cluster details](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/2883068951/p51373.png)
 
 On the Clusters page, find the newly created cluster and click **Details** in the **Actions** column. On the details page of the cluster, you can click the **Basic Information** tab to view basic information about the cluster and click the **Connection Information** tab to view information about how to connect to the cluster.
 
@@ -163,16 +163,14 @@ The following information is displayed:
 
 You can [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md) and run the `kubectl get node` command to view information about the nodes in the cluster.
 
-![Check the results](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2883068951/p51375.png)
+![Check the results](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/2883068951/p51375.png)
 
 **Related topics**  
 
 
-[t1884276.md\#](t1884276.md#)
+[ACK@Edge overview](/intl.en-US/User Guide for Edge Container Service/ACK@Edge overview.md)
 
 [Upgrade an edge cluster](/intl.en-US/User Guide for Edge Container Service/Edge cluster management/Upgrade an edge cluster.md)
 
 [Add an edge node](/intl.en-US/User Guide for Edge Container Service/Node management/Add an edge node.md)
-
-[Enhance the monitoring on edge Kubernetes clusters]()
 
