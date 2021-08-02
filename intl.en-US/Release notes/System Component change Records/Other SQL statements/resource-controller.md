@@ -12,7 +12,10 @@ resource-controller is the core component that is used to dynamically schedule p
 
 ## Usage notes
 
-For more information about how to use resource-controller, see [Topology-aware CPU scheduling](/intl.en-US/User Guide for Kubernetes Clusters/Scheduling/Resource scheduling/Topology-aware CPU scheduling.md).
+For more information about how to use resource-controller, see the following documentation:
+
+-   [Manage system components](/intl.en-US/User Guide for Kubernetes Clusters/Component/Manage system components.md)
+-   [Topology-aware CPU scheduling](/intl.en-US/User Guide for Kubernetes Clusters/Scheduling/Resource scheduling/Topology-aware CPU scheduling.md)
 
 ## Release notes
 
