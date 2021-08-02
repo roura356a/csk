@@ -6,7 +6,7 @@ keyword: [create a Kubernetes cluster, managed Kubernetes cluster, Kubernetes cl
 
 Container Service for Kubernetes \(ACK\) automatically creates and manages master nodes for managed Kubernetes clusters. This allows you to focus on business development. This topic describes how to create a managed Kubernetes cluster in the ACK console.
 
-Resource Access Management \(RAM\) is activated in the [RAM console](https://ram.console.aliyun.com/). Auto Scaling \(ESS\) is activated in the [ESS console](https://essnew.console.aliyun.com).
+Resource Access Management \(RAM\) is activated in the [RAM console](https://ram.console.aliyun.com/). Auto Scaling is activated in the [Auto Scaling console](https://essnew.console.aliyun.com).
 
 **Note:**
 
@@ -50,7 +50,7 @@ Select **Standard edition** to create a standard managed Kubernetes cluster. |
         |**Region**|Select a region to deploy the cluster. |
         |**All Resources**|Move the pointer over **All Resources** at the top of the page and select the resource group that you want to use. After you select a resource group, virtual private clouds \(VPCs\) and vSwitches are filtered based on the selected resource group. When you create a cluster, only the VPCs and vSwitches that belong to the selected resource group are displayed in the console.
 
-![Resource Groups](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
+![Resource Groups](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
         |**Kubernetes Version**|The Kubernetes versions that are supported by ACK. |
         |**Container Runtime**|The **containerd**, **Docker**, and **Sandboxed-Container** runtimes are supported. For more information, see [Comparison of Docker, containerd, and Sandboxed-Container](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Comparison of Docker, containerd, and Sandboxed-Container.md). |
         |**VPC**|Select a VPC to deploy the cluster. Standard VPCs and shared VPCs are supported.
@@ -268,6 +268,6 @@ By default, **Install node-problem-detector and Create Event Center** is selecte
 
 -   You can [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md) and run the `kubectl get node` command to view information about the nodes in the cluster.
 
-    ![View node information](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2335359951/p21438.png)
+    ![View node information](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/2335359951/p21438.png)
 
 
