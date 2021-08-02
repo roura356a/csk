@@ -9,7 +9,7 @@ The following tables list API operations available for use in Container Service 
 |API|Description|
 |---|-----------|
 |[Create a dedicated Kubernetes cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a dedicated Kubernetes cluster.md)|Call the CreateCluster operation to create a dedicated Kubernetes cluster.|
-|[CreateCluster](/intl.en-US/API Reference/Clusters/Create a cluster/CreateCluster.md)
+|[CreateCluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create a managed Kubernetes cluster.md)
 
 |Call the CreateCluster operation to create a managed Kubernetes cluster and add a specified number of nodes to the cluster.|
 |[Create an ASK cluster](/intl.en-US/API Reference/Clusters/Create a cluster/Create an ASK cluster.md)
@@ -22,7 +22,7 @@ The following tables list API operations available for use in Container Service 
 
 |Call the CreateCluster operation to create a dedicated Kubernetes cluster that runs sandboxed containers.|
 |[Create a standard managed Kubernetes cluster that supports sandboxed](/intl.en-US/API Reference/Clusters/Create a cluster/Create a standard managed Kubernetes cluster that supports sandboxed.md)|Call the CreateCluster operation to create a managed Kubernetes cluster that runs sandboxed containers.|
-|[Scale out an ACK cluster \(will be deleted\)](/intl.en-US/API Reference/Clusters/Scale out an ACK cluster (will be deleted).md)
+|[Scale out a cluster](/intl.en-US/API Reference/Clusters/Scale out a cluster.md)
 
 |Call the ScaleOutCluster operation to add worker nodes to a specified ACK cluster. The worker nodes can be deployed across zones.|
 |[Scale out a managed edge Kubernetes cluster](/intl.en-US/API Reference/Clusters/Scale out a managed edge Kubernetes cluster.md)
@@ -31,13 +31,13 @@ The following tables list API operations available for use in Container Service 
 |[DescribeClusterDetail](/intl.en-US/API Reference/Clusters/DescribeClusterDetail.md)
 
 |Call the DescribeClusterDetail operation to query the details of a specified ACK cluster by cluster ID.|
-|[DescribeClusterNodes](/intl.en-US/API Reference/Clusters/DescribeClusterNodes.md)
+|[Query nodes in a cluster](/intl.en-US/API Reference/Clusters/Query nodes in a cluster.md)
 
 |Call the DescribeClusterNodes operation to query the nodes in a specified ACK cluster.|
-|[DescribeClustersV1](/intl.en-US/API Reference/Clusters/DescribeClustersV1.md)
+|[Query information about all clusters](/intl.en-US/API Reference/Clusters/Query information about all clusters.md)
 
 |Call the DescribeClustersV1 operation to query all Swarm clusters and ACK clusters that are created by the current account.|
-|[DescribeClusterResources](/intl.en-US/API Reference/Clusters/DescribeClusterResources.md)
+|[Query resources in a cluster](/intl.en-US/API Reference/Clusters/Query resources in a cluster.md)
 
 |Call the DescribeClusterResources operation to query all resources in a specified ACK cluster.|
 |[DescribeExternalAgent](/intl.en-US/API Reference/Clusters/DescribeExternalAgent.md)
@@ -52,22 +52,22 @@ The following tables list API operations available for use in Container Service 
 |[DescribeClusterUserKubeconfig](/intl.en-US/API Reference/Clusters/DescribeClusterUserKubeconfig.md)
 
 |Call the DescribeClusterUserKubeconfig operation to obtain the kubeconfig file of a specified ACK cluster. The kubeconfig file stores details of the account that is used to log on to the ACK cluster.|
-|[ModifyCluster](/intl.en-US/API Reference/Clusters/ModifyCluster.md)
+|[Modify a cluster](/intl.en-US/API Reference/Clusters/Modify a cluster.md)
 
 |Call the ModifyCluster operation to modify the configurations of a specified ACK cluster.|
-|[DeleteCluster](/intl.en-US/API Reference/Clusters/DeleteCluster.md)
+|[Delete a cluster](/intl.en-US/API Reference/Clusters/Delete a cluster.md)
 
 |Call the DeleteCluster operation to delete an ACK cluster by cluster ID and release all nodes in the cluster.|
 |[ModifyClusterTags](/intl.en-US/API Reference/Tag/ModifyClusterTags.md)
 
 |Call the ModifyClusterTags operation to modify the labels of a specified ACK cluster.|
-|[ListTagResources](/intl.en-US/API Reference/Tag/ListTagResources.md)
+|[Query the labels of specified resources](/intl.en-US/API Reference/Tag/Query the labels of specified resources.md)
 
 |Call the ListTagResources operation to query the labels that are added to the specified resources.|
 |[DescribeKubernetesVersionMetadata](/intl.en-US/API Reference/Clusters/DescribeKubernetesVersionMetadata.md)|Call the DescribeKubernetesVersionMetadata operation to query the details of a specified Kubernetes version that is supported by ACK.|
 |[DescribeTaskInfo](/intl.en-US/API Reference/Clusters/DescribeTaskInfo.md)|Call the DescribeTaskInfo operation to query the details of a task by task ID.|
-|[DescribeEvents](/intl.en-US/API Reference/Clusters/DescribeEvents.md)|Call the DescribeEvents operation to query the operations performed by users.|
-|[AttachInstances]()
+|[Query events in a cluster](/intl.en-US/API Reference/Clusters/Query events in a cluster.md)|Call the DescribeEvents operation to query the operations performed by users.|
+|[Add existing ENS nodes to a managed edge Kubernetes cluster]()
 
 |Call the AttachInstances operation to add existing ENS instances to a specified managed edge Kubernetes cluster.|
 
@@ -86,7 +86,7 @@ The following tables list API operations available for use in Container Service 
 
 |API|Description|
 |---|-----------|
-|[t1956932.md\#](/intl.en-US/API Reference/Node pools/Create a node pool.md)
+|[Create a node pool](/intl.en-US/API Reference/Node pools/Create a node pool.md)
 
 |Call the CreateClusterNodePool operation to create a node pool in a specified ACK cluster.|
 |[ScaleClusterNodePool](/intl.en-US/API Reference/Node pools/ScaleClusterNodePool.md)
@@ -107,7 +107,7 @@ The following tables list API operations available for use in Container Service 
 |[DescribeClusterAttachScripts](/intl.en-US/API Reference/Node pools/DescribeClusterAttachScripts.md)
 
 |Call the DescribeClusterAttachScripts operation to add an existing node to a specified managed edge Kubernetes cluster. This operation returns a unique and executable script. You can run the script on an existing node to add the node to the managed edge Kubernetes cluster.|
-|[Remove nodes from node pools](/intl.en-US/API Reference/Node pools/DeleteClusterNodes.md)
+|[Remove nodes from node pools](/intl.en-US/API Reference/Node pools/Remove nodes from node pools.md)
 
 |Call the RemoveClusterNodes operation to remove the nodes from a specified ACK cluster.|
 |[DeleteClusterNodepool](/intl.en-US/API Reference/Node pools/DeleteClusterNodepool.md)|Call the DeleteClusterNodepool operation to delete a node pool.|
@@ -145,18 +145,15 @@ The following tables list API operations available for use in Container Service 
 |[DeleteTemplate](/intl.en-US/API Reference/Applications/Delete an application deployment template.md)
 
 |Call the DeleteTemplate operation to delete an application deployment template.|
-|[Create a trigger](/intl.en-US/API Reference/Applications/Create a trigger.md)|Call the CreateKubernetesTrigger operation to create an application trigger.|
-|[GetKubernetesTrigger](/intl.en-US/API Reference/Applications/GetKubernetesTrigger.md)|Call the GetKubernetesTrigger operation to query the triggers that are created for a specified application.|
-|[DeleteKubernetesTrigger](/intl.en-US/API Reference/Applications/DeleteKubernetesTrigger.md)|Call the DeleteKubernetesTrigger operation to delete an application trigger.|
 
 ## Components
 
 |API|Description|
 |---|-----------|
-|[InstallClusterAddons](/intl.en-US/API Reference/Add-ons/InstallClusterAddons.md)
+|[Install a component in an ACK cluster](/intl.en-US/API Reference/Add-ons/Install a component in an ACK cluster.md)
 
 |Call the InstallClusterAddons operation to install components in a specified ACK cluster.|
-|[DescribeClusterAddonsVersion](/intl.en-US/API Reference/Add-ons/DescribeClusterAddonsVersion.md)
+|[Query components](/intl.en-US/API Reference/Add-ons/Query components.md)
 
 |Call the DescribeClusterAddonsVersion operation to query the versions of components in a specified ACK cluster.|
 |[DescribeAddons](/intl.en-US/API Reference/Add-ons/DescribeAddons.md)
@@ -179,7 +176,7 @@ The following tables list API operations available for use in Container Service 
 |[ModifyClusterTags](/intl.en-US/API Reference/Tag/ModifyClusterTags.md)
 
 |Call the ModifyClusterTags operation to modify the labels of a specified ACK cluster.|
-|[ListTagResources](/intl.en-US/API Reference/Tag/ListTagResources.md)
+|[Query the labels of specified resources](/intl.en-US/API Reference/Tag/Query the labels of specified resources.md)
 
 |Call the ListTagResources operation to query the labels of the specified resources.|
 |[UntagResources](/intl.en-US/API Reference/Tag/UntagResources.md)
