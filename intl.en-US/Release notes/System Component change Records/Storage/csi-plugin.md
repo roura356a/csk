@@ -4,7 +4,7 @@ keyword: [csi-plugin, csi-plugin release notes]
 
 # csi-plugin
 
-You can use csi-plugin to mount and unmount volumes. Container Service for Kubernetes \(ACK\) allows you to mount the following types of storage media by using csi-plugin: disks, Apsara File Storage NAS \(NAS\) file systems, and Object Storage Service \(OSS\) buckets. This topic lists the latest changes to csi-plugin.
+You can use csi-plugin to mount and unmount volumes. Container Service for Kubernetes \(ACK\) allows you to mount the following types of volume by using csi-plugin: disks, Apsara File Storage NAS \(NAS\) file systems, and Object Storage Service \(OSS\) buckets. This topic lists the latest changes to csi-plugin.
 
 ## Introduction
 
@@ -15,6 +15,27 @@ The csi-plugin component provided by Alibaba Cloud follows the standard specific
 For more information, see [CSI overview](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Storage overview.md).
 
 ## Release notes
+
+**July 2021**
+
+|Version|Image address|Release date|Description|Impact|
+|-------|-------------|------------|-----------|------|
+|v1.1.5|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.47-06405694-aliyun|2021-07-06|-   The issue that NAS file systems cannot be expanded by using Container Network File System \(CNFS\) is fixed.
+-   OSS buckets can be mounted to nodes deployed by using images that are based on Alibaba Cloud Linux 3.
+
+|No impact on workloads|
+
+**June 2021**
+
+|Version|Image address|Release date|Description|Impact|
+|-------|-------------|------------|-----------|------|
+|v1.1.4|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.47-30ba5d25-aliyun|2021-06-25|-   Persistent volumes \(PVs\) can be created by using CNFS.
+-   The `snapshot.storage.k8s.io/v1` and `snapshot.storage.k8s.io/v1beta1` API versions are supported by VolumeSnapshots, VolumeSnapshotClasses, and VolumeSnapshotContents. You can upgrade the API version to `snapshot.storage.k8s.io/v1` at the earliest opportunity.
+-   csi-snapshotter and snapshot-controller are upgraded to V4.0.0.
+-   The issue of NAS loopsetup is fixed.
+-   The occasional issue that the token expires when you perform the List Snapshot operation is fixed.
+
+|No impact on workloads|
 
 **May 2021**
 
@@ -50,7 +71,7 @@ For more information, see [CSI overview](/intl.en-US/User Guide for Kubernetes C
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
 |v1.1.0|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.16.9.43-f36bb540-aliyun|2020-11-02|-   The deployment template is updated to merge drivers into one container.
--   The issue that subdirectories fail to be created in Extreme NAS volumes is fixed.
+-   The issue that subdirectories fail to be created in Extreme NAS file systems is fixed.
 -   Kubernetes 1.18 is supported.
 -   Labels can be added to NAS volumes when you create NAS volumes.
 
@@ -72,11 +93,11 @@ For more information, see [CSI overview](/intl.en-US/User Guide for Kubernetes C
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
 |v1.0.6|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.14.8.40-146fd1d8-aliyun|2020-07-13|-   EBS snapshots are supported. You can use EBS snapshots to restore csi-plugin to a beta version.
--   Extreme NAS volumes are supported. You can create and delete Extreme NAS volumes.
--   The Config SysConfig of EBS volumes is supported when you configure persistent volumes \(PVs\).
+-   Extreme NAS volumes can be created and deleted.
+-   The Config SysConfig parameter of EBS volumes is supported when you configure PVs.
 -   The issue that block volumes are loaded twice in BDF mode is fixed.
 -   EBS and NAS volumes are allowed to access APIs by using internal domain names.
--   The Cloud Paralleled File System \(CPFS\) driver is upgraded and the kernel dependency is removed.
+-   The Cloud Paralleled File System \(CPFS\) driver is upgraded and the dependency on the kernel is removed.
 
 |No impact on workloads|
 
@@ -86,7 +107,7 @@ For more information, see [CSI overview](/intl.en-US/User Guide for Kubernetes C
 |-------|-------------|------------|-----------|------|
 |v1.0.5|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.14.8.38-fe611ad1-aliyun|2020-04-20|-   EBS volumes can be unmounted before you delete the volumes.
 -   The disk creation policy is updated. Standard SSDs are created in preference to ultra disks. Ultra disks are created only when no standard SSD is available.
--   UUID is supported to search for devices that use EBS volumes.
+-   UUID is supported as a high-priority search option to search for devices that use EBS volumes.
 -   The authentication management in managed Kubernetes clusters is updated.
 -   Security Token Service \(STS\) is supported to connect to OSS buckets.
 -   DuplicateMountPoint errors in EBS are fixed.
@@ -109,8 +130,8 @@ For more information, see [CSI overview](/intl.en-US/User Guide for Kubernetes C
 
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
-|v1.0.4|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.14.8.37-aae7f495-aliyun|2020-02-18|-   CSI clusters that have no Internet access are supported.
--   The issue of mount path check in EBS is fixed.
+|v1.0.4|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.14.8.37-aae7f495-aliyun|2020-02-18|-   Kubernetes clusters that use CSI and have no Internet access are supported.
+-   The issues related to mount path checks in EBS are fixed.
 
 |No impact on workloads|
 
@@ -122,14 +143,14 @@ For more information, see [CSI overview](/intl.en-US/User Guide for Kubernetes C
 -   Mount options can be configured for EBS volumes in MKFS Stage.
 -   Mount options can be configured to have a higher priority than the volume attributes of NAS volumes.
 -   Mount options of OSS volumes can be validated in OSS connectors.
--   Subdirectories of OSS buckets can be mounted as volumes.
+-   Subpaths of OSS buckets can be mounted as volumes.
 -   Volume topology can be used to dynamically configure Logical Volume Manager \(LVM\).
 
 |No impact on workloads|
-|v1.0.1|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.14.5.60-5318afe-aliyun|2019-12-20|-   The subdirectory and file system type of a NAS volume can be configured.
+|v1.0.1|registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.14.5.60-5318afe-aliyun|2019-12-20|-   The mounted subpath and file system type can be configured for a NAS volume.
 -   Labels can be added to disk volumes when you configure disk volumes.
 -   Multiple regions can be configured for disk volumes that are used in multi-region clusters in the StorageClass definition.
--   KMS authentication can be configured when you configure disk volumes.
+-   KMS-based authentication can be configured when you configure disk volumes.
 -   Disk volumes can be expanded. This feature is in internal preview.
 -   The topology awareness feature is supported when you configure disk volumes.
 
