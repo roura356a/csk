@@ -5,7 +5,7 @@ This topic describes how to update the Kubernetes cluster certificates that are 
 ## Prerequisites
 
 -   A Kubernetes cluster is created. For more information, see [Create a Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md).
--   The Kubernetes cluster is connected based on kubectl. For more information, see [Connect to a Kubernetes cluster by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
+-   The Kubernetes cluster is connected based on kubectl. For more information, see [Connect to a Kubernetes cluster by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md).
 
 ## Run a command to update all certificates
 
@@ -23,7 +23,7 @@ Response:
     kubectl get nodes
     ```
 
-    ![nodes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2635359951/p21600.png)
+    ![nodes](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/2635359951/p21600.png)
 
 2.  In the CLI, run the following command. The response shows that the SUCCESSFUL parameter value of each master node is 1, and the SUCCESSFUL parameter value of each worker node indicates the number of worker nodes in the cluster. In this case, all certificates are updated.
 
@@ -31,7 +31,7 @@ Response:
     kubectl get job –nkube-system
     ```
 
-    ![nodes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3635359951/p21601.png)
+    ![nodes](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/0861987261/p21601.png)
 
 
 ## Manually update the certificates of each master node
@@ -98,7 +98,7 @@ Response:
         kubectl get nodes
         ```
 
-        ![nodes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3635359951/p21548.png)
+        ![nodes](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/3635359951/p21548.png)
 
     -   Method 2:
 
@@ -130,7 +130,7 @@ Response:
 
 6.  Repeat Steps 3 to 5 to update the certificates of the other master nodes in the cluster.
 
-    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3635359951/p21551.png)
+    ![](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/0861987261/p21551.png)
 
 
 ## Manually update worker node certificates
@@ -220,7 +220,7 @@ Response:
         kubectl get nodes -o go-template-file="taint.tml"
         ```
 
-        ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3635359951/p21570.png)
+        ![](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/3635359951/p21570.png)
 
 2.  In the CLI, run the following command to obtain the cluster CA key:
 
@@ -251,6 +251,6 @@ Response:
     kubectl get job –nkube-system
     ```
 
-    ![nodes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3635359951/p21565.png)
+    ![nodes](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/0861987261/p21565.png)
 
 
