@@ -25,7 +25,7 @@ Response:
 
     ![nodes](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/2635359951/p21600.png)
 
-2.  In the CLI, run the following command. The response shows that the SUCCESSFUL parameter value of each master node is 1, and the SUCCESSFUL parameter value of each worker node indicates the number of worker nodes in the cluster. In this case, all certificates are updated.
+2.  In the CLI, run the following command. The response shows that the COMPLETIONS parameter value of each master node is 1, and the COMPLETIONS parameter value of each worker node indicates the number of worker nodes in the cluster. In this case, all certificates are updated.
 
     ```
     kubectl get job –nkube-system
@@ -122,7 +122,7 @@ Response:
     kubectl create -f job-master2.yml
     ```
 
-5.  In the CLI, run the following command to view the job status. When the SUCCESSFUL parameter value is 1, the certificates of this master node have been updated.
+5.  In the CLI, run the following command to view the job status. When the COMPLETIONS parameter value is 1, the certificates of this master node have been updated.
 
     ```
     kubectl get job –nkube-system
@@ -245,7 +245,7 @@ Response:
     kubectl create –f job-node2.yml
     ```
 
-5.  Run the following command to view the job status. When the SUCCESSFUL parameter value is equal to the number of the cluster worker nodes, all certificates have been updated.
+5.  Run the following command to view the job status. When the COMPLETIONS parameter value is equal to the number of the cluster worker nodes, all certificates have been updated.
 
     ```
     kubectl get job –nkube-system
