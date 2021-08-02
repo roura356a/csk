@@ -156,7 +156,7 @@ Ingress是允许访问集群内Service的规则集合，您可以通过配置转
     -   Intranet：负载均衡只有私网IP地址，DNS域名被解析到私网IP，因此只能被负载均衡所在VPC的内网环境访问。 |
     |alb.ingress.kubernetes.io/vswitch-ids|用于设置ALB Ingress交换机ID，您需要至少指定两个不同可用区交换机ID。关于ALB Ingress支持的地域与可用区，请参见[支持的地域与可用区](/cn.zh-CN/应用型负载均衡ALB/ALB产品简介/支持的地域与可用区.md)。|
 
-2.  执行以下命令，配置`coffee`和`tea`服务对外暴露的域名和`path`路径
+2.  执行以下命令，配置`coffee`和`tea`服务对外暴露的域名和`path`路径。
 
     ```
     kubectl apply -f cafe-ingress.yaml
@@ -168,7 +168,7 @@ Ingress是允许访问集群内Service的规则集合，您可以通过配置转
     ingress "cafe-ingress" created
     ```
 
-3.  执行以下命令获取SLB实例IP地址。
+3.  执行以下命令获取ALB实例IP地址。
 
     ```
     kubectl get ingress
@@ -184,7 +184,7 @@ Ingress是允许访问集群内Service的规则集合，您可以通过配置转
 
 ## 步骤三：访问服务
 
--   利用获取的SLB实例IP地址，通过以下两种方式访问`coffee`服务：
+-   利用获取的ALB实例IP地址，通过以下两种方式访问`coffee`服务：
     -   通过浏览器访问`coffee`服务。
 
         ![1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7381296261/p297352.png)
@@ -195,7 +195,7 @@ Ingress是允许访问集群内Service的规则集合，您可以通过配置转
         curl http://alb-m551oo2zn63yov****.cn-hangzhou.alb.aliyuncs.com/coffee
         ```
 
--   利用获取的SLB实例IP地址，通过以下两种方式访问`tee`服务：
+-   利用获取的ALB实例IP地址，通过以下两种方式访问`tee`服务：
     -   通过浏览器访问`tee`服务。
 
         ![SLB2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7381296261/p297351.png)
