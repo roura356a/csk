@@ -6,13 +6,11 @@ keyword: [更新即将过期的证书, Kubernetes专有版集群]
 
 本文介绍如何更新Kubernetes集群即将过期的证书。您可以通过控制台操作，也可以通过命令行自动化一键式更新所有节点证书，也可以手动更新Master和Worker节点证书。
 
-## 前提条件
-
--   您已经成功创建一个Kubernetes集群。具体操作，请参见[创建Kubernetes专有版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)或[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
+-   已创建Kubernetes集群。具体操作，请参见[创建Kubernetes专有版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)或[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 
     **说明：** 您无需担心托管版集群中Master节点证书过期情况，容器服务ACK会自动更新托管版集群中Master节点的证书。
 
--   您已通过kubectl连接集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   已通过kubectl连接集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 ## 控制台更新所有节点证书
 
@@ -24,7 +22,7 @@ keyword: [更新即将过期的证书, Kubernetes专有版集群]
 
     **说明：** 如果集群证书即将在两个月左右过期，会出现更新证书。
 
-    ![更新证书](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7944806261/p37315.png)
+    ![更新证书](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7944806261/p37315.png)
 
 4.  在**更新证书**页面单击**更新证书**。
 
@@ -43,7 +41,7 @@ keyword: [更新即将过期的证书, Kubernetes专有版集群]
 curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-update/renew.sh | bash
 ```
 
-执行结果：
+结果验证：
 
 1.  执行以下命令，查看集群Master和Worker节点状态。
 
@@ -51,15 +49,15 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
     kubectl get nodes
     ```
 
-    ![nodes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3575659951/p21600.png)
+    ![nodes](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/3575659951/p21600.png)
 
-2.  执行以下命令，当Master节点对应的SUCCESSFUL均为1，Worker节点对应的SUCCESSFUL为集群Worker节点数时，所有证书完成更新。
+2.  执行以下命令，当Master节点对应的COMPLETIONS均为1，Worker节点对应的COMPLETIONS为集群Worker节点数时，所有证书完成更新。
 
     ```
-    kubectl get job –n kube-system
+    kubectl get job –nkube-system
     ```
 
-    ![nodes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4575659951/p21601.png)
+    ![nodes](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/5754887261/p21601.png)
 
 
 ## 手动更新Master节点证书
@@ -126,13 +124,13 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
         kubectl get nodes
         ```
 
-        ![nodes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4575659951/p21548.png)
+        ![nodes](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4575659951/p21548.png)
 
     -   方法二：通过控制台
 
         1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
         2.  在控制台左侧导航栏中，单击**集群**。
-        3.  在集群列表页面，单击目标集群名称或者目标集群右侧的**详情**。
+        3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
         4.  在集群管理页的左侧导航栏中，选择**节点管理** \> **节点**获取Master个数和和对应的名称、IP地址、实例ID。
 3.  执行以下命令替换job-master.yml文件中指定的变量$\{jobname\}和$\{hostname\}。
 
@@ -150,15 +148,15 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
     kubectl create -f job-master2.yml
     ```
 
-5.  执行以下命令查看Job状态，当SUCCESSFUL均为1时，证书完成更新。
+5.  执行以下命令查看Job状态，当COMPLETIONS均为1时，证书完成更新。
 
     ```
-    kubectl get job –n kube-system
+    kubectl get job –nkube-system
     ```
 
 6.  重复执行步骤3~5，完成所有Master节点的证书更新。
 
-    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4575659951/p21551.png)
+    ![](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6590987261/p21551.png)
 
 
 ## 手动更新Worker节点证书
@@ -248,7 +246,7 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
         kubectl get nodes -o go-template-file="taint.tml"
         ```
 
-        ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4575659951/p21570.png)
+        ![](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4575659951/p21570.png)
 
 2.  执行以下命令，获取集群的CAKey。
 
@@ -273,12 +271,12 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
     kubectl create –f job-node2.yml
     ```
 
-5.  执行以下命令查看Job状态，当SUCCESSFUL为集群Worker节点数时，证书完成更新。
+5.  执行以下命令查看Job状态，当COMPLETIONS为集群Worker节点数时，证书完成更新。
 
     ```
-    kubectl get job –n kube-system
+    kubectl get job –nkube-system
     ```
 
-    ![nodes](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4575659951/p21565.png)
+    ![nodes](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6590987261/p21565.png)
 
 
