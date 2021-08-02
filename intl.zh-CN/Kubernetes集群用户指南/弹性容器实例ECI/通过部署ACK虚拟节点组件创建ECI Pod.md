@@ -23,7 +23,7 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
 阿里云容器服务基于虚拟节点和ECI提供了多种Serverless Container产品形态，包括Serverless Kubernetes（ASK）和ACK on ECI，充分支撑各种弹性和免节点运维场景的用户诉求。
 
-![virtual node](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7273551161/p85192.png)
+![virtual node](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7273551161/p85192.png)
 
 ## 步骤一：在ACK集群中部署ack-virtual-node组件
 
@@ -49,7 +49,7 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
     这时会以集群默认虚拟交换机和安全组作为ack-virtual-node的初始ECI配置参数。如果需要修改ECI配置参数，请参见[相关操作](#section_9ec_223_45i)。
 
-    ![组件管理ack-virtual-node组件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2220361161/p232042.png)
+    ![组件管理ack-virtual-node组件](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/2220361161/p232042.png)
 
 
 **ACK专有版集群**
@@ -88,7 +88,7 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
     **命名空间**已设定为kube-system，**发布名称**已设定为ack-virtual-node，然后单击**创建**。
 
-    ![创建插件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4106659951/p47256.png)
+    ![创建插件](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4106659951/p47256.png)
 
 7.  查看**virtual-node-controller**部署状态。
 
