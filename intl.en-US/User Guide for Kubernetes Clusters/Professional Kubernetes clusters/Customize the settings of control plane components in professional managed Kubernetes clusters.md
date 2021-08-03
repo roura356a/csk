@@ -19,14 +19,14 @@ Before you customize the settings of a control plane component, take note of the
 
 1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  In the left-side navigation pane, click **Clusters**.
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
 4.  In the left-side navigation pane of the details page, choose **Operations** \> **Add-ons**.
 
 5.  The following example shows how to customize the settings of Kube API Server:
-6.  In the **Core Components** section, find the component and click the ![settings](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8603887161/p212904.png) icon.
+6.  In the **Core Components** section, find the component and click **configuration**.
 
 7.  In the **kube-apiserver Parameters** dialog box, set the parameters and click **OK**.
 
