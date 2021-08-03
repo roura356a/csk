@@ -54,7 +54,7 @@ curl http://aliacs-k8s-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/public/cert-upda
 2.  执行以下命令，当Master节点对应的COMPLETIONS均为1，Worker节点对应的COMPLETIONS为集群Worker节点数时，所有证书完成更新。
 
     ```
-    kubectl get job –nkube-system
+    kubectl -n kube-system get job
     ```
 
     ![nodes](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/5754887261/p21601.png)
