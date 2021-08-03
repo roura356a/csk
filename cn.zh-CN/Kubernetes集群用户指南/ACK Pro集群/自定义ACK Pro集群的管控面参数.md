@@ -26,9 +26,7 @@ keyword: [自定义组件参数, Pro集群, 管控面, 托管组件]
 4.  在集群管理页左侧导航栏中，选择**运维管理** \> **组件管理**。
 
 5.  下文以修改Kube API Server组件为例，说明如何修改组件参数。
-6.  在**核心组件**区域，单击目标组件右下方的图标![settings](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5931440161/p212904.png)。
-
-    ![apiserver](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3133440161/p212911.png)
+6.  在**核心组件**区域，单击目标组件右下方的**配置**。
 
 7.  在**kube-apiserver参数配置**对话框中，输入您的自定义参数，然后单击**确定**。
 
