@@ -6,8 +6,8 @@ keyword: [batch management, OOS, ACK node]
 
 You can use Operation Orchestration Service \(OOS\) to manage cluster nodes in batches. This allows you to enhance operations efficiency. For example, you can obtain logs of multiple nodes at the same time. This topic describes how to manage nodes in batches.
 
--   A Kubernetes cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
--   OOS is activated in the [OOS console](https://partners-intl.aliyun.com/login-required#/oos).
+-   A Kubernetes cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+-   OOS is activated in the [OOS console](https://oos.console.aliyun.com/).
 
 ## Procedure
 
@@ -15,9 +15,9 @@ You can use Operation Orchestration Service \(OOS\) to manage cluster nodes in b
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  In the left-side navigation pane, choose **Clusters** \> **Nodes**.
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Nodes**.
 
 5.  Select the cluster and the nodes that you want to manage and click **Set to Unschedulable**.
 
