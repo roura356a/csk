@@ -4,22 +4,22 @@ keyword: [node-local-dns, NodeLocal DNSCache, DaemonSet]
 
 # Use NodeLocal DNSCache in an ACK cluster
 
-Container Service for Kubernetes \(ACK\) allows you to deploy NodeLocal DNSCache to improve the stability and performance of service discovery. NodeLocal DNSCache is implemented as a DaemonSet and runs a DNS caching agent on cluster nodes to improve cluster DNS performance. This topic describes how to deploy and configure NodeLocal DNSCache for an application in an ACK cluster.
+Container Service for Kubernetes \(ACK\) allows you to deploy NodeLocal DNSCache to improve the stability and performance of service discovery. NodeLocal DNSCache is implemented as a DaemonSet and runs a DNS caching agent on cluster nodes to improve the efficiency of DNS resolution for ACK clusters. This topic describes how to deploy and configure NodeLocal DNSCache for an application in an ACK cluster.
 
 -   An ACK cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
--   A kubectl client is connected to the cluster. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
+-   A kubectl client is connected to the cluster. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md).
 
 ## Limits
 
 -   NodeLocal DNSCache does not support pods that run in serverless Kubernetes \(ASK\) clusters or on elastic container instances in managed or dedicated Kubernetes clusters.
--   The Terway version must be v1.0.10.301 or later.
+-   The Terway version must be v1.0.10.301 or later. If your cluster runs Terway in inclusive ENI mode based on IPVLAN, you must modify the configurations of Terway. For more information, see [Modify the configurations of Terway](#section_wcp_x4c_oyc).
 -   To install NodeLocal DNSCache, you can go to the Add-ons page or install ack-node-local-dns on the App Catalog page.
 -   NodeLocal DNSCache serves as a transparent cache proxy for CoreDNS and does not provide features such as Hosts or Rewrite. If you want to enable these features, modify CoreDNS configurations.
 -   If PrivateZone is used in the cluster, you must modify CoreDNS configurations before you enable PrivateZone. For more information, see [Compatibility with PrivateZone](#section_ajk_4vf_oqk).
 
 ## Introduction
 
-ACK NodeLocal DNSCache is a local DNS cache solution developed based on the open source NodeLocal DNSCache project. ACK NodeLocal DNSCache is the ack-node-local-dns chart in Helm. This solution consists of a DNS cache that runs as a DaemonSet and an admission controller that runs as a Deployment to dynamically inject DNSConfig.
+ACK NodeLocal DNSCache is a local DNS cache solution developed based on the open source NodeLocal DNSCache project. The Helm chart name of ACK NodeLocal DNSCache is ack-node-local-dns. This solution consists of a DNS cache that runs as a DaemonSet and an admission controller that runs as a Deployment to dynamically inject DNSConfig.
 
 -   The admission controller intercepts pod creation requests based on admission webhooks and dynamically injects cached DNSConfig to pod configurations.
 
@@ -35,8 +35,8 @@ ACK NodeLocal DNSCache is a local DNS cache solution developed based on the open
 |No.|Description|
 |---|-----------|
 |1|By default, a pod with the local DNSConfig injected uses NodeLocal DNSCache to listen for DNS queries that are sent to the IP address 169.254.20.10 on the node.|
-|2|If NodeLocal DNSCache does not find a cache hit for the DNS query, the kube-dns Service is used to request CoreDNS for DNS resolution.|
-|3|CoreDNS uses the DNS server deployed in the virtual private cloud \(VPC\) to resolve non-cluster domain names.|
+|2|If NodeLocal DNSCache does not find a cache hit for the DNS query, the kube-dns Service is used to request CoreDNS to handle the query.|
+|3|CoreDNS uses the DNS server deployed in the virtual private cloud \(VPC\) to resolve domain names that are not cluster-local.|
 |4|When the pod with the local DNSConfig injected fails to connect to NodeLocal DNSCache, the pod uses the kube-dns Service to connect to CoreDNS for DNS resolution.|
 |5|A pod without the local DNSConfig injected uses the kube-dns Service to connect to CoreDNS for DNS resolution.|
 
@@ -54,7 +54,7 @@ You can install NodeLocal DNSCache on the Add-ons page or the App Catalog page. 
 
 4.  On the Add-ons page, click the **Networking** tab and find ACK NodeLocal DNSCache.
 
-5.  Click **Install**. In the dialog box that appears, click **OK**.
+5.  Click **Install**. In the message that appears, click **OK**.
 
 
 **Install NodeLocal DNSCache on the App Catalog page**
@@ -74,12 +74,12 @@ You can install NodeLocal DNSCache on the Add-ons page or the App Catalog page. 
     |upstream\_ip|The cluster IP of the kube-dns Service in the kube-system namespace. NodeLocal DNSCache uses the kube-dns Service to communicate with CoreDNS and resolve cluster-local domain names.|You can modify the parameter value to specify other upstream DNS servers.|
     |clusterDomain|The domain name of the cluster.|Query the --cluster-domain parameter of the kubelet process on a cluster node. The default value of the parameter is cluster.local.|
 
-5.  In the **Deploy** panel on the right side of the page, select the cluster and namespace, specify a release name, and then click **Create**.
+5.  In the **Deploy** section on the right side of the page, select the cluster and namespace, specify a release name, and then click **Create**.
 
 
 ## Configure NodeLocal DNSCache for an application
 
-**Note:** By default, NodeLocal DNSCache is not installed on master nodes. If you want to install NodeLocal DNSCache on master nodes and taints are configured on master nodes, you must modify taints and tolerations for the node-local-dns DaemonSet in the kube-system namespace.
+**Note:** By default, NodeLocal DNSCache is not installed on master nodes. If you want to install NodeLocal DNSCache on master nodes and taints are added to master nodes, you must modify taints and tolerations for the node-local-dns DaemonSet in the kube-system namespace.
 
 To forward DNS requests that are previously directed to CoreDNS to the DaemonSet that runs a DNS cache, you must set the nameservers parameter of pod configurations to 169.254.20.10 and the IP address of kube-dns. To do this, use one of the following methods:
 
@@ -97,8 +97,8 @@ kubectl label namespace default node-local-dns-injection=enabled
 
 **Note:**
 
--   The preceding command enables automatic DNSConfig injection only for the default namespace. To enable DNSConfig auto injection for other namespaces, replace `default` with the namespace based on your requirements.
--   If automatic DNSConfig injection is enabled for a namespace but you do not want to automatically inject DNSConfig to a pod, you can add the `node-local-dns-injection=disabled` label to the pod template.
+-   The preceding command enables automatic DNSConfig injection only for the default namespace. To enable automatic DNSConfig injection for other namespaces, replace `default` with the namespace based on your requirements.
+-   If automatic DNSConfig injection is enabled for a namespace but you do not want to automatically inject DNSConfig to a specified pod, you can add the `node-local-dns-injection=disabled` label to the pod template.
 
 After automatic DNSConfig injection is enabled, the following parameters are added to new pods. To ensure the high availability of DNS services, the cluster IP address of kube-dns is added to the nameservers parameter as a backup DNS server.
 
@@ -127,7 +127,7 @@ To enable automatic DNSConfig injection, the following conditions must be met. I
 -   The namespace to which new pods belong has the `node-local-dns-injection=enabled` label.
 -   The namespace to which new pods belong does not have labels that are related to Elastic Container Instance-based pods, such as `virtual-node-affinity-injection`, `eci`, and `alibabacloud.com/eci`.
 -   New pods do not have labels that are related to elastic container instances, such as `eci` and `alibabacloud.com/eci`, or the `node-local-dns-injection=disabled` label.
--   New pods have the `hostNetwork` network and the `ClusterFirstWithHostNet` DNSPolicy, or the pods do not have the `hostNetwork` network but have the `ClusterFirst` DNSPolicy.
+-   New pods use the `hostNetwork` network and the `ClusterFirstWithHostNet` DNSPolicy, or the pods do not use the `hostNetwork` network but use the `ClusterFirst` DNSPolicy.
 
 **Method 2: Manually specify DNSConfig**
 
@@ -166,7 +166,7 @@ spec:
 -   dnsPolicy: Set the value to `None`.
 -   nameservers: Set the value to 169.254.20.10 and the cluster IP address of kube-dns.
 -   searches: Set the DNS search domains. Make sure that internal domains can be resolved.
--   ndots: Default value: 5. You can improve resolution efficiency by setting this parameter to a smaller value. For more information, see [resolv.conf](https://linux.die.net/man/5/resolv.conf).
+-   ndots: You can improve resolution efficiency by setting this parameter to a smaller value. Default value: 5. For more information, see [resolv.conf](https://linux.die.net/man/5/resolv.conf).
 
 **Method 3: Configure kubelet startup parameters**
 
@@ -298,7 +298,7 @@ The following example shows how to enable NodeLocal DNSCache for a Deployment th
 
 ## Upgrade NodeLocal DNSCache
 
-If you have installed NodeLocal DNSCache on the Add-ons page, you must upgrade NodeLocal DNSCache on the Add-ons page. If you have installed NodeLocal DNSCache on the App Catalog page, you must uninstall the current version of NodeLocal DNSCache on the Helm chart page and install the latest version.
+If you have installed NodeLocal DNSCache on the Add-ons page, you must upgrade NodeLocal DNSCache on the same page. If you have installed NodeLocal DNSCache on the App Catalog page, you must uninstall the current version of NodeLocal DNSCache on the Helm chart page and install the latest version.
 
 **Upgrade NodeLocal DNSCache on the Add-ons page**
 
@@ -310,7 +310,7 @@ If you have installed NodeLocal DNSCache on the Add-ons page, you must upgrade N
 
 4.  In the left-side navigation pane of the details page, choose **Operations** \> **Add-ons**.
 
-5.  On the Add-ons page, find NodeLocal DNSCache and click **Upgrade**. In the dialog box that appears, click **OK**.
+5.  On the Add-ons page, find NodeLocal DNSCache and click **Upgrade**. In the message that appears, click **OK**.
 
     **Note:** If you modified taints and tolerations for the node-local-dns DaemonSet, the modifications are overwritten during the upgrade process. You must configure taints and tolerations again after the upgrade is completed.
 
@@ -321,7 +321,7 @@ If you have installed NodeLocal DNSCache on the App Catalog page, you must unins
 
 ## Uninstall NodeLocal DNSCache
 
-If you have installed NodeLocal DNSCache on the Add-ons page, you must uninstall NodeLocal DNSCache on the Add-ons page. If you have installed NodeLocal DNSCache on the App Catalog page, you must uninstall NodeLocal DNSCache on the Helm chart page.
+If you have installed NodeLocal DNSCache on the Add-ons page, you must uninstall NodeLocal DNSCache on the Add-ons page. If you have installed NodeLocal DNSCache on the App Catalog page, you must uninstall NodeLocal DNSCache on the Helm page.
 
 **Uninstall NodeLocal DNSCache on the Add-ons page**
 
@@ -333,7 +333,7 @@ If you have installed NodeLocal DNSCache on the Add-ons page, you must uninstall
 
 4.  In the left-side navigation pane of the details page, choose **Operations** \> **Add-ons**.
 
-5.  On the Add-ons page, find NodeLocal DNSCache and click **Uninstall**. In the dialog box that appears, click **OK**.
+5.  On the Add-ons page, find NodeLocal DNSCache and click **Uninstall**. In the message that appears, click **OK**.
 
     **Note:** After NodeLocal DNSCache is uninstalled, all DNS queries are sent to CoreDNS. We recommend that you add replicas for CoreDNS before you uninstall NodeLocal DNSCache.
 
@@ -370,12 +370,88 @@ If you have installed NodeLocal DNSCache on the Add-ons page, you must uninstall
 
     4.  In the left-side navigation pane of the details page, choose **Applications** \> **Helm**.
 
-    5.  On the Helm page, select ack-node-local-dns-default and click **Delete** in the **Actions** column. In the dialog box that appears, click **OK**.
+    5.  On the Helm page, select ack-node-local-dns-default and click **Delete** in the **Actions** column. In the message that appears, click **OK**.
 
 
 ## Compatibility with PrivateZone
 
-By default, NodeLocal DNSCache uses the TCP protocol to communicate with CoreDNS. CoreDNS communicates with the upstream servers based on the protocol used by the source of DNS queries. If PrivateZone is used in your cluster, DNS queries processed by NodeLocal DNSCache are sent to PrivateZone by using the TCP protocol. PrivateZone does not support the TCP protocol in some regions. Therefore, errors may occur when DNS queries are processed by using PrivateZone.
+By default, NodeLocal DNSCache uses the TCP protocol to communicate with CoreDNS. CoreDNS communicates with the upstream servers based on the protocol used by the source of DNS queries. If PrivateZone is used in your cluster, DNS queries processed by NodeLocal DNSCache are sent to PrivateZone over TCP. PrivateZone does not support TCP in some regions. Therefore, errors may occur when DNS queries are processed by using PrivateZone.
+
+## Modify the ConfigMap of Terway
+
+1.  Run the following command to view the ConfigMap of Terway:
+
+    ```
+    kubectl -n kube-system edit cm eni-config -o yaml
+    ```
+
+2.  Check the ConfigMap of Terway.
+
+    -   Check whether IPVLAN is enabled in the `eniip_virtual_type` field. If this field does not exist in the ConfigMap or the value is not set to IPVLAN, you do not need to perform the following steps before you can install NodeLocal DNSCache. For more information, see [Install NodeLocal DNSCache](#section_rzr_wqx_ss3).
+    -   Check whether the `host_stack_cidrs` field of the ConfigMap is specified. If the `host_stack_cidrs` field is specified, you do not need to perform the following steps before you can install NodeLocal DNSCache. For more information, see [Install NodeLocal DNSCache](#section_rzr_wqx_ss3).
+3.  Add the `host_stack_cidrs` field to the ConfigMap of Terway and set the value to 169.254.20.10/32. Then, save the ConfigMap and exist.
+
+    ```
+     10-terway.conf: |
+      {
+        "cniVersion": "0.3.0",
+        "name": "terway",
+        "eniip_virtual_type": "IPVlan",
+        "host_stack_cidrs": ["169.254.20.10/32"], 
+        "type": "terway"
+      }
+    ```
+
+4.  Run the following command to query all of the DaemonSet pods for Terway:
+
+    ```
+    kubectl -n kube-system get pod | grep terway-eniip
+    ```
+
+    Expected output:
+
+    ```
+    terway-eniip-7d56l         2/2     Running   0          30m
+    terway-eniip-s7m2t         2/2     Running   0          30m
+    ```
+
+5.  Run the following command to recreate the Terway pods:
+
+    ```
+     kubectl -n kube-system delete pod terway-eniip-7d56l terway-eniip-s7m2t
+    ```
+
+6.  Log on to a node of the cluster and run the following command to query the ConfigMap of Terway.
+
+    If the ConfigMap contains the field that you have added, it indicates that the ConfigMap of Terway is modified.
+
+    ```
+    cat /etc/cni/net.d/*
+    ```
+
+    Expected output:
+
+    ```
+     {
+       "cniVersion": "0.3.0",
+       "name": "terway-chainer",
+       "plugins": [
+         {
+           "eniip_virtual_type": "IPVlan",
+           "host_stack_cidrs": [ 
+             "169.254.20.10/32",
+           ],
+           "type": "terway"
+         },
+         {
+           "type": "cilium-cni"
+         }
+       ]
+     }
+    ```
+
+    After all the Terway pods are recreated and run as normal, you can install NodeLocal DNSCache.
+
 
 **Related topics**  
 
