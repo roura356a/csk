@@ -21,7 +21,8 @@ keyword: [存储卷, 常见问题, FAQ]
 |NAS存储卷常见问题|-   [NAS存储卷挂载时间太长](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)
 -   [NAS存储卷挂载失败时出现timeout错误](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)
 -   [使用NAS存储卷时，提示chown: option not permitted](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)
--   [挂载NAS存储卷失败](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md) |
+-   [挂载NAS存储卷失败](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)
+-   [使用NAS动态存储卷时Controller的任务队列已满且无法创建新的PV](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md) |
 |OSS存储卷常见问题|-   [OSS存储卷挂载失败](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/OSS存储卷/OSS存储卷FAQ.md)
 -   [集群升级后容器内OSS挂载目录不可用](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/OSS存储卷/OSS存储卷FAQ.md) |
 
