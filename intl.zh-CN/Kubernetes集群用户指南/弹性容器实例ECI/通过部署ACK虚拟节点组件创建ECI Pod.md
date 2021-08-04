@@ -197,5 +197,3 @@ keyword: [虚拟节点, ack-virtual-node组件, 创建弹性容器实例ECI Pod]
 
 [基于ECI运行Job任务](/intl.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/基于ECI运行Job任务.md)
 
-[ASK使用ECI]()
-
