@@ -71,7 +71,7 @@ Inclavare Containers是工业界首个面向机密计算场景的开源容器运
 
 3.  执行以下命令，安装Occlum软件栈。
 
-    **说明：** Occlum是Inclavare Container当前支持的Enclave运行时，而Inclavare Containers需要Enclave运行时的配合才能运行机密容器。
+    **说明：** Occlum是Inclavare Containers当前支持的Enclave运行时，而Inclavare Containers需要Enclave运行时的配合才能运行机密容器。
 
     ```
     yum install -y occlum-pal occlum-rdfsbase-dkms
