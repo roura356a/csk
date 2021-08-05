@@ -220,7 +220,7 @@ The descheduler component is used to schedule pods that cannot find suitable nod
         Expected output:
 
         ```
-        deployment.apps/nginx-deployment-basic created
+        configmap/descheduler created
         ```
 
     2.  Wait 2 minutes and run the following command to check the nodes to which the pods are scheduled:
