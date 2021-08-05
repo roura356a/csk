@@ -8,7 +8,7 @@ This topic introduces directx-device-plugin-windows, describes the usage notes o
 
 ## Introduction
 
-directx-device-plugin-windows is a DirectX device plug-in for Container Service for Kubernetes \(ACK\) clusters. directx-device-plugin-windows enables GPU acceleration based on DirectX for Windows containers that are deployed on GPU-accelerated virtualization instances. For more information about GPU-accelerated virtualization instances, see [GPU-accelerated virtualization instance families]().
+directx-device-plugin-windows is a DirectX device plug-in for Container Service for Kubernetes \(ACK\) clusters. directx-device-plugin-windows enables GPU acceleration based on DirectX for Windows containers that are deployed on GPU-accelerated virtualization instances.
 
 directx-device-plugin-windows supports only ACK clusters that use Kubernetes 1.20.4 or later.
 
