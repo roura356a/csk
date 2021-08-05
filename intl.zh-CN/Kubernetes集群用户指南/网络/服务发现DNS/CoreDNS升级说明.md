@@ -6,8 +6,8 @@ keyword: [CoreDNS升级, DNS解析请求失败, 超时]
 
 在CoreDNS组件的升级过程中，ACK会进行CoreDNS配置文件即Corefile的配置迁移，同时进行CoreDNS容器组的重建。整个升级过程中，您可能会遇到部分DNS解析请求失败或者超时的情况。本文介绍CoreDNS升级前的检查和优化操作，以降低DNS解析请求失败或者超时的可能性。
 
--   [创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)
--   [通过kubectl管理Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)
+-   已创建ACK Pro版集群。具体操作，请参见[创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
+-   已通过kubectl工具连接集群。具体操作，请参见[通过kubectl管理Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
 
 ## 升级CoreDNS过程说明
 
@@ -16,7 +16,7 @@ CoreDNS升级过程中，ACK会用新版本的YAML模板覆盖您集群中旧版
 -   CoreDNS的副本数。
 -   CoreDNS配置项，即ConfigMap **coredns**。
 
-从1.7.0版本起，CoreDNS的默认内存限制会被调整至2 GB，正常情况下不会出现Pod OOM（内存溢出）情况，无需对内存限制再次修改。
+从1.7.0版本起，CoreDNS的默认内存限制会被调整至2 GB，正常情况下不会出现Pod内存溢出OOM（Out of Memory）情况，无需对内存限制再次修改。
 
 若您此前对YAML模板进行手动自定义变更，修改了容忍Toleration、内存和CPU的资源请求和限制等字段，将会被覆盖。针对这种情况，您可以手动升级CoreDNS，或者在自动升级CoreDNS后再次更新YAML模板内容。具体操作，请参见[【组件升级】CoreDNS升级公告](/intl.zh-CN/产品公告/【组件升级】CoreDNS升级公告.md)。
 
@@ -57,7 +57,7 @@ CoreDNS升级过程中，ACK会用新版本的YAML模板覆盖您集群中旧版
         // 其它不相关字段已省略。
         mode: ipvs
         // 如果ipvs键不存在，需要添加此键。
-        ipvs：
+        ipvs:
           udpTimeout: 10s
     ```
 
@@ -111,7 +111,7 @@ CoreDNS升级过程中，ACK会用新版本的YAML模板覆盖您集群中旧版
         // 其它不相关字段已省略。
         mode: ipvs
         // 如果ipvs键不存在，需要添加此键。
-        ipvs：
+        ipvs:
           udpTimeout: 10s
     ```
 
@@ -126,10 +126,10 @@ CoreDNS升级过程中，ACK会用新版本的YAML模板覆盖您集群中旧版
     2.  执行以下命令删除上步骤中查看所有容器，系统将会自动重建名为kube-proxy-worker容器。
 
         ```
-        kubectl -n kube-system delete pod <kube-proxy-worker-xxxx>
+        kubectl -n kube-system delete pod <kube-proxy-worker-****>
         ```
 
-        **说明：** 将<kube-proxy-worker-xxxx\>替换为上述打印的所有容器组名称。
+        **说明：** 将<kube-proxy-worker-\*\*\*\*\>替换为上述打印的所有容器组名称。
 
 4.  验证UDP超时时间的配置是否成功。
 
