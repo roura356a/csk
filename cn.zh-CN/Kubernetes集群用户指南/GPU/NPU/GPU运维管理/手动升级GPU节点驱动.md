@@ -92,8 +92,8 @@ keyword: [升级GPU节点驱动, 手动升级]
     ```
     nvidia-smi -pm 1 || true                            # 代表启用Persistence模式。
     nvidia-smi -acp 0 || true                           # 切换权限要求为UNRESTRICTED。
-    nvidia-smi --auto-boost-default=0 || true           # 允许非管理员控制自动提升模式，0代表允许，1代表不允许。
-    nvidia-smi --auto-boost-permission=0 || true        # 开启默认的自动提升模式，0代表不允许。
+    nvidia-smi --auto-boost-default=0 || true           # 不开启自动提升模式，0代表不启用。
+    nvidia-smi --auto-boost-permission=0 || true        # 允许非管理员控制自动提升模式，0代表允许，1代表不允许。
     nvidia-modprobe -u -c=0 -m || true                  # 加载NVIDIA统一内存内核模块，而不是NVIDIA内核模块，且使用给定的编号创建NVIDIA设备文件。
     ```
 
