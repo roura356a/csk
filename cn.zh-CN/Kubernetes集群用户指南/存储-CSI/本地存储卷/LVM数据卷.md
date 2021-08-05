@@ -31,7 +31,7 @@ keyword: [LVM数据卷, 本地存储]
 
 ## 实现架构
 
-![实现架构](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2679954161/p244778.png)
+![实现架构](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/2679954161/p244778.png)
 
 基础的LVM功能（卷的生命周期管理、扩容、挂载、格式化等）由CSI-Provisioner和CSI-Plugin实现。
 
@@ -52,7 +52,7 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
 使用CSI-Provisioner自动创建PV，有以下特点：
 
 -   StorageClass中需要指定VolumeGroup名字。
--   如果期望创建的PV在某个节点，需要给PVC添加Label：volume.kubernetes.io/selected-node: nodeName。
+-   如果期望创建的PV在某个节点，需要给PVC添加Annotations：volume.kubernetes.io/selected-node: nodeName。
 
 1.  使用以下模板创建StorageClass。
 
@@ -137,7 +137,7 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
 
     ```
     NAME                             READY   STATUS    RESTARTS   AGE
-    deployment-lvm-9f798687c-mqfht   1/1     Running   0          9s
+    deployment-lvm-9f798687c-m****   1/1     Running   0          9s
     ```
 
     执行以下命令查看PVC信息。
@@ -169,7 +169,7 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     执行以下命令查看Pod挂载详情。
 
     ```
-    kubectl exec -ti deployment-lvm-9f798687c-mqfht sh df /data
+    kubectl exec -ti deployment-lvm-9f798687c-m**** sh df /data
     ```
 
     预期输出：
@@ -213,13 +213,13 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     执行以下命令删除Pod重建。
 
     ```
-    kubectl delete pod deployment-lvm-9f798687c-mqfht
+    kubectl delete pod deployment-lvm-9f798687c-m****
     ```
 
     预期输出：
 
     ```
-    pod "deployment-lvm-9f798687c-mqfht" deleted
+    pod "deployment-lvm-9f798687c-m****" deleted
     ```
 
     执行以下命令查看Pod信息。
@@ -232,13 +232,13 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
 
     ```
     NAME                             READY   STATUS    RESTARTS   AGE
-    deployment-lvm-9f798687c-jsdnk   1/1     Running   0          2m19s
+    deployment-lvm-9f798687c-j****   1/1     Running   0          2m19s
     ```
 
     执行以下命令查看Pod挂载详情。
 
     ```
-    kubectl exec deployment-lvm-9f798687c-jsdnk ls /data
+    kubectl exec deployment-lvm-9f798687c-j**** ls /data
     ```
 
     预期输出：
@@ -291,7 +291,7 @@ LVM CSI插件分为2个组件：Plugin（负责挂载、卸载LVM卷）和Provis
     执行以下命令查看LVM卷扩容到4 GiB。
 
     ```
-    kubectl exec deployment-lvm-9f798687c-jsdnk df /data
+    kubectl exec deployment-lvm-9f798687c-j**** df /data
     ```
 
     预期输出：
