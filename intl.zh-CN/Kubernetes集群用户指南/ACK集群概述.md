@@ -50,7 +50,7 @@ ACK集群包括Pro版本、标准版、专有版三种类型。
 
 |简单、低成本、高可用，无需管理Master节点。|可以对集群基础设施进行更细粒度的控制，需要自行规划、维护、升级服务器集群。|
 |收费方式|收取集群管理费用，按照集群数量方式收费，同时但需要承担Worker节点以及其他基础资源的费用。更多信息，请参见[产品计费](/intl.zh-CN/.md)。|集群管理免费，但需要承担Worker节点以及其他基础资源的费用。更多信息，请参见[产品计费](/intl.zh-CN/.md)。|集群管理免费，但需要承担Master节点、Worker节点以及其他基础资源的费用。更多信息，请参见[产品计费](/intl.zh-CN/.md)。|
-|应用场景|适用于所有场景。|适用于所有场景。|适用于所有场景。|
+|应用场景|适用于企业生产与测试环境。|适用于个人学习与测试。|适用于K8s研究与定制化场景。|
 |用户画像|![2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/5748490061/p143466.png)
 
 |![专有版](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/5748490061/p143465.png) |
@@ -153,6 +153,7 @@ ACK集群支持的白名单功能如下表。
 -   [容器网络FAQ](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/容器网络FAQ.md)
 -   [Service FAQ](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/Service FAQ.md)
 -   [Ingress FAQ](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress FAQ.md)
+-   [多云混合云FAQ](/intl.zh-CN/Kubernetes集群用户指南/多云混合云/多云混合云FAQ.md)
 
 |-   [应用FAQ](/intl.zh-CN/Kubernetes集群用户指南/应用/应用FAQ.md)
 -   [容器安全FAQ](/intl.zh-CN/Kubernetes集群用户指南/安全/容器安全FAQ.md)
