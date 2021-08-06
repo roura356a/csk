@@ -12,7 +12,7 @@ You can view the deployment status and changes of all Kubernetes resources relat
 
 2.  In the left-side navigation pane of the ACK console, choose **Multi-cluster** \> **Application Center**.
 
-3.  On the Application Center page, click the ![View Application](../images/p260333.png) icon to the left side of the application that you want to view. You can view information about the application, including the **cluster**, **namespace**, **health status**, **deployment status**, and **deployed version**.
+3.  On the Application Center page, click the ![View Application](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/1468128261/p260333.png) icon to the left side of the application that you want to view. You can view information about the application, including the **cluster**, **namespace**, **health status**, **deployment status**, and **deployed version**.
 
 
 ## Update an application
