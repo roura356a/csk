@@ -133,7 +133,25 @@ You can view the deployment status and changes of all Kubernetes resources when 
 
 ## Verify the result
 
-1.  Enter app.demo.example.com in the address bar of your browser and press Enter.
+1.  Gets the endpoint of the application.
+
+    1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+
+    2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+
+    3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
+
+    4.  In the left-side navigation pane of the details page, choose **Network** \> **Ingresses**.
+
+    5.  View the endpoint of the demo on the routing page.
+
+2.  Enter the following in the hosts file.
+
+    ```
+    <endpoint> app.demo.example.com 
+    ```
+
+3.  Enter app.demo.example.com in the address bar of your browser and press Enter.
 
     If the page appears as shown in the following figure, it indicates that the application is deployed.
 
