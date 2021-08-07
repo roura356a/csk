@@ -29,7 +29,7 @@ You can use Operation Orchestration Service \(OOS\) to manage cluster nodes in b
 
 8.  After you set the parameters, click **Create**.
 
-    You are redirected to the Executions page in the [OOS console](https://partners-intl.aliyun.com/login-required#/oos) by default. You can find the newly submitted execution.
+    You are redirected to the Executions page in the [OOS console](https://oos.console.aliyun.com/) by default. You can find the newly submitted execution.
 
     -   If you set Execution Mode to **Automatic**, the execution automatically starts. After the execution is complete, check the execution status.
     -   If you set Execution Mode to **Manual**, you need to manually start the execution.
