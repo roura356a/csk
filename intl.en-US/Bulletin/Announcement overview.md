@@ -1,5 +1,5 @@
 ---
-keyword: [container service, ACK, announcement]
+keyword: [Container Service, ACK, Announcement]
 ---
 
 # Announcement overview
