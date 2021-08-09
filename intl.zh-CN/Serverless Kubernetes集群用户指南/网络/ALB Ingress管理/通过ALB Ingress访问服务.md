@@ -130,7 +130,7 @@ Ingress是允许访问集群内Service的规则集合，您可以通过配置转
         kubernetes.io/ingress.class: alb
         alb.ingress.kubernetes.io/name: ingres_test_base
         alb.ingress.kubernetes.io/address-type: internet
-        alb.ingress.kubernetes.io/vswitch-ids: "vsw-k1akdsmts6njkvhasriop,vsw-k1amdv9ax94gr5iwamuwu"
+        alb.ingress.kubernetes.io/vswitch-ids: "vsw-k1akdsmts6njkvhas****,vsw-k1amdv9ax94gr5iwa****"
     spec:
       rules:
       - http:
