@@ -42,14 +42,14 @@ We recommend that you read the following information before you mount NAS file s
 
     We recommend that you use the Flexvolume driver to mount NAS file systems.
 
-    The Flexvolume driver is installed by default when you create an ACK cluster in the console. You must make sure that the Flexvolume driver is upgraded to the latest version. For more information, see [Upgrade the Flexvolume driver](/intl.en-US/User Guide for Kubernetes Clusters/Cluster management/Upgrade cluster/Manage system components.md).
+    The Flexvolume driver is installed by default when you create an ACK cluster in the console. You must make sure that the Flexvolume driver is upgraded to the latest version. For more information, see [Upgrade the Flexvolume driver](/intl.en-US/User Guide for Kubernetes Clusters/Component/Manage system components.md).
 
 -   Recommended mounting method
 
     We recommend that you mount a NAS file system by using a pair of PV and PVC. This makes the NAS file system easier to manage and maintain.
 
-    -   For more information about static volumes, see [Static volumes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/NAS volumes/Static volumes.md).
-    -   For more information about dynamic volumes, see [Use NAS to create dynamic storage classes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/NAS volumes/Use NAS to create dynamic storage classes.md).
+    -   For more information about static volumes, see [Statically provisioned NAS volumes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/NAS volumes/Statically provisioned NAS volumes.md).
+    -   For more information about dynamic volumes, see [Dynamic NAS volumes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/NAS volumes/Dynamic NAS volumes.md).
 -   Not recommended mounting method
 
     We recommend that you do not directly mount NAS file systems as volumes. You can use only the Flexvolume driver to mount volumes to ACK clusters. The Network File System \(NFS\) driver provided by Kubernetes is not supported.
@@ -59,7 +59,7 @@ We recommend that you read the following information before you mount NAS file s
 
 -   NAS is a shared storage system that provides storage services for multiple pods at a time. A PVC can be shared among multiple pods.
 -   Do not delete a mount target if the related NAS file system is still mounted. Otherwise, the operating system may become unresponsive.
--   After a mount target is created, wait until the mount target is ready for use.
+-   After a mount target is created, wait until the mount target is **Available** for use.
 -   We recommend that you use NFS v3.
 -   We recommend that you upgrade Flexvolume to the latest version before you use NAS volumes.
 -   NAS file systems of Extreme type support only NFS v3. You must specify the nolock parameter when you mount these file systems.
