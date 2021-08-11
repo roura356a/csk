@@ -49,7 +49,7 @@ ACK allows you to mount CPFS file systems as static or dynamic volumes. To mount
               hostNetwork: true
               containers:
                 - name: external-cpfs-provisioner
-                  image: registry.cn-hangzhou.aliyuncs.com/acs/csi-provisioner:v1.4.0-aliyun
+                  image: registry.cn-hangzhou.aliyuncs.com/acs/csi-provisioner:v1.6.0-e360c7e43-aliyun
                   args:
                     - "--provisioner=cpfsplugin.csi.alibabacloud.com"
                     - "--csi-address=$(ADDRESS)"
