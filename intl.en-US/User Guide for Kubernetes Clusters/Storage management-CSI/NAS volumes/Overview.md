@@ -21,7 +21,7 @@ The mount target is in the following format: `055f84ad83-ixxxx.cn-hangzhou.nas.a
 
 -   Apsara File Storage NAS is a shared storage service. A persistent volume claim \(PVC\) that is used to mount a NAS file system can be shared among pods.
 -   Do not delete the mount target before you unmount the NAS file system. Otherwise, the operating system hang may occur.
--   After a mount target is created, wait until the mount target is ready for use.
+-   After a mount target is created, wait until the mount target is **Available** for use.
 -   We recommend that you use NFSv3.
 -   We also recommend that you upgrade the CSI plug-in to the latest version before you mount NAS file systems as PVs.
 -   General-purpose and Extreme NAS file systems have different limits on mounting scenarios, the number of file systems, and file sharing protocols. For more information, see [Limits of Apsara File Storage NAS]().
