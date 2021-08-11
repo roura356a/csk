@@ -6,8 +6,7 @@ keyword: [CoreDNS升级, DNS解析请求失败, 超时]
 
 在CoreDNS组件的升级过程中，ACK会进行CoreDNS配置文件即Corefile的配置迁移，同时进行CoreDNS容器组的重建。整个升级过程中，您可能会遇到部分DNS解析请求失败或者超时的情况。本文介绍CoreDNS升级前的检查和优化操作，以降低DNS解析请求失败或者超时的可能性。
 
--   已创建一个ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)或[创建Kubernetes专有版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
--   已通过kubectl工具连接集群。具体操作，请参见[通过kubectl工具连接集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
+已通过kubectl工具连接集群。具体操作，请参见[通过kubectl工具连接集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 ## 升级CoreDNS过程说明
 
@@ -73,9 +72,9 @@ CoreDNS升级过程中，ACK会用新版本的YAML模板覆盖您集群中旧版
 
 8.  验证UDP超时时间的配置是否成功。
 
-    1.  执行以下命令安装ipvsadm。
+    1.  执行以下命令安装**ipvsadm**。
 
-        ipvsadm是IPVS模块的管理工具。更多信息，请参见[ipvsadm](https://software.opensuse.org/package/ipvsadm)。
+        **ipvsadm**是IPVS模块的管理工具。更多信息，请参见[ipvsadm](https://software.opensuse.org/package/ipvsadm)。
 
         ```
         yum install -y ipvsadm
@@ -133,9 +132,9 @@ CoreDNS升级过程中，ACK会用新版本的YAML模板覆盖您集群中旧版
 
 4.  验证UDP超时时间的配置是否成功。
 
-    1.  执行以下命令安装ipvsadm。
+    1.  执行以下命令安装**ipvsadm**。
 
-        ipvsadm是IPVS模块的管理工具。更多信息，请参见[ipvsadm](https://software.opensuse.org/package/ipvsadm)。
+        **ipvsadm**是IPVS模块的管理工具。更多信息，请参见[ipvsadm](https://software.opensuse.org/package/ipvsadm)。
 
         ```
         yum install -y ipvsadm
@@ -203,8 +202,8 @@ diff /tmp/ipvsadm_timeout_old /tmp/ipvsadm_timeout_new
     kubectl -n kube-system get svc kube-dns -o yaml
     ```
 
-2.  -   如果发现sessionAffinity字段为`None`，则无需进行以下步骤。
--   如果发现sessionAffinity为`ClientIP`，则进行以下步骤。
+2.  -   如果发现sessionAffinity字段为`None`，则无需执行以下步骤。
+-   如果发现sessionAffinity为`ClientIP`，则执行以下步骤。
 3.  执行以下命令打开并编辑名为kube-dns的服务。
 
     ```
@@ -248,24 +247,19 @@ diff /tmp/ipvsadm_timeout_old /tmp/ipvsadm_timeout_new
 
     ```
     .:53 {
-            errors
-            
+            errors       
             // health插件在不同的CoreDNS版本中可能有不同的设置情形。
-            // 情形一：默认未启用health插件。
-            
+            // 情形一：默认未启用health插件。   
             // 情形二：默认启用health插件，但未设置lameduck时间。
-            health
-            
+            health      
             // 情形三：默认启用health插件，设置了lameduck时间为5秒。   
             health {
                 lameduck 5s
-            }
-            
+            }      
             // 对于以上三种情形，应统一修改成以下，调整lameduck参数为15秒。
             health {
                 lameduck 15s
-            }
-            
+            }       
             // 其它插件不需要修改，此处省略。
         }
     ```
@@ -285,24 +279,19 @@ diff /tmp/ipvsadm_timeout_old /tmp/ipvsadm_timeout_new
 
     ```
     .:53 {
-            errors
-            
+            errors     
             // health插件在不同的CoreDNS版本中可能有不同的设置情形。
-            // 情形一：默认未启用health插件。
-            
+            // 情形一：默认未启用health插件。     
             // 情形二：默认启用health插件，但未设置lameduck时间。
             health
-            
             // 情形三：默认启用health插件，设置了lameduck时间为5秒。   
             health {
                 lameduck 5s
             }
-            
             // 对于以上三种情形，应统一修改成以下，调整lameduck参数为15秒。
             health {
                 lameduck 15s
             }
-            
             // 其它插件不需要修改，此处省略。
         }
     ```
