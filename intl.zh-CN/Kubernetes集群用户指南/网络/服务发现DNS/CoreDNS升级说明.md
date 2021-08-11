@@ -6,8 +6,8 @@ keyword: [CoreDNS升级, DNS解析请求失败, 超时]
 
 在CoreDNS组件的升级过程中，ACK会进行CoreDNS配置文件即Corefile的配置迁移，同时进行CoreDNS容器组的重建。整个升级过程中，您可能会遇到部分DNS解析请求失败或者超时的情况。本文介绍CoreDNS升级前的检查和优化操作，以降低DNS解析请求失败或者超时的可能性。
 
--   已创建ACK Pro版集群。具体操作，请参见[创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)。
--   已通过kubectl工具连接集群。具体操作，请参见[通过kubectl管理Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   已创建一个ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)或[创建Kubernetes专有版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
+-   已通过kubectl工具连接集群。具体操作，请参见[通过kubectl工具连接集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 ## 升级CoreDNS过程说明
 
