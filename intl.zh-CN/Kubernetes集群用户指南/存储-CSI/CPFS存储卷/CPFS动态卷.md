@@ -53,7 +53,7 @@ CPFS（Cloud Paralleled File System）是一种并行文件系统。CPFS的数�
               hostNetwork: true
               containers:
                 - name: external-cpfs-provisioner
-                  image: registry.cn-hangzhou.aliyuncs.com/acs/csi-provisioner:v1.4.0-aliyun
+                  image: registry.cn-hangzhou.aliyuncs.com/acs/csi-provisioner:v1.6.0-e360c7e43-aliyun
                   args:
                     - "--provisioner=cpfsplugin.csi.alibabacloud.com"
                     - "--csi-address=$(ADDRESS)"
