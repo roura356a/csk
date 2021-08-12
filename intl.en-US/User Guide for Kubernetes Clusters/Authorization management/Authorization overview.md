@@ -77,7 +77,7 @@ You can perform RAM authorization by using the following methods:
 
 If a RAM user requires permissions to manage Kubernetes resources in a specified cluster, you must go to the Authorizations page of the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com) console and grant the RAM user resource-level permissions, such as the permissions to view information about pods and nodes.
 
-You can assign the following predefined roles to a RAM user. For more information, see [Assign RBAC roles to a RAM user](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Assign RBAC roles to a RAM user.md).
+You can assign the following predefined roles to a RAM user. For more information, see [Assign RBAC roles to RAM users](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/Assign RBAC roles to RAM users.md).
 
 |Role|RBAC permissions on cluster resources|
 |----|-------------------------------------|
@@ -93,6 +93,4 @@ You can assign the following predefined roles to a RAM user. For more informatio
 [FAQ about authorization management](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/FAQ about authorization management.md)
 
 [ACK default roles](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/ACK default roles.md)
-
-[The service linked role for ACK](/intl.en-US/User Guide for Kubernetes Clusters/Authorization management/The service linked role for ACK.md)
 
