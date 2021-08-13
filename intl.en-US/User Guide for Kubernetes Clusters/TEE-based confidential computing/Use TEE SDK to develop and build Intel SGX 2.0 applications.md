@@ -4,14 +4,14 @@ keyword: [Intel SGX SDK, build Intel SGX 2.0 applications]
 
 # Use TEE SDK to develop and build Intel SGX 2.0 applications
 
-This topic describes how to use trusted execution environment \(TEE\) SDK to develop, build, and deploy applications. In this topic, an application named `helloworld` is used as an example. This application generates messages in an enclave on a regular basis and sends the messages to an untrusted buffer. The messages are then sent to the terminal.
+This topic describes how to use trusted execution environment \(TEE\) SDK to develop, build, and deploy Intel Software Guard Extensions \(SGX\) 2.0 applications. In this topic, an application named `helloworld` is used as an example. This application generates messages in an enclave on a regular basis and sends the messages to an untrusted buffer. The messages are then sent to the terminal.
 
 -   [Create a managed Kubernetes cluster for confidential computing](/intl.en-US/User Guide for Kubernetes Clusters/TEE-based confidential computing/Create a managed Kubernetes cluster for confidential computing.md).
 -   The following environments are available for developing and compiling applications:
-    -   AliyunLinux 2.
-    -   Intel SGX Driver.
+    -   Alibaba Cloud Linux 2
+    -   Intel SGX Driver
     -   TEE SDK: a development kit provided by Alibaba Cloud to develop applications for confidential computing. This kit includes development models and programming interfaces that are consistent with those of Intel Linux SGX SDK. TEE SDK is compatible with Intel SGX SDK and Intel SGX Platform Software \(PSW\).
-    -   Architectural Enclave Service Manager \(AESM\).
+    -   Architectural Enclave Service Manager \(AESM\)
 
 ## How Intel SGX works
 
@@ -22,7 +22,7 @@ This section describes how Intel SGX works.
 -   An Intel SGX 2.0 application consists of two components:
     -   Untrusted component
 
-        The untrusted component is an unencrypted part of the memory. If you store the code and data of an application in this part, the `main()` function of the application must also be placed in the untrusted component. In the preceding figure, the `main()` and `bar()` functions are placed in the untrusted component.
+        The untrusted component is an unencrypted part of the memory. If you store the code and data of an application in this part, the `main()` function \(the entry function\) of the application must also be placed in the untrusted component. In the preceding figure, the `main()` and `bar()` functions are placed in the untrusted component.
 
     -   Trusted component \(enclave\)
 
@@ -54,26 +54,24 @@ sgx-device-plugin/samples/hello_world/
                                          │   ├── Enclave.h
                                          │   ├── Enclave.lds
                                          │   └── Enclave_private.pem
-                                         ├── Include
                                          └── Makefile
 ```
 
-**Note:** The following table describes the `src` directory and related files.
+The following table describes the `src` directory and related files.
 
 -   The App directory contains untrusted code, such as the main\(\) function \(the entry function\) and code of OCALL functions.
 -   The Enclave directory contains trusted code, such as the code of ECALL functions.
 
     |File|Description|
     |----|-----------|
-    |Enclave.edl|The EDL file.|
-    |Enclave.lds|The enclave linker script.|
-    |Enclave\_private.pem|The private key that is used to sign the enclave.so file.|
-    |Enclave.config.xml|The enclave configuration file that specifies parameters, such as the stack size and whether to enable debugging.|
-    |Enclave.h and Enclave.cpp|The code that implements the trusted component.|
+    |Enclave.edl|The EDL file|
+    |Enclave.lds|The enclave linker script|
+    |Enclave\_private.pem|The private key that is used to sign the enclave.so file|
+    |Enclave.config.xml|The enclave configuration file that specifies parameters, such as the stack size and whether to enable debugging|
+    |Enclave.h and Enclave.cpp|The code that implements the trusted component|
 
--   The Include directory contains a header file that is shared by untrusted code and trusted code.
 
-1.  In a command-line interface \(CLI\), connect to your managed Kubernetes cluster for confidential computing and compile hello\_world.
+1.  In a CLI, connect to your managed Kubernetes cluster for confidential computing and compile hello\_world.
 
     Run the following command in the project directory:
 
@@ -112,13 +110,13 @@ sgx-device-plugin/samples/hello_world/
     The project has been built in debug hardware mode.
     ```
 
-    Run the `./hello_world` command to start the hello\_world application.
+    Run the `./hello_world` command to start the hello\_world application:
 
     ```
     ./hello_world
     ```
 
-    The following output is returned:
+    Expected output:
 
     ```
     Wed May  6 06:53:33 2020
@@ -131,7 +129,7 @@ sgx-device-plugin/samples/hello_world/
     The following content describes how to compile the application and shows the directory hierarchy of the compiled code:
 
     -   Use a makefile to compile the application.
-        1.  Use the **sgx\_edger8r** tool and the `sgx_ecall` function to generate untrusted code \(`Enclave_u.c` and `Enclave_u.h`\) in the App directory.
+        1.  Use the **sgx\_edger8r** tool and the `sgx_ecall` ECALL function to generate untrusted code \(`Enclave_u.c` and `Enclave_u.h`\) in the App directory.
         2.  Compile untrusted binary files in the App directory.
         3.  Use the **sgx\_edger8r** tool to generate trusted code \(`Enclave_t.c` and `Enclave_t.h`\) in the Enclave directory.
         4.  Compile the enclave.so file. It is a trusted dynamic-link library.
@@ -162,13 +160,12 @@ sgx-device-plugin/samples/hello_world/
                                                  │   └── Enclave_t.o   #[generated]
                                                  ├── enclave.signed.so #[generated]
                                                  ├── enclave.so        #[generated]
-                                                 ├── Include
                                                  └── Makefile
         ```
 
 2.  Build an image and deploy the `helloworld` application.
 
-    Build an image from the compiled application based on **alibabatee/centos\_sgx:7**. The image must contain the dynamic-link library that is required by the compiled application.
+    Build an image from the compiled application based on **alibabatee/centos\_sgx:7**. The image must contain the dynamic-link library that is required by the compiled SGX application.
 
     The Dockerfile contains the following content:
 
@@ -238,7 +235,7 @@ sgx-device-plugin/samples/hello_world/
 -   `trusted {...}`declares an ECALL function.
 -   `untrusted {...}`declares an OCALL function.
 
-In this example, the application does not need to invoke an OCALL function. Therefore, only one ECALL function \(`ecall_hello_from_enclave`\) is declared. This ECALL function is used to create a buffer in the enclave and deploy the `helloworld` application. Then, the information in the buffer is copied to the untrusted component. The application invokes `printf` in the untrusted component to print the information.
+In this example, the application does not need to invoke an OCALL function. Therefore, only one ECALL function \(`ecall_hello_from_enclave`\) is declared. This ECALL function is used to create a buffer in the enclave and deploy the `helloworld` application. Then, the information in the buffer is copied to an untrusted buffer in the untrusted component. The application invokes `printf` in the untrusted component to print the information.
 
 |```
 enclave {
@@ -247,7 +244,7 @@ enclave {
     };
 };
 ``` |
-|Enclave/Enclave.lds|-|```
+|Enclave/Enclave.lds|N/A|```
 enclave.so
 {
     global:
@@ -259,7 +256,7 @@ enclave.so
         *;
 };
 ``` |
-|Enclave/Enclave.config.xml|-|```
+|Enclave/Enclave.config.xml|N/A|```
 <EnclaveConfiguration>
   <ProdID>0</ProdID>
   <ISVSVN>0</ISVSVN>
@@ -278,7 +275,7 @@ enclave.so
 #define _ENCLAVE_H_
 #endif
 ``` |
-|Enclave/Enclave.cpp|-|```
+|Enclave/Enclave.cpp|N/A|```
 #include "Enclave.h"
 #include "Enclave_t.h" /* print_string */
 #include <string.h>
@@ -297,10 +294,10 @@ void ecall_hello_from_enclave(char *buf, size_t len)
     buf[size-1] = '\0';
 }
 ``` |
-|Enclave/Enclave\_private.pem|The private key that is used to sign the enclave.so file.|```
+|Enclave/Enclave\_private.pem|The private key that is used to sign the enclave.so file|```
 openssl genrsa -out Enclave/Enclave_private.pem -3 3072
 ``` |
-|App/App.h|-|```
+|App/App.h|N/A|```
 #ifndef _APP_H_
 #define _APP_H_
 
@@ -336,7 +333,7 @@ extern "C" {
 
 #endif /* !_APP_H_ */
 ``` |
-|App/App.cpp|-|```
+|App/App.cpp|N/A|```
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
