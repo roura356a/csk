@@ -101,20 +101,20 @@ When you use node pools to control cGPU, take note of the following limits:
     -   You must add the following labels to the nodes in the cgpu-no-isolation node pool: cgpu=true and cgpu.disable.isolation=true.
     The following figure shows the labels that are added to the nodes in the cgpu-no-isolation node pool.
 
-    ![Node labels](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0946876061/p178925.png)
+    ![Node labels](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/0946876061/p178925.png)
 
 7.  Click **Confirm Order**.
 
     On the Node Pools page, check the **Status** column of the node pool. If the node pool is in the **Initializing** state, it indicates that the node pool is being created. After the node pool is created, the **Status** of the node pool changes to **Active**.
 
 
-**Note:** If you want to add GPU-accelerated nodes to the node pool, you can scale out the node pool. For more information, see [Manage a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Manage a node pool.md).
+**Note:** If you want to add GPU-accelerated nodes to the node pool, you can scale out the node pool. For more information, see [Scale out a node pool](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node pool management/Manage node pools.md).
 
 ## Step 2: Submit jobs
 
 Submit two jobs named cgpu-test and cgpu-test-no-isolation. You must set nodeSelector in the YAML files of both jobs.
 
--   cgpu-test: The amount of GPU memory to be allocated to this job is not specified in the script of the job. Therefore, memory isolation is required for running this job. The following YAML template is provided as an example:
+-   cgpu-test: The amount of GPU memory to be allocated to this job is not specified in the script of the job. Therefore, memory isolation is required for running this job. The following YAML template is an example:
 
     ```
     apiVersion: apps/v1
@@ -158,7 +158,7 @@ Submit two jobs named cgpu-test and cgpu-test-no-isolation. You must set nodeSel
     -   **nodeSelector**: selects the cgpu node pool.
     -   **cgpu.disable.isolation=false**: schedules the job to the nodes in the cgpu node pool.
     -   **aliyun.com/gpu-mem**: specifies the amount of GPU memory.
--   cgpu-test-no-isolation: The amount of memory to be allocated to this job per GPU is specified in the script of the job. Therefore, memory isolation is not required for running this job. The following YAML template is provided as an example:
+-   cgpu-test-no-isolation: The amount of memory to be allocated to this job per GPU is specified in the script of the job. Therefore, memory isolation is not required for running this job. The following YAML template is an example:
 
     ```
     apiVersion: apps/v1
