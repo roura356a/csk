@@ -175,10 +175,6 @@ You can use the following methods to create an Elastic Container Instance-based 
 
 **Note:** The following operations apply only to ACK clusters and do not apply to ASK clusters.
 
-**Modify the configurations of virtual nodes in an ACK cluster**
-
-For more information, see [Configure Elastic Container Instance Profile]().
-
 **Delete virtual nodes in ACK clusters**
 
 1.  Uninstall ack-virtual-node.
