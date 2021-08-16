@@ -7,8 +7,8 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 您可以通过镜像、编排模板及命令创建一个无状态应用。容器服务Kubernetes集群支持通过Web界面使用镜像密钥。本文以Nginx为例说明如何通过镜像、编排模板及命令来创建无状态应用。
 
 -   已创建Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   已通过kubectl连接kubernetes集群。具体操作，请参见[通过Kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
--   已构建私有镜像仓库，并将镜像上传到该仓库中。本例中以阿里云容器镜像服务为示例，在，请参见[管理镜像](/cn.zh-CN/Kubernetes集群用户指南/应用/镜像/管理镜像.md)。
+-   已通过kubectl连接kubernetes集群。具体操作，请参见[通过Kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
+-   已构建私有镜像仓库，并将镜像上传到该仓库中。本例中以阿里云容器镜像服务为示例。具体操作，请参见[管理镜像](/cn.zh-CN/Kubernetes集群用户指南/应用/镜像/管理镜像.md)。
 
 ## 使用镜像创建无状态Deployment应用
 
@@ -49,7 +49,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 |容器与节点是否使用相同的时区。 |
 
-    **说明：** 本例中选择**无状态**类型，即Deployment类型。
+    **说明：** 本例中选择**无状态（Deployment）**类型。
 
 7.  单击**下一步**。
 
@@ -60,7 +60,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 在**容器配置**配置向导页面中，配置容器的镜像与资源、端口、环境变量、健康检查、生命周期、数据卷和日志。
 
-**说明：** 在**容器配置**配置向导页面下方，单击**添加容器**为应用的Pod设置多个容器。
+**说明：** 在**容器1**页签右侧，单击**添加容器**为应用的Pod设置多个容器。
 
 1.  在**基本配置**区域，完成容器的基本配置。
 
@@ -138,11 +138,11 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
     -   **资源引用**
 配置项、保密字典支持全部文件的引用，以保密字典为例。选择**保密字典**类型，只选择目标保密字典，则默认引用全部文件。
 
-![环境变量](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9173530261/p130410.png)
+![环境变量](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9173530261/p130410.png)
 
 对应的YAML，也引用了整个密钥（Secret）。
 
-![yaml](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p130413.jpg) |
+![yaml](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/3506659951/p130413.jpg) |
     |变量名称
 
 |设置环境变量名称。 |
@@ -200,7 +200,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
     您可以为容器的生命周期配置启动执行、启动后处理和停止前处理。具体操作，请参见[配置生命周期](https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/)。
 
-    ![生命周期](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7975659951/p134220.png)
+    ![生命周期](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7975659951/p134220.png)
 
     |参数|描述|
     |--|--|
@@ -227,7 +227,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
     本例中配置了一个云存储类型的数据卷声明disk-ssd，将其挂载到容器的/tmp路径下。
 
-    ![配置数据卷](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p12307.png)
+    ![配置数据卷](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4331557261/p12307.png)
 
 7.  在**日志配置**区域，进行采集配置和自定义Tag设置。
 
@@ -455,7 +455,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 1.  在**创建应用任务已提交**面板中单击**查看应用详情**。
 
-    ![查看详情](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p10983.png)
+    ![查看详情](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/3506659951/p10983.png)
 
     默认进入新建的nginx-deployment的详情页面。
 
@@ -465,11 +465,11 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
     -   单击路由右侧的**创建**，也可以创建路由。
 2.  单击左侧导航栏的**路由与负载均衡** \> **路由**，可以看到路由列表下出现一条规则。
 
-    ![路由规则](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4054404061/p10985.png)
+    ![路由规则](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4054404061/p10985.png)
 
 3.  在浏览器中访问路由测试域名，您可访问Nginx欢迎页。
 
-    ![访问nginx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3506659951/p10986.png)
+    ![访问nginx](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/3506659951/p10986.png)
 
 
 **相关操作**
@@ -527,7 +527,7 @@ keyword: [编排模板, 镜像密钥, 命令, 创建无状态应用]
 
 6.  对模板进行相关配置，完成配置后单击**创建**。
 
-    -   **命名空间**：选择资源对象所属的命名空间，默认是Default。除了节点、持久化存储卷等底层计算资源以外，大多数资源对象需要作用于命名空间。
+    -   **命名空间**：在创建页面的顶部选择资源对象所属的命名空间，默认是Default。除了节点、持久化存储卷等底层计算资源以外，大多数资源对象需要作用于命名空间。
     -   **示例模板**：阿里云容器服务提供了多种资源类型的Kubernetes YAML示例模板，让您快速部署资源对象。您可以根据Kubernetes YAML编排的格式要求自主编写，来描述您想定义的资源类型。
     -   **添加工作负载**：您可通过此功能快速定义一个YAML模板。
     -   **使用已有模板**：您可将已有编排模板导入到模板配置页面。
@@ -678,7 +678,7 @@ nginx-2721357637-d****                 1/1       Running   1          9h
 
         本文示例使用Tomcat私有镜像。
 
-        ![容器配置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9085659951/p13583.png)
+        ![容器配置](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9085659951/p13583.png)
 
     3.  单击**设置镜像密钥**，在弹出的对话框中进行设置。
 
@@ -694,11 +694,11 @@ nginx-2721357637-d****                 1/1       Running   1          9h
 
             单击**确定**，您可看到密钥已经成功创建。
 
-            ![设置密钥](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9085659951/p13585.png)
+            ![设置密钥](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9085659951/p13585.png)
 
         -   您也可单击**已有密钥**。您可通过命令行或YAML文件等方式预先创建好容器镜像密钥，具体操作，请参见[如何支持私有镜像]()和[使用私有镜像仓库创建应用](/cn.zh-CN/快速入门/高阶入门/使用私有镜像仓库创建应用.md)。
 
-            ![已有密钥](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9085659951/p13586.png)
+            ![已有密钥](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9085659951/p13586.png)
 
 8.  根据页面引导，完成其他配置，最后单击**创建**。
 
