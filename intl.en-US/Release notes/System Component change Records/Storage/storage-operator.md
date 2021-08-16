@@ -1,10 +1,10 @@
 ---
-keyword: [Storage Operator, Storage Operator release notes]
+keyword: [storage-operator, release notes for storage-operator]
 ---
 
 # storage-operator
 
-Storage Operator is a component that is used to manage the lifecycle of the storage components provided by Container Service for Kubernetes \(ACK\). This topic introduces Storage Operator and lists the latest changes to Storage Operator.
+The storage-operator component is used to manage the lifecycle of storage components. This topic describes the release notes for storage-operator.
 
 ## Introduction
 
@@ -15,7 +15,7 @@ Storage Operator is used to manage the lifecycle of storage components. Storage 
 
 Storage Operator preferably uses custom configurations. The default configurations are used only when the custom configurations are not specified.
 
-![Storage-Operator](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4352669161/p253634.png)
+![Storage-Operator](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/4352669161/p253634.png)
 
 **Note:**
 
@@ -25,19 +25,28 @@ Storage Operator preferably uses custom configurations. The default configuratio
 
 ## Usage notes
 
-For more information about how to deploy Storage Operator, see [Use Storage Operator to deploy and upgrade storage components](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Container Storage O&M/Use Storage Operator to deploy and upgrade storage components.md).
+For more information about how to deploy storage-operator, see [Use Storage Operator to deploy and upgrade storage components](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Container Storage O&M/Use Storage Operator to deploy and upgrade storage components.md).
 
 ## Release notes
+
+**June 2021**
+
+|Version|Image address|Release date|Description|Impact|
+|-------|-------------|------------|-----------|------|
+|v1.18.8.37-c63030b-aliyun|registry-vpc.$\{region\}.aliyuncs.com/acs/storage-operator:v1.18.8.37-c63030b-aliyun|2021-06-25|-   Automatic expansion is supported.
+-   Container Network File System \(CNFS\) is supported.
+
+|No impact on workloads|
 
 **March 2021**
 
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
-|v1.18.8.28-18cca7b-aliyun|registry-vpc.$\{region\}.aliyuncs.com/acs/storage-operator:v1.18.8.28-18cca7b-aliyun|2021-03-25|New features:
+|v1.18.8.28-18cca7b-aliyun|registry-vpc.$\{region\}.aliyuncs.com/acs/storage-operator:v1.18.8.28-18cca7b-aliyun|2021-03-25|New Features:
 
 -   Batch snapshots are supported.
 -   Scheduled snapshots are supported.
 -   Cluster monitoring is supported.
 
-|No impact on workloads.|
+|No impact on workloads|
 
