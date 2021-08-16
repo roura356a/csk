@@ -193,5 +193,3 @@ You can use the following methods to create an Elastic Container Instance-based 
 
 [Use an elastic container instance to run a Job](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Use an elastic container instance to run a Job.md)
 
-[Use elastic container instances in ASK clusters]()
-
