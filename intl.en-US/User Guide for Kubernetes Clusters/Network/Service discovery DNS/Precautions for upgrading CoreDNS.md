@@ -4,15 +4,26 @@ keyword: [CoreDNS upgrading, DNS resolution failure, timeout]
 
 # Precautions for upgrading CoreDNS
 
-When you upgrade CoreDNS, Container Service for Kubernetes \(ACK\) migrates the configuration file named Corefile and recreates the pods for CoreDNS. During the upgrading process, you may encounter DNS resolution failures or timeouts. This topic describes the inspections and optimizations that you must perform before you upgrade CoreDNS. This reduces the possibility of DNS resolution failures and timeouts.
+When you upgrade CoreDNS, Container Service for Kubernetes \(ACK\) migrates the configuration file named Corefile and recreates the pods for CoreDNS. During the upgrade process, you may encounter DNS resolution failures or timeouts. This topic describes the inspections and optimizations that you must perform before you upgrade CoreDNS. This reduces the chances of DNS resolution failures and timeouts.
 
 -   [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Create a professional managed Kubernetes cluster.md)
--   [Connect to Kubernetes clusters by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md)
+-   [Connect to ACK clusters by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md)
 
-Before you upgrade CoreDNS, you must perform the following operations to reduce the possibility of DNS resolution failures and timeouts:
+## Precautions for upgrading CoreDNS
+
+During the upgrade process, ACK overwrites the CoreDNS YAML template with the configurations of the new CoreDNS version, excluding the following settings:
+
+-   The number of replicated pods
+-   The **coredns** ConfigMap
+
+In CoreDNS 1.7.0 and later, the default memory limit is 2 GB. This ensures sufficient resources for CoreDNS and avoids out of memory \(OOM\) errors. Under normal circumstances, you do not need to modify the limit.
+
+Modifications performed before the upgrade, such as toleration changes and changes on CPU and memory requests and limits, will be overwritten. To keep these modifications, manually upgrade CoreDNS or perform these modifications again after CoreDNS is automatically upgraded. For more information, see [\[Component Upgrades\] Upgrade CoreDNS to V1.6.2 or later](t1964489.md#).
+
+Before you upgrade CoreDNS, perform the following operations to reduce the chances of DNS resolution failures and timeouts:
 
 -   [Set the timeout period of UDP sessions if the kube-proxy mode of your cluster is set to IPVS](#section_m9z_3lo_iv4)
--   [Configure kube-dns](#section_66f_5fj_cl0)
+-   [Configure the kube-dns Service](#section_66f_5fj_cl0)
 -   [Configure graceful shutdown for CoreDNS](#section_btw_3tp_tte)
 
 ## Set the timeout period of UDP sessions if the kube-proxy mode of your cluster is set to IPVS
@@ -21,7 +32,7 @@ If the kube-proxy mode of your ACK cluster is set to IPVS, you must set the time
 
 **Note:** If the kube-proxy mode of your cluster is not set to IPVS, you do not need to set the timeout period of UDP sessions. For more information about how to check the kube-proxy mode of your cluster, see [View basic information](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Manage clusters/View cluster information.md).
 
-**An ACK cluster that runs Kubernetes 1.18 or later**
+**ACK clusters that run Kubernetes 1.18 or later**
 
 **Use the ACK console**
 
@@ -43,7 +54,7 @@ If the kube-proxy mode of your ACK cluster is set to IPVS, you must set the time
       config.conf: |
         apiVersion: kubeproxy.config.k8s.io/v1alpha1
         kind: KubeProxyConfiguration
-        // Other irrelevant fields are not displayed. 
+        // Irrelevant fields are not displayed. 
         mode: ipvs
         // If the ipvs key does not exist, add the key in this field. 
         ipvs:
@@ -70,13 +81,13 @@ If the kube-proxy mode of your ACK cluster is set to IPVS, you must set the time
         yum install -y ipvsadm
         ```
 
-    2.  Log on to an Elastic Compute Service \(ECS\) instance deployed in your cluster and run the following command to check the third value in the output:
+    2.  Log on to an Elastic Compute Service \(ECS\) instance in your cluster and run the following command to check the third value in the output:
 
         ```
         ipvsadm -L --timeout
         ```
 
-        If the third value in the returned output is 10, it indicates that the timeout period of UDP sessions is modified for your cluster.
+        If the third value in the output is 10, it indicates that the timeout period of UDP sessions is modified for your cluster.
 
         **Note:** After the timeout period of UDP sessions is modified, wait at least 5 minutes before you proceed.
 
@@ -97,7 +108,7 @@ If the kube-proxy mode of your ACK cluster is set to IPVS, you must set the time
       config.conf: |
         apiVersion: kubeproxy.config.k8s.io/v1alpha1
         kind: KubeProxyConfiguration
-        // Other irrelevant fields are not displayed. 
+        // Irrelevant fields are not displayed. 
         mode: ipvs
         // If the ipvs key does not exist, add the key in this field. 
         ipvs:
@@ -130,18 +141,18 @@ If the kube-proxy mode of your ACK cluster is set to IPVS, you must set the time
         yum install -y ipvsadm
         ```
 
-    2.  Log on to an Elastic Compute Service \(ECS\) instance deployed in your cluster and run the following command to check the third value in the output:
+    2.  Log on to an Elastic Compute Service \(ECS\) instance in your cluster and run the following command to check the third value in the output:
 
         ```
         ipvsadm -L --timeout
         ```
 
-        If the third value in the returned output is 10, it indicates that the timeout period of UDP sessions is modified for your cluster.
+        If the third value in the output is 10, it indicates that the timeout period of UDP sessions is modified for your cluster.
 
         **Note:** After the timeout period of UDP sessions is modified, wait at least 5 minutes before you proceed.
 
 
-**An ACK cluster that runs Kubernetes 1.16 or earlier**
+**ACK clusters that run Kubernetes 1.16 or earlier**
 
 kube-proxy of an ACK cluster that runs Kubernetes 1.16 or earlier does not support the udpTimeout parameter. We recommend that you use Operation Orchestration Service \(OOS\) and run the `ipvsadm` command on all ECS instances of your cluster at a time to modify the timeout period of UDP sessions. Run the following commands:
 
@@ -153,9 +164,9 @@ ipvsadm -L --timeout > /tmp/ipvsadm_timeout_new
 diff /tmp/ipvsadm_timeout_old /tmp/ipvsadm_timeout_new
 ```
 
-For more information about how to manage multiple ECS instances at a time, see [Manage multiple instances]().
+For more information about how to use OOS to manage multiple ECS instances at a time, see [Manage multiple instances]().
 
-## Configure kube-dns
+## Configure the kube-dns Service
 
 **Use the ACK console**
 
@@ -181,12 +192,12 @@ For more information about how to manage multiple ECS instances at a time, see [
           timeoutSeconds: 10800
     ```
 
-8.  Click **View in YAML** on the right side of **kube-dns** again and check whether the value of the sessionAffinity field is `None`. If the value is `None`, it indicates that the kube-dns Service is modified.
+8.  Find the **kube-dns** Service and click **View in YAML** in the Actions column again to check whether the value of the sessionAffinity field is `None`. If the value is `None`, it indicates that the kube-dns Service is modified.
 
 
 **Use the CLI**
 
-1.  Run the following command to view the configurations of the kube-dns Service:
+1.  Run the following command to query the configurations of the kube-dns Service:
 
     ```
     kubectl -n kube-system get svc kube-dns -o yaml
@@ -200,7 +211,7 @@ For more information about how to manage multiple ECS instances at a time, see [
     kubectl -n kube-system edit service kube-dns
     ```
 
-4.  Delete all of the fields related to sessionAffinity, including sessionAffinity, sessionAffinityConfig, and all of the subfields. Then, save the modification and exit.
+4.  Delete all of the fields related to sessionAffinity, including sessionAffinity, sessionAffinityConfig, and all of the subfields. Then, save the modifications and exit.
 
     ```
     // Delete the following content. 
@@ -219,7 +230,7 @@ For more information about how to manage multiple ECS instances at a time, see [
 
 ## Configure graceful shutdown for CoreDNS
 
-**Note:** When CoreDNS updates its configurations, additional memory resources are consumed. After the configuration file of CoreDNS is modified, check the status of the CoreDNS pods. If the memory resources of the pods are exhausted, modify the memory limit of pods in the CoreDNS Deployment. We recommend that you change the memory limit to 2 GiB.
+**Note:** When CoreDNS updates its configurations, additional memory resources may be consumed. After the coredns ConfigMap is modified, check the status of the CoreDNS pods. If the memory resources of the pods are exhausted, modify the memory limit of pods in the CoreDNS Deployment. We recommend that you change the memory limit to 2 GB.
 
 **Use the ACK console**
 
@@ -245,12 +256,12 @@ For more information about how to manage multiple ECS instances at a time, see [
             // Scenario 2: The health plug-in is enabled by default but lameduck is not set. 
             health
             
-            // Scenario 3: The health plug-in is enabled by default and lameduck is set to 5 seconds.    
+            // Scenario 3: The health plug-in is enabled by default and lameduck is set to 5s.    
             health {
                 lameduck 5s
             }
             
-            // In the preceding scenarios, change the value of lameduck to 15 seconds. 
+            // In the preceding scenarios, change the value of lameduck to 15s. 
             health {
                 lameduck 15s
             }
@@ -259,12 +270,12 @@ For more information about how to manage multiple ECS instances at a time, see [
         }
     ```
 
-    If the CoreDNS pods run as expected, it indicates that CoreDNS can be shut down gracefully. If the CoreDNS pods are abnormal, you can check the pod event and log to troubleshoot the issues.
+    If the CoreDNS pods run as normal, it indicates that CoreDNS can be shut down gracefully. If the CoreDNS pods do not run as normal, you can check the pod events and log to locate the issues.
 
 
 **Use the CLI**
 
-1.  Run the following command to open the CoreDNS ConfigMap:
+1.  Run the following command to open the coredns ConfigMap:
 
     ```
     kubectl -n kube-system edit configmap coredns
@@ -282,12 +293,12 @@ For more information about how to manage multiple ECS instances at a time, see [
             // Scenario 2: The health plug-in is enabled by default but lameduck is not set. 
             health
             
-            // Scenario 3: The health plug-in is enabled by default and lameduck is set to 5 seconds.    
+            // Scenario 3: The health plug-in is enabled by default and lameduck is set to 5s.    
             health {
                 lameduck 5s
             }
             
-            // In the preceding scenarios, change the value of lameduck to 15 seconds. 
+            // In the preceding scenarios, change the value of lameduck to 15s. 
             health {
                 lameduck 15s
             }
@@ -296,9 +307,9 @@ For more information about how to manage multiple ECS instances at a time, see [
         }
     ```
 
-3.  After you modify the configuration file of CoreDNS, save the modification and exit.
+3.  After you modify the coredns ConfigMap, save the modifications and exit.
 
-    If the CoreDNS pods run as expected, it indicates that CoreDNS can be shut down gracefully. If the CoreDNS pods are abnormal, you can check the pod event and log to troubleshoot the issues.
+    If the CoreDNS pods run as normal, it indicates that CoreDNS can be shut down gracefully. If the CoreDNS pods do not run as normal, you can check the pod events and log to locate the issues.
 
 
 **Related topics**  
