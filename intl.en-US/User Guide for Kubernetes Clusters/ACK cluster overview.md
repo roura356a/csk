@@ -102,36 +102,6 @@ The following table describes the features of ACK clusters.
 |Developer services|-   API: provides multiple API operations and supports the Kubernetes-native API. For more information, see [Use the Kubernetes API](/intl.en-US/API Reference/Use the Kubernetes API.md) and [API overview](/intl.en-US/API Reference/API overview.md).
 -   CLI: supports Cloud Shell and the open source kubectl tool. For more information, see [Use kubectl on Cloud Shell to manage ACK clusters](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl on Cloud Shell to manage ACK clusters.md) and [Connect to ACK clusters by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md). |
 
-## Features available only to users in a whitelist
-
-The following table describes the features that are available only to users in a whitelist.
-
-|Feature|Description|Professional Kubernetes cluster|Standard Kubernetes cluster|Dedicated Kubernetes cluster|
-|-------|-----------|-------------------------------|---------------------------|----------------------------|
-|Genomics computing|Provides a cluster template which helps you create professional Kubernetes clusters that are suitable for genomics computing.|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
-
-| | |
-|Low-specification instance type|Allows you to select nodes that have 2 CPU cores when you create clusters.|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
-|Custom images|Allows you to select custom images when you create clusters or node pools.|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
-|Existing security groups|Allows you to select existing security groups when you create clusters or node pools.|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
-|Exclusive ENI mode|Allows you to select the exclusive Elastic Network Interface \(ENI\) mode for the Terway plug-in when you create clusters. The Terway plug-in in exclusive ENI mode can help improve network performance.|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
-
 ## Open source projects
 
 For more information about the open source projects that are used by ACK, see [t2010588.dita\#concept\_2010588](/intl.en-US/Product Introduction/Open source projects.md).
