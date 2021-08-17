@@ -108,13 +108,6 @@ The following table describes the features that are available only to users in a
 
 |Feature|Description|Professional Kubernetes cluster|Standard Kubernetes cluster|Dedicated Kubernetes cluster|
 |-------|-----------|-------------------------------|---------------------------|----------------------------|
-|GPU-accelerated node equipped with the 2080 Ti graphics card|Allows you to use Elastic Compute Service \(ECS\) nodes of the gn6t instance family in the cluster. **Note:** ECS nodes of the gn6t instance family are available only to users that are in a whitelist. To use this feature, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png) |
 |Genomics computing|Provides a cluster template which helps you create professional Kubernetes clusters that are suitable for genomics computing.|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/7998975261/p278633.png)
 
 | | |
@@ -158,5 +151,5 @@ For more information about the open source projects that are used by ACK, see [t
 -   [FAQ about CSI](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/FAQ about CSI.md)
 -   [FAQ about FlexVolume](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/FAQ about FlexVolume.md)
 -   [GPU/NPU FAQ](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU/NPU FAQ.md)
--   [FAQ about auto scaling](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/FAQ about HPA.md) |
+-   [FAQ about auto scaling](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/FAQ about auto scaling.md) |
 
