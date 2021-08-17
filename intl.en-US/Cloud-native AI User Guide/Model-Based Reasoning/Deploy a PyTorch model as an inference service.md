@@ -7,9 +7,9 @@ keyword: [PyTorch model, inference service]
 This topic describes how to use Arena to deploy a PyTorch model as an inference service.
 
 -   [A Container Service for Kubernetes \(ACK\) cluster that contains GPU-accelerated nodes is created](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/Use GPU scheduling for ACK clusters.md).
--   [Nodes in the cluster can access the Internet](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Access the Kubernetes API server over the Internet.md).
+-   [Nodes in the cluster can access the Internet](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Cluster access control/Access the Kubernetes API server over the Internet.md).
 -   [Install Arena]().
--   A standalone PyTorch training job is completed. The PyTorch model is converted to TorchScript. For more information, see [Use Arena to submit standalone TensorFlow training jobs](/intl.en-US/Cloud-native AI User Guide/Model training/Use Arena to submit standalone TensorFlow training jobs.md).
+-   A standalone PyTorch training job is completed. The PyTorch model is converted to TorchScript. For more information, see [Use Arena to submit standalone PyTorch training jobs](/intl.en-US/Cloud-native AI User Guide/Model training/Use Arena to submit standalone PyTorch training jobs.md).
 
     **Note:** In this topic, a BERT model trained with PyTorch 1.16 is used. The model is converted to TorchScript and saved in the triton directory of a persistent volume claim \(PVC\). The model is then deployed by using `NVIDIA Triton Server`.
 
@@ -86,7 +86,7 @@ This topic describes how to use Arena to deploy a PyTorch model as an inference 
           storage: 5Gi
     ```
 
-4.  Run the following command to deploy the model by using `TensorFlow Serving`:
+4.  Run the following command to deploy the model by using `NVIDIA Triton Server`:
 
     ```
     arena serve triton \
@@ -110,7 +110,7 @@ This topic describes how to use Arena to deploy a PyTorch model as an inference 
     INFO[0001] You can run `arena get bert-triton --type triton-serving` to check the job status
     ```
 
-5.  Run the following command to query the deployment result in `TensorFlow Serving`:
+5.  Run the following command to query the status of the model deployed by using `NVIDIA Triton Server`:
 
     ```
     arena serve list -n inference
@@ -149,11 +149,11 @@ This topic describes how to use Arena to deploy a PyTorch model as an inference 
       bert-triton-202106251740-tritoninferenceserver-667cf4c74c-s6nst  Running  5m   1/1    0         cn-beijing.192.168.0.89
     ```
 
-    The preceding output shows that the model is successfully deployed by using `TensorFlow Serving`. Port 8001 is exposed for gRPC and port 8000 is exposed for the REST API.
+    The preceding output shows that the model is successfully deployed by using `NVIDIA Triton Server`. Port 8001 is exposed for gRPC and port 8000 is exposed for the REST API.
 
 7.  Configure an Internet-facing Ingress. For more information, see [Create an Ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Create an Ingress.md).
 
-    **Note:** By default, the inference service that is deployed by running the `arena serve tensorflow` command is assigned only a cluster IP address. Therefore, the service cannot be accessed over the Internet. You must create an Ingress for the inference service based on the following parameter settings:
+    **Note:** By default, the inference service deployed by using `NVIDIA Triton Server` is exposed through a cluster IP address that is not exposed to external access. You must create an Ingress for the inference service based on the following parameter settings:
 
     -   Set **Namespace** to **inference**.
     -   Set Service **Port** to 8501. This port is exposed for the REST API.
