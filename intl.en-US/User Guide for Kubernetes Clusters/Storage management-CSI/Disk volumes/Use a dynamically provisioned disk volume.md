@@ -143,7 +143,6 @@ If you require higher data security, we recommend that you use the Retain mode t
     spec:
       accessModes:
       - ReadWriteOnce
-      volumeMode: Block
       resources:
         requests:
           storage: 25Gi
