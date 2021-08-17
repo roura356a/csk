@@ -11,7 +11,7 @@ ACK提供了GPU共享调度能力，服务于共享单GPU的模型预测场景�
 
     **说明：** 仅支持在ACK Pro集群安装共享GPU组件，如果您使用的是专有版集群，您可以[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请白名单。
 
--   [t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   [t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 -   共享GPU组件的安装没有地域限制，但是目前只有以下地域支持GPU显存隔离能力。如果您需要使用显存隔离能力，请确保集群所在地域在此范围内。
 
     |地域|地域ID|
@@ -45,13 +45,21 @@ ACK提供了GPU共享调度能力，服务于共享单GPU的模型预测场景�
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
-2.  在控制台左侧导航栏中，选择**市场** \> **应用目录**。
+2.  在控制台左侧导航栏中，单击**集群**。
 
-3.  在应用目录页面的搜索框中搜索ack-ai-installer，找到ack-ai-installer，单击**ack-ai-installer**。
+3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-4.  在应用目录-ack-ai-installer页面创建区域选择目标集群，然后单击**创建**。
+4.  在集群管理页左侧导航栏中，选择**应用** \> **AI工程加速（公测）**。
 
-    安装ack-ai-installer成功后，将会跳转到ack-ai-installer详情页面，您可以看到ack-ai-installer下的各个组件。
+5.  在**云原生AI套件**页面，单击**一键部署**。
+
+6.  在一键部署云原生AI套件页面，选中**调度组件（批量任务调度、GPU共享、GPU拓扑感知、NPU调度）**，单击页面下方的**部署云原生AI套件**。
+
+    ![1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6850919261/p306167.png)
+
+    **说明：** 如果您已经部署了云原生AI套件，则在**云原生AI套件**页面的组件列表，单击**ack-ai-installer**右侧**操作**列下的**部署**。
+
+    组件安装成功后，在**云原生AI套件**页面的组件列表中能看到已安装的共享GPU组件**ack-ai-installer**。
 
 
 ## 步骤二：开启GPU共享调度能力和显存隔离能力
@@ -94,7 +102,7 @@ ACK提供了GPU共享调度能力，服务于共享单GPU的模型预测场景�
 
 ## 步骤四：安装和使用GPU资源查询工具
 
-1.  配置kubeconfig文件。具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+1.  配置kubeconfig文件。具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 2.  下载kubectl-inspect-cgpu。
 
