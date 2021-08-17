@@ -24,13 +24,13 @@ keyword: [NAS, 动态存储卷, 持久化存储, 共享存储]
 
 ## 注意事项
 
--   在使用极速NAS文件系统时，配置动态存储卷StorageClass中的`path`需要以/share为父目录。例如，`xxxxxxx.cn-hangzhou.nas.aliyuncs.com:/share/subpath`表示Pod挂载的NAS文件系统子目录为`/share/subpath`。
+-   在使用极速NAS文件系统时，配置动态存储卷StorageClass中的`path`需要以/share为父目录。例如，`0cd8b4a576-g****.cn-hangzhou.nas.aliyuncs.com:/share/subpath`表示Pod挂载的NAS文件系统子目录为`/share/subpath`。
 -   NAS支持同时被多个Pod挂载，此时多个Pod可能同时修改相同数据，需要应用自行实现数据的同步。
 
     **说明：** NAS存储的/目录不支持修改权限、属主和属组。
 
 
-## subpath类型的NAS动态存储卷
+## 使用subpath类型的NAS动态存储卷
 
 当您的多个Kubernetes应用或者Pod需要挂载相同的NAS存储卷共享数据时，或不同的Pod挂载相同NAS文件系统的不同子目录时， 可以使用subpath类型的NAS动态存储卷方式。
 
@@ -68,8 +68,10 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         |mountOptions|挂载NAS的options参数在mountOptions中配置，包括NFS协议版本。|
         |volumeAs|可选subpath、filesystem，分别表示创建子目录类型的PV和文件系统类型PV。|
         |server|表示创建子目录类型的PV时，NAS文件系统的挂载点地址。|
-        |reclaimPolicy|PV的回收策略。|
-        |archiveOnDelete|表示在reclaimPolicy为Delete时，是否删除后端存储。因为NAS为共享存储，添加此选项进行双重确认。默认为true，表示不会真正删除目录或文件，而是将其Rename，格式为：`archived-{pvName}.{timestamp}`；如果是配置为false，表示会真正删除后端对应的存储资源。|
+        |reclaimPolicy|PV的回收策略，默认为Delete，支持Retain。        -   Delete模式：删除PVC的时候，PV和NAS文件系统会一起删除。
+        -   Retain模式：删除PVC的时候，PV和NAS文件系统不会被删除，需要您手动删除。
+如果数据安全性要求高，推荐使用Retain方式以免误删数据。|
+        |archiveOnDelete|表示在reclaimPolicy为Delete时，是否删除后端存储。因为NAS为共享存储，添加此选项进行双重确认。在参数parameters下配置。默认为true，表示不会真正删除目录或文件，而是将其Rename，格式为：`archived-{pvName}.{timestamp}`；如果是配置为false，表示会真正删除后端对应的存储资源。**说明：** 在业务流量非常大时，不适合配置为false。更多信息，请参见[使用NAS动态存储卷时Controller的任务队列已满且无法创建新的PV](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/NAS存储卷FAQ.md)。 |
 
     2.  执行以下命令创建StorageClass。
 
@@ -200,14 +202,14 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
     deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
     ```
 
-    **说明：** NAS存储卷的`xxxxxxx.cn-hangzhou.nas.aliyuncs.com:/share/nas-79438493-f3e0-11e9-bbe5-00163e09****`会同时挂载到`deployment-nas-1-5b5cdb85f6-n****`和`deployment-nas-2-c5bb4746c-4****`的/data目录下。其中：
+    **说明：** NAS存储卷的`0cd8b4a576-g****.cn-hangzhou.nas.aliyuncs.com:/share/nas-79438493-f3e0-11e9-bbe5-00163e09****`会同时挂载到`deployment-nas-1-5b5cdb85f6-n****`和`deployment-nas-2-c5bb4746c-4****`的/data目录下。其中：
 
     -   `/share`：StorageClass中指定的subpath。
     -   `nas-79438493-f3e0-11e9-bbe5-00163e09****`：PV的名称。
     如果您需要为不同的Pod挂载同一个NAS文件系统的不同子目录， 则需要分别创建**pvc-1**和**nginx-1**以及**pvc-2**和**nginx-2**。
 
 
-## filesystem类型的NAS动态存储卷
+## 使用filesystem类型的NAS动态存储卷
 
 **说明：** filesystem类型的NAS动态卷在删除时默认保留文件系统和挂载点， 若需要在释放PV资源的同时释放NAS文件系统和挂载点， 则需要同时设置StorageClass中的reclaimPolicy为Delete且deleteVolume的值为true。
 
@@ -241,7 +243,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
 
         ![自定义授权](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/5536388261/p69183.png)
 
-        **说明：** 托管集群是自动添加Master RAM，专有集群则需要加Master的RAM。
+        **说明：** 托管集群是自动添加Master RAM，专有集群则需要加Master RAM。
 
     -   创建RAM用户授权以上RAM Policy并生成AccessKey，配置到csi-provisioner的`env`变量中。请参见[容器服务默认角色](/intl.zh-CN/Kubernetes集群用户指南/授权/容器服务默认角色.md)。
 
