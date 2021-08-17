@@ -7,7 +7,7 @@ keyword: [容器网络文件系统CNFS, NAS文件系统]
 为了提升NAS文件系统的性能，容器服务ACK使用CNFS（Container Network File System）托管NAS文件系统，对文件系统层独立管理。本文介绍如何使用CNFS托管NAS文件系统及CNFS在工作负载中的应用。
 
 -   已创建ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   已通过kubectl连接集群。具体操作，请参见[通过kubectl管理Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   已通过kubectl连接集群。具体操作，请参见[通过kubectl工具连接集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 ## 功能介绍
 
@@ -33,7 +33,7 @@ keyword: [容器网络文件系统CNFS, NAS文件系统]
 ```
 # 创建CNFS、storageclass和deployment、statefulset对象。
 cat << EOF | kubectl apply -f -
-apiVersion: storage.alibabacloud.com/v1alpha1
+apiVersion: storage.alibabacloud.com/v1beta1
 kind: ContainerNetworkFileSystem
 metadata:
   name: cnfs-nas-filesystem
@@ -145,7 +145,7 @@ EOF
 
         ```
         cat <<EOF | kubectl apply -f -
-        apiVersion: storage.alibabacloud.com/v1alpha1
+        apiVersion: storage.alibabacloud.com/v1beta1
         kind: ContainerNetworkFileSystem
         metadata:
           name: cnfs-nas-filesystem
@@ -199,19 +199,19 @@ EOF
         预期输出：
 
         ```
-        apiVersion: storage.alibabacloud.com/v1alpha1
+        apiVersion: storage.alibabacloud.com/v1beta1
         kind: ContainerNetworkFileSystem
         metadata:
           annotations:
             kubectl.kubernetes.io/last-applied-configuration: |
-              {"apiVersion":"storage.alibabacloud.com/v1alpha1","kind":"ContainerNetworkFileSystem","metadata":{"annotations":{},"name":"nas-load-mount-target"},"spec":{"description":"filesystem4","parameters":{"filesystemId":"17f7e4****","server":"17f7e4****-hlm35.cn-beijing.nas.aliyuncs.com"},"reclaimPolicy":"Retain","type":"nas"}}
+              {"apiVersion":"storage.alibabacloud.com/v1beta1","kind":"ContainerNetworkFileSystem","metadata":{"annotations":{},"name":"nas-load-mount-target"},"spec":{"description":"filesystem4","parameters":{"filesystemId":"17f7e4****","server":"17f7e4****-hlm35.cn-beijing.nas.aliyuncs.com"},"reclaimPolicy":"Retain","type":"nas"}}
           creationTimestamp: "2021-05-14T08:20:09Z"
           finalizers:
           - protection.alibabacloud.com/cnfs
           generation: 6
           name: cnfs-nas-filesystem
           resourceVersion: "122342382"
-          selfLink: /apis/storage.alibabacloud.com/v1alpha1/containernetworkfilesystems/nas-load-mount-target
+          selfLink: /apis/storage.alibabacloud.com/v1beta1/containernetworkfilesystems/nas-load-mount-target
           uid: a9e9650c-68b2-405b-8274-0f5b6063****
         spec:
           description: "cnfs"
@@ -435,7 +435,7 @@ EOF
         ```
         # 当NAS文件系统存在时，加载已创建的NAS文件系统
         cat <<EOF | kubectl apply -f -
-        apiVersion: storage.alibabacloud.com/v1alpha1
+        apiVersion: storage.alibabacloud.com/v1beta1
         kind: ContainerNetworkFileSystem
         metadata:
           name: cnfs-nas-filesystem
@@ -477,19 +477,19 @@ EOF
         预期输出：
 
         ```
-        apiVersion: storage.alibabacloud.com/v1alpha1
+        apiVersion: storage.alibabacloud.com/v1beta1
         kind: ContainerNetworkFileSystem
         metadata:
           annotations:
             kubectl.kubernetes.io/last-applied-configuration: |
-              {"apiVersion":"storage.alibabacloud.com/v1alpha1","kind":"ContainerNetworkFileSystem","metadata":{"annotations":{},"name":"nas-load-mount-target"},"spec":{"description":"filesystem4","parameters":{"filesystemId":"17f7e4****","server":"17f7e48ece-h****.cn-beijing.nas.aliyuncs.com"},"reclaimPolicy":"Retain","type":"nas"}}
+              {"apiVersion":"storage.alibabacloud.com/v1beta1","kind":"ContainerNetworkFileSystem","metadata":{"annotations":{},"name":"nas-load-mount-target"},"spec":{"description":"filesystem4","parameters":{"filesystemId":"17f7e4****","server":"17f7e48ece-h****.cn-beijing.nas.aliyuncs.com"},"reclaimPolicy":"Retain","type":"nas"}}
           creationTimestamp: "2021-05-14T08:20:09Z"
           finalizers:
           - protection.alibabacloud.com/cnfs
           generation: 6
           name: cnfs-nas-filesystem
           resourceVersion: "122342382"
-          selfLink: /apis/storage.alibabacloud.com/v1alpha1/containernetworkfilesystems/nas-load-mount-target
+          selfLink: /apis/storage.alibabacloud.com/v1beta1/containernetworkfilesystems/nas-load-mount-target
           uid: a9e9650c-68b2-405b-8274-0f5b6063****
         spec:
           description: cnfs
