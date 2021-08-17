@@ -102,38 +102,6 @@ ACK集群支持的功能如下表。
 |开发者服务|-   API：提供OpenAPI和社区原生API。更多信息，请参见[使用Kubernetes API](/cn.zh-CN/API参考/使用Kubernetes API.md)和[API概览](/cn.zh-CN/API参考/API概览.md)。
 -   Cloudshell：提供阿里云Cloudshell和社区原生Kubectl工具。更多信息，请参见[在CloudShell上通过kubectl管理Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/在CloudShell上通过kubectl管理Kubernetes集群.md)和[通过kubectl工具连接集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。 |
 
-## 白名单功能
-
-ACK集群支持的白名单功能如下表。
-
-|白名单功能|说明|ACK Pro版|ACK 标准版|ACK专有版|
-|-----|--|--------|-------|------|
-|基因计算|提供集群模板，帮助您创建一个用于基因计算的Pro版集群。|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
-
-|![×](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9577912261/p278629.png)
-
-|![×](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9577912261/p278629.png) |
-|低配置机型|创建集群可选择2 Core规格的节点。|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
-|使用自定义镜像|可在集群创建和节点池创建时选择自定义镜像。|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
-|选择已有安全组|可在集群创建和节点池创建时选择已有安全组。|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
-|Terway ENI独占模式|可在集群创建时选择Terway网络插件的ENI独占模式，以获得更高的网络性能。|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
-
 ## 开源项目
 
 有关容器服务ACK使用的开源项目，请参见[t2010588.dita\#concept\_2010588](/cn.zh-CN/产品简介/开源项目.md)。
