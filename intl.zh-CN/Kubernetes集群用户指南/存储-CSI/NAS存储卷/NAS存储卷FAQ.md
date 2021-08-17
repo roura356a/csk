@@ -4,7 +4,7 @@ keyword: [NAS存储卷, FAQ, 常见问题]
 
 # NAS存储卷FAQ
 
-本文为您介绍云盘存储卷常见问题的处理方法。
+本文为您介绍NAS存储卷常见问题的处理方法。
 
 -   [使用NAS时，提示chown: option not permitted](#section_srw_s3w_230)
 -   [使用NAS动态存储卷时Controller的任务队列已满且无法创建新的PV](#section_gy3_aek_sdu)
