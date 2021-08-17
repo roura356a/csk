@@ -4,11 +4,11 @@ keyword: [managed Kubernetes cluster for confidential computing, Intel SGX 2.0 a
 
 # Create a managed Kubernetes cluster for confidential computing
 
-This topic describes how to create a managed Kubernetes cluster for confidential computing in the Container Service for Kubernetes \(ACK\) console.
+This topic describes how to create a managed Kubernetes cluster for confidential computing in the Container Service for Kubernetes \(ACK\) console. Managed Kubernetes clusters for confidential computing run in Trusted Execution Environments \(TEEs\).
 
 ACK and Resource Access Management \(RAM\) are activated.
 
-ACK is activated in the [ACK console](https://cs.console.aliyun.com/) and RAM is activated in the [RAM console](https://ram.console.aliyun.com/).
+ACK is activated in the [ACK console](https://cs.console.aliyun.com/). RAM is activated in the [RAM console](https://ram.console.aliyun.com/).
 
 **Note:**
 
@@ -48,7 +48,7 @@ When you create a managed Kubernetes cluster for confidential computing, take no
 
 5.  On the **Managed Kubernetes** tab, configure the cluster.
 
-    1.  Configure basic settings of the cluster.
+    1.  Configure basic settings for the cluster.
 
         |Parameter|Description|
         |---------|-----------|
@@ -59,7 +59,7 @@ When you create a managed Kubernetes cluster for confidential computing, take no
         |**Region**|Select a region to deploy the cluster. |
         |**All Resources**|Move the pointer over **All Resources** at the top of the page and select the resource group that you want to use. After you select a resource group, virtual private clouds \(VPCs\) and vSwitches are filtered based on the selected resource group. When you create a cluster, only the VPCs and vSwitches that belong to the selected resource group are displayed in the console.
 
-![Resource Groups](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9688404061/p127165.png) |
+![Resource Groups](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9150488261/p127165.png) |
         |**Kubernetes Version**|The Kubernetes versions that are supported by ACK. |
         |**Confidential Computing**|Select **Enable**.|
         |**Container Runtime**|Only the containerd runtime is supported. For more information, see [Comparison of Docker, containerd, and Sandboxed-Container](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Comparison of Docker, containerd, and Sandboxed-Container.md). |
@@ -83,7 +83,7 @@ The CIDR block specified by **Pod CIDR Block** cannot overlap with that of the V
         -   **IP Addresses per Node** specifies the maximum number of IP addresses that can be assigned to each node. We recommend that you use the default value.
         -   After you select the VPC and specify the number of IP addresses per node, recommended values are automatically generated for Pod CIDR block and Service CIDR block. The system also provides the maximum number of nodes that can be deployed in the cluster and the maximum number of pods that can be deployed on each node. You can modify the values based on your business requirements. |
         |**Configure SNAT**|By default, an ACK cluster cannot access the Internet. If the VPC that you select for the ACK cluster cannot access the Internet, you can select **Configure SNAT for VPC**. This way, ACK will create a NAT gateway and configure Source Network Address Translation \(SNAT\) rules to enable Internet access for the VPC. |
-        |**Access to API Server**|By default, an internal-facing Server Load Balancer \(SLB\) instance is created for the cluster API server. You can modify the specification of the SLB instance. For more information, see [Instance types and specifications](/intl.en-US/Classic Load Balancer/User Guide/Instance/SLB instance overview.md).
+        |**Access to API Server**|By default, an internal-facing Server Load Balancer \(SLB\) instance is created for the cluster API server. You can modify the specification of the SLB instance. For more information, see [Instance specifications](/intl.en-US/Classic Load Balancer/User Guide/Instance/SLB instance overview.md).
 
 **Note:** If you delete the SLB instance, you cannot access the cluster API server.
 
@@ -128,7 +128,7 @@ For more information, see [Customize the SAN of the API server certificate for a
 
 6.  Click **Next:Worker Configurations** to configure worker nodes.
 
-    1.  Set worker nodes.
+    1.  Select instances as worker nodes.
 
         **Note:** You can select only ECS instances of the **c7t security-enhanced compute optimized** **instance family**. This enables the managed Kubernetes cluster for confidential computing to run Intel SGX 2.0 applications.
 
@@ -173,7 +173,7 @@ You can select higher performance levels for enhanced SSDs with larger storage c
         |**User Data**|You can enter custom scripts. Custom scripts are automatically executed after the nodes are initialized. **Note:** Windows nodes support Batch and PowerShell scripts. Before you encode the content in Base64, make sure that the first line includes \[bat\] or \[powershell\]. Linux nodes support shell scripts. For more information about the supported formats, see [cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/format.html) and [Overview of ECS instance user data](/intl.en-US/Instance/Manage instance configurations/Manage instance user data/Overview of ECS instance user data.md).
 
 If your script file is larger than 1 KB, we recommend that you upload the script to an Object Storage Service \(OSS\) bucket and pull the script from the internal endpoint of the OSS bucket. |
-        |**Custom Image**|**Note:** Do not use custom images. Some images may not support confidential computing. |
+        |**Custom Image**|**Note:** Do not use custom images. Custom images may not support confidential computing. |
         |**Custom Node Name**|Specify whether to use a **custom node name**.
 
 A node name consists of a prefix, an IP substring, and a suffix.
@@ -193,7 +193,7 @@ A node name consists of a prefix, an IP substring, and a suffix.
     |**Ingress**|Specify whether to install Ingress controllers. By default, **Install Ingress Controllers** is selected. For more information, see [Advanced Ingress configurations](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Advanced Ingress configurations.md).
 
 **Note:** If you want to select **Create Ingress Dashboard**, you must first enable Log Service. |
-    |**CloudMonitor Agent**|Select whether to install the CloudMonitor agent. After the CloudMonitor agent is installed on ECS instances, you can view monitoring information about the instances in the CloudMonitor console.|
+    |**Monitoring Agents**|Select whether to install the CloudMonitor agent. After the CloudMonitor agent is installed on ECS instances, you can view monitoring information about the instances in the CloudMonitor console.|
     |**Log Service**|Specify whether to enable Log Service. You can select an existing Log Service project or create one. By default, **Enable Log Service** is selected. When you create an application, you can enable Log Service through a few steps. For more information, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md). |
     |**Workflow Engine**|Specify whether to enable Alibaba Cloud Genomics Service \(AGS\).
 
@@ -213,15 +213,15 @@ A node name consists of a prefix, an IP substring, and a suffix.
 
 -   After the cluster is created, you can view the created cluster on the Clusters page in the console.
 
-    ![Clusters](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6765359951/p77641.png)
+    ![Clusters](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/6765359951/p77641.png)
 
--   Click **View Logs** in the **Actions** column. On the Log Information page, you can view the cluster log. To view detailed log information, click **Stack events**.
+-   Click **View Logs** in the **Actions** column. On the Log Information page, you can view the cluster log. To view detailed log data, click **Stack events**.
 
-    ![Cluster log](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6765359951/p77637.png)
+    ![View the cluster log](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/6765359951/p77637.png)
 
--   On the Clusters page, find the created cluster, and click its name or click **Details** in the Actions column. On the details page, you can click the **Basic Information** tab to view basic information about the cluster and click the **Connection Information** tab to view information about how to connect to the cluster.
+-   On the Clusters page, find the created cluster and click its name or click **Details** in the Actions column. On the details page, you can click the **Basic Information** tab to view basic information about the cluster and click the **Connection Information** tab to view information about how to connect to the cluster.
 
-    The following information is displayed:
+    The following information is displayed.
 
     -   **API Server Public Endpoint**: the IP address and port that the API server uses to provide services over the Internet. It allows you to manage the cluster by using kubectl or other tools on your terminal.
 
@@ -235,14 +235,14 @@ A node name consists of a prefix, an IP substring, and a suffix.
 
             The API server restarts after you unbind the EIP from the API server. We recommend that you do not perform operations on the cluster during the restart process.
 
-    -   **API Server Internal Endpoint**: the IP address and port that the API server uses to provide services within the cluster. The IP address belongs to the SLB instance that is bound to the cluster.
+    -   **API Server Internal Endpoint**: the IP address and port that the API server uses to provide services within the cluster. The IP address belongs to the Server Load Balancer \(SLB\) instance that is associated to the cluster.
     -   **Testing Domain**: the domain name that is used to test Services. The suffix of the domain name is `<cluster_id>.<region_id>.alicontainer.com`.
 
         **Note:** To rebind the domain name, click **Rebind Domain Name**.
 
 -   You can [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md) and run the `kubectl get node` command to query information about the nodes in the cluster.
 
-    ![View node information](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6765359951/p77634.png)
+    ![View node information](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/6765359951/p77634.png)
 
 
 **Related topics**  
