@@ -100,7 +100,7 @@ ACK集群支持的功能如下表。
 -   共享GPU：支持在云平台和自己的数据中心的集群中通过GPU共享调度框架实现多个容器运行在同一个GPU设备。更多信息，请参见[共享GPU概述](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU调度/共享GPU调度/共享GPU概述.md)。
 -   云原生AI：提供了云原生AI能力，支持编排、管理数据计算类任务。更多信息，请参见[云原生AI概述](/cn.zh-CN/云原生AI用户指南/云原生AI概述.md)。 |
 |开发者服务|-   API：提供OpenAPI和社区原生API。更多信息，请参见[使用Kubernetes API](/cn.zh-CN/API参考/使用Kubernetes API.md)和[API概览](/cn.zh-CN/API参考/API概览.md)。
--   Cloudshell：提供阿里云Cloudshell和社区原生Kubectl工具。更多信息，请参见[在CloudShell上通过kubectl管理Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/在CloudShell上通过kubectl管理Kubernetes集群.md)和[通过kubectl管理Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。 |
+-   Cloudshell：提供阿里云Cloudshell和社区原生Kubectl工具。更多信息，请参见[在CloudShell上通过kubectl管理Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/在CloudShell上通过kubectl管理Kubernetes集群.md)和[通过kubectl工具连接集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。 |
 
 ## 白名单功能
 
@@ -108,13 +108,6 @@ ACK集群支持的白名单功能如下表。
 
 |白名单功能|说明|ACK Pro版|ACK 标准版|ACK专有版|
 |-----|--|--------|-------|------|
-|使用带有2080 Ti的GPU节点|可在集群中使用gn6t规格的ECS节点。**说明：** gn6t规格的ECS节点为白名单功能。请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)申请使用。
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
-
-|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png) |
 |基因计算|提供集群模板，帮助您创建一个用于基因计算的Pro版集群。|![勾](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1438912261/p278633.png)
 
 |![×](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9577912261/p278629.png)
