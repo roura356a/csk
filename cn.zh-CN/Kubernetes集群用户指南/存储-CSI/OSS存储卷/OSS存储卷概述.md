@@ -25,7 +25,7 @@ OSS具有丰富的安全防护能力，支持服务器端加密、客户端加�
 |业务需求|参考链接|
 |----|----|
 |存储应用数据|具体操作，请参见[使用OSS静态存储卷](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/OSS存储卷/使用OSS静态存储卷.md)。 |
-|加密存储在OSS存储卷上的数据|关于阿里云容器服务的加密，请参见[服务器端加密](/cn.zh-CN/开发指南/数据安全/数据加密/服务器端加密.md)。
+|加密存储在OSS存储卷上的数据|阿里云容器服务只支持服务器端加密。更多信息，请参见[服务器端加密](/cn.zh-CN/开发指南/数据安全/数据加密/服务器端加密.md)。
 
 具体操作，请参见[加密OSS存储卷](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/OSS存储卷/加密OSS存储卷.md)。 |
 
@@ -39,8 +39,8 @@ OSS具有丰富的安全防护能力，支持服务器端加密、客户端加�
 -   目前仅支持CentOS、Alibaba Cloud Linux 2及Alibaba Cloud Linux 3操作系统。
 -   OSS数据卷是使用OSSFS文件进行挂载的FUSE文件系统，适合于读文件场景。例如：读配置文件、视频、图片文件等场景。
 -   OSSFS不擅长于写文件的应用场景。如果您的业务是将文件写入存储的场景，推荐使用NAS存储卷服务。
--   内核态文件系统相较于用户态模拟的文件系统，在稳定性、性能上更具有优势，生产环境中推荐您使用NAS文件存储，而不推荐OSS文件系统。
--   OSSFS可以通过调整配置参数的方式，优化其在缓存、权限等方面的表现，请参见[常见问题](/cn.zh-CN/常用工具/ossfs/常见问题.md)、[ossfs/README-CN.md](https://github.com/aliyun/ossfs/blob/master/README-CN.md)、[FAQ](https://github.com/aliyun/ossfs/wiki/FAQ)。
+-   内核态文件系统相较于用户态模拟的文件系统，在稳定性、性能上更具有优势，生产环境中推荐您使用NAS文件存储，而不推荐使用OSS对象存储。
+-   OSSFS可以通过调整配置参数的方式，优化其在缓存、权限等方面的表现，请参见[常见问题](/cn.zh-CN/常用工具/ossfs/常见问题.md)、[ossfs/README-CN.md](https://github.com/aliyun/ossfs/blob/master/README-CN.md)及[FAQ](https://github.com/aliyun/ossfs/wiki/FAQ)。
 
 ## 计费说明
 
