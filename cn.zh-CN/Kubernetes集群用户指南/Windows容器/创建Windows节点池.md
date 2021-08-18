@@ -16,7 +16,16 @@ keyword: [Windows节点池, 创建Windows节点池]
 -   默认情况下，每个集群中最多可包含100个节点。如果您需要添加更多节点，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)申请。
 -   添加已有云服务器时，请确保您的专有网络中的ECS实例绑定一个弹性公网IP（EIP），或者相应VPC已经配置了NAT网关。您需要确保相应节点能正常访问公网，否则，添加云服务器会失败。
 
--   Windows节点池支持的操作系统为Windows Server 2019和Windows Server Core，1909。
+-   Windows节点池支持的操作系统为Windows Server 2019和Windows Server Core，Version 1909/2004。
+
+    **说明：** ACK控制台支持选择Windows Server 2019和Windows Server Core，Version 2004。如果您有使用Windows Server Core，Version 1909的需求，请根据ECS公共镜像发布记录来选择最新的镜像ID创建节点池。更多信息，请参见[公共镜像发布记录](/cn.zh-CN/镜像/公共镜像/公共镜像发布记录.md)。
+
+-   Windows节点池的机器规格请选择4核8 GB以上的规格。
+    -   Windows容器在内存使用超出Limitation后并不会执行OOM Killed。从v1.20.4-aliyun.1版本开始，ACK的Windows节点启动时会预留一定的资源（1.5核CPU、2.5GB RAM、3GB DISK），以保证Windows系统、kubelet、容器运行时的稳定运行。更多关于OOM的信息，请参见[内存预留与处理](https://v1-20.docs.kubernetes.io/zh/docs/setup/production-environment/windows/intro-windows-in-kubernetes/#memory-reservations-and-handling)。
+
+        **说明：** ACK通过预留资源机制，可以减少或避免因Windows工作负载的过度分配而导致Windows节点完全不可用的场景产生。但当Windows容器应用发生内存泄露时，依然存在击垮Windows节点的可能性。
+
+    -   Windows容器有一定的Footprint。更多信息，请参见[Windows容器的内存要求](https://docs.microsoft.com/zh-cn/virtualization/windowscontainers/deploy-containers/system-requirements#memory-requirements)。
 
 ## 操作步骤
 
@@ -30,7 +39,7 @@ keyword: [Windows节点池, 创建Windows节点池]
 
 5.  在节点池页面右上角，单击**创建节点池**。
 
-    您还可以在节点池页面右上角，单击**创建托管节点池**或者**自动弹性伸缩配置**创建托管版或者弹性节点池。
+    您还可以在节点池页面右上角，单击**创建托管节点池**或者**自动弹性伸缩配置**创建托管节点池或者具有弹性功能的节点池。
 
 6.  在创建节点池页面，设置创建节点池的配置项。
 
@@ -44,6 +53,6 @@ keyword: [Windows节点池, 创建Windows节点池]
 
     在节点池页面，如果节点池**状态**显示**初始化中**，则说明节点池正在创建中。创建完成后，**状态**显示为**已激活**。
 
-    ![nodepool](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9106659951/p95881.png)
+    ![nodepool](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9106659951/p95881.png)
 
 
