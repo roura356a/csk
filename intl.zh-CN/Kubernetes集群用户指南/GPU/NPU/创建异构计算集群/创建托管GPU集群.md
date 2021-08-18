@@ -25,7 +25,7 @@ keyword: 创建托管GPU集群
 
     如果您需要提高配额，请提交工单申请。
 
-    -   每个账号默认最多可以创建50个集群（所有地域下），每个集群中最多可以添加100个节点。如果您需要创建更多的集群或者节点，请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请。
+    -   关于ACK集群配额限制的详情，请参见[ACK集群配额限制](/intl.zh-CN/产品简介/使用限制.md)。
 
         **说明：** 每个账户初始默认状况下VPC路由条目不超过48条，意味着您的Kubernetes集群的网络模式是Flannel时，集群的节点数最大不能超过48个（网络模式是Terway则不受该影响）。如集群需要更多节点数，您需要先对目标VPC[提交工单](https://workorder-intl.console.aliyun.com/console.htm)，申请提高配额 。
 
@@ -58,13 +58,13 @@ keyword: 创建托管GPU集群
         |**集群名称**|填写集群的名称。 **说明：** 集群名称应包含1~63个字符，可包含数字、汉字、英文字符或连字符（-）。 |
         |**集群规格**|选择所需版本，默认选中标准版。|
         |**地域**|选择集群所在的地域。|
-        |**资源组**|将鼠标悬浮于页面上方的**账号全部资源**，选择集群所在的资源组。这里显示选择的资源组。![资源组](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png) |
+        |**资源组**|将鼠标悬浮于页面上方的**账号全部资源**，选择集群所在的资源组。这里显示选择的资源组。![资源组](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8029478261/p127165.png) |
         |**Kubernetes版本**|选择Kubernetes版本，支持1.18.8-aliyun.1和1.16.9-aliyun.1两个版本。|
         |**容器运行时**|支持**Containerd**、**Docker**和**安全沙箱**。更多信息，请参见[如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？](/intl.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？.md)。 |
         |**专有网络**|设置集群的网络，您可以选择普通VPC和共享VPC。         -   共享VPC：VPC的所有者账号（资源所有者）可以将其账号下的VPC内的交换机资源共享给其组织内的其他账号使用。
         -   普通VPC：不具备共享功能的VPC。
 **说明：** Kubernetes集群仅支持专有网络。您可以在已有VPC列表中选择所需的VPC。如果没有您需要的专有网络，可以通过单击**创建专有网络**进行创建，请参见[使用专有网络](/intl.zh-CN/专有网络和交换机/使用专有网络.md)。 |
-        |**虚拟交换机**|设置虚拟交换机。 您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机 。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[创建交换机](/intl.zh-CN/专有网络和交换机/使用交换机.md)。 |
+        |**虚拟交换机**|设置虚拟交换机。 您可以在已有虚拟交换机列表中，根据**可用区**选择1~3个交换机 。如果没有您需要的交换机，可以通过单击**创建虚拟交换机**进行创建，请参见[使用交换机](/intl.zh-CN/专有网络和交换机/使用交换机.md)。 |
         |**网络插件**|设置启用的网络插件和插件配置，支持Flannel和Terway网络插件，具体可参见[t64408.md\#section\_k1z\_f1n\_lmh](/intl.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/使用Terway网络插件.md)。         -   Flannel：简单稳定的社区的Flannel CNI插件。但功能偏简单，支持的特性少，例如：不支持基于Kubernetes标准的Network Policy。
         -   Terway：阿里云容器服务自研的网络插件，将阿里云的弹性网卡分配给容器，支持Kubernetes的Network Policy来定义容器间的访问策略，支持对单个容器做带宽的限流。
 
@@ -87,17 +87,17 @@ keyword: 创建托管GPU集群
         |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/intl.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。|
         |**配置SNAT**|设置是否为专有网络配置SNAT网关。         -   如果您使用的VPC中当前已有NAT网关，容器服务会使用已有的NAT网关。
         -   如果VPC中没有NAT网关，系统会默认自动为您创建一个NAT网关。如果您不希望系统自动创建NAT网关，可以取消选中页面下方的**为专有网络配置SNAT**。此时您需要自行配置NAT网关实现VPC安全访问公网环境，或者手动配置SNAT，否则VPC内实例将不能正常访问公网，会导致集群创建失败。 |
-        |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/intl.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/实例概述.md)。
+        |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/intl.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/CLB实例概述.md)。
 
 **说明：** 删除默认创建的SLB实例将会导致无法访问API Server。
 
 您可设置是否开放**使用EIP暴露API Server**。API Server提供了各类资源对象（Pod，Service等）的增删改查及Watch等HTTP Rest接口。
 
-        -   如果选择开放，ACK会创建一个EIP，并挂载到公网SLB上。此时，Master节点的6443端口（对应API Server）暴露出来，您可以在外网通过kubeconfig连接并操作集群。
+        -   如果选择开放，ACK会创建一个EIP，并挂载到SLB上。此时，Master节点的6443端口（对应API Server）暴露出来，您可以在外网通过kubeconfig连接并操作集群。
         -   如果选择不开放，则不会创建EIP，您只能在VPC内部用kubeconfig连接并操作集群。 |
         |**RDS白名单**|设置RDS白名单。将节点IP添加到RDS实例的白名单中。|
         |**安全组**|支持选择**自动创建普通安全组**、**自动创建企业级安全组**、**选择已有安全组**。有关安全组的详细内容，请参见[安全组概述](/intl.zh-CN/安全/安全组/安全组概述.md)。 |
-        |**集群删除保护**|设置是否启用集群删除保护。为防止通过控制台或API误释放集群。 |
+        |**集群删除保护**| |
 
     2.  完成集群高级选项配置。
 
@@ -122,7 +122,7 @@ keyword: 创建托管GPU集群
 **说明：** 默认域名为**cluster.local**，可自定义域名。域名由两段组成，每段不超过63个字符，且只能使用大小写字母和数字，不能为空。 |
         |**自定义证书SAN**|在集群API Server服务端证书的SAN（Subject Alternative Name）字段中添加自定义的IP或域名，以实现对客户端的访问控制。
 
-具体操作，请参见[自定义托管集群API Server证书SAN](/intl.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/自定义托管集群API Server证书SAN.md)。 |
+具体操作，请参见[自定义集群API Server证书SAN](/intl.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/自定义集群API Server证书SAN.md)。 |
         |**服务账户令牌卷投影**|开启**服务账户令牌卷投影**功能以降低在Pod中使用Service Account遇到的安全性问题，可使得kubelet支持基于Pod粒度的Token签发，并且支持Token audience和过期时间的配置。详情请参见[部署服务账户令牌卷投影](/intl.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/部署服务账户令牌卷投影.md) |
         |**Secret落盘加密**|在异构计算集群中，选中**选择KMS密钥**可以使用在阿里云密钥管理服务KMS（Key Management Service）中创建的密钥加密Kubernetes Secret密钥。设置Secret落盘加密的详情，请参见[使用阿里云KMS进行Secret的落盘加密](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/使用阿里云KMS进行Secret的落盘加密.md)。|
 
@@ -139,7 +139,7 @@ keyword: 创建托管GPU集群
             |**自动续费**|选择**包年包月**，需设置是否**自动续费**。|
             |**实例规格**|选择**异构计算GPU/FPGA/NPU**和**GPU计算型**，详细的实例规格请参见[实例规格族](/intl.zh-CN/实例/实例规格族.md)。 **说明：** 当在实例规格列表里没有可用实例时，可在上一步**集群配置**页面选择其他虚拟交换机。
 
-![异构计算](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0398249161/p127318.png) |
+![异构计算](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0398249161/p127318.png) |
             |**已选规格**|呈现选中的规格。 |
             |**数量**|新增Worker实例（ECS实例）的数量。 |
             |**系统盘**|支持**ESSD云盘**、**SSD云盘**和**高效云盘**。
@@ -153,7 +153,12 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
             |**挂载数据盘**|支持**ESSD云盘**、**SSD云盘**和**高效云盘**。挂载数据盘时，支持云盘**加密**和**云盘备份**。 |
             |**操作系统**|ACK支持的节点操作系统包括：
 
-            -   Alibaba Cloud Linux 2（ACK默认的操作系统）
+            -   Alibaba Cloud Linux 2.x（ACK默认的操作系统）
+
+选中Alibaba Cloud Linux 2.x操作系统时，您可以进行以下安全加固的配置：
+
+                -   不开启：不对Alibaba Cloud Linux 2.x操作系统进行安全加固。
+                -   CIS加固：对Alibaba Cloud Linux 2.x操作系统进行CIS加固。关于CIS加固的使用说明，请参见[ACK CIS加固使用说明](/intl.zh-CN/Kubernetes集群用户指南/集群/操作系统/ACK CIS加固使用说明.md)。
             -   CentOS 7.x
 
 **说明：** 暂不支持CentOS 8.x及以上的操作系统。 |
@@ -174,7 +179,7 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
         |**实例保护**|设置是否启用实例保护。
 
 **说明：** 为防止通过控制台或API误释放集群节点，默认启用实例保护。 |
-        |**实例自定义数据**|请参见[生成实例自定义数据](/intl.zh-CN/实例/管理实例/使用实例自定义数据/生成实例自定义数据.md)。 |
+        |**实例自定义数据**|请参见[ECS实例自定义数据概述](/intl.zh-CN/实例/管理实例内部配置/使用实例自定义数据/ECS实例自定义数据概述.md)。 |
         |**自定义镜像**|允许您选择一个自定义ECS镜像。选择自定义镜像后，集群所有节点将基于此镜像进行部署 。有关创建自定义镜像操作，请参见[使用自定义镜像创建Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/使用自定义镜像创建Kubernetes集群.md)。
 
 **说明：**
@@ -199,7 +204,7 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
     |配置项|描述|
     |---|--|
     |**Ingress**|设置是否安装Ingress组件。默认选中**安装Ingress组件**，请参见[t16679.md\#](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress高级用法.md)。 **说明：** 如果您选中**创建Ingress Dashboard**，则需要同步安装日志服务组件。 |
-    |**存储插件**|设置存储插件，支持Flexvolume和CSI。Kubernetes集群通过Pod可自动绑定阿里云云盘、NAS、OSS存储服务。请参见[存储管理-Flexvolume](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/概述.md)和[存储管理-CSI](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/存储CSI概述.md)。|
+    |**存储插件**|设置存储插件，支持Flexvolume和CSI。Kubernetes集群通过Pod可自动绑定阿里云云盘、NAS、OSS存储服务。请参见[存储管理-Flexvolume](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/存储Flexvolume概述.md)和[存储管理-CSI](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/存储CSI概述.md)。|
     |**监控插件**|设置是否启用云监控插件。默认选中**在ECS节点上安装云监控插件**和**使用Prometheus监控服务**，前者用于在云监控控制台查看所创建ECS实例的监控信息。 |
     |**报警配置**|选中**使用默认报警模板配置报警**，开启默认报警规则。详细介绍，请参见[容器服务报警管理](/intl.zh-CN/Kubernetes集群用户指南/可观测性/容器服务报警管理.md)。 |
     |**日志服务**|设置是否启用日志服务，您可使用已有Project或新建一个Project。默认选中**使用日志服务**。创建应用时，您可通过简单配置，快速使用日志服务，详情参见[通过日志服务采集Kubernetes容器日志](/intl.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/通过日志服务采集Kubernetes容器日志.md)。
@@ -211,7 +216,7 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
 **说明：** 当前只有白名单用户可以使用该功能。
 
     -   如果选中AGS，则创建集群时系统自动安装AGS工作流插件。
-    -   如果不选中，则需要手动安装AGS工作流插件，请参见[AGS命令行帮助]()。 |
+    -   如果不选中，则需要手动安装AGS工作流插件，请参见[AGS命令行帮助](/intl.zh-CN/基因计算服务AGS用户指南/AGS工作流/AGS命令行帮助.md)。 |
 
 8.  单击**下一步：确认配置**，
 
