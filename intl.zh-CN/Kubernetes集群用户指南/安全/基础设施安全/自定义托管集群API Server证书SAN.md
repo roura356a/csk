@@ -6,11 +6,11 @@ keyword: [自定义API Server证书SAN, SAN（Subject Alternative Name）]
 
 ACK集群的API Server服务端证书中SAN（Subject Alternative Name）字段默认包括集群本地域名、API Server负载均衡的内网IP、API Server服务本地IP和公网EIP等字段。如果您有特殊的代理访问或跨域访问需求，可以通过自定义SAN字段实现。本文介绍新建集群如何自定义API Server证书SAN和已有集群如何自定义更新API Server证书SAN。
 
-目前仅支持托管版集群，包括Kubernetes托管版集群、ACK Pro版集群等。以下仅枚举三种托管集群的创建方法，您只需要创建以下集群中的任意一种：
+目前支持Kubernetes托管版集群、ACK Pro版集群及ASK集群。以下仅枚举三种托管集群的创建方法，您只需要创建以下集群中的任意一种：
 
 -   [创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
 -   [创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)
--   [创建托管GPU集群](/intl.zh-CN/Kubernetes集群用户指南/GPU/NPU/创建异构计算集群/创建托管GPU集群.md)
+-   [ASK使用快速入门](/intl.zh-CN/Serverless Kubernetes集群用户指南/集群/创建Serverless Kubernetes集群.md)
 
 SAN是一项对X.509标准的扩展，它允许在SSL安全证书中使用`subjectAltName`字段将多种值（包括IP地址、域名、URI和电子邮件等）与证书关联。
 
@@ -22,7 +22,7 @@ SAN是一项对X.509标准的扩展，它允许在SSL安全证书中使用`subje
 
 **说明：** **自定义证书SAN**字段的配置，支持输入符合规范的自定义IP、域名和URI，多个字段以英文逗号（,）分隔。
 
-![an2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0255017161/p256859.png)
+![an2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0255017161/p256859.png)
 
 上图中的**自定义证书SAN**字段中包含两个域名和一个IP。
 
