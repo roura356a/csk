@@ -179,26 +179,25 @@ spec:
 
 ## FAQ about node auto scaling
 
--   Why does the auto scaling component fail to add nodes after a scale-out activity is triggered?
+-   Why does the auto scaling component fail to add nodes after a scale-out event is triggered?
 
     Check whether the following situations exist:
 
     -   The instance types in the scaling group cannot fulfill the resource request from pods. By default, system components are installed for each node. Therefore, the requested pod resources must be less than the resource capacity of the instance type.
-    -   The RAM role does not have the permissions to manage the Kubernetes cluster. You must complete the authorization for each Kubernetes cluster that is involved in the scale-out activity.
-    -   The Kubernetes cluster cannot connect to the Internet. The auto scaling component must call Alibaba Cloud API operations. Therefore, the nodes must have access to the Internet.
--   Why does the auto scaling component fail to remove nodes after a scale-in activity is triggered?
+    -   The worker RAM role does not have the required permissions. You must configure RAM roles for each Kubernetes cluster that is involved in the scale-out activity.
+-   Why does the auto scaling component fail to remove nodes after a scale-in event is triggered?
 
     Check whether the following situations exist:
 
     -   The requested resource threshold of each pod is higher than the configured scale-in threshold.
-    -   Pods that belong tothe kube-system namespace are running on the node.
-    -   A scheduling policy forces the pods to run on the current node. Therefore, the pods cannot be scheduled to other nodes.
-    -   PodDisruptionBudget is set[for the](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/#how-disruption-budgets-work) pods on the node and the minimum value of PodDisruptionBudget is reached.
-    For more information[about FAQ,](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md) see open source component.
+    -   Pods that belong to the kube-system namespace are running on the node.
+    -   A hard scheduling policy is configured to force the pods to run on the current node. Therefore, the pods cannot be scheduled to other nodes.
+    -   [PodDisruptionBudget](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/#how-disruption-budgets-work) is set for the pods on the node and the minimum value of PodDisruptionBudget is reached.
+    For more information about FAQ, see [open source component](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md).
 
--   How does the system choose a scaling group for a scaling activity?
+-   How does the system choose a scaling group for a scaling event?
 
-    When pods cannot be scheduled to nodes, the auto scaling component simulates the scheduling of the pods based on the configuration of scaling groups. The configuration includes labels, taints, and instance specifications. If a scaling group can simulate the scheduling of the pods, this scaling group is selected for the scale-out activity. If more than one scaling groups meet the requirements, the system selects the scaling group that has the fewest idle resources after simulation.
+    When pods cannot be scheduled to nodes, the auto scaling component simulates the scheduling of the pods based on the configurations of scaling groups. The configurations include labels, taints, and instance specifications. If a scaling group can simulate the scheduling of the pods, this scaling group is selected for the scale-out activity. If more than one scaling groups meet the requirements, the system selects the scaling group that has the fewest idle resources after simulation.
 
 
 ## FAQ about HPA based on Alibaba Cloud metrics
