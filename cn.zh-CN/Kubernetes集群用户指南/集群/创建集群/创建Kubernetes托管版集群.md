@@ -49,7 +49,7 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
         |**地域**|选择集群所在的地域。 |
         |**账号全部资源组**|将鼠标悬浮于页面上方的**账号全部资源**，选择资源组。在控制台页面顶部选择的资源组可过滤出该资源组内的专有网络及对应的虚拟交换机。在创建集群时，只显示过滤的专有网络实例及专有网络对应的虚拟交换机实例。
 
-![资源组](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0706659951/p127165.png) |
+![资源组](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8029478261/p127165.png) |
         |**Kubernetes版本**|显示当前ACK支持的Kubernetes版本。 |
         |**容器运行时**|支持**Containerd**、**Docker**和**安全沙箱**。更多信息，请参见[如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱/如何选择Docker运行时、Containerd运行时、或者安全沙箱运行时？.md)。 |
         |**专有网络**|设置集群的网络，您可以选择普通VPC和共享VPC。
@@ -102,13 +102,13 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
 **Pod网络CIDR**指定Flannel网络插件需要配置Pod网络CIDR，网段不能和VPC及VPC已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。 |
         |**Service CIDR**|设置**Service CIDR**。您需要指定**Service CIDR**，网段不能与VPC及VPC内已有Kubernetes集群使用的网段重复，创建成功后不能修改。而且Service地址段也不能和Pod地址段重复，有关Kubernetes网络地址段规划的信息，请参见[Kubernetes集群网络规划](/cn.zh-CN/Kubernetes集群用户指南/网络/Kubernetes集群网络规划.md)。 |
         |**配置SNAT**|创建集群时，默认不开通公网。如果您选择的VPC不具备公网访问能力，选中**为专有网络配置SNAT**后，ACK将为您创建NAT网关并自动配置SNAT规则。 |
-        |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/cn.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/实例概述.md)。
+        |**API Server访问**|ACK默认为API Server创建一个内网SLB实例，您可修改SLB实例规格。更多信息，请参见[实例规格](/cn.zh-CN/传统型负载均衡CLB/CLB用户指南/实例/CLB实例概述.md)。
 
 **说明：** 删除默认创建的SLB实例将会导致无法访问API Server。
 
 您可设置是否开放**使用EIP暴露API Server**。API Server提供了各类资源对象（Pod，Service等）的增删改查及Watch等HTTP Rest接口。
 
-        -   如果选择开放，ACK会创建一个EIP，并挂载到公网SLB上。此时，Master节点的6443端口（对应API Server）暴露出来，您可以在外网通过kubeconfig连接并操作集群。
+        -   如果选择开放，ACK会创建一个EIP，并挂载到SLB上。此时，Master节点的6443端口（对应API Server）暴露出来，您可以在外网通过kubeconfig连接并操作集群。
         -   如果选择不开放，则不会创建EIP，您只能在VPC内部用kubeconfig连接并操作集群。 |
         |**RDS白名单**|设置RDS白名单。将节点IP添加到RDS实例的白名单中。
 
@@ -142,7 +142,7 @@ Kubernetes托管版集群只需创建Worker节点，Master节点由阿里云容�
 **说明：** 默认域名为**cluster.local**，可自定义域名。域名由两段组成，每段不超过63个字符，且只能使用大小写字母和数字，不能为空。 |
         |**自定义证书SAN**|在集群API Server服务端证书的SAN（Subject Alternative Name）字段中添加自定义的IP或域名，以实现对客户端的访问控制。
 
-具体操作，请参见[自定义托管集群API Server证书SAN](/cn.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/自定义托管集群API Server证书SAN.md)。 |
+具体操作，请参见[自定义集群API Server证书SAN](/cn.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/自定义集群API Server证书SAN.md)。 |
         |**服务账户令牌卷投影**|开启**服务账户令牌卷投影**功能以降低在Pod中使用Service Account遇到的安全性问题，可使得kubelet支持基于Pod粒度的Token签发，并且支持Token audience和过期时间的配置。详情请参见[部署服务账户令牌卷投影](/cn.zh-CN/Kubernetes集群用户指南/安全/基础设施安全/部署服务账户令牌卷投影.md) |
 
 5.  单击**下一步：Worker配置**，完成Worker节点配置。
@@ -276,7 +276,7 @@ ESSD云盘容量越大，可供选择的性能级别越高（460 GiB容量以上
 
         **说明：** 单击**重新绑定域名**，您可以重新绑定访问域名。
 
--   您可以[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)，执行`kubectl get node`查看集群的节点信息。
+-   您可以[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)，执行`kubectl get node`查看集群的节点信息。
 
     ![集群查看结果](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9275659951/p21438.png)
 
