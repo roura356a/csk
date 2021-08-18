@@ -10,7 +10,7 @@ ACK集群的API Server服务端证书中SAN（Subject Alternative Name）字段�
 
 -   [创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
 -   [创建ACK Pro版集群](/intl.zh-CN/Kubernetes集群用户指南/ACK Pro集群/创建ACK Pro版集群.md)
--   [ASK使用快速入门](/intl.zh-CN/Serverless Kubernetes集群用户指南/集群/创建Serverless Kubernetes集群.md)
+-   [创建Serverless Kubernetes集群](/intl.zh-CN/Serverless Kubernetes集群用户指南/集群/创建Serverless Kubernetes集群.md)
 
 SAN是一项对X.509标准的扩展，它允许在SSL安全证书中使用`subjectAltName`字段将多种值（包括IP地址、域名、URI和电子邮件等）与证书关联。
 
