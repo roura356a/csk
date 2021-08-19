@@ -29,7 +29,6 @@ To install Terway or Flannel in an ACK cluster, you must specify CIDR blocks and
 -   You can create multiple vSwitches in a VPC. However, the CIDR blocks of these vSwitches cannot overlap with each other. |
 |**Pod VSwitch**|The IP addresses of pods are assigned from the CIDR block of the pod vSwitches. This way, the pods can communicate with each other. A pod is a group of containers in a Kubernetes cluster. Each pod has an IP address. The CIDR blocks that you specify when you create pod vSwitches in the VPC must be subsets of the VPC CIDR block. When you set this parameter, take note of the following items:-   Select one or more vSwitches in the VPC.
 -   In an ACK cluster that has Terway installed, the IP addresses of pods are allocated from pod vSwitches.
--   The CIDR blocks of pod vSwitches cannot overlap with the CIDR blocks of **vSwitches**.
 -   The CIDR blocks of pod vSwitches cannot overlap with the CIDR block specified by **Service CIDR**.
 -   The vSwitch and the pod vSwitches must be in the same zone. For more information about zones, see [Regions and zones]().
 
@@ -97,7 +96,7 @@ The following tables describe how to plan CIDR blocks for clusters that use Flan
 
     If two VPCs are connected, you can use the route table of one VPC to specify the packets that you want to send to the other VPC. The CIDR block of VPC 1 is 192.168.0.0/16 and the CIDR block of VPC 2 is 172.16.0.0/12, as shown in the following figure. You can use the route table of VPC 1 to forward all packets that are destined for 172.16.0.0/12 to VPC 2.
 
-    ![Route tables](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1595185261/p8765.png)
+    ![Route tables](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/1595185261/p8765.png)
 
     |VPC|CIDR block|Destination CIDR block|Destination VPC|
     |---|----------|----------------------|---------------|
@@ -129,7 +128,7 @@ The following tables describe how to plan CIDR blocks for clusters that use Flan
 
 [Use the Terway plug-in](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use the Terway plug-in.md)
 
-[Use network policies for access control](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use network policies for access control.md)
+[Use network policies](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use network policies.md)
 
 [FAQ about network management](/intl.en-US/User Guide for Kubernetes Clusters/Network/FAQ about network management.md)
 
