@@ -34,7 +34,7 @@ Containers and images have become industry standards for software packaging and 
 -   To deploy both Docker and Sandboxed-Container in a cluster, you can create node pools of different runtime types. |
 |Container engine|containerd|Docker Engine|containerd|None|
 |Monitoring|Supported|Supported|Supported|None|
-|Container log collection|Supported|Supported|Supports log collection by using sidecar containers. Manual configuration is required.|For more information about sidecar configurations, see [Use CRDs to collect Kubernetes container logs in the Sidecar mode](/intl.en-US/Data Collection/Logtail collection/Container log collection/Use CRDs to collect Kubernetes container logs in the Sidecar mode.md).|
+|Container log collection|Supported|Supported|Supports log collection by using sidecar containers. Manual configuration is required.|For more information about sidecar configurations, see [Use CRDs to collect Kubernetes container logs in Sidecar mode](/intl.en-US/Data Collection/Logtail collection/Container log collection/Use CRDs to collect Kubernetes container logs in Sidecar mode.md).|
 |Container stdout collection|Supported|Supported|Supported|None|
 |RuntimeClass|Not supported|Not supported|Supported \(runV\)|None|
 |Pod scheduling|No configuration is required.|No configuration is required.|You must add configurations based on the following rules:-   For Kubernetes 1.14.x, you must add the following configuration to the nodeSelector field.
@@ -81,11 +81,6 @@ kubelet -> dockerd -> containerd -> containerd-shim -> runC containers
 ``` |
 |Containerd|```
 kubelet -> containerd -> containerd-shim -> runC containers
-``` |
-|Sandboxed-Container V1|```
-kubelet -> (CRI)containerd
-                          \-> containerd-shim -> runC containers
-                          \-> containerd-shim-kata-v2 -> runV sandboxed containers
 ``` |
 |Sandboxed-Container V2|```
 kubelet -> (CRI)containerd
