@@ -17,7 +17,7 @@ keyword: [安全沙箱运行时, Containerd运行时, 核心优势, Docker容器
 |支持：-   ECS
 -   EBM
 
-|支持：-   EBM
+|支持：EBM
 
 |无|
 |节点OS|支持：-   CentOS
@@ -28,7 +28,7 @@ keyword: [安全沙箱运行时, Containerd运行时, 核心优势, Docker容器
 -   Alibaba Cloud Linux 2
 -   Windows
 
-|支持：-   Alibaba Cloud Linux 2定制版
+|支持：Alibaba Cloud Linux 2定制版
 
 |-   不支持同一节点同时部署Docker和安全沙箱两种运行时。
 -   集群内可以通过创建不同节点池来实现Docker运行时节点和安全沙箱运行时节点混合部署。 |
@@ -81,11 +81,6 @@ kubelet -> dockerd -> containerd -> containerd-shim -> runC容器
 ``` |
 |Containerd|```
 kubelet -> containerd -> containerd-shim -> runC容器
-``` |
-|安全沙箱v1|```
-kubelet -> (CRI)containerd
-                          \-> containerd-shim -> runC容器
-                          \-> containerd-shim-kata-v2 -> runV安全沙箱容器
 ``` |
 |安全沙箱v2|```
 kubelet -> (CRI)containerd
