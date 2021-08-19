@@ -62,7 +62,7 @@ keyword: [集群网络, 专有网络, Terway和Flannel]
 
     两个VPC网络互联的情况下，可以通过路由表配置哪些报文要发送到对端VPC里。如下表所示，VPC 1使用地址段192.168.0.0/16，VPC 2使用地址段172.16.0.0/12，您可以通过路由表，指定在VPC 1里把目的地址为172.16.0.0/12的报文都发送到VPC 2。
 
-    ![路由表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9395185261/p8765.png)
+    ![路由表](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9395185261/p8765.png)
 
     |类别|地址段|目的端|转发到|
     |--|---|---|---|
