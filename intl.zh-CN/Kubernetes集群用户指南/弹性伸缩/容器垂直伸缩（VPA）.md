@@ -9,7 +9,7 @@ keyword: [kubernetes, 垂直伸缩, VPA \(vertical-pod-autoscaler\)]
 请确保您已完成以下操作：
 
 -   已创建一个Kubernetes集群，且ACK Kubernetes版本高于1.12。具体操作请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   已使用命令行工具连接集群。具体操作请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   已使用命令行工具连接集群。具体操作请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 -   已卸载集群中已经部署的VPA，以避免新安装的VPA与旧版VPA冲突而导致VPA不可用。
 
 **说明：** 容器垂直伸缩功能目前处于试验阶段，请谨慎使用。
@@ -135,7 +135,7 @@ keyword: [kubernetes, 垂直伸缩, VPA \(vertical-pod-autoscaler\)]
 
 2.  安装vertical-pod-autoscaler的组件。
 
-    vertical-pod-autoscaler的组件包括：admission-controller、recommander、updater。
+    vertical-pod-autoscaler的组件包括：admission-controller、recommender、updater。
 
 
 
