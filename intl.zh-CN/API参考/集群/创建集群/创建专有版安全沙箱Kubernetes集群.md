@@ -139,7 +139,7 @@ Content-Type:application/json
 
 默认值：`false`。|
 |key\_pair|String|是|secrity-key|密钥对名称，和`login_password`二选一。|
-|kubernetes\_version|String|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[Kubernetes版本发布概览](/intl.zh-CN/新功能发布记录/Kubernetes版本发布说明/Kubernetes版本发布概览.md)。|
+|kubernetes\_version|String|否|1.16.9-aliyun.1|集群版本，与Kubernetes社区基线版本保持一致。建议选择最新版本，若不指定，默认使用最新版本。目前您可以在ACK控制台创建两种最新版本的集群。您可以通过API创建其他Kubernetes版本集群。关于ACK支持的Kubernetes版本，请参见[Kubernetes版本发布概览](/intl.zh-CN/产品发布记录/Kubernetes版本发布记录/Kubernetes版本发布概览.md)。|
 |login\_password|String|是|Hello@1234|SSH登录密码，和`key_pair`二选一。密码规则为8~30个字符，且至少同时包含三项（大小写字母、数字和特殊符号）。|
 |master\_auto\_renew|Boolean|否|true|Master节点是否开启自动续费，当`master_instance_charge_type`取值为`PrePaid`时才生效，可选值为：
 
@@ -193,14 +193,12 @@ Content-Type:application/json
 您需要为每一个节点虚拟交换机指定至少一个相同可用区的Pod虚拟交换机，并且不能跟节点`vswitch`重复。|
 |proxy\_mode|String|否|ipvs|kube-proxy代理模式，支持`iptables`和`ipvs`两种模式。默认值：`ipvs`。 |
 |region\_id|String|是|cn-beijing|集群所在的地域ID。|
-|runtime|Object|是| |集群内容器运行时。**说明：** 此参数为必选参数。 |
-|name|Object|是|Sandboxed-Container.runv|容器运行时版本。容器运行时名称。取值：-   `Sandboxed-Container.runv`：安全沙箱运行时。
--   `docker`：Docker运行时。
+|runtime|[runtime](/intl.zh-CN/API参考/通用数据结构.md)|是|\{"name": "Sandboxed-Container.runv", "version": "2.2.0"\}|集群内容器运行时。支持`Sandboxed-Container.runv`、`docker`两种运行时，默认为`docker`。runtime包括以下2个信息： -   `name`：容器运行时名称。
+-   `version`：容器运行时版本。
 
-默认：`docker`。
+**说明：** 在创建安全沙箱集群的场景下，只能选`Sandboxed-Container.runv`。
 
-**说明：** 在创建安全沙箱集群的场景下，只能选`Sandboxed-Container.runv`。 |
-|version|Object|是|2.1.0|容器运行时版本，默认为最新版。关于安全沙箱运行时的变更详情，请参见[安全沙箱运行时变更记录](/intl.zh-CN/新功能发布记录/组件介绍与变更记录/安全沙箱/安全沙箱运行时变更记录.md)。|
+容器运行时版本，默认为最新版。关于安全沙箱运行时的变更详情，请参见[安全沙箱运行时发布记录](/intl.zh-CN/产品发布记录/运行时发布记录/安全沙箱运行时发布记录.md)。 |
 |security\_group\_id|String|否|sg-bp1bdue0qc1g7k\*\*\*\*|使用已有安全组创建集群时需要指定安全组ID，集群节点自动加入到此安全组，和`is_enterprise_security_group`二选一。|
 |service\_cidr|String|是|172.21.0.0/20|Service网络地址段，不能和VPC网段及Pod网络网段冲突。当选择系统自动创建VPC时，默认使用172.19.0.0/20网段。|
 |snat\_entry|Boolean|否|true|是否为网络配置SNAT：-   当已有VPC能访问公网环境时，设置为`false`。
@@ -225,13 +223,13 @@ Content-Type:application/json
 |key|String|否|disk\_type|污点key-value的键。|
 |value|String|否|sshd|污点key-value的值。|
 |timeout\_mins|Long|否|60|集群创建超时时间。默认值：60。 |
-|user\_data|String|否|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFD\*\*\*\*|节点自定义数据。更多信息，请参见[生成实例自定义数据](/intl.zh-CN/实例/管理实例/使用实例自定义数据/生成实例自定义数据.md)。|
+|user\_data|String|否|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFD\*\*\*\*|节点自定义数据。更多信息，请参见[ECS实例自定义数据概述](/intl.zh-CN/实例/管理实例内部配置/使用实例自定义数据/ECS实例自定义数据概述.md)。|
 |vpcid|String|是|vpc-2zeik9h3ahvv2zz95\*\*\*\*|集群使用的VPC实例ID。|
 |vswitch\_ids|Array of String|是|vsw-2ze48rkq464rsdts1\*\*\*\*"|虚拟交换实例ID。|
-|worker\_auto\_renew|Boolean|否|true|Worker节点是否开启自动续费，当`worker_instance_charge_type`取值为`PrePaid`时才生效，可选值为：-   true：自动续费。
--   false：不自动续费。
+|worker\_auto\_renew|Boolean|否|true|Worker节点是否开启自动续费，当`worker_instance_charge_type`取值为`PrePaid`时才生效，可选值为：-   `true`：自动续费。
+-   `false`：不自动续费。
 
-默认值：true。|
+默认值：`true`。|
 |worker\_auto\_renew\_period|Long|否|1|Worker节点自动续费周期，当选择包年包月付费类型时才生效，且为必选值。取值范围：\{1,2,3,6,12\}。|
 |worker\_data\_disks|Array|是| |Worker节点数据盘类型、大小等配置的组合。|
 |auto\_snapshot\_policy\_id|String|否|sp-bp14j6w7ss6ozz\*\*\*\*|自动快照策略ID。|
