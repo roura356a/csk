@@ -29,7 +29,6 @@ keyword: [集群网络, 专有网络, Terway和Flannel]
 -   一个VPC下，可以创建多个交换机，但交换机网段不能重叠。 |
 |**Pod虚拟交换机**|Pod地址从该交换机分配，用于Pod网络通信。Pod是Kubernetes内的概念，每个Pod具有一个IP地址。在VPC里创建交换机时指定的网段，必须是当前VPC网段的子集。配置网段时，请注意：-   Pod虚拟交换机是VPC交换机。
 -   Terway网络模式下，Pod分配的Pod IP 就是从这个交换机网段内获取的。
--   该地址段不能和**虚拟交换机**网段重叠。
 -   该地址段不能和**Service CIDR**网段重叠。
 -   虚拟交换机和Pod虚拟交换机需要在一个可用区下。关于可用区的概念，请参见[地域和可用区]()。
 
@@ -97,7 +96,7 @@ keyword: [集群网络, 专有网络, Terway和Flannel]
 
     两个VPC网络互联的情况下，可以通过路由表配置哪些报文要发送到对端VPC里。如下表所示，VPC 1使用地址段192.168.0.0/16，VPC 2使用地址段172.16.0.0/12，您可以通过路由表，指定在VPC 1里把目的地址为172.16.0.0/12的报文都发送到VPC 2。
 
-    ![路由表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9395185261/p8765.png)
+    ![路由表](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9395185261/p8765.png)
 
     |类别|地址段|目的端|转发到|
     |--|---|---|---|
