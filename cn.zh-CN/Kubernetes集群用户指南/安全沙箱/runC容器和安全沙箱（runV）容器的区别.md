@@ -19,17 +19,11 @@ keyword: [runC容器, 安全沙箱（runV）容器, 对比]
 |NAS直挂|否|是|
 |云盘直挂|否|是|
 |容器日志文件采集|logtail可直接从节点侧采集容器内的日志。|logtail sidecar，详情请参见[通过Sidecar-CRD方式采集容器日志](/cn.zh-CN/数据采集/Logtail采集/采集容器日志/通过Sidecar-CRD方式采集容器日志.md)。|
-|Pod Overhead|无|-   如果您使用的是安全沙箱v1版本，计算方式如下。
-
-Memory：512 Mi。Pod Overhead为沙箱本身资源占用。比如Pod申请的`limits.memory = 512 Mi`，那么该Pod最终会申请1024 Mi的内存。
-
--   如果您使用的是安全沙箱v2版本，计算方式如下。
-
-Memory：M=64 Mi+Pod内存申请 \*2%。当M\>512，M最终取值为512 Mi。当M<64，M最终取值为64。 |
+|Pod Overhead|无|Memory：M=64 Mi+Pod内存申请 \*2%。当M\>512，M最终取值为512 Mi。当M<64，M最终取值为64。|
 
 ## runC Pod和安全沙箱（runV）Pod的创建方式对比
 
-您可以通过kubectl命令行工具连接容器服务Kubernetes版（ACK）集群，请参见[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+您可以通过kubectl命令行工具连接容器服务Kubernetes版（ACK）集群，请参见[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 -   创建runC Pod
     1.  通过`runtimeClassName: runc`指定使用runC容器运行时。
