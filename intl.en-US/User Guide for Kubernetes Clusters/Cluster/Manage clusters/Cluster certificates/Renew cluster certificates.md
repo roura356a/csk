@@ -49,12 +49,6 @@ You can click the button to renew the certificate. It requires about 5 to 10 min
 -   dashboard.key
 
 |/etc/kubernetes/pki/dashboard|
-|-   kubelet.crt
--   kubelet.key
-
-**Note:** If file kubelet.key does not exist, renewal is not required.
-
-|/var/lib/kubelet/pki **Note:** If this path is empty, renewal is not required. |
 |admin.conf|/etc/kubernetes|
 |kube.conf|/etc/kubernetes|
 |controller-manager.conf|/etc/kubernetes|
@@ -70,12 +64,6 @@ You can click the button to renew the certificate. It requires about 5 to 10 min
 
 |Certificate or conf filename|Path|
 |----------------------------|----|
-|-   kubelet.crt
--   kubelet.key
-
-**Note:** If the kubelet.key file does not exist, renewal is not required.
-
-|/var/lib/kubelet/pki **Note:** If this path is empty, renewal is not required. |
 |-   kubelet-client-current.pem or kubelet-client.crt
 -   kubelet-client.key
 
