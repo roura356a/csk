@@ -58,7 +58,11 @@ HTTP/1.1 200 OK
 
 ## Response parameters
 
-None
+|Parameter|Type|Example|Description|
+|---------|----|-------|-----------|
+|cluster\_id|String|c104d5d5f301c4e2a8ee578c37bc\*\*\*\*|The ID of the ACK cluster. |
+|request\_id|String|A9891419-D125-4D89-AFCA-68846675E2F7|The ID of the request. |
+|task\_id|String|T-60fea8ad2e277f0879000ae9|The ID of the task. |
 
 ## Examples
 
@@ -76,10 +80,30 @@ Content-Type:application/json
 
 Sample success responses
 
+`XML` format
+
+```
+HTTP/1.1 200 OK
+Content-Type:application/xml
+
+<DeleteClusterNodesResponse>
+    <cluster_id>c104d5d5f301c4e2a8ee578c37bc****</cluster_id>
+    <request_id>A9891419-D125-4D89-AFCA-68846675E2F7</request_id>
+    <task_id>T-60fea8ad2e277f0879000ae9</task_id>
+</DeleteClusterNodesResponse>
+```
+
 `JSON` format
 
 ```
 HTTP/1.1 200 OK
+Content-Type:application/json
+
+{
+  "cluster_id" : "c104d5d5f301c4e2a8ee578c37bc****",
+  "request_id" : "A9891419-D125-4D89-AFCA-68846675E2F7",
+  "task_id" : "T-60fea8ad2e277f0879000ae9"
+}
 ```
 
 ## Error codes
