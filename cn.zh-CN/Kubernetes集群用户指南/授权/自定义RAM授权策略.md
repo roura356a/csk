@@ -4,13 +4,13 @@ keyword: [RAM, 自定义授权策略]
 
 # 自定义RAM授权策略
 
-本文档介绍如何创建自定义授权策略。下面以授予子账号查询、扩容和删除集群的权限为例进行说明。
+本文档介绍如何创建自定义授权策略。下面以授予RAM用户（即子账号）查询、扩容和删除集群的权限为例进行说明。
 
-在创建自定义授权策略时，您需要了解授权策略语言的基本结构和语法，相关内容的详细描述请参见[授权策略语言描述](https://help.aliyun.com/document_detail/28663.html)。
+在创建自定义授权策略时，您需要了解授权策略语言的基本结构和语法。更多信息，请参见[授权策略语言描述](https://help.aliyun.com/document_detail/28663.html)。
 
 容器服务ACK提供的系统授权策略的授权粒度比较粗，如果这种粗粒度授权策略不能满足您的需要，那么您可以创建自定义授权策略。例如，您想控制对某个具体的集群的操作权限，您必须使用自定义授权策略才能满足这种细粒度要求。
 
-在进行子账号集群RBAC授权前，您需要完成对集群管控能力的RAM授权。您可以根据需要授予子账号对于目标集群的读写策略：
+在进行RAM用户的集群RBAC授权前，您需要完成对集群管控能力的RAM授权。您可以根据需要授予RAM用户对于目标集群的读写策略：
 
 -   读策略：用于查看集群配置、kubeconfig等基本信息。
 -   写策略：包含集群伸缩、升级、删除、添加节点等集群管控能力。
@@ -21,7 +21,11 @@ keyword: [RAM, 自定义授权策略]
 {
   "Statement": [
     {
-      "Action": "cs:Get*",
+      "Action": [
+        "cs:Get*",
+        "cs:List*",
+        "cs:Describe*"
+      ],
       "Effect": "Allow",
       "Resource": [
         "acs:cs:*:*:cluster/<yourclusterID>"
@@ -32,25 +36,27 @@ keyword: [RAM, 自定义授权策略]
 }
 ```
 
-当您完成RAM授权后，可参见[t17456.md\#](/cn.zh-CN/Kubernetes集群用户指南/授权/配置RAM用户RBAC权限.md)完成集群内Kubernetes资源模型访问的RBAC授权。
+当您完成RAM授权后，需要完成集群内Kubernetes资源模型访问的RBAC授权。具体操作，请参见[配置RAM用户RBAC权限](/cn.zh-CN/Kubernetes集群用户指南/授权/配置RAM用户RBAC权限.md)。
 
-## RAM授权操作步骤
+## 创建自定义授权策略
 
 1.  使用具有RAM权限的账号登录[RAM管理控制台](https://ram.console.aliyun.com/)。
 
-2.  单击左侧导航栏的**权限管理** \> **权限策略管理**，进入权限策略管理页面。
+2.  单击左侧导航栏的**权限管理** \> **权限策略管理**。
 
-3.  单击**创建权限策略**，进入新建自定义权限策略页面。
+3.  在权限策略管理页面，单击**创建权限策略**。
 
-4.  填写**策略名称**，**配置模式**选择脚本配置，并在**策略内容**中编写您的授权策略内容。
+4.  在新建自定义权限策略页面，填写**策略名称**，**配置模式**选择脚本配置，并在**策略内容**中编写您的授权策略内容。
 
-    ![自定义权限策略](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9075659951/p10480.png)
+    ![自定义权限策略](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9075659951/p10480.png)
 
     ```
     {
      "Statement": [{
          "Action": [
              "cs:Get*",
+             "cs:List*",
+             "cs:Describe*",
              "cs:ScaleCluster",
              "cs:DeleteCluster"
          ],
@@ -101,7 +107,7 @@ keyword: [RAM, 自定义授权策略]
 
     返回权限策略管理页面，在搜索框中搜索策略名或备注，可以看到您授权的自定义的策略。
 
-    ![权限策略管理](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0175659951/p47367.png)
+    ![权限策略管理](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0175659951/p47367.png)
 
 
 ## 相关参考
