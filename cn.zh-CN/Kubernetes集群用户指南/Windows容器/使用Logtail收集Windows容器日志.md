@@ -8,7 +8,7 @@ keyword: [Windows节点, Logtail, 应用日志信息采集]
 
 -   已创建Kubernetes集群，并且在创建集群时选中**使用日志服务**。更多信息，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   已创建Windows节点池。更多信息，请参见[创建Windows节点池](/cn.zh-CN/Kubernetes集群用户指南/Windows容器/创建Windows节点池.md)。
--   已通过kubectl连接ACK集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   已通过kubectl连接ACK集群。具体操作，请参见[步骤二：选择集群凭证类型](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 ## 使用限制
 
@@ -162,7 +162,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: spec.nodeName
-        - name: working_ip_
+        - name: working_ip
           valueFrom:
             fieldRef:
               apiVersion: v1
@@ -381,11 +381,11 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: status.hostIP
-    - name: working_ip
-      valueFrom:
-       fieldRef:
-        apiVersion: v1
-        fieldPath: status.hostIP
+        - name: working_ip
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
         # 根据不同集群的地域，您需修改以下镜像地址中的地域<cn-hangzhou>信息。
         image: registry-vpc.cn-hangzhou.aliyuncs.com/acs/logtail-windows:v1.1.18-aliyun.1
         imagePullPolicy: IfNotPresent
