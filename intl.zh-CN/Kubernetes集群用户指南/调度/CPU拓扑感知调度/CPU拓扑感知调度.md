@@ -10,7 +10,7 @@ ACK基于新版的Scheduling framework实现CPU拓扑感知调度及控制自动
 
     **说明：** 目前CPU拓扑感知调度仅支持ACK Pro托管版集群。如果您需要专有版集群，请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)申请白名单。
 
--   在使用CPU拓扑感知调度前，需要预先部署组件resource-controller。具体步骤，请参见[管理组件](/intl.zh-CN/Kubernetes集群用户指南/组件/管理组件.md)。
+-   在使用CPU拓扑感知调度前，需要预先部署组件resource-controller。具体操作，请参见[管理组件](/intl.zh-CN/Kubernetes集群用户指南/组件/管理组件.md)。
 -   系统组件版本要求具体如下表所示。
 
     |组件|版本要求|
@@ -31,9 +31,9 @@ Kubernetes的节点会运行多个Pod，其中部分的Pod属于CPU密集型工�
 
     通过在物理机上部署两个4核8 GB的Nginx并进行压测，可以发现在Intel（104核）、AMD（256核）的物理机上，使用CPU拓扑感知调度能够将应用性能提升22%~43%。具体如以下两个图所示：
 
-    ![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5639584261/p289461.png)
+    ![1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/5639584261/p289461.png)
 
-    ![2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5639584261/p289462.png)
+    ![2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/5639584261/p289462.png)
 
     |性能指标|Intel|AMD|
     |----|-----|---|
@@ -45,7 +45,8 @@ Kubernetes的节点会运行多个Pod，其中部分的Pod属于CPU密集型工�
 
 ## 注意事项
 
-在使用CPU拓扑感知调度时，请保证节点的`cpu-policy=none`。
+-   在使用CPU拓扑感知调度前，请保证已部署组件resource-controller。
+-   在使用CPU拓扑感知调度时，请保证节点的`cpu-policy=none`。
 
 ## 使用CPU拓扑感知调度
 
@@ -116,8 +117,10 @@ Kubernetes的节点会运行多个Pod，其中部分的Pod属于CPU密集型工�
                 cpu: 4  #需要设置resources.limit.cpu值。
     ```
 
-    **说明：** 在配置CPU拓扑感知调度时，可通过在annotations下设置cpu-policy为static-burst，从而控制自动绑核策略。需要配置时，请删除cpu-policy前的`#`。
+    **说明：**
 
+    -   在配置CPU拓扑感知调度时，可通过在annotations下设置cpu-policy为static-burst，从而控制自动绑核策略。需要配置时，请删除cpu-policy前的`#`。
+    -   在`template.metadata`下配置Pod的`annotations`。
 3.  执行以下命令，创建Pod及Deployment。
 
     ```
@@ -248,7 +251,7 @@ spec:
 
 3.  登录压测机，执行以下命令下载`wrk`。
 
-    **说明：** 关于如何登录到节点，请参见[通过密码认证登录Linux实例](/intl.zh-CN/实例/连接实例/使用VNC连接实例/通过密码认证登录Linux实例.md)和[通过密码认证登录Windows实例](/intl.zh-CN/实例/连接实例/使用VNC连接实例/通过密码认证登录Windows实例.md)。
+    **说明：** 关于如何登录到节点，请参见[通过密码认证登录Linux实例](/intl.zh-CN/实例/连接实例/使用VNC连接实例/通过密码认证登录Linux实例.md)或[通过密码认证登录Windows实例](/intl.zh-CN/实例/连接实例/使用VNC连接实例/通过密码认证登录Windows实例.md)。
 
     ```
     wget https://caishu-oss.oss-cn-beijing.aliyuncs.com/wrk?versionId=CAEQEBiBgMCGk565xxciIDdiNzg4NWIzMzZhZTQ1OTlhYzZhZjFhNmQ2MDNkMzA2 -O wrk
