@@ -10,7 +10,7 @@ This topic describes how to call the Kubernetes API by using cURL to make REST c
 
 3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-4.  On the page that appears, click the **Connection Information** tab. You can find cluster credentials in the **kubeconfig** file. Copy the content of the **kubeconfig** file and save it to the on-premises machine.
+4.  On the cluster details page, click the **Connection Information** tab. You can find the cluster credential in the **kubeconfig** file. Copy the content of the **kubeconfig** file and save it to your on-premises machine.
 
 5.  Run the following commands to retrieve information about the certificate authority \(CA\), the private key, and the API server:
 
@@ -97,7 +97,7 @@ curl --cert ./client-cert.pem --key ./client-key.pem -k $APISERVER/api/v1/namesp
     curl --cert client-cert.pem --key client-key.pem -k $APISERVER/api/v1/namespaces/default/pods/nginx/log
     ```
 
-    Run the following command to collect metrics for a pod from the metric-server API:
+    Run the following command to collect metrics of a pod by using the metric-server API:
 
     ```
     curl --cert client-cert.pem --key client-key.pem -k $APISERVER/apis/metrics.k8s.io/v1beta1/namespaces/default/pods/nginx
@@ -172,7 +172,7 @@ curl --cert ./client-cert.pem --key ./client-key.pem -k $APISERVER/api/v1/namesp
 
 [Other methods to access Kubernetes clusters](https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-api/)
 
-We recommend that you use SDKs of open source Kubernetes. The following programming languages are supported: Go, Python, and Java.
+We recommend that you use SDKs of open source Kubernetes. Supported programming languages include Go, Python, and Java.
 
   
 
