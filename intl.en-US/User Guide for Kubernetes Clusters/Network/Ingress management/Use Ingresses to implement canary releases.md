@@ -18,13 +18,13 @@ A/B testing is a way of implementing canary releases. In A/B testing, some users
 
 Assume that you have already created Service A for your production environment to provide Layer 7 access for users. When new features are available, you need to create Service A' for the new application version. If you want to keep Service A for external access, you can forward requests whose values of the foo parameters in the request headers match `bar` or whose values of the foo parameters in the cookie match `bar` to Service A'. If the new version stably runs for a period of time, you can switch all traffic from Service A to Service A'. Then, you can delete Service A.
 
-![Scenario 1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5905514161/p9950.png)
+![Scenario 1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/5905514161/p9950.png)
 
 **Traffic splitting based on Service weights**
 
 Assume that you have already created Service B in your production environment to provide Layer 7 access for users. When some issues are fixed, you need to create Service B' for the new application version. If you want to keep Service B for external access, you can switch 20% of traffic to Service B'. If the new version stably runs for a period of time, you can switch all traffic from Service B to Service B'. Then, you can delete Service B.
 
-![Scenario 2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5905514161/p9951.png)
+![Scenario 2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/5905514161/p9951.png)
 
 Ingress controllers of ACK provide the following traffic splitting methods to support the preceding requirements of application releases.
 
@@ -118,7 +118,7 @@ Create an NGINX application and deploy an Ingress controller to enable Layer 7 a
                 run: old-nginx
             spec:
               containers:
-              - image: registry.cn-hangzhou.aliyuncs.com/xianlu/old-nginx
+              - image: registry.cn-hangzhou.aliyuncs.com/acs-sample/old-nginx
                 imagePullPolicy: Always
                 name: old-nginx
                 ports:
@@ -219,7 +219,7 @@ Release a new NGINX application version and configure Ingress rules.
                 run: new-nginx
             spec:
               containers:
-              - image: registry.cn-hangzhou.aliyuncs.com/xianlu/new-nginx
+              - image: registry.cn-hangzhou.aliyuncs.com/acs-sample/new-nginx
                 imagePullPolicy: Always
                 name: new-nginx
                 ports:
