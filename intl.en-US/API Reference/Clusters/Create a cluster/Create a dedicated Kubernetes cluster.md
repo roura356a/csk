@@ -57,6 +57,8 @@ Content-Type:application/json
   "cloud_monitor_flags" : Boolean,
   "platform" : "String",
   "os_type" : "String",
+  "soc_enabled" : Boolean,
+  "cis_enabled" : Boolean,
   "cpu_policy" : "String",
   "proxy_mode" : "String",
   "node_port_range" : "String",
@@ -107,25 +109,25 @@ Content-Type:application/json
 |name|String|Yes|cluster-demo|The name of the cluster.
 
 The name must be 1 to 63 characters in length, and can contain digits, letters, and hyphens \(-\). It cannot start with a hyphen \(-\). |
-|region\_id|String|Yes|cn-beijing|The region ID of the cluster. |
-|cluster\_type|String|Yes|Kubernetes|The type of cluster. Valid values:
+|region\_id|String|Yes|cn-beijing|The ID of the region where you want to deploy the cluster. |
+|cluster\_type|String|Yes|Kubernetes|The type of the cluster. Valid values:
 
 -   `Kubernetes`: dedicated Kubernetes cluster.
 -   `ManagedKubernetes`: standard managed Kubernetes cluster and managed edge Kubernetes cluster.
 -   `Ask`: serverless Kubernetes \(ASK\) cluster.
 -   `ExternalKubernetes`: external cluster that is registered to Container Service for Kubernetes \(ACK\). |
-|kubernetes\_version|String|No|1.16.9-aliyun.1|The version of the cluster. The cluster versions provided by ACK are consistent with the open source versions. We recommend that you select the latest version. If you do not specify this parameter, the latest version is used.
+|kubernetes\_version|String|No|1.16.9-aliyun.1|The Kubernetes version of the cluster. The Kubernetes versions provided by ACK are consistent with the open source Kubernetes versions. We recommend that you select the latest Kubernetes version. If you do not specify this parameter, the latest Kubernetes version is used.
 
-You can create clusters of the latest two versions in the ACK console. You can create ACK clusters of earlier versions by calling API operations. For more information about the Kubernetes versions supported by ACK, see [t1960241.dita\#task\_1960241](/intl.en-US/Release notes/Kubernetes release notes/Overview of Kubernetes versions supported by ACK.md). |
+You can create clusters of the latest two Kubernetes versions in the ACK console. You can create clusters of earlier Kubernetes versions by calling API operations. For more information about the Kubernetes versions supported by ACK, see [t1960241.dita\#task\_1960241](/intl.en-US/Release notes/Kubernetes release notes/Overview of Kubernetes versions supported by ACK.md). |
 |runtime|[runtime](/intl.en-US/API Reference/Commonly used parameters.md)|No|\{"name": "docker", "version": "19.03.5"\}|The container runtime of the cluster. The following runtimes are supported: `containerd`, `Docker`, and `Sandboxed-Container`. The default runtime is `Docker`. You must specify the name and version of the container runtime. -   `name`: the name of the container runtime.
 -   `version`: the version of the container runtime.
 
 For more information about how to select a proper container runtime, see [t1879872.dita\#task\_2455499](/intl.en-US/User Guide for Kubernetes Clusters/Sandboxed-Container management/Comparison of Docker, containerd, and Sandboxed-Container.md). |
 |vpcid|String|Yes|vpc-2zeik9h3ahvv2zz95\*\*\*\*|The virtual private cloud \(VPC\) where the cluster is deployed. You must specify a VPC when you create the cluster. |
-|pod\_vswitch\_ids|Array of String|No|vsw-2ze97jwri7cei0mpw\*\*\*\*|The list of pod vSwitches. For each vSwitch that is allocated to nodes, you must specify at least one pod vSwitch in the same zone. The pod vSwitches cannot be the same as the node `vSwitches`. We recommend that you set the mask length of the CIDR block to a value no greater than 19 for the pod vSwitches.
+|pod\_vswitch\_ids|Array of String|No|vsw-2ze97jwri7cei0mpw\*\*\*\*|The list of pod vSwitches. For each vSwitch that is allocated to nodes, you must specify at least one pod vSwitch in the same zone as the vSwitch. The pod vSwitches cannot be the same as the node `vSwitches`. We recommend that you set the mask length of the CIDR block to a value no greater than 19 for the pod vSwitches.
 
 **Note:** The `pod_vswitch_ids` parameter is required when the Terway network plug-in is selected for the cluster. |
-|container\_cidr|String|Yes|172.20.0.0/16|The CIDR block of pods. This CIDR block cannot overlap with the CIDR block of the VPC where the cluster is deployed. If the VPC is automatically created by the system, the CIDR block of pods is set to 172.16.0.0/16 by default.
+|container\_cidr|String|Yes|172.20.0.0/16|The CIDR block of pods. This CIDR block cannot overlap with the CIDR block of the VPC in which the cluster is deployed. If the VPC is automatically created by the system, the CIDR block of pods is set to 172.16.0.0/16 by default.
 
 **Note:**
 
@@ -139,7 +141,7 @@ By default, the CIDR block of Services is set to 172.19.0.0/20. |
 |security\_group\_id|String|No|sg-bp1bdue0qc1g7k\*\*\*\*|The ID of the existing security group that is specified for the cluster. You must set this parameter or the `is_enterprise_security_group` parameter. Nodes in the cluster are automatically added to the specified security group. |
 |is\_enterprise\_security\_group|Boolean|No|true|Specifies whether to create an advanced security group. This parameter takes effect only if `security_group_id` is left empty.
 
-**Note:** To use a basic security group, make sure that the sum of the number of nodes in the cluster plus the number of pods that use Terway does not exceed 2,000. Therefore, we recommend that you specify an advanced security group for a cluster that has Terway installed.
+**Note:** To use a basic security group, make sure that the sum of the number of nodes in the cluster and the number of pods that use Terway does not exceed 2,000. Therefore, we recommend that you specify an advanced security group for a cluster that has Terway installed.
 
 -   `true`: creates an advanced security group.
 -   `false`: does not create an advanced security group.
@@ -150,7 +152,7 @@ Default value: `true`. |
 -   true: automatically creates a Network Address Translation \(NAT\) gateway and configures SNAT rules. Set this parameter to `true` if nodes and applications in the cluster need to access the Internet.
 -   false: does not create a NAT gateway or configure SNAT rules. In this case, nodes and applications in the cluster cannot access the Internet.
 
-**Note:** If this feature is disabled when you create the cluster, you can also manually enable this feature after you create the cluster. For more information, see [t1936294.dita\#task\_1936294](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Enable an existing cluster to access the Internet by using SNAT.md).
+**Note:** If this feature is disabled when you create the cluster, you can also manually enable this feature after you create the cluster. For more information, see [t1936294.dita\#task\_1936294](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Enable an existing ACK cluster to access the Internet by using SNAT.md).
 
 Default value: true. |
 |endpoint\_public\_access|Boolean|No|true|Specifies whether to enable Internet access for the cluster. You can use an elastic IP address \(EIP\) to expose the API server. This way, you can access the cluster over the Internet.
@@ -159,7 +161,7 @@ Default value: true. |
 -   `false`: disables Internet access. If you set this parameter to false, the API server cannot be accessed over the Internet.
 
 Default value: `false`. |
-|ssh\_flags|Boolean|No|true|Specifies whether to enable Secure Shell \(SSH\) logon over the Internet. If this parameter is set to true, you can log on to master nodes in a dedicated Kubernetes cluster over the Internet. This parameter does not take effect in managed Kubernetes clusters.
+|ssh\_flags|Boolean|No|true|Specifies whether to enable SSH logon over the Internet. If this parameter is set to true, you can log on to master nodes in a dedicated Kubernetes cluster over the Internet. This parameter does not take effect in managed Kubernetes clusters.
 
 -   `true`: enables SSH logon over the Internet.
 -   `false`: disables SSH logon over the Internet.
@@ -173,20 +175,20 @@ Default value: `26`. |
 |user\_data|String|No|IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFD\*\*\*\*|The user-defined data. For more information, see [t9660.dita\#concept\_fgf\_tjn\_xdb](/intl.en-US/Instance/Manage instance configurations/Manage instance user data/Overview of ECS instance user data.md). |
 |cluster\_domain|String|No|cluster.local|The domain name of the cluster.
 
-The domain name consists of one or more parts that are separated with periods \(.\).Each part cannot exceed 63 characters in length, and can contain lowercase letters, digits, and hyphens \(-\). Each part must start and end with a lowercase letter or digit. |
+The domain name consists of one or more parts that are separated by periods \(.\).Each part cannot exceed 63 characters in length, and can contain lowercase letters, digits, and hyphens \(-\). Each part must start and end with a lowercase letter or digit. |
 |node\_name\_mode|String|No|aliyun.com00055test|Specifies a custom node name.
 
 A node name consists of a prefix, an IP substring, and a suffix.
 
 -   The prefix and suffix can contain one or more parts that are separated by periods \(.\).Each part can contain lowercase letters, digits, and hyphens \(-\), and must start and end with a digit or lowercase letter.
--   The IP substring length specifies the number of digits to be truncated from the end of the node IP address. Valid values: 5 to 12.
+-   The IP substring length specifies the number of digits to be truncated from the end of the node IP address. The IP substring length ranges from 5 to 12.
 
 For example, if the node IP address is 192.168.0.55, the prefix is aliyun.com, the IP substring length is 5, and the suffix is test, the node name is aliyun.com00055test. |
-|custom\_san|String|No|cs.aliyun.com|Specifies custom subject alternative names \(SANs\) for the API server certificate to accept requests from specified IP addresses or domain names. Multiple IP addresses and domain names are separated with commas \(,\). |
+|custom\_san|String|No|cs.aliyun.com|Specifies custom subject alternative names \(SANs\) for the API server certificate to accept requests from specified IP addresses or domain names. Multiple IP addresses and domain names are separated by commas \(,\). |
 |service\_account\_issuer|String|No|kubernetes.default.svc|A service account is used to provide an identity for pods when they communicate with the `API server`. `service-account-issuer` is the issuer of the `service account token`, which corresponds to the `iss` field in the `token payload`.
 
 For more information about `service accounts`, see [t1881266.dita\#task\_2460323](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Infrastructure security/Enable service account token volume projection.md). |
-|api\_audiences|String|No|kubernetes.default.svc|A service account is used to provide an identity for pods when they communicate with the `API server`. `api-audiences` are valid identifiers of `tokens`. Audiences are used to validate `tokens` at the `API server` side. Multiple `audiences` are separated with commas \(,\).
+|api\_audiences|String|No|kubernetes.default.svc|A service account is used to provide an identity for pods when they communicate with the `API server`. `api-audiences` are valid identifiers of `tokens`. Audiences are used to validate `tokens` at the `API server` side. Separate multiple `audiences` with commas \(,\).
 
 For more information about `service accounts`, see [t1881266.dita\#task\_2460323](/intl.en-US/User Guide for Kubernetes Clusters/Security management/Infrastructure security/Enable service account token volume projection.md). |
 |image\_id|String|No|m-bp16z7xko3vvv8gt\*\*\*\*|Specifies a custom image for nodes. By default, the system image is used. You can select a custom image to replace the default image. For more information, see [t1849273.dita\#task\_2362493](/intl.en-US/Best Practices/Migrate a self-built Kubernetes cluster to Container Service for Kubernetes/Use a custom image to create an ACK cluster.md). |
@@ -195,14 +197,14 @@ For more information about `service accounts`, see [t1881266.dita\#task\_2460323
 
 -   Each label consists of a case-sensitive key-value pair. You can add up to 20 labels.
 -   When you add a label, you must specify a unique key but you can leave the value empty. A key cannot exceed 64 characters in length and a value cannot exceed 128 characters in length. Keys and values cannot start with aliyun, acs:, https://, or http://. For more information, see [Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set). |
-|addons|Array of [addon](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The list of add-ons to be installed. When you create a cluster, you can set the `addons` parameter to install specific add-ons.
+|addons|Array of [addon](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The list of components to be installed. When you create a cluster, you can set the `addons` parameter to install specific components.
 
 **Network plug-in**: required. Supported network plug-ins are Flannel and Terway. Select one of the plug-ins for the cluster.
 
 -   Specify the Flannel plug-in in the following format: \[\{"name":"flannel","config":""\}\].
 -   Specify the Terway plug-in in the following format: \[\{"name": "terway-eniip","config": ""\}\].
 
-**Volume plug-in**: required. Supported volume plug-ins are `CSI` and `FlexVolume`.
+**Volume plug-in**: Required. Supported volume plug-ins are `CSI` and `FlexVolume`.
 
 -   Specify the `CSI` plug-in in the following format: \[\{"name":"csi-plugin","config": ""\},\{"name": "csi-provisioner","config": ""\}\].
 -   Specify the `FlexVolume` plug-in in the following format: \[\{"name": "flexvolume","config": ""\}\].
@@ -214,7 +216,7 @@ For more information about `service accounts`, see [t1881266.dita\#task\_2460323
 
 **Ingress controller**: optional. By default, the `nginx-ingress-controller` component is installed for dedicated Kubernetes clusters.
 
--   To install nginx-ingress-controller and enable Internet access, specify the Ingress controller in the following format: \[\{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\].
+-   To install nginx-ingress-controller and enable Internet access, specify the component in the following format: \[\{"name":"nginx-ingress-controller","config":"\{\\"IngressSlbNetworkType\\":\\"internet\\"\}"\}\].
 -   To disable the system to automatically install nginx-ingress-controller, specify the component in the following format: \[\{"name": "nginx-ingress-controller","config": "","disabled": true\}\].
 
 **Event center**: optional. By default, the event center feature is enabled.
@@ -222,7 +224,7 @@ For more information about `service accounts`, see [t1881266.dita\#task\_2460323
 The event center feature allows you to log Kubernetes events, query events, and generate alerts. Logstores that are associated with the Kubernetes event center are free of charge for the first 90 days. For more information, see [t1857672.dita\#task\_2389213](/intl.en-US/Application/K8s Event Center/Create and use a Kubernetes event center.md).
 
 Enable the ack-node-problem-detector component in the following format: \[\{"name":"ack-node-problem-detector","config":"\{\\"sls\_project\_name\\":\\"your\_sls\_project\_name\\"\}"\}\]. |
-|taints|Array of [taint](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The taints to be added to nodes. Taints are added to nodes to prevent pods from being scheduled to inappropriate nodes. However, toleration rules allow pods to be scheduled to nodes with matching taints. For more information, see [taint-and-toleration](https://kubernetes.io/zh/docs/concepts/scheduling-eviction/taint-and-toleration/). |
+|taints|Array of [taint](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The taints that you want to add to nodes. Taints are added to nodes to prevent pods from being scheduled to inappropriate nodes. However, toleration rules allow pods to be scheduled to nodes with matching taints. For more information, see [taint-and-toleration](https://kubernetes.io/zh/docs/concepts/scheduling-eviction/taint-and-toleration/). |
 |cloud\_monitor\_flags|Boolean|No|true|Specifies whether to install the CloudMonitor agent. Valid values:
 
 -   `true`: installs the CloudMonitor agent.
@@ -245,7 +247,21 @@ Default value: `AliyunLinux`. |
 -   Linux
 
 Default value: `Linux`. |
-|cpu\_policy|String|No|none|The CPU policy. The following policies are supported if the cluster version is 1.12.6 or later.
+|soc\_enabled|Boolean|No|false|Valid values:
+
+-   `true`: enables reinforcement based on classified protection.
+-   `false`: disables reinforcement based on classified protection.
+
+Default value: `false`. |
+|cis\_enabled|Boolean|No|false|Specifies whether to enable Center for Internet Security \(CIS\) reinforcement. For more information, see [CIS reinforcement](~~223744~~).
+
+Valid values:
+
+-   `true`: enables CIS reinforcement.
+-   `true`: enables CIS reinforcement.
+
+Default value: `false`. |
+|cpu\_policy|String|No|none|The CPU policy. The following policies are supported if the Kubernetes version is 1.12.6 or later.
 
 -   `static`: This policy allows pods with specific resource characteristics on the node to be granted with enhanced CPU affinity and exclusivity.
 -   `none`: This policy indicates that the default CPU affinity is used.
@@ -262,7 +278,7 @@ Default value: `ipvs`. |
 Default value: `30000-32767`. |
 |key\_pair|String|Yes|secrity-key|The name of the key pair. You must set this parameter or the `login_password` parameter. |
 |login\_password|String|Yes|Hello@1234|The password for SSH logon. You must set this parameter or the `key_pair` parameter. The password must be 8 to 30 characters in length, and must contain at least three of the following character types: uppercase letters, lowercase letters, digits, and special characters. |
-|master\_count|Long|No|3|The number of master nodes to be created. Valid values: `3` and `5`.
+|master\_count|Long|No|3|The number of master nodes that you want to create. Valid values: `3` and `5`.
 
 Default value: `3`. |
 |master\_vswitch\_ids|Array of String|Yes|vsw-2ze3ds0mdip0hdz8i\*\*\*\*|The IDs of vSwitches. |
@@ -291,7 +307,7 @@ Set the value to `Month`. Master nodes are billed only on a monthly basis. |
 
 Valid values: 1, 2, 3, 6, 12, 24, 36, 48, and 60.
 
-Default value: 1. |
+Default value: 1 |
 |master\_auto\_renew|Boolean|No|true|Specifies whether to enable auto-renewal for master nodes. This parameter takes effect only if `master_instance_charge_type` is set to `PrePaid`. Valid values:
 
 -   `true`: enables auto-renewal.
@@ -322,7 +338,7 @@ The value of this parameter must be at least 40 and greater than or equal to the
 
 Default value: 120. |
 |worker\_system\_disk\_snapshot\_policy\_id|String|No|sp-2zej1nogjvovnz4z\*\*\*\*|The ID of the automatic snapshot policy that is used by the system disk specified for worker nodes. |
-|worker\_data\_disks|Array of [data\_disk](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The configurations of the data disks that are mounted to worker nodes. Each configuration includes disk type and disk size. |
+|worker\_data\_disks|Array of [data\_disk](/intl.en-US/API Reference/Commonly used parameters.md)|No| |The configuration of the data disk that is mounted to worker nodes. The configuration includes disk type and disk size. |
 |worker\_instance\_charge\_type|String|No|PrePaid|The billing method of worker nodes. Valid values:
 
 -   `PrePaid`: subscription
@@ -347,7 +363,7 @@ Default value: `true`. |
 
 Valid values: 1, 2, 3, 6, and 12. |
 |instances|Array of String|No|i-2ze4zxnm36vq00xn\*\*\*\*|The names of instances. |
-|format\_disk|Boolean|No|false|Specifies whether to mount a data disk to nodes that are created on existing ECS instances. Valid values:
+|format\_disk|Boolean|No|false|Specifies whether to mount a data disk to nodes that are created based on existing ECS instances. Valid values:
 
 -   `true`: stores the data of containers and images on a data disk. The original data on the disk will be overwritten. Back up data before you mount the disk.
 -   `false`: does not store the data of containers and images on a data disk.
@@ -357,14 +373,14 @@ Default value: `false`.
 How to mount a data disk:
 
 -   If the ECS instances have data disks mounted and the file system of the last data disk is not initialized, the system automatically formats the data disk to ext4. Then, the system mounts the data disk to /var/lib/docker and /var/lib/kubelet.
--   The system does not create and mount a new data disk if no data disk has been mounted to the ECS instances. |
+-   The system does not create or mount a new data disk if no data disk has been mounted to the ECS instances. |
 |keep\_instance\_name|Boolean|No|true|Specifies whether to retain the names of existing ECS instances that are used in the cluster.
 
 -   `true`: retains the names.
 -   `false`: does not retain the names. The new names are assigned by the system.
 
 Default value: `true`. |
-|deletion\_protection|Boolean|No|true|Specifies whether to enable deletion protection for the cluster. After deletion protection is enabled, the cluster cannot be deleted in the ACK console or by calling API operations. Valid values:
+|deletion\_protection|Boolean|No|true|Indicates whether deletion protection is enabled for the cluster. After deletion protection is enabled, the cluster cannot be deleted in the console or by calling API operations. Valid values:
 
 -   `true`: enables deletion protection for the cluster. This way, the cluster cannot be deleted in the ACK console or by calling API operations.
 -   `false`: disables deletion protection for the cluster. This way, the cluster can be deleted in the ACK console or by calling API operations.
@@ -396,7 +412,7 @@ Content-Type:application/json
 
 |Parameter|Type|Example|Description|
 |---------|----|-------|-----------|
-|cluster\_id|String|cb95aa626a47740afbf6aa099b650\*\*\*\*|The ID of the cluster. |
+|cluster\_id|String|cb95aa626a47740afbf6aa099b650\*\*\*\*|The ID of the ACK cluster. |
 |request\_id|String|687C5BAA-D103-4993-884B-C35E4314A1E1|The ID of the request. |
 |task\_id|String|T-5a54309c80282e39ea00002f|The ID of the task. |
 
@@ -455,6 +471,8 @@ POST /clusters
         }
     ],
     "os_type":"Linux",
+    "soc_enabled" : false,
+    "cis_enabled" : false,
     "platform":"AliyunLinux",
     "user_data":"IyEvdXNyL2Jpbi9iYXNoCmVjaG8gIkhlbGxvIEFDSyEi",
     "node_port_range":"30000-32767",      // The node port range. Valid values: 30000 to 65535. 
