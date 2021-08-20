@@ -17,15 +17,17 @@ You can use Kubernetes network policies to implement policy-based access control
 **Note:**
 
 -   To use network policies through the ACK console, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply to be added to a whitelist.
--   To use network policies through a command-line interface \(CLI\), you do not need to apply to be added to a whitelist.
+-   To use network policies through a CLI, you do not need to apply to be added to a whitelist.
 
 You can enable network policies when you create the cluster or after the cluster is created. The cluster must use the Terway network plug-in.
 
 -   To enable network policies when you create the cluster, select **Support for NetworkPolicy** in the Terway Mode section. For more information, see [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Create a professional managed Kubernetes cluster.md).
 
--   To enable network policies after the cluster is created, go to the **Configurations** page, select the **eni-config** ConfigMap in the kube-system namespace, and then set disable\_network\_policy to false. For more information about ConfigMaps, see [Modify a ConfigMap](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Configuration items and key/Manage ConfigMaps.md).
+-   To enable network policies after the cluster is created, go to the **CconfigMap** page, select the **eni-config** ConfigMap in the kube-system namespace, and then set disable\_network\_policy to false. For more information about ConfigMaps, see [Modify a ConfigMap](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Configuration items and key/Manage ConfigMaps.md).
 
-    ![Parameter](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8960557261/p287848.png)
+    ![ConfigMap](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/8960557261/p287848.png)
+
+    After the **eni-config** ConfigMap is modified, you must restart Terway to enable network policies. For more information about how to restart Terway, see [Recreate Terway pods](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Increase the number of vSwitches in a cluster that uses the Terway plug-in.md).
 
 
 ## Scenarios
@@ -78,11 +80,11 @@ The preceding scenarios all use the application that is created in [Create an NG
 
     2.  On the **Pods** page, select a pod named busybox-\{hash value\} and click **Terminal** in the Actions column.
 
-        ![busybox](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8960557261/p286133.png)
+        ![busybox](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/8960557261/p286133.png)
 
     3.  In the terminal, run the `wget nginx` command to access the nginx Service.
 
-        ![connection](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8960557261/p286241.png)
+        ![connection](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/8960557261/p286241.png)
 
         The preceding output indicates that busybox can access the nginx Service.
 
@@ -91,7 +93,7 @@ The preceding scenarios all use the application that is created in [Create an NG
 
 1.  Run the following command to create an application named nginx. Then, create a Service named nginx to expose the application.
 
-    Create an application named nginx.
+    Create an application named nginx:
 
     ```
     kubectl run nginx --image=nginx
@@ -103,7 +105,7 @@ The preceding scenarios all use the application that is created in [Create an NG
     pod/nginx created
     ```
 
-    Query whether the pod of the application is started.
+    Query whether the pod of the application is started:
 
     ```
     kubectl get pod
@@ -116,7 +118,7 @@ The preceding scenarios all use the application that is created in [Create an NG
     nginx                    1/1     Running   0          45s
     ```
 
-    Create a Service named nginx.
+    Create a Service named nginx:
 
     ```
     kubectl expose pod nginx --port=80
@@ -185,7 +187,7 @@ The preceding scenarios all use the application that is created in [Create an NG
     |---------|-----------|
     |Name|Set the name of the network policy. In this example, access-nginx is used.|
     |Namespace|Set the namespace to which the network policy is scoped.|
-    |Pod Selector|Set the pods to which the network policy applies. In this example, the following settings are used:
+    |Pod Selectors|Set the pods to which the network policy applies. In this example, the following settings are used:
 
     -   Type: **Deployment**
     -   Workload: **nginx**
@@ -210,7 +212,7 @@ In this example, no egress rules are added. |
 
     The connection timed out because the network policy does not allow access from the busybox pod.
 
-    ![timeout](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8960557261/p286629.png)
+    ![timeout](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/8960557261/p286629.png)
 
 7.  Modify the network policy to allow access from the busybox pod.
 
@@ -241,7 +243,7 @@ In this example, no egress rules are added. |
 
         After the ingress rule is added to the network policy, the busybox pod can access the nginx Service.
 
-        ![Access is successful](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9960557261/p286712.png)
+        ![Access is successful](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9960557261/p286712.png)
 
 
 **Use the CLI**
@@ -270,7 +272,7 @@ In this example, no egress rules are added. |
               access: "true"
     ```
 
-2.  Run the following command to create a network policy based on the preceding policy.yaml file:
+2.  Run the following command to create a network policy by using the preceding policy.yaml file:
 
     ```
     kubectl apply -f policy.yaml 
@@ -329,7 +331,7 @@ In this example, no egress rules are added. |
 
 2.  On the Services page, find the nginx Service created in [Create an NGINX application that allows access from other pods](#section_lso_lzv_tq4) and copy its IP address \(47.xxx.xx.x\) in the **External Endpoint** column. Visit the IP address in your browser.
 
-    ![en](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9960557261/p286719.png)
+    ![en](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9960557261/p286719.png)
 
     The nginx Service cannot be accessed due to the preconfigured network policy.
 
@@ -362,7 +364,7 @@ In this example, no egress rules are added. |
             |Protocol|TCP|
             |Port|80|
 
-        ![ipblock](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9960557261/p286736.png)
+        ![ipblock](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9960557261/p286736.png)
 
     3.  Click **Next** and then click **OK**.
 
@@ -379,7 +381,7 @@ In this example, no egress rules are added. |
 
     ```
     vim nginx-service.yaml
-    # The following content is an example of the YAML file. 
+    # The following content is an example. 
     
     apiVersion: v1
     kind: Service
@@ -456,7 +458,7 @@ In this example, no egress rules are added. |
 
     ```
     vim policy.yaml
-    # The following content is an example of the YAML file. 
+    # The following content provides an example. 
     kind: NetworkPolicy
     apiVersion: networking.k8s.io/v1
     metadata:
@@ -525,7 +527,7 @@ In this section, www.aliyun.com and registry.aliyuncs.com are used as examples. 
         For more information about the parameters, see [Allow only applications with specific labels to access a Service](#section_yys_08i_fxv). The following content provides a sample configuration.
 
         -   Set **Name** to busybox-policy.
-        -   Set podSelector.
+        -   Set pod selectors.
 
             |Parameter|Example|
             |---------|-------|
@@ -559,7 +561,7 @@ In this section, www.aliyun.com and registry.aliyuncs.com are used as examples. 
 
             The following figure shows the configuration of the egress rule.
 
-            ![dns](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9960557261/p286769.png)
+            ![dns](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9960557261/p286769.png)
 
     2.  Click **Next** and then click **OK**.
 
@@ -575,7 +577,7 @@ In this section, www.aliyun.com and registry.aliyuncs.com are used as examples. 
 
         After the network policy is added, the busybox application can access only registry.aliyuncs.com.
 
-        ![dns](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9960557261/p286772.png)
+        ![dns](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9960557261/p286772.png)
 
 
 **Use the CLI**
@@ -695,10 +697,10 @@ In this section, www.aliyun.com and registry.aliyuncs.com are used as examples. 
     |Parameter|Example|
     |---------|-------|
     |Name|deny-public-net|
-    |podSelector|Set Type to **All**.|
-    |Source|Add the following two ingress rules:    -   Set **namespaceSelector** to **All**.
+    |Pod Selectors|Set Type to **All**.|
+    |Source|Add the following ingress rules:    -   Set **namespaceSelector** to **All**.
     -   Set **ipBlock** to **0.0.0.0/0**.
-![Source](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9960557261/p286827.png) |
+![Source](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9960557261/p286827.png) |
     |Destination|Add egress rules that allow the pod to access only the internal network.    -   Set **namespaceSelector** to **All**. This allows the pod to access all other pods in the internal network.
     -   Create three rules and set **ipBlock** to the following CIDR blocks in sequence:
 
@@ -707,7 +709,7 @@ In this section, www.aliyun.com and registry.aliyuncs.com are used as examples. 
         -   192.168.0.0/16
 **Note:** You cannot specify multiple CIDR blocks for the ipBlock parameter in one rule.
 
-![Destination](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9960557261/p286832.png) |
+![Destination](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9960557261/p286832.png) |
 
 2.  Click **Next** and then click **OK**.
 
@@ -723,7 +725,7 @@ In this section, www.aliyun.com and registry.aliyuncs.com are used as examples. 
 
     The output shows that the pod can access the internal network but not the Internet.
 
-    ![Test pod access to the Internet](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9960557261/p286841.png)
+    ![Test pod access to the Internet](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9960557261/p286841.png)
 
 
 **Use the CLI**
@@ -813,6 +815,9 @@ In this section, www.aliyun.com and registry.aliyuncs.com are used as examples. 
       - to:
         - ipBlock:
             cidr: 0.0.0.0/0
+        - namespaceSelector:
+            matchLabels:
+              ns: kube-system
     ```
 
     ```
