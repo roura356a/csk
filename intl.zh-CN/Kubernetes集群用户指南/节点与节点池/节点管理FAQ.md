@@ -6,6 +6,7 @@
 -   [修复GPU节点容器启动问题](#section_wj1_6cu_gtc)
 -   [添加Kubernetes集群节点的常见问题](~~170722~~)
 -   [移除节点时提示”drain-node job execute timeout”错误](~~190626~~)
+-   [如何更改ACK集群中Worker节点的主机名称？](#section_cob_uvi_y06)
 
 ## 如何在已有集群的GPU节点上手动升级Kernel？
 
@@ -17,7 +18,7 @@
 
 本文提供方案并不涉及kernel升级，仅针对在kernel升级的前提下对应的Nvidia驱动升级。
 
-1.  [t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+1.  [t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 2.  将GPU节点设置为不可调度（本例以节点 cn-beijing.i-2ze19qyi8votgjz12345为例）。
 
@@ -41,7 +42,7 @@
 
     **说明：** 本步骤中卸载的是版本为384.111的驱动包，如果您的驱动版本不是384.111，则需要在Nvidia官网下载对应的驱动安装包，并将本步骤中的`384.111`替换成您实际的版本。
 
-    1.  您需要登录到该GPU节点，通过`nvidia-smi`查看驱动版本。
+    1.  登录到该GPU节点，通过`nvidia-smi`查看驱动版本。
 
         ```
         nvidia-smi -a | grep 'Driver Version'
@@ -220,5 +221,28 @@ Cgroup Driver: cgroupfs
     docker info | grep -i cgroup
     Cgroup Driver: systemd
     ```
+
+
+## 如何更改ACK集群中Worker节点的主机名称？
+
+集群创建完成后，不支持自定义Worker节点的主机名称，但是您可以通过节点池的节点命名规则来修改Worker节点的主机名称。
+
+**说明：** 创建集群时，您可以在**自定义节点名称**参数中定义Worker节点的主机名称。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
+
+1.  移除节点。
+
+    1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+
+    2.  在控制台左侧导航栏中，单击**集群**。
+
+    3.  在集群管理页左侧导航栏中，选择**节点管理** \> **节点**。
+
+    4.  在**节点**页面单击目标节点右侧**操作**列下的**更多** \> **移除**。
+
+    5.  在弹出的对话框中选中**我已了解上述说明，确认移除节**点，然后单击**确定**。
+
+2.  将移除的节点再添加到节点池。具体操作，请参见[手动添加节点](/intl.zh-CN/Kubernetes集群用户指南/节点与节点池/节点/添加已有节点.md)。
+
+    添加的节点将根据节点池的节点命名规则进行命名。
 
 
