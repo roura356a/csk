@@ -6,11 +6,16 @@ keyword: [CoreDNS, 日志, DNS服务, 监控]
 
 阿里云容器服务ACK部署了CoreDNS作为集群内的DNS服务器，您可以通过查看CoreDNS日志来分析CoreDNS解析慢、访问高危请求域名等问题。本文介绍如何开启CoreDNS日志分析与监控能力。
 
--   已安装日志组件alibaba-log-controller。
+-   已安装日志组件logtail-ds。
 
-    在创建集群时，ACK默认安装日志组件。如果您未安装日志组件，关于如何手动安装的操作，请参见[通过日志服务采集Kubernetes容器日志](/cn.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/通过日志服务采集Kubernetes容器日志.md)。
+    在创建集群时，ACK默认选中日志组件logtail-ds。如果您未安装日志组件logtail-ds，关于如何手动安装的操作，请参见[通过日志服务采集Kubernetes容器日志](/cn.zh-CN/Kubernetes集群用户指南/可观测性/日志管理/通过日志服务采集Kubernetes容器日志.md)。
 
--   请确保日志组件alibaba-log-controller版本不低于0.2.0.0-76648ee-aliyun。关于如何升级组件，请参见[管理组件](/cn.zh-CN/Kubernetes集群用户指南/集群/升级集群/管理组件.md)。
+-   请确保日志应用alibaba-log-controller版本不低于0.2.0.0-76648ee-aliyun。
+
+    ![logcontroller](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/2169869261/p309799.png)
+
+    如果alibaba-log-controller版本低，可直接升级logtail-ds组件。关于如何升级组件，请参见[管理组件](/cn.zh-CN/Kubernetes集群用户指南/组件/管理组件.md)。
+
 
 ## 步骤一：开启CoreDNS日志服务
 
@@ -143,22 +148,22 @@ spec:
 
 4.  在集群信息页面，单击**集群资源**页签，然后单击**日志服务Project**右侧的日志服务Project名称链接。
 
-5.  在日志库页面左侧导航栏，单击![resource](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6958619161/p267638.png)图标，然后单击**仪表盘**，在仪表盘列表中找到并单击**Kubernetes CoreDNS日志分析**。
+5.  在日志库页面左侧导航栏，单击![resource](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6958619161/p267638.png)图标，然后单击**仪表盘**，在仪表盘列表中找到并单击**Kubernetes CoreDNS日志分析**。
 
     在**Kubernetes CoreDNS日志分析**页面，您可以查看CoreDNS请求数、请求成功率和请求延迟等聚合信息，同时提供了各类Top域名请求列表、错误域名列表、慢解析域名列表和高危请求域名访问分析。
 
-    ![coredns log](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4589619161/p267483.png)
+    ![coredns log](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4589619161/p267483.png)
 
 
 ## 步骤四：创建CoreDNS日志告警
 
 在**Kubernetes CoreDNS日志分析**仪表盘页面中，您可以根据仪表盘中单个图表进行告警设置。
 
-在目标图表卡片右上方，选择**![more](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4484619161/p267496.png)** \> **另存为告警（旧版）**。关于告警配置的参数设置，请参见[设置告警](/cn.zh-CN/告警/告警（旧版）/设置告警.md)。
+在目标图表卡片右上方，选择**![more](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4484619161/p267496.png)** \> **另存为告警（新版）**。关于告警配置的参数设置，请参见[创建日志告警监控规则](/cn.zh-CN/告警/告警（新版）/告警监控/创建日志告警监控规则.md)。
 
-![alert](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9161225261/p267588.png)
+![alert](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1920969261/p267588.png)
 
-创建完成告警规则后，您可以[查看告警配置信息](/cn.zh-CN/告警/告警（旧版）/管理告警配置.md)或[查看告警记录](/cn.zh-CN/告警/告警（旧版）/查看告警记录.md)。
+创建完成告警规则后，您可以查看、修改告警规则，关闭告警规则等。更多信息，请参见[告警监控规则相关操作](/cn.zh-CN/告警/告警（新版）/告警监控/告警监控规则相关操作.md)。
 
 **相关文档**  
 
