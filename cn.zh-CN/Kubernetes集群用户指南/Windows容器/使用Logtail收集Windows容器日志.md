@@ -16,7 +16,7 @@ keyword: [Windows节点, Logtail, 应用日志信息采集]
 
 ## 为Windows节点安装Logtail v1.0.x
 
-执行以下YAML模板将Logtail以Daemonset方式部署至Windows节点上。
+执行以下YAML模板将Logtail以DaemonSet方式部署至Windows节点上。
 
 ```
 apiVersion: apps/v1
@@ -223,7 +223,7 @@ spec:
 
 **说明：** Logtail v1.1.x依赖Windows工作节点上的特权托管进程，仅适用于集群内节点池默认含有`windows.alibabacloud.com/deployment-topology=2.0`标签的Windows工作节点。
 
-使用以下YAML模板将Logtail以Daemonset方式部署至Windows节点上。
+使用以下YAML模板将Logtail以DaemonSet方式部署至Windows节点上。
 
 ```
 apiVersion: apps/v1
@@ -370,7 +370,7 @@ spec:
         - name: ALICLOUD_LOG_DOCKER_ENV_CONFIG
           value: "true"
         - name: ALICLOUD_LOG_ENV_TAGS
-          value: _node_name_|_node_ip_
+          value: _node_name_|_node_ip_|working_ip
         - name: _node_name_
           valueFrom:
             fieldRef:
