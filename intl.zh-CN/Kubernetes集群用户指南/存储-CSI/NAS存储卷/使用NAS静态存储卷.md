@@ -4,7 +4,7 @@ keyword: [NAS静态存储卷, 持久化存储, 共享存储]
 
 # 使用NAS静态存储卷
 
-NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能的分布式文件系统。本文介绍如何使用阿里云NAS静态存储卷，使用NAS静态存储卷如何实现持久化存储与共享存储。
+NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能的分布式文件系统。本文介绍如何使用阿里云NAS静态存储卷，及如何实现持久化存储与共享存储。
 
 -   已创建Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   已创建静态NAS卷。具体操作，请参见[创建文件系统]()。
@@ -15,7 +15,7 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
 
     NAS挂载点需要和集群节点在同一个VPC内。
 
--   [通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   [步骤二：选择集群凭证类型](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 ## 使用场景
 
@@ -28,8 +28,7 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
 -   在使用极速NAS文件系统时，配置数据卷的`path`需要以/share为父目录。例如，Pod挂载的NAS文件系统子目录可配置为/share/path1。
 -   NAS支持同时被多个Pod挂载，此时多个Pod可能同时修改相同数据，需要应用自行实现数据的同步。
 
-    **说明：** NAS存储的/目录不支持修改权限、属主和属组。
-
+**说明：** NAS存储的/目录不支持修改权限、属主和属组。
 
 ## 通过控制台的方式使用NAS静态存储卷
 
@@ -98,11 +97,11 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
 
     ACK数据卷支持配置本地存储和云存储。
 
-    -   **本地存储**：支持主机目录（HostPath）、配置项（ConfigMap）、保密字典（Secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息，请参见[volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。
+    -   **本地存储**：支持主机目录（HostPath）、配置项（ConfigMap）、保密字典（Secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息，请参见[Volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。
     -   **云存储**：支持云存储类型。
     本例中配置了一个NAS类型的数据卷，将该NAS存储卷挂载到容器中/tmp路径下。
 
-    ![数据卷](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6785659951/p59980.jpg)
+    ![数据卷](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6785659951/p59980.jpg)
 
 4.  所有的信息都配置完成后，单击**创建**。
 
@@ -135,7 +134,7 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
         driver: nasplugin.csi.alibabacloud.com
         volumeHandle: pv-nas
         volumeAttributes:
-          server: "2564f49129-ysu87.cn-shenzhen.nas.aliyuncs.com"
+          server: "2564f4****-ysu87.cn-shenzhen.nas.aliyuncs.com"
           path: "/csi"
       mountOptions:
       - nolock,tcp,noresvport
@@ -240,9 +239,9 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
     预期输出：
 
     ```
-    NAME                                READY   STATUS    RESTARTS   AGE
-    deployment-nas-1-5b5cdb85f6-n****   1/1     Running   0          32s
-    deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
+    NAME                          READY   STATUS    RESTARTS   AGE
+    nas-static-5b5cdb85f6-n****   1/1     Running   0          32s
+    nas-static-c5bb4746c-4****    1/1     Running   0          32s
     ```
 
 
@@ -259,29 +258,29 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
         预期输出：
 
         ```
-        NAME                                READY   STATUS    RESTARTS   AGE
-        deployment-nas-1-5b5cdb85f6-n****   1/1     Running   0          32s
-        deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
+        NAME                          READY   STATUS    RESTARTS   AGE
+        nas-static-5b5cdb85f6-n****   1/1     Running   0          32s
+        nas-static-c5bb4746c-4****    1/1     Running   0          32s
         ```
 
-    2.  执行以下命令，查看任意一个应用的/data路径下的文件，本文以名为`deployment-nas-1-5b5cdb85f6-n****`的Pod为例。
+    2.  执行以下命令，查看任意一个应用的/data路径下的文件，本文以名为`nas-static-5b5cdb85f6-n****`的Pod为例。
 
         ```
-        kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
+        kubectl exec nas-static-5b5cdb85f6-n**** ls /data
         ```
 
         无返回结果，说明/data路径下无文件。
 
-2.  执行以下命令，在名为`deployment-nas-1-5b5cdb85f6-n****`Pod的/data路径下创建文件nas。
+2.  执行以下命令，在名为`nas-static-5b5cdb85f6-n****`Pod的/data路径下创建文件nas。
 
     ```
-    kubectl exec deployment-nas-1-5b5cdb85f6-n**** touch /data/nas
+    kubectl exec nas-static-5b5cdb85f6-n**** touch /data/nas
     ```
 
-3.  执行以下命令，查看名为`deployment-nas-1-5b5cdb85f6-n****`Pod的/data路径下的文件。
+3.  执行以下命令，查看名为`nas-static-5b5cdb85f6-n****`Pod的/data路径下的文件。
 
     ```
-    kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
+    kubectl exec nas-static-5b5cdb85f6-n**** ls /data
     ```
 
     预期输出：
@@ -293,7 +292,7 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
 4.  执行以下命令，删除Pod。
 
     ```
-    kubectl delete pod deployment-nas-1-5b5cdb85f6-n****
+    kubectl delete pod nas-static-5b5cdb85f6-n****
     ```
 
 5.  同时在另一个窗口中，执行以下命令，查看Pod删除及Kubernetes重建Pod的过程。
@@ -314,14 +313,14 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
 
         ```
         NAME                                READY   STATUS    RESTARTS   AGE
-        deployment-nas-1-5b5cdb85f6-n****   1/1     Running   0          32s
-        deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
+        nas-static-5b5cdb85f6-n****   1/1     Running   0          32s
+        nas-static-c5bb4746c-4****    1/1     Running   0          32s
         ```
 
-    2.  执行以下命令，查看名为`deployment-nas-1-5b5cdb85f6-n****`的Pod /data路径下的文件。
+    2.  执行以下命令，查看名为`nas-static-5b5cdb85f6-n****`的Pod /data路径下的文件。
 
         ```
-        kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
+        kubectl exec nas-static-5b5cdb85f6-n**** ls /data
         ```
 
         预期输出：
@@ -346,30 +345,30 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
         预期输出：
 
         ```
-        NAME                                READY   STATUS    RESTARTS   AGE
-        deployment-nas-1-5b5cdb85f6-n****   1/1     Running   0          32s
-        deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
+        NAME                          READY   STATUS    RESTARTS   AGE
+        nas-static-5b5cdb85f6-n****   1/1     Running   0          32s
+        nas-static-c5bb4746c-4****    1/1     Running   0          32s
         ```
 
     2.  执行以下命令，查看2个Pod /data路径下的文件。
 
         ```
-        kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
-        kubectl exec deployment-nas-2-c5bb4746c-4**** ls /data
+        kubectl exec nas-static-5b5cdb85f6-n**** ls /data
+        kubectl exec nas-static-c5bb4746c-4**** ls /data
         ```
 
 2.  执行以下命令，在任意一个Pod的/data路径下创建文件nas。
 
     ```
-     kubectl exec deployment-nas-1-5b5cdb85f6-n**** touch /data/nas
+     kubectl exec nas-static-5b5cdb85f6-n**** touch /data/nas
     ```
 
 3.  执行以下命令，查看2个Pod /data路径下的文件。
 
-    1.  执行以下命令，查看名为`deployment-nas-1-5b5cdb85f6-n****`的Pod /data路径下的文件。
+    1.  执行以下命令，查看名为`nas-static-5b5cdb85f6-n****`的Pod /data路径下的文件。
 
         ```
-        kubectl exec deployment-nas-1-5b5cdb85f6-n**** ls /data
+        kubectl exec nas-static-5b5cdb85f6-n**** ls /data
         ```
 
         预期输出：
@@ -378,10 +377,10 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
         nas
         ```
 
-    2.  执行以下命令，查看名为`deployment-nas-2-c5bb4746c-4****`的Pod /data路径下的文件。
+    2.  执行以下命令，查看名为`nas-static-c5bb4746c-4****`的Pod /data路径下的文件。
 
         ```
-        kubectl exec deployment-nas-2-c5bb4746c-4**** ls /data
+        kubectl exec nas-static-c5bb4746c-4**** ls /data
         ```
 
         预期输出：
