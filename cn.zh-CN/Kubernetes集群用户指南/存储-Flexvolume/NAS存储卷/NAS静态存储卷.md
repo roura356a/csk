@@ -7,9 +7,13 @@ keyword: [静态存储卷, NAS, Flexvolume]
 您可以通过阿里云提供的Flexvolume插件使用阿里云NAS文件存储服务。本文介绍如何使用NAS静态存储卷。
 
 -   使用存储卷时请将Flexvolume插件更新到最新版本。
--   [通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   [步骤二：选择集群凭证类型](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 使用Flexvolume插件，您可以通过Volume方式使用阿里云NAS存储卷或者通过PV和PVC方式使用阿里云NAS存储卷。
+
+## 主要事项
+
+若您在应用模板中配置了securityContext.fsgroup参数，kubelet在存储卷挂载完成后会执行`chmod`或`chown`操作，导致挂载时间过长。
 
 ## 直接通过Volume使用
 
@@ -57,7 +61,7 @@ Pod可以通过添加volumes字段的方式使用NAS静态存储卷。本文示�
     |--|--|
     |server|表示NAS存储卷的挂载点。|
     |path|表示连接NAS存储卷的挂载目录，支持挂载NAS子目录，且当子目录不存在时，会自动创建子目录并挂载。极速NAS的Path需要以/share开头。|
-    |vers|表示NFS挂载协议的版本号，支持V3和V4.0，默认使用版本v3且推荐使用此版本。极速类型NAS只支持V3版本。|
+    |vers|表示NFS挂载协议的版本号，支持V3和V4.0，默认使用版本V3且推荐使用此版本。极速类型NAS只支持V3版本。|
     |mode|表示挂载目录的访问权限，注意挂载NAS存储卷根目录时不能配置挂载权限。挂载目录中文件数量很大时，配置mode会导致执行挂载非常慢，甚至挂载失败。|
     |options|表示挂载参数，不配置此项时，V3版本的挂载默参数为`nolock,tcp,noresvport`，V4.0版本挂载的默认参数为`noresvport`。|
 
