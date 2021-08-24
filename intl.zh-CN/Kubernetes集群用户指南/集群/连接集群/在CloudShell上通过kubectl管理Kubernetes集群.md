@@ -6,7 +6,7 @@ keyword: [CloudShell, Kubernetes集群, K8s]
 
 CloudShell是阿里云推出的云命令行工具，您可以使用CloudShell工具在任意浏览器上运行CloudShell命令管理阿里云资源。本文为您介绍如何在容器服务ACK控制台上利用CloudShell通过kubectl管理集群。
 
-CloudShell仅支持通过公网连接集群，因此待连接集群的API Server必须已开启公网访问能力。具体操作，请参见[控制集群API Server的公网访问能力](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过公网访问集群API Server.md)。
+CloudShell仅支持通过公网连接集群，因此待连接集群的API Server必须已开启公网访问能力。具体操作，请参见[控制集群API Server的公网访问能力](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/集群访问控制/控制集群API Server的公网访问能力.md)。
 
 如果您希望通过kubectl工具管理容器服务ACK中的Kubernetes集群，您可下载kubectl到客户端（具体操作，请参见[通过kubectl工具连接集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)）。您也可以在容器服ACK控制台上打开CloudShell，系统会自动加载集群的KubeConfig文件，您无需任何安装或配置操作，可以直接在CloudShell中通过kubectl管理集群。
 
