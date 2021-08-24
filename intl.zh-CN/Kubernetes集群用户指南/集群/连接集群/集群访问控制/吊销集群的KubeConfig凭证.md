@@ -34,7 +34,7 @@ keyword: [吊销集群Kubeconfig凭证, k8s集群]
 
 4.  在**集群信息**页面，单击**连接信息**页签，单击**吊销 KubeConfig**。
 
-    ![kubeconfig凭证](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/2195659951/p66613.png)
+    ![kubeconfig凭证](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1167858261/p66613.png)
 
 5.  在弹出的对话框中单击**确定**。
 
