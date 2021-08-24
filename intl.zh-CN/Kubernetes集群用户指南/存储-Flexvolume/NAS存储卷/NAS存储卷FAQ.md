@@ -6,25 +6,27 @@ keyword: [NAS存储卷, FAQ, 常见问题, Flexvolume]
 
 本文为您介绍NAS存储卷常见问题的处理方法。
 
--   [NAS存储卷挂载时间太长](#section_td0_7vk_92o)
+-   [NAS存储卷挂载时间过长](#section_td0_7vk_92o)
 -   [NAS存储卷挂载失败时出现timeout错误](#section_n33_3bc_3jb)
 -   [使用NAS存储卷时，提示chown: option not permitted](#section_vxc_7oy_i24)
 -   [挂载NAS存储卷失败](#section_f1w_yob_goz)
 -   [使用NAS动态存储卷时Controller的任务队列已满且无法创建新的PV](#section_xgz_7fw_p7e)
 
-## NAS存储卷挂载时间太长
+## NAS存储卷挂载时间过长
 
 问题现象：
 
-NAS存储卷挂载时间太长。
+NAS存储卷挂载时间过长。
 
 问题原因：
 
-如果NAS存储卷包含的文件量很大，且在挂载模板中配置了`chmod`参数，可能导致挂载时间过长的问题。
+-   若您在PV模板中配置了mode参数且挂载目录中有大量文件时，会导致执行挂载非常慢，甚至挂载失败。
+-   若您在应用模板中配置了securityContext.fsgroup参数，kubelet在存储卷挂载完成后会执行`chmod`或`chown`操作，导致挂载时间过长。
 
 解决方法：
 
-您可以去掉`chmod`参数。
+-   若PV中配置了mode参数，请删除该参数。
+-   若应用模板中配置了securityContext.fsgroup参数，请删除securityContext下的fsgroup参数。
 
 ## NAS存储卷挂载失败时出现timeout错误
 
@@ -38,7 +40,7 @@ NAS挂载点和集群不在同一VPC内。
 
 解决方法：
 
-挂载NAS存储卷时，NAS挂载点和集群需要在同一VPC内。
+选择与集群在同一VPC内的NAS挂载点。
 
 ## 使用NAS存储卷时，提示chown: option not permitted
 
@@ -52,7 +54,7 @@ NAS挂载点和集群不在同一VPC内。
 
 解决方法：
 
-您需要使用Root权限启动容器。
+您需要使用root权限启动容器。
 
 ## 挂载NAS存储卷失败
 
@@ -82,7 +84,7 @@ Unable to mount volumes for pod "dp-earnings-pod_default(906172c6-3d68-11e8-86e0
 
 当集群使用动态NAS存储卷时，配置的StorageClass回收策略reclaimPolicy为Delete且archiveOnDelete为false。
 
-解决方案：
+解决方法：
 
 将archiveOnDelete配置为true，当删除PV时只是修改NAS文件系统中子目录的名称，而不是真正删除文件。
 
