@@ -4,7 +4,7 @@ keyword: [NAS, 动态存储卷, 持久化存储, 共享存储]
 
 # 使用NAS动态存储卷
 
-阿里云Kubernetes CSI支持2种类型的NAS动态存储卷挂载：subpath方式和filesystem方式。本文介绍如何使用阿里云NAS动态存储卷，及使用NAS动态存储卷如何实现持久化存储与共享存储。
+阿里云Kubernetes CSI支持2种类型的NAS动态存储卷挂载：subpath方式和filesystem方式。本文介绍如何使用阿里云NAS动态存储卷，及如何实现持久化存储与共享存储。
 
 -   已创建Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   已创建动态NAS卷。请参见[创建文件系统]()。
@@ -29,6 +29,7 @@ keyword: [NAS, 动态存储卷, 持久化存储, 共享存储]
 
     **说明：** NAS存储的/目录不支持修改权限、属主和属组。
 
+-   若您在应用模板中配置了securityContext.fsgroup参数，kubelet在存储卷挂载完成后会执行`chmod`或`chown`操作，导致挂载时间过长。
 
 ## 使用subpath类型的NAS动态存储卷
 
