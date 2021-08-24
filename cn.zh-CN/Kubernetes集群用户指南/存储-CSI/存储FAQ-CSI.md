@@ -19,7 +19,8 @@ keyword: [云盘存储, NAS存储, FAQ]
 -   [Pod卸载失败且Kubelet出现不受ACK管理的Pod日志](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md)
 -   [Pod删除后无法重新启动，提示挂载失败且无法自动恢复。](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md) |
 |NAS存储卷常见问题|-   [使用NAS时，提示chown: option not permitted](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/NAS存储卷FAQ.md)
--   [使用NAS动态存储卷时Controller的任务队列已满且无法创建新的PV](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md) |
+-   [使用NAS动态存储卷时Controller的任务队列已满且无法创建新的PV](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)
+-   [NAS存储卷挂载时间太长](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/NAS存储卷FAQ.md) |
 
 ## 常见问题分析流程
 
@@ -152,5 +153,5 @@ keyword: [云盘存储, NAS存储, FAQ]
 
 **快速恢复**
 
-众多Pod挂载不上数据卷场景的问题，可以通过将Pod调度到其他节点快速恢复。
+众多Pod挂载不上数据卷场景的问题，可以通过将Pod调度到其他节点快速恢复。具体操作，请参见[调度应用Pod至指定节点](/cn.zh-CN/Kubernetes集群用户指南/应用/应用调度部署/调度应用Pod至指定节点.md)。
 
