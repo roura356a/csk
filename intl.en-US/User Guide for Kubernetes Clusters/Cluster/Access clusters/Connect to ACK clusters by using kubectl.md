@@ -26,7 +26,7 @@ For more information about kubectl, see [kubectl](https://kubernetes.io/docs/use
 
     5.  On the **Cluster Information** page, click the **Connection Information** tab.
 
-        ![kubeconfig](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0973972261/p269156.png)
+        ![kubeconfig](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/0973972261/p269156.png)
 
     6.  Configure the kubeconfig file that stores the credentials.
 
@@ -41,7 +41,7 @@ For more information about kubectl, see [kubectl](https://kubernetes.io/docs/use
 
     -   To connect to a dedicated Kubernetes cluster, you can obtain the IP address for connecting to a master node over SSH from the **Basic Information** tab and run kubectl commands to connect to the cluster from your on-premises machine.
 
-        ![IP address for SSH connection to a master node](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1435359951/p9791.png)
+        ![IP address for SSH connection to a master node](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/1435359951/p9791.png)
 
         **Note:** To use SSH to log on to a dedicated Kubernetes cluster, you must enable **SSH logon** when you create the cluster. For more information, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md).
 
@@ -60,17 +60,17 @@ To ensure cluster security, you can generate a temporary kubeconfig file and set
 
 5.  In the **Temporary kubeconfig** dialog box, set the validity period of the kubeconfig file and select the access mode \(public access or internal access\).
 
-    ![tempo](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0973972261/p269169.png)
+    ![tempo](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/0973972261/p269169.png)
 
     -   To connect to the cluster over the Internet, select **Public Access** and click **Generate Temporary kubeconfig**. Then, click **Copy** to copy the content in the code block to the `$HOME/.kube/config` file of your on-premises machine. `kubectl` retrieves the credentials from this file.
     -   To connect to the cluster over the internal network, select **Internal Access** and click **Generate Temporary kubeconfig**. Then, click **Copy** to copy the content in the code block to the `$HOME/.kube/config` file of your on-premises machine. `kubectl` retrieves the credentials from this file.
 
 ## Revoke a kubeconfig file
 
-You can revoke a kubeconfig file that is no longer in use to ensure the security of the cluster. For more information, see [Revoke a KubeConfig credential](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Revoke a KubeConfig credential.md).
+You can revoke a kubeconfig file that is no longer in use to ensure the security of the cluster. For more information, see [Revoke a KubeConfig credential](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Cluster access control/Revoke a KubeConfig credential.md).
 
 **Related topics**  
 
 
-[DescribeClusterUserKubeconfig](/intl.en-US/API Reference/Clusters/DescribeClusterUserKubeconfig.md)
+[Query the kubeconfig file of a cluster](/intl.en-US/API Reference/Clusters/Query the kubeconfig file of a cluster.md)
 
