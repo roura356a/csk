@@ -11,6 +11,8 @@
 -   [当版本升级后SLS解析日志不正常怎样修复？](#section_10k_mmd_5e0)
 -   [t1860692.dita\#task\_2401024](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/部署Ingress Controller使用私网SLB.md)
 -   [在ACK组件管理中升级Nginx Ingress Controller组件时，系统所做的更新是什么？](#section_99r_gia_5ax)
+-   [如何将Ingress-nginx的监听由四层改为七层（HTTPS/HTTP）？](#section_ian_qic_135)
+-   [ingress-nginx如何使用已有的SLB？](#section_pat_gf4_ozj)
 
 ## Ingress支持哪些SSL/TLS版本？
 
@@ -25,7 +27,7 @@ ssl-protocols: "TLSv1 TLSv1.1 TLSv1.2 TLSv1.3"
 
 ## Ingress L7请求头默认是透传的吗？
 
-Ingress-Nginx默认透传客户端的请求头，有些不符合HTTP规则的请求头（比如Mobile Version），在转发到后端服务前会被过滤掉。为了不过滤掉这类请求头，您可以执行以下命令在ConfigMap中添加配置。更多信息，请参见[ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-underscores-in-headers)。
+Ingress-Nginx默认透传客户端的请求头，有些不符合HTTP规则的请求头（比如Mobile Version），在转发到后端服务前会被过滤掉。为了不过滤掉这类请求头，您可以执行`kubectl edit cm -n kube-system nginx-configuration`命令在ConfigMap中添加配置。更多信息，请参见[ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-underscores-in-headers)。
 
 ```
 enable-underscores-in-headers：true
@@ -63,7 +65,7 @@ use-forwarded-headers: "true"
 
 nginx-ingress-controller组件默认是开启HSTS的，有些浏览器第一次基于PLAIN HTTP访问时，服务端（开启HSTS）会在返回给客户端的响应头里携带`Non-Authoritative-Reason: HSTS`字段，说明服务端支持HSTS，当客户端也支持的情况下下次会直接以HTTPS方式访问服务端。服务端返回的响应头消息体中包含有`307 Internal Redirect`状态码，具体如下图所示。
 
-![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4244178061/p202703.png)
+![1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4244178061/p202703.png)
 
 当客户端不希望支持自动转到HTTPS访问服务端时，您可以关闭nginx-ingress-controller组件的HSTS。具体操作，请参见[HSTS](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#hsts)。
 
@@ -78,7 +80,7 @@ nginx-ingress-controller组件默认是开启HSTS的，有些浏览器第一次�
 
 同时，snippet也支持一些全局配置，具体如下图所示。更多相关信息，请参见[main-snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#main-snippet)。
 
-![2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4244178061/p202783.png)
+![2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4244178061/p202783.png)
 
 ## 当版本升级后SLS解析日志不正常怎样修复？
 
@@ -220,4 +222,65 @@ Nginx Ingress Controller组件在0.44版本及其之后的版本，额外包含�
 -   service/nginx-ingress-lb
 
 所有其他资源的配置都会被覆盖成默认配置。以`deployment.apps/nginx-ingress-controller`资源配置为例，其默认的replicas参数为2。如果您升级Nginx Ingress Controller组件之前的replicas为5，但是通过组件管理升级Ingress后，其replicas将会为2，和默认配置一致。
+
+## 如何将Ingress-nginx的监听由四层改为七层（HTTPS/HTTP）？
+
+Ingress Pod的负载均衡默认是TCP 443 和TCP 80，您可以创建一个HTTPS/HTTP类型的负载均衡，将Ingress-nginx的监听由从四层改为七层。
+
+**说明：** 修改监听时服务会有短暂中断，建议在业务低谷期进行修改监听操作。
+
+1.  创建证书，并记录cert-id。具体操作，请参见[选择阿里云签发证书](/cn.zh-CN/传统型负载均衡CLB/CLB用户指南/证书管理/创建证书/选择阿里云签发证书.md)。
+
+2.  通过Annotation将Ingress所用负载均衡的监听由四层改为七层。
+
+    1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+
+    2.  在控制台左侧导航栏中，单击**集群**。
+
+    3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
+
+    4.  在集群管理页左侧导航栏中，选择**网络** \> **服务**。
+
+    5.  在**服务**页面顶部设置**命名空间**为kube-system，单击ingress-nginx-lb右侧**操作**列下的**查看YAML**。
+
+    6.  在编辑YAML对话框中annotations参数下添加以下内容，然后单击**更新**。
+
+        ```
+        service.beta.kubernetes.io/alibaba-cloud-loadbalancer-protocol-port: "http:80,https:443"
+        service.beta.kubernetes.io/alibaba-cloud-loadbalancer-cert-id: "${YOUR_CERT_ID}"
+        ```
+
+3.  验证通过Annotation将负载均衡的监听由四层改为七层成功。
+
+    1.  在**服务**页面单击ingress-nginx-lb右侧的**监控信息**。
+
+    2.  单击**监听**页签，可以看到监听的**前端协议**显示HTTP:80和HTTPS:443，说明通过Annotation将负载均衡的监听由四层改为七层成功。
+
+        ![监听](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1921819261/p305337.png)
+
+
+## ingress-nginx如何使用已有的SLB？
+
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+
+2.  在控制台左侧导航栏中，选择**市场** \> **应用目录**。
+
+3.  在**应用目录**页面搜索ack-ingress-nginx，然后单击ack-ingress-nginx。
+
+4.  在**创建**面板选择**集群**和**命名空间**。
+
+5.  单击**参数**页签，设置参数。
+
+    1.  删除service的annotations参数下的注解。
+
+        ![ingress-nginx](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6080919261/p306175.png)
+
+    2.  在service的annotations参数中补充以下注解。
+
+        ```
+        service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id: "${YOUR_LOADBALACER_ID}
+        ```
+
+6.  在**创建**面板单击**创建**。
+
 
