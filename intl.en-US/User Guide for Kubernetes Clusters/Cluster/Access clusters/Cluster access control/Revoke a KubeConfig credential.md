@@ -30,7 +30,7 @@ KubeConfig credentials can be revoked in the following two scenarios:
 
 4.  On the **Cluster Information** page, click the **Connection Information** tab, and then click **Revoke KubeConfig**.
 
-    ![Kubeconfig credential](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/5255359951/p66613.png)
+    ![Kubeconfig credential](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/5741979261/p66613.png)
 
 5.  In the dialog box that appears, click **OK**.
 
