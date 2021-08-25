@@ -20,6 +20,19 @@ logtail-windows v1.1.x依赖Windows工作节点上的特权托管进程，镜像
 
 ## 变更记录
 
+**2021年08月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.0.20|registry-vpc.$\{region\}.aliyuncs.com/acs/logtail-windows:v1.0.20|2021年08月21日|-   更新basic镜像，同时覆盖原版本号。
+-   支持 Multiple Windows Server Release 1809（10.0.17763.2114）、1909（10.0.18363.1556）、2004（10.0.19041.1165）。
+
+|此次升级不会对业务造成影响。|
+|v1.1.18-aliyun.1|registry-vpc.$\{region\}.aliyuncs.com/acs/logtail-windows:v1.1.18-aliyun.1|2021年08月20日|-   更新basic镜像，同时覆盖原版本号。
+-   支持 Multiple Windows Server Release 1809（10.0.17763.2114）、1909（10.0.18363.1556）、2004（10.0.19041.1165）。
+
+|此次升级不会对业务造成影响。|
+
 **2021年07月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
