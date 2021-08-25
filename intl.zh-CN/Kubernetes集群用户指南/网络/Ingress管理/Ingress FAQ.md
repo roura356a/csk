@@ -13,6 +13,7 @@
 -   [在ACK组件管理中升级Nginx Ingress Controller组件时，系统所做的更新是什么？](#section_99r_gia_5ax)
 -   [如何将Ingress-nginx的监听由四层改为七层（HTTPS/HTTP）？](#section_ian_qic_135)
 -   [ingress-nginx如何使用已有的SLB？](#section_pat_gf4_ozj)
+-   [创建Ingress时报错“certificate signed by unknown authority”](#section_4fn_bfn_vgw)
 
 ## Ingress支持哪些SSL/TLS版本？
 
@@ -27,7 +28,7 @@ ssl-protocols: "TLSv1 TLSv1.1 TLSv1.2 TLSv1.3"
 
 ## Ingress L7请求头默认是透传的吗？
 
-Ingress-Nginx默认透传客户端的请求头，有些不符合HTTP规则的请求头（比如Mobile Version），在转发到后端服务前会被过滤掉。为了不过滤掉这类请求头，您可以执行`kubectl edit cm -n kube-system nginx-configuration`命令在ConfigMap中添加配置。更多信息，请参见[ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-underscores-in-headers)。
+Ingress-Nginx默认透传客户端的请求头，有些不符合HTTP规则的请求头（例如Mobile Version），在转发到后端服务前会被过滤掉。为了不过滤掉这类请求头，您可以执行`kubectl edit cm -n kube-system nginx-configuration`命令在ConfigMap中添加配置。更多信息，请参见[ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-underscores-in-headers)。
 
 ```
 enable-underscores-in-headers：true
@@ -283,4 +284,12 @@ Ingress Pod的负载均衡默认是TCP 443 和TCP 80，您可以创建一个HTTP
 
 6.  在**创建**面板单击**创建**。
 
+
+## 创建Ingress时报错“certificate signed by unknown authority”
+
+![Ingress](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9339589261/p311787.png)
+
+创建Ingress时，出现上图报错，原因是布置了多套Ingress，而各Ingress之间使用了相同的资源 \(可能包括Secret、服务、Webhook配置等\)，导致Webhook执行时与后端服务通信时使用的SSL证书不一致，从而出现错误。
+
+解决办法：重新部署两套Ingress，两套Ingress包含的资源不能重复。关于Ingress中包含的资源信息，请参见[在ACK组件管理中升级Nginx Ingress Controller组件时，系统所做的更新是什么？](#section_99r_gia_5ax)。
 
