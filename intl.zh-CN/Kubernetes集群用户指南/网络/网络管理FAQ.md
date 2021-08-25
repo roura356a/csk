@@ -60,4 +60,7 @@
 -   [当版本升级后SLS解析日志不正常怎样修复？](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress FAQ.md)
 -   [t1860692.dita\#task\_2401024](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/部署Ingress Controller使用私网SLB.md)
 -   [在ACK组件管理中升级Nginx Ingress Controller组件时，系统所做的更新是什么？](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress FAQ.md)
+-   [ingress-nginx如何使用已有的SLB？](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress FAQ.md)
+-   [如何将Ingress-nginx的监听由四层改为七层（HTTPS/HTTP）？](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress FAQ.md)
+-   [创建Ingress时报错“certificate signed by unknown authority”](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/Ingress FAQ.md)
 
