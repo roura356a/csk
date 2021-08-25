@@ -10,10 +10,10 @@ keyword: [OpenAPI鉴权, RAM Action]
 
 本次鉴权优化完成后，若RAM用户或角色执行的操作没有对应权限，控制台或OpenAPI会提示包含RAM policy Forbidden或STSToken policy Forbidden的错误信息，同时错误信息中会包含所需权限的RAM Action名称。
 
-错误信息示例（下面错误信息中包含的RAM Action名称为cs:DescribeClusterNamespaces）：
+错误信息示例（下面错误信息中包含的RAM Action名称为cs:DescribeEvents）：
 
 ```
-RAM policy Forbidden for action cs:DescribeClusterNamespaces
+RAM policy Forbidden for action cs:DescribeEvents
 ```
 
 若您的RAM用户或角色使用了下表中的OpenAPI接口并且未授权，请您参考接口对应的RAM Action，及时前往RAM控制台添加指定RAM用户或角色的授权：
@@ -65,42 +65,149 @@ RAM policy Forbidden for action cs:DescribeClusterNamespaces
 
 ## RAM权限策略修改示例
 
-本示例介绍如何修改RAM用户或角色的RAM权限策略。
+本示例介绍如何修改RAM用户或角色的RAM权限策略。关于RAM授权的相关操作，请参见[自定义RAM授权策略](/cn.zh-CN/Kubernetes集群用户指南/授权/自定义RAM授权策略.md)。
 
-例如，当前RAM用户或角色只拥有以下RAM权限策略：
+**场景一：RAM用户只对指定集群有cs:Get\*权限，需要拥有指定集群所有OpenAPI的只读权限**
 
-```
-{
- "Statement": [{
-     "Action": [
-         "cs:Get*"
-     ],
-     "Effect": "Allow",
-     "Resource": [
-         "acs:cs:*:*:*"
-     ]
- }],
- "Version": "1"
-}
-```
-
-可通过修改RAM权限策略增加集群列表的Open API（DescribeClustersV1）对应的RAM Action（cs:DescribeClustersV1），授权该RAM用户或角色查看集群列表的权限：
+例如，当前RAM用户只拥有指定集群的`cs:Get*`，对应的RAM权限策略如下：
 
 ```
 {
- "Statement": [{
-     "Action": [
-         "cs:Get*",
-         "cs:DescribeClustersV1"
-     ],
-     "Effect": "Allow",
-     "Resource": [
-         "acs:cs:*:*:*"
-     ]
- }],
- "Version": "1"
+    "Statement": [
+        {
+            "Action": "cs:Get*",
+            "Effect": "Allow",
+            "Resource": [
+                "acs:cs:*:*:cluster/c2e63856bcd714197****"
+            ]
+        }
+    ],
+    "Version": "1"
 }
 ```
 
-关于RAM授权的相关操作，请参见[自定义RAM授权策略](/cn.zh-CN/Kubernetes集群用户指南/授权/自定义RAM授权策略.md)。
+若需要RAM用户在OpenAPI鉴权优化后仍具有原有集群所有OpenAPI的只读权限，修改后的RAM权限策略如下所示：
+
+```
+{
+    "Statement": [
+        {
+            "Action": [
+                "cs:Get*",
+                "cs:List*",
+                "cs:Describe*"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "acs:cs:*:*:cluster/c2e63856bcd714197****"
+            ]
+        }
+    ],
+    "Version": "1"
+}
+```
+
+**说明：** 若只包含`cs:Get*` Action并不能匹配所有只读OpenAPI，需要再增加`cs:List*`和`cs:Describe*`。
+
+**场景二：为RAM用户授权指定集群的单个OpenAPI的操作权限**
+
+若您需要为RAM用户授权指定集群的单个OpenAPI操作权限，在该RAM权限策略中增加该OpenAPI对应的RAM Action即可。
+
+例如，当前RAM权限策略如下：
+
+```
+{
+    "Statement": [
+        {
+            "Action": [
+                "cs:Get*",
+                "cs:List*",
+                "cs:Describe*"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "acs:cs:*:*:cluster/c2e63856bcd714197****"
+            ]
+        }
+    ],
+    "Version": "1"
+}
+```
+
+若需要授权OpenAPI `ModifyCluster`，其对应RAM Action为`cs:ModifyCluster`，修改后的RAM权限策略如下所示：
+
+```
+{
+    "Statement": [
+        {
+            "Action": [
+                "cs:Get*",
+                "cs:List*",
+                "cs:Describe*",
+                "cs:ModifyCluster"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "acs:cs:*:*:cluster/c2e63856bcd714197****"
+            ]
+        }
+    ],
+    "Version": "1"
+}
+```
+
+**场景三：为RAM用户授权无法指定集群的OpenAPI的操作权限**
+
+部分OpenAPI无法指定集群授权（例如，`CreateCluster`、`DescribeClusters`及`DescribeEvents`等），若您需要给RAM用户授权这些无法指定集群的OpenAPI的操作权限，请不要在`Resource`中限定集群ID。
+
+例如，当前RAM权限策略如下：
+
+```
+{
+    "Statement": [
+        {
+            "Action": [
+                "cs:Get*",
+                "cs:List*",
+                "cs:Describe*"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "acs:cs:*:*:cluster/c2e63856bcd714197****"
+            ]
+        }
+    ],
+    "Version": "1"
+}
+```
+
+若您需要授权无法指定集群的OpenAPI `DescribeEvents`，其对应的RAM Action为`cs:DescribeEvents`，修改后的RAM权限策略如下所示：
+
+```
+{
+    "Statement": [
+        {
+            "Action": [
+                "cs:DescribeEvents"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+              "*"
+            ]
+        },
+        {
+            "Action": [
+                "cs:Get*",
+                "cs:List*",
+                "cs:Describe*"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "acs:cs:*:*:cluster/c2e63856bcd714197****"
+            ]
+        }
+    ],
+    "Version": "1"
+}
+```
 
