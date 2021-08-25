@@ -1,10 +1,10 @@
 ---
-keyword: [alicloud-monitor-controller, 变更版本]
+keyword: [alicloud-monitor-controller, 变更记录, 组件介绍, 使用说明]
 ---
 
 # alicloud-monitor-controller
 
-alicloud-monitor-controller是阿里云容器服务Kubernetes版提供对接云监控的系统组件。本文介绍alicloud-monitor-controller组件相关内容的最新动态。
+alicloud-monitor-controller是阿里云容器服务Kubernetes版提供对接云监控的系统组件。本文介绍alicloud-monitor-controller组件的信息、使用说明和变更记录。
 
 ## 组件介绍
 
@@ -15,6 +15,13 @@ alicloud-monitor-controller是阿里云容器服务Kubernetes版提供对接云�
 关于alicloud-monitor-controller组件的使用，请参见[容器服务报警管理](/cn.zh-CN/Kubernetes集群用户指南/可观测性/容器服务报警管理.md)。
 
 ## 变更记录
+
+**2021年08月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.5.12-f7aedb4a-aliyun|registry.\{REGION\}.aliyuncs.com/acs/alicloud-monitor-controller:v1.5.12-f7aedb4a-aliyun|2021年08月23日|优化容器服务报警配置能力。|此次升级不会对业务造成影响。|
+|v1.5.10-a75e4ee2-aliyun|registry.\{REGION\}.aliyuncs.com/acs/alicloud-monitor-controller:v1.5.10-a75e4ee2-aliyun|2021年08月19日|优化容器服务报警配置能力。|此次升级不会对业务造成影响。|
 
 **2021年04月**
 
