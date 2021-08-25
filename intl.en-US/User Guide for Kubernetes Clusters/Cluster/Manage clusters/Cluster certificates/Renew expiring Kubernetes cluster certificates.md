@@ -28,7 +28,7 @@ This topic describes how to renew Kubernetes cluster certificates that are about
 
 5.  In the **Note** message, click **Confirm**.
 
-    The following figure appears after the cluster certificates are renewed.
+    The following message appears after the cluster certificates are renewed.
 
     -   In the Update Certificate message, **The certificate has been updated** appears.
     -   On the Clusters page, the **Update Certificate** button disappears.
