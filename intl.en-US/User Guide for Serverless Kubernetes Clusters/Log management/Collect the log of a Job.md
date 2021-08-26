@@ -10,7 +10,7 @@ This topic describes how to collect the log of a Job to Log Service.
 -   A virtual node is deployed in the cluster. For more information, see [Deploy the virtual node controller and use it to create Elastic Container Instance-based pods](/intl.en-US/User Guide for Kubernetes Clusters/Virtual nodes and ECI/Deploy the virtual node controller and use it to create Elastic Container Instance-based pods.md).
 -   An Apsara File Storage NAS \(NAS\) file system is created and a mount target is added. For more information, see [Create a NAS file system]() and [Manage mount targets]().
 
-**Note:** If Log Service is enabled for the cluster, you can mount a volume to the Job to collect log data. Then, you can configure environment variables to synchronize the log data to Log Service.
+**Note:** If Log Service is enabled for the cluster, you can mount a volume to the Job to collect log data. Then, you can configure environment variables to synchronize the log data to Log Service. For more information, see [Configure log collection for an elastic container instance]().
 
 ## Procedure
 
