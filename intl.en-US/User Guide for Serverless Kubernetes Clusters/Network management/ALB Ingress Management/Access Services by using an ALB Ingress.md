@@ -6,6 +6,8 @@ keyword: [ALB Ingress, access a Service]
 
 Application Load Balancer \(ALB\) Ingresses are compatible with NGINX Ingresses, and provide improved traffic routing capabilities based on ALB instances. ALB Ingresses support complex routing, automatic certificate discovery, and the HTTP, HTTPS, and QUIC protocols. ALB Ingresses meet the requirements of cloud-native applications for ultra-high elasticity and balancing of heavy traffic loads at Layer 7. This topic describes how to use an ALB Ingress to access Services.
 
+-   A serverless Kubernetes \(ASK\) cluster is created. You must configure a network address translation \(NAT\) gateway for the virtual private cloud \(VPC\) where the cluster is created so that the cluster can download container images from the Internet. For more information, see [Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Cluster/Create an ASK cluster.md).
+-   The kubectl client is connected to the ASK cluster. For more information, see [Use kubectl to connect to an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Cluster/Manage and access clusters/Use kubectl to connect to an ASK cluster.md).
 
 An Ingress provides a collection of rules that manage external access to Services in a cluster. You can configure forwarding rules to assign Services different externally-accessible URLs. However, NGINX Ingresses and Layer 4 Server Load Balancer \(SLB\) Ingresses cannot meet the requirements of cloud-native applications, such as complex routing, multiple application layer protocols support \(such as QUIC\), and balancing of heavy traffic loads at Layer 7.
 
