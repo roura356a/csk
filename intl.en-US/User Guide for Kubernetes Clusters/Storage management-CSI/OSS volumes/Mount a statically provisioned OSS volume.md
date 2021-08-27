@@ -9,16 +9,16 @@ Object Storage Service \(OSS\) is a secure, cost-effective, and high-durability 
 -   A Container Service for Kubernetes \(ACK\) cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 -   An OSS bucket is created. For more information, see [Create buckets](/intl.en-US/Quick Start/OSS console/Create buckets.md).
 
-    **Note:** If the node and OSS bucket belong to the same region, you can use the internal endpoint of the OSS bucket to mount the OSS bucket to the node.
+    **Note:** Select the internal endpoint if the OSS bucket and the ECS instance are deployed in the same region.
 
--   You are connected to the cluster by using kubectl. For more information, see [Connect to an ACK cluster by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
+-   Your machine is connected to the cluster by using kubectl. For more information, see [Step 2: Select a type of cluster credentials](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md).
 
-OSS is a secure, cost-effective, high-capacity, and high-reliability cloud storage service provided by Alibaba Cloud. You can mount an OSS bucket to multiple pods of an ACK cluster. OSS use cases:
+OSS is a secure, cost-effective, high-capacity, and high-reliability cloud storage service provided by Alibaba Cloud. You can mount an OSS bucket to multiple pods of an ACK cluster. OSS is applicable to the following scenarios:
 
 -   Average requirements on disk I/O.
 -   Sharing of data, including configuration files, images, and small video files.
 
-## Considerations
+## Precautions
 
 -   OSS buckets do not support dynamically provisioned persistent volumes \(PVs\).
 -   kubelet and the OSSFS driver may be restarted when the ACK cluster is upgraded. As a result, the mounted OSS directory becomes unavailable. In this case, you must recreate the pods to which the OSS volume is mounted. You can add health check settings in the YAML file to restart the pods and remount the OSS volume when the OSS directory becomes unavailable.
@@ -45,14 +45,14 @@ OSS is a secure, cost-effective, high-capacity, and high-reliability cloud stora
     |Parameter|Description|
     |---------|-----------|
     |**PV Type**|You can select Cloud Disk, NAS, or OSS. In this example, OSS is selected.|
-    |**Volume Name**|The name of the PV that you want to create. The name must be unique in the cluster. In this example, pv-oss is entered.|
+    |**Volume Name**|The name of the PV. The name must be unique in the namespace. In this example, pv-oss is entered.|
     |**Volume Plug-in**|You can select Flexvolume or CSI. In this example, CSI is selected.|
     |**Capacity**|The capacity of the PV.|
     |**Access Mode**|Default value: ReadWriteMany.|
     |**Access Certificate**|Select a Secret that is used to access the OSS bucket.     -   **Select Existing Secret**: Select a namespace and a Secret.
-    -   **Create Secret**: Specify Namespace, Name, AccessKey ID, and AccessKey Secret. |
+    -   **Create Secret**: Set Namespace, Name, AccessKey ID, and AccessKey Secret. |
     |**Optional Parameters**|You can enter custom parameters for the OSS bucket in the following format: `-o *** -o ***`.|
-    |**Bucket ID**|Enter the name of the OSS bucket that you want to mount. Click **Select Bucket**. In the dialog box that appears, select the OSS bucket that you want to use and click **Select**.|
+    |**Bucket ID**|Enter the name of the OSS bucket that you want to mount. Click **Select Bucket**. In the dialog box that appears, find the OSS bucket that you want to use and click **Select**.|
     |**Endpoint**|Select the endpoint of the OSS bucket:     -   If the OSS bucket and the Elastic Compute Service \(ECS\) instance belong to different regions, select **Public Endpoint**.
     -   If the OSS bucket and the ECS instance belong to the same region, select **Internal Endpoint**. |
     |**Label**|Add labels to the PV.|
@@ -80,11 +80,11 @@ OSS is a secure, cost-effective, high-capacity, and high-reliability cloud stora
     |**Name**|The name of the persistent volume claim \(PVC\). The name must be unique in the cluster.|
     |**Allocation Mode**|In this example, Existing Volumes is selected. **Note:** If no PV is created, you can set **Allocation Mode** to **Create Volume** and then configure a PV. For more information, see [Step 1: Create a PV](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/OSS volumes/Mount a statically provisioned OSS volume.md). |
     |**Existing Volumes**|Click **Select PV**. Find the PV that you want to use and click **Select** in the Actions column.|
-    |**Capacity**|The capacity claimed by the PVC. **Note:** The capacity claimed by the PVC cannot exceed the capacity of the PV. |
+    |**Capacity**|The capacity of the selected PV. **Note:** The capacity of a PV cannot be greater than the capacity of the OSS bucket that is associated with the PV. |
 
 7.  Click **Create**.
 
-    After the PVC is created, you can find the PVC named **csi-oss-pvc** in the list of Persistent Volume Claims. The PV is bound to the PVC.
+    After the PVC is created, you can find the PVC named **csi-oss-pvc** in the list of PVCs. The PV is bound to the PVC.
 
 
 **Step 3: Create an application**
@@ -107,9 +107,9 @@ OSS is a secure, cost-effective, high-capacity, and high-reliability cloud stora
 
     -   **Add Local Storage**: You can select HostPath, ConfigMap, Secret, or EmptyDir from the PV Type drop-down list. Then, set the Mount Source and Container Path parameters to mount the volume to a container path. For more information, see [Volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE).
     -   **Add PVC**: You can add cloud volumes.
-    In this example, csi-oss-pvc is selected as Mount Source and mounted to the /tmp path in the container.
+    In this example, an OSS volume is selected and mounted to the /tmp path in the container.
 
-    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4606191261/p69158.png)
+    ![](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/4606191261/p69158.png)
 
 7.  Set other parameters and click **Create**.
 
@@ -179,24 +179,24 @@ Method 1: Create a statically provisioned PV and a PVC by using a Secret
 
     |Parameter|Description|
     |---------|-----------|
-    |name|The name of the PV.|
-    |labels|The labels that are added to the PV.|
-    |storage|The available storage of the OSS bucket.|
-    |accessModes|The access mode of the PV.|
-    |persistentVolumeReclaimPolicy|The policy for reclaiming the PV.|
-    |driver|The type of driver. This parameter is set to ossplugin.csi.alibabacloud.com, which indicates that the OSS CSI plug-in is used.|
-    |nodePublishSecretRef|The Secret from which the AccessKey pair is retrieved when an OSS bucket is mounted as a PV.|
-    |volumeHandle|The name of the PV.|
-    |bucket|The OSS bucket to be mounted.|
+    |name|The name of the PV|
+    |labels|The labels that you want to add to the PV|
+    |storage|The available storage of the OSS bucket|
+    |accessModes|The access mode of the PV|
+    |persistentVolumeReclaimPolicy|The policy for reclaiming the PV|
+    |driver|The type of volume driver that you want to use. This parameter is set to ossplugin.csi.alibabacloud.com, which indicates that the OSS CSI plug-in is used.|
+    |nodePublishSecretRef|The Secret from which the AccessKey pair is retrieved when an OSS bucket is mounted as a PV|
+    |volumeHandle|The name of the PV|
+    |bucket|The OSS bucket that you want to mount. You can mount only OSS buckets to clusters. The subdirectories or files in an OSS bucket cannot be mounted to an ACK cluster.|
     |url|The endpoint of the OSS bucket to be mounted:     -   If the node and the OSS bucket belong to the same region, use the internal endpoint of the OSS bucket.
     -   If the node and the OSS bucket belong to different regions, use the public endpoint of the OSS bucket.
-    -   You cannot use a vitual private cloud \(VPC\) endpoint. |
-    |otherOpts|You can enter custom parameters for the OSS bucket in the following format: `-o *** -o ***`. In this example, `-o max_stat_cache_size=0 -o allow_other` is entered. This indicates that the time to cache the metadata is 300 seconds. When you upload files in the console, you cannot view the files in OSSFS within 300 seconds. If you want to view data in real time, enter `-o max_stat_cache_size=0 -o allow_other -oconnect_timeout=0 -ostat_cache_expire=0`.|
+    -   You cannot use a virtual private cloud \(VPC\) endpoint. |
+    |otherOpts|You can enter custom parameters in the format of `-o *** -o ***`.|
     |path|The path relative to the root directory of the OSS bucket to be mounted. The default value is /. This parameter is supported by csi-plugin 1.14.8.32-c77e277b-aliyun and later.|
 
-    1.  Log on to the [Container Service for Kubernetes \(ACK\) console](https://cs.console.aliyun.com).
-    2.  In the left-side navigation pane, click **Clusters**.
-    3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column.
+    1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+    2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+    3.  On the Clusters page, find the cluster that you want to manage and click the name or click **Details** in the **Actions** column.
     4.  In the left-side navigation pane of the details page, choose **Volumes** \> **Persistent Volumes**. You can view the created PV on the Persistent Volumes page.
 3.  Run the following command to create a PVC:
 
@@ -224,12 +224,12 @@ Method 1: Create a statically provisioned PV and a PVC by using a Secret
 
     |Parameter|Description|
     |---------|-----------|
-    |`name`|The name of the PVC.|
-    |`accessModes`|The access mode of the PVC.|
+    |`name`|The name of the PVC|
+    |`accessModes`|The access mode of the PVC|
     |`storage`|The capacity claimed by the PVC. The claimed capacity cannot exceed the capacity of the PV.|
-    |`alicloud-pvname`|The labels that are used to bind the PVC to the PV. The labels must be the same as those of the PV.|
+    |`alicloud-pvname`|The labels that are used to select and bind a PV to the PVC. The labels must be the same as those of the PV to be bound to the PVC.|
 
-    In the left-side navigation pane, choose **Volume** \> **Persistent Volume Claims**. On the Persistent Volume Claims page, you can view the created PVC.
+    In the left-side navigation pane, choose **Volumes** \> **Persistent Volume Claims**. On the Persistent Volume Claims page, you can view the created PVC.
 
 
 Method 2: Specify an AccessKey pair when you create a PV and a PVC
@@ -303,7 +303,7 @@ spec:
 
 Create an application named oss-static and mount the PVC to the application.
 
-Run the following command to create a file named oss-static.yaml:
+Run the following command to create an oss-static.yaml file:
 
 ```
 kubectl create -f oss-static.yaml
@@ -356,11 +356,11 @@ spec:
 -   `mountPath`: the path where the OSS bucket is mounted in the container.
 -   `claimName`: the name of the PVC, which is used to associate the application with the PVC.
 
-## Verify that the OSS bucket can be used to persist data.
+## Verify that data can be persisted in the OSS bucket
 
-1.  View the pod where the oss-static application is deployed and the files in the OSS bucket.
+1.  View the pod that runs the oss-static application and the files in the OSS bucket.
 
-    1.  Run the following command to quey the pod where the oss-static application is deployed:
+    1.  Run the following command to query the pod that runs the oss-static application:
 
         ```
         kubectl get pod
@@ -373,7 +373,7 @@ spec:
         oss-static-66fbb85b67-d****      1/1     Running   0          1h
         ```
 
-    2.  Run the following command to query the files in the /data path:
+    2.  Run the following command to query files in the /data path:
 
         ```
          kubectl exec oss-static-66fbb85b67-d**** ls /data | grep tmpfile
@@ -387,7 +387,7 @@ spec:
     kubectl exec oss-static-66fbb85b67-d**** touch /data/tmpfile
     ```
 
-3.  Run the following command to query the files in the /data path:
+3.  Run the following command to query files in the /data path:
 
     ```
     kubectl exec oss-static-66fbb85b67-d**** ls /data | grep tmpfile
@@ -436,7 +436,7 @@ spec:
 
 6.  Verify that the file still exists after the pod is deleted.
 
-    1.  Run the following command to quey the pod that is recreated.
+    1.  Run the following command to query the pod that is recreated.
 
         ```
         kubectl get pod
@@ -449,7 +449,7 @@ spec:
         oss-static-66fbb85b67-z****      1/1     Running   0          40s
         ```
 
-    2.  Run the following command to query the files in the /data path:
+    2.  Run the following command to query files in the /data path:
 
         ```
         kubectl exec oss-static-66fbb85b67-z**** ls /data | grep tmpfile
