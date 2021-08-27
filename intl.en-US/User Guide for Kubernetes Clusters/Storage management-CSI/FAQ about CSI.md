@@ -4,13 +4,28 @@ keyword: [disk volume, NAS volume, FAQ]
 
 # FAQ about CSI
 
-This topic describes how to troubleshoot common issues related to storage and how to resolve common issues related to disk volumes and NAS volumes.
+This topic describes how to troubleshoot common issues related to storage and provides answers to some frequently asked questions about disk volumes and Apsara File Storage NAS \(NAS\) volumes.
+
+|Type|Question|
+|----|--------|
+|Troubleshoot common issues|[Troubleshoot common issues](#section_1ym_k67_i1r)|
+|FAQ about disk volumes|-   [t2100599.md\#section\_ddz\_m1r\_muj]()
+-   [t2100599.md\#section\_e36\_d7y\_yvn]()
+-   [t2100599.md\#section\_44d\_enm\_5qg]()
+-   [t2100599.md\#section\_hxz\_s8n\_psd]()
+-   [t2100599.md\#section\_wfu\_6qp\_5yd]()
+-   [t2100599.md\#section\_u8n\_7uh\_0zb]()
+-   [t2100599.md\#section\_mwn\_qnc\_5o8]()
+-   [t2100599.md\#section\_8pk\_40e\_0n1]()
+-   [t2100599.md\#section\_vse\_dem\_l0i]() |
+|FAQ about NAS volumes|-   [t2100786.md\#section\_srw\_s3w\_230]()
+-   [t2101096.md\#section\_xgz\_7fw\_p7e]() |
 
 ## Troubleshoot common issues
 
 Perform the following operations to view the log of a specified volume plug-in. This allows you to locate issues.
 
-1.  Run the following command to check whether events occur in persistent volume claims \(PVCs\) or pods:
+1.  Run the following command to check whether events related to persistent volume claims \(PVCs\) or pods were generated:
 
     ```
     kubectl get events
@@ -105,13 +120,13 @@ Perform the following operations to view the log of a specified volume plug-in. 
             kubectl logs <PodID> -nkube-system -c csi-provisioner
             ```
 
-            **Note:** Two pods are created to run csi-provisioner. After you run the `kubectl get pod -nkube-system | grep csi-provisioner | awk '{print $1}'` command, two `podid` are returned. Then, run the `kubectl logs <PodID> -nkube-system -c csi-provisioner` command for each of the two pods.
+            **Note:** Two pods are created to run csi-provisioner. After you run the `kubectl get pod -nkube-system | grep csi-provisioner | awk '{print $1}'` command, two `pod IDs` are returned. Then, run the `kubectl logs <PodID> -nkube-system -c csi-provisioner` command for each of the two pods.
 
     -   If a mounting error occurs when the system starts a pod, you must check the log of FlexVolume or csi-plugin.
         -   If the FlexVolume plug-in is deployed in the cluster, run the following command to print the log of FlexVolume:
 
             ```
-            kubectl get pod {pod-name} -owide
+            kubectl get pod <pod-name> -owide
             ```
 
             Log on to the Elastic Compute Service \(ECS\) instance where the pod runs and check the log of FlexVolume in the `/var/log/alicloud/flexvolume_**.log` directory.
@@ -119,31 +134,23 @@ Perform the following operations to view the log of a specified volume plug-in. 
         -   If the CSI plug-in is deployed in the cluster, run the following command to print the log of csi-plugin:
 
             ```
-            nodeID=`kubectl get pod {pod-name} -owide | awk 'NR>1 {print $7}'`
+            nodeID=`kubectl get pod <pod-name> -owide | awk 'NR>1 {print $7}'`
             podID=`kubectl get pods -nkube-system -owide -lapp=csi-plugin | grep $nodeID|awk '{print $1}'`
             kubectl logs <PodID> -nkube-system
             ```
 
-    -   View the log of Kubelet.
+    -   View the log of kubelet.
 
-        Run the following command to query the node where the pod runs:
+        Run the following command to query the node on which the pod runs:
 
         ```
-        kubectl get pod deployment-disk-5c795d7976-bjhkj -owide | awk 'NR>1 {print $7}'
+        kubectl get pod <pod-name> -owide | awk 'NR>1 {print $7}'
         ```
 
-        Log on to the node and check the log in the /var/log/message directory.
+        Log on to the node and check the log files in the /var/log/message directory.
 
 
 **Quick recovery**
 
-If you fail to mount volumes to most of the pods on a node, you can schedule the pods to another node. For more information, see the questions and answers in the following sections.
-
-## FAQ about disk volumes
-
-
-
-## FAQ about NAS volumes
-
-
+If you fail to mount volumes to most of the pods on a node, you can schedule the pods to other nodes.
 
