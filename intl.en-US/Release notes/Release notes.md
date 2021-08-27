@@ -18,7 +18,6 @@ This topic describes the release notes for Container Service for Kubernetes \(AC
 |CoreDNS|CoreDNS is supported on the Add-ons page of the console. CoreDNS is the default plug-in used to implement DNS-based service discovery in ACK clusters and edge Kubernetes clusters. CoreDNS provides domain name resolutions for services within the clusters.|All regions|[CoreDNS](/intl.en-US/Release notes/System Component change Records/Networking/CoreDNS.md)|
 |Cost analysis|The cost analysis feature is improved to provide resource usage trends and the cost estimation of individual CPU cores per unit time for applications and pods based on namespace.|All regions|[Cost analysis](/intl.en-US/User Guide for Kubernetes Clusters/Cost analysis/Cost analysis.md)|
 |Cluster security|The security of registered Kubernetes clusters is enhanced. You can install security-inspector, aliyun-acr-credential-helper, and gatekeeper in registered Kubernetes clusters. security-inspector is used to perform security scans. aliyun-acr-credential-helper is used to pull images without passwords. gatekeeper is used to manage Open Policy Agent \(OPA\) policies.|All regions|[Overview of registered clusters](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of external clusters/Overview of registered clusters.md)|
-|CNFS 1.0|The Container Network File System \(CNFS\) feature is released. CNFS allows you to abstract Apsara File Storage NAS \(NAS\) file systems as Kubernetes resources by using CustomResourceDefinitions \(CRDs\). You can use CNFS to create, delete, set quotas for, mount, monitor, and expand NAS file systems. CNFS provides a declarative management method, which is also used to manage containers. CNFS improves storage performance and data security.|All regions|[t2082944.md\#]()|
 
 ## June 2021
 
@@ -695,7 +694,7 @@ India \(Mumbai\)
 
 |All regions|[t21663.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Workloads/Use a StatefulSet to create a stateful application.md)|
 |Container Registry|Images can be pulled from the private repositories of Container Registry without a password.|All regions| |
-|Auto scaling|Auto scaling of nodes is supported. ACK provides the auto scaling component for nodes to automatically scale in and out. Regular instances, GPU-accelerated instances, and preemptible instances can be automatically added to or removed from an ACK cluster as required. This feature is applicable to instances that are deployed across multiple zones and diverse instance types, and also supports different scaling modes.|All regions|[t220155.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Auto scaling of nodes.md)|
+|Auto scaling|Auto scaling of nodes is supported. ACK provides the auto scaling component for nodes to automatically scale in and out. Regular instances, GPU-accelerated instances, and preemptible instances can be automatically added to or removed from an ACK cluster as required. This feature is applicable to instances that are deployed across multiple zones and diverse instance types, and also supports different scaling modes.|All regions|[Auto scaling of nodes](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Auto scaling of nodes.md)|
 |Preemptible instances are supported.|N/A|All regions| |
 
 ## August 2018
@@ -766,7 +765,7 @@ UAE \(Dubai\)
 |Feature|Description|Region|References|
 |-------|-----------|------|----------|
 |ACK and Container Registry are released on the International site \(alibabacloud.com\).|N/A|Regions outside China|[What is Container Service for Kubernetes?](/intl.en-US/Product Introduction/What is Container Service for Kubernetes?.md)|
-|Kubernetes 1.8.4 is supported to provide features such as security enhancement and auto scaling.|N/A|All regions|[t220155.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Auto scaling of nodes.md)|
+|Kubernetes 1.8.4 is supported to provide features such as security enhancement and auto scaling.|N/A|All regions|[Auto scaling of nodes](/intl.en-US/User Guide for Kubernetes Clusters/Auto Scaling/Auto scaling of nodes.md)|
 |FlexVolume|The FlexVolume plug-in is released to support disks, NAS file systems, and OSS buckets.|All regions|[Usage notes for disk volumes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/Disk volumes/Usage notes for disk volumes.md), [t18764.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/NAS volumes/Use NAS volumes.md), and [Mount OSS volumes](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/OSS volumes/Mount OSS volumes.md)|
 |Network policies and bandwidth throttling|Kubernetes network policies and bandwidth throttling are supported. This improves network performance.|All regions|[Use annotations to configure load balancing](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service Management/Use annotations to configure load balancing.md)|
 |EBM instances are supported.|N/A|All regions|N/A|
