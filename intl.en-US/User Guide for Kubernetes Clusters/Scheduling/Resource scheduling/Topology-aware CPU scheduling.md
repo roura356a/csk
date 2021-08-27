@@ -4,24 +4,24 @@ keyword: [resource scheduling, topology-aware CPU scheduling, kube-scheduler, CP
 
 # Topology-aware CPU scheduling
 
-Container Service for Kubernetes \(ACK\) provides the topology-aware CPU scheduling feature based on the new Kubernetes scheduling framework. This feature allows you to configure automatic CPU core binding policies and improve the performance of CPU-sensitive workloads. This topic describes how to enable topology-aware CPU scheduling and how to configure automatic CPU core binding policies by using CPU policies.
+Container Service for Kubernetes \(ACK\) provides the topology-aware CPU scheduling feature based on the new Kubernetes scheduling framework. This feature allows you to configure automatic CPU core binding policies and improves the performance of CPU-sensitive workloads. This topic describes how to enable topology-aware CPU scheduling and how to configure automatic CPU core binding policies by using CPU policies.
 
 -   A professional Kubernetes cluster is created. For more information, see [Create a professional managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Professional Kubernetes clusters/Create a professional managed Kubernetes cluster.md).
 
-    **Note:** Topology-aware CPU scheduling is available only for professional Kubernetes clusters. To enable topology-aware CPU scheduling for dedicated Kubernetes clusters, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to add your account to a whitelist.
+    **Note:** Topology-aware CPU scheduling is available only for professional Kubernetes clusters. To enable topology-aware CPU scheduling for dedicated Kubernetes clusters, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply to be added to a whitelist.
 
 -   resource-controller is deployed in the cluster before you enable topology-aware CPU scheduling. For more information, see [Manage system components](/intl.en-US/User Guide for Kubernetes Clusters/Component/Manage system components.md).
--   The installed system component versions are as required in the following table.
+-   The following table describes the versions that are required for the installed system components.
 
-    |Component|Required version|
-    |---------|----------------|
+    |Component|Version|
+    |---------|-------|
     |Kubernetes|V1.16 and later|
     |Helm|V3.0 and later|
     |Docker|19.03.5|
     |Operating system|CentOS 7.6, CentOS 7.7, Ubuntu 16.04, Ubuntu 18.04, and Alibaba Cloud Linux 2.|
 
 
-Multiple pods can run on a node in a Kubernetes cluster, and some of them may belong to CPU-intensive workloads. In this case, pods compete for CPU resources. When the competition becomes intense, the CPU cores that are allocated to each pod may frequently change. This situation intensifies when Non-Uniform Memory Access \(NUMA\) nodes are used. These changes degrade the performance of the workloads. The Kubernetes CPU manager provides a CPU scheduling solution to fix this issue within a node. However, the Kubernetes CPU manager cannot find an optimal allocation of CPU cores within a cluster. The Kubernetes CPU manager works only on guaranteed pods and does not apply to other types of pod. In a guaranteed pod, each container is configured with requests and limits on CPU resources, and the request and limit are set to the same value for each container.
+Multiple pods can run on a node in a Kubernetes cluster, and some of the pods may belong to CPU-intensive workloads. In this case, pods compete for CPU resources. When the competition becomes intense, the CPU cores that are allocated to each pod may frequently change. This situation intensifies when Non-Uniform Memory Access \(NUMA\) nodes are used. These changes degrade the performance of the workloads. The Kubernetes CPU manager provides a CPU scheduling solution to fix this issue within a node. However, the Kubernetes CPU manager cannot find an optimal allocation of CPU cores within a cluster. The Kubernetes CPU manager works only on guaranteed pods and does not apply to other types of pods. In a guaranteed pod, each container is configured with requests and limits on CPU resources, and the request and limit are set to the same value for each container.
 
 Topology-aware CPU scheduling applies to the following scenarios:
 
@@ -31,9 +31,9 @@ Topology-aware CPU scheduling applies to the following scenarios:
 
     To test the effect of topology-aware CPU scheduling, stress tests are performed on two NGINX applications that both request 4 CPU cores and 8 GB of memory. The tests are performed on applications that are deployed on an ECS bare metal instance with 104 Intel CPU cores and also applications that are deployed on an ECS bare metal instance with 256 AMD CPU cores. The results show that the application performance is improved by 22% to 43% when topology-aware CPU scheduling is enabled. The following figures show the details.
 
-    ![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4565007261/p289461.png)
+    ![1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/4565007261/p289461.png)
 
-    ![2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4565007261/p289462.png)
+    ![2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/4565007261/p289462.png)
 
     |Performance metric|Intel|AMD|
     |------------------|-----|---|
@@ -43,18 +43,19 @@ Topology-aware CPU scheduling applies to the following scenarios:
 
 When you enable topology-aware CPU scheduling for an application, you can set cpu-policy to static-burst in the pod annotations. This allows you to configure automatic CPU core binding policies. This CPU policy is suitable for compute-intensive workloads. It can effectively reduce CPU core competition among processes and memory access between NUMA nodes. This maximizes the utilization of fragmented CPU resources and optimizes resource allocation for compute-intensive workloads without the need to modify the hardware and VM resources. This further improves CPU usage.
 
-## Considerations
+## Usage notes
 
-When you enable topology-aware CPU scheduling, make sure that `cpu-policy=none` is configured for the node.
+-   resource-controller is deployed in the cluster before you enable topology-aware CPU scheduling.
+-   When you enable topology-aware CPU scheduling, make sure that `cpu-policy=none` is configured for the node.
 
 ## Enable topology-aware CPU scheduling
 
-To enable topology-aware CPU scheduling, you must set the annotations and containers parameters when you configure pods. Set the parameters:
+To enable topology-aware CPU scheduling, you must set the annotations and containers parameters when you configure pods. Set the parameters in the following ways:
 
 -   annotations: Set cpuset-scheduler to true to enable topology-aware CPU scheduling.
 -   containers: Set `resources.limit.cpu` to an integer.
 
-1.  Create a cal-pi.yaml file based on the following template. You can use this file to create a pod with topology-aware CPU scheduling enabled.
+1.  Create a file named cal-pi.yaml by using the following template. You can use this file to create a pod with topology-aware CPU scheduling enabled.
 
     ```
     apiVersion: v1
@@ -73,7 +74,7 @@ To enable topology-aware CPU scheduling, you must set the annotations and contai
           requests:
             cpu: 4
           limits:
-            cpu: 4  # Set resources.limit.cpu based on your business requirements. 
+            cpu: 4  # Specify the value of resources.limit.cpu. 
         env:
         - name: limit
           value: "20000"
@@ -81,9 +82,9 @@ To enable topology-aware CPU scheduling, you must set the annotations and contai
           value: "3000"
     ```
 
-    **Note:** When you enable topology-aware CPU scheduling, you can set cpu-policy to static-burst in the annotations section. This allows you to configure automatic CPU core binding policies. When you add this configuration, delete the `#` before cpu-policy.
+    **Note:** When you enable topology-aware CPU scheduling, you can set cpu-policy to static-burst in the annotations section. This allows you to configure automatic CPU core binding policies. When you add this configuration, delete `#` before cpu-policy.
 
-2.  Create a go-demo.yaml file based on the following template. You can use this file to create a Deployment with topology-aware CPU scheduling enabled.
+2.  Create a file named go-demo.yaml by using the following template. You can use this file to create a Deployment with topology-aware CPU scheduling enabled.
 
     ```
     apiVersion: apps/v1
@@ -113,11 +114,13 @@ To enable topology-aware CPU scheduling, you must set the annotations and contai
               requests:
                 cpu: 1
               limits: 
-                cpu: 4  # Set resources.limit.cpu based on your business requirements. 
+                cpu: 4  # Specify the value of resources.limit.cpu. 
     ```
 
-    **Note:** When you enable topology-aware CPU scheduling, you can set cpu-policy to static-burst in the annotations section. This allows you to configure automatic CPU core binding policies. When you add this configuration, delete the `#` before cpu-policy.
+    **Note:**
 
+    -   When you enable topology-aware CPU scheduling, you can set cpu-policy to static-burst in the annotations section. This allows you to configure automatic CPU core binding policies. When you add this configuration, delete `#` before cpu-policy.
+    -   In the `template.metadata` section, configure `annotations` of the pod.
 3.  Run the following command to create the pod and Deployment:
 
     ```
@@ -130,7 +133,7 @@ To enable topology-aware CPU scheduling, you must set the annotations and contai
 In this example, the following conditions apply:
 
 -   The Kubernetes version of the professional Kubernetes cluster is V1.20.
--   The processor model used by the test instances is Intel Xeon Platinum 8269CY \(Cascade Lake\) or AMD EPYC Rome 7H12.
+-   The processor model used by the nodes in this test is Intel Xeon Platinum 8269CY \(Cascade Lake\) or AMD EPYC Rome 7H12.
 -   Two cluster nodes are used in the test. One is used to perform stress tests. The other runs the workload and serves as the tested machine.
 
 1.  Run the following command to add a label to the tested machine:
@@ -141,7 +144,7 @@ In this example, the following conditions apply:
 
 2.  Deploy the NGINX service on the tested machine.
 
-    1.  Use the following YAML templates to create resources for the NGINX service.
+    1.  Use the following YAML templates to create resources for the NGINX service:
         -   service.yaml
 
 ```
@@ -240,15 +243,15 @@ spec:
                 path: nginx.conf
 ```
 
-    2.  Run the following command to create the resources that run the NGINX service:
+    2.  Run the following command to create the resources that are provisioned for the NGINX service:
 
         ```
         kubectl create -f service.yaml configmap.yaml nginx.yaml
         ```
 
-3.  Log on to the node that is used to perform stress tests and run the following command to download `wrk`:
+3.  Log on to the node that is used to perform stress tests and run the following command to download `wrk`.
 
-    **Note:** For more information about how to log on to a node of a Kubernetes cluster, see [Connect to a Linux instance by using password authentication](/intl.en-US/Instance/Connect to instances/Connect to an instance by using VNC/Connect to a Linux instance by using password authentication.md) and [Connect to a Windows instance by using password authentication](/intl.en-US/Instance/Connect to instances/Connect to an instance by using VNC/Connect to a Windows instance by using password authentication.md).
+    **Note:** For more information about how to log on to a node of a Kubernetes cluster, see [Connect to a Linux instance by using password authentication](/intl.en-US/Instance/Connect to instances/Connect to an instance by using VNC/Connect to a Linux instance by using password authentication.md) or [Connect to a Windows instance by using password authentication](/intl.en-US/Instance/Connect to instances/Connect to an instance by using VNC/Connect to a Windows instance by using password authentication.md).
 
     ```
     wget https://caishu-oss.oss-cn-beijing.aliyuncs.com/wrk?versionId=CAEQEBiBgMCGk565xxciIDdiNzg4NWIzMzZhZTQ1OTlhYzZhZjFhNmQ2MDNkMzA2 -O wrk
@@ -360,7 +363,7 @@ spec:
     Requests/sec: 305119.06Transfer/sec:    247.34MB
     ```
 
-    Compare the data of the preceding tests. This comparison indicates that the performance of the NGINX service is improved by 43% when topology-aware CPU scheduling is enabled.
+    Compare the data of the preceding tests. This comparison indicates that the performance of the NGINX service is improved by 43% after topology-aware CPU scheduling is enabled.
 
 
 ## Verify that the automatic CPU core binding policies improve performance
@@ -395,7 +398,7 @@ In this example, a CPU policy is configured for a workload that runs on a node w
     finished!
     ```
 
-3.  Enable topology-aware CPU scheduling for the pod or Deployment and configure an automatic CPU core binding policy as described in [Enable topology-aware CPU scheduling](#section_xr4_ec7_r5z). When you modify the configurations, delete the `#` before cpu-policy.
+3.  Enable topology-aware CPU scheduling for the pod or Deployment and configure an automatic CPU core binding policy as described in [Enable topology-aware CPU scheduling](#section_xr4_ec7_r5z). When you modify the configurations, delete `#` before cpu-policy.
 
 4.  After the pod or Deployment is started, run the following command to query the pod:
 
