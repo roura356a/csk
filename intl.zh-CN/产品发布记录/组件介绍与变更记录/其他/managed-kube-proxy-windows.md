@@ -1,5 +1,5 @@
 ---
-keyword: [managed-kube-proxy-windows组件介绍, managed-kube-proxy-windows使用说明, managed-kube-proxy-windows组件变更记录]
+keyword: managed-kube-proxy-windows
 ---
 
 # managed-kube-proxy-windows
@@ -12,7 +12,10 @@ managed-kube-proxy-windows是ACK托管版集群上使用的容器化kube-proxy�
 
 ## 使用说明
 
-创建ACK托管版集群时，managed-kube-proxy-windows默认会以DaemonSet工作负载的形式安装。managed-kube-proxy-windows依赖Windows工作节点上的特权托管进程，仅适用于从集群节点池创建节点时已含有`windows.alibabacloud.com/deployment-topology=2.0`标签的Windows工作节点。创建Windows节点时，会默认为节点打上`windows.alibabacloud.com/deployment-topology=2.0`标签。
+创建ACK托管版集群时，managed-kube-proxy-windows默认会以DaemonSet工作负载的形式安装。managed-kube-proxy-windows依赖Windows工作节点上的特权托管进程，仅适用于含有`windows.alibabacloud.com/deployment-topology=2.0`标签的Windows工作节点。以下为Windows工作节点添加`windows.alibabacloud.com/deployment-topology=2.0`标签的规则：
+
+-   如果您的集群版本大于等于1.20.4，创建Windows工作节点时会默认含有`windows.alibabacloud.com/deployment-topology=2.0`标签。如果没有，您也可以手动为Windows工作节点添加`windows.alibabacloud.com/deployment-topology=2.0`标签。
+-   如果您的集群版本小于1.20.4，创建Windows工作节点时不会含有`windows.alibabacloud.com/deployment-topology=2.0`标签。您也不可以手动为Windows工作节点添加`windows.alibabacloud.com/deployment-topology=2.0`标签。
 
 如果您的集群内没有Windows工作节点，且Windows工作节点没有`windows.alibabacloud.com/deployment-topology=2.0`标签，则managed-kube-proxy-windows工作负载副本数始终为0。
 
@@ -26,6 +29,23 @@ managed-kube-proxy-windows是ACK托管版集群上使用的容器化kube-proxy�
 6.  在弹出的对话框单击**确定**。
 
 ## 变更记录
+
+**2021年08月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.20.4-aliyun.1|registry-vpc.$\{region\}.aliyuncs.com/acs/kube-proxy-windows:v1.20.4-aliyun.1|2021年08月22日|-   更新basic镜像，同时覆盖原版本号。
+-   支持Multiple Windows Server Release 1809（10.0.17763.2114）、1909（10.0.18363.1556）、2004（10.0.19041.1165）。
+
+|此次升级不会对业务造成影响。|
+|v1.18.8-aliyun.1|registry-vpc.$\{region\}.aliyuncs.com/acs/kube-proxy-windows:v1.18.8-aliyun.1|2021年08月20日|-   更新basic镜像，同时覆盖原版本号。
+-   支持Multiple Windows Server Release 1809（10.0.17763.2114）、1909（10.0.18363.1556）、2004（10.0.19041.1165）
+
+|此次升级不会对业务造成影响。|
+|v1.16.9-aliyun.1|registry-vpc.$\{region\}.aliyuncs.com/acs/kube-proxy-windows:v1.16.9-aliyun.1|2021年08月20日|-   更新basic镜像，同时覆盖原版本号。
+-   支持Multiple Windows Server Release 1809（10.0.17763.2114）、1909（10.0.18363.1556）、2004（10.0.19041.1165）。
+
+|此次升级不会对业务造成影响。|
 
 **2021年07月**
 
@@ -57,7 +77,7 @@ managed-kube-proxy-windows是ACK托管版集群上使用的容器化kube-proxy�
 
 |此次升级不会对业务造成影响。|
 |v1.16.9-aliyun.1|registry-vpc.$\{region\}.aliyuncs.com/acs/kube-proxy-windows:v1.16.9-aliyun.1|2021年06月17日|-   更新basic镜像，同时覆盖原版本号。
--   支持 Multiple Windows Server Release 1809（10.0.17763.1935）、1909（10.0.18363.1556）、2004（10.0.19041.985）。
+-   支持Multiple Windows Server Release 1809（10.0.17763.1935）、1909（10.0.18363.1556）、2004（10.0.19041.985）。
 
 |此次升级不会对业务造成影响。|
 
