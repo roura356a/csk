@@ -33,8 +33,10 @@ keyword: [共享GPU专业版, 共享GPU基础版]
 
 **说明：** 在不同的集群上安装共享GPU组件，共享GPU呈现不同的版本：
 
--   基础版：在专有版GPU集群安装共享GPU组件，参考文档[安装共享GPU组件](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU资源调度/共享GPU调度/安装共享GPU组件.md)
--   专业版：在ACK Pro版集群安装共享GPU组件，参考文档[安装并使用共享GPU组件和资源工具](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/GPU调度/共享GPU调度专业版/安装并使用共享GPU组件和资源工具.md)
+-   基础版：在专有版GPU集群安装共享GPU组件。具体操作，请参见[安装共享GPU组件](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU调度/共享GPU调度/安装共享GPU组件.md)。
+-   专业版：在ACK Pro版集群安装共享GPU组件。具体操作，请参见[安装并使用共享GPU组件和资源工具](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/GPU调度/共享GPU调度专业版/安装并使用共享GPU组件和资源工具.md)。
+
+若ACK专有版集群已安装共享GPU基础版，在迁移至ACK Pro托管版集群后，需要将共享GPU基础版升级为共享GPU专业版。具体操作，请参见[在ACK Pro版集群中将共享GPU基础版升级为共享GPU专业版](/cn.zh-CN/Kubernetes集群用户指南/ACK Pro集群/GPU调度/共享GPU调度专业版/在ACK Pro版集群中将共享GPU基础版升级为共享GPU专业版.md)。
 
 ## 阿里云共享GPU方案
 
