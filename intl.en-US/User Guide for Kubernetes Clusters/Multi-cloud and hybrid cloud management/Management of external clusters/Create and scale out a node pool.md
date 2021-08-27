@@ -27,7 +27,7 @@ The operations before [Step 6](/intl.en-US/User Guide for Kubernetes Clusters/Mu
     |Parameter|Description|
     |---------|-----------|
     |**Quantity**|Specify the initial number of nodes in the node pool. If you do not want to create nodes in the node pool, set this parameter to 0.|
-    |**Operating System**|Select the operating system for the nodes in the node pool. Valid values: CentOS and Alibaba Cloud Linux 2.1903.|
+    |**Operating System**|Select the operating system for the nodes in the node pool. Only CentOS and Alibaba Cloud Linux 2.1903 are supported.|
     |**Node Label**|You can add labels to the nodes in the node pool.|
     |**ECS Label**|You can add labels to the selected ECS instances.|
     |**Taints**|You can add taints to the nodes in the node pool.|
