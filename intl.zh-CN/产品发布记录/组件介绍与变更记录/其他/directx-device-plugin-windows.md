@@ -1,5 +1,5 @@
 ---
-keyword: [directx-device-plugin-windows, GPU加速]
+keyword: directx-device-plugin-windows
 ---
 
 # directx-device-plugin-windows
@@ -14,11 +14,29 @@ directx-device-plugin-windows仅支持v1.20.4及其以上版本的ACK集群。
 
 ## 使用说明
 
-当使用DirectX设备插件时，directx-device-plugin-windows默认会以DaemonSet工作负载的形式安装。directx-device-plugin-windows依赖Windows工作节点上的特权托管进程，仅适用于创建集群内节点池时就含有`windows.alibabacloud.com/deployment-topology=2.0`和`windows.alibabacloud.com/directx-supported=true`标签的Windows工作节点。如果您创建完Windows工作节点后，再在Windows工作节点上添加`windows.alibabacloud.com/deployment-topology=2.0`和`windows.alibabacloud.com/directx-supported=true`标签，则该Windows工作节点不支持directx-device-plugin-windows。
+当使用DirectX设备插件时，directx-device-plugin-windows默认会以DaemonSet工作负载的形式安装。directx-device-plugin-windows依赖Windows工作节点上的特权托管进程，仅适用于含有`windows.alibabacloud.com/deployment-topology=2.0`和`windows.alibabacloud.com/directx-supported=true`标签的Windows工作节点。
+
+以下为Windows工作节点添加`windows.alibabacloud.com/deployment-topology=2.0`标签的规则：
+
+-   如果您的集群版本大于等于1.20.4，创建Windows工作节点时会默认含有`windows.alibabacloud.com/deployment-topology=2.0`标签。如果仍然没有该标签，您也可以手动为Windows工作节点添加`windows.alibabacloud.com/deployment-topology=2.0`标签。
+-   如果您的集群版本小于1.20.4，创建Windows工作节点时不会含有`windows.alibabacloud.com/deployment-topology=2.0`标签。您也不可以手动为Windows工作节点添加`windows.alibabacloud.com/deployment-topology=2.0`标签。
+
+以下为Windows工作节点添加`windows.alibabacloud.com/directx-supported=true`标签的规则：
+
+创建Windows节点池时必须设置实例规格为GPU，您才可以为Windows工作节点添加`windows.alibabacloud.com/directx-supported=true`标签。如果创建Windows节点池时设置实例规格为GPU，则默认会为Windows工作节点添加`windows.alibabacloud.com/directx-supported=true`标签。如果仍然没有该标签，您也可以手动为为Windows工作节点添加`windows.alibabacloud.com/directx-supported=true`标签。
 
 directx-device-plugin-windows目前仍然需要手动安装。具体操作，请参见[在Windows容器中使用基于DirectX的GPU加速](/intl.zh-CN/Kubernetes集群用户指南/Windows容器/在Windows容器中使用基于DirectX的GPU加速.md)。
 
 ## 变更记录
+
+**2021年08月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.0.0|registry-vpc.$\{region\}.aliyuncs.com/acs/directx-device-plugin-windows:v1.0.0|2021年08月19日|-   更新basic镜像，同时覆盖原版本号。
+-   支持Multiple Windows Server Release 1809（10.0.17763.2114）、1909（10.0.18363.1556）、2004（10.0.19041.1165）。
+
+|此次升级不会对业务造成影响。|
 
 **2021年07月**
 
