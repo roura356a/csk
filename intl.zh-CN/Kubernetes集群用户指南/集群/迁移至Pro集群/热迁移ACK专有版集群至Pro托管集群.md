@@ -9,7 +9,7 @@ keyword: [ACK专有版集群, Kubernetes集群迁移, Pro集群]
 -   准备一个ACK专有版集群。具体步骤，请参见[创建Kubernetes专有版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes专有版集群.md)。
 -   集群的Master节点上已安装云助手。更多信息，请参见[云助手概述](/intl.zh-CN/运维与监控/云助手/云助手概述.md)和[安装云助手客户端](/intl.zh-CN/运维与监控/云助手/配置云助手客户端/安装云助手客户端.md)。
 -   集群的内网SLB实例规格的配置为slb.s1.small及以上。
--   已将管控面组件（API Server、Kube Controller Manager、Cloud Controller Manager、Scheduler）和其他kube-system中的Daemonset之外的Pod驱逐到Worker节点上。管控面组件在迁移之后会被托管的组件所替代。
+-   已将管控面组件（API Server、Kube Controller Manager、Cloud Controller Manager、Scheduler）和其他kube-system中的DaemonSet之外的Pod驱逐到Worker节点上。管控面组件在迁移之后会被托管的组件所替代。
 -   创建一个OSS的存储空间（Bucket）。具体步骤，请参见[创建存储空间](/intl.zh-CN/控制台用户指南/存储空间管理/创建存储空间.md)。
 
 ## 注意事项
@@ -36,11 +36,11 @@ keyword: [ACK专有版集群, Kubernetes集群迁移, Pro集群]
 
     1.  在**迁移至Pro版**对话框中，单击**访问控制台（RAM）**。
 
-        ![migrate](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0464069161/p269274.png)
+        ![migrate](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0464069161/p269274.png)
 
     2.  在Master RAM角色的详情页，单击以**k8sMasterRolePolicy**开头的授权策略名称。
 
-        ![master role](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4932938161/p263338.png)
+        ![master role](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4932938161/p263338.png)
 
     3.  在目标授权策略的详情页的**策略内容**页签，单击**修改策略内容**。
 
@@ -62,7 +62,7 @@ keyword: [ACK专有版集群, Kubernetes集群迁移, Pro集群]
 
         添加策略后的示例如下图。
 
-        ![策略](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4932938161/p263342.png)
+        ![策略](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4932938161/p263342.png)
 
     完成迁移之后，原有的Master节点状态会变成**未知**。查看节点状态步骤如下：
 
@@ -74,7 +74,7 @@ keyword: [ACK专有版集群, Kubernetes集群迁移, Pro集群]
 
 在完成迁移专有版集群至Pro托管版集群后，您可以自行将Master节点从集群中删除。目前ACK暂时不支持从控制台直接删除Master节点，您可以通过kubectl命令方式删除Master节点。
 
-在执行命令前，请确保您可以使用kubectl命令连接集群。关于如何使用kubectl命令连接集群的具体操作，请参见[t16645.md\#](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+在执行命令前，请确保您可以使用kubectl命令连接集群。关于如何使用kubectl命令连接集群的具体操作，请参见[通过kubectl工具连接集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 1.  执行以下命令查看需要删除的Master节点名称。
 
@@ -91,7 +91,5 @@ keyword: [ACK专有版集群, Kubernetes集群迁移, Pro集群]
     **说明：** 将<MASTER\_NAME\>替换为上步中查询到的Master节点名称。
 
 
-## 相关文档
-
-您还可以迁移ACK标准托管版集群至Pro托管版集群。具体操作，请参见[热迁移ACK标准托管集群至Pro托管集群](/intl.zh-CN/Kubernetes集群用户指南/集群/迁移至Pro集群/热迁移ACK标准托管集群至Pro托管集群.md)。
+若ACK专有版集群已安装共享GPU基础版，在迁移至ACK Pro托管版集群后，需要将共享GPU基础版升级为共享GPU专业版。具体操作，请参见[在ACK Pro版集群中将共享GPU基础版升级为共享GPU专业版]()。
 
