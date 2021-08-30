@@ -9,17 +9,17 @@ This topic describes how to troubleshoot common issues related to storage and pr
 |Type|Question|
 |----|--------|
 |Troubleshoot common issues|[Troubleshoot common issues](#section_1ym_k67_i1r)|
-|FAQ about disk volumes|-   [t2100599.md\#section\_ddz\_m1r\_muj]()
--   [t2100599.md\#section\_e36\_d7y\_yvn]()
--   [t2100599.md\#section\_44d\_enm\_5qg]()
--   [t2100599.md\#section\_hxz\_s8n\_psd]()
--   [t2100599.md\#section\_wfu\_6qp\_5yd]()
--   [t2100599.md\#section\_u8n\_7uh\_0zb]()
--   [t2100599.md\#section\_mwn\_qnc\_5o8]()
--   [t2100599.md\#section\_8pk\_40e\_0n1]()
--   [t2100599.md\#section\_vse\_dem\_l0i]() |
-|FAQ about NAS volumes|-   [t2100786.md\#section\_srw\_s3w\_230]()
--   [t2101096.md\#section\_xgz\_7fw\_p7e]() |
+|FAQ about disk volumes|-   [Why does the system prompt The specified disk is not a portable disk when I unmount a disk?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/FAQ about disk volumes.md)
+-   [Why does the system prompt had volume node affinity conflict when I launch a pod that has a disk mounted?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/FAQ about disk volumes.md)
+-   [Why does the system prompt can't find disk when I launch a pod that has a disk mounted?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/FAQ about disk volumes.md)
+-   [Why does the system prompt The specified AZone inventory is insufficient when I create a dynamically provisioned PV?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/FAQ about disk volumes.md)
+-   [Why does the system prompt disk size is not supported when I create a dynamically provisioned PV?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/FAQ about disk volumes.md)
+-   [What do I do when the disk is blocked, which results in a pod launch failure that lasts for a long period of time?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/FAQ about disk volumes.md)
+-   [Why does the "FailedMount" warning appear when I start a pod?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/FAQ about disk volumes.md)
+-   [Why do I do when I fail to delete a pod and kubelet generates pod logs that are not managed by Container Service for Kubernetes \(ACK\)?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/FAQ about disk volumes.md)
+-   [Why does the system prompt that the mounting fails and cannot be recovered when a pod failed to restart after deletion?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/FAQ about disk volumes.md) |
+|FAQ about NAS volumes|-   [Why does the system prompt chown: option not permitted when I mount a NAS file system?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/FAQ about NAS volumes.md)
+-   [What do I do if the task queue of alicloud-nas-controller is full and PVs cannot be created when I mount a dynamically provisioned PV?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/NAS volumes/FAQ about NAS volumes.md) |
 
 ## Troubleshoot common issues
 
