@@ -23,7 +23,7 @@ directx-device-plugin-windows仅支持v1.20.4及其以上版本的ACK集群。
 
 以下为Windows工作节点添加`windows.alibabacloud.com/directx-supported=true`标签的规则：
 
-创建Windows节点池时必须设置实例规格为GPU，您才可以为Windows工作节点添加`windows.alibabacloud.com/directx-supported=true`标签。如果创建Windows节点池时设置实例规格为GPU，则默认会为Windows工作节点添加`windows.alibabacloud.com/directx-supported=true`标签。如果仍然没有该标签，您也可以手动为为Windows工作节点添加`windows.alibabacloud.com/directx-supported=true`标签。
+创建Windows节点池时必须设置实例规格为GPU，您才可以为Windows工作节点添加`windows.alibabacloud.com/directx-supported=true`标签。如果创建Windows节点池时设置实例规格为GPU，则默认会为Windows工作节点添加`windows.alibabacloud.com/directx-supported=true`标签。如果仍然没有该标签，您也可以手动为Windows工作节点添加`windows.alibabacloud.com/directx-supported=true`标签。
 
 directx-device-plugin-windows目前仍然需要手动安装。具体操作，请参见[在Windows容器中使用基于DirectX的GPU加速](/cn.zh-CN/Kubernetes集群用户指南/Windows容器/在Windows容器中使用基于DirectX的GPU加速.md)。
 
