@@ -1,5 +1,5 @@
 ---
-keyword: [低成本CI/CD, 弹性伸缩]
+keyword: [弹性低成本CI/CD, 持续集成, 持续交付]
 ---
 
 # ASK弹性低成本CI/CD
@@ -24,7 +24,7 @@ keyword: [低成本CI/CD, 弹性伸缩]
 
 ## 架构图
 
-![ Serverless ACK弹性低成本CI/CD](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6663659951/p82687.jpg)
+![ Serverless ACK弹性低成本CI/CD](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6663659951/p82687.jpg)
 
 ## 参考链接
 
