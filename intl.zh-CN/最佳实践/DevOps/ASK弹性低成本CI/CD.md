@@ -1,5 +1,5 @@
 ---
-keyword: [弹性低成本CI/CD, 持续集成, 持续交付]
+keyword: [低成本CI/CD, 弹性伸缩]
 ---
 
 # ASK弹性低成本CI/CD
