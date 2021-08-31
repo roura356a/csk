@@ -9,68 +9,11 @@ keyword: [静态存储卷, NAS, Flexvolume]
 -   使用存储卷时请将Flexvolume插件更新到最新版本。具体操作，请参见[安装与升级Flexvolume组件](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/安装与升级Flexvolume组件.md)。
 -   已通过kubectl连接Kubernetes集群。具体操作，请参见[通过kubectl工具连接集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
-使用Flexvolume插件，您可以通过Volume方式使用阿里云NAS存储卷或者通过PV和PVC方式使用阿里云NAS存储卷。
+使用Flexvolume插件，您可以通过PV和PVC方式使用阿里云NAS存储卷。
 
 ## 注意事项
 
 若您在应用模板中配置了securityContext.fsgroup参数，kubelet在存储卷挂载完成后会执行`chmod`或`chown`操作，导致挂载时间过长。
-
-## 直接通过Volume使用
-
-Pod可以通过添加volumes字段的方式使用NAS静态存储卷。本文示例使用nas-deploy.yaml文件创建Pod。
-
-1.  使用以下内容创建nas-deploy.yaml文件。
-
-    ```
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: nas-static
-      labels:
-        app: nginx
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          app: nginx
-      template:
-        metadata:
-          labels:
-            app: nginx
-        spec:
-          containers:
-          - name: nginx
-            image: nginx
-            ports:
-            - containerPort: 80
-            volumeMounts:
-              - name: nas1
-                mountPath: "/data"
-          volumes:
-          - name: "nas1"
-            flexVolume:
-              driver: "alicloud/nas"
-              options:
-                server: "0cd8b4a576-g****.cn-hangzhou.nas.aliyuncs.com"
-                path: "/k8s"
-                vers: "3"
-                options: "nolock,tcp,noresvport"
-    ```
-
-    |参数|说明|
-    |--|--|
-    |server|表示NAS存储卷的挂载点。|
-    |path|表示连接NAS存储卷的挂载目录，支持挂载NAS子目录，且当子目录不存在时，会自动创建子目录并挂载。极速NAS的Path需要以/share开头。|
-    |vers|表示NFS挂载协议的版本号，支持V3和V4.0，默认使用版本V3且推荐使用此版本。极速类型NAS只支持V3版本。|
-    |mode|表示挂载目录的访问权限，注意挂载NAS存储卷根目录时不能配置挂载权限。挂载目录中文件数量很大时，配置mode会导致执行挂载非常慢，甚至挂载失败。|
-    |options|表示挂载参数，不配置此项时，V3版本的挂载默参数为`nolock,tcp,noresvport`，V4.0版本挂载的默认参数为`noresvport`。|
-
-2.  执行以下命令，创建Pod。
-
-    ```
-    kubectl apply -f nas-deploy.yaml
-    ```
-
 
 ## 通过PV和PVC使用
 
@@ -195,5 +138,5 @@ Pod可以通过关联创建的PV和PVC的方式使用NAS存储卷。
     ```
 
 
-[NAS存储卷使用说明](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷使用说明.md)
+[NAS存储卷概述](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷概述.md)
 
