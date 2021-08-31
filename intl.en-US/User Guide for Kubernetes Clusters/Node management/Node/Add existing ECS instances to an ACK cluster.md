@@ -6,7 +6,7 @@ keyword: [node management, add nodes]
 
 You can add existing Elastic Compute Service \(ECS\) instances to a Container Service for Kubernetes \(ACK\) cluster in the ACK console. ECS instances can be added to an ACK cluster only as worker nodes. This topic describes how to manually and automatically add ECS instances to an ACK cluster.
 
--   [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+-   An ACK cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 -   The ECS instances that you want to add belong to the security group of the worker nodes in the ACK cluster. The security group is automatically created when you initialize the cluster.
 
 **Note:**
@@ -17,9 +17,9 @@ Before you use the cluster, take note of the following limits:
 -   The ECS instances that you want to add to the ACK cluster must be deployed in the same region and virtual private cloud \(VPC\) as the cluster.
 -   The ECS instances that you want to add must belong to the same account as the cluster.
 -   Nodes that run the following operating systems can be added to an ACK cluster:
-    -   Alibaba Cloud Linux 2.
+    -   Alibaba Cloud Linux 2
     -   CentOS 7.x. CentOS 8.x and later are not supported.
-    -   Windows Server 2019 and Windows Server Core, 1909.
+    -   Windows Server 2019 and Windows Server version 1909.
 
 ## Automatically add ECS instances
 
@@ -29,57 +29,30 @@ In auto mode, all ECS instances that are available within your account are liste
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  Go to the Add Existing ECS Instance page in the following ways:
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-    -   Find the cluster that you want to manage and click **More** in the Actions column to go to the **Add Existing ECS Instance** page.
-        1.  On the Clusters page, find the cluster that you want to manage and click **More** in the **Actions** column.
-        2.  Click **Add Existing Node** from the **More** drop-down list.
-    -   Find the cluster that you want to manage and click **Node Pools** in the Actions column to go to the **Add Existing ECS Instance** page.
-        1.  On the Clusters page, find the cluster that you want to manage and click **Node Pools** in the **Actions** column.
-        2.  On the Node Pools page, click **Add Existing Node** in the **Actions** column.
-    -   Find the cluster that you want to manage and click **Applications** in the Actions column to go to the **Add Existing ECS Instance** page.
-        1.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Applications** in the **Actions** column.
-        2.  In the left-side navigation pane of the details page, choose **Nodes** \> **Nodes**.
-        3.  On the **Nodes** page, click **Add Existing Node**.
-4.  On the **Add Existing ECS Instance** wizard page, select the auto mode to automatically add ECS instances to the cluster.
+4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Nodes**.
+
+5.  On the Nodes page, click **Add Existing Node** in the upper-right corner.
+
+6.  On the **Select Existing ECS Instance** wizard page, select the auto mode to automatically add ECS instances to the cluster.
 
     Set **Mode** to **Auto** and select the ECS instances that you want to add in the Select Existing ECS Instance section.
 
-5.  Click **Next Step** and configure the parameters on the **Specify Instance Information** wizard page.
+7.  Click **Next Step** and set the parameters on the **Specify Instance Information** wizard page.
 
     |Parameter|Description|
     |---------|-----------|
-    |**Container Runtime**|Select a type of container runtime for the nodes. You can select Docker or Sandboxed-Container.|
-    |**System Images**|Select an operating system for the nodes.|
-    |**Custom Image**|You can select a custom image to replace the default image.|
+    |**Cluster ID/Name**|Information about the cluster to which the instances are to be added. This parameter is automatically set.|
     |**Data Disk**|Specify whether to store the container and image data on a data disk.     -   If the ECS instances have data disks mounted and the file system of the last data disk is not initialized, the system automatically formats the data disk to ext4. Then, the system mounts the data disk to /var/lib/docker and /var/lib/kubelet.
 
 **Note:** After the data disk is formatted, the data that is stored on the disk is erased. Make sure that you have backed up the data before you add the ECS instances to the ACK cluster.
 
-    -   The system does not create and mount a new data disk if no data disk has been mounted to the ECS instances. |
-    |**CPU Policy**|Specify the CPU policy. Valid values:     -   none: indicates that the default CPU affinity is used. This is the default policy.
-    -   static: allows pods with specific resource characteristics on the node to be granted with enhanced CPU affinity and exclusivity. |
-    |**Logon Type**|    -   Key Pair:
-
-Select a key pair as the credential that is used to log on to the nodes.
-
-    -   Password:
-
-Enter and confirm the password that is used to log on to the nodes. |
-    |**RDS Whitelist**|Select a Relational Database Service \(RDS\) instance to add the ECS instances to the whitelist of the RDS instance.|
-    |**Labels**|Add labels to the nodes in the cluster. Enter one or more key-value pairs, and click **Add**.
-
-**Note:**
-
-    -   Key is required. Value is optional.
-    -   Keys cannot start with aliyun, http://, or https://. Keys are not case-sensitive and cannot exceed 64 characters in length.
-    -   Values are not case-sensitive. A value must not exceed 128 characters in length, and cannot start with http:// or https://.
-    -   The keys of labels that are added to the same resource must be unique. If you add a label with a used key, the label overwrites the one that uses the same key.
-    -   You can add at most 20 labels to each resource. If you add more than 20 labels to a resource, all labels become invalid. You must remove excess labels for the remaining labels to take effect. |
+    -   If no data disk is attached to the ECS instances, the system does not purchase a new data disk. |
     |**Retain Instance Name**|By default, **Retain Instance Name** is turned on. If you do not want to retain the instance name, you can turn off **Retain Instance Name**. After you disable this feature, the node is renamed based on the node naming rules.|
-    |**User Data**|For more information, see [Overview of ECS instance user data](/intl.en-US/Instance/Manage instances/Manage instance user data/Overview of ECS instance user data.md).|
+    |**Instance Information**|The IDs and names of the instances to be added.|
 
-6.  Click **Next Step**. In the message that appears, click **Confirm**.
+8.  Click **Next Step**. In the Confirm message, click **Confirm**.
 
 
 ## Manually add ECS instances
@@ -92,42 +65,46 @@ In manual mode, you must obtain the installation command, log on to an ECS insta
 
 2.  In the left-side navigation pane of the ACK console, click **Clusters**.
 
-3.  Go to the Add Existing ECS Instance page in the following ways:
+3.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Details** in the **Actions** column. The details page of the cluster appears.
 
-    -   Find the cluster that you want to manage and click **More** in the Actions column to go to the **Add Existing ECS Instance** page.
-        1.  On the Clusters page, find the cluster that you want to manage and click **More** in the **Actions** column.
-        2.  Click **Add Existing Node** from the **More** drop-down list.
-    -   Find the cluster that you want to manage and click **Node Pools** in the Actions column to go to the **Add Existing ECS Instance** page.
-        1.  On the Clusters page, find the cluster that you want to manage and click **Node Pools** in the **Actions** column.
-        2.  On the Node Pools page, click **Add Existing Node** in the **Actions** column.
-    -   Find the cluster that you want to manage and click **Applications** in the Actions column to go to the **Add Existing ECS Instance** page.
-        1.  On the Clusters page, find the cluster that you want to manage and click the name of the cluster or click **Applications** in the **Actions** column.
-        2.  In the left-side navigation pane of the details page, choose **Nodes** \> **Nodes**.
-        3.  On the **Nodes** page, click **Add Existing Node**.
-4.  On the **Add Existing ECS Instance** wizard page, select the manual mode to add ECS instances to the cluster.
+4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Nodes**.
+
+5.  On the Nodes page, click **Add Existing Node** in the upper-right corner.
+
+6.  On the **Select Existing ECS Instance** wizard page, select the manual mode to add ECS instances to the cluster.
 
     Set **Mode** to **Manual** and select the ECS instances that you want to add in the Select Existing ECS Instance section.
 
-5.  Click **Next Step** and configure the parameters on the **Specify Instance Information** wizard page.
+7.  Click **Next Step** and configure the parameters on the **Specify Instance Information** wizard page.
 
     |Parameter|Description|
     |---------|-----------|
+    |**Cluster ID/Name**|Information about the cluster to which the instances are to be added. This parameter is automatically set.|
     |**Data Disk**|Specify whether to store the container and image data on a data disk.     -   If the ECS instances have data disks mounted and the file system of the last data disk is not initialized, the system automatically formats the data disk to ext4. Then, the system mounts the data disk to /var/lib/docker and /var/lib/kubelet.
 
 **Note:** After the data disk is formatted, the data that is stored on the disk is erased. Make sure that you have backed up the data before you add the ECS instances to the ACK cluster.
 
-    -   The system does not create and mount a new data disk if no data disk has been mounted to the ECS instances. |
-    |**RDS Whitelist**|Select an RDS instance to add the ECS instances to the whitelist of the RDS instance.|
+    -   If no data disk is attached to the ECS instances, the system does not purchase a new data disk. |
     |**Retain Instance Name**|By default, **Retain Instance Name** is turned on. If you do not want to retain the instance name, you can turn off **Retain Instance Name**. After you disable this feature, the node is renamed based on the node naming rules.|
+    |**Instance Information**|The IDs and names of the instances to be added.|
 
-6.  Click **Next Step** to go to the Complete wizard page. On the Complete wizard page, copy the command and click **Complete**.
+8.  Click **Next Step** to go to the Complete wizard page. On the Complete wizard page, copy the command and click **Done**.
 
-7.  Log on to the [ECS console](https://ecs.console.aliyun.com/). In the left-side navigation pane, click **Instances**, select the region where the ACK cluster is deployed, and then find the ECS instance that you want to add.
+9.  Log on to the [ECS console](https://ecs.console.aliyun.com). In the left-side navigation pane, choose **Instances & Images** \> **Instances**. Select the region where the cluster is deployed and then select the ECS instances that you want to add.
 
-8.  Click **Connect** in the Actions column. In the dialog box that appears, follow the instructions to connect to the ECS instance. Enter the remote connection password and click **OK**. After you are connected to the ECS instance, paste the command that is copied in [Step 6](#step_7cz_ibv_9eb) and click **OK** to execute the script.
+10. Click **Connect** in the Actions column. In the Connection and Command dialog box, select a connection method and go to the connection page.
+
+    The following table describes the connection methods.
+
+    |Connection method|Description|
+    |-----------------|-----------|
+    |**VNC Connection**|For more information about how to connect to an ECS instance by using Virtual Network Computing \(VNC\), see [Connect to a Linux instance by using password authentication](/intl.en-US/Instance/Connect to instances/Connect to an instance by using VNC/Connect to a Linux instance by using password authentication.md) or [Connect to a Windows instance by using password authentication](/intl.en-US/Instance/Connect to instances/Connect to an instance by using VNC/Connect to a Windows instance by using password authentication.md).|
+    |**Send Remote Commands \(Cloud Assistant\)**|This is the recommended method. This method allows you to run remote commands on an instance. You can perform operations such as viewing disk capacity, installing software, and starting or stopping services without logging on to the instance. This feature is implemented by using Cloud Assistant. For more information about how to install and activate the Cloud Assistant client, see [Install the Cloud Assistant client](/intl.en-US/Deployment & Maintenance/Cloud assistant/Configure the Cloud Assistant client/Install the Cloud Assistant client.md).|
+
+11. On the connection page, follow the instructions and paste the command copied in [Step 8](#step_7cz_ibv_9eb). Then, click **Run** to execute the script.
 
     After the script is executed, the ECS instance is added to the cluster.
 
 
-On the Clusters page, find the cluster to which you added the ECS instance. Then, click the name of the cluster or click **Details** in the **Actions** column. In the left-side navigation pane of the details page, choose **Nodes** \> **Nodes**. On the Nodes page, you can view information about the newly added node.
+In the left-side navigation pane of the cluster details page, choose **Nodes** \> **Nodes**. On the Nodes page, you can view the newly added node.
 
