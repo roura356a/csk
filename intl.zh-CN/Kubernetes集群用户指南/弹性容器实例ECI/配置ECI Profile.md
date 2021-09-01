@@ -6,7 +6,7 @@
 ECI Profile介绍 
 ----------------------------------
 
-在Kubernetes场景中通过Virtual Kubelet（简称VK）使用ECI时，可能会碰到Pod无法无缝调度到ECI，或者Pod调度到ECI后，为了生效ECI的功能特性（如镜像缓存）需要添加Pod Annotation。这类问题一般由集群管理员处理，但目前却需要研发人员通过调整Pod的yaml来解决。
+在Kubernetes场景中通过Virtual Kubelet（简称VK）使用ECI时，可能会碰到Pod无法无缝调度到ECI，或者Pod调度到ECI后，为了生效ECI的功能特性（如镜像缓存）需要添加Pod Annotation。这类问题一般由集群管理员处理，但目前只能由研发人员通过修改Pod的YAML文件解决。
 
 针对上述场景，ECI支持通过配置ECI Profile来解决。ECI Profile包括以下两个能力：
 
@@ -21,7 +21,7 @@ ECI Profile介绍
 
     
   
-  * [配置ECI弹性调度](/intl.zh-CN/Kubernetes集群用户指南/弹性容器实例ECI/使用ECI弹性调度.md)
+  * [配置ECI弹性调度](/intl.zh-CN/Kubernetes集群用户指南/调度/弹性调度/使用ECI弹性调度.md)
 
     
   
@@ -35,81 +35,11 @@ ECI Profile介绍
 
 * ECI Effect
 
-  对于ECI的一些功能特性，例如指定ECS实例规格，启用镜像缓存，设置NTP服务等，需要在Pod中追加Annotation或者Label来实现。更多信息，请参见[ECI Pod Annotation]()。
+  对于ECI的一些功能特性，例如指定ECS实例规格，启用镜像缓存，设置NTP服务等，需要在Pod中追加Annotation或者Label来实现。更多信息，请参见[ECI Pod Annotation](t1860148.html#topic-1860148)。
 
   对于上述情况，ECI Effect实现了自动追加Annotation和Label的功能，即在ECI Profile中，您可以声明需要匹配的Namespace或者Pod的Label，以及需要追加的Annotation和Label，对于Label能够匹配上的Pod，将自动追加配置的Annotation和Label。
   
 
-
-
-
-准备工作 
--------------------------
-
-使用ECI Profile时，您需要确保集群中的VK为最新版本，并且如果需要使用ECI Scheduler，则必须要开启Webhook。
-
-对于不同的Kubernetes集群，相应的准备工作如下：
-
-* 阿里云ASK集群
-
-  自动升级VK到最新版本。
-  **说明**
-
-  ASK集群默认调度Pod到ECI，无需使用ECI Scheduler。
-  
-
-* 阿里云ACK集群
-
-  * VK托管：自动升级VK到最新版本，并开启Webhook。
-
-    
-  
-  * VK非托管：您需要手动修改VK的配置文件，升级VK到最新版本，并开启Webhook。
-
-    
-  
-
-  
-
-* 其他集群
-
-  您需要手动修改VK的配置文件，升级VK到最新版本，并开启Webhook。
-  
-
-
-
-
-您可以通过以下命令修改VK的配置文件：
-
-    kubectl edit deployment -n kube-system virtual-node-controller
-
-
-
-配置示例如下：
-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: virtual-node-controller
-      namespace: kube-system
-      labels:
-        app: virtual-node-controller
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          app: virtual-node-controller
-      template:
-        metadata:
-          labels:
-            app: virtual-node-controller
-        spec:
-          containers:
-          - name: virtual-node-controller
-            image: registry.cn-beijing.aliyuncs.com/acs/virtual-nodes-eci:v2.******-aliyun  #将镜像tag改为最新版本
-      env:  #通过环境变量开启Webhook
-            - name: WEBHOOK
-              value: "true"
 
 
 
@@ -122,7 +52,9 @@ ECI Profile会读取kube-system命名空间下的eci-profile配置文件，然�
 
 * 通过kubectl edit命令
 
-      kubectl edit configmap eci-profile -n kube-system
+  ```shell
+  kubectl edit configmap eci-profile -n kube-system
+  ```
 
   
 
@@ -152,69 +84,71 @@ ECI Profile会读取kube-system命名空间下的eci-profile配置文件，然�
 
 一个典型的eci-profile配置文件示例如下：
 
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: eci-profile
-      namespace: kube-system
-    data:
-      vpcId: "vpc-xxx"
-      securityGroupId: "sg-xxx"
-      vswitchIds: "vsw-111,vsw-222"
-      enableClusterIp: "true"
-      enableHybridMode: "false"
-      enablePrivateZone: "false"
-      selectors: |
-        [
-            {
-                "name":"default-selector-1",
-                "objectSelector":{
-                    "matchLabels":{
-                        "alibabacloud.com/eci":"true"
-                    }
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: eci-profile
+  namespace: kube-system
+data:
+  vpcId: "vpc-xxx"
+  securityGroupId: "sg-xxx"
+  vswitchIds: "vsw-111,vsw-222"
+  enableClusterIp: "true"
+  enableHybridMode: "false"
+  enablePrivateZone: "false"
+  selectors: |
+    [
+        {
+            "name":"default-selector-1",
+            "objectSelector":{
+                "matchLabels":{
+                    "alibabacloud.com/eci":"true"
                 }
-            },
-            {
-                "name":"default-selector-2",
-                "objectSelector":{
-                    "matchLabels":{
-                        "eci":"true"
-                    }
-                }
-            },
-            {
-                "name":"default-selector-3",
-                "namespaceSelector":{
-                    "matchLabels":{
-                        "alibabacloud.com/eci":"true"
-                    }
-                }
-            },
-            {
-                "name":"default-selector-4",
-                "namespaceSelector":{
-                    "matchLabels":{
-                        "eci":"true"
-                    }
-                }
-            },
-            {
-                "name":"default-selector-5",
-                "namespaceSelector":{  
-                    "matchLabels":{
-                        "virtual-node-affinity-injection":"enabled"
-                    }
-                },
-                "effect":{  #需要动态追加的Annotation和Label
-                "annotations":{
-                    "k8s.aliyun.com/eci-image-cache": "true"
-                },
-                "labels":{
-                    "created-by-eci":"true"
-                }
-              }
             }
-        ]
+        },
+        {
+            "name":"default-selector-2",
+            "objectSelector":{
+                "matchLabels":{
+                    "eci":"true"
+                }
+            }
+        },
+        {
+            "name":"default-selector-3",
+            "namespaceSelector":{
+                "matchLabels":{
+                    "alibabacloud.com/eci":"true"
+                }
+            }
+        },
+        {
+            "name":"default-selector-4",
+            "namespaceSelector":{
+                "matchLabels":{
+                    "eci":"true"
+                }
+            }
+        },
+        {
+            "name":"default-selector-5",
+            "namespaceSelector":{  
+                "matchLabels":{
+                    "virtual-node-affinity-injection":"enabled"
+                }
+            },
+            "effect":{  #需要动态追加的Annotation和Label
+            "annotations":{
+                "k8s.aliyun.com/eci-image-cache": "true"
+            },
+            "labels":{
+                "created-by-eci":"true"
+            }
+          }
+        }
+    ]
+```
 
 
 
@@ -245,22 +179,24 @@ eci-profile除了支持配置ECI Scheduler和ECI Effect外，还支持配置安�
 
 配置示例如下：
 
-      selectors: |
-       [
-          {
-            "name":"demo",  #必填，不能为空
-            "namespaceSelector":{  #选填，K8s的Namespace Label（namespaceSelector和objectSelector至少配置一个）
-                "matchLabels":{  #需要匹配的Label，如果填写多个，为与关系
-                    "department":"bigdata"
-                }
-            },
-            "objectSelector":{  #选填，K8s的Pod Label（namespaceSelector和objectSelector至少配置一个）
-                "matchLabels":{  #需要匹配的Label，如果填写多个，为与关系
-                    "type":"offline-task"
-                  }
+```yaml
+  selectors: |
+   [
+      {
+        "name":"demo",  #必填，不能为空
+        "namespaceSelector":{  #选填，K8s的Namespace Label（namespaceSelector和objectSelector至少配置一个）
+            "matchLabels":{  #需要匹配的Label，如果填写多个，为与关系
+                "department":"bigdata"
+            }
+        },
+        "objectSelector":{  #选填，K8s的Pod Label（namespaceSelector和objectSelector至少配置一个）
+            "matchLabels":{  #需要匹配的Label，如果填写多个，为与关系
+                "type":"offline-task"
               }
           }
-       ]
+      }
+   ]
+```
 
 
 **注意**
@@ -278,30 +214,32 @@ eci-profile除了支持配置ECI Scheduler和ECI Effect外，还支持配置安�
 
 配置示例如下：
 
-      selectors: |
-       [
-        {
-            "name":"demo",  #必填，不能为空
-            "namespaceSelector":{  #选填，K8s的Namespace Label
-                "matchLabels":{  #需要匹配的Label，如果填写多个，为与关系
-                    "department":"bigdata"
-                }
+```yaml
+  selectors: |
+   [
+    {
+        "name":"demo",  #必填，不能为空
+        "namespaceSelector":{  #选填，K8s的Namespace Label
+            "matchLabels":{  #需要匹配的Label，如果填写多个，为与关系
+                "department":"bigdata"
+            }
+        },
+        "objectSelector":{  #选填，K8s的Pod Label
+            "matchLabels":{  #需要匹配的Label，如果填写多个，为与关系
+                "type":"offline-task"
+            }
+        },
+        "effect":{  #需要动态追加的Annotation和Label
+            "annotations":{
+                "k8s.aliyun.com/eci-image-cache": "true"
             },
-            "objectSelector":{  #选填，K8s的Pod Label
-                "matchLabels":{  #需要匹配的Label，如果填写多个，为与关系
-                    "type":"offline-task"
-                }
-            },
-            "effect":{  #需要动态追加的Annotation和Label
-                "annotations":{
-                    "k8s.aliyun.com/eci-image-cache": "true"
-                },
-                "labels":{
-                    "created-by-eci":"true"
-                }
+            "labels":{
+                "created-by-eci":"true"
             }
         }
-       ]
+    }
+   ]
+```
 
 
 **注意**
