@@ -10,7 +10,7 @@ If you specify FlexVolume as the volume plug-in for a Container Service for Kube
 
 -   An ACK cluster is created. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
 -   FlexVolume is specified as the volume plug-in of the ACK cluster.
--   You are connected to the cluster by using kubectl. For more information, see [Connect to an ACK cluster by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
+-   You are connected to the cluster by using kubectl. For more information, see [Step 2: Select a type of cluster credentials](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md).
 
 ## Limits
 
@@ -66,7 +66,7 @@ spec:
       hostNetwork: true
       containers:
         - name: nfs-provisioner
-          image: registry.cn-hangzhou.aliyuncs.com/acs/alicloud-nas-controller:v1.14.3.8-58bf821-aliyun
+          image: registry.cn-hangzhou.aliyuncs.com/acs/alicloud-nas-controller:v1.14.8.17-7b898e5-aliyun
           env:
           - name: PROVISIONER_NAME
             value: alicloud/nas
@@ -125,9 +125,9 @@ If your ACK cluster is upgraded to Kubernetes 1.16 or later, the cluster still s
     After the plug-ins are upgraded, the system prompts that the upgrades are completed and the current versions of the plug-ins are displayed.
 
 
--   When you upgrade FlexVolume in the following scenarios, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to request technical support.
+-   When you upgrade FlexVolume in the following scenarios, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm)to request technical support.
     -   The system fails to update FlexVolume in the ACK console.
     -   The version of FlexVolume is 1.12 or earlier, and volumes that use disks and Object Storage Service \(OSS\) buckets are provisioned in the cluster.
     -   You want to ensure a successful upgrade because sensitive business data is stored in the cluster and a large number of volumes are used.
--   The system fails to upgrade Disk Controller. In this case, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to request technical support.
+-   The system fails to upgrade Disk Controller. In this case, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm)to request technical support.
 
