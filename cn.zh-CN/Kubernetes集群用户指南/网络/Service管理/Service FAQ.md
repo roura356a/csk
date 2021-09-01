@@ -174,13 +174,13 @@ Cloud Controller Manager组件V1.9.3.10后续版本创建的SLB支持自动打TA
 **说明：**
 
 -   只有Cloud Controller Manager组件V1.9.3.10及之前版本创建的SLB才需要手动打TAG的方式来支持重命名。
--   Service类型为Loadbalancer。
+-   Service类型为LoadBalancer。
 
-1.  登录到Kubernetes集群Master节点，请参见[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+1.  登录到Kubernetes集群Master节点，请参见[通过kubectl工具连接集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 2.  执行`kubectl get svc -n ${namespace} ${service}`命令，查看该Service类型及IP。
 
-    ![service类型](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9395659951/p44550.png)
+    ![service类型](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9395659951/p44550.png)
 
     **说明：** 您需要将namespace与service替换为所选集群的命名空间及服务名称。
 
@@ -190,7 +190,7 @@ Cloud Controller Manager组件V1.9.3.10后续版本创建的SLB支持自动打TA
     kubectl get svc -n ${namespace} ${service} -o jsonpath="{.metadata.uid}"|awk -F "-" '{print "kubernetes.do.not.delete: "substr("a"$1$2$3$4$5,1,32)}'
     ```
 
-    ![tag](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9395659951/p44551.png)
+    ![tag](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1845030361/p44551.png)
 
 4.  登录[负载均衡控制台](https://slb.console.aliyun.com)根据步骤2中所获取的IP，在其所在的地域搜索到该SLB。
 
@@ -201,13 +201,13 @@ Cloud Controller Manager组件V1.9.3.10后续版本创建的SLB支持自动打TA
 
 本文以业务Pod（app=nginx）部署在三台ECS上，通过Service A对外提供服务为例，说明在Local模式下Node权重的计算方式。
 
-![CCM2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9395659951/p103113.png)
+![CCM2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9395659951/p103113.png)
 
 -   **V1.9.3.164-g2105d2e-aliyun之前版本**
 
     如图2所示，在V1.9.3.164-g2105d2e-aliyun之前版本，Local模式的Service其所有后端权重均为100，即所有流量平均分配到这三台ECS上，造成ECS 1上Pod负载较重而ECS 3上的Pod负载较轻，导致Pod负载不均。
 
-    ![CCM3](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9395659951/p103116.png)
+    ![CCM3](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9395659951/p103116.png)
 
 -   **V1.9.3.164-g2105d2e-aliyun之后及V1.9.3.276-g372aa98-aliyun之前版本**
 
@@ -215,9 +215,9 @@ Cloud Controller Manager组件V1.9.3.10后续版本创建的SLB支持自动打TA
 
     计算公式如下所示：
 
-    ![计算公式](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0495659951/p103112.png)
+    ![计算公式](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0495659951/p103112.png)
 
-    ![ccm4](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0495659951/p103117.png)
+    ![ccm4](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0495659951/p103117.png)
 
 -   **V1.9.3.276-g372aa98-aliyun及之后版本**
 
@@ -225,9 +225,9 @@ Cloud Controller Manager组件V1.9.3.10后续版本创建的SLB支持自动打TA
 
     计算公式如下所示：
 
-    ![node权重](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0495659951/p118174.png)
+    ![node权重](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0495659951/p118174.png)
 
-    ![node](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0495659951/p118175.png)
+    ![node](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0495659951/p118175.png)
 
 
 ## Service报错信息及对应处理方式
