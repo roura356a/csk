@@ -8,24 +8,27 @@ This topic provides an overview of serverless Kubernetes \(ASK\) clusters, inclu
 
 ## Overview
 
-ASK is a serverless Kubernetes container service provided by Alibaba Cloud. ASK clusters allow you to deploy containerized applications without the need to purchase nodes or plan capacity for nodes. In addition, you do not need to perform operations and maintenance \(O&M\) on nodes. You are charged based on the CPU and memory resources that are configured for your applications. ASK clusters are compatible with Kubernetes and provide easy access to Kubernetes. You can focus on the design and development of your applications instead of the underlying infrastructure.
+ASK is a serverless Kubernetes service provided by Alibaba Cloud. ASK clusters allow you to deploy containerized applications without the need to purchase nodes. You do not need to perform capacity planning or operations and maintenance \(O&M\) tasks on the nodes. You are charged based on the CPU and memory resources that are configured for your applications. ASK clusters are compatible with Kubernetes and make it easy to get started with Kubernetes. You can focus on the design and development of your applications instead of the underlying infrastructure.
 
-Each pod in an ASK cluster runs in a secure and isolated container runtime that is built on an elastic container instance. The underlying compute resources of each elastic container instance are isolated by lightweight virtual sandboxes. Elastic container instances do not affect each other.
+Each pod in an ASK cluster runs in a secure and isolated container runtime that is built on an elastic container instance. The underlying computing resources of each elastic container instance are isolated by lightweight virtual sandboxes. Elastic container instances do not affect each other.
 
 ## Benefits
 
--   **Free of maintenance**: You can deploy an application in an ASK cluster within a few seconds. You can focus on application development without the need to manage nodes.
--   **Rapid elasticity**: You do not need to plan node capacity. ASK clusters automatically scale resources based on your workload requirements.
--   **Compatibility with Kubernetes**: ASK supports Kubernetes-native resources such as Services, Ingresses, and Helm charts. This allows you to seamlessly migrate Kubernetes applications.
+-   **O&M-free**: You can deploy an application in an ASK cluster within a few seconds. You can focus on application development without the need to manage nodes.
+-   **Auto scaling**: You do not need to perform capacity planning for the cluster. ASK automatically scales resources based on your workload requirements.
+-   **Kubernetes compatibility**: ASK supports Kubernetes-native resources such as Services, Ingresses, and Helm charts. This allows you to seamlessly migrate Kubernetes applications.
 -   **Secure isolation**: Pods are created based on elastic container instances. Pods of different applications are isolated from each other to prevent mutual interference.
--   **Cost-effectiveness**: Pods are created based on your business requirements. You are charged based on the resources used by your applications. You are not charged for idle resources. ASK clusters are developed on a serverless architecture, which helps reduce O&M costs.
--   **Integration and interconnection**: Applications in ASK clusters can be seamlessly integrated with basic services that are provided by Alibaba Cloud. The applications in an ASK cluster can communicate with applications and databases in the virtual private cloud \(VPC\) where the cluster is deployed. This also applies to other applications that run on virtual nodes of the cluster.
+-   **Cost-effectiveness**: Pods are created based on your business requirements. You are charged based on the resources used by your applications. You are not charged for idle resources. In addition, the serverless architecture helps reduce O&M costs.
+-   **Integration and interconnection**: Containerized applications in ASK clusters support seamless integration with Alibaba Cloud fundamentals. These applications can communicate with existing applications and databases in the virtual private cloud \(VPC\) where the cluster is deployed. The containerized applications can also communicate with VM-based applications.
 
 ## Pricing
 
-If you use ASK clusters, you are charged based on pods instead of nodes. Fees of pods are calculated based on the pricing of Elastic Container Instance. For more information, see [Elastic Container Instance pricing overview]().
+When you use ASK clusters, you are charged for pods instead of nodes. The fees of pods are calculated based on the pricing of Elastic Container Instance. For more information, see [Elastic Container Instance pricing overview]().
 
-You are also charged for other Alibaba Cloud services, such as Server Load Balancer \(SLB\) and PrivateZone, that are used by ASK clusters. For more information, see the related pricing pages.
+You are also charged for other resources used in the clusters, such as Server Load Balancer \(SLB\) and PrivateZone. For more information about the pricing, see the following references:
+
+-   [ALB billing](/intl.en-US/Application Load Balancer/ALB billing.md)
+-   [PrivateZone pricing](/intl.en-US/Announcements & Updates/[New] Notice on the official billing of the Resolver feature.md)
 
 ## Comparison between ASK and ACK
 
@@ -35,22 +38,22 @@ You are also charged for other Alibaba Cloud services, such as Server Load Balan
 
 -   **Application management**
 
-    In ASK clusters, you do not need to manage and maintain nodes. In addition, you do not need to plan capacity for nodes. This reduces the costs of infrastructure management and O&M.
+    In ASK clusters, you do not need to manage or maintain nodes, or perform capacity planning. This reduces the costs of infrastructure management and O&M.
 
 -   **Dynamic scaling**
 
-    For workloads that have periodic traffic patterns, such as online education and e-commence applications, ASK clusters can automatically scale resources based on workload requirements. This way, the computing costs and idle resources are reduced, and traffic spikes can be handled in a more efficient manner.
+    For workloads that have periodic traffic patterns, such as online education and e-commence applications, ASK clusters can automatically scale resources based on workload requirements. This prevents resource waste, reduces computing costs, and ensures a smooth user experience when traffic spikes occur.
 
 -   **Data computing**
 
-    To meet computing requirements for applications such as Spark, ASK clusters can start a large number of pods within a short period of time to process tasks. When task are terminated, ASK clusters automatically release pods to stop billing. This reduces the computing costs.
+    To meet computing requirements of applications such as Spark, ASK clusters can start a large number of pods within a short period of time to process tasks. When the tasks are terminated, the pods are automatically released to stop billing. This dramatically reduces the overall computing costs. For more information, see [Use ASK to create Spark tasks](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Serverless cluster best practices/Use ASK to create Spark tasks.md).
 
 -   **CI/CD**
 
-    You can use ASK clusters to build continuous integration \(CI\) environments by using tools such as Jenkins or GitLab-Runner. You can set up an application delivery pipeline that includes stages such as source code compilation, image build and push, and application deployment. The continuous integration tasks are isolated from each other for enhanced security. You do not need to maintain fixed resource pools. This reduces computing costs.
+    You can use ASK clusters to build continuous integration \(CI\) environments by using tools such as Jenkins or GitLab-Runner. You can set up an application delivery pipeline that covers stages such as source code compilation, image building and pushing, and application deployment. The continuous integration tasks are isolated from each other for enhanced security. You do not need to maintain specific resource pools. This reduces computing costs. For more information, see [Elastic and cost-effective CI/CD based on ASK](/intl.en-US/Best Practices/DevOps/Elastic and cost-effective CI/CD based on ASK.md).
 
 -   **CronJobs**
 
-    You can run CronJobs in ASK clusters. Billing automatically stops when the related jobs are complete. You do not need to maintain specific resource pools. This avoids resource waste.
+    You can run CronJobs in ASK clusters. Billing automatically stops when the jobs are terminated. You do not need to maintain specific resource pools. This avoids resource waste.
 
 
