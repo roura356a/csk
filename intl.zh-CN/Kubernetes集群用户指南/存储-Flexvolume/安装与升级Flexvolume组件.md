@@ -6,15 +6,13 @@ keyword: [Flexvolume组件, Disk Controller组件, NAS Controller组件]
 
 创建阿里云Kubernetes 1.16之前版本的集群时，若存储插件选择为Flexvolume，则控制台默认安装Flexvolume与Disk-Controller组件，但不会默认安装NAS Controller组件。本文介绍如何对Flexvolume组件升级管理及如何安装NAS Controller组件。
 
-## 前提条件
-
 -   已创建ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   阿里云Kubernetes集群存储插件为Flexvolume。
--   已通过kubectl连接Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   已通过kubectl连接Kubernetes集群。具体操作，请参见[步骤二：选择集群凭证类型](/intl.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 ## 使用限制
 
-目前支持CentOS 7、Aliyun Linux 2操作系统。
+目前支持CentOS 7、Alibaba Cloud Linux 2操作系统。
 
 ## 安装组件
 
@@ -66,7 +64,7 @@ spec:
       hostNetwork: true
       containers:
         - name: nfs-provisioner
-          image: registry.cn-hangzhou.aliyuncs.com/acs/alicloud-nas-controller:v1.14.3.8-58bf821-aliyun
+          image: registry.cn-hangzhou.aliyuncs.com/acs/alicloud-nas-controller:v1.14.8.17-7b898e5-aliyun
           env:
           - name: PROVISIONER_NAME
             value: alicloud/nas
