@@ -41,7 +41,7 @@ You can deploy the cloud-native AI component set only in professional Kubernetes
 
 1.  In the **Interaction Mode** section of the Cloud-native AI Component Set page, select **O&M Console**. Then, the **Note** dialog box appears, as shown in the following figure.
 
-    ![K-AI-2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/6790447261/p237448.png)
+    ![K-AI-2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/0341550361/p237448.png)
 
     **Note:**
 
