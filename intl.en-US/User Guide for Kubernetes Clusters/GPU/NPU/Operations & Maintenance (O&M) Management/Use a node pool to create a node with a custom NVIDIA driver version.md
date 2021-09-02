@@ -4,29 +4,14 @@ keyword: create a node with a custom NVIDIA driver version
 
 # Use a node pool to create a node with a custom NVIDIA driver version
 
-By default, Container Service for Kubernetes \(ACK\) is installed with the NVIDIA driver of version 418.87.01. If your CUDA Toolkit requires a higher version of the NVIDIA driver, you must specify a custom NVIDIA driver version. This topic describes how to use a node pool to create a node with a custom NVIDIA driver version.
+By default, Container Service for Kubernetes \(ACK\) clusters are installed with the NVIDIA driver of version 418.87.01. If your CUDA Toolkit requires a higher version of the NVIDIA driver, you must specify a custom NVIDIA driver version for the cluster nodes. This topic describes how to use a node pool to create a node with a custom NVIDIA driver version.
 
 ## Benefits
 
 This solution allows you to manage the NVIDIA drivers of different nodes in batches. The following two scenarios are covered:
 
--   Node Pool A consists of all nodes on which you want to install the NVIDIA driver of version 418.181.07. If you want to schedule a task to a node that runs the NVIDIA driver of version 418.181.07, you need only to set the **selector** of the task to the label of Node Pool A.
+-   Node Pool A consists of nodes on which you want to install the NVIDIA driver of version 418.181.07. To schedule a task to a node that runs the NVIDIA driver of version 418.181.07, you need only to set the **selector** of the task to the label of Node Pool A.
 -   You manage cluster nodes in two groups: A and B. You want to install the NVIDIA driver of version 418.181.07 in Group A and the NVIDIA driver of version 450.102.0 in Group B. In this case, you can add nodes in Group A to Node Pool A and nodes in Group B to Node Pool B.
-
-## Step 1: Determine the NVIDIA driver version
-
-**Note:**
-
--   To upgrade the NVIDIA driver for a node, you must remove the node from its cluster and add the node back to the cluster. When the node is added to the cluster, the operating system of the node is reinstalled and the NVIDIA driver of the specified version is installed. Before you perform the upgrade, make sure that no task is running on the node and critical data is backed up.
--   To lower risk of failures, we recommend that you first upgrade the NVIDIA driver for one node. If no error occurs during this process, you can then perform the upgrade on multiple nodes.
-
-You must consider which CUDA Toolkit versions are compatible with the NVIDIA driver version that you want to use. The following figure displays a list of CUDA Toolkit versions and the compatible NVIDIA driver versions.
-
-**Note:** By default, ACK clusters are installed with the NVIDIA driver of version 418.87.01.
-
-![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5146487161/p245597.png)
-
-For more information, see [CUDA compatibility](https://docs.nvidia.com/deploy/cuda-compatibility/index.html).
 
 ## Step 2: Create a node pool and specify the NVIDIA driver version
 
@@ -42,43 +27,43 @@ The following example shows how to set the NVIDIA driver version to 418.181.07:
 
 4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node Pools**.
 
-5.  Click **Create Node Pool** in the upper-right corner.
+5.  In the upper-right corner of the Node Pools page, click **Create Node Pool**.
 
-6.  In the **Create Node Pool** dialog box, configure the parameters based on your requirements. For more information about the parameters, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md). The following table describes the parameters:
+6.  In the **Create Node Pool** dialog box, configure the required parameters. For more information about the parameters, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md). The following table describes the parameters:
 
     1.  Click **Show Advanced Options**.
 
-    2.  In the **Node Label** section, click ![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5146487161/p245638.png), set **Key** to `ack.aliyun.com/nvidia-driver-version`, and set **Value** to `418.181.07`.
+    2.  In the **Node Label** section, click ![1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/5146487161/p245638.png), set **Key** to `ack.aliyun.com/nvidia-driver-version`, and then set **Value** to `418.181.07`.
 
         ACK provides the following NVIDIA driver versions:
 
         -   418.181.07
         -   450.102.04
         -   460.32.03
-    3.  After you configure the parameters, click **Confirm Order**.
+    3.  After you set the parameters, click **Confirm Order**.
 
 
 **Method 2: Use a custom NVIDIA driver version**
 
 **Custom driver version**
 
-The following example shows how to upload the NVIDIA-Linux-x86\_64-460.32.03.run driver to specify a custom driver version. You can download NVIDIA drivers from the [NVIDIA official website](https://www.nvidia.com/Download/index.aspx?lang=en-us).
+The following example shows how to upload the NVIDIA-Linux-x86\_64-460.32.03.run file to specify a custom driver version. You can download NVIDIA driver files from the [NVIDIA official website](https://www.nvidia.com/Download/index.aspx?lang=en-us).
 
-**Note:** The NVIDIA-Linux-x86\_64-460.32.03.run file must be stored in the root directory of the Object Storage Service \(OSS\) bucket.
+**Note:** The NVIDIA-Linux-x86\_64-460.32.03.run file must be stored in the root directory of the specified Object Storage Service \(OSS\) bucket.
 
-1.  Create a bucket in the [OSS console](https://oss.console.aliyun.com/) For more information, see [Create buckets](/intl.en-US/Console User Guide/Manage buckets/Create buckets.md).
+1.  Create an OSS bucket in the [OSS console](https://oss.console.aliyun.com/). For more information, see [Create buckets](/intl.en-US/Console User Guide/Manage buckets/Create buckets.md).
 
-2.  Upload the NVIDIA-Linux-x86\_64-460.32.03.run file to the bucket. For more information, see [Upload objects](/intl.en-US/Console User Guide/Upload, download, and manage objects/Upload objects.md).
+2.  Upload the NVIDIA-Linux-x86\_64-460.32.03.run file to the OSS bucket. For more information, see [Upload objects](/intl.en-US/Console User Guide/Upload, download, and manage objects/Upload objects.md).
 
 3.  After the file is uploaded to the bucket, click **Files** in the left-side navigation pane of the bucket details page.
 
 4.  On the **Files** page, find the file that you uploaded and click **View Details** in the **Actions** column.
 
-5.  In the **View Details** panel, click **HTTPS** to disable HTTPS.
+5.  In the **View Details** panel, turn off the **HTTPS** switch to disable HTTPS.
 
-    **Note:** ACK downloads the driver file by using its URL, which adopts the HTTP protocol. By default, OSS uses the HTTPS protocol. You must click **HTTPS** to disable HTTPS.
+    **Note:** ACK downloads the driver file by using its URL, which uses the HTTP protocol. By default, OSS uses the HTTPS protocol. You must turn off the **HTTPS** switch to disable HTTPS.
 
-6.  Check the URL of the driver file. Take note of the URL. The URL consists of the following parts: endpoint and runfile. For example, you can divide the following URL into two parts: `[http://nvidia-XXX-XXX-cn-beijing.aliyuncs.com/NVIDIA-Linux-x86\_64-460.32.03.run](http://nvidia-XXX-XXX-cn-beijing.aliyuncs.com/NVIDIA-Linux-x86_64-460.32.03.run)`.
+6.  Check the URL of the driver file. Record the URL. The URL consists of the following parts: endpoint and runfile. For example, you can divide the following URL into two parts: `[http://nvidia-XXX-XXX-cn-beijing.aliyuncs.com/NVIDIA-Linux-x86\_64-460.32.03.run](http://nvidia-XXX-XXX-cn-beijing.aliyuncs.com/NVIDIA-Linux-x86_64-460.32.03.run)`.
 
     -   endpoint: nvidia-XXX-XXX-cn-beijing.aliyuncs.com
     -   runfile: NVIDIA-Linux-x86\_64-460.32.03.run
@@ -93,24 +78,74 @@ The following example shows how to upload the NVIDIA-Linux-x86\_64-460.32.03.run
 
 4.  In the left-side navigation pane of the details page, choose **Nodes** \> **Node Pools**.
 
-5.  Click **Create Node Pool** in the upper-right corner.
+5.  In the upper-right corner of the Node Pools page, click **Create Node Pool**.
 
-6.  In the **Create Node Pool** dialog box, configure the parameters based on your requirements. For more information about the parameters, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md). The following table describes the parameters:
+6.  In the **Create Node Pool** dialog box, set the required parameters. For more information about the parameters, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md). The following table describes the parameters:
 
     1.  Click **Show Advanced Options**.
 
-    2.  In the **Node Label** section, click ![1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5146487161/p245638.png) twice to add the following two labels:
+    2.  In the **Node Label** section, click ![1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/5146487161/p245638.png) twice to add the following two labels:
 
         -   For the first label, set **Key** to `ack.aliyun.com/nvidia-driver-oss-endpoint` and **Value** to `nvidia-XXX-XXX-cn-beijing.aliyuncs.com`.
         -   For the second label, set **Key** to `ack.aliyun.com/nvidia-driver-runfile` and **Value** to `NVIDIA-Linux-x86_64-460.32.03.run`.
-    3.  After you configure the parameters, click **Confirm Order**.
+    3.  After you set the parameters, click **Confirm Order**.
 
+
+**Method 3: Call an API operation to specify the NVIDIA driver version**
+
+You can call the CreateClusterNodePool operation to create a node pool with a specified NVIDIA driver version. For more information, see [Create a node pool](/intl.en-US/API Reference/Node pools/Create a node pool.md).
+
+1. Specify the driver version in the API request
+
+When you call API operations to create or scale out a cluster, you need only to add a specific tag to the `tags` field in the request `body`. The following sample code shows how to add a tag to specify the driver version:
+
+```
+{
+  // Other fields are omitted.
+  ......
+    "tags": [
+        {
+            "key": "ack.aliyun.com/nvidia-driver-version",
+            "value": "410.104"
+        }
+    ],
+  // Other fields are omitted.
+  ......
+}
+```
+
+2. Specify the URL of the driver file in the API request
+
+To specify the URL of the driver file in your API request, provide the `endpoint` and `runfile` values of the URL. These values indicate the location of the driver file in the OSS bucket. The following code provides an example: For more information about how to obtain the `endpoint` and `runfile` values of an object stored in an OSS bucket, see [Check the URL of the driver file](#step_4ru_5y3_a84).
+
+```
+{
+  // Other fields are omitted.
+  ......
+    "tags": [
+      {
+              "key": "ack.aliyun.com/nvidia-driver-oss-endpoint",
+              "value": "nvidia-XXX-XXX-cn-beijing.aliyuncs.com"
+      },
+      {
+        "key": "ack.aliyun.com/nvidia-driver-runfile",
+        "value": "NVIDIA-Linux-x86_64-410.104.run"
+      }
+    ],
+  // Other fields are omitted.
+  ......
+}
+```
 
 ## Step 3: Check whether the custom NVIDIA driver version is installed
 
-1.  In the ACK console, select the cluster to which the node belongs and click **More** \> **Open Cloud Shell** in the **Actions** column.
+1.  Log on to the [ACK console](https://cs.console.aliyun.com).
 
-2.  Run the following command to query pods that have the `component: nvidia-device-plugin` label:
+2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+
+3.  In the ACK console, select the cluster to which the node belongs and click **More** \> **Open Cloud Shell** in the **Actions** column.
+
+4.  Run the following command to query pods that have the `component: nvidia-device-plugin` label:
 
     ```
     kubectl get po -n kube-system -l component=nvidia-device-plugin -o wide
@@ -127,9 +162,9 @@ The following example shows how to upload the NVIDIA-Linux-x86\_64-460.32.03.run
     nvidia-device-plugin-cn-beijing.192.168.8.14    1/1     Running   0          9d    192.168.8.14    cn-beijing.192.168.8.14    <none>           <none>
     ```
 
-    You can refer to the Node column to find the node that is newly added to the cluster. The name of the pod that runs on the node is `nvidia-device-plugin-cn-beijing.192.168.1.128`.
+    You can check the NODE column to find the node that is newly added to the cluster. The name of the pod that runs on the node is `nvidia-device-plugin-cn-beijing.192.168.1.128`.
 
-3.  Run the following command to query the NVIDIA driver version of the node:
+5.  Run the following command to query the NVIDIA driver version of the node:
 
     ```
     kubectl exec -ti nvidia-device-plugin-cn-beijing.192.168.1.128 -n kube-system -- nvidia-smi 
@@ -166,7 +201,7 @@ The following example shows how to upload the NVIDIA-Linux-x86\_64-460.32.03.run
     +-----------------------------------------------------------------------------+
     ```
 
-    The output shows that the NVIDIA driver version is 418.181.07, which indicates that the specified NVIDIA driver is installed.
+    The output shows that the NVIDIA driver version is 418.181.07. This indicates that the specified NVIDIA driver is installed.
 
 
 **Related topics**  
