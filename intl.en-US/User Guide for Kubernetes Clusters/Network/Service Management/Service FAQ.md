@@ -102,11 +102,11 @@ In both cases, we recommend that you do not overwrite the listeners of existing 
 
 ## How do I troubleshoot failures to upgrade CCM?
 
-For more information about solutions to CCM upgrade failures, see[CCM upgrade failures](https://www.alibabacloud.com/help/doc-detail/164988.htm).
+For more information about solutions to CCM upgrade failures, see [CCM upgrade failures](https://www.alibabacloud.com/help/doc-detail/164988.htm).
 
 ## Why does the cluster fail to access the IP address of the SLB instance?
 
-For more information about why does a cluster fail to access the IP address of the SLB instance, see[Kubernetes clusters cannot access the IP address of the SLB instance](https://www.alibabacloud.com/help/doc-detail/171437.htm).
+For more information about why does a cluster fail to access the IP address of the SLB instance, see [Kubernetes clusters cannot access the IP address of the SLB instance](https://www.alibabacloud.com/help/doc-detail/171437.htm).
 
 ## If I delete a Service, is the SLB instance associated with the Service automatically deleted?
 
@@ -258,6 +258,7 @@ If the annotation of the Service contains the ID of the SLB instance, it indicat
 2.  Log on to the SLB console and delete the listener that uses the Service port. For more information about how to delete listeners for an SLB instance, see [Configure forwarding rules](/intl.en-US/Application Load Balancer/ALB User Guide/Listeners/Configure forwarding rules.md). |
 |`Status Code: 400 Code: NetworkConflict`|The reused internal-facing SLB instance and the cluster are not deployed in the same VPC. Make sure that your SLB instance and the cluster are in the same VPC.|
 |`Status Code: 400 Code: VSwitchAvailableIpNotExist Message: The specified VSwitch has no available ip.`|The unused IP addresses in the current vSwitch is insufficient. You can specify another vSwitch in the same VPC by using the `service.beta.kubernetes.io/alibaba-cloud-loadbalancer-vswitch-id: "${YOUR_VSWITCH_ID}"` annotation.|
+|`PAY.INSUFFICIENT_BALANCE Message: Your account does not have enough balance.`| |
 |`The specified Port must be between 1 and 65535.`|`targetPort` of the STRING type is not supported in ENI mode. Set the `targetPort` field in the Service YAML to an INTEGER value.|
 |`Status Code: 400 Code: ShareSlbHaltSales Message: The share instance has been discontinued.`|Shared-resource SLB instances are unavailable for purchase. By default, CCM of earlier versions creates shared-resource SLB instances. To resolve this issue, upgrade CCM. |
 
