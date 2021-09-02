@@ -10,8 +10,6 @@ You can use Cloud Paralleled File System \(CPFS\) volumes in Container Service f
 
 CPFS is a fully managed and expandable parallel file system solution provided by Alibaba Cloud to meet the requirements in high-performance computing scenarios. CPFS provides a unified namespace that allows concurrent access from hundreds of clients. It provides tens of GB/s of throughput, millions of input/output operations per second \(IOPS\), and sub-millisecond latency.
 
-## CPFS specifications
-
 ## Scenarios
 
 CPFS is applicable to scenarios that require high throughput, including AI training, video rendering, gene sequencing, autonomous driving, astronomy, meteorology, oil and gas exploration, and Electronic design automation \(EDA\)-aided simulation and design.
