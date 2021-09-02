@@ -41,7 +41,7 @@ keyword: [安装云原生AI套件, 云原生AI运维控制台, 云原生AI开发
 
 1.  在云原生AI套件一键部署页面中**交互方式**选中**运维控制台**时，会弹出下图所示的**提示**对话框。
 
-    ![K-AI-2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0033447261/p237448.png)
+    ![K-AI-2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1241550361/p237448.png)
 
     **说明：**
 
@@ -96,7 +96,7 @@ keyword: [安装云原生AI套件, 云原生AI运维控制台, 云原生AI开发
         -   如果需要修改数据存储方式，需要卸载云原生AI套件，再重新安装。如果集群中有kubeai-rds Secret，需要通过kubectl一并删除。
 4.  在一键部署**云原生AI套件**页面选中**监控组件**。
 
-    ![K-AI-3](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0771859161/p237487.png)
+    ![K-AI-3](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0771859161/p237487.png)
 
 5.  单击**部署云原生AI套件**。
 
@@ -108,7 +108,7 @@ keyword: [安装云原生AI套件, 云原生AI运维控制台, 云原生AI开发
 
         **说明：** **交互方式**下的**Arena命名行（必选）**为默认必选组件。
 
-        ![A33](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4971381261/p275061.png)
+        ![A33](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4971381261/p275061.png)
 
     2.  单击**部署云原生AI套件**。
 -   如果您已安装过云原生AI套件的某些组件，在**云原生AI套件**页面的组件列表中，单击**ack-ai-dev-console**组件右侧**操作**列下的**部署**。
