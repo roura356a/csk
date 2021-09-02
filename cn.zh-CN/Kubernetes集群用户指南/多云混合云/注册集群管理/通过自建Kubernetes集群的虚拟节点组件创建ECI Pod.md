@@ -6,7 +6,7 @@ keyword: [自建Kubernetes集群, 虚拟节点, 弹性负载, ack-virtual-node]
 
 虚拟节点（Virtual Node）实现了Kubernetes与弹性容器实例ECI的无缝连接，让Kubernetes集群轻松获得极大的弹性能力，而不必受限于集群的节点计算容量。您可以灵活动态的按需创建ECI Pod，免去集群容量规划的麻烦。本文主要介绍虚拟节点和弹性容器实例ECI，以及通过ack-virtual-node组件如何创建ECI Pod。
 
--   您需要创建一个注册集群，并将自建Kubernetes集群（高于1.14版本）接入注册集群。具体操作，请参见[创建注册集群并接入本地数据中心集群](/cn.zh-CN/Kubernetes集群用户指南/多云混合云/注册集群管理/创建注册集群并接入本地数据中心集群.md)。
+-   已创建注册集群，并将自建Kubernetes集群（高于1.14版本）接入注册集群。具体操作，请参见[创建注册集群并接入本地数据中心集群](/cn.zh-CN/Kubernetes集群用户指南/多云混合云/注册集群管理/创建注册集群并接入本地数据中心集群.md)。
 -   您需要开通弹性容器实例服务。登录[弹性容器实例控制台](https://eci.console.aliyun.com/)开通相应的服务。
 -   您需要确认集群所在区域在ECI支持的地域列表内。登录[弹性容器实例控制台](https://eci.console.aliyun.com/)查看已经支持的地域和可用区。
 
@@ -14,7 +14,7 @@ keyword: [自建Kubernetes集群, 虚拟节点, 弹性负载, ack-virtual-node]
 
 [阿里云弹性容器实例ECI（Elastic Container Instance）](https://cn.aliyun.com/product/eci)是面向容器的无服务器弹性计算服务，提供免运维、强隔离、快速启动的容器运行环境。使用ECI无需购买和管理底层ECS服务器，让您更加关注在容器应用而非底层基础设施的维护工作。您可按需创建ECI，仅为容器配置的资源付费（按量按秒计费）。
 
-虚拟节点Virtual Node实现了Kubernetes与弹性容器实例ECI的无缝连接，让Kubernetes集群轻松获得极大的弹性能力，而不必受限于集群的节点计算容量。您可以灵活动态的按需创建ECI Pod，免去集群容量规划的麻烦。它非常适合运行在如下多个场景，帮助用户极大降低计算成本，提升计算弹性效率。
+虚拟节点Virtual Node非常适合运行在如下多个场景，帮助用户极大降低计算成本，提升计算弹性效率：
 
 -   在线业务的波峰波谷弹性伸缩：如在线教育、电商等行业有着明显的波峰波谷计算特征。使用虚拟节点可以显著减少固定资源池的维护，降低计算成本。
 -   数据计算：使用虚拟节点承载Spark、Presto等计算场景，有效降低计算成本。
@@ -23,11 +23,13 @@ keyword: [自建Kubernetes集群, 虚拟节点, 弹性负载, ack-virtual-node]
 
 阿里云容器服务基于虚拟节点和ECI提供了多种Serverless Container产品形态，包括Serverless Kubernetes（ASK）和ACK on ECI，充分支撑各种弹性和免节点运维场景的用户诉求。
 
-![virtual node](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7273551161/p85192.png)
+![virtual node](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7273551161/p85192.png)
 
 ## 步骤一：在注册集群中配置ack-virtual-node组件的RAM权限
 
-在注册集群安装组件前，您需要在接入集群中设置AK用来访问云服务的权限。设置AK前，您需要创建RAM用户并为其添加访问相关云资源的权限。
+若您在注册集群的**集群导入代理配置**区域使用私网接入IDC集群，则可以跳过此步骤，ack-virtual-node组件将托管到ACK集群。更多信息，请参见[将目标集群接入注册集群中](/cn.zh-CN/Kubernetes集群用户指南/多云混合云/注册集群管理/创建注册集群并接入本地数据中心集群.mdstep_dl9_6s6_2vx)。
+
+在注册集群安装组件前，您需要在接入集群中设置AccessKey用来访问云服务的权限。设置AccessKey前，您需要创建RAM用户并为其添加访问相关云资源的权限。
 
 1.  创建RAM用户。具体操作，请参见[创建RAM用户](/cn.zh-CN/用户管理/基本操作/创建RAM用户.md)。
 
@@ -72,17 +74,17 @@ keyword: [自建Kubernetes集群, 虚拟节点, 弹性负载, ack-virtual-node]
 
     可选择自定义权限策略或AliyunECIFullAccess策略为RAM用户授权。
 
-4.  为RAM用户创建AK。具体操作，请参见[获取AccessKey]()。
+4.  为RAM用户创建AccessKey。具体操作，请参见[获取AccessKey]()。
 
-5.  使用AK在注册集群中创建名为alibaba-addon-secret的Secret资源。
+5.  使用AccessKey在注册集群中创建名为alibaba-addon-secret的Secret资源。
 
-    安装ack-virtual-node组件时将自动引用此AK访问对应的云服务资源。
+    安装ack-virtual-node组件时将自动引用此AccessKey访问对应的云服务资源。
 
     ```
     kubectl -n kube-system create secret generic alibaba-addon-secret --from-literal='access-key-id=<your access key id>' --from-literal='access-key-secret=<your access key secret>'
     ```
 
-    **说明：** `<your access key id>`及`<your access key secret>`为上一步获取的AK信息。
+    **说明：** `<your access key id>`及`<your access key secret>`为上一步获取的AccessKey信息。
 
 
 ## 步骤二：在注册集群中部署ack-virtual-node组件
@@ -97,14 +99,14 @@ keyword: [自建Kubernetes集群, 虚拟节点, 弹性负载, ack-virtual-node]
 
 5.  单击**其他**页签，在ack-virtual-node组件区域单击**安装**。
 
-    这时会以集群默认虚拟交换机和安全组作为ack-virtual-node的初始ECI配置参数。如果需要修改ECI配置参数，请参见[相关操作](#section_d8s_1d3_sui)。
+    在提示对话框单击**确定**。这时会以集群默认虚拟交换机和安全组作为ack-virtual-node的初始ECI配置参数。如果需要修改ECI配置参数，请参见[相关操作](#section_d8s_1d3_sui)。
 
 
 ## 步骤三：创建ECI Pod
 
 您可以通过以下两种方法创建ECI Pod。
 
--   **配置Pod标签**。
+-   **方式一：配置Pod标签**。
 
     将Pod添加标签`alibabacloud.com/eci=true`，Pod将以ECI方式运行，其节点是虚拟节点，示例如下：
 
@@ -126,7 +128,7 @@ keyword: [自建Kubernetes集群, 虚拟节点, 弹性负载, ack-virtual-node]
         nginx-7fc9f746b6-r4xgx     0/1     ContainerCreating   0          20s   192.168.XX.XX   virtual-kubelet        <none>           <none>
         ```
 
--   **配置命名空间标签**。
+-   **方式二：配置命名空间标签**。
 
     将Pod所在的命名空间添加标签`alibabacloud.com/eci=true`，Pod将以ECI方式运行，其节点是虚拟节点，示例如下：
 
