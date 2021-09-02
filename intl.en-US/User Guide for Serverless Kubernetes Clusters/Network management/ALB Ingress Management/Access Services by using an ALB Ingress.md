@@ -131,6 +131,15 @@ An Ingress provides a collection of rules that manage external access to Service
         alb.ingress.kubernetes.io/name: ingres_test_base
         alb.ingress.kubernetes.io/address-type: internet
         alb.ingress.kubernetes.io/vswitch-ids: "vsw-k1akdsmts6njkvhas****,vsw-k1amdv9ax94gr5iwa****"
+        alb.ingress.kubernetes.io/healthcheck-enabled: "true"
+        alb.ingress.kubernetes.io/healthcheck-path: "/"
+        alb.ingress.kubernetes.io/healthcheck-protocol: "HTTP"
+        alb.ingress.kubernetes.io/healthcheck-method: "HEAD"
+        alb.ingress.kubernetes.io/healthcheck-httpcode: "http_2xx"
+        alb.ingress.kubernetes.io/healthcheck-timeout-seconds: "5"
+        alb.ingress.kubernetes.io/healthcheck-interval-seconds: "2"
+        alb.ingress.kubernetes.io/healthy-threshold-count: "3"
+        alb.ingress.kubernetes.io/unhealthy-threshold-count: "3"
     spec:
       rules:
       - http:
