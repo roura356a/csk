@@ -97,7 +97,7 @@ ACK集群支持的功能如下表。
 -   [安全沙箱](/cn.zh-CN/Kubernetes集群用户指南/安全沙箱/安全沙箱概述.md)：可以让应用运行在一个轻量虚拟机沙箱环境中，拥有独立的内核，具备更好的安全隔离能力。适用于不可信应用隔离、故障隔离、性能隔离、多用户间负载隔离等场景。
 -   [机密计算](/cn.zh-CN/Kubernetes集群用户指南/ACK-TEE机密计算/ACK-TEE机密计算介绍.md)：基于Intel SGX提供的可信应用或用于交付和管理机密计算应用的云原生一站式机密计算平台，帮助您保护数据使用中的安全性、完整性和机密性。机密计算可以让您把重要的数据和代码放在一个特殊的可信执行加密环境。 |
 |异构计算|-   GPU和NPU：支持创建以GPU或NPU型实例作为工作节点的集群，并支持GPU调度、GPU监控、GPU弹性伸缩、GPU运维管理等。更多信息，请参见[创建托管GPU集群](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/创建异构计算集群/创建托管GPU集群.md)。
--   共享GPU：支持在云平台和自己的数据中心的集群中通过GPU共享调度框架实现多个容器运行在同一个GPU设备。更多信息，请参见[共享GPU概述](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/GPU调度/共享GPU调度/共享GPU概述.md)。
+-   共享GPU：支持在云平台和自己的数据中心的集群中通过GPU共享调度框架实现多个容器运行在同一个GPU设备。更多信息，请参见[共享GPU调度概述](/cn.zh-CN/Kubernetes集群用户指南/GPU/NPU/共享GPU调度/共享GPU调度概述.md)。
 -   云原生AI：提供了云原生AI能力，支持编排、管理数据计算类任务。更多信息，请参见[云原生AI概述](/cn.zh-CN/云原生AI用户指南/云原生AI概述.md)。 |
 |开发者服务|-   API：提供OpenAPI和社区原生API。更多信息，请参见[使用Kubernetes API](/cn.zh-CN/API参考/使用Kubernetes API.md)和[API概览](/cn.zh-CN/API参考/API概览.md)。
 -   Cloudshell：提供阿里云Cloudshell和社区原生Kubectl工具。更多信息，请参见[在CloudShell上通过kubectl管理Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/在CloudShell上通过kubectl管理Kubernetes集群.md)和[通过kubectl工具连接集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。 |
