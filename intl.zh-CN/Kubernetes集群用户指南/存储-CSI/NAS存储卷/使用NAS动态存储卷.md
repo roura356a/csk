@@ -4,7 +4,7 @@ keyword: [NAS, 动态存储卷, 持久化存储, 共享存储]
 
 # 使用NAS动态存储卷
 
-阿里云Kubernetes CSI支持2种类型的NAS动态存储卷挂载：subpath方式和filesystem方式。本文介绍如何使用阿里云NAS动态存储卷，及如何实现持久化存储与共享存储。
+阿里云Kubernetes CSI支持两种类型的NAS动态存储卷挂载：subpath方式和filesystem方式。本文介绍如何使用阿里云NAS动态存储卷，及如何验证NAS存储卷的持久化存储与共享存储特性。
 
 -   已创建Kubernetes集群。具体操作，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   已创建动态NAS卷。请参见[创建文件系统]()。
@@ -29,9 +29,91 @@ keyword: [NAS, 动态存储卷, 持久化存储, 共享存储]
 
     **说明：** NAS存储的/目录不支持修改权限、属主和属组。
 
--   若您在应用模板中配置了securityContext.fsgroup参数，kubelet在存储卷挂载完成后会执行`chmod`或`chown`操作，导致挂载时间过长。
+-   若您在应用模板中配置了securityContext.fsgroup参数，kubelet在存储卷挂载完成后会执行`chmod`或`chown`操作，导致挂载时间延长。
 
-## 使用subpath类型的NAS动态存储卷
+## 通过控制台的方式使用NAS动态存储卷
+
+通过控制台的方式只能创建subpath类型的NAS动态存储卷，若您需要使用filesystem类型的NAS动态存储卷，请使用kubectl命令行方式。
+
+**步骤一：创建StorageClass**
+
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+
+2.  在控制台左侧导航栏中，单击**集群**。
+
+3.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+
+4.  在集群管理页左侧导航栏中，选择**存储** \> **存储类**。
+
+5.  在存储类页面，单击右上角的**创建**。
+
+6.  在创建对话框，配置StorageClass的相关参数。
+
+    部分参数的说明如下所示：
+
+    |参数|说明|
+    |--|--|
+    |**名称**|StorageClass的名称。名称必须以小写字母开头，只能包含小写字母、数字、小数点（.）和短划线（-）。 |
+    |**存储卷类型**|可选择**云盘**或**NAS**。本示例选择**NAS**。|
+    |**存储驱动**|默认为**CSI**。|
+    |**回收策略**|回收策略，默认为Delete，支持Retain。     -   Delete模式：删除PVC的时候，PV和NAS文件系统会一起删除。
+    -   Retain模式：删除PVC的时候，PV和NAS文件系统不会被删除，需要您手动删除。
+如果数据安全性要求高，推荐使用Retain方式以免误删数据。 |
+    |**挂载选项**|挂载NAS的可选参数，包括NFS协议版本等参数。|
+    |**挂载点域名**|NAS文件系统的挂载点地址。若无可选的挂载点地址，请先创建NAS文件系统.。具体操作，请参见[使用CNFS托管NAS文件系统](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/容器网络文件系统/使用CNFS托管NAS文件系统.md)。 |
+    |**路径**|NAS文件系统中的挂载路径。|
+
+7.  参数配置完成后，单击**创建**。
+
+    创建成功后在**存储类**列表中可看到刚创建的StorageClass。
+
+
+**步骤二：创建PVC**
+
+1.  在集群管理页左侧导航栏中，选择**存储** \> **存储声明**。
+
+2.  在**存储声明**页面，单击右上角的**创建**。
+
+3.  在弹出的创建存储声明页面中，填写界面参数。
+
+    |参数|说明|
+    |--|--|
+    |**存储声明类型**|支持云盘、NAS、OSS三种云存储类型。 本文中选择NAS。|
+    |**名称**|创建的存储声明名称在集群内必须唯一。|
+    |**分配模式**|本文中选择**使用存储类动态创建**。|
+    |**已有存储类**|单击**选择存储类**，在选择存储类对话框目标存储类右侧**操作**列单击**选择**。|
+    |**总量**|所创建存储卷的容量。|
+    |**访问模式**|默认为ReadWriteOnce，也可选择ReadOnlyMany或ReadWriteMany。|
+
+4.  单击**创建**。
+
+    创建成功后可在列表中看到创建的存储声明，并且已绑定相应的存储卷。
+
+
+**步骤三：创建应用**
+
+1.  在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**。
+
+2.  在**无状态**页面中，单击**使用镜像创建**。
+
+3.  配置创建应用的参数信息。
+
+    以下主要为您介绍数据卷的配置。关于其他参数的描述，请参见[创建无状态工作负载Deployment](/intl.zh-CN/Kubernetes集群用户指南/应用/工作负载/创建无状态工作负载Deployment.md)。
+
+    ACK数据卷支持配置本地存储和云存储。
+
+    -   **本地存储**：支持主机目录（HostPath）、配置项（ConfigMap）、保密字典（Secret）和临时目录，将对应的挂载源挂载到容器路径中。更多信息，请参见[Volumes](https://kubernetes.io/docs/concepts/storage/volumes/?spm=0.0.0.0.8VJbrE)。
+    -   **云存储**：支持云存储类型。
+    本例中配置了一个NAS类型的数据卷，将该NAS存储卷挂载到容器中/tmp路径下。
+
+    ![数据卷](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6785659951/p59980.jpg)
+
+4.  所有的信息都配置完成后，单击**创建**。
+
+    创建成功后，您就可以正常使用数据卷。
+
+
+## 通过kubectl命令行方式使用subpath类型的NAS动态存储卷
 
 当您的多个Kubernetes应用或者Pod需要挂载相同的NAS存储卷共享数据时，或不同的Pod挂载相同NAS文件系统的不同子目录时， 可以使用subpath类型的NAS动态存储卷方式。
 
@@ -69,6 +151,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         |mountOptions|挂载NAS的options参数在mountOptions中配置，包括NFS协议版本。|
         |volumeAs|可选subpath、filesystem，分别表示创建子目录类型的PV和文件系统类型PV。|
         |server|表示创建子目录类型的PV时，NAS文件系统的挂载点地址。|
+        |provisioner|驱动类型。本例中取值为`nasplugin.csi.alibabacloud.com`，表示使用阿里云NAS CSI插件。|
         |reclaimPolicy|PV的回收策略，默认为Delete，支持Retain。        -   Delete模式：删除PVC的时候，PV和NAS文件系统会一起删除。
         -   Retain模式：删除PVC的时候，PV和NAS文件系统不会被删除，需要您手动删除。
 如果数据安全性要求高，推荐使用Retain方式以免误删数据。|
@@ -100,10 +183,10 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
 
         |参数|说明|
         |--|--|
-        |`name`|PVC的名称。|
-        |`accessModes`|配置访问模式。|
-        |`storageClassName`|StorageClass的名称，用于绑定StorageClass。|
-        |`storage`|声明应用存储使用量。|
+        |name|PVC的名称。|
+        |accessModes|配置访问模式。|
+        |storageClassName|StorageClass的名称，用于绑定StorageClass。|
+        |storage|声明应用存储使用量。|
 
     2.  执行以下命令创建PVC。
 
@@ -210,7 +293,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
     如果您需要为不同的Pod挂载同一个NAS文件系统的不同子目录， 则需要分别创建**pvc-1**和**nginx-1**以及**pvc-2**和**nginx-2**。
 
 
-## 使用filesystem类型的NAS动态存储卷
+## 通过kubectl命令行方式使用filesystem类型的NAS动态存储卷
 
 **说明：** filesystem类型的NAS动态卷在删除时默认保留文件系统和挂载点， 若需要在释放PV资源的同时释放NAS文件系统和挂载点， 则需要同时设置StorageClass中的reclaimPolicy为Delete且deleteVolume的值为true。
 
@@ -272,9 +355,11 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         - vers=3
         parameters:
           volumeAs: filesystem
+          storageType: Performance
           zoneId: cn-hangzhou-a
           vpcId: "vpc-2ze9c51qb5kp1nfqu****"
           vSwitchId: "vsw-gw8tk6gecif0eu9ky****"
+          accessGroupName: DEFAULT_VPC_GROUP_NAME
           deleteVolume: "false"
         provisioner: nasplugin.csi.alibabacloud.com
         reclaimPolicy: Retain
@@ -290,6 +375,7 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         |vSwitchId|定义创建NAS文件系统对应挂载点所在vSwitch ID。|
         |accessGroupName|定义创建NAS文件系统对应挂载点所用的AccessGroup。默认为DEFAULT\_VPC\_GROUP\_NAME。|
         |deleteVolume|定义数据卷删除时处理NAS文件系统策略，由于NAS为共享文件系统，安全起见需要同时配置。|
+        |provisioner|驱动类型。本例中取值为`nasplugin.csi.alibabacloud.com`，表示使用阿里云NAS CSI插件。|
         |reclaimPolicy|PV的回收策略。当值为Delete且deleteVolume为true才会在删除PVC的时候把NAS文件系统删除。|
 
     2.  执行以下命令创建StorageClass。
@@ -359,6 +445,10 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
 
 ## 验证NAS的持久化存储
 
+NAS提供了持久化存储服务，当某个Pod删除时，重新部署的Pod将自动同步之前Pod的所有数据。
+
+根据以下示例验证NAS的持久化存储特性：
+
 1.  查看部署应用的Pod和NAS文件。
 
     1.  执行以下命令，查看部署的应用所在Pod的名称。
@@ -425,14 +515,14 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
 
         ```
         NAME                                READY   STATUS    RESTARTS   AGE
-        deployment-nas-1-5b5cdb85f6-n****   1/1     Running   0          32s
+        deployment-nas-1-5b5cdm2g5-m****    1/1     Running   0          32s
         deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
         ```
 
-    2.  执行以下命令，查看名为`deployment-nas-1-5b5cdb85f6-n****`的Pod/data路径下的文件。
+    2.  执行以下命令，查看名为`deployment-nas-1-5b5cdm2g5-m****`的Pod/data路径下的文件。
 
         ```
-        kubectl exec deployment-nas-1-5b5cdb85f6-n**** -- ls /data
+        kubectl exec deployment-nas-1-5b5cdm2g5-m**** -- ls /data
         ```
 
         预期输出：
@@ -444,7 +534,11 @@ NAS动态存储卷的挂载方式为subpath类型时，您需要手动创建NAS�
         nas文件仍然存在，说明NAS的数据可持久化保存。
 
 
-## 验证NAS的共享存储
+## 验证NAS存储卷的共享存储
+
+NAS存储卷支持同时被多个Pod挂载，当某个Pod修改数据时，其余Pod将自行实现数据的同步。
+
+根据以下示例验证NAS存储卷的共享存储特性：
 
 1.  查看部署的应用所在的Pod和NAS文件。
 
