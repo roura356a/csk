@@ -9,7 +9,7 @@ You can create an application that has Horizontal Pod Autoscaling \(HPA\) enable
 Before you enable HPA, make sure that you have completed the following steps:
 
 -   [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)
--   [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md)
+-   [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md)
 
 ## Create an application that has HPA enabled in the ACK console
 
@@ -128,13 +128,12 @@ In the following example, HPA is enabled for an NGINX application.
     Use scaleTargetRef to associate the Horizontal Pod Autoscaler with the Deployment named nginx.
 
     ```
-    apiVersion: autoscaling/v2
+    apiVersion: autoscaling/v2beta2
     kind: HorizontalPodAutoscaler
     metadata:
       name: nginx-hpa
-      namespace: default
     spec:
-      scaleTargetRef:                             ##Associate the Horizontal Pod Autoscaler with the nginx Deployment. 
+      scaleTargetRef:
         apiVersion: apps/v1
         kind: Deployment
         name: nginx
@@ -144,7 +143,10 @@ In the following example, HPA is enabled for an NGINX application.
       - type: Resource
         resource:
           name: cpu
-          targetAverageUtilization: 50
+          target:
+            type: Utilization
+            averageUtilization: 50
+                            
     ```
 
     **Note:** You must configure the requested resources for the pods of the application. Otherwise, the Horizontal Pod Autoscaler cannot be started.
