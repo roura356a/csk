@@ -14,7 +14,7 @@ ACK支持在控制台界面上快速创建支持HPA的应用，实现容器资�
 
 阿里云容器服务已经集成了HPA，您可以简便地通过容器服务控制台进行创建。您可以在创建应用的时候创建HPA，也可以在已有应用的基础上开启HPA。
 
-**步骤一：在创建应用过程中，开启HPA**
+**方式一：在创建应用过程中，开启HPA**
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
@@ -58,7 +58,7 @@ ACK支持在控制台界面上快速创建支持HPA的应用，实现容器资�
 
 2.  在实际使用环境中，应用会根据CPU负载进行伸缩。您也可在测试环境中验证弹性伸缩，通过给Pod进行CPU压测，可以发现Pod在半分钟内即可完成水平的扩展。
 
-**步骤二：为已有应用开启HPA**
+**方式二：为已有应用开启HPA**
 
 以下以无状态应用为例，演示为已有应用开启HPA。
 
@@ -127,13 +127,12 @@ ACK支持在控制台界面上快速创建支持HPA的应用，实现容器资�
     通过scaleTargetRef设置当前HPA绑定的对象，在本例中绑定名叫nginx的Deployment。
 
     ```
-    apiVersion: autoscaling/v2
+    apiVersion: autoscaling/v2beta2
     kind: HorizontalPodAutoscaler
     metadata:
       name: nginx-hpa
-      namespace: default
     spec:
-      scaleTargetRef:                             ##绑定名为nginx的Deployment。
+      scaleTargetRef:
         apiVersion: apps/v1
         kind: Deployment
         name: nginx
@@ -143,7 +142,10 @@ ACK支持在控制台界面上快速创建支持HPA的应用，实现容器资�
       - type: Resource
         resource:
           name: cpu
-          targetAverageUtilization: 50
+          target:
+            type: Utilization
+            averageUtilization: 50
+                            
     ```
 
     **说明：** HPA需要给Pod设置request资源，如果没有request资源，HPA不会运行。
