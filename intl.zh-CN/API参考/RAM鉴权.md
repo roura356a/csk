@@ -1,6 +1,6 @@
 # RAM鉴权
 
-在使用RAM账号调用阿里云API前，需要主账号（阿里云账号）通过创建授权策略对RAM账号进行授权。
+在使用RAM账号调用阿里云API前，需要主账号（即阿里云账号）通过创建授权策略对RAM账号进行授权。
 
 ## 资源授权
 
@@ -24,7 +24,7 @@ acs:service-name:region:account-id:resource-relative-id
 
 -   resource-relative-id：具体的资源描述，不同的云产品的资源描述也不同，详情参见各云产品的开发文档。
 
-    例如`acs:oss::1234567890123456:sample_bucket/file1.txt`表示OSS服务中对象名称是sample\_bucket/file1.txt的资源，对象的所有者是云账号ID为`1234567890123456`。
+    例如`acs:oss::1234567890123456:sample_bucket/file1.txt`表示OSS服务中对象名称是sample\_bucket/file1.txt的资源，对象所有者的云账号ID为`1234567890123456`。
 
 
 ## 可授权的容器服务Kubernetes版类型
@@ -50,58 +50,58 @@ acs:service-name:region:account-id:resource-relative-id
 
 ## API名称和RAM Action的对应关系
 
-容器服务Kubernetes版中API名称和RAM Action及其描述的对应关系如下表。
+容器服务Kubernetes版中API名称和RAM Action及其描述的对应关系如下表所示：
 
-|API 名称|RAM Action|说明|
-|------|----------|--|
-|AttachInstances|AttachInstances|添加已有ECS实例到Kubernetes集群。|
-|CancelClusterUpgrade|CancelK8sCluster|取消升级集群。|
-|CancelComponentUpgrade|CancelComponentUpgrade|取消升级组件。|
-|CreateCluster|CreateCluster|创建Kubernetes集群。|
-|CreateTriggerHook|CreateKubernetesTrigger|创建和修改应用触发器。|
-|CreateTemplate|CreateTemplate|创建应用部署模板。|
-|DeleteCluster|DeleteCluster|删除集群。|
-|DeleteClusterNodes|DeleteClusterNodes|移除节点并释放ECS。|
-|DeleteTrigger|RevokeTriggers|删除应用触发器。|
-|DeleteTemplate|V2DeleteTemplateInfo|删除应用部署模板。|
-|DescribeAddons|Queryk8sComponentsVersion|查询集群组件信息。|
-|DescribeClusterAddonsVersion|Queryk8sComponentsUpdateVersion|查询集群组件版本信息。|
-|DescribeClusterAddonUpgradeStatus|QueryK8sComponentUpgradeStatus|查询集群组件升级状态。|
-|DescribeClusterAttachScripts|GetClusterJoinScript|获取手动添加节点到Kubernetes集群的脚本。|
-|DescribeClusterDetail|GetClusterById|查询集群实例。|
-|DescribeClusterLogs|GetClusterLogs|查看集群日志。|
-|DescribeClusterNodes|DescribeClusterNodes|查看集群节点。|
-|DescribeClusterResources|DescribeClusterResources|查看集群资源。|
-|DescribeClusters|GetClustersByUid和GetClusters|查询所有集群实例。|
-|DescribeClustersV1|ListClusters|查询所有集群实例。|
-|DescribeClusterUserKubeconfig|GetUserConfig|获取集群kubeconfig。|
-|DescribeClusterV2UserKubeconfig|GetUserConfig|获取集群kubeconfig。|
-|DescribeExternalAgent|DescribeExternalClusterAgentDeployment|查看注册集群的集群导入代理配置。|
-|DescribeTemplates|V2ListTemplates|查看应用部署模板。|
-|DescribeUserQuota|GetUserQuota|查看用户配额。|
-|GetTrigger|GetK8sTrigger|获取应用触发器详情。|
-|GetUpgradeStatus|GetK8sClusterState|查看集群升级状态。|
-|InstallClusterAddons|InstallK8sComponents|安装集群插件。|
-|ModifyCluster|ModifyCluster|修改集群信息。|
-|ModifyClusterTags|UpdateClusterTags|修改集群标签。|
-|PauseClusterUpgrade|UpgradeCluster|暂停集群升级。|
-|PauseComponentUpgrade|PauseComponentUpgrade|暂停组件升级。|
-|ReBindSecurityGroup|ReBindSecurityGroup|重新绑定安全组。|
-|RemoveClusterNodes|DeleteClusterNode|移除集群节点。|
-|ResumeComponentUpgrade|ResumeComponentUpgrade|重新开始组件升级。|
-|ResumeUpgradeCluster|UpgradeCluster|重新开始集群升级。|
-|ScaleOutCluster|ScaleCluster|扩容集群。|
-|UnInstallClusterAddons|UnInstallK8sComponents|卸载集群组件。|
-|UpdateK8sClusterUserConfigExpire|UpdateK8sClusterUserConfigExpire|更新用户自定义配置过期时间。|
-|UpgradeCluster|UpgradeCluster|升级集群。|
-|UpgradeClusterAddons|UpgradeK8sComponents|升级集群插件。|
-|DescribeUserPermission|GetUserPermissions|获取RAM用户集群授权信息。|
-|GrantPermissions|GrantPermission|全量更新RAM用户集群授权信息。|
-|CreateClusterNodePool|CreateNodepool|创建节点池。|
-|DeleteClusterNodepool|DeleteNodepool|删除节点池。|
-|DescribeClusterNodePoolDetail|GetNodepoolDetail|获取节点池详细信息。|
-|DescribeClusterNodePools|GetNodepools|获取节点池信息。|
-|ModifyClusterNodePool|UpdateNodepool|修改节点池信息。|
-|ScaleClusterNodePool|ScaleNodepool|扩缩容节点池。|
-|MigrateCluster|MigrateCluster|迁移集群。|
+|API名称|RAM Action|说明|
+|-----|----------|--|
+|AttachInstances|`cs:AttachInstances`|添加已有ECS实例到Kubernetes集群。|
+|CancelClusterUpgrade|`cs:CancelK8sCluster`|取消升级集群。|
+|CancelComponentUpgrade|`cs:CancelComponentUpgrade`|取消升级组件。|
+|CreateCluster|`cs:CreateCluster`|创建Kubernetes集群。|
+|CreateTriggerHook|`cs:CreateKubernetesTrigger`|创建和修改应用触发器。|
+|CreateTemplate|`cs:CreateTemplate`|创建应用部署模板。|
+|DeleteCluster|`cs:DeleteCluster`|删除集群。|
+|DeleteClusterNodes|`cs:DeleteClusterNodes`|移除节点并释放ECS。|
+|DeleteTrigger|`cs:RevokeTriggers`|删除应用触发器。|
+|DeleteTemplate|`cs:V2DeleteTemplateInfo`|删除应用部署模板。|
+|DescribeAddons|`cs:Queryk8sComponentsVersion`|查询集群组件信息。|
+|DescribeClusterAddonsVersion|`cs:Queryk8sComponentsUpdateVersion`|查询集群组件版本信息。|
+|DescribeClusterAddonUpgradeStatus|`cs:QueryK8sComponentUpgradeStatus`|查询集群组件升级状态。|
+|DescribeClusterAttachScripts|`cs:GetClusterJoinScript`|获取手动添加节点到Kubernetes集群的脚本。|
+|DescribeClusterDetail|`cs:GetClusterById`|查询集群实例。|
+|DescribeClusterLogs|`cs:GetClusterLogs`|查看集群日志。|
+|DescribeClusterNodes|`cs:DescribeClusterNodes`|查看集群节点。|
+|DescribeClusterResources|`cs:DescribeClusterResources`|查看集群资源。|
+|DescribeClusters|`cs:GetClustersByUid`和`cs:GetClusters`|查询所有集群实例。|
+|DescribeClustersV1|`cs:ListClusters`|查询所有集群实例。|
+|DescribeClusterUserKubeconfig|`cs:GetUserConfig`|获取集群kubeconfig。|
+|DescribeClusterV2UserKubeconfig|`cs:GetUserConfig`|获取集群kubeconfig。|
+|DescribeExternalAgent|`cs:DescribeExternalClusterAgentDeployment`|查看注册集群的集群导入代理配置。|
+|DescribeTemplates|`cs:V2ListTemplates`|查看应用部署模板。|
+|DescribeUserQuota|`cs:GetUserQuota`|查看用户配额。|
+|GetTrigger|`cs:GetK8sTrigger`|获取应用触发器详情。|
+|GetUpgradeStatus|`cs:GetK8sClusterState`|查看集群升级状态。|
+|InstallClusterAddons|`cs:InstallK8sComponents`|安装集群插件。|
+|ModifyCluster|`cs:ModifyCluster`|修改集群信息。|
+|ModifyClusterTags|`cs:UpdateClusterTags`|修改集群标签。|
+|PauseClusterUpgrade|`cs:UpgradeCluster`|暂停集群升级。|
+|PauseComponentUpgrade|`cs:PauseComponentUpgrade`|暂停组件升级。|
+|ReBindSecurityGroup|`cs:ReBindSecurityGroup`|重新绑定安全组。|
+|RemoveClusterNodes|`cs:DeleteClusterNode`|移除集群节点。|
+|ResumeComponentUpgrade|`cs:ResumeComponentUpgrade`|重新开始组件升级。|
+|ResumeUpgradeCluster|`cs:UpgradeCluster`|重新开始集群升级。|
+|ScaleOutCluster|`cs:ScaleCluster`|扩容集群。|
+|UnInstallClusterAddons|`cs:UnInstallK8sComponents`|卸载集群组件。|
+|UpdateK8sClusterUserConfigExpire|`cs:UpdateK8sClusterUserConfigExpire`|更新用户自定义配置过期时间。|
+|UpgradeCluster|`cs:UpgradeCluster`|升级集群。|
+|UpgradeClusterAddons|`cs:UpgradeK8sComponents`|升级集群插件。|
+|DescribeUserPermission|`cs:GetUserPermissions`|获取RAM用户集群授权信息。|
+|GrantPermissions|`cs:GrantPermission`|全量更新RAM用户集群授权信息。|
+|CreateClusterNodePool|`cs:CreateNodepool`|创建节点池。|
+|DeleteClusterNodepool|`cs:DeleteNodepool`|删除节点池。|
+|DescribeClusterNodePoolDetail|`cs:GetNodepoolDetail`|获取节点池详细信息。|
+|DescribeClusterNodePools|`cs:GetNodepools`|获取节点池信息。|
+|ModifyClusterNodePool|`cs:UpdateNodepool`|修改节点池信息。|
+|ScaleClusterNodePool|`cs:ScaleNodepool`|扩缩容节点池。|
+|MigrateCluster|`cs:MigrateCluster`|迁移集群。|
 
