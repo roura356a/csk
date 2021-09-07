@@ -76,9 +76,9 @@ Ticket template
 
     Yes, the missing data is about all pods on a specific node.
 
-2.  Does a timezone difference exist on the node?
+2.  Does a time zone difference exist on the node?
 
-    No, no timetime difference exists.
+    No, no time zone difference exists.
 
 3.  Can metrics-server connect to the specific node?
 
