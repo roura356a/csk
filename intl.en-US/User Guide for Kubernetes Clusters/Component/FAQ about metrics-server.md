@@ -47,7 +47,7 @@ Perform the following checks:
     7.  In the **Note** message, click **OK**.
 
 
-If no error is found after you perform the preceding checks, use the following ticket template to[submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
+If no error is found after you perform the preceding checks, use the following ticket template to [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 
 Ticket template
 
@@ -68,7 +68,7 @@ Perform the following checks:
 -   Check whether the data of all pods on a node is missing or only the data of some pods is missing. If the data of all pods on a specific node is missing, check whether a timezone difference exists on the node. You can run the ntpdate command to synchronize the time.
 -   Check whether the pod that runs metrics-server can connect to the node through port 10255.
 
-If no error is found after you perform the preceding checks, use the following ticket template to[submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
+If no error is found after you perform the preceding checks, use the following ticket template to [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 
 Ticket template
 
@@ -91,7 +91,7 @@ Perform the following checks:
 
 Run the `kubectl top pod pod-id` command to check whether metrics about specific pods are returned. If the output returns no data or missing data, perform the steps introduced in the preceding sections to troubleshoot.
 
-If no error is found after you perform the preceding checks, use the following ticket template to[submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
+If no error is found after you perform the preceding checks, use the following ticket template to [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 
 Ticket template
 
@@ -112,7 +112,7 @@ Check whether metrics-server is upgraded to the latest version. If metrics-serve
 --enable-hpa-rolling-update-skipped=true
 ```
 
-If no error is found after you perform the preceding checks, use the following ticket template to[submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
+If no error is found after you perform the preceding checks, use the following ticket template to [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 
 Ticket template
 
