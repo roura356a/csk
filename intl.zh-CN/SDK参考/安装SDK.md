@@ -26,9 +26,9 @@
 pip install alibabacloud_tea_console
 ```
 
--   GO SDK
+-   Go SDK
 
-推荐使用go工具进行安装，执行以下命令：
+推荐使用Go工具进行安装，执行以下命令：
 
 ```
 go get github.com/alibabacloud-go/tea-console/client:v1.0.0
@@ -44,7 +44,7 @@ npm install @alicloud/tea-console@^1.0.0 --save
 
 ## 步骤二：安装容器服务SDK
 
-以下命令默认安装的是最新版本的SDK，您可以根据开发需要到各语言的对应仓库中寻找适用版本。
+以下命令默认安装的是最新版本的SDK，您可以根据开发需要到各语言的对应仓库中寻找适用版本。推荐使用最新版本SDK。关于SDK版本详情及示例，请参见[阿里云OpenAPI开发者门户](https://next.api.aliyun.com/api-tools/sdk/CS?version=2015-12-15&language=java-tea)。各个版本的详细变更，请参见[版本说明](https://github.com/aliyun/alibabacloud-java-sdk/blob/master/cs-20151215/ChangeLog.txt)。
 
 -   Java SDK
 
@@ -54,13 +54,13 @@ npm install @alicloud/tea-console@^1.0.0 --save
   <dependency>
     <groupId>com.aliyun</groupId>
     <artifactId>cs20151215</artifactId>
-    <version>[2.4.1,)</version>
+    <version>Use the version shown in the maven badge</version>
   </dependency>
 ```
 
 -   Go SDK
 
-推荐使用go工具进行安装：
+推荐使用Go工具进行安装，默认安装最新版：
 
 ```
 go get github.com/alibabacloud-go/cs-20151215/v2/client
@@ -68,7 +68,7 @@ go get github.com/alibabacloud-go/cs-20151215/v2/client
 
 -   .NET SDK
 
-推荐使用dotnet工具进行安装：
+推荐使用DOTNET工具进行安装：
 
 ```
 dotnet add package AlibabaCloud.SDK.CS20151215
@@ -76,7 +76,7 @@ dotnet add package AlibabaCloud.SDK.CS20151215
 
 -   PHP SDK
 
-推荐使用composer工具进行安装：
+推荐使用Composer工具进行安装：
 
 ```
 composer require alibabacloud/cs-20151215
