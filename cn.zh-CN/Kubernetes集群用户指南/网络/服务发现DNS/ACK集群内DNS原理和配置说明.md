@@ -9,7 +9,7 @@ keyword: [域名解析, dnspolicy, CoreDNS, 服务发现]
 在进行内置DNS配置前，请确保您已完成以下操作：
 
 -   [创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)
--   [t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)
+-   [通过kubectl工具连接集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)
 
 ACK集群默认部署了一套DNS服务，通过kube-dns的服务名暴露DNS服务。您可执行以下命令查看kube-dns的服务详情。
 
@@ -17,24 +17,24 @@ ACK集群默认部署了一套DNS服务，通过kube-dns的服务名暴露DNS服
 kubectl get svc kube-dns -n kube-system
 ```
 
-输出：
+预期输出：
 
 ```
 NAME       TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)                  AGE
 kube-dns   ClusterIP   172.24.0.10   <none>        53/UDP,53/TCP,9153/TCP   27d
 ```
 
-ACK部署的DNS服务后端是两个名为coredns的Pod。您可执行以下命令查看coredns的Pod详情。
+ACK部署的DNS服务后端是两个名为CoreDNS的Pod。您可执行以下命令查看CoreDNS的Pod详情。
 
 ```
 kubectl get deployment coredns -n kube-system
 ```
 
-输出：
+预期输出：
 
 ```
 NAME      READY   UP-TO-DATE   AVAILABLE   AGE
-coredns   2/2     2            2           27d
+coredns   2/2         2                      2                   27d
 ```
 
 ## 集群DNS域名解析原理
@@ -53,7 +53,7 @@ options ndots:5
 |--|--|
 |nameserver|定义DNS服务器的IP地址。|
 |search|设置域名的查找后缀规则，查找配置越多，说明域名解析查找匹配次数越多。ACK集群匹配有`kube-system.svc.cluster.local`、`svc.cluster.local`、`cluster.local`3个后缀，最多进行8次查询才能得到正确解析结果，因为集群里面进行IPV4和IPV6查询各四次。|
-|options|定义域名解析配置文件选项，支持多个KV值。例如该参数设置成ndots:5，说明如果访问的域名字符串内的点字符数量超过ndots值，则认为是完整域名，并被直接解析；如果不足ndots值，则追加search段后缀再进行查询。|
+|options|定义域名解析配置文件选项，支持多个KV值。例如该参数设置成`ndots:5`，说明如果访问的域名字符串内的点字符数量超过`ndots`值，则认为是完整域名，并被直接解析；如果不足`ndots`值，则追加search段后缀再进行查询。|
 
 根据上述Pod内的配置，集群会将域名请求（集群内部定义的服务或是集群外部域名）查询发往集群DNS服务器获取结果。
 
@@ -64,7 +64,7 @@ ACK支持通过dnsPolicy字段为每个Pod配置不同的DNS策略。目前ACK�
 -   ClusterFirst：通过CoreDNS来做域名解析，Pod内/etc/resolv.conf配置的DNS服务地址是集群DNS服务的kube-dns地址。该策略是集群工作负载的默认策略。
 -   None：忽略集群DNS策略，需要您提供dnsConfig字段来指定DNS配置信息。
 -   Default：Pod直接继承集群节点的域名解析配置。即在ACK集群直接使用ECS的/etc/resolv.conf文件（文件内配置的是阿里云DNS服务）。
--   ClusterFirstWithHostNetwork：强制在hostNetWork网络模式下使用ClusterFirst策略（默认使用Default策略）。
+-   ClusterFirstWithHostNet：强制在hostNetWork网络模式下使用ClusterFirst策略（默认使用Default策略）。
 
 针对上述四种策略，本文列举四种场景分别介绍如何配置dnsPolicy。
 
@@ -177,11 +177,11 @@ ACK支持通过dnsPolicy字段为每个Pod配置不同的DNS策略。目前ACK�
 
 针对[场景一：使用ACK集群提供的CoreDNS来做域名解析](#li_wa7_oax_ncy)，本文将介绍ACK集群CoreDNS的默认配置及针对常见功能的扩展配置。
 
-**说明：** 如果您安装了local-dns，命名空间kube-system下有一个node-local-dns配置项文件，其配置原理与CoreDNS的配置原理一致。
+**说明：** 如果您安装了local-dns，则命名空间kube-system下有一个node-local-dns配置项文件，其配置原理与CoreDNS的配置原理一致。
 
 **CoreDNS的默认配置**
 
-在命名空间kube-system下，ACK集群有一个coredns配置项（有关如何查看配置项的具体步骤，请参见[查看配置项](/cn.zh-CN/Kubernetes集群用户指南/应用/配置项及保密字典/管理配置项.md)）。其Corefile字段的文件配置内容如下（CoreDNS功能都是通过Corefile内的插件提供）。
+在命名空间kube-system下，ACK集群有一个CoreDNS配置项（有关如何查看配置项的具体步骤，请参见[查看配置项](/cn.zh-CN/Kubernetes集群用户指南/应用/配置项及保密字典/管理配置项.md)）。其Corefile字段的文件配置内容如下（CoreDNS功能都是通过Corefile内的插件提供）。
 
 ```
   Corefile: |
@@ -365,9 +365,9 @@ ACK支持通过dnsPolicy字段为每个Pod配置不同的DNS策略。目前ACK�
 
     您可以实现在公网、内网和集群内部通过统一域名foo.example.com访问您的服务，原理如下：
 
-    -   集群内的服务foo.default.svc.cluster.local通过公网SLB进行了暴露，且有域名foo.example.com解析到该公网SLB的IP。
-    -   集群内服务foo.default.svc.cluster.local通过内网SLB进行了暴露，且通过[云解析PrivateZone](https://dns.console.aliyun.com/#/dns/domainList)在VPC内网中将foo.example.com解析到该内网SLB的IP。具体步骤，请参见上述[为特定域名指定hosts](#li_ejo_1bo_ag5)。
-    -   在集群内部，您可以通过Rewrite插件将foo.example.com CNAME到foo.default.svc.cluster.local。示例配置如下：
+    -   集群内的服务`foo.default.svc.cluster.local`通过公网SLB进行了暴露，且有域名`foo.example.com`解析到该公网SLB的IP。
+    -   集群内服务`foo.default.svc.cluster.local`通过内网SLB进行了暴露，且通过[云解析PrivateZone](https://dns.console.aliyun.com/#/dns/domainList)在VPC内网中将`foo.example.com`解析到该内网SLB的IP。具体步骤，请参见上述[为特定域名指定hosts](#li_ejo_1bo_ag5)。
+    -   在集群内部，您可以通过Rewrite插件将`foo.example.com` CNAME到`foo.default.svc.cluster.local`。示例配置如下：
 
         ```
           Corefile: |
@@ -400,7 +400,7 @@ ACK支持通过dnsPolicy字段为每个Pod配置不同的DNS策略。目前ACK�
 
 -   **场景七：监控CoreDNS解析失败记录**
 
-    当您需要打开CoreDNS的日志收集日志并监控解析失败的情况时（可参见上述[场景一：开启日志服务](#li_jf8_chq_8g2)），您还需要为CoreDNS配置autopath。示例配置如下（更多信息，请参见[使用Autopath插件](/cn.zh-CN/Kubernetes集群用户指南/网络/服务发现DNS/优化集群DNS性能.md)）：
+    当您需要打开CoreDNS的日志收集日志并监控解析失败的情况时（可参见上述[场景一：开启日志服务](#li_jf8_chq_8g2)），您还需要为CoreDNS配置autopath。示例配置如下（更多信息，请参见[t1912179.md\#section\_57y\_xv4\_8gn](/cn.zh-CN/Kubernetes集群用户指南/网络/服务发现DNS/优化集群DNS性能.md)）：
 
     ```
       Corefile: |
@@ -427,6 +427,6 @@ ACK支持通过dnsPolicy字段为每个Pod配置不同的DNS策略。目前ACK�
 
     编译应用新配置后，执行命令`kubectl get pods -n kube-system | grep coredns`先查看CoreDNS Pod，然后执行命令`kubectl logs coredns-{pod id} -n kube-system`查看每个Pod的日志。当监控到NXDOMAIN、SERVFAIL类型的返回码时，即代表CoreDNS解析失败。
 
-    ![NXDOMAIN](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6172934061/p178897.png)
+    ![NXDOMAIN](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6172934061/p178897.png)
 
 
