@@ -8,7 +8,7 @@ keyword: [容器存储, CSI, 存储架构]
 
 ## ACK容器存储概览
 
-![overview](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7749133261/p251924.png)
+![overview](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7749133261/p251924.png)
 
 容器服务ACK支持Pod自动绑定阿里云云盘、NAS、 OSS、CPFS、本地卷等存储服务，每种存储卷的主要特点及应用场景如下表。
 
@@ -101,6 +101,7 @@ ACK不同集群形态与各存储服务能力的对应关系如下表。
 |NAS回收站|❌|❌|❌|❌|❌|❌|❌|
 |动态数据卷-子目录|✔️|❌|✔️|✔️|✔️|✔️|✔️|
 |数据加密CMK（极速NAS）|✔️|❌|❌|❌|❌|✔️|✔️|
+|容器网络文件系统CNFS|✔️，只支持托管版|❌|❌|❌|❌|❌|❌|
 |对象存储|OSS挂载和卸载|✔️|✔️|✔️|✔️|❌|✔️|✔️|
 |数据加密BYOK|✔️|✔️|✔️|✔️|❌|✔️|✔️|
 |本地存储|块存储LVM|✔️|❌|✔️|✔️|❌|✔️|❌|
@@ -117,11 +118,11 @@ CSI插件包括CSI-Plugin和CSI-Provisioner两部分。ACK托管版集群和ACK�
 
 |ACK托管版集群|ACK专有版集群|
 |--------|--------|
-|![csi managed](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8748975161/p249741.png)
+|![csi managed](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8748975161/p249741.png)
 
 ACK托管版集群中CSI插件CSI-Provisioner和CSI-Plugin都运行在Worker节点中。
 
-|![flexvolume](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8748975161/p249742.png)
+|![flexvolume](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8748975161/p249742.png)
 
 ACK专有版集群中CSI-Provisioner部署在Master节点上。CSI-Plugin以DaemonSet负载方式自动部署在Master、Worker中。 |
 
@@ -199,9 +200,9 @@ CPFS CSI 插件和CPFS驱动之间的关联：
 -   Disk-Controller：负责云盘卷的自动创建能力。
 -   Nas-Controller：负责NAS卷的自动创建能力。
 
-|有关Flexvolume的详细概述，请参见[Flexvolume概述](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/概述.md)。
+|有关Flexvolume的详细概述，请参见[Flexvolume概述](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/存储Flexvolume概述.md)。
 
-有关如何升级Flexvolume存储插件，请参见[管理组件](/intl.zh-CN/Kubernetes集群用户指南/集群/升级集群/管理组件.md)。 |
+有关如何升级Flexvolume存储插件，请参见[管理组件](/intl.zh-CN/Kubernetes集群用户指南/组件/管理组件.md)。 |
 |CSI|CSI插件是当前Kubernetes社区推荐的插件实现方案。ACK集群提供的CSI存储插件兼容社区的CSI特性。CSI插件包括以下两部分： -   CSI-Plugin：实现数据卷的挂载、卸载功能。ACK默认提供云盘、NAS、OSS三种存储卷的挂载能力。
 -   CSI-Provisioner：实现数据卷的自动创建能力，目前支持云盘、NAS两种存储卷创建能力。
 
