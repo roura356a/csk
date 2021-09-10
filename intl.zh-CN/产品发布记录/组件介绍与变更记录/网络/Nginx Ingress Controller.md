@@ -4,7 +4,7 @@ keyword: Nginx Ingress Controller
 
 # Nginx Ingress Controller
 
-本文为您介绍Ingress的基本概念、工作原理，以及Nginx Ingress Controller相关内容的最新动态。
+本文介绍Nginx Ingress Controller组件信息、使用说明和变更记录。
 
 ## 组件介绍
 
@@ -25,6 +25,18 @@ keyword: Nginx Ingress Controller
 关于Nginx Ingress Controller的使用，请参见[通过Ingress实现灰度发布和蓝绿发布](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/通过Ingress实现灰度发布和蓝绿发布.md)和[通过Ingress Controller来实现应用的流量复制](/intl.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/通过Ingress Controller来实现应用的流量复制.md)。
 
 ## 变更记录
+
+**2021年09月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v0.44.0.5-e66e17ee3-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/aliyun-ingress-controller:v0.44.0.5-e66e17ee3-aliyun|2021年09月06日|-   升级AHAS sentinel插件。
+    -   优化插件性能和稳定性。
+    -   支持集群流控。
+-   修复CVE-2021-36159漏洞。更多信息，请参见[CVE-2021-36159](https://nvd.nist.gov/vuln/detail/CVE-2021-36159)。
+-   默认关闭kernel.core\_uses\_pid内核参数，防止coredump占用大量磁盘空间。
+
+|建议在业务低峰期升级，变更过程中可能会导致已经建立的连接发生瞬断。|
 
 **2021年06月**
 
