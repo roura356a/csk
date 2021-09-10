@@ -26,9 +26,9 @@ keyword: [云盘监控, csi-plugin, Prometheus, 事件告警]
 5.  单击存储页签，在**csi-plugin**组件区域单击**升级**。
 
 
-## 云盘监控使用说明
+## 存储监控使用说明
 
-目前节点侧监控功能仅支持云盘及NAS两种存储产品。您可以通过阿里云Prometheus服务监控当前云盘或NAS的使用状况，具体操作如下。
+目前节点侧监控功能支持云盘及NAS两种存储产品。您可以通过阿里云Prometheus服务监控当前云盘或NAS的使用状况，具体操作如下。
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
@@ -42,7 +42,7 @@ keyword: [云盘监控, csi-plugin, Prometheus, 事件告警]
 
     监控信息如下图。
 
-    ![metrics](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3121098161/p183549.png)
+    ![metrics](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/3121098161/p183549.png)
 
 
 **CSI Nodes**监控大盘过滤项及监控指标说明如下：
@@ -51,9 +51,9 @@ keyword: [云盘监控, csi-plugin, Prometheus, 事件告警]
 
     |过滤项|说明|
     |---|--|
-    |StorageType|存储类型|
-    |Namespace|PVC所在的命名空间|
-    |Pvc|PVC的名称|
+    |**StorageType**|存储类型，disk表示云盘，nas表示NAS文件存储。|
+    |**Namespace**|PVC所在的命名空间|
+    |**PVC**|PVC的名称|
 
 -   监控指标：
 
@@ -68,93 +68,111 @@ keyword: [云盘监控, csi-plugin, Prometheus, 事件告警]
     |Free Capacity|PVC的磁盘剩余空间大小|GB|
 
 
-## 云盘告警使用示例
+## 云盘存储监控使用示例
 
-ACK集群默认不开启云盘监控告警功能。如果您需要开启云盘监控告警功能，可通过kubectl命令行客户端找到csi-plugin.yaml文件，然后在文件中配置相关参数。有关如何使用kubectl，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl连接Kubernetes集群.md)。
+查看云盘存储监控资源需要开启阿里云Prometheus监控。具体操作，请参见[开启阿里云Prometheus监控](/cn.zh-CN/Kubernetes集群用户指南/可观测性/监控管理/阿里云Prometheus监控.md)。
 
-本文假设磁盘读写延迟为10 ms，磁盘存储容器的阈值为85%，您只需在csi-plugin.yaml文件中的env下设置DISK\_LATENCY\_THRESHOLD和DISK\_CAPACITY\_THRESHOLD\_PERCENTAGE的值为10 ms和85%。
+1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
-```
-- name: DISK_LATENCY_THRESHOLD
-  value: 10ms
-- name: DISK_CAPACITY_THRESHOLD_PERCENTAGE
-  value: 85%
-```
+2.  在控制台左侧导航栏中，单击**集群**。
 
-csi-plugin.yaml文件的部分配置内容如下：
+3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
 
-```
-- name: csi-plugin
-  securityContext:
-    privileged: true
-    capabilities:
-      add: ["SYS_ADMIN"]
-  allowPrivilegeEscalation: true
-  image: registry.cn-hangzhou.aliyuncs.com/acs/csi-plugin:v1.18.8.45-1c5d2cd1-aliyun
-  imagePullPolicy: "Always"
-  args:
-    - "--endpoint=$(CSI_ENDPOINT)"
-    - "--v=2"
-    - "--driver=oss,nas,disk"
-  env:
-    - name: KUBE_NODE_NAME
-      valueFrom:
-        fieldRef:
-          apiVersion: v1
-          fieldPath: spec.nodeName
-    - name: CSI_ENDPOINT
-      value: unix://var/lib/kubelet/csi-plugins/driverplugin.csi.alibabacloud.com-replace/csi.sock
-    - name: MAX_VOLUMES_PERNODE
-      value: "15"
-    - name: SERVICE_TYPE
-      value: "plugin"
-    - name: DISK_LATENCY_THRESHOLD
-      value: 10ms
-    - name: DISK_CAPACITY_THRESHOLD_PERCENTAGE
-      value: 85%
-  livenessProbe:
-    httpGet:
-      path: /healthz
-      port: healthz
-      scheme: HTTP
-    initialDelaySeconds: 10
-    periodSeconds: 30
-    timeoutSeconds: 5
-    failureThreshold: 5
-  ports:
-    - name: healthz
-      containerPort: 11260
-      protocol: TCP
-  volumeMounts:
-    - name: kubelet-dir
-      mountPath: /var/lib/kubelet/
-      mountPropagation: "Bidirectional"
-    - name: etc
-      mountPath: /host/etc
-    - name: host-log
-      mountPath: /var/log/
-    - name: ossconnectordir
-      mountPath: /host/usr/
-    - name: container-dir
-      mountPath: /var/lib/container
-      mountPropagation: "Bidirectional"
-    - name: host-dev
-      mountPath: /dev
-      mountPropagation: "HostToContainer"
-```
+4.  在集群管理详情页左侧导航栏，选择**运维管理** \> **Prometheus监控**。
 
-当使用[fio](https://fio.readthedocs.io/en/latest/fio_doc.html#command-line-options)命令压测云盘性能达到设置的阈值时，您可以通过两种方式查看告警信息：
+5.  在Prometheus监控页面单击**CSI Nodes**页签。
 
--   使用`kubectl get events`命令查看事件告警。
+6.  在CSI Nodes页签，选择云盘存储卷所在的**StorageType**、**Namespace**及PVC名称后，在**Total Capacity**区域可查看云盘存储卷当前容量。
 
-    ![metrics](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2660614161/p183534.png)
+    本示例**StorageType**选择为**disk**、**Namespace**选择为**default**、**PVC**为**pvc-disk-static-create1**。
 
--   通过容器服务控制台查看告警信息。
-    1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
-    2.  在控制台左侧导航栏中，单击**集群**。
-    3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
-    4.  在集群管理详情页左侧导航栏，选择**运维管理** \> **事件列表**，然后在**事件列表**页签中查看告警信息。
+    ![云盘存储监控资源](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1173811361/p325538.png)
 
-        ![查看告警信息](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8371224161/p243258.png)
+    从上图可得，当前云盘总容量为39.25 GiB，使用了48.2 MiB，剩余39.18 GiB。
+
+7.  向云盘中写入测试数据。
+
+    1.  执行以下命令查看挂载云盘的应用名称。
+
+        ```
+        kubectl get pod
+        ```
+
+        预期输出：
+
+        ```
+        NAME                                              READY   STATUS    RESTARTS   AGE
+        deployment-disk-static-create1-67f4b5cfdc-p5q7t   1/1     Running   0          20m
+        ```
+
+    2.  执行以下命令进入挂载云盘的应用。
+
+        ```
+        kubectl exec deployment-disk-static-create1-67f4b5cfdc-p5q7t -ti sh
+        ```
+
+    3.  执行以下命令向云盘挂载目录/data写入20 GiB数据。
+
+        ```
+        cd /data
+        /usr/bin/fio -direct=1 -iodepth=256 -rw=randwrite -ioengine=libaio -bs=4k -numjobs=1 -runtime=100 -group_reporting -name=Rand_Write_Testing -filename=./test -size=20G
+        ```
+
+8.  在Prometheus监控页面的**CSI Nodes**页签，再次查看云盘存储监控资源。
+
+    ![云盘存储监控数据写入后](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1173811361/p325634.png)
+
+    从上图可得，写入的IOPS为4 k，吞吐率为15 MB/s，写入数据容量为20 GiB，剩余容量为19 GiB，平均延时约为67 ms。
+
+
+## NAS存储监控使用示例
+
+查看NAS存储监控资源需要开启阿里云Prometheus监控。具体操作，请参见[开启阿里云Prometheus监控](/cn.zh-CN/Kubernetes集群用户指南/可观测性/监控管理/阿里云Prometheus监控.md)。
+
+1.  向NAS存储卷挂载目录写入测试数据。
+
+    1.  执行以下命令查看挂载NAS存储卷的应用名称。
+
+        ```
+        kubectl get pod
+        ```
+
+        预期输出：
+
+        ```
+        NAME                                   READY    STATUS    RESTARTS   AGE
+        cnfs-nas-deployment-84f6cdf6cc-wvjjq   1/1      Running   0          20m
+        ```
+
+    2.  执行以下命令进入挂载NAS存储卷的应用。
+
+        ```
+        kubectl exec cnfs-nas-deployment-84f6cdf6cc-wvjjq -ti sh
+        ```
+
+    3.  执行以下命令向NAS存储卷挂载目录/data写入20 GiB数据。
+
+        ```
+        cd /data
+        /usr/bin/fio -direct=1 -iodepth=256 -rw=randwrite -ioengine=libaio -bs=4k -numjobs=1 -runtime=100 -group_reporting -name=Rand_Write_Testing -filename=./test -size=20G
+        ```
+
+2.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
+
+3.  在控制台左侧导航栏中，单击**集群**。
+
+4.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
+
+5.  在集群管理详情页左侧导航栏，选择**运维管理** \> **Prometheus监控**。
+
+6.  在Prometheus监控页面单击**CSI Nodes**页签。
+
+7.  在CSI Nodes页签，选择NAS存储卷所在的**StorageType**、**Namespace**及PVC名称后，在**Total Capacity**区域可查看NAS存储卷当前容量。
+
+    本示例**StorageType**选择为**nas**、**Namespace**选择为**default**、**PVC**为**cnfs-nas-pvc**。
+
+    ![NAS存储监控资源](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0373811361/p325713.png)
+
+    从上图可得，写入的IOPS约为15 k，吞吐率从10 MB/S增长到60 MB/s，平均延时约为15 ms。
 
 
