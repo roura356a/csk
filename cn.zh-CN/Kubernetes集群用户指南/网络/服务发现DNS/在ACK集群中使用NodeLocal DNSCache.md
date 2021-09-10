@@ -4,10 +4,10 @@ keyword: [node-local-dns, NodeLocal DNSCache, DaemonSet]
 
 # 在ACK集群中使用NodeLocal DNSCache
 
-在ACK集群中部署NodeLocal DNSCache可以提升服务发现的稳定性和性能，NodeLocal DNSCache通过在集群节点上作为DaemonSet运行DNS缓存代理来提高集群DNS性能。本文介绍如何安装NodeLocal DNSCache，并配置应用使用NodeLocal DNSCache。
+在ACK集群中部署NodeLocal DNSCache可以提升服务发现的稳定性和性能，NodeLocal DNSCache通过在集群节点上作为DaemonSet运行DNS缓存代理来提高集群DNS性能。本文介绍如何安装NodeLocal DNSCache，并在应用中使用NodeLocal DNSCache。
 
 -   已创建ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   使用kubectl命令连接集群。具体操作，请参见[t16645.md\#](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   使用kubectl命令连接集群。具体操作，请参见[通过kubectl工具连接集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 ## 使用限制
 
@@ -15,7 +15,7 @@ keyword: [node-local-dns, NodeLocal DNSCache, DaemonSet]
 -   如果集群网络类型为Terway，请更新Terway至v1.0.10.301及以上版本。如果是基于IPVLAN的Terway多IP模式，需要对Terway进行配置修改。更多信息，请参见[修改Terway配置](#section_wcp_x4c_oyc)。
 -   组件管理中的NodeLocal DNSCache和应用目录中的ack-node-local-dns为同一应用，不需要重复安装。
 -   NodeLocal DNSCache不提供Hosts、Rewrite等插件能力，仅作为CoreDNS的透明缓存代理。如有需要，可在CoreDNS配置中修改。
--   如果集群使用了PrivateZone的，需要修改CoreDNS配置后启用。更多信息，请参见[PrivateZone兼容性说明](#section_ajk_4vf_oqk)。
+-   使用NodeLocal DNSCache前，您需要对CoreDNS配置进行修改，否则可能导致集群中PrivateZone域名或部分云产品提供的\*.vpc-proxy.aliyuncs.com等域名无法解析。具体操作，请参见[CoreDNS修改说明](#section_ajk_4vf_oqk)。
 
 ## NodeLocal DNSCache简介
 
@@ -23,7 +23,7 @@ ACK NodeLocal DNSCache是基于社区开源项目NodeLocal DNSCache的一套DNS�
 
 -   DNSConfig动态注入控制器Deployment，基于Admission Webhook机制拦截Pod创建的请求，自动注入使用DNS缓存的Pod DNSConfig信息。
 
-    **说明：** 如果不启用DNSConfig动态注入控制器Deployment，您需要手动注入DNS域名相关配置至Pod配置中。具体操作，请参见[配置应用使用NodeLocal DNSCache](#section_kf0_5uj_ay2)下的方式二：手动指定DNSConfig。
+    **说明：** 如果不启用DNSConfig动态注入控制器Deployment，您需要手动注入DNS域名相关配置至Pod配置中。具体操作，请参见[在应用中使用NodeLocal DNSCache](#section_kf0_5uj_ay2)下的方式二：手动指定DNSConfig。
 
 -   DNS缓存DaemonSet可以在每个节点上创建一个虚拟网络接口（默认监听IP 169.254.20.10，如需修改请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex)咨询），配合Pod的DNSConfig和节点上的网络配置，Pod内产生的DNS请求会被该DaemonSet服务所代理。
 
@@ -54,7 +54,7 @@ ACK NodeLocal DNSCache是基于社区开源项目NodeLocal DNSCache的一套DNS�
 
 4.  在组件管理页面单击**网络**页签，找到ACK NodeLocal DNSCache。
 
-5.  单击ACK NodeLocal DNSCache的**安装**，然后在弹出的对话框中单击**确定**。
+5.  单击ACK NodeLocal DNSCache的**安装**，在弹出的对话框中单击**确定**。
 
 
 **通过应用目录安装NodeLocal DNSCache**
@@ -65,7 +65,9 @@ ACK NodeLocal DNSCache是基于社区开源项目NodeLocal DNSCache的一套DNS�
 
 3.  在应用目录页面搜索ack-node-local-dns，找到并单击**ack-node-local-dns**。
 
-4.  仔细阅读**说明**页签中关于**ack-node-local-dns**的介绍及参数说明，然后单击**参数**页签，配置参数。
+4.  在**创建**面板选择集群。
+
+5.  仔细阅读**说明**页签中关于**ack-node-local-dns**的介绍及参数说明，然后单击**参数**页签，配置参数。
 
     需设置的参数说明如下表。
 
@@ -74,12 +76,12 @@ ACK NodeLocal DNSCache是基于社区开源项目NodeLocal DNSCache的一套DNS�
     |upstream\_ip|kube-system命名空间下 kube-dns服务的ClusterIP。NodeLocal DNSCache通过该服务与CoreDNS通信来解析集群内域名。|如果您需要指定不同的上游DNS服务器，可以修改此参数。|
     |clusterDomain|集群主域名。|查看节点上kubelet进程的--cluster-domain参数，默认为cluster.local。|
 
-5.  在右侧**创建**面板中，选择目标集群、命名空间，设置发布名称，然后单击**创建**。
+6.  在右侧**创建**面板单击**创建**。
 
 
-## 配置应用使用NodeLocal DNSCache
+## 在应用中使用NodeLocal DNSCache
 
-**说明：** NodeLocal DNSCache默认不会部署至Master节点。如果您的业务需要部署至Master节点，且您的Master节点设置了污点，您需要对命名空间kube-system下node-local-dns DaemonSet进行污点容忍修改操作。
+**说明：** NodeLocal DNSCache默认不会部署至Master节点。如果您的业务需要部署至Master节点，且您的Master节点设置了污点，您需要修改命名空间kube-system下node-local-dns DaemonSet的污点容忍。
 
 为了能使应用原本请求CoreDNS的流量改为由DNS缓存DaemonSet代理，需要使Pod内部的中nameservers配置成169.254.20.10和kube-dns对应的IP地址，您有以下几种方式可以选择：
 
@@ -373,11 +375,13 @@ kubelet通过--cluster-dns和--cluster-domain两个参数来全局控制Pod DNSC
     5.  在Helm页面单击ack-node-local-dns-default**操作**列的**删除**，在弹出的对话框中单击**确定**。
 
 
-## PrivateZone兼容性说明
+## CoreDNS修改说明
 
-NodeLocal DNSCache会默认采用TCP协议与CoreDNS进行通信，CoreDNS会根据请求来源使用的协议与上游进行通信。如果您集群中使用了PrivateZone，经过DNS本地缓存组件的解析请求最终会以TCP协议请求至PrivateZone服务。目前阿里云部分地域的PrivateZone服务尚未支持TCP协议，因此PrivateZone的解析结果可能会失败。
+NodeLocal DNSCache会默认采用TCP协议与CoreDNS进行通信，CoreDNS会根据请求来源使用的协议与上游进行通信，即与VPC内DNS服务器进行通信。
 
-建议您使用以下方式修改CoreDNS配置文件，即修改命名空间kube-system下**coredns**，具体操作，请参见[管理配置项](/cn.zh-CN/Serverless Kubernetes集群用户指南/配置项及密钥/管理配置项.md)。在forward插件中指定请求上游的协议为``perfer_udp``，修改之后CoreDNS会优先使用UDP协议与上游通信。修改方式如下所示：
+VPC内DNS服务器目前无法以TCP协议提供PrivateZone域名和部分云产品提供的\*.vpc-proxy.aliyuncs.com域名的解析，因此通过NodeLocal DNSCache解析此类域名时，解析会失败。您需要参考以下方式修改CoreDNS配置，强制CoreDNS默认以UDP协议与上游VPC内DNS服务器进行通信。
+
+建议您使用以下方式修改CoreDNS配置文件，即修改命名空间kube-system下**coredns**。具体操作，请参见[管理配置项](/cn.zh-CN/Serverless Kubernetes集群用户指南/配置项及密钥/管理配置项.md)。在forward插件中指定请求上游的协议为``perfer_udp``，修改之后CoreDNS会优先使用UDP协议与上游通信。修改方式如下所示：
 
 ```
 # 修改前
