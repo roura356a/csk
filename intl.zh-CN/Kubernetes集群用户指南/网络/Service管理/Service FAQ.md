@@ -22,7 +22,7 @@ keyword: [Service FAQ, SLB, 常见问题]
 
 **CCM升级相关**
 
--   [CCM升级失败如何处理？](#section_xyq_0k8_8ea)
+[CCM升级失败如何处理？](#section_xyq_0k8_8ea)
 
 **使用已有SLB常见问题**
 
@@ -31,7 +31,7 @@ keyword: [Service FAQ, SLB, 常见问题]
 
 **其他**
 
--   [Kubernetes的Service如何进行会话保持？](~~149276~~)
+[Kubernetes的Service如何进行会话保持？](~~149276~~)
 
 ## 为什么看不到Service与LoadBalancer同步过程的事件Event信息？
 
@@ -128,7 +128,7 @@ CCM使用声明式API，会在一定条件下自动根据Service的配置更新S
     2.  在控制台左侧导航栏中，单击**集群**。
     3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
     4.  选择**网络** \> **服务**。
-    5.  在服务页面顶部的**命名空间**下拉框中，单击**kube-system**，然后在服务列表中，找到**nginx-ingress-lb**，然后单击**操作**列下的**查看YAML**。
+    5.  在服务页面顶部的**命名空间**下拉列表中，单击**kube-system**，然后在服务列表中，找到**nginx-ingress-lb**，然后单击**操作**列下的**查看YAML**。
 
         如果没有**nginx-ingress-lb**，使用以下模板创建名为**nginx-ingress-lb**的Service。
 
@@ -163,7 +163,7 @@ CCM使用声明式API，会在一定条件下自动根据Service的配置更新S
         1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
         2.  在控制台左侧导航栏中，单击**集群**。
         3.  在集群列表页面中，单击目标集群名称或者目标集群右侧**操作**列下的**详情**。
-        4.  选择**服务与路由** \> **服务**。
+        4.  在集群管理页面左侧导航栏选择**网络** \> **服务**。
         5.  在服务页面顶部的**命名空间**下拉框中，单击**所有命名空间**，然后在服务列表中，找到业务Service，然后单击**操作**列下的**查看YAML**。
         6.  在编辑YAML对话框中，移除**status**内容，然后单击**更新**以让CCM重建SLB。
 
@@ -246,7 +246,7 @@ Cloud Controller Manager组件V1.9.3.10后续版本创建的SLB支持自动打TA
 -   确认该SLB是否还存在，如果不存在且Service无需再使用，则删除对应的Service即可。
 -   如果SLB存在，执行以下步骤。
     1.  确认是否是手动在SLB控制台创建的SLB，如果是，则添加复用已有SLB的注解。更多信息，请参见[通过Annotation配置负载均衡](/intl.zh-CN/Kubernetes集群用户指南/网络/Service管理/通过Annotation配置负载均衡.md)。
-    2.  如果是在ACK中自动创建的SLB，确认该SLB是否有标签**kubernetes.do.not.delete**。如果没有该标签，请参见[t1227076.md\#section\_30n\_419\_ho6](/intl.zh-CN/Kubernetes集群用户指南/网络/网络管理FAQ.md)。 |
+    2.  如果是在ACK中自动创建的SLB，确认该SLB是否有标签**kubernetes.do.not.delete**。如果没有该标签，请参见[旧版本CCM如何支持SLB重命名？](#section_61e_9ty_sgk)。 |
 |`ORDER.ARREARAGE Message: The account is arrearage.`|服务欠费。|
 |`Status Code: 400 Code: Throttlingxxx`|调用太多，触发OpenAPI限流。|
 |`Status Code: 400 Code: RspoolVipExist Message: there are vips associating with this vServer group.`|无法删除虚拟服务器组有关联的监听。解决方法：
