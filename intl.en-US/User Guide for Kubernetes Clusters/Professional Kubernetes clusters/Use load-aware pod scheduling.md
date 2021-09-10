@@ -11,14 +11,9 @@ Load-aware pod scheduling is a scheduling policy that can be used by Container S
 
     |Component|Version|
     |---------|-------|
-    |Kubernetes|≥ V1.20|
+    |Kubernetes|≥ V1.18|
     |Helm|≥ V3.0|
     |Docker|v19.03.5|
-    |Operating system|    -   CentOS 7.6
-    -   CentOS 7.7
-    -   Ubuntu 16.04
-    -   Ubuntu 18.04
-    -   Alibaba Cloud Linux 2 |
 
 
 ## Procedure
