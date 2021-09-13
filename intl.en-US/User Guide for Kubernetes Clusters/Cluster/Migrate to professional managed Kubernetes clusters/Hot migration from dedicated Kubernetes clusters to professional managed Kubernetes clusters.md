@@ -7,16 +7,16 @@ keyword: [dedicated Kubernetes cluster, Kubernetes cluster migration, profession
 Container Service for Kubernetes \(ACK\) supports hot migration from dedicated Kubernetes clusters to professional managed Kubernetes clusters. You can dynamically migrate your workloads from existing dedicated Kubernetes clusters to professional managed Kubernetes clusters. This way, you can benefit from the features that are provided by professional managed Kubernetes clusters. This topic describes how to migrate workloads from a dedicated Kubernetes cluster to a professional managed Kubernetes cluster.
 
 -   A dedicated Kubernetes cluster is created. For more information, see [Create a dedicated Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a dedicated Kubernetes cluster.md).
--   The Cloud Assistant client is installed on the master nodes of the cluster. For more information, see [Overview](/intl.en-US/Deployment & Maintenance/Cloud assistant/Overview.md) and [Install the Cloud Assistant client](/intl.en-US/Deployment & Maintenance/Cloud assistant/Configure the Cloud Assistant client/Install the Cloud Assistant client.md).
+-   A Cloud Assistant client is installed on the master nodes of the cluster. For more information, see [Overview](/intl.en-US/Deployment & Maintenance/Cloud assistant/Overview.md) and [Install the Cloud Assistant client](/intl.en-US/Deployment & Maintenance/Cloud assistant/Configure the Cloud Assistant client/Install the Cloud Assistant client.md).
 -   The configuration of the internal-facing Server Load Balancer \(SLB\) instance of the cluster must be the same as that of slb.s1.small or higher.
 -   Make sure that the following pods are migrated to worker nodes: pods of control plane components, such as the API server, kube-controller-manager, the cloud controller manager, and kube-scheduler, and pods in the kube-system namespace, excluding DaemonSet pods. Control plane components are replaced by managed components after the migration is completed.
 -   An Object Storage Service \(OSS\) bucket is created. For more information, see [Create buckets](/intl.en-US/Console User Guide/Manage buckets/Create buckets.md).
 
-## Considerations
+## Usage notes
 
 -   To use this feature, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply to be added to a whitelist.
--   Make sure that the Kubernetes version of your dedicated cluster is 1.16 or later. Otherwise, you must upgrade the Kubernetes version. For more information about how to upgrade the Kubernetes version, see [Upgrade a cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Manage clusters/Upgrade a cluster.md).
--   If the internal-facing SLB instance of the cluster is a shared-resource instance, the instance configuration must be the same as that of slb.s1.small or higher. For more information about how to upgrade an SLB instance, see [Change the configurations of a pay-as-you-go SLB instance]().
+-   Make sure that the Kubernetes version of your dedicated Kubernetes cluster is 1.16 or later. Otherwise, you must first upgrade the Kubernetes version. For more information about how to upgrade the Kubernetes version, see [Upgrade a cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Manage clusters/Upgrade a cluster.md).
+-   If the internal-facing SLB instance of your cluster is a shared-resource instance, the instance configuration must be the same as that of slb.s1.small or higher. For more information about how to upgrade an SLB instance, see [Change the configurations of a pay-as-you-go SLB instance]().
 -   After the migration is completed, take note of the following limits:
     -   The master nodes no longer belong to the cluster and change to the **Unknown** state.
     -   You cannot roll back the migration.
@@ -74,7 +74,7 @@ Container Service for Kubernetes \(ACK\) supports hot migration from dedicated K
 
 After you migrate workloads from a dedicated cluster to a professional managed cluster, you can delete the master nodes from the cluster. ACK does not allow you to delete master nodes in the ACK console. You must use kubectl to delete master nodes.
 
-Before you run the commands, make sure that a kubectl client is connected to the cluster. For more information about how to use kubectl to connect to a cluster, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md).
+Before you run the commands, make sure that a kubectl client is connected to the cluster. For more information about how to use kubectl to connect to a cluster, see [Connect to ACK clusters by using kubectl](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md).
 
 1.  Run the following command to query the names of master nodes that you want to delete:
 
@@ -91,7 +91,5 @@ Before you run the commands, make sure that a kubectl client is connected to the
     **Note:** Replace <MASTER\_NAME\> with the name of the master node that you obtained in the previous step.
 
 
-## References
-
-You can migrate workloads from standard managed Kubernetes clusters to professional managed Kubernetes clusters. For more information, see [Hot migration from standard managed Kubernetes clusters to professional managed Kubernetes clusters](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Migrate to professional managed Kubernetes clusters/Hot migration from standard managed Kubernetes clusters to professional managed Kubernetes clusters.md).
+If cGPU Basic Edition is installed in a dedicated Kubernetes cluster, you must upgrade to cGPU Professional Edition in the professional managed Kubernetes cluster after the migration is completed. For more information, see [Upgrade cGPU Basic Edition to cGPU Professional Edition in a professional Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/GPU/NPU/GPU scheduling/cGPU Professional Edition/Upgrade cGPU Basic Edition to cGPU Professional Edition in a professional Kubernetes cluster.md).
 
