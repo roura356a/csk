@@ -4,7 +4,7 @@ keyword: [Pod, 容器组, 最小可部署单元, Pod日志]
 
 # 管理容器组（Pod）
 
-容器组（Pod）是Kubernetes中最小的可部署单元。容器组代表了Kubernetes中一个独立的应用程序运行实例，该实例可能由单个容器或者几个紧耦合在一起的容器组成。您可以通过ACK控制台修改、查看容器组（Pod），手动伸缩容器应用。
+容器组（Pod）是Kubernetes中最小的可部署单元。容器组代表了Kubernetes中一个独立的应用程序运行实例，该实例可能由单个容器或者几个紧耦合在一起的容器组成。本文介绍如何通过ACK控制台查看、变更容器组（Pod）配置及如何手动伸缩容器应用。
 
 ## 查看容器组（Pod）
 
@@ -22,9 +22,20 @@ keyword: [Pod, 容器组, 最小可部署单元, Pod日志]
 
     您还可以通过以下两种方式查看容器组信息：
 
-    -   方式一：在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**，选择所需应用及单击应用名称，然后在**容器组**页签，单击容器组名称查看容器组信息。
+    -   方式一：在集群管理页左侧导航栏中，选择**工作负载** \> **无状态**，单击目标应用名称，然后在**容器组**页签，单击容器组名称查看容器组信息。
     -   方式二：在集群管理页左侧导航栏中，选择**网络** \> **服务**，单击目标服务名称，单击目标应用名称，然后在**容器组**页签，单击容器组名称查看容器组信息。
     **说明：** 在容器组列表页面，您可对容器组进行编辑和删除操作。对于通过部署（例如Deployment）创建的容器组，建议您通过Deployment进行管理。
+
+    以下为容器组现状详情的说明：
+
+    |类型|说明|
+    |--|--|
+    |**Initialized**|所有的Init容器都已成功启动。|
+    |**Ready**|Pod可以为请求提供服务，并且应该被添加到对应服务的负载均衡池中。|
+    |**ContainersReady**|Pod中所有容器都已就绪。|
+    |**PodScheduled**|Pod已经被调度到某节点。|
+
+    更多信息，请参见[Pod的生命周期](https://kubernetes.io/zh/docs/concepts/workloads/pods/pod-lifecycle/#pod-conditions)。
 
 
 **查看容器组日志**
@@ -37,7 +48,7 @@ keyword: [Pod, 容器组, 最小可部署单元, Pod日志]
 
 在容器组列表页面，您可以根据名称、节点、Host IP、Pod IP和标签，过滤出相应的容器组。
 
-![Pod](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0177221261/p274317.png)
+![Pod](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0177221261/p274317.png)
 
 ## 变更容器组配置
 
@@ -53,12 +64,12 @@ keyword: [Pod, 容器组, 最小可部署单元, Pod日志]
 
 6.  更新容器组的配置并单击**更新**。
 
-    ![更新容器配置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4085659951/p10941.png)
+    ![更新容器配置](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4085659951/p10941.png)
 
 
 ## 手动伸缩容器组
 
-应用创建后，您可以根据自己的需求来进行服务扩容或缩容。
+应用创建后，您可以根据业务需求扩容或缩容服务。
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
