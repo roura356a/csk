@@ -199,7 +199,8 @@ EOF
         预期输出：
 
         ```
-        apiVersion: storage.alibabacloud.com/v1beta1kind: ContainerNetworkFileSystem
+        apiVersion: storage.alibabacloud.com/v1beta1
+        kind: ContainerNetworkFileSystem
         metadata:
           annotations:
             kubectl.kubernetes.io/last-applied-configuration: |
@@ -476,7 +477,8 @@ EOF
         预期输出：
 
         ```
-        apiVersion: storage.alibabacloud.com/v1beta1kind: ContainerNetworkFileSystem
+        apiVersion: storage.alibabacloud.com/v1beta1
+        kind: ContainerNetworkFileSystem
         metadata:
           annotations:
             kubectl.kubernetes.io/last-applied-configuration: |
@@ -516,7 +518,7 @@ EOF
           status: Available
         ```
 
-2.  在NAS存储卷中应用CNFS。具体操作，请参见[方式二：使用CNFS创建自定义NAS文件系统](#section_16b_q45_hx9)的步骤[2](#step_ryf_pnx_irk)到[4](#step_2u2_asy_2oc)。
+2.  在NAS存储卷中应用CNFS。具体操作，请参见[方式二：使用CNFS创建自定义NAS文件系统](#section_16b_q45_hx9)的步骤[2](#step_ryf_pnx_irk)到步骤[4](#step_2u2_asy_2oc)。
 
 
 关于如何监控节点侧NAS存储资源，请参见[NAS存储监控使用示例](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/容器存储监控/使用csi-plugin组件监控节点侧存储资源.md)。
