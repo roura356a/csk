@@ -48,7 +48,7 @@ keyword: [云盘存储卷, FAQ, 常见问题]
 
 问题现象：
 
-卸载云盘时，提示The specified disk is not a portable disk。
+启动挂载了云盘的Pod时提示can't find disk。
 
 问题原因：
 
@@ -101,7 +101,7 @@ Error: "MountVolume.MountDevice failed for volume \"d-2zejaz33icbp2vvv****\" (Un
 
 问题原因：
 
-您使用的是旧版本的CSI，旧版本的CSI使用了BlkID通过UID获取盘符。由于使用快照恢复的云盘有着相同的UID，导致BlkID命令卡死。
+您使用的是旧版本的CSI，旧版本的CSI使用了BlkID通过UID获取盘符。由于使用快照恢复的云盘有着相同的UID，导致BlkID命令执行阻塞。
 
 解决方法：
 
@@ -168,11 +168,11 @@ Warning FailedMount 9m53s (x23 over 40m) kubelet MountVolume.SetUp failed for vo
 解决方法：
 
 -   为集群新增节点后移除旧节点，将旧节点全部替换为新节点，有故障的Pod将自动恢复。具体操作，请参见[扩容节点池](/cn.zh-CN/Kubernetes集群用户指南/节点与节点池/节点池/管理节点池.md)及[移除节点](/cn.zh-CN/Kubernetes集群用户指南/节点与节点池/节点/移除节点.md)。
--   调整StatefulSet为`orderedready`或去掉`podManagementPolicy: "Parallel"` 属性。
+-   调整StatefulSet为`orderedready`或去除`podManagementPolicy: "Parallel"` 属性。
 -   如果当前集群节点数较少，可以采用以下方案：
     1.  将当前Pod所在的节点添加`cordon`标签，设置为不可调度状态。
     2.  删除Pod，等待Pod状态变为Pending。
-    3.  去掉节点上的`cordon`标签，等待Pod重启。
+    3.  去除节点上的`cordon`标签，等待Pod重启。
 -   如果当前集群节点数较多，则将Pod调度到其他节点后可正常启动。
 
 若有其他疑问，请[联系我们](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/安装与升级CSI组件.md)。
