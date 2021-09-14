@@ -19,7 +19,8 @@ This topic describes how to troubleshoot common issues related to storage and pr
 -   [Why do I do when I fail to delete a pod and kubelet generates pod logs that are not managed by Container Service for Kubernetes \(ACK\)?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/FAQ about disk volumes.md)
 -   [Why does the system prompt that the mounting fails and cannot be recovered when a pod failed to restart after deletion?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/Disk volumes/FAQ about disk volumes.md) |
 |FAQ about NAS volumes|-   [Why does the system prompt chown: option not permitted when I mount a NAS file system?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/FAQ about NAS volumes.md)
--   [What do I do if the task queue of alicloud-nas-controller is full and PVs cannot be created when I mount a dynamically provisioned PV?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/NAS volumes/FAQ about NAS volumes.md) |
+-   [What do I do if the task queue of alicloud-nas-controller is full and PVs cannot be created when I use a dynamically provisioned NAS volume?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/NAS volumes/FAQ about NAS volumes.md)
+-   [Why does it require a long time to mount a NAS volume?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/FAQ about NAS volumes.md) |
 
 ## Troubleshoot common issues
 
@@ -40,7 +41,7 @@ Perform the following operations to view the log of a specified volume plug-in. 
     3m31s       Normal    Provisioning           persistentvolumeclaim/pvc-nas-dynamic-create-subpath8   External provisioner is provisioning volume for claim "default/pvc-nas-dynamic-create-subpath8"
     ```
 
-2.  Run the following command to check whether the FlexVolume or CSI plug-in is deployed in the cluster.
+2.  Check whether the FlexVolume or CSI plug-in is deployed in the cluster.
 
     -   Run the following command to check whether the FlexVolume plug-in is deployed in the cluster:
 
@@ -69,9 +70,9 @@ Perform the following operations to view the log of a specified volume plug-in. 
         csi-provisioner-***        7/7     Running            0          14d
         ```
 
-3.  Check whether the volume templates match the template of the volume plug-in used in the cluster. The supported volume plug-ins are FlexVolume and CSI.
+3.  Check whether the volume template matches the template of the volume plug-in used in the cluster. The supported volume plug-ins are FlexVolume and CSI.
 
-    If this is the first time you mount volumes in the cluster, check the driver specified in the persistent volume \(PV\) and StorageClass. The driver that you specified must be the same as the volume plug-in that is deployed in the cluster.
+    If this is the first time you mount volumes in the cluster, check whether the driver specified in the persistent volume \(PV\) and StorageClass is a CSI driver or a FlexVolume driver. The name of the driver that you specified must be the same as the type of the volume plug-in that is deployed in the cluster.
 
 4.  Check whether the volume plug-in is upgraded to the latest version.
 
@@ -105,7 +106,7 @@ Perform the following operations to view the log of a specified volume plug-in. 
 
 5.  View log data.
 
-    -   If a PVC of disk type is in the Pending state, the cluster fails to create the PV. You must check the log of the Provisioner plug-in.
+    -   If a PVC of disk type is in the Pending state, it indicates that the related PV is not created. You must check the log of the Provisioner plug-in.
         -   If the FlexVolume plug-in is deployed in the cluster, run the following command to print the log of alicloud-disk-controller:
 
             ```
@@ -120,7 +121,7 @@ Perform the following operations to view the log of a specified volume plug-in. 
             kubectl logs <PodID> -nkube-system -c csi-provisioner
             ```
 
-            **Note:** Two pods are created to run csi-provisioner. After you run the `kubectl get pod -nkube-system | grep csi-provisioner | awk '{print $1}'` command, two `pod IDs` are returned. Then, run the `kubectl logs <PodID> -nkube-system -c csi-provisioner` command for each of the two pods.
+            **Note:** Two pods are created to run csi-provisioner. After you run the `kubectl get pod -nkube-system | grep csi-provisioner | awk '{print $1}'` command, two `podid` are returned. Then, run the `kubectl logs <PodID> -nkube-system -c csi-provisioner` command on each pod.
 
     -   If a mounting error occurs when the system starts a pod, you must check the log of FlexVolume or csi-plugin.
         -   If the FlexVolume plug-in is deployed in the cluster, run the following command to print the log of FlexVolume:
@@ -152,5 +153,5 @@ Perform the following operations to view the log of a specified volume plug-in. 
 
 **Quick recovery**
 
-If you fail to mount volumes to most of the pods on a node, you can schedule the pods to other nodes.
+If you fail to mount volumes to most of the pods on a node, you can schedule the pods to other nodes. For more information, see [Schedule pods to specific nodes](/intl.en-US/User Guide for Kubernetes Clusters/Application management/Application Scheduling Deployment/Schedule pods to specific nodes.md).
 
