@@ -142,7 +142,7 @@
 
 3.  在**Prometheus监控**页面，单击**Deployment**页签，选择**命名空间**为default，选择**deployment**为ack-cube。
 
-    您可以查看应用的资源使用情况，包括创建应用时所设置的资源阈值，所需资源（对应图中request）和资源限制（对应图中limit）。
+    您可以查看应用的资源使用情况，包括创建应用时所设置的资源阈值，即所需资源（对应图中request）和资源限制（对应图中limit）。
 
     ![prometheus-deploy](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0098190361/p324014.png)
 
@@ -155,7 +155,7 @@
 
 ## 相关文档
 
--   为了保证应用能够动态调整所需容器资源，您可以配置容器水平伸缩（HPA）、定时容器水平伸缩（CronHPA）、容器垂直伸缩（HPA）等，详情请参见[弹性伸缩概述](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/弹性伸缩概述.md)。
+-   为了保证应用能够动态调整所需容器资源，您可以配置容器水平伸缩（HPA）、定时容器水平伸缩（CronHPA）、容器垂直伸缩（VPA）等，详情请参见[弹性伸缩概述](/cn.zh-CN/Kubernetes集群用户指南/弹性伸缩/弹性伸缩概述.md)。
 -   除了通过服务（Service）公开应用，您还可以通过路由（Ingress）实现对应用的七层网络路由控制，详情请参见[创建Ingress路由](/cn.zh-CN/Kubernetes集群用户指南/网络/Ingress管理/创建Ingress路由.md)。
 -   除了观测容器性能，您还可以观测集群基础设施、应用性能和用户业务，详情请参见[可观测性体系概述](/cn.zh-CN/Kubernetes集群用户指南/可观测性/可观测性体系概述.md)。
 -   为了避免产生不必要的费用，请及时清理不需要的集群，详情请参见[删除集群](/cn.zh-CN/Kubernetes集群用户指南/集群/管理集群/删除集群.md)。
