@@ -6,15 +6,15 @@ keyword: [NAS存储卷, FAQ, 常见问题]
 
 本文为您介绍NAS存储卷常见问题的处理方法。
 
--   [使用NAS时，提示chown: option not permitted](#section_srw_s3w_230)
+-   [使用NAS时，提示chown: Operation not permitted](#section_srw_s3w_230)
 -   [使用NAS动态存储卷时Controller的任务队列已满且无法创建新的PV](#section_gy3_aek_sdu)
 -   [NAS存储卷挂载时间过长](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)
 
-## 使用NAS时，提示chown: option not permitted
+## 使用NAS时，提示chown: Operation not permitted
 
 问题现象：
 
-使用NAS时，提示chown: option not permitted。
+使用NAS时，提示chown: Operation not permitted。
 
 问题原因：
 
