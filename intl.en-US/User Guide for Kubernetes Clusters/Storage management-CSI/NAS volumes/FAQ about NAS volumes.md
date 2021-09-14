@@ -6,15 +6,15 @@ keyword: [NAS volume, FAQ, frequently asked questions]
 
 This topic provides answers to some frequently asked questions about Apsara File Storage NAS \(NAS\) volumes.
 
--   [Why does the system prompt chown: option not permitted when I mount a NAS file system?](#section_srw_s3w_230)
+-   [Why does the system prompt chown: operation not permitted when I mount a NAS file system?](#section_srw_s3w_230)
 -   [What do I do if the task queue of alicloud-nas-controller is full and PVs cannot be created when I use a dynamically provisioned NAS volume?](#section_gy3_aek_sdu)
 -   [Why does it require a long time to mount a NAS volume?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-Flexvolume/NAS volumes/FAQ about NAS volumes.md)
 
-## Why does the system prompt chown: option not permitted when I mount a NAS file system?
+## Why does the system prompt chown: operation not permitted when I mount a NAS file system?
 
 Symptom:
 
-The system prompts chown: option not permitted when you mount a NAS file system.
+The system prompts chown: operation not permitted when you mount a NAS file system.
 
 Cause:
 
