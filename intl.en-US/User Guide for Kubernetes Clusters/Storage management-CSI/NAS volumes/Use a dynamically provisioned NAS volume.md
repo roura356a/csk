@@ -22,13 +22,14 @@ You can use the Container Storage Interface \(CSI\) driver to mount a dynamicall
 -   You need a storage service that offers higher read and write throughput than Object Storage Service \(OSS\).
 -   You want to share files across hosts. For example, you want to use a NAS file system as a file server.
 
-## Precautions
+## Usage notes
 
 -   To mount an Extreme NAS file system, set the `path` parameter of the NAS volume to a subdirectory of /share. For example, a value of `0cd8b4a576-g****.cn-hangzhou.nas.aliyuncs.com:/share/subpath` indicates that the mounted subdirectory of the NAS file system is `/share/subpath`.
 -   If a NAS file system is mounted to multiple pods, the data in the file system is shared by the pods. In this case, the application must be able to synchronize data across these pods when data modifications are made by multiple pods.
 
     **Note:** You cannot grant permissions to access the / directory \(root directory\) of the NAS file system. The user account and user group to which the directory belongs cannot be modified.
 
+-   If the securityContext.fsgroup parameter is set in the application template, kubelet performs the `chmod` or `chown` operation after the volume is mounted, which increases the time consumption.
 
 ## Mount a dynamically provisioned NAS volume in subpath mode
 
@@ -71,7 +72,7 @@ To mount a dynamically provisioned NAS volume in subpath mode, you must manually
         |reclaimPolicy|The reclaim policy of the PV. By default, this parameter is set to Delete. You can also set this parameter to Retain.         -   Delete mode: When a persistent volume claim \(PVC\) is deleted, the related PV and NAS file system are also deleted.
         -   Retain mode: When a PVC is deleted, the related PV and NAS file system are retained and can only be manually deleted.
 If you require higher data security, we recommend that you use the Retain mode to prevent data loss caused by user errors.|
-        |archiveOnDelete|This parameter specifies the reclaim policy of backend storage when reclaimPolicy is set to Delete. NAS is a shared storage service. You must set both reclaimPolicy and archiveOnDelete to ensure data security. Configure the policy in the parameters section. The default value is true. This value indicates that the subdirectory or files are not deleted when the PV is deleted. Instead, the subdirectory or files are renamed in the format of `archived-{pvName}.{timestamp}`. If the value is set to false, it indicates that the backend storage is deleted when the PV is deleted. **Note:** We recommend that you do not set the value to false when the service receives a large amount of network traffic. For more information, see [What do I do if the task queue of alicloud-nas-controller is full and PVs cannot be created when I mount a dynamically provisioned PV?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/FAQ about NAS volumes.md). |
+        |archiveOnDelete|This parameter specifies the reclaim policy of backend storage when reclaimPolicy is set to Delete. NAS is a shared storage service. You must set both reclaimPolicy and archiveOnDelete to ensure data security. Configure the policy in the parameters section. The default value is true. This value indicates that the subdirectory or files are not deleted when the PV is deleted. Instead, the subdirectory or files are renamed in the format of `archived-{pvName}.{timestamp}`. If the value is set to false, it indicates that the backend storage is deleted when the PV is deleted. **Note:** We recommend that you do not set the value to false when the service receives a large amount of network traffic. For more information, see [What do I do if the task queue of alicloud-nas-controller is full and PVs cannot be created when I use a dynamically provisioned NAS volume?](/intl.en-US/User Guide for Kubernetes Clusters/Storage management-CSI/NAS volumes/FAQ about NAS volumes.md). |
 
     2.  Run the following command to create a StorageClass:
 
@@ -81,7 +82,7 @@ If you require higher data security, we recommend that you use the Retain mode t
 
 3.  Create a PVC.
 
-    1.  Create a nas.yaml file and copy the following content into the file:
+    1.  Create a pvc.yaml file and copy the following content into the file:
 
         ```
         kind: PersistentVolumeClaim
@@ -202,7 +203,7 @@ If you require higher data security, we recommend that you use the Retain mode t
     deployment-nas-2-c5bb4746c-4****    1/1     Running   0          32s
     ```
 
-    **Note:** The subdirectory `0cd8b4a576-g****.cn-hangzhou.nas.aliyuncs.com:/share/nas-79438493-f3e0-11e9-bbe5-00163e09****` of the NAS volume is mounted to the /data directory of pods `deployment-nas-1-5b5cdb85f6-n****` and `deployment-nas-2-c5bb4746c-4****`. Where:
+    **Note:** The subdirectory `0cd8b4a576-g****.cn-hangzhou.nas.aliyuncs.com:/share/nas-79438493-f3e0-11e9-bbe5-00163e09****` of the NAS volume is mounted to the /data directory of pods `deployment-nas-1-5b5cdb85f6-n****` and `deployment-nas-2-c5bb4746c-4****`. The following information is displayed.
 
     -   `/share`: the subdirectory is mounted in subpath mode as specified in the StorageClass configurations.
     -   `nas-79438493-f3e0-11e9-bbe5-00163e09****`: the name of the PV.
@@ -299,7 +300,7 @@ When you mount a NAS volume in filesystem mode, you can create only one NAS file
 
 3.  Create a PVC and pods to mount a NAS volume.
 
-    1.  Create a nas.yaml file and copy the following content into the file:
+    1.  Create a pvc.yaml file and copy the following content into the file:
 
         ```
         kind: PersistentVolumeClaim
