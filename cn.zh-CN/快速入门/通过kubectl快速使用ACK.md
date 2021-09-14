@@ -212,7 +212,7 @@
 
 6.  执行以下命令确认LoadBalancer类型的服务创建成功。
 
-    示例应用将通过EXTERNA-IP字段的IP地址向公网公开。
+    示例应用将通过EXTERNAL-IP字段的IP地址向公网公开。
 
     ```
     kubectl get svc ack-cube-svc
@@ -228,7 +228,7 @@
 
 ## 步骤五：测试应用
 
-在浏览器地址栏输入该服务EXTERNA-IP字段的IP地址，即可开始魔方游戏。
+在浏览器地址栏输入该服务EXTERNAL-IP字段的IP地址，即可开始魔方游戏。
 
 ## 步骤六：监控应用
 
