@@ -4,16 +4,14 @@ keyword: [ALB Ingress, access a Service]
 
 # Access Services by using an ALB Ingress
 
-Application Load Balancer \(ALB\) Ingresses are compatible with NGINX Ingresses, and provide improved traffic routing capabilities based on ALB instances. ALB Ingresses support complex routing, automatic certificate discovery, and the HTTP, HTTPS, and QUIC protocols. ALB Ingresses meet the requirements of cloud-native applications for ultra-high elasticity and balancing of heavy traffic loads at Layer 7. This topic describes how to use an ALB Ingress to access Services.
+Application Load Balancer \(ALB\) Ingresses are compatible with NGINX Ingresses, and provide improved traffic routing capabilities based on ALB instances. ALB Ingresses support complex routing, automatic certificate discovery, and the HTTP, HTTPS, and Quick UDP Internet Connection \(QUIC\) protocols. ALB Ingresses meet the requirements of cloud-native applications for ultra-high elasticity and balancing of heavy traffic loads at Layer 7. This topic describes how to use an ALB Ingress to access Services.
 
--   A serverless Kubernetes \(ASK\) cluster is created. You must configure a network address translation \(NAT\) gateway for the virtual private cloud \(VPC\) where the cluster is created so that the cluster can download container images from the Internet. For more information, see [Create an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Cluster/Create an ASK cluster.md).
--   The kubectl client is connected to the ASK cluster. For more information, see [Use kubectl to connect to an ASK cluster](/intl.en-US/User Guide for Serverless Kubernetes Clusters/Cluster/Manage and access clusters/Use kubectl to connect to an ASK cluster.md).
 
 An Ingress provides a collection of rules that manage external access to Services in a cluster. You can configure forwarding rules to assign Services different externally-accessible URLs. However, NGINX Ingresses and Layer 4 Server Load Balancer \(SLB\) Ingresses cannot meet the requirements of cloud-native applications, such as complex routing, multiple application layer protocols support \(such as QUIC\), and balancing of heavy traffic loads at Layer 7.
 
 ## Step 1: Deploy Services
 
-1.  Create a file named cafe-service.yaml and copy the following content to the file. The file is used to deploy two Deployments named `coffee` and `tea` and two Services named `coffee` and `tea`.
+1.  Create a cafe-service.yaml file and copy the following content to the file. The file is used to deploy two Deployments named `coffee` and `tea` and two Services named `coffee` and `tea`.
 
     ```
     apiVersion: apps/v1 
@@ -119,7 +117,7 @@ An Ingress provides a collection of rules that manage external access to Service
 
 ## Step 2: Configure an Ingress
 
-1.  Create a file named cafe-ingress.yaml and copy the following content to the file:
+1.  Create a cafe-ingress.yaml and copy the following content to the file:
 
     ```
     apiVersion: networking.k8s.io/v1beta1
@@ -160,12 +158,27 @@ An Ingress provides a collection of rules that manage external access to Service
 
     |Parameter|Description|
     |---------|-----------|
-    |alb.ingress.kubernetes.io/name|The name of the ALB instance. This parameter is optional.|
-    |alb.ingress.kubernetes.io/address-type|The IP address type of the ALB instance. This parameter is optional. Valid values:    -   Internet: The ALB instance uses a public IP address. The domain name of a Service is resolved to the public IP address of the ALB instance. Therefore, the Service is accessible over the Internet. This is the default value.
-    -   Intranet: The ALB instance uses a private IP address. The domain name of a Service is resolved to the private IP address of the ALB instance. Therefore, the Service is accessible only within the virtual private cloud \(VPC\) where the ALB instance is deployed. |
-    |alb.ingress.kubernetes.io/vswitch-ids|The IDs of the vSwitches that are used by the ALB Ingress. You must specify at least two vSwitch IDs and the vSwitches must be deployed in different zones.|
+    |alb.ingress.kubernetes.io/name|The name of the ALB instance that you want to use.|
+    |alb.ingress.kubernetes.io/address-type|The type of IP address that the ALB instance uses to provide services. Valid values:    -   Internet: The ALB instance uses a public IP address. The domain name of the Ingress is resolved to the public IP address of the ALB instance. Therefore, the ALB instance is accessible over the Internet. This is the default value.
+    -   Intranet: The ALB instance uses a private IP address. The domain name of the Ingress is resolved to the private IP address of the ALB instance. Therefore, the ALB instance is accessible only within the virtual private cloud \(VPC\) where the ALB instance is deployed. |
+    |alb.ingress.kubernetes.io/vswitch-ids|The IDs of the vSwitches that are used by the ALB Ingress. You must specify at least two vSwitch IDs and the vSwitches must be deployed in different zones. For more information about the regions and zones that are supported by ALB Ingresses, see [Supported regions and zones](/intl.en-US/Application Load Balancer/ALB Product Introduction/Supported regions and zones.md).|
+    |alb.ingress.kubernetes.io/healthcheck-enabled|Specifies whether to enable health checks. Default value: true.|
+    |alb.ingress.kubernetes.io/healthcheck-path|The path through which health checks are performed. Default value: /.     -   Enter the URL of the web page on which you want to perform health checks. We recommend that you enter the URL of a static web page. The URL must be 1 to 80 characters in length, and can contain letters, digits, hyphens \(-\), forward slashes \(/\), periods \(.\), percent signs \(%\), question marks \(?\), number signs \(\#\), and ampersands \(&\). The URL can also contain the following extended characters: \_ ; ~ ! \( \) \* \[ \] @ $ ^ : ' , +. The URL must start with a forward slash \(/\).
+    -   By default, to perform health checks, the ALB instance sends HTTP HEAD requests to the default application homepage configured on the backend Elastic Compute Service \(ECS\) instance. The ALB instance sends the requests to the private IP address of the ECS instance. If you do not want to use the default application homepage for health checks, you must specify a URL. |
+    |alb.ingress.kubernetes.io/healthcheck-protocol|The protocol that is used to perform health checks.     -   HTTP: The ALB instance sends HEAD or GET requests to a backend server to simulate access from a browser and check whether the backend server is healthy. This is the default protocol.
+    -   TCP: The ALB instance sends TCP SYN packets to a backend server to check whether the port of the backend server is available to receive requests.
+    -   GRPC: The ALB instance sends POST or GET requests to a backend server to check whether the backend server is healthy. |
+    |alb.ingress.kubernetes.io/healthcheck-method|Specifies a health check method.     -   HEAD: By default, HTTP health checks send HEAD requests to a backend server. This is the default method. Make sure that your backend server supports HEAD requests. If your backend server does not support HEAD requests or HEAD requests are disabled, health checks may fail. In this case, you can use GET requests to perform health checks.
+    -   POST: By default, gRPC health checks use the POST method. Make sure that your backend servers support POST requests. If your backend server does not support POST requests or POST requests are disabled, health checks may fail. In this case, you can use GET requests to perform health checks.
+    -   GET: If the length of a response packet exceeds 8 KB, the response is fragmented into smaller packets. However, the health check result is not affected. |
+    |alb.ingress.kubernetes.io/healthcheck-httpcode|Specify the status codes that are returned when health check results are normal.     -   When the health check protocol is set to HTTP, valid values are http\_2xx, http\_3xx, http\_4xx, and http\_5xx. The default value for HTTP health checks is http\_2xx.
+    -   When the health check protocol is set to GRPC, valid values are 0 to 99. Value ranges are supported. You can enter at most 20 value ranges and must separate them with commas \(,\). |
+    |alb.ingress.kubernetes.io/healthcheck-timeout-seconds|Specifies the timeout period of a health check. If a backend server does not respond within the specified timeout period, the server fails the health check. Valid values: 1 to 300. Default value: 5. Unit: seconds.|
+    |alb.ingress.kubernetes.io/healthcheck-interval-seconds|The interval at which health checks are performed. Unit: seconds. Valid values: 1 to 50. Default value: 2. Unit: seconds.|
+    |alb.ingress.kubernetes.io/healthy-threshold-count|Specifies the number of times that an unhealthy backend server must consecutively pass health checks before the server is considered healthy. Valid values: 2 to 10. Default value: 3.|
+    |alb.ingress.kubernetes.io/unhealthy-threshold-count|Specifies the number of times that a healthy backend server must consecutively fail health checks before the server is considered unhealthy. Valid values: 2 to 10. Default value: 3.|
 
-2.  Run the following command to configure an externally-accessible URL and `path` for the `coffee` and `tea` Services separately:
+2.  Run the following command to configure an externally-accessible domain name and a `path` for the `coffee` and `tea` Services separately:
 
     ```
     kubectl apply -f cafe-ingress.yaml
@@ -198,7 +211,7 @@ An Ingress provides a collection of rules that manage external access to Service
 
         ![1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/9747748261/p297352.png)
 
-    -   Access the `coffee` Service by using a command-line interface \(CLI\).
+    -   Access the `coffee` Service by using a CLI.
 
         ```
         curl http://alb-m551oo2zn63yov****.cn-hangzhou.alb.aliyuncs.com/coffee
