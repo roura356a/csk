@@ -10,12 +10,14 @@ keyword: [自定义组件参数, Pro集群, 管控面, 托管组件]
 
 为了确保顺利完成管控面的参数修改，请仔细阅读以下注意事项：
 
--   修改参数之后，管控面会进行重启，建议您选择业务低峰进行参数修改操作。
+-   修改参数之后，管控面会进行重启，建议您选择业务低谷期进行参数修改操作。
 -   修改参数之后，您输入的参数会覆盖ACK Pro提供的默认参数，从而导致默认参数失效。
 -   为了保证管控面的稳定性，当前ACK Pro仅支持自定义部分参数。
 -   请确保您输入的参数正确且完整，错误参数可能会导致管控面启动失败。关于参数设置的详细信息，请参见[kube-apiserver](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)和[kube-controller-manager](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/)。
 
 ## 自定义Pro集群的管控面参数
+
+下文以修改Kube API Server组件为例，说明如何修改组件参数。
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
@@ -25,10 +27,9 @@ keyword: [自定义组件参数, Pro集群, 管控面, 托管组件]
 
 4.  在集群管理页左侧导航栏中，选择**运维管理** \> **组件管理**。
 
-5.  下文以修改Kube API Server组件为例，说明如何修改组件参数。
-6.  在**核心组件**区域，单击目标组件右下方的**配置**。
+5.  在**核心组件**区域，单击目标组件右下方的**配置**。
 
-7.  在**kube-apiserver参数配置**对话框中，输入您的自定义参数，然后单击**确定**。
+6.  在**kube-apiserver参数配置**对话框中，输入您的自定义参数，然后单击**确定**。
 
     **说明：** 请确保您输入的参数完整性和正确性。目前ACK Pro集群只支持修改Kube API Server和KCM组件的参数。关于Kube API Server和KCM参数的具体格式和合法值，请参见[kube-apiserver](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)和[kube-controller-manager](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/)（需选择对应的Kubernetes版本）。
 
@@ -39,12 +40,19 @@ keyword: [自定义组件参数, Pro集群, 管控面, 托管组件]
 
 |Kubernetes版本|组件名|参数|默认值|
 |------------|---|--|---|
-|1.16|kube-apiserver|ServiceNodePortRange|30000-32767|
-|EnableAdmissionPlugins|-   如果开启了PodSecurityPolicy：默认值为`NodeRestriction,PodSecurityPolicy`
--   如果关闭了PodSecurityPolicy：默认值为`NodeRestriction` |
+|1.16|kube-apiserver|ServiceNodePortRange|可选范围10000~65535，默认30000~32767。|
+|EnableAdmissionPlugins|-   如果开启了PodSecurityPolicy：默认值为`NodeRestriction,PodSecurityPolicy`。
+-   如果关闭了PodSecurityPolicy：默认值为`NodeRestriction`。 |
 |kube-controller-manager|HorizontalPodAutoscalerSyncPeriod|15s|
-|1.18|kube-apiserver|ServiceNodePortRange|30000-32767|
-|EnableAdmissionPlugins|-   如果开启了PodSecurityPolicy：默认值为`NodeRestriction,PodSecurityPolicy`
--   如果关闭了PodSecurityPolicy：默认值为`NodeRestriction` |
+|1.18和1.20**说明：** Kubernetes1.18和1.20版本的组件名、参数和默认值是相同的。
+
+|kube-apiserver|ServiceNodePortRange|30000~32767|
+|EnableAdmissionPlugins|-   如果开启了PodSecurityPolicy：默认值为`NodeRestriction,PodSecurityPolicy`。
+-   如果关闭了PodSecurityPolicy：默认值为`NodeRestriction`。 |
 |kube-controller-manager|HorizontalPodAutoscalerSyncPeriod|15s|
+|LargeClusterSizeThreshold|默认值50。|
+|UnhealthyZoneThreshold|默认值0.55。|
+|SecondaryNodeEvictionRate|默认值0.01。|
+|PodEvictionTimeout|默认值5 m。|
+|NodeEvictionRate|默认值0.1。|
 
