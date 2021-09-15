@@ -49,8 +49,6 @@ You can perform the following steps to deploy another independent NGINX Ingress 
 
         On the **Helm** page, you can find that the new NGINX Ingress controller is deployed.
 
-        ![Nginx Ingress](../images/p158138.png)
-
 
 ## Test the connectivity
 
