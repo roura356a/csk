@@ -49,7 +49,7 @@ Perform the following checks:
 -   Check whether alicloud-monitor-controller is upgraded to the latest version. We recommend that you upgrade the component to the latest version.
 -   Check the log file of alicloud-monitor-controller for connection timeout errors and SDK errors.
 
-If no error is found after you perform the preceding checks, use the following ticket template to[submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
+If no error is found after you perform the preceding checks, use the following ticket template to [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 
 Ticket template
 
@@ -75,7 +75,7 @@ Check whether the name of the instance in the application group is the same as t
 -   If the instance name is different from the pod name, perform the steps provided in the preceding section.
 -   If the instance name is the same as the pod name, check whether the pod where the metrics-server component is deployed runs as normal. Check whether log data is collected as normal. If the `Successful write 164190 bytes metrics to monitor server` message is found in the log, this indicates that log data is collected as normal.
 
-If no error is found after you perform the preceding checks, use the following ticket template to[submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
+If no error is found after you perform the preceding checks, use the following ticket template to [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).
 
 Ticket template
 
