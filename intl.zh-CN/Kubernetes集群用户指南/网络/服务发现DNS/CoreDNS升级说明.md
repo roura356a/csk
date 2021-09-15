@@ -27,7 +27,7 @@ CoreDNS升级过程中，ACK会用新版本的YAML模板覆盖您集群中旧版
 
 ## 配置IPVS类型集群的UDP超时时间
 
-如果您的ACK集群使用了kube-proxy IPVS模式，需要降低IPVS UDP类型的会话保持超时时间至10秒。如果ACK集群中有UDP类型的业务，请确认业务影响面后再进行操作。
+如果您的ACK集群使用了kube-proxy IPVS模式，IPVS的会话保持策略会导致整个集群在升级完成后五分钟内出现概率性解析失败的问题。您可以按以下方式降低IPVS UDP类型的会话保持超时时间至10秒，以减少解析失败的次数。如果您ACK集群中包含UDP类型的业务，需要您提前评估该操作是否有影响再执行该操作。如果您无法评估，您可以[提交工单](https://workorder-intl.console.aliyun.com/console.htm)咨询。
 
 **说明：** 如果您的集群不是IPVS类型，请忽略配置IPVS类型集群的UDP超时时间的操作。关于如何查看kube-proxy代理模式，请参见[查看基本信息](/intl.zh-CN/Kubernetes集群用户指南/集群/管理集群/查看集群信息.md)。
 
