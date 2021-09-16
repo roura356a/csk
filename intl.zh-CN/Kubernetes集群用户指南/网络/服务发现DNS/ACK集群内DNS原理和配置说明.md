@@ -398,35 +398,4 @@ ACK支持通过dnsPolicy字段为每个Pod配置不同的DNS策略。目前ACK�
             }
         ```
 
--   **场景七：监控CoreDNS解析失败记录**
-
-    当您需要打开CoreDNS的日志收集日志并监控解析失败的情况时（可参见上述[场景一：开启日志服务](#li_jf8_chq_8g2)），您还需要为CoreDNS配置autopath。示例配置如下（更多信息，请参见[t1912179.md\#section\_57y\_xv4\_8gn](/intl.zh-CN/Kubernetes集群用户指南/网络/服务发现DNS/优化集群DNS性能.md)）：
-
-    ```
-      Corefile: |
-        .:53 {
-            errors
-            health
-            ready
-            log
-    
-            kubernetes cluster.local in-addr.arpa ip6.arpa {
-    
-              pods verified
-              fallthrough in-addr.arpa ip6.arpa
-            }
-            autopath @kubernetes
-            prometheus :9153
-            forward . /etc/resolv.conf
-            cache 30
-            loop
-            reload
-            loadbalance
-        }
-    ```
-
-    编译应用新配置后，执行命令`kubectl get pods -n kube-system | grep coredns`先查看CoreDNS Pod，然后执行命令`kubectl logs coredns-{pod id} -n kube-system`查看每个Pod的日志。当监控到NXDOMAIN、SERVFAIL类型的返回码时，即代表CoreDNS解析失败。
-
-    ![NXDOMAIN](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6172934061/p178897.png)
-
 
