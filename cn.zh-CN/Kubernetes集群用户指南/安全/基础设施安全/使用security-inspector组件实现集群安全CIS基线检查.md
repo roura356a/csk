@@ -7,7 +7,7 @@ keyword: [CIS Kubernetes基线检查, security-inspector, ACK]
 CIS Kubernetes基线是CIS推出的一系列用于构建一个安全可靠的Kubernetes集群的安全配置建议。本文介绍如何在命令行下通过security-inspector组件提供的功能实现集群安全CIS基线检查。
 
 -   已创建一个ACK集群。具体操作，请参见[创建Kubernetes托管版集群](/cn.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
--   已在集群中安装security-inspector组件。具体操作，请参见[管理组件](/cn.zh-CN/Kubernetes集群用户指南/集群/升级集群/管理组件.md)。
+-   已在集群中安装security-inspector组件。具体操作，请参见[管理组件](/cn.zh-CN/Kubernetes集群用户指南/组件/管理组件.md)。
 
 ## CIS基线概述
 
@@ -15,7 +15,7 @@ CIS是互联网安全中心（Center for Internet Security）的缩写，它针�
 
 CIS Kubernetes基线是针对开源Kubernetes发行版本所编写的，旨在尽可能广泛应用于各个发行版本，同时不同的基线版本与特定的Kubernetes版本相关联。更多信息，请参见[CIS Kubernetes 基线](https://www.cisecurity.org/benchmark/kubernetes/)。
 
-CIS也推出了更符合各大云厂商实际场景的CIS Kubernetes基线，比如针对ACK场景的CIS基线，即CIS Benchmark for Alibaba Cloud Container Service For Kubernetes \(ACK\) 。
+CIS也推出了更符合各大云厂商实际场景的CIS Kubernetes基线，例如针对ACK场景的CIS基线，即CIS Alibaba Cloud Container Service For Kubernetes（ACK）Benchmark。
 
 ## 使用security-inspector组件实现集群安全CIS基线检查
 
@@ -27,7 +27,6 @@ CIS也推出了更符合各大云厂商实际场景的CIS Kubernetes基线，比
 
     ```
     kubectl apply -f - <<EOF
-    ---
     apiVersion: securityinspector.alibabacloud.com/v1alpha1
     kind: BenchmarkTask
     metadata:
@@ -49,9 +48,10 @@ CIS也推出了更符合各大云厂商实际场景的CIS Kubernetes基线，比
     |benchmarkVersion字段的值|含义|适用集群|
     |--------------------|--|----|
     |cis-kubernetes-auto|由组件根据集群版本自动选择最合适的CIS Kubernetes基线标准进行扫描。|Kubernetes 1.15及以上版本|
-    |cis-kubernetes-ack-1.0|按照CIS Benchmark for Alibaba Cloud Container Service For Kubernetes \(ACK\) 1.0基线标准进行扫描。|ACK专有集群和托管集群|
-    |cis-kubernetes-1.6|按照CIS Benchmarks for Kubernetes 1.6基线标准进行扫描。|Kubernetes 1.16及以上版本|
-    |cis-kubernetes-1.5|按照CIS Benchmarks for Kubernetes 1.5基线标准进行扫描。|Kubernetes 1.15|
+    |cis-kubernetes-ack-1.0|按照CIS Alibaba Cloud Container Service For Kubernetes（ACK）Benchmark v1.0.0基线标准进行扫描。|ACK专有版集群和托管版集群（Kubernetes 1.18及以上版本）|
+    |cis-kubernetes-1.20|按照CIS Kubernetes V1.20 Benchmark v1.0.0基线标准进行扫描。|Kubernetes 1.20及以上版本|
+    |cis-kubernetes-1.6|按照CIS Kubernetes Benchmark v1.6.0基线标准进行扫描。|Kubernetes 1.16~1.19版本|
+    |cis-kubernetes-1.5|按照CIS Kubernetes Benchmark v1.5.1基线标准进行扫描。。|Kubernetes 1.15版本|
 
 2.  等待5分钟左右，通过以下命令确认本次扫描任务是否完成。
 
@@ -82,9 +82,10 @@ CIS也推出了更符合各大云厂商实际场景的CIS Kubernetes基线，比
 |列名|含义|是否需要采取措施|
 |--|--|--------|
 |**Date**|扫描时间|否|
-|**Result Schema**|扫描时遵照的基线标准。取值如下：-   cis-kubernetes-ack-1.0：CIS Benchmark for Alibaba Cloud Container Service For Kubernetes \(ACK\) 1.0基线标准。
--   cis-kubernetes-1.6：CIS Benchmarks for Kubernetes 1.6基线标准。
--   cis-kubernetes-1.5：CIS Benchmarks for Kubernetes 1.5基线标准。
+|**Result Schema**|扫描时遵照的基线标准。取值如下：-   cis-kubernetes-ack-1.0：CIS Alibaba Cloud Container Service For Kubernetes \(ACK\) Benchmark v1.0.0基线标准。
+-   cis-kubernetes-1.20：CIS Kubernetes V1.20 Benchmark v1.0.0基线标准。
+-   cis-kubernetes-1.6：CIS Kubernetes Benchmark v1.6.0基线标准。
+-   cis-kubernetes-1.5：CIS Kubernetes Benchmark v1.5.1基线标准。
 
 关于各个基线标准的具体内容，请参见[CIS Kubernetes基线标准文档](https://www.cisecurity.org/benchmark/kubernetes/)。
 
