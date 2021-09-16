@@ -14,7 +14,7 @@ keyword: [容器存储, CSI, 存储架构]
 
 |阿里云存储|静态数据卷|动态数据卷|默认部署|主要特点|应用场景|
 |-----|-----|-----|----|----|----|
-|阿里云云盘|支持|支持-   存储类支alicloud-disk-available， alicloud-disk-efficiency，alicloud-disk-essd， alicloud-disk-ssd， alicloud-disk-topology
+|阿里云云盘|支持|支持存储类alicloud-disk-available， alicloud-disk-efficiency，alicloud-disk-essd， alicloud-disk-ssd， alicloud-disk-topology
 
 |是|非共享存储，每个云盘只能在单个节点挂载。|-   高IO、低延时场景。
 
@@ -26,7 +26,7 @@ keyword: [容器存储, CSI, 存储架构]
 
 
 更多信息，请参见[t1592119.md\#](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷概述.md)。 |
-|阿里云NAS|支持|支持-   存储类支 alibabacloud-cnfs-nas
+|阿里云NAS|支持|支持存储类 alibabacloud-cnfs-nas
 
 |是|共享存储，可提供高性能、高吞吐存储服务。|-   共享数据场景
 
