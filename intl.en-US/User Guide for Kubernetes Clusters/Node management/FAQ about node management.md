@@ -2,14 +2,15 @@
 
 This topic provides answers to some frequently asked questions about node management.
 
--   [How do I manually upgrade the kernel of the GPU nodes in a cluster?](#section_i7t_2z5_h3n)
--   [How do I resolve the issue that no container is started on a GPU node?](#section_wj1_6cu_gtc)
+-   [How do I manually upgrade the kernel of GPU-accelerated nodes in a cluster?](#section_i7t_2z5_h3n)
+-   [How do I resolve the issue that no container is started on a GPU-accelerated node?](#section_wj1_6cu_gtc)
 -   [FAQ about adding nodes to a cluster](~~170722~~)
 -   [The "drain-node job execute timeout" error appears during node removal](~~190626~~)
+-   [How do I change the hostname of a worker node in an ACK cluster?](#section_cob_uvi_y06)
 
-## How do I manually upgrade the kernel of the GPU nodes in a cluster?
+## How do I manually upgrade the kernel of GPU-accelerated nodes in a cluster?
 
-You can manually upgrade the kernel of the GPU nodes in a cluster by performing the following steps:
+You can manually upgrade the kernel of GPU-accelerated nodes in a cluster by performing the following steps:
 
 **Note:** The current kernel version is earlier than `3.10.0-957.21.3`.
 
@@ -17,9 +18,9 @@ Confirm the kernel version to which you want to upgrade. Proceed with caution.
 
 You can perform the following steps to upgrade the kernel and NVIDIA driver.
 
-1.  [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to Kubernetes clusters by using kubectl.md).
+1.  [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md).
 
-2.  Set the GPU node that you want to manage to the unschedulable state. In this example, the node cn-beijing.i-2ze19qyi8votgjz12345 is used.
+2.  Set the GPU-accelerated node that you want to manage to the unschedulable state. In this example, the node cn-beijing.i-2ze19qyi8votgjz12345 is used.
 
     ```
     kubectl cordon cn-beijing.i-2ze19qyi8votgjz12345
@@ -27,7 +28,7 @@ You can perform the following steps to upgrade the kernel and NVIDIA driver.
     node/cn-beijing.i-2ze19qyi8votgjz12345 already cordoned
     ```
 
-3.  Migrate the pods on the GPU node to other nodes.
+3.  Migrate the pods on the GPU-accelerated node to other nodes.
 
     ```
     kubectl drain cn-beijing.i-2ze19qyi8votgjz12345 --grace-period=120 --ignore-daemonsets=true
@@ -37,11 +38,11 @@ You can perform the following steps to upgrade the kernel and NVIDIA driver.
     pod/nginx-ingress-controller-78d847fb96-5fkkw evicted
     ```
 
-4.  Uninstall the existing nvidia-driver.
+4.  Uninstall nvidia-driver.
 
-    **Note:** In this example, the driver of version 384.111 is uninstalled. If your driver version is not 384.111, download the installation package of your driver from the official NVIDIA website and replace version `384.111` with your actual driver version number.
+    **Note:** In this example, the uninstalled driver version is 384.111. If your driver version is not 384.111, download the installation package of your driver from the official NVIDIA website and upgrade the driver to `384.111` first.
 
-    1.  Log on to the GPU node and run the `nvidia-smi` command to check the driver version.
+    1.  Log on to the GPU-accelerated node and run the `nvidia-smi` command to check the driver version.
 
         ```
         nvidia-smi -a | grep 'Driver Version'
@@ -57,7 +58,7 @@ You can perform the following steps to upgrade the kernel and NVIDIA driver.
 
         **Note:** The installation package is required to uninstall the driver.
 
-    3.  Uninstall the existing driver.
+    3.  Uninstall the driver.
 
         ```
         chmod u+x NVIDIA-Linux-x86_64-384.111.run
@@ -68,19 +69,19 @@ You can perform the following steps to upgrade the kernel and NVIDIA driver.
 
     Upgrade the kernel based on your requirements.
 
-6.  Restart the GPU node.
+6.  Restart the GPU-accelerated node.
 
     ```
     reboot
     ```
 
-7.  Log on to the GPU node to install the corresponding kernel-devel package.
+7.  Log on to the GPU-accelerated node and install the corresponding kernel-devel package.
 
     ```
     yum install -y kernel-devel-$(uname -r)
     ```
 
-8.  Go to the official NVIDIA website to download the required driver and install it on the GPU node. In this example, the driver of version 410.79 is used.
+8.  Go to the official NVIDIA website to download the required driver and install it on the GPU-accelerated node. In this example, the driver version 410.79 is used.
 
     ```
     cd /tmp/
@@ -96,7 +97,7 @@ You can perform the following steps to upgrade the kernel and NVIDIA driver.
     nvidia-modprobe -u -c=0 -m || true
     ```
 
-9.  Check the /etc/rc.d/rc.local file to verify that the following configurations are included. Otherwise, add the following configurations to the file.
+9.  Make sure that the /etc/rc.d/rc.local file includes the following configurations. Otherwise, add the following configurations to the file.
 
     ```
     nvidia-smi -pm 1 || true
@@ -114,7 +115,7 @@ You can perform the following steps to upgrade the kernel and NVIDIA driver.
     service kubelet start
     ```
 
-11. Set the GPU node to schedulable.
+11. Set the GPU-accelerated node to schedulable.
 
     ```
     kubectl uncordon cn-beijing.i-2ze19qyi8votgjz12345
@@ -122,7 +123,7 @@ You can perform the following steps to upgrade the kernel and NVIDIA driver.
     node/cn-beijing.i-2ze19qyi8votgjz12345 already uncordoned
     ```
 
-12. Run the following command in the nvidia-device-plugin container to check the version of the driver installed on the GPU node.
+12. Run the following command in the nvidia-device-plugin container to check the version of the driver installed on the GPU-accelerated node.
 
     ```
     kubectl exec -n kube-system -t nvidia-device-plugin-cn-beijing.i-2ze19qyi8votgjz12345 nvidia-smi
@@ -145,12 +146,12 @@ You can perform the following steps to upgrade the kernel and NVIDIA driver.
     +-----------------------------------------------------------------------------+
     ```
 
-    **Note:** If you run the `docker ps` command and find that no container is started on the GPU node, see [Failed to start a container on the GPU node]().
+    **Note:** If you run the `docker ps` command and find that no container is started on the GPU-accelerated node, see [Failed to start a container on the GPU node]().
 
 
-## How do I resolve the issue that no container is started on a GPU node?
+## How do I resolve the issue that no container is started on a GPU-accelerated node?
 
-When you restart kubelet and Docker on GPU nodes where specific Kubernetes versions are installed, you may find that no container is started on the nodes after the restart.
+For some Kubernetes versions, when you restart kubelet and Docker on GPU-accelerated nodes, you may find that no container is started on the nodes after the restart.
 
 ```
 service kubelet stop
@@ -220,5 +221,28 @@ To resolve the issue, perform the following steps:
     docker info | grep -i cgroup
     Cgroup Driver: systemd
     ```
+
+
+## How do I change the hostname of a worker node in an ACK cluster?
+
+After an ACK cluster is created, you cannot directly change the hostnames of worker nodes. If you want to modify the hostname of a worker node, change the node naming rule of the relevant node pool, remove the worker node from the node pool, and add the worker node to the node pool again.
+
+**Note:** When you create an ACK cluster, you can modify the hostnames of worker nodes in the **Custom Node Name** section. For more information, see [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md).
+
+1.  Remove the worker node.
+
+    1.  Log on to the [ACK console](https://cs.console.aliyun.com).
+
+    2.  In the left-side navigation pane of the ACK console, click **Clusters**.
+
+    3.  In the left-side navigation pane of the details page, choose **Nodes** \> **Nodes**.
+
+    4.  On the **Nodes** page, find the worker node that you want to modify and choose **More** \> **Remove** in the **Actions** column.
+
+    5.  In the dialog box that appears, select **I understand the above information and want to remove the node\(s\).** and click **OK**.
+
+2.  Add the worker node to the node pool again. For more information, see [Manually add ECS instances](/intl.en-US/User Guide for Kubernetes Clusters/Node management/Node/Add existing ECS instances to an ACK cluster.md).
+
+    Then, the worker node is renamed based on the new node naming rule of the node pool.
 
 
