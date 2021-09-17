@@ -15,7 +15,9 @@ keyword: [静态存储卷, NAS, Flexvolume]
 
 若您在应用模板中配置了securityContext.fsgroup参数，kubelet在存储卷挂载完成后会执行`chmod`或`chown`操作，导致挂载时间过长。
 
-## 通过PV和PVC使用
+**说明：** 若已配置securityContext.fsgroup参数，且需要减少挂载时间。具体操作，请参见[NAS存储卷挂载时间延长](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)。
+
+## 操作步骤
 
 Pod可以通过关联创建的PV和PVC的方式使用NAS存储卷。
 
@@ -135,8 +137,7 @@ Pod可以通过关联创建的PV和PVC的方式使用NAS存储卷。
             - name: pvc-nas
               persistentVolumeClaim:
                 claimName: pvc-nas
+        
     ```
 
-
-[NAS存储卷概述](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷概述.md)
 
