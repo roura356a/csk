@@ -13,6 +13,8 @@ keyword: [动态存储卷, NAS, Flexvolume]
 
 若您在应用模板中配置了securityContext.fsgroup参数，kubelet在存储卷挂载完成后会执行`chmod`或`chown`操作，导致挂载时间过长。
 
+**说明：** 若已配置securityContext.fsgroup参数，且需要减少挂载时间。具体操作，请参见[NAS存储卷挂载时间延长](/intl.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)。
+
 ## 创建动态NAS卷
 
 1.  配置StorageClass。
