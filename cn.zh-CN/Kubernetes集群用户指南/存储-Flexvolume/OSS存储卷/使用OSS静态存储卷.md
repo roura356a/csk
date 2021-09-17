@@ -6,7 +6,13 @@ keyword: [OSS静态卷, K8s]
 
 本文为您介绍通过使用创建PV和PVC的方式使用OSS静态存储卷，及如何在PV中使用Secret。
 
-## 使用创建PV和PVC的方式
+## 注意事项
+
+若您在应用模板中配置了securityContext.fsgroup参数，kubelet在存储卷挂载完成后会执行`chmod`或`chown`操作，导致挂载时间延长。
+
+**说明：** 若已配置securityContext.fsgroup参数，且需要减少挂载时间。具体操作，请参见[OSS存储卷挂载时间延长](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/OSS存储卷/OSS存储卷FAQ.md)。
+
+## 使用创建PV和PVC的方式使用OSS静态存储卷
 
 1.  创建PV。
 
@@ -122,7 +128,7 @@ keyword: [OSS静态卷, K8s]
     ```
 
 
-## 通过Secret方式使用AccessKey
+## 通过Secret方式在PV中使用AccessKey
 
 1.  执行以下命令，创建Secret。
 
