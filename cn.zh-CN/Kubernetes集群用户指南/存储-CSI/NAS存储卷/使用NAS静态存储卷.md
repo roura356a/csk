@@ -30,7 +30,10 @@ NAS存储卷是一种可共享访问、弹性扩展、高可靠以及高性能�
 
     **说明：** NAS存储的/目录不支持修改权限、属主和属组。
 
--   若您在应用模板中配置了securityContext.fsgroup参数，kubelet在存储卷挂载完成后会执行`chmod`或`chown`操作，导致挂载时间过长。
+-   若您在应用模板中配置了securityContext.fsgroup参数，kubelet在存储卷挂载完成后会执行`chmod`或`chown`操作，导致挂载时间延长。
+
+    **说明：** 若已配置securityContext.fsgroup参数，且需要减少挂载时间。具体操作，请参见[NAS存储卷挂载时间延长](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/NAS存储卷FAQ.md)。
+
 
 ## 通过控制台的方式使用NAS静态存储卷
 
