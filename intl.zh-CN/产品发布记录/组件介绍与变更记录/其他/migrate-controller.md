@@ -4,27 +4,44 @@ keyword: [migrate-controller, Migrate Controller组件变更记录]
 
 # migrate-controller
 
-migrate-controller是基于开源项目Velero开发的一个Kubernetes应用迁移的组件。本文为您介绍migrate-controller组件相关内容的最新动态。
+migrate-controller是基于开源项目Velero开发的组件，并与阿里云快照、HBR产品深度结合，可以为您提供数据及应用模板的备份、恢复及迁移。本文为您介绍migrate-controller组件信息、使用说明及变更记录。
 
 ## 组件介绍
 
-有关如何安装Migrate Controller的具体步骤，请参见[安装Migrate Controller](/intl.zh-CN/Kubernetes集群用户指南/多云混合云/应用迁移/安装Migrate Controller.md)。
+有关如何安装Migrate Controller的具体步骤，请参见[开启集群备份](/intl.zh-CN/Kubernetes集群用户指南/备份中心/开启集群备份.md)。
 
-Velero是一个云原生的集群应用备份、恢复和迁移工具。Velero采用GO语言编写，可以安全地备份、恢复和迁移Kubernetes集群中的应用及其持久化存储卷。有关Velero源码项目地址，请参见[velero](https://github.com/vmware-tanzu/velero)。有关Velero Plugin for Alibaba Cloud源码项目地址，请参见[velero-plugin](https://github.com/AliyunContainerService/velero-plugin)。
-
-**说明：** Velero的运行环境要求Kubernetes集群版本大于v1.10。
+migrate-controller可以对您的K8s应用、PV数据进行备份。对于支持多种筛选策略备份应用。例如，命名空间级别、标签级别或资源级别等。对于数据支持云盘快照及HBR文件备份，同时可通过转换快照降低恢复时的RTO。
 
 ## 使用说明
 
-您可以使用Migrate Controller组件备份、恢复和迁移应用。具体操作，请参见[使用Migrate Controller备份和恢复应用](/intl.zh-CN/Kubernetes集群用户指南/多云混合云/应用迁移/使用Migrate Controller备份和恢复应用.md)和[使用Migrate Controller跨集群迁移应用](/intl.zh-CN/Kubernetes集群用户指南/多云混合云/应用迁移/使用Migrate Controller跨集群迁移应用.md)。
+您可以使用Migrate Controller组件备份、恢复和迁移应用。具体操作，请参见[备份和恢复应用](/intl.zh-CN/Kubernetes集群用户指南/备份中心/备份和恢复应用.md)和[跨集群迁移应用](/intl.zh-CN/Kubernetes集群用户指南/备份中心/跨集群迁移应用.md)。
 
 ## 变更记录
+
+**2021年09月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.5.2-d728be2-aliyun|registry-vpc.\{\{.Region\}\}.aliyuncs.com/acs/velero-installer:v1.5.2-d728be2-aliyun|2021年09月10日|-   兼容老版本。
+-   升级快照创建方式。
+-   升级文件备份为HBR。
+-   支持文件转换为云盘快照及NAS快照，便于恢复时降低RTO。
+-   升级托管版集群的权限控制策略。
+-   不再支持使用Restic备份数据。
+
+|预计影响正在执行备份的任务，该任务可能会被中断。|
+
+**2021年07月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.4.1-f745291-aliyun|registry-vpc.\{\{.Region\}\}.aliyuncs.com/acs/velero-installer:v1.4.1-f745291-aliyun|2021年07月13日|支持根据K8s及CSI版本确定快照特性的启用。|预计影响正在执行备份的任务，该任务可能会被中断。|
 
 **2021年03月**
 
 |版本号|镜像地址|变更时间|变更内容|变更影响|
 |---|----|----|----|----|
-|v1.3.1-3026c10-aliyun|registry-vpc.\{\{.Region\}\}.aliyuncs.com/acs/velero-installer:v1.3.1-3026c10-aliyun|2021年03月31日|功能升级及缺陷修复。|预计影响正在执行备份的任务，该任务可能会被中断。|
+|v1.3.1-3026c10-aliyun|registry-vpc.\{\{.Region\}\}.aliyuncs.com/acs/velero-installer:v1.3.1-3026c10-aliyun|2021年03月31日|升级组件卸载逻辑及组件异常修复。|预计影响正在执行备份的任务，该任务可能会被中断。|
 |v1.3.1-665c3ea-aliyun|registry.\{\{.Region\}\}.aliyuncs.com/acs/velero-installer:v1.3.1-665c3ea-aliyun|2021年03月31日|注册集群支持云盘快照。|预计影响正在执行备份的任务，该任务可能会被中断。|
 |v1.3.0-9274575-aliyun|registry-vpc.\{\{.Region\}\}.aliyuncs.com/acs/velero-installer:v1.0.1.2-h-e616322-aliyun|2021年03月29日|增加云盘快照模式以支持卷存储备份。|预计影响正在执行备份的任务，该任务可能会被中断。如有升级需求，请[提交工单](https://workorder-intl.console.aliyun.com/console.htm)联系技术支持人员。|
 
