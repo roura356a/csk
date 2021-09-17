@@ -4,15 +4,16 @@ keyword: [application management, frequently asked questions, FAQ]
 
 # FAQ about applications
 
-This topic provides answers to some frequently asked questions about application management in Kubernetes clusters.
+This topic provides answers to some frequently asked questions about applications in Container Service for Kubernetes \(ACK\) clusters.
 
--   [Troubleshoot application errors in Container Service for Kubernetes \(ACK\)](~~211618~~)
+-   [Troubleshoot application errors in ACK](~~211618~~)
 -   [How do I manually upgrade Helm?](#section_42y_vhz_d9t)
 -   [How do I use private images in Kubernetes clusters?](#section_b2s_ldm_84z)
--   [Precheck failure during a Cloud Controller Manager \(CCM\) upgrade](~~164988~~)
+-   [Troubleshoot precheck failures before upgrading Cloud Controller Manager \(CCM\)](~~164988~~)
 -   [How do I create containers from private images in an ACK cluster?](~~86562~~)
--   [Troubleshoot failures to bind source code in Container Registry](~~185631~~)
+-   [Troubleshoot failures to bind a source code repository in Container Registry](~~185631~~)
 -   [Troubleshoot repository creation failures in Container Registry](~~186529~~)
+-   [How do I pull images from a Container Registry Enterprise Edition instance deployed in a region inside China to an ACK cluster deployed in a region outside China?](#section_b3a_kr8_y6p)
 
 ## How do I manually upgrade Helm?
 
@@ -20,7 +21,7 @@ This topic provides answers to some frequently asked questions about application
 
 2.  Run the following command to install Tiller.
 
-    For the image address, enter the domain name of the image in the region where the virtual private cloud \(VPC\) that hosts the image is deployed. For example, if your machine is deployed in the China \(Hangzhou\) region, the image address is `registry-vpc.cn-hangzhou.aliyuncs.com/acs/tiller:v2.11.0`.
+    The address of the Tiller image must include the endpoint of the virtual private cloud \(VPC\) where the image registry is located. For example, if image registry is located in the China \(Hangzhou\) region, the image address is `registry-vpc.cn-hangzhou.aliyuncs.com/acs/tiller:v2.11.0`.
 
     ```
     helm init --tiller-image registry.cn-hangzhou.aliyuncs.com/acs/tiller:v2.11.0 --upgrade
@@ -61,9 +62,9 @@ This topic provides answers to some frequently asked questions about application
     -   `--docker-username`: the username of the Docker registry.
     -   `--docker-password`: the logon password of the Docker registry.
     -   `--docker-email`: the email address.
-    You can schedule a pod to the virtual node in one of the following ways:
+    You can pull a private image by using one of the following methods:
 
-    -   Manually configure the private image
+    -   Manually pull a private image
 
         Add the Secret configuration to the YAML configuration file.
 
@@ -78,15 +79,15 @@ This topic provides answers to some frequently asked questions about application
         **Note:**
 
         -   `imagePullSecrets` specifies the Secret that is required to pull the image.
-        -   `regsecret` must be the same as the previous configured Secret name.
+        -   `regsecret` must be the same as the previously configured Secret name.
         -   The Docker registry address in `image` must be the same as the one that is specified in `--docker-server`.
         For more information, see [Use a private registry](https://kubernetes.io/docs/concepts/containers/images/#using-a-private-registry).
 
-    -   Automatically configure the private image without the Secret
+    -   Automatically pull a private image without the Secret
 
-        **Note:** The Secret for pulling images is required each time you pull a private image. To prevent repetitively referencing the Secret, you can add the Secret to the default service account of the namespace that you use. For more information, see [Add ImagePullSecrets to a service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account).
+        **Note:** To avoid providing the same Secret each time you pull a private image, you can add the Secret to the default service account of the namespace that you use. For more information, see [Add ImagePullSecrets to a service account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account).
 
-        1.  Run the following command to query the Secret that is required to pull the private image:
+        1.  Run the following command to view the Secret that is required to pull the private image:
 
             ```
             kubectl get secret regsecret
@@ -101,13 +102,13 @@ This topic provides answers to some frequently asked questions about application
 
             In this example, the **default** service account of the namespace is manually configured to use this Secret as the imagePullSecret.
 
-        2.  Create an sa.yaml file and add the configuration of the default service account to this file.
+        2.  Create a file named sa.yaml and add the configuration of the default service account to this file.
 
             ```
             kubectl get serviceaccounts default -o yaml > ./sa.yaml
             ```
 
-        3.  Run the following command to query the content of the sa.yaml file:
+        3.  Run the following command to query the details of the sa.yaml file:
 
             ```
             cat  sa.yaml
@@ -204,4 +205,16 @@ This topic provides answers to some frequently asked questions about application
             - nameregsecretey
             ```
 
+
+## How do I pull images from a Container Registry Enterprise Edition instance deployed in a region inside China to an ACK cluster deployed in a region outside China?
+
+You must first purchase a standard or advanced Container Registry Enterprise Edition instance in a region inside China. Then, purchase a standard Container Registry Enterprise Edition instance in the region where your ACK cluster is created outside China.
+
+After you complete the purchase, you can synchronize images form the Container Registry instance inside China to the Container Registry instance outside China. For more information, see [Synchronize images between instances](). Then, obtain the address of the image that you want to pull from the Container Registry instance outside China, pull the image to your ACK cluster, and use the image to deploy an application.
+
+If you use Container Registry Personal Edition, the image synchronization process is time-consuming. If you use an external repository, you must purchase a Global Accelerator \(GA\) instance.
+
+**Note:** We recommend that you use Container Registry Enterprise Edition because the total cost of the external repository and the GA instance is higher than that of Container Registry Enterprise Edition.
+
+For more information about the billing of Container Registry Enterprise Edition, see [Billable items and pricing]().
 
