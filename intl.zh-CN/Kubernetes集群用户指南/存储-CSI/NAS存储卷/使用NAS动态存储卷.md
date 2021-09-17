@@ -31,6 +31,9 @@ keyword: [NAS, 动态存储卷, 持久化存储, 共享存储]
 
 -   若您在应用模板中配置了securityContext.fsgroup参数，kubelet在存储卷挂载完成后会执行`chmod`或`chown`操作，导致挂载时间延长。
 
+    **说明：** 若已配置securityContext.fsgroup参数，且需要减少挂载时间。具体操作，请参见[NAS存储卷挂载时间延长](/intl.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/NAS存储卷FAQ.md)。
+
+
 ## 通过控制台的方式使用NAS动态存储卷
 
 通过控制台的方式只能创建subpath类型的NAS动态存储卷，若您需要使用filesystem类型的NAS动态存储卷，请使用kubectl命令行方式。
