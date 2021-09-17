@@ -9,7 +9,7 @@ keyword: [Windows节点池, 创建Windows节点池]
 -   您已创建一个ACK集群，请参见[创建Kubernetes托管版集群](/intl.zh-CN/Kubernetes集群用户指南/集群/创建集群/创建Kubernetes托管版集群.md)。
 -   请确保您集群的Kubernetes版本大于1.9。
 
-**说明：**
+## 注意事项
 
 -   Windows操作系统的节点池仅支持Flannel网络，不支持Terway网络。
 
@@ -21,7 +21,7 @@ keyword: [Windows节点池, 创建Windows节点池]
     **说明：** ACK控制台支持选择Windows Server 2019和Windows Server Core，Version 2004。如果您有使用Windows Server Core，Version 1909的需求，请根据ECS公共镜像发布记录来选择最新的镜像ID创建节点池。更多信息，请参见[公共镜像发布记录](/intl.zh-CN/镜像/公共镜像/公共镜像发布记录.md)。
 
 -   Windows节点池的机器规格请选择4核8 GB以上的规格。
-    -   Windows容器在内存使用超出Limitation后并不会执行OOM Killed。从v1.20.4-aliyun.1版本开始，ACK的Windows节点启动时会预留一定的资源（1.5核CPU、2.5GB RAM、3GB DISK），以保证Windows系统、kubelet、容器运行时的稳定运行。
+    -   Windows容器在内存使用超出Limitation后并不会执行OOM Killed。从2021年5月起，在v1.16及之后版本的ACK集群，新添加的Windows节点启动时会预留一定的资源（1.5核CPU、2.5 GB RAM、3 GB DISK），以保证Windows系统、kubelet、容器运行时的稳定运行。
 
         **说明：** ACK通过预留资源机制，可以减少或避免因Windows工作负载的过度分配而导致Windows节点完全不可用的场景产生。但当Windows容器应用发生内存泄露时，依然存在击垮Windows节点的可能性。
 
