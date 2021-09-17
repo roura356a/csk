@@ -11,7 +11,7 @@ keyword: [OSS, 静态存储, K8s]
 
     **说明：** 若Bucket和ECS实例位于相同地域，请选择私网域名。
 
--   已通过kubectl连接Kubernetes集群。具体操作，请参见[通过kubectl连接Kubernetes集群](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl管理Kubernetes集群.md)。
+-   已通过kubectl连接Kubernetes集群。具体操作，请参见[步骤二：选择集群凭证类型](/cn.zh-CN/Kubernetes集群用户指南/集群/连接集群/通过kubectl工具连接集群.md)。
 
 阿里云对象存储服务（OSS）提供海量、安全、低成本、高可靠的云存储服务。OSS支持同时被多个Pod挂载。以下为OSS的使用场景：
 
@@ -24,6 +24,10 @@ keyword: [OSS, 静态存储, K8s]
 -   容器服务Kubernetes集群升级会重启Kubelet，OSSFS驱动跟随一起重启，导致OSS目录不可用。这时使用OSS的Pod需要重建，可在YAML文件中增加健康检查的配置，在容器内OSS目录不可用时自动重启Pod，重新挂载OSS。
 
     **说明：** 如果您使用的是v1.18.8.45及以上版本的csi-plugin和csi-provisioner插件，则不会出现上述问题。
+
+-   若您在应用模板中配置了securityContext.fsgroup参数，kubelet在存储卷挂载完成后会执行`chmod`或`chown`操作，导致挂载时间延长。
+
+    **说明：** 若已配置securityContext.fsgroup参数，且需要减少挂载时间。具体操作，请参见[OSS存储卷挂载时间延长]()。
 
 
 ## 通过控制台的方式使用OSS静态存储卷
@@ -122,11 +126,24 @@ keyword: [OSS, 静态存储, K8s]
 
 您有三种方式配置静态PV及PVC。
 
-方式一：使用Secret创建静态卷PV及PVC。
+-   方式一：使用Secret创建静态卷PV及PVC
+
+    通过Secret为CSI插件提供AccessKey信息。
+
+-   方式二：配置PV及PVC的AccessKey
+
+    直接在PV中配置AccessKey信息。
+
+-   方式三：配置PV及PVC的STS权限
+
+    在PV中配置STS进行权限认证。
+
+
+方式一：使用Secret创建静态卷PV及PVC
 
 1.  创建Secret。
 
-    以下为通过Secret来配置用户的AccessKey信息的YAML示例文件。
+    以下为通过Secret来配置AccessKey信息的YAML示例文件。
 
     ```
     apiVersion: v1
@@ -135,8 +152,8 @@ keyword: [OSS, 静态存储, K8s]
       name: oss-secret
       namespace: default
     stringData:
-      akId: ***
-      akSecret: ***
+      akId: <yourAccessKey ID>
+      akSecret: <yourAccessKey Secret>
     ```
 
     **说明：** 创建Secret选择的Namespace需要和应用所在Namespaces一致。
@@ -232,11 +249,9 @@ keyword: [OSS, 静态存储, K8s]
     在集群管理页左侧导航栏选择**存储** \> **存储声明**，在存储声明页面可以看到创建的PVC。
 
 
-方式二：配置PV及PVC的AccessKey。
+方式二：配置PV及PVC的AccessKey
 
-[方式一：使用Secret创建静态卷PV及PVC](#p_dum_5ej_hg0)是通过Secret为CSI插件提供AccessKey信息，
-
-您也可以执行以下命令直接在PV中配置AccessKey信息。
+[方式一：使用Secret创建静态卷PV及PVC](#p_dum_5ej_hg0)是通过Secret为CSI插件提供AccessKey信息，您也可以执行以下命令直接在PV中配置AccessKey信息。
 
 ```
 kubectl create -f pv-accesskey.yaml
@@ -266,9 +281,9 @@ spec:
       akSecret: "***"
 ```
 
-方式三：配置PV及PVC的STS权限。
+方式三：配置PV及PVC的STS权限
 
-除了[方式一：使用Secret创建静态卷PV及PVC](#p_dum_5ej_hg0)和[方式二：配置PV及PVC的AccessKey](#p_mfp_yr3_ovq)中使用Secret和使用AK两种方式进行权限认证外。
+除了[方式一：使用Secret创建静态卷PV及PVC](#p_dum_5ej_hg0)和[方式二：配置PV及PVC的AccessKey](#p_mfp_yr3_ovq)中使用Secret和使用AccessKey两种方式进行权限认证外。
 
 您还可以在PV中执行以下命令配置STS进行权限认证。
 
