@@ -8,7 +8,7 @@ Terway是阿里云开源的基于专有网络VPC的容器网络接口CNI（Conta
 
 ## 组件介绍
 
-Terway网络插件是ACK自研的容器网络接口（CNI）插件，基于阿里云的弹性网卡（ENI）构建网络，可以充分使用云上资源。Terway支持eBPF对网络流量进行加速，降低延迟。支持基于Kubernetes标准的网络策略（Network Policy）来定义容器间的访问策略，并兼容Calico的网络策略。
+Terway网络插件是ACK自研的容器网络接口（CNI）插件，基于阿里云的弹性网卡（ENI）构建网络，可以充分使用云上资源。Terway支持eBPF对网络流量进行加速，降低延迟，支持基于Kubernetes标准的网络策略（Network Policy）来定义容器间的访问策略，并兼容Calico的网络策略。
 
 在Terway网络插件中，每个Pod都拥有自己网络栈和IP地址。同一台ECS内的Pod之间通信，直接通过机器内部的转发，跨ECS的Pod通信、报文通过VPC的弹性网卡直接转发。由于不需要使用VxLAN等的隧道技术封装报文，因此Terway模式网络具有较高的通信性能。
 
@@ -17,6 +17,12 @@ Terway网络插件是ACK自研的容器网络接口（CNI）插件，基于阿�
 关于Terway网络插件的使用，请参见[使用Terway网络插件](/cn.zh-CN/Kubernetes集群用户指南/网络/容器网络CNI/使用Terway网络插件.md)。
 
 ## 变更记录
+
+**2021年09月**
+
+|版本号|镜像地址|变更时间|变更内容|变更影响|
+|---|----|----|----|----|
+|v1.0.10.443-gaa1bfcc-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.443-gaa1bfcc-aliyun|2021年09月14日|降低网络延迟。|此次升级不会对业务造成影响。 |
 
 **2021年08月**
 
