@@ -9,7 +9,7 @@ In a cluster of Container Service for Kubernetes \(ACK\), Service names are pref
 Before you configure the pre-installed DNS server, make sure that you have completed the following steps:
 
 -   [Create a managed Kubernetes cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Create Kubernetes clusters/Create a managed Kubernetes cluster.md)
--   [Use kubectl to connect to an ACK cluster](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Use kubectl to connect to an ACK cluster.md)
+-   [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md)
 
 By default, a Service named kube-dns is deployed in an ACK cluster to provide DNS resolution service for the ACK cluster. You can run the following command to query information about the kube-dns Service:
 
@@ -397,36 +397,5 @@ You can configure extended features based on CoreDNS in the following scenarios:
                 loadbalance
             }
         ```
-
--   **Scenario 7: Monitor failed DNS resolutions of CoreDNS**
-
-    You can query the CoreDNS log to troubleshoot failed DNS resolutions of CoreDNS. For more information, see the preceding section [Scenario 1: Enable Log Service](#li_jf8_chq_8g2). In this case, you must enable autopath for CoreDNS. For more information about autopath, see [Use the autopath add-on](/intl.en-US/User Guide for Kubernetes Clusters/Network/Service discovery DNS/Optimize DNS resolution for an ACK cluster.md). The following code block is an example:
-
-    ```
-      Corefile: |
-        .:53 {
-            errors
-            health
-            ready
-            log
-    
-            kubernetes cluster.local in-addr.arpa ip6.arpa {
-    
-              pods verified
-              fallthrough in-addr.arpa ip6.arpa
-            }
-            autopath @kubernetes
-            prometheus :9153
-            forward . /etc/resolv.conf
-            cache 30
-            loop
-            reload
-            loadbalance
-        }
-    ```
-
-    After the template is implemented, run the `kubectl get pods -n kube-system | grep coredns` command to query information about the CoreDNS pods. Then, run the `kubectl logs coredns-{pod id} -n kube-system` command to query the log of each CoreDNS pod. If response codes of the NXDOMAIN or SERVFAIL type appear in the log of CoreDNS, it indicates failed DNS resolutions of CoreDNS.
-
-    ![NXDOMAIN](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2962076061/p178897.png)
 
 
