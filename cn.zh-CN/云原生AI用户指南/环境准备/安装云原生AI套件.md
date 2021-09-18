@@ -61,6 +61,7 @@ keyword: [安装云原生AI套件, 云原生AI运维控制台, 云原生AI开发
         "eci:DescribeContainerGroupPrice",
         "log:GetLogStoreLogs",
         "ims:CreateApplication",
+        "ims:UpdateApplication",
         "ims:GetApplication",
         "ims:ListApplications",
         "ims:DeleteApplication",
@@ -91,9 +92,8 @@ keyword: [安装云原生AI套件, 云原生AI运维控制台, 云原生AI开发
           MYSQL_PASSWORD: "Database password"
         ```
 
-        **说明：**
+        **说明：** 如果需要修改数据存储方式，需要卸载云原生AI套件，再重新安装。如果集群中有kubeai-rds Secret，需要通过kubectl一并删除。
 
-        -   如果需要修改数据存储方式，需要卸载云原生AI套件，再重新安装。如果集群中有kubeai-rds Secret，需要通过kubectl一并删除。
 4.  在一键部署**云原生AI套件**页面选中**监控组件**。
 
     ![K-AI-3](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0771859161/p237487.png)
