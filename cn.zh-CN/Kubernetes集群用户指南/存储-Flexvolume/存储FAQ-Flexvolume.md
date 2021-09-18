@@ -18,13 +18,14 @@ keyword: [存储卷, 常见问题, FAQ]
 -   [挂载云盘的Pod无法启动且提示had volume node affinity conflict](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/云盘存储卷/云盘存储卷FAQ.md)
 -   [启动挂载了云盘的Pod时，提示can't find disk](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/云盘存储卷/云盘存储卷FAQ.md)
 -   [动态创建PV失败，提示disk size is not supported](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/云盘存储卷/云盘存储卷FAQ.md) |
-|NAS存储卷常见问题|-   [NAS存储卷挂载时间太长](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)
+|NAS存储卷常见问题|-   [NAS存储卷挂载时间延长](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)
 -   [NAS存储卷挂载失败时出现timeout错误](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)
 -   [使用NAS存储卷时，提示chown: option not permitted](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)
 -   [挂载NAS存储卷失败](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)
 -   [使用NAS动态存储卷时Controller的任务队列已满且无法创建新的PV](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md) |
 |OSS存储卷常见问题|-   [OSS存储卷挂载失败](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/OSS存储卷/OSS存储卷FAQ.md)
--   [集群升级后容器内OSS挂载目录不可用](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/OSS存储卷/OSS存储卷FAQ.md) |
+-   [集群升级后容器内OSS挂载目录不可用](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/OSS存储卷/OSS存储卷FAQ.md)
+-   [OSS存储卷挂载时间延长](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/OSS存储卷/OSS存储卷FAQ.md) |
 
 ## 如何解决存储卷挂载不上的问题？
 
@@ -91,7 +92,7 @@ kubectl describe pod flexvolume-4wh8s -n kube-system
 
 **说明：** 在Pod描述最后若干行是Pod运行状态的描述，可以根据描述分析错误。
 
-云盘、NAS、OSS驱动日志查看。
+查看云盘、NAS及OSS驱动日志。
 
 执行以下命令查看Host节点上持久化的日志。如果某个Pod挂载失败，查看Pod所在的节点地址。
 
@@ -113,7 +114,7 @@ ssh 192.168.XX.XX
 ls /var/log/alicloud/flexvolume*
 ```
 
-返回结果如下：
+预期输出：
 
 ```
 flexvolume_disk.log  flexvolume_nas.log  flexvolume_o#ss.log
