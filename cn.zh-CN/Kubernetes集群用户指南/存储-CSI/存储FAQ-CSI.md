@@ -18,9 +18,10 @@ keyword: [云盘存储, NAS存储, FAQ]
 -   [启动Pod时出现FailedMount警告](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md)
 -   [Pod卸载失败且Kubelet出现不受ACK管理的Pod日志](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md)
 -   [Pod删除后无法重新启动，提示挂载失败且无法自动恢复。](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/云盘存储卷/云盘存储卷FAQ.md) |
-|NAS存储卷常见问题|-   [使用NAS时，提示chown: option not permitted](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/NAS存储卷FAQ.md)
+|NAS存储卷常见问题|-   [使用NAS时，提示chown: Operation not permitted](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/NAS存储卷FAQ.md)
 -   [使用NAS动态存储卷时Controller的任务队列已满且无法创建新的PV](/cn.zh-CN/Kubernetes集群用户指南/存储-Flexvolume/NAS存储卷/NAS存储卷FAQ.md)
--   [NAS存储卷挂载时间太长](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/NAS存储卷FAQ.md) |
+-   [NAS存储卷挂载时间延长](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/NAS存储卷/NAS存储卷FAQ.md) |
+|OSS存储卷常见问题|[OSS存储卷挂载时间延长](/cn.zh-CN/Kubernetes集群用户指南/存储-CSI/OSS存储卷/OSS存储卷FAQ.md)|
 
 ## 常见问题分析流程
 
