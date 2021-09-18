@@ -51,7 +51,7 @@ CIS也推出了更符合各大云厂商实际场景的CIS Kubernetes基线，例
     |cis-kubernetes-ack-1.0|按照CIS Alibaba Cloud Container Service For Kubernetes（ACK）Benchmark v1.0.0基线标准进行扫描。|ACK专有版集群和托管版集群（Kubernetes 1.18及以上版本）|
     |cis-kubernetes-1.20|按照CIS Kubernetes V1.20 Benchmark v1.0.0基线标准进行扫描。|Kubernetes 1.20及以上版本|
     |cis-kubernetes-1.6|按照CIS Kubernetes Benchmark v1.6.0基线标准进行扫描。|Kubernetes 1.16~1.19版本|
-    |cis-kubernetes-1.5|按照CIS Kubernetes Benchmark v1.5.1基线标准进行扫描。。|Kubernetes 1.15版本|
+    |cis-kubernetes-1.5|按照CIS Kubernetes Benchmark v1.5.1基线标准进行扫描。|Kubernetes 1.15版本|
 
 2.  等待5分钟左右，通过以下命令确认本次扫描任务是否完成。
 
