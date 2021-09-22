@@ -24,7 +24,6 @@ For more information about how to use Terway, see [Use the Terway plug-in](/intl
 |-------|-------------|------------|-----------|------|
 |v1.0.10.398-g63d2e57-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.398-g63d2e57-aliyun|2021-08-04|-   The issue that network policies occasionally fail to take effect when Terway is used in inclusive ENI mode is fixed.
 -   The Cilium plug-in is upgraded to V1.10.
--   The CNI plug-in is upgraded to V0.3.1.
 
 |No impact on workloads |
 
