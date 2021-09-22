@@ -1,3 +1,7 @@
+---
+keyword: [migration of application traffic, canary release]
+---
+
 # Use ASM to migrate TCP traffic
 
 You can use Alibaba Cloud Service Mesh \(ASM\) to migrate traffic between different versions of an application. This topic describes how to use ASM to migrate TCP traffic.
@@ -88,11 +92,9 @@ This topic describes how to migrate TCP traffic between two versions of a servic
 
     4.  In the left-side navigation pane of the details page, choose **Network** \> **Services**.
 
-    5.  At the top of the **Services** page, select the namespace where you want to create a service from the **Namespace** drop-down list.
+    5.  At the top of the **Services** page, select the namespace where you want to create a service from the **Namespace** drop-down list. Then, click **Create** in the upper-right corner of the page.
 
-    6.  Click **Create** in the upper-right corner.
-
-    7.  In the **Create Service** dialog box, set the relevant parameters and click **Create**.
+    6.  In the **Create Service** dialog box, set the relevant parameters and click **Create**.
 
         You must set the following parameters:
 
@@ -127,7 +129,7 @@ You can create an Istio gateway, a virtual service, and a destination rule for t
 
 4.  Create an Istio gateway.
 
-    1.  On the details page of the ASM instance, choose **Traffic Management** \> **Gateway** in the left-side navigation pane. On the Gateway page, click **Create**.
+    1.  On the details page of the ASM instance, choose **Traffic Management** \> **Gateway** in the left-side navigation pane. On the Gateway rules page, click **Create from YAML**.
 
     2.  In the **Create** panel, select default from the **Namespace** drop-down list and copy the following YAML code to the code editor. Then, click **OK**.
 
@@ -148,11 +150,9 @@ You can create an Istio gateway, a virtual service, and a destination rule for t
             - "*"
         ```
 
-        After you create the tcp-echo-gateway Istio gateway, it appears on the **Gateway** page.
-
 5.  Create a virtual service.
 
-    1.  On the details page of the ASM instance, choose **Traffic Management** \> **VirtualService** in the left-side navigation pane. On the VirtualService page, click **Create**.
+    1.  On the details page of the ASM instance, choose **Traffic Management** \> **VirtualService** in the left-side navigation pane. On the Virtual service page, click **Create from YAML**.
 
     2.  In the **Create** panel, select default from the **Namespace** drop-down list and copy the following YAML code to the code editor. Then, click **OK**.
 
@@ -177,11 +177,9 @@ You can create an Istio gateway, a virtual service, and a destination rule for t
                 subset: v1
         ```
 
-        After you create the tcp-echo virtual service, it appears on the **VirtualService** page.
-
 6.  Create a destination rule.
 
-    1.  On the details page of the ASM instance, choose **Traffic Management** \> **DestinationRule** in the left-side navigation pane. On the DestinationRule page, click **Create**.
+    1.  On the details page of the ASM instance, choose **Traffic Management** \> **DestinationRule** in the left-side navigation pane. On the Target rule page, click **Create from YAML**.
 
     2.  In the **Create** panel, select default from the **Namespace** drop-down list and copy the following YAML code to the code editor. Then, click **OK**.
 
@@ -201,8 +199,6 @@ You can create an Istio gateway, a virtual service, and a destination rule for t
               version: v2
         ```
 
-        After you create the tcp-echo-destination destination rule, it appears on the **DestinationRule** page.
-
 
 ## Step 3: Deploy an ingress gateway service
 
@@ -220,7 +216,7 @@ Enable port 31400 in the ingress gateway service and point the port to port 3140
 
     1.  Select the cluster where you want to deploy an ingress gateway service from the **Cluster** drop-down list.
 
-    2.  Set SLB Instance Type to **Internet Access**.
+    2.  Set the SLB Instance Type parameter to **Internet Access**.
 
     3.  Configure an SLB instance.
 
@@ -244,7 +240,7 @@ Enable port 31400 in the ingress gateway service and point the port to port 3140
 
 Use the kubectl client to check whether the traffic to the tcp-echo service is routed as expected.
 
-1.  Use the kubectl client to connect to the relevant Kubernetes cluster. For more information, see [t16645.md\#](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md).
+1.  Use the kubectl client to connect to the relevant Kubernetes cluster. For more information, see [Step 2: Select a type of cluster credentials](/intl.en-US/User Guide for Kubernetes Clusters/Cluster/Access clusters/Connect to ACK clusters by using kubectl.md).
 
 2.  Run the following commands to query the IP address and port number of the tcp-echo service:
 
@@ -274,8 +270,6 @@ In this example, 20% of the traffic is routed to the tcp-echo-v2 deployment and 
     1.  On the details page of the ASM instance, choose **Traffic Management** \> **VirtualService** in the left-side navigation pane.
 
     2.  On the **VirtualService** page, click **YAML** in the **Actions** column of the tcp-echo virtual service.
-
-        On the **VirtualService** page, you can view the created tcp-echo virtual service.
 
     3.  In the **Edit** panel, copy the following YAML code to the code editor and click **OK**:
 
@@ -310,7 +304,7 @@ In this example, 20% of the traffic is routed to the tcp-echo-v2 deployment and 
 2.  Run the following command to send 10 requests to the tcp-echo service:
 
     ```
-    $ for i in {1..10}; do \
+     for i in {1..10}; do \
     docker run -e INGRESS_HOST=$INGRESS_HOST -e INGRESS_PORT=$INGRESS_PORT -it --rm busybox sh -c "(date; sleep 1) | nc $INGRESS_HOST $INGRESS_PORT"; \
     done
     one Mon Nov 12 23:38:45 UTC 2018
