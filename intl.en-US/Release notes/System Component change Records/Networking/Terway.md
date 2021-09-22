@@ -4,19 +4,29 @@ keyword: [Terway release notes, terway-eniip]
 
 # Terway
 
-Terway is an open source Container Network Interface \(CNI\) plug-in developed by Alibaba Cloud. Terway works with Virtual Private Cloud \(VPC\) and allows you to use standard Kubernetes network policies to regulate how containers communicate with each other. You can use Terway to enable internal communication within a Kubernetes cluster. This topic lists the latest changes to the Terway plug-in.
+Terway is an open source Container Network Interface \(CNI\) plug-in developed by Alibaba Cloud. Terway works with Virtual Private Cloud \(VPC\) and allows you to use standard Kubernetes network policies to regulate how containers communicate with each other. You can use Terway to set up network connectivity within a Kubernetes cluster. This topic describes the latest changes to the Terway plug-in.
 
 ## Introduction
 
 Terway is a CNI plug-in developed by Container Service for Kubernetes \(ACK\). The plug-in builds networks based on elastic network interfaces \(ENIs\) of Alibaba Cloud to make full use of cloud resources. Terway supports the use of extended Berkeley Packet Filter \(eBPF\) to accelerate network traffic and reduce latency. It supports standard Kubernetes network policies that define how containers communicate with each other and provides compatibility with Calico network policies.
 
-In a cluster that has Terway installed, each pod has a separate network stack and is assigned a separate IP address. Pods on the same Elastic Compute Service \(ECS\) instance communicate with each other by forwarding packets inside the ECS instance. Pods on different ECS instances communicate with each other through ENIs in the VPC where the ECS instances are deployed. This improves communication efficiency because no tunneling technologies, such as Virtual Extensible Local Area Network \(VXLAN\), are required to encapsulate packets.
+In a cluster that has Terway installed, each pod has a separate network stack and is assigned a separate IP address. Pods on the same Elastic Compute Service \(ECS\) instance communicate with each other by forwarding packets inside the ECS instance. Pods on different ECS instances communicate with each other through ENIs in the VPC where the ECS instances are deployed. This improves communication efficiency because no tunneling technologies such as Virtual Extensible Local Area Network \(VXLAN\) are required to encapsulate packets.
 
 ## Usage notes
 
 For more information about how to use Terway, see [Use the Terway plug-in](/intl.en-US/User Guide for Kubernetes Clusters/Network/Container network/Use the Terway plug-in.md).
 
 ## Release notes
+
+**August 2021**
+
+|Version|Image address|Release date|Description|Impact|
+|-------|-------------|------------|-----------|------|
+|v1.0.10.398-g63d2e57-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.398-g63d2e57-aliyun|2021-08-04|-   The issue that network policies occasionally fail to take effect when Terway is used in inclusive ENI mode is fixed.
+-   The Cilium plug-in is upgraded to V1.10.
+-   The CNI plug-in is upgraded to V0.3.1.
+
+|No impact on workloads |
 
 **July 2021**
 
@@ -52,7 +62,7 @@ For more information about how to use Terway, see [Use the Terway plug-in](/intl
 
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
-|v1.0.10.323-g778c128-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.323-g778c128-aliyun|2021-03-22|-   The number of times required to call an API operation in OpenAPI is reduced.
+|v1.0.10.323-g778c128-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.323-g778c128-aliyun|2021-03-22|-   The number of API calls per minute is reduced to prevent API abuse.
 -   Event alerts are optimized when security group configurations are inspected.
 
 |No impact on workloads |
@@ -83,7 +93,7 @@ Fixed issues:
 
 -   Packet loss due to traffic throttling of Terway.
 -   Residual IP policies.
--   Incorrect counting of the number of IP addresses provided by elastic network interfaces \(ENIs\).
+-   Incorrect counting of the number of IP addresses provided by ENIs.
 
 |No impact on workloads |
 
@@ -96,7 +106,7 @@ Fixed issues:
     -   The consistency of security groups.
     -   The pod network configurations.
     -   The host network configurations.
--   Routing based on the host network stack when IPVLAN is used is supported.
+-   Routing based on the host network stack in IPVLAN mode is supported.
 
 |No impact on workloads |
 |v1.0.10.263-gdbe50a9-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.263-gdbe50a9-aliyun|2020-12-03|The error in Terway when the exclusive ENI mode is used is fixed.|No impact on workloads |
@@ -109,7 +119,7 @@ Fixed issues:
 -   The issue that error messages are returned when the CNI plug-in is used is fixed.
 
 |No impact on workloads |
-|v1.0.10.250-gb7bb10a-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.250-gb7bb10a-aliyun|2020-11-23|-   The issue that a pod cannot connect to the network when the ENI driver fails to be loaded is fixed.
+|v1.0.10.250-gb7bb10a-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.250-gb7bb10a-aliyun|2020-11-23|-   The network issue of pods when the ENI driver fails to be loaded is fixed.
 -   The status issue of the IP addresses that are allocated by ENIs when the ENI API is throttled is fixed.
 
 |No impact on workloads |
@@ -131,15 +141,15 @@ Fixed issues:
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
 |v1.0.10.221-g8d6386a-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.221-g8d6386a-aliyun|2020-08-11|IPVLAN and the eBPF are supported for network virtualization.To use this feature, [Submit a ticket](https://workorder-intl.console.aliyun.com/console.htm) to apply to be added to a whitelist.|No impact on workloads |
-|v1.0.10.213-g27145cc-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.213-g27145cc-aliyun|2020-08-04|The issue that a pod cannot connect to the network due to occasional ENI failures is fixed.|No impact on workloads |
+|v1.0.10.213-g27145cc-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.213-g27145cc-aliyun|2020-08-04|The network issue of pods due to occasional ENI failures is fixed.|No impact on workloads |
 
 **July 2020**
 
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
-|v1.0.10.208-gf3144bf-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.208-gf3144bf-aliyun|2020-07-20|-   The issue that policy-based routes for nodes in the inclusive ENI mode are leaked is fixed.
+|v1.0.10.208-gf3144bf-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.208-gf3144bf-aliyun|2020-07-20|-   The issue that policy-based routes for nodes in inclusive ENI mode are leaked is fixed.
 -   API calls over internal networks are supported.
--   The issue that IP addresses cannot be assigned to pods when the number of vSwitches reaches the upper limit is fixed.
+-   The issue that pod IP addresses cannot be released when the number of IP addresses provided by the vSwitch reaches the upper limit is fixed.
 -   The error report page that returns CNI errors is optimized.
 
 |No impact on workloads |
@@ -150,7 +160,7 @@ Fixed issues:
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
 |v1.0.10.156-g8660a0f-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.156-g8660a0f-aliyun|2020-04-22|-   The cache efficiency is improved when ENIs are used.
--   The pre-installed Felix is upgraded to version 3.5.8.
+-   The pre-installed Felix is upgraded to V3.5.8.
 -   Reclaiming network resources from pods that are in the Completed or Failed state is supported.
 
 |No impact on workloads |
@@ -165,8 +175,8 @@ Fixed issues:
 
 |Version|Image address|Release date|Description|Impact|
 |-------|-------------|------------|-----------|------|
-|v1.0.10.133-g001396b-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.133-g001396b-aliyun|2020-01-10|-   Disabling the NetworkPolicy feature is supported.
--   IPVLAN is supported for network virtualization in the inclusive ENI mode.
+|v1.0.10.133-g001396b-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.10.133-g001396b-aliyun|2020-01-10|-   The NetworkPolicy feature can be disabled.
+-   IPVLAN is supported for network virtualization in inclusive ENI mode.
 
 |No impact on workloads|
 
@@ -201,7 +211,7 @@ Fixed issues:
 |v1.0.9.14-ga0346bb-aliyun|registry.cn-hangzhou.aliyuncs.com/acs/terway:v1.0.9.14-ga0346bb-aliyun|2019-03-28|-   The issue that Terway fails to obtain the ENI information when throttling is applied to the meta server is fixed.
 -   The issue that the **failed to move veth to host netns: file exists** error is returned when you create a container is fixed.
 -   Periodic scanning is supported to check the status of ENIs. ENIs that are abnormally released are periodically recycled.
--   Health checks are optimized. TCP port checks are performed instead of HTTP path checks.
+-   Health checks are supported. TCP port check is performed instead of HTTP path check.
 
 |No impact on workloads|
 
