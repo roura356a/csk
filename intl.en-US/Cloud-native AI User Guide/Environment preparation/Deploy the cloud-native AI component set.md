@@ -61,6 +61,7 @@ You can deploy the cloud-native AI component set only in professional Kubernetes
         "eci:DescribeContainerGroupPrice",
         "log:GetLogStoreLogs",
         "ims:CreateApplication",
+        "ims:UpdateApplication",
         "ims:GetApplication",
         "ims:ListApplications",
         "ims:DeleteApplication",
@@ -91,9 +92,8 @@ You can deploy the cloud-native AI component set only in professional Kubernetes
           MYSQL_PASSWORD: "Database password"
         ```
 
-        **Note:**
+        **Note:** If you want to change the method for data storage, you must uninstall and redeploy the cloud-native AI component set. You must also delete the kubeai-rds Secret by using kubectl.
 
-        -   If you want to change the method for data storage, you must uninstall and redeploy the cloud-native AI component set. You must also delete the kubeai-rds Secret by using kubectl.
 4.  On the **Cloud-native AI Component Set** page, select **Monitoring Component**.
 
     ![K-AI-3](https://help-static-aliyun-doc.aliyuncs.com/assets/img/en-US/5101579161/p237487.png)
